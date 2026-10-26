@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 import fuentes_coes as fc
+import historicos as hi
 
 SALIDA = Path("reportes")
 DOCS = Path("docs")
@@ -120,7 +121,8 @@ def grafico_demanda(dem_areas, dia, ruta, plt):
 
 
 # --------------------------------------------------------------------------- resumen ejecutivo
-def resumen(ind, ieod, prog, dia, m):
+def resumen(ind, ieod, prog, dia, m, extra=None):
+    extra = extra or {}
     b = []
     sr_d = ind["diario_b"][m.SR].get(dia)
     sr_p = ind["prev"].get(m.SR)
@@ -143,13 +145,26 @@ def resumen(ind, ieod, prog, dia, m):
     if da:
         mx = max(da, key=lambda r: r["sein"] or 0)
         b.append(f"Máxima demanda del SEIN: <b>{mx['sein']:,.0f} MW</b> a las {mx['hora']} h.")
+    rd = extra.get("demanda")
+    if rd and rd["mtd_gwh"].get(rd["ant"]):
+        a1, a0 = rd["mtd_gwh"][rd["act"]], rd["mtd_gwh"][rd["ant"]]
+        y1, y0 = rd["ytd_twh"][rd["act"]], rd["ytd_twh"][rd["ant"]]
+        b.append(f"Demanda acumulada del mes: <b>{a1:,.0f} GWh</b> ({(a1 / a0 - 1) * 100:+.1f}% vs. mismo período "
+                 f"{rd['ant']}); en el año {y1:,.2f} TWh ({(y1 / y0 - 1) * 100:+.1f}%).")
+    rh = extra.get("hidro")
+    if rh and rh["mtd"].get(rh["act"]) and rh["mtd"].get(rh["ant"]):
+        m1, m0 = rh["mtd"][rh["act"]], rh["mtd"][rh["ant"]]
+        b.append(f"Hidro de pasada: promedio del mes {m1:,.0f} MW vs. {m0:,.0f} MW en {rh['ant']} "
+                 f"(<b>{(m1 / m0 - 1) * 100:+.0f}%</b>).")
     ind_g = ieod.get("indisponibilidades") or []
     if ind_g:
-        forz = [r for r in ind_g if not r["programado"]]
-        mw = sum(r["mw"] for r in ind_g)
-        top = sorted(ind_g, key=lambda r: -r["mw"])[:3]
-        b.append(f"Indisponibilidad de generación: {len(ind_g)} registros, {mw:,.0f} MW en total "
-                 f"({len(forz)} forzados). Mayores: " +
+        sin = [r for r in ind_g if not r.get("diesel")]
+        dsl = [r for r in ind_g if r.get("diesel")]
+        mw = sum(r["mw"] for r in sin)
+        top = sorted(sin, key=lambda r: -r["mw"])[:3]
+        b.append(f"Indisponibilidad de generación (sin diésel): <b>{mw:,.0f} MW</b> en {len(sin)} registros "
+                 f"({sum(1 for r in sin if not r['programado'])} forzados); diésel aparte: "
+                 f"{sum(r['mw'] for r in dsl):,.0f} MW. Mayores: " +
                  ", ".join(f"{r['ubicacion'].title()} {r['equipo']} ({r['mw']:.0f} MW)" for r in top) + ".")
     lin = fc.filtrar_lineas_220(ieod.get("mantenimientos") or [])
     ev = ieod.get("eventos") or []
@@ -159,11 +174,10 @@ def resumen(ind, ieod, prog, dia, m):
                  + (f"; líneas ≥220 kV afectadas: {', '.join(e['equipo'] for e in ev_l)}." if ev_l else "."))
     if lin:
         b.append(f"Transmisión: {len({r['equipo'] for r in lin})} líneas ≥220 kV con intervenciones ejecutadas.")
-    emb = sorted(ieod.get("embalses") or [], key=lambda e: -abs(e["variacion"]) if e["unidad"] == "Hm3" else 0)
-    if emb and emb[0]["unidad"] == "Hm3" and abs(emb[0]["variacion"]) > 0.05:
-        e = emb[0]
-        b.append(f"Embalses: mayor variación en {e['embalse']} ({e['cuenca']}) {e['variacion']:+.2f} Hm3 "
-                 f"(cierre {e['final']:.2f} Hm3).")
+    cu = [c for c in extra.get("cuencas") or [] if c["var_pct"] is not None]
+    if cu:
+        b.append("Embalses vs. año anterior (misma semana): " +
+                 ", ".join(f"{c['cuenca']} {c['actual']:,.0f} Hm3 ({c['var_pct']:+.0f}%)" for c in cu) + ".")
     if prog is not None:
         g = fc.solo_generacion(prog)
         lp = fc.filtrar_lineas_220(prog)
@@ -174,7 +188,8 @@ def resumen(ind, ieod, prog, dia, m):
 
 
 # --------------------------------------------------------------------------- PDF
-def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, m):
+def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, m, extra=None):
+    extra = extra or {}
     from reportlab.lib import colors
     from reportlab.lib.enums import TA_LEFT
     from reportlab.lib.pagesizes import A4
@@ -291,28 +306,48 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
     el.append(Paragraph("Oferta y demanda", h1))
     el.append(img(graficos.get("generacion"), 11))
     el.append(img(graficos.get("demanda"), 7.5))
-    gas = ieod.get("gas") or []
-    el.append(Paragraph("Disponibilidad de gas natural declarada", h2))
-    el.append(tabla(["Empresa", "Gasoducto", "Volumen (Mm3)"],
-                    [[g["empresa"].title(), g["gasoducto"].title(),
-                      f"{g['volumen_mm3']:,.0f}" if g["volumen_mm3"] is not None else "–"] for g in gas],
-                    [0.38, 0.44, 0.18]))
+    el.append(PageBreak())
+    el.append(Paragraph("Demanda vs. año anterior e hidro de pasada", h1))
+    el.append(img(graficos.get("dem_mensual"), 7.6))
+    el.append(img(graficos.get("dem_acum"), 6.6))
+    el.append(img(graficos.get("hidro"), 7.6))
     el.append(PageBreak())
 
     fuente_ieod = f"IEOD del {dia_ieod:%d/%m/%Y}" if dia_ieod else "IEOD no disponible"
     el.append(Paragraph(f"Indisponibilidades de generación <font size=8 color='{GRIS}'>({fuente_ieod})</font>", h1))
-    ind_g = sorted(ieod.get("indisponibilidades") or [], key=lambda r: (-r["mw"], r["empresa"]))
+    ind_g = sorted(ieod.get("indisponibilidades") or [], key=lambda r: (bool(r.get("diesel")), -r["mw"], r["empresa"]))
     if ind_g:
-        mw_p = sum(r["mw"] for r in ind_g if r["programado"])
-        mw_f = sum(r["mw"] for r in ind_g if not r["programado"])
-        el.append(P(f"Total: <b>{len(ind_g)}</b> registros · {mw_p + mw_f:,.1f} MW "
-                    f"(programados {mw_p:,.1f} MW · forzados {mw_f:,.1f} MW).", txt))
+        sin = [r for r in ind_g if not r.get("diesel")]
+        dsl = [r for r in ind_g if r.get("diesel")]
+        mw_p = sum(r["mw"] for r in sin if r["programado"])
+        mw_f = sum(r["mw"] for r in sin if not r["programado"])
+        por_tec = {}
+        for r in sin:
+            por_tec[r.get("tecnologia", "Otra")] = por_tec.get(r.get("tecnologia", "Otra"), 0) + r["mw"]
+        kpi = Table([[P(f"<font size=8 color='{GRIS}'>Indisponible sin diésel</font><br/><font size=16 color='{AZUL}'>"
+                        f"<b>{mw_p + mw_f:,.0f} MW</b></font>", txt),
+                      P(f"<font size=8 color='{GRIS}'>Programado</font><br/><font size=13><b>{mw_p:,.0f} MW</b></font>", txt),
+                      P(f"<font size=8 color='{GRIS}'>Forzado</font><br/><font size=13 color='#c5221f'><b>{mw_f:,.0f} MW</b></font>", txt),
+                      P(f"<font size=8 color='{GRIS}'>Diésel (excluido)</font><br/><font size=13 color='{GRIS}'><b>"
+                        f"{sum(r['mw'] for r in dsl):,.0f} MW</b></font>", txt)]],
+                    colWidths=[0.31 * ancho, 0.23 * ancho, 0.23 * ancho, 0.23 * ancho])
+        kpi.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.6, colors.HexColor("#d9dce6")),
+                                 ("LINEBEFORE", (1, 0), (-1, 0), 0.4, colors.HexColor("#d9dce6")),
+                                 ("BACKGROUND", (0, 0), (0, 0), colors.HexColor("#fff3ec")),
+                                 ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
+        el.append(kpi)
         el.append(Spacer(1, 3))
-    el.append(tabla(["Empresa", "Central", "Unidad", "Horario", "MW", "Tipo", "Descripción"],
-                    [[r["empresa"].title(), r["ubicacion"].title(), r["equipo"], periodo(r, dia_ieod or dia),
-                      f"{r['mw']:.1f}", "Prog." if r["programado"] else "<font color='#c5221f'>Forzado</font>",
-                      r["descripcion"][:140]] for r in ind_g],
-                    [0.15, 0.13, 0.09, 0.1, 0.06, 0.07, 0.4]))
+        el.append(P("Por tecnología (sin diésel): " + " · ".join(f"{k} {v:,.0f} MW" for k, v in
+                                                                sorted(por_tec.items(), key=lambda x: -x[1])), nota))
+        el.append(Spacer(1, 4))
+    el.append(tabla(["Empresa", "Central", "Unidad", "Tecnología", "Horario", "MW", "Tipo", "Descripción"],
+                    [[r["empresa"].title(), r["ubicacion"].title(), r["equipo"],
+                      (f"<font color='{GRIS}'>Diésel · excluido</font>" if r.get("diesel") else r.get("tecnologia", "")),
+                      periodo(r, dia_ieod or dia),
+                      (f"<font color='{GRIS}'>{r['mw']:.1f}</font>" if r.get("diesel") else f"<b>{r['mw']:.1f}</b>"),
+                      "Prog." if r["programado"] else "<font color='#c5221f'>Forzado</font>",
+                      r["descripcion"][:120]] for r in ind_g],
+                    [0.14, 0.12, 0.08, 0.1, 0.1, 0.06, 0.07, 0.33]))
     el.append(PageBreak())
 
     el.append(Paragraph("Transmisión ≥220 kV y eventos", h1))
@@ -336,15 +371,24 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
                     [0.16, 0.16, 0.1, 0.09, 0.49], max_filas=25))
     el.append(PageBreak())
 
-    el.append(Paragraph(f"Embalses principales <font size=8 color='{GRIS}'>({fuente_ieod})</font>", h1))
-    emb = sorted(ieod.get("embalses") or [], key=lambda e: (e["cuenca"], e["embalse"]))
-    el.append(tabla(["Cuenca", "Embalse", "Variable", "Unidad", "00:00", "24:00", "Variación"],
-                    [[e["cuenca"], e["embalse"], e["variable"], e["unidad"], f"{e['inicio']:,.3f}",
-                      f"{e['final']:,.3f}",
-                      (f"<font color='#c5221f'>{e['variacion']:+,.3f}</font>" if e["variacion"] < 0
-                       else f"{e['variacion']:+,.3f}")] for e in emb],
-                    [0.12, 0.26, 0.16, 0.08, 0.12, 0.12, 0.14]))
-    el.append(Spacer(1, 8))
+    sem = extra.get("semana_embalses")
+    el.append(Paragraph(f"Embalses por cuenca vs. años anteriores <font size=8 color='{GRIS}'>"
+                        f"({sem or 'Evaluación Semanal no disponible'})</font>", h1))
+    cu = extra.get("cuencas") or []
+    if cu:
+        el.append(tabla(["Cuenca", "Semana", "Volumen actual (Hm3)", "Mismo período año anterior", "Variación",
+                         "Potencia instalada"],
+                        [[c["cuenca"], str(c["semana"]), f"{c['actual']:,.1f}",
+                          f"{c['anterior']:,.1f}" if c["anterior"] is not None else "–",
+                          (f"<font color='#c5221f'>{c['var_pct']:+.0f}%</font>" if (c["var_pct"] or 0) < 0
+                           else (f"{c['var_pct']:+.0f}%" if c["var_pct"] is not None else "–")),
+                          f"{c['mw_total']:,.1f} MW" if c["mw_total"] else "–"] for c in cu],
+                        [0.16, 0.1, 0.2, 0.22, 0.14, 0.18]))
+        el.append(Spacer(1, 4))
+        el.append(img(graficos.get("embalses"), 20))
+    else:
+        el.append(P("No se pudo leer el Informe de Evaluación Semanal.", nota))
+    el.append(PageBreak())
     el.append(Paragraph(f"Programado para hoy · {fecha_larga(hoy)}", h1))
     if prog is None:
         el.append(P("El Programa Diario de Intervenciones de hoy aún no está publicado.", nota))
@@ -378,7 +422,8 @@ def _limpio(regs):
     return [{k: _iso(v) for k, v in r.items()} for r in regs]
 
 
-def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m):
+def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=None):
+    extra = extra or {}
     cmg30 = {}
     for b in m.BARRAS:
         cmg30[b] = [[_iso(t), round(r[b] / m.TC, 2)] for t, r in sorted(m_hist_rango(m, ind, dia))
@@ -411,6 +456,9 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m):
         "programado_gen": _limpio(fc.solo_generacion(prog or [])),
         "programado_lineas": _limpio(fc.filtrar_lineas_220(prog or [])),
         "programado_publicado": prog is not None,
+        "demanda_hist": extra.get("demanda"),
+        "hidro_pasada": extra.get("hidro"),
+        "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
 
 
@@ -440,9 +488,31 @@ def generar(m, hist=None):
     try:
         dia_ieod, hojas = fc.descargar_ieod(dia)
         ieod = fc.parsear_ieod(hojas) if hojas else {}
+        mapa_hop, hidro_set = fc.combustibles_hop(hojas), fc.centrales_hidro(hojas)
+        for r in ieod.get("indisponibilidades") or []:
+            r["tecnologia"] = fc.tecnologia(r, mapa_hop, hidro_set)
+            r["diesel"] = r["tecnologia"] == "Diésel"
     except Exception as e:
         print("IEOD no disponible:", e, file=sys.stderr)
-        dia_ieod, ieod = None, {}
+        dia_ieod, ieod, hojas = None, {}, {}
+
+    extra = {}
+    try:
+        extra["demanda"] = hi.resumen_demanda(hi.actualizar_demanda(dia), dia)
+    except Exception as e:
+        print("Demanda histórica no disponible:", e, file=sys.stderr)
+    try:
+        h, pend = hi.actualizar_hidro(dia, hojas if dia_ieod == dia else None)
+        extra["hidro"] = hi.resumen_hidro(h, dia)
+        extra["hidro"]["pendientes"] = len(pend)
+    except Exception as e:
+        print("Hidro de pasada no disponible:", e, file=sys.stderr)
+    try:
+        emb = hi.actualizar_embalses(hoy)
+        extra["cuencas"] = hi.cuencas_seleccionadas(emb)
+        extra["semana_embalses"] = emb.get("semana")
+    except Exception as e:
+        print("Embalses semanales no disponibles:", e, file=sys.stderr)
     try:
         prog = fc.intervenciones_programadas(hoy)
         prog = prog if prog else None
@@ -467,10 +537,17 @@ def generar(m, hist=None):
         g["generacion"] = tmp / "generacion.png"
         m.grafico_generacion(gen, dia, g["generacion"])
     g["demanda"] = grafico_demanda(ieod.get("demanda_areas"), dia_ieod or dia, tmp / "demanda.png", plt)
+    if extra.get("demanda"):
+        g["dem_mensual"] = hi.grafico_demanda_mensual(extra["demanda"], tmp / "dem_mensual.png", plt)
+        g["dem_acum"] = hi.grafico_demanda_acum(extra["demanda"], tmp / "dem_acum.png", plt)
+    if extra.get("hidro"):
+        g["hidro"] = hi.grafico_hidro(extra["hidro"], tmp / "hidro.png", plt)
+    if extra.get("cuencas"):
+        g["embalses"] = hi.grafico_embalses(extra["cuencas"], tmp / "embalses.png", plt)
 
-    bullets = resumen(ind, ieod, prog, dia, m)
+    bullets = resumen(ind, ieod, prog, dia, m, extra)
     ruta = SALIDA / f"Reporte_SEIN_{dia:%Y-%m-%d}.pdf"
-    construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, g, bullets, m)
+    construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, g, bullets, m, extra)
 
     DOCS.mkdir(exist_ok=True)
     if Path("dashboard.html").exists():
@@ -478,7 +555,7 @@ def generar(m, hist=None):
     if LOGO.exists():
         (DOCS / "logo.png").write_bytes(LOGO.read_bytes())
     (DOCS / ".nojekyll").write_text("")
-    datos = datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m)
+    datos = datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra)
     (DOCS / "datos.json").write_text(json.dumps(datos, ensure_ascii=False, default=str), encoding="utf-8")
     (DOCS / "reportes").mkdir(exist_ok=True)
     (DOCS / "reportes" / ruta.name).write_bytes(ruta.read_bytes())

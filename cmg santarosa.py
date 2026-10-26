@@ -535,7 +535,8 @@ def pidio_actualizar(chat):
 
 def main():
     chat = os.environ["TELEGRAM_CHAT_ID"]
-    if os.getenv("MODO") == "explora":
+    MODO = (os.getenv("MODO") or "reporte").strip().lower()
+    if MODO == "explora":
         import explorar
         res = explorar.main()
         ok = sum(1 for p in res["paginas"].values() if p.get("status") == 200)
@@ -543,20 +544,18 @@ def main():
                                 "text": f"🔎 Exploración COES lista: {ok}/{len(res['paginas'])} páginas leídas. "
                                         "Avísale a Claude."})
         return
-    if os.getenv("MODO") == "pdf":
+    if MODO in ("pdf", "dashboard"):
+        # Actualiza el dashboard (y deja el PDF descargable desde ahí); a Telegram solo va el enlace
         import reporte
         ruta, bullets = reporte.generar(sys.modules[__name__])
-        limpio = [re.sub(r"<[^>]+>", "", t) for t in bullets]
         repo = os.getenv("GITHUB_REPOSITORY", "")
         url = (f"https://{repo.split('/')[0]}.github.io/{repo.split('/')[1]}/" if "/" in repo else "")
-        cap = "📊 Reporte diario del SEIN\n" + "\n".join("• " + t for t in limpio[:4])
         if url:
-            cap += f"\n\nDashboard: {url}"
-        with ruta.open("rb") as f:
-            tg("sendDocument", data={"chat_id": chat, "caption": cap[:1020]}, files={"document": f})
-        print("OK reporte PDF", ruta)
+            tg("sendMessage", data={"chat_id": chat, "disable_web_page_preview": "true",
+                                    "text": f"📊 Dashboard del SEIN actualizado ({ruta.stem[-10:]}):\n{url}"})
+        print("OK dashboard", ruta)
         return
-    if os.getenv("MODO") == "escucha":
+    if MODO == "escucha":
         if not pidio_actualizar(chat):
             print("Sin pedidos de actualización")
             return
