@@ -375,6 +375,110 @@ def grafico_30min(hist, hoy, ruta):
     plt.close(fig)
 
 
+# --------------------------------------------------------------------------- generación por recurso
+GEN_URL = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
+# grupo -> (color, nombres COES normalizados que lo componen)
+GRUPOS_GEN = {
+    "Hídrica": ("#1a73e8", ("HIDRICO",)),
+    "Gas natural": ("#d35400", ("GAS",)),
+    "Solar": ("#fbbc04", ("SOLAR",)),
+    "Eólica": ("#34a853", ("EOLICA",)),
+    "Carbón": ("#5f6368", ("CARBON",)),
+    "Diésel/Residual/Otros": ("#c5221f", ("DIESEL", "RESIDUAL", "NAFTA & GAS REFINERIA")),
+    "Biomasa": ("#8d6e63", ("BAGAZO", "BIOGAS")),
+}
+
+
+def generacion(desde: dt.date, hasta: dt.date):
+    """{ts fin de intervalo: {recurso normalizado: MW}} entre dos fechas (inclusive)."""
+    r = post(GEN_URL, {"fechaInicial": desde.strftime("%d/%m/%Y"),
+                       "fechaFinal": (hasta + dt.timedelta(days=1)).strftime("%d/%m/%Y"),
+                       "indicador": 0})
+    series = r.json()["GraficoTipoCombustible"]["Series"]
+    out = {}
+    for sr in series:
+        nombre = norm(sr["Name"])
+        for d in sr["Data"]:
+            ts = dt.datetime.strptime(d["Nombre"], "%Y/%m/%d %H:%M:%S").replace(tzinfo=LIMA)
+            if d.get("Valor") is not None:
+                out.setdefault(ts, {})[nombre] = float(d["Valor"])
+    _corregir_bagazo_solar(out)
+    return out
+
+
+def _corregir_bagazo_solar(gen):
+    """El COES a veces publica BAGAZO y SOLAR intercambiados: el solar debe ser ~0 de noche."""
+    def amplitud(nombre):
+        dia = [r.get(nombre, 0) for t, r in gen.items() if 11 <= t.hour <= 13]
+        noche = [r.get(nombre, 0) for t, r in gen.items() if t.hour <= 4]
+        return (promedio(dia) or 0) - (promedio(noche) or 0)
+    if "BAGAZO" in str(gen) and amplitud("BAGAZO") > amplitud("SOLAR"):
+        for r in gen.values():
+            r["BAGAZO"], r["SOLAR"] = r.get("SOLAR", 0), r.get("BAGAZO", 0)
+
+
+def agrupar(reg):
+    out = {g: 0.0 for g in GRUPOS_GEN}
+    for nombre, mw in reg.items():
+        g = next((g for g, (_, ns) in GRUPOS_GEN.items() if nombre in ns), "Diésel/Residual/Otros")
+        out[g] += mw
+    return out
+
+
+def grafico_generacion(gen, hoy, ruta):
+    plt = _plt()
+    from matplotlib.ticker import MultipleLocator
+    ayer = hoy - dt.timedelta(days=1)
+    fig, axes = plt.subplots(2, 1, figsize=(8.5, 7.6), dpi=160, sharex=True, sharey=True)
+    for ax, dia in zip(axes, (ayer, hoy)):
+        pts = sorted((t, agrupar(r)) for t, r in gen.items() if dia_operativo(t) == dia)
+        if pts:
+            xs = [((t - dt.timedelta(minutes=1)).hour * 60 + (t - dt.timedelta(minutes=1)).minute + 1) / 60
+                  for t, _ in pts]
+            grupos = [g for g in GRUPOS_GEN if any(r[g] > 0.5 for _, r in pts)]
+            ax.stackplot(xs, [[r[g] for _, r in pts] for g in grupos],
+                         colors=[GRUPOS_GEN[g][0] for g in grupos], labels=grupos, alpha=0.9, lw=0)
+            tot = [sum(r.values()) for _, r in pts]
+            ax.plot(xs, tot, color="#202124", lw=1)
+            i = max(range(len(tot)), key=tot.__getitem__)
+            ax.annotate(f"máx {tot[i]:,.0f} MW · {pts[i][0]:%H:%M}", (xs[i], tot[i]), xytext=(0, 6),
+                        textcoords="offset points", ha="center", fontsize=7, weight="bold")
+        n = len(pts)
+        ultimo = f" · hasta {pts[-1][0]:%H:%M}" if pts and n < 48 else ""
+        etiqueta = "Día anterior" if dia == ayer else "Día del reporte"
+        ax.set_title(f"{etiqueta}: {dia:%d/%m/%Y} ({n}/48){ultimo}", fontsize=9, loc="left")
+        ax.grid(alpha=0.3)
+        ax.set_ylabel("MW", fontsize=8)
+        ax.tick_params(labelsize=7)
+        for s in ("top", "right"):
+            ax.spines[s].set_visible(False)
+    axes[1].set_xlim(0, 24)
+    axes[1].set_ylim(bottom=0)
+    axes[1].xaxis.set_minor_locator(MultipleLocator(0.5))
+    axes[1].set_xticks(range(0, 25, 2), [f"{h:02d}:00" for h in range(0, 25, 2)])
+    axes[1].set_xlabel("Hora (fin del intervalo de 30 min)", fontsize=8)
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h[::-1], l[::-1], fontsize=7.5, loc="lower center", ncol=4, frameon=False,
+               bbox_to_anchor=(0.5, 0.012))
+    fig.suptitle("Producción del SEIN por tipo de recurso cada 30 min · MW", fontsize=10)
+    fig.text(0.99, 0.003, "Fuente: COES (Portal de Información – Generación)", ha="right", fontsize=6,
+             color="#5f6368")
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    fig.savefig(ruta)
+    plt.close(fig)
+
+
+def mix_del_dia(gen, dia):
+    """Participación % en energía del día por grupo."""
+    tot = {g: 0.0 for g in GRUPOS_GEN}
+    for t, r in gen.items():
+        if dia_operativo(t) == dia:
+            for g, v in agrupar(r).items():
+                tot[g] += v * 0.5                      # MW x 0.5 h = MWh
+    suma = sum(tot.values())
+    return (suma, {g: 100 * v / suma for g, v in tot.items()}) if suma else (0, {})
+
+
 # --------------------------------------------------------------------------- telegram
 def tg(metodo, **kw):
     r = requests.post(f"https://api.telegram.org/bot{os.environ['TELEGRAM_TOKEN']}/{metodo}",
@@ -452,6 +556,20 @@ def main():
         grafico_sr_bloques(diario_b[SR], diario_bl, prom_mes_b[SR], prom_mes_bl, hoy, rutas[2])
     grafico_lineas_barras(diario_b, prom_mes_b, hoy, rutas[1])
     grafico_30min(hist, hoy, rutas[3])
+    lineas_gen = []
+    try:
+        gen = generacion(hoy - dt.timedelta(days=1), hoy)
+        if gen:
+            rutas.append(Path("g5_generacion.png"))
+            grafico_generacion(gen, hoy, rutas[-1])
+            mwh, mix = mix_del_dia(gen, hoy)
+            if mix:
+                top = sorted(((v, g) for g, v in mix.items() if v >= 0.5), reverse=True)
+                lineas_gen = [f"*Mix de producción {hoy:%d/%m}* ({mwh / 1000:,.1f} GWh)",
+                              " · ".join(f"{g} {v:.0f}%" for v, g in top)]
+    except Exception as e:
+        print("Generación no disponible:", e, file=sys.stderr)
+        lineas_gen = ["(Generación por recurso no disponible en este momento)"]
     rutas = [p for p in rutas if p.exists()]
 
     def f2(v):
@@ -469,6 +587,7 @@ def main():
     lineas.append("*Santa Rosa por bloque* (día | mes)")
     for bl in BLOQUES:
         lineas.append(f"• {bl}: {f2(diario_bl[bl].get(hoy))} | *{f2(prom_mes_bl[bl])}*")
+    lineas += lineas_gen
     if faltan:
         lineas.append(f"⏳ Completando histórico: faltan {faltan} intervalos")
 
