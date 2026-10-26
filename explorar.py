@@ -123,6 +123,16 @@ def main():
         res["ieod"] = {"dia": str(d)}
     except Exception as e:
         res["ieod"] = {"error": repr(e)}
+    # 4) IEOD histórico 2025: ¿existe y trae TIPO_RECURSO (hidro de pasada)?
+    try:
+        hoy = dt.datetime.now(LIMA).date()
+        d25 = hoy.replace(year=hoy.year - 1) - dt.timedelta(days=1)
+        d, hojas = fc.descargar_ieod(d25, dias_atras=3)
+        filas = hojas.get("TIPO_RECURSO") or []
+        res["ieod_2025"] = {"dia": str(d), "hojas": list(hojas)[:60],
+                            "tipo_recurso": [[str(v)[:30] for v in list(f)[:16]] for f in filas[:10]]}
+    except Exception as e:
+        res["ieod_2025"] = {"error": repr(e)}
     (OUT / "resultado.json").write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     print("OK exploración 5")
     return {"paginas": {k: {"status": 0 if isinstance(v, dict) and "error" in v else 200} for k, v in res.items()}}
