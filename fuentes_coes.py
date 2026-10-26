@@ -543,6 +543,35 @@ def congestiones(hojas):
     return {"columnas": [], "registros": []}
 
 
+def generacion_ieod(hojas, dia: dt.date):
+    """Producción por tipo de recurso cada 30 min según la hoja TIPO_RECURSO del IEOD (clasificación oficial
+    del COES). Devuelve {datetime fin de intervalo (Lima): {recurso: MW}} con nombres compatibles con el portal."""
+    filas = hojas.get("TIPO_RECURSO") or []
+    i0 = next((i for i, f in enumerate(filas[:15]) if any(norm(x) == "HORA" for x in f)), None)
+    if i0 is None:
+        return {}
+    cab = [norm(x) for x in filas[i0]]
+    jh = cab.index("HORA")
+    nombres = {}
+    for j in range(jh + 1, len(cab)):
+        c = cab[j]
+        if not c or c == "TOTAL" or c in ("EMPRESA", "CENTRAL"):
+            if c in ("TOTAL", "EMPRESA"):
+                break
+            continue
+        nombres[j] = {"H. PASADA": "HIDRICO PASADA", "H. REGULACION": "HIDRICO REGULACION"}.get(c, c)
+    out = {}
+    t0 = dt.datetime(dia.year, dia.month, dia.day, tzinfo=LIMA)
+    for f in filas[i0 + 1:]:
+        h = texto(f[jh]) if len(f) > jh else ""
+        if not re.fullmatch(r"\d{1,2}:\d{2}", h):
+            continue
+        reg = {n: numero(f[j]) for j, n in nombres.items() if j < len(f) and numero(f[j]) is not None}
+        if reg:
+            out[t0 + dt.timedelta(minutes=_min_dia(h))] = reg
+    return out
+
+
 # --------------------------------------------------------------------------- despacho con diésel
 COMB_DIESEL = ("D2", "DIESEL", "B5", "R500", "R6", "RESIDUAL", "NLH", "RFG", "NAFTA", "REFINER")
 

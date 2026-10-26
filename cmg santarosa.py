@@ -498,7 +498,7 @@ def color_grupo(g):
     return GRUPOS_GEN[g][0] if g in GRUPOS_GEN else GRUPOS_DIESEL.get(g, "#9aa0a6")
 
 
-def grafico_generacion(gen, hoy, ruta, diesel=None):
+def grafico_generacion(gen, hoy, ruta, diesel=None, fuente=None):
     """diesel = {fecha: {min_dia: {'rf', 'otras'}}} para separar el D2 en los días con IEOD."""
     diesel = diesel or {}
     plt = _plt()
@@ -542,7 +542,7 @@ def grafico_generacion(gen, hoy, ruta, diesel=None):
     fig.legend(h[::-1], l[::-1], fontsize=7.5, loc="lower center", ncol=4, frameon=False,
                bbox_to_anchor=(0.5, 0.012))
     fig.suptitle("Producción del SEIN por tipo de recurso cada 30 min · MW", fontsize=10)
-    fig.text(0.99, 0.003, "Fuente: COES (Portal de Información – Generación)", ha="right", fontsize=6,
+    fig.text(0.99, 0.003, fuente or "Fuente: COES (Portal de Información – Generación)", ha="right", fontsize=6,
              color="#5f6368")
     fig.tight_layout(rect=(0, 0.06, 1, 1))
     fig.savefig(ruta)
