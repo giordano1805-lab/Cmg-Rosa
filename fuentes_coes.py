@@ -888,7 +888,7 @@ CENTRALES_CUENCA = {
 
 
 # --------------------------------------------------------------------------- tecnología de las unidades
-DIESEL_CLAVES = ("RECKA", "RESERVA FRIA", "RF-", "RF ", "PUERTO MALDONADO", "PUCALLPA", "NEPI", "PUERTO BRAVO",
+DIESEL_CLAVES = ("ILO 4", "NODO ENERGETICO", "PTO BRAVO", "PUERTO BRAVO", "RECKA", "RESERVA FRIA", "RF-", "RF ", "PUERTO MALDONADO", "PUCALLPA", "NEPI", "PUERTO BRAVO",
                  "MOLLENDO", "TUMBES", "CHILINA", "TAPARACHI", "YARINACOCHA", "SAN NICOLAS", "ELOR",
                  "BELLAVISTA", "IQUITOS", "ILO 31", "DIESEL", "D2", "B5", "RESIDUAL", "MAK")
 GAS_CLAVES = ("CHILCA", "KALLPA", "FENIX", "VENTANILLA", "SANTA ROSA", "LAS FLORES", "OLLEROS", "MALACAS",
@@ -931,8 +931,11 @@ def tecnologia(r, mapa_hop=None, hidro=None):
         return "Gas natural"
     if "CARBON" in todo or "ILO 21" in u:
         return "Carbón"
-    if any(k in todo for k in ("BAGAZO", "BIOGAS", "BIOMASA", "HUAYCOLORO", "DOÑA CATALINA", "PARAMONGA")):
+    if any(k in todo for k in ("BAGAZO", "BIOGAS", "BIOMASA", "HUAYCOLORO", "DONA CATALINA", "PARAMONGA")) \
+            or re.match(r"^C\.?T\.?B\b", u):
         return "Biomasa"
+    if re.match(r"^C\.?T\b", u) or re.match(r"^(TG|TV|GT|ST|MAK)", e):
+        return "Otra"
     return "Hídrica" if re.match(r"^(G\d|CENTRAL)$", e) and not any(k in u for k in GAS_CLAVES) else "Otra"
 
 

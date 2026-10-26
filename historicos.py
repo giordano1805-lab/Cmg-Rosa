@@ -281,7 +281,7 @@ def resumen_centrales(dia: dt.date):
         t["delta"] = round(t["act"] - t["ant"], 2)
         t["var_pct"] = (t["act"] / t["ant"] - 1) * 100 if t["ant"] else None
         t["tipo"] = "Regulación" if t["regulacion"] > t["pasada"] else "Pasada"
-        t["central"] = " ".join(w.upper() if w.upper() in ("I", "II", "III", "IV", "V", "VI", "HER") else w
+        t["central"] = " ".join(w.upper() if w.upper() in ("II", "III", "IV", "VI", "VII", "HER") else w
                                 for w in t["central"].split()).replace("Canon", "Cañón").replace("Restitucion", "Restitución")
         for k in ("pasada", "regulacion"):
             t.pop(k)

@@ -120,6 +120,13 @@ def grafico_demanda(dem_areas, dia, ruta, plt):
     return ruta
 
 
+def romanos(s):
+    """'San Gaban Iii' → 'San Gaban III' (números romanos en mayúsculas tras .title())."""
+    import re
+    return re.sub(r"\b(ii|iii|iv|vi|vii|viii|ix|xi|xii)\b", lambda m: m.group(0).upper(), str(s),
+                  flags=re.I) if s is not None else s
+
+
 # --------------------------------------------------------------------------- resumen ejecutivo
 DESACOPLE_MIN = 15.0      # USD/MWh entre barras para hablar de desacople (diferencia nodal por transmisión)
 
@@ -194,7 +201,7 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
         lp = fc.filtrar_lineas_220(prog)
         b.append(f"Programado para hoy: <b>{sum(r['mw'] for r in g):,.0f} MW</b> indisponibles sin diésel en "
                  f"{len(g)} intervenciones y {len({r['equipo'] for r in lp})} líneas ≥220 kV intervenidas.")
-    return b
+    return [romanos(x) for x in b]
 
 
 # --------------------------------------------------------------------------- PDF
@@ -226,7 +233,7 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
             return P(vacio, nota)
         if max_filas and len(filas) > max_filas:
             filas = filas[:max_filas] + [["…"] + [""] * (len(cab) - 1)]
-        t = Table([[P(f"<b>{c}</b>") for c in cab]] + [[P(x) for x in f] for f in filas],
+        t = Table([[P(f"<b>{c}</b>") for c in cab]] + [[P(romanos(x)) for x in f] for f in filas],
                   colWidths=[a * ancho for a in anchos], repeatRows=1)
         t.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#e6e9f2")),
@@ -535,12 +542,25 @@ def m_hist_rango(m, ind, dia):
 F_PM = Path("data") / "programa_mensual.json"
 
 
+def _unir_tramos(regs):
+    """El programa mensual trae una fila por día: une los días seguidos de la misma intervención en un solo tramo."""
+    clave = lambda r: (r["empresa"], r["ubicacion"], r["equipo"], round(r["mw"], 2), r["descripcion"])
+    out = []
+    for r in sorted(regs, key=lambda r: (clave(r), r["inicio"])):
+        u = out[-1] if out else None
+        if u and clave(u) == clave(r) and u["final"] and r["inicio"] <= u["final"] + dt.timedelta(minutes=1):
+            u["final"] = max(u["final"], r["final"] or r["inicio"])
+        else:
+            out.append(dict(r))
+    return sorted(out, key=lambda r: (r["inicio"], -r["mw"]))
+
+
 def programa_mensual(hoy, hojas_ieod=None):
     """Intervenciones de generación con MW indisponibles del Programa Mensual de Mantenimiento (cache 2 días)."""
     mes = f"{hoy:%Y-%m}"
     previo = json.loads(F_PM.read_text(encoding="utf-8")) if F_PM.exists() else None
     if previo and previo.get("mes") == mes and (hoy - dt.date.fromisoformat(previo["consultado"])).days < 2 \
-            and previo.get("regs"):
+            and previo.get("regs") and previo.get("v") == 2:
         regs = previo["regs"]
     else:
         crudos, diag = fc.programa_mensual(hoy)
@@ -556,8 +576,9 @@ def programa_mensual(hoy, hojas_ieod=None):
                 continue
             r["tecnologia"] = fc.tecnologia(r, mh, hs)
             r["diesel"] = r["tecnologia"] == "Diésel"
-            regs.append({k: _iso(v) for k, v in r.items()})
-        previo = {"mes": mes, "consultado": hoy.isoformat(), "fuente": diag.get("usado"), "regs": regs}
+            regs.append(r)
+        regs = [{k: _iso(v) for k, v in r.items()} for r in _unir_tramos(regs)]
+        previo = {"v": 2, "mes": mes, "consultado": hoy.isoformat(), "fuente": diag.get("usado"), "regs": regs}
         F_PM.write_text(json.dumps(previo, ensure_ascii=False), encoding="utf-8")
     return previo
 
