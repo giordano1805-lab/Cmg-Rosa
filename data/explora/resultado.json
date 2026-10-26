@@ -1,0 +1,2325 @@
+{
+ "fecha": "2026-10-26T09:45:48.022921-05:00",
+ "paginas": {
+  "eventos_relevantes": {
+   "url": "https://www.coes.org.pe/Portal/Eventos/Relevantes",
+   "status": 200,
+   "texto": "Eventos Relevantes Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos Misión, v",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "cbFamilia",
+     "name": "IdFamilia"
+    },
+    {
+     "id": "cbTipoEmpresa",
+     "name": "IdTipoEmpresa"
+    },
+    {
+     "id": "cbEmpresa",
+     "name": "IdEmpresa"
+    },
+    {
+     "id": "FechaDesde",
+     "name": "FechaInicio",
+     "type": "date",
+     "value": "2026-10-25"
+    },
+    {
+     "id": "FechaHasta",
+     "name": "FechaFin",
+     "type": "date",
+     "value": "2026-10-26"
+    },
+    {
+     "id": "hfVersion",
+     "name": "Version",
+     "type": "hidden",
+     "value": "N"
+    },
+    {
+     "id": "hfTurno",
+     "name": "Turno",
+     "type": "hidden"
+    },
+    {
+     "id": "hfIdTipoEvento",
+     "name": "IdTipoEvento",
+     "type": "hidden",
+     "value": "0"
+    },
+    {
+     "id": "hfIndInterrupcion",
+     "name": "IndInterrupcion",
+     "type": "hidden",
+     "value": "-1"
+    },
+    {
+     "id": "hfNroPagina",
+     "name": "NroPagina",
+     "type": "hidden",
+     "value": "1"
+    },
+    {
+     "select": "cbFamilia",
+     "opciones": [
+      [
+       "0",
+       "-TODOS-"
+      ],
+      [
+       "17",
+       "ACOPLAMIENTO"
+      ],
+      [
+       "11",
+       "BANCO DE CONDENSADOR PARALELO"
+      ],
+      [
+       "15",
+       "BANCO DE CONDENSADORES SERIE"
+      ],
+      [
+       "7",
+       "BARRA"
+      ],
+      [
+       "49",
+       "BESS"
+      ],
+      [
+       "43",
+       "BLACK START"
+      ],
+      [
+       "22",
+       "CALDERO"
+      ],
+      [
+       "20",
+       "CANAL,TOMA,DESCARGA"
+      ],
+      [
+       "35",
+       "CARGA"
+      ],
+      [
+       "6",
+       "CELDA"
+      ],
+      [
+       "39",
+       "CENTRAL EOLICA"
+      ],
+      [
+       "4",
+       "CENTRAL HIDROEL&#201;CTRICA"
+      ],
+      [
+       "37",
+       "CENTRAL SOLAR"
+      ],
+      [
+       "5",
+       "CENTRAL TERMOEL&#201;CTRICA"
+      ],
+      [
+       "32",
+       "CLIENTE"
+      ],
+      [
+       "13",
+       "COMPENSADOR SINCRONO"
+      ],
+      [
+       "54",
+       "COMPONENTE BESS"
+      ],
+      [
+       "52",
+       "CONJUNTO DE LINEAS"
+      ],
+      [
+       "41",
+       "CUENCA HIDROLOGICA"
+      ],
+      [
+       "19",
+       "EMBALSE:PRESA,TAZA,PULMON"
+      ],
+      [
+       "55",
+       "ESQ. DE CONTROL Y PROTECCI&#211;N"
+      ],
+      [
+       "42",
+       "ESTACI&#211;N HIDROL&#211;GICA"
+      ],
+      [
+       "34",
+       "GASEODUCTO                    "
+      ],
+      [
+       "38",
+       "GENERADOR EOLICO"
+      ],
+      [
+       "2",
+       "GENERADOR HIDROEL&#201;CTRICO"
+      ],
+      [
+       "36",
+       "GENERADOR SOLAR"
+      ],
+      [
+       "3",
+       "GENERADOR TERMOEL&#201;CTRICO"
+      ],
+      [
+       "16",
+       "INTERRUPTOR"
+      ],
+      [
+       "8",
+       "LINEA DE TRANSMISION          "
+      ],
+      [
+       "31",
+       "MOTOR ASINCRONO"
+      ],
+      [
+       "30",
+       "MOTOR SINCRONO"
+      ],
+      [
+       "28",
+       "PARARRAYOS"
+      ],
+      [
+       "50",
+       "PARTICIPANTE - MME"
+      ],
+      [
+       "33",
+       "PLANTA                        "
+      ],
+      [
+       "44",
+       "PULVERIZADOR"
+      ],
+      [
+       "12",
+       "REACTOR"
+      ],
+      [
+       "56",
+       "REGI&#211;N DE SEGURIDAD"
+      ],
+      [
+       "25",
+       "RELE"
+      ],
+      [
+       "53",
+       "RELE PROTECCIONES"
+      ]
+     ]
+    },
+    {
+     "select": "cbTipoEmpresa",
+     "opciones": [
+      [
+       "0",
+       "-TODOS-"
+      ],
+      [
+       "1",
+       "TRANSMISION         "
+      ],
+      [
+       "2",
+       "DISTRIBUCION"
+      ],
+      [
+       "3",
+       "GENERACION"
+      ],
+      [
+       "4",
+       "USUARIO LIBRE"
+      ],
+      [
+       "5",
+       "FALTA DEFINIR       "
+      ]
+     ]
+    },
+    {
+     "select": "cbEmpresa",
+     "opciones": [
+      [
+       "0",
+       "-TODOS-"
+      ],
+      [
+       "14672",
+       " ARENUVA S.A.C"
+      ],
+      [
+       "14125",
+       " JUNTA DE PROPIETARIOS LIMA CENTRAL TOWER AVENIDA "
+      ],
+      [
+       "15092",
+       " RENOVA S.A.C."
+      ],
+      [
+       "14066",
+       " SIGNO VIAL PERU S.A.C."
+      ],
+      [
+       "14129",
+       "00000000016"
+      ],
+      [
+       "12186",
+       "1818 S.A.C"
+      ],
+      [
+       "14734",
+       "28SIETE S.A.C."
+      ],
+      [
+       "15021",
+       "301 PRODUCCIONES S.A.C."
+      ],
+      [
+       "14220",
+       "3M PERU S A"
+      ],
+      [
+       "13950",
+       "500 GRADOS S.A.C."
+      ],
+      [
+       "14442",
+       "911 IT CORP. S.A.C."
+      ],
+      [
+       "15156",
+       "965 PUBLICIDAD S.A.C."
+      ],
+      [
+       "14543",
+       "A &amp; D QUIMICOS Y DIVERSOS S.A."
+      ],
+      [
+       "11864",
+       "A.W. FABER CASTELL PERUANA S.A."
+      ],
+      [
+       "14827",
+       "A-1 PREMIUM E.I.R.L."
+      ],
+      [
+       "13660",
+       "AAT INTEGRAL SOLUTIONS S.A.C. - AAT INTEGRAL"
+      ],
+      [
+       "10775",
+       "AATE - TREN EL&#201;CTRICO (AUTORIDAD AUT&#211;NOM"
+      ],
+      [
+       "12996",
+       "ABA SINGER &amp; CIA. S.A.C."
+      ],
+      [
+       "15911",
+       "ABACO INVESTMENT SAC"
+      ],
+      [
+       "14156",
+       "ABB POWER GRIDS PERU S.A."
+      ],
+      [
+       "11823",
+       "ABEI ENERGY PERU S.A.C"
+      ],
+      [
+       "11088",
+       "ABENGOA TRANSMISION SUR"
+      ],
+      [
+       "13921",
+       "ABY CONCESSIONS PERU S.A."
+      ],
+      [
+       "12242",
+       "ABY TRANSMISI&#211;N SUR"
+      ],
+      [
+       "13983",
+       "ACCIONA CONSTRUCCION S.A. SUCURSAL PERU"
+      ],
+      [
+       "14260",
+       "ACCIONA ENERGIA PERU S.A.C"
+      ],
+      [
+       "15899",
+       "ACCIONA TRANSMISION PERU S.A."
+      ],
+      [
+       "15332",
+       "ACELERA PERU SAC"
+      ],
+      [
+       "14743",
+       "ACEROS AMERICA GLOBAL S.A.C."
+      ],
+      [
+       "36",
+       "ACEROS AREQUIPA"
+      ],
+      [
+       "12259",
+       "ACEROS CHILCA S.A.C."
+      ],
+      [
+       "13348",
+       "ACEROS DEL PERU SOCIEDAD ANONIMA CERRADA ACEPESAC"
+      ],
+      [
+       "15339",
+       "ACEVEDO PEREZ ANGELA CELENA DEL CARMEN"
+      ],
+      [
+       "15218",
+       "ACIS PROCESS S.A.C."
+      ],
+      [
+       "13490",
+       "ACM ENERGIA"
+      ],
+      [
+       "12460",
+       "ACRICORP S.A.C."
+      ],
+      [
+       "14884",
+       "ACS INDUSTRIA METAL MECANICA EIRL"
+      ],
+      [
+       "13137",
+       "ACUACULTURA Y PESCA S.A.C"
+      ],
+      [
+       "15879",
+       "ADCH IMPORTACIONES E.I.R.L."
+      ]
+     ]
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Areas/Eventos/Content/Scripts/evento.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Areas/Eventos/Content/Scripts/evento.js": {
+     "ajax": [
+      "ExportarEvento?",
+      "cargarempresas",
+      "detalle",
+      "lista",
+      "paginado"
+     ],
+     "variables": [],
+     "data": [
+      " idTipoEmpresa: $('#cbTipoEmpresa').val() ",
+      " idEvento:id "
+     ]
+    }
+   }
+  },
+  "mant_prog_diario": {
+   "url": "https://www.coes.org.pe/Portal/Operacion/ProgManten/ProgDiario",
+   "status": 200,
+   "texto": "Programa de Mantenimiento Diario Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes s",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Mantenimiento/Programa Diario/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Mantenimiento/Programa Diario/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "Programa de Mantenimiento Diario"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "202"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "mant_actualizacion_pd": {
+   "url": "https://www.coes.org.pe/Portal/Operacion/ProgManten/ActualizacionPD",
+   "status": 200,
+   "texto": "Actualizaci&#243;n del Programa de Mantenimiento Diario Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "Actualizaci&#243;n del Programa Diario"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "20824"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "mant_prog_semanal": {
+   "url": "https://www.coes.org.pe/Portal/Operacion/ProgManten/ProgSemanal",
+   "status": 200,
+   "texto": "Programa Semanal de Mantenimiento Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "Programa semanal"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "205"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "indisponibilidad": {
+   "url": "https://www.coes.org.pe/Portal/PostOperacion/Reportes/ReporteIndisponibilidad",
+   "status": 200,
+   "texto": "Reporte de Indisponibilidad Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "Reporte de Indisponibilidad"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "10"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "ieod": {
+   "url": "https://www.coes.org.pe/Portal/PostOperacion/Reportes/Ieod",
+   "status": 200,
+   "texto": "Informe de Evaluaci&#243;n de la Operaci&#243;n Diaria Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Post Operaci&#243;n/Reportes/IEOD/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Post Operaci&#243;n/Reportes/IEOD/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "IEOD"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "9"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "idcos": {
+   "url": "https://www.coes.org.pe/Portal/PostOperacion/Reportes/Idcos",
+   "status": 200,
+   "texto": "Informe Diario del Coordinador de la Operacion del Sistema Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técni",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Post Operaci&#243;n/Reportes/IDCOS/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Post Operaci&#243;n/Reportes/IDCOS/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "IDCOS"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "58483"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "prog_operacion_diario": {
+   "url": "https://www.coes.org.pe/Portal/Operacion/ProgOperacion/ProgramaDiario",
+   "status": 200,
+   "texto": "Programa de Operacion Diario Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "Programa de Operaci&#243;n Diario"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden",
+     "value": "D"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "487"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "max_demanda": {
+   "url": "https://www.coes.org.pe/Portal/portalinformacion/demanda?indicador=maxima",
+   "status": 200,
+   "texto": "Index Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos Misión, visión y princ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "txtFechaInicial",
+     "type": "date",
+     "value": "2026-10-25"
+    },
+    {
+     "id": "txtFechaFinal",
+     "type": "date",
+     "value": "2026-10-26"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/PortalInformacion/demanda.js?v=1.5",
+    "/Portal/Content/Scripts/highstock.js",
+    "/Portal/Content/Scripts/highcharts-more.js",
+    "/Portal/Content/Scripts/portalInformacion/util.js",
+    "/Portal/Content/Scripts/jquery.format.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/PortalInformacion/demanda.js?v=1.5": {
+     "ajax": [
+      "Demanda",
+      "ExportarDemanda?",
+      "ObtenerPronosticoTiempoReal",
+      "ObtenerPronosticoTiempoRealFechaDeActualizacion"
+     ],
+     "variables": [],
+     "data": [
+      " fechaInicial: GetDateNormalFormat($('#txtFechaInicial').val()), fechaFinal: GetDateNormalFormat($('#txtFechaFinal').val()) "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/highstock.js": {
+     "ajax": [
+      "Date",
+      "Day",
+      "FullYear",
+      "Hours",
+      "Milliseconds",
+      "Minutes",
+      "Month",
+      "Seconds",
+      "rgb"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/portalInformacion/util.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "pi_generacion": {
+   "url": "https://www.coes.org.pe/Portal/portalinformacion/generacion",
+   "status": 200,
+   "texto": "Index Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos Misión, visión y princ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "hfFuenteGeneracion",
+     "type": "hidden",
+     "value": "scada"
+    },
+    {
+     "id": "txtFechaInicial",
+     "type": "date",
+     "value": "2026-10-26"
+    },
+    {
+     "id": "txtFechaFinal",
+     "type": "date",
+     "value": "2026-10-26"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/PortalInformacion/generacion.js?v=1.5",
+    "/Portal/Content/Scripts/highstock.js",
+    "/Portal/Content/Scripts/portalInformacion/util.js?v=1.5",
+    "/Portal/Content/Scripts/jquery.format.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/PortalInformacion/generacion.js?v=1.5": {
+     "ajax": [
+      "ExportarGeneracion?",
+      "Generacion"
+     ],
+     "variables": [],
+     "data": [
+      " fechaInicial: GetDateNormalFormat($('#txtFechaInicial').val()), fechaFinal: GetDateNormalFormat($('#txtFechaFinal').val()), indicador: indicador "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/highstock.js": {
+     "ajax": [
+      "Date",
+      "Day",
+      "FullYear",
+      "Hours",
+      "Milliseconds",
+      "Minutes",
+      "Month",
+      "Seconds",
+      "rgb"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/portalInformacion/util.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "pi_demanda": {
+   "url": "https://www.coes.org.pe/Portal/portalinformacion/demanda",
+   "status": 200,
+   "texto": "Index Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos Misión, visión y princ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "txtFechaInicial",
+     "type": "date",
+     "value": "2026-10-25"
+    },
+    {
+     "id": "txtFechaFinal",
+     "type": "date",
+     "value": "2026-10-26"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/PortalInformacion/demanda.js?v=1.5",
+    "/Portal/Content/Scripts/highstock.js",
+    "/Portal/Content/Scripts/highcharts-more.js",
+    "/Portal/Content/Scripts/portalInformacion/util.js",
+    "/Portal/Content/Scripts/jquery.format.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/PortalInformacion/demanda.js?v=1.5": {
+     "ajax": [
+      "Demanda",
+      "ExportarDemanda?",
+      "ObtenerPronosticoTiempoReal",
+      "ObtenerPronosticoTiempoRealFechaDeActualizacion"
+     ],
+     "variables": [],
+     "data": [
+      " fechaInicial: GetDateNormalFormat($('#txtFechaInicial').val()), fechaFinal: GetDateNormalFormat($('#txtFechaFinal').val()) "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/highstock.js": {
+     "ajax": [
+      "Date",
+      "Day",
+      "FullYear",
+      "Hours",
+      "Milliseconds",
+      "Minutes",
+      "Month",
+      "Seconds",
+      "rgb"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/portalInformacion/util.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "pi_hidrologia": {
+   "url": "https://www.coes.org.pe/Portal/portalinformacion/hidrologia",
+   "status": 200,
+   "texto": "404 - P&#225;gina no encontrada Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes so",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "pi_index": {
+   "url": "https://www.coes.org.pe/Portal/portalinformacion/index",
+   "status": 200,
+   "texto": "404 - P&#225;gina no encontrada Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes so",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  },
+  "hidrologia_estudios": {
+   "url": "https://www.coes.org.pe/Portal/Operacion/Estudios/Hidrologia",
+   "status": 200,
+   "texto": "Hidrologia Características del SEIN Calendario COES Intranet Extranet Características del SEIN Calendario COES Intranet Extranet Planificación Plan de Transmisión ABC del Plan de Transmisión Primer Plan de Transmisión Actualización Plan de Transmisión 2013 - 2022 Actualización Plan de Transmisión 2015 - 2024 Actualización Plan de Transmisión 2017 - 2026 Actualización Plan de Transmisión 2019 - 2028 Actualización Plan de Transmisión 2021 - 2030 Actualización Plan de Transmisión 2023 - 2032 Actualización Plan de Transmisión 2025 - 2034 Actualización Plan de Transmisión 2027 - 2036 Fichas de Información Estudios de Interconexiones Internacionales Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema Estudios especiales de Largo Plazo Plan Operativo de Largo Plazo Nuevos Proyectos Estudios de Pre Operatividad Estudios de Operatividad Integración de Instalaciones al SEIN Operación Comercial de unidades o centrales de generación Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN Lista de Instalaciones del STTN, STTR y STL Base de Datos - Protecciones (Station Ware) Operación Programa de Operación Programa Diario Actualización de Programa Diario Programa Semanal Operación Reprograma Diario de Operación Programa Mediano Plazo Operación Importación y Excedentes Capacidad de Importación Excedentes de Exportación Programa de Mantenimiento Programa Diario Actualización de Programa Diario Programa Semanal Programa Mensual Programa Anual Programa Mantenimiento Mayor Características del SEIN Base de Datos Equipamiento Ficha Técnica Mapa del SEIN Diagrama Unifilar Estudios Operacion del SEIN Comercialización Potencia Efectiva Potencia Mínima Homologación de Modelos Costos Variables Costos Variables no Combustibles Hidrología Intercambios Internacionales Información para aplicación del PR-08 Listado de Contingencias Capacidad de Equipos de Transmisión Tensiones de Operación Post Operación Demanda de los Agentes Distribuidores Usuarios Libres Reportes IDCOS IEOD Máxima Demanda Reporte de Indisponibilidad Reserva Compensable por RPF Horas de Operación y Numeros de Arranques Anuales Pruebas Aleatorias PR-25 Evaluacion y Fallas Evaluación y Fallas Evaluación RMC Reportes de Interés Adecuación a la NTIITR Supervisión Mantenimiento Supervisión Planificación Plan de Trabajo OPT Eventos Relevantes Transferencias (Antes del MME) Valorizacion de Transferencia de Energia y Potencia Asignaciones de Responsabilidad de Pago SST y SCT Factores de Proporción Cálculo y Balance de Energía Firme Costos Marginales de Corto Plazo Para Licitaciones Resarcimientos NTCSE CompraVenta de Potencia Firme Informes Evaluación Semanal Evaluación Mensual Evaluación Anual Análisis de la Ejecución del Despacho Económico Reserva Rotante para Regulación Primaria de Frecuencia Reserva Rotante para Regulación Secundaria de Frecuencia Unidades de Generación por Pruebas Magnitud de Energía Dejada de Inyectar URS calificadas para Regulación Secundaria Compensación por Confiabilidad de Suministro (CCCSE) Gas Natural Declaración de Precios de Gas Precios Declarados Documentos relacionados Mercado Mayorista Listado de Participantes Condiciones y Requisitos del participante del MME Formatos para el MME Garantías y Fideicomiso Reporte de Indicadores para el monitoreo del MME Costos Marginales de Corto Plazo Costos Marginal en Tiempo Real (preliminar) Costos Marginales Revisados Liquidaciones del MME Auditoría a la metodología Directorio e Impugnaciones Requisitos y Plazos Modelos de Recursos Recursos de apelación Reconsideraciones Dirección Ejecutiva Directorio Arbitraje Solicitudes de Arbitraje Laudos Arbitrales Procesos Arbitraje Directorio Agenda Acuerdos Asamblea Agenda Acuerdos Marco Normativo Base Legal Estatuto Procedimientos Técnicos Administrativos Glosario de Términos Propuestas de Procedimientos Consulta a los Integrantes Trámite de Aprobación por OSINERGMIN Decisiones Ejecutivas y Notas Técnicas Organización Quiénes somos Misión, visión y ",
+   "formularios": [
+    {
+     "id": "txtSearch",
+     "type": "text"
+    },
+    {
+     "id": "campo7",
+     "type": "text"
+    },
+    {
+     "id": "hfBaseDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Estudios/Hidrologia/"
+    },
+    {
+     "id": "hfRelativeDirectory",
+     "type": "hidden",
+     "value": "Operaci&#243;n/Estudios/Hidrologia/"
+    },
+    {
+     "id": "hfOrigenDirectory",
+     "type": "hidden"
+    },
+    {
+     "id": "hfOperacionPegar",
+     "type": "hidden"
+    },
+    {
+     "id": "hfTipoVista",
+     "type": "hidden",
+     "value": "B"
+    },
+    {
+     "id": "hfOrigen",
+     "type": "hidden",
+     "value": "Local"
+    },
+    {
+     "id": "hfIndicadorHeader",
+     "type": "hidden",
+     "value": "S"
+    },
+    {
+     "id": "hfBreadName",
+     "type": "hidden",
+     "value": "Hidrolog&#237;a"
+    },
+    {
+     "id": "hfOrderFolder",
+     "type": "hidden"
+    },
+    {
+     "id": "hfblobcod",
+     "type": "hidden",
+     "value": "71169"
+    },
+    {
+     "id": "txtCopy",
+     "type": "text"
+    }
+   ],
+   "js_inline": {
+    "ajax": [],
+    "variables": [
+     "urlRoot = https://www.coes.org.pe"
+    ],
+    "data": []
+   },
+   "scripts": [
+    "/Portal/Content/Scripts/jquery.js",
+    "/Portal/Content/Scripts/bootstrap.bundle.min.js",
+    "/Portal/Content/Scripts/popup.js",
+    "/Portal/Content/Scripts/master.js",
+    "/Portal/Content/Scripts/datatable.js",
+    "/Portal/Content/Scripts/datepicker.js",
+    "/Portal/Content/Scripts/jquery.easytabs.min.js",
+    "/Portal/Content/Scripts/slick.js",
+    "/Portal/Content/Scripts/main.coes.js",
+    "/Portal/Content/Scripts/jqueryui.js",
+    "/Portal/Content/Scripts/web.js?v=8.5",
+    "/Portal/Content/Scripts/jquery.tooltip.min.js",
+    "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+    "/Portal/Content/Scripts/multidownload.js",
+    "/Portal/Content/Scripts/main.coes.js"
+   ],
+   "js_externos": {
+    "https://www.coes.org.pe/Portal/Content/Scripts/popup.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/master.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datatable.js": {
+     "ajax": [
+      "~/message/"
+     ],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/datepicker.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/slick.js": {
+     "ajax": [],
+     "variables": [],
+     "data": [
+      " message: 'index', index: parseInt(slide) ",
+      " message: _.options.rtl === true ? 'next' : 'previous' ",
+      " message: _.options.rtl === true ? 'previous' : 'next' ",
+      " message: 'next' ",
+      " message: 'previous' ",
+      " message: 'index', index: currentSlide "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/main.coes.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/web.js?v=8.5": {
+     "ajax": [
+      "busqueda",
+      "download?url=",
+      "downloadhtml?url=",
+      "downloadzip",
+      "generarzip",
+      "paginado",
+      "visorvideo"
+     ],
+     "variables": [],
+     "data": [
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores ",
+      " url: $('#hfRelativeDirectory').val(), ids: ids, valores: valores, nroPagina: nroPagina, indicador: $('#hfIndicadorHeader').val(), baseDirectory: $('#hfBaseDirectory').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " baseDirectory: $('#hfBaseDirectory').val(), url: url, indicador: $('#hfIndicadorHeader').val(), initialLink: $('#hfBreadName').val(), orderFolder: $('#hfOrderFolder').val() ",
+      " url: url ",
+      " urls: urls "
+     ]
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/contextmenu.js?v=1.5": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    },
+    "https://www.coes.org.pe/Portal/Content/Scripts/multidownload.js": {
+     "ajax": [],
+     "variables": [],
+     "data": []
+    }
+   }
+  }
+ },
+ "pruebas": {
+  "gen_indicador0_ayer": {
+   "status": 200,
+   "largo": 446759,
+   "resumen": {
+    "claves": [
+     "ListadoPorEmpresa",
+     "GraficoPorEmpresa",
+     "GraficoTipoCombustible",
+     "Indicador"
+    ],
+    "muestra": "{\"ListadoPorEmpresa\": [{\"ListaCentral\": [], \"ListaRecursos\": [], \"ListaCostOper\": [], \"ListaCostoComp\": [], \"H1\": null, \"H2\": null, \"H3\": null, \"H4\": null, \"H5\": null, \"H6\": null, \"H7\": null, \"H8\": null, \"H9\": null, \"H10\": null, \"H11\": null, \"H12\": null, \"H13\": null, \"H14\": null, \"H15\": null, \"H16\": null, \"H17\": null, \"H18\": null, \"H19\": null, \"H20\": null, \"H21\": null, \"H22\": null, \"H23\": null, \"H24\": null, \"H25\": null, \"H26\": null, \"H27\": null, \"H28\": null, \"H29\": null, \"H30\": null, \"H31\": null, \"H32\": null, \"H33\": null, \"H34\": null, \"H35\": null, \"H36\": null, \"H37\": null, \"H38\": null, \"H39\": null, \"H40\": null, \"H41\": null, \"H42\": null, \"H43\": null, \"H44\": null, \"H45\": null, \"H46\": null, \"H47\": null, \"H48\": null, \"Lastuser\": null, \"Lastdate\": null, \"Lectcodi\": 0, \"Medifecha\": \"/Date(-62135578800000)/\", \"Tipoinfocodi\": 0, \"Ptomedicodi\": 0, \"Meditotal\": 26782.111425, \"Mediestado\": null, \"Equipadre\": 0, \"Central\": null, \"Equicodi\": 0, \"Equinomb\": null, \"Equiabrev\": null, \"Emprcodi\": 0, \"Emprnomb\": \"KALLPA GENERACION S.A.\", \"Emprabrev\": null, \"Fenergcodi\": 0, \"Grupocodi\": 0, \"Fenergnomb\": null, \"Gruponomb\": null, \"Fenergabrev\": null, \"Tgenercodi\": 0, \"Tgenernomb\": null, \"Anio\": null, \"Mes\": null, \"Descripcion\": null, \"Ptomedinomb\": null, \"Ptomedidesc\": null, \"Tipoinfodesc\": null, \"Equitension\": null, \"Areacodi\": 0, \"Areanomb\": null, \"Tipoinfoabrev\": null, \"Tipoptomedicodi\": 0, \"Tipoptomedinomb\": null, \"Hojacodi\": 0, \"Item\": 0, \"Periodo\": null, \"Fuente\": null, \"FechaFila\": \"/Date(-62135578800000)/\", \"Cumplimiento\": null, \"CodigoCliente\": null, \"Suministrador\": null, \"RucEmpresa\": null, \"NombreEmpresa\": null, \"Subestacion\": null, \"Tension\": null, \"NroEnvios\": 0, \"FechaPrimerEnvio\": null, \"FechaUltimoEnvio\": null, \"IniRemision\": \"/Date(-62135578800000)/\", \"FinRemision\": \"/Date(-62135578800000)/\", \"IniPeriodo\": \"/Date(-62135578800000)/\", \"Grupotipo\": null, \"Grupourspadre\": 0, \"Lectnomb\": null, \"Grupoabrev\": null, \"Canalcodi\": 0, \"Ptomedibarranomb\": null, \"Famabrev\": null, \"Cuenca\": null, \"Famnomb\": null, \"Famcodi\": 0, \"Tipogenerrer\": null, \"Grupotipocogen\": null, \"Grupointegrante\": null, \"Tipogrupocodi\": 0, \"Fenercolor\": null, \"AreaOperativa\": null, \"Subestacioncodi\": 0, \"Minimo\": null, \"Maximo\": null, \"Promedio\": null, \"SubareaOperativa\": null, \"Orden\": 0, \"Factor\": 0, \"TipoReservaFria\": 0, \"SincronizacionMin\": null, \"SincronizacionTiempo\": null, \"Hophorini\": \"/Date(-62135578800000)/\", \"Hophorfin\": \"/Date(-62135578800000)/\", \"Repptoorden\": null, \"Areaoperativacod"
+   }
+  },
+  "gen_indicador0_hoy": {
+   "status": 200,
+   "largo": 413658,
+   "resumen": {
+    "claves": [
+     "ListadoPorEmpresa",
+     "GraficoPorEmpresa",
+     "GraficoTipoCombustible",
+     "Indicador"
+    ],
+    "muestra": "{\"ListadoPorEmpresa\": [{\"ListaCentral\": [], \"ListaRecursos\": [], \"ListaCostOper\": [], \"ListaCostoComp\": [], \"H1\": null, \"H2\": null, \"H3\": null, \"H4\": null, \"H5\": null, \"H6\": null, \"H7\": null, \"H8\": null, \"H9\": null, \"H10\": null, \"H11\": null, \"H12\": null, \"H13\": null, \"H14\": null, \"H15\": null, \"H16\": null, \"H17\": null, \"H18\": null, \"H19\": null, \"H20\": null, \"H21\": null, \"H22\": null, \"H23\": null, \"H24\": null, \"H25\": null, \"H26\": null, \"H27\": null, \"H28\": null, \"H29\": null, \"H30\": null, \"H31\": null, \"H32\": null, \"H33\": null, \"H34\": null, \"H35\": null, \"H36\": null, \"H37\": null, \"H38\": null, \"H39\": null, \"H40\": null, \"H41\": null, \"H42\": null, \"H43\": null, \"H44\": null, \"H45\": null, \"H46\": null, \"H47\": null, \"H48\": null, \"Lastuser\": null, \"Lastdate\": null, \"Lectcodi\": 0, \"Medifecha\": \"/Date(-62135578800000)/\", \"Tipoinfocodi\": 0, \"Ptomedicodi\": 0, \"Meditotal\": 13965.111425, \"Mediestado\": null, \"Equipadre\": 0, \"Central\": null, \"Equicodi\": 0, \"Equinomb\": null, \"Equiabrev\": null, \"Emprcodi\": 0, \"Emprnomb\": \"KALLPA GENERACION S.A.\", \"Emprabrev\": null, \"Fenergcodi\": 0, \"Grupocodi\": 0, \"Fenergnomb\": null, \"Gruponomb\": null, \"Fenergabrev\": null, \"Tgenercodi\": 0, \"Tgenernomb\": null, \"Anio\": null, \"Mes\": null, \"Descripcion\": null, \"Ptomedinomb\": null, \"Ptomedidesc\": null, \"Tipoinfodesc\": null, \"Equitension\": null, \"Areacodi\": 0, \"Areanomb\": null, \"Tipoinfoabrev\": null, \"Tipoptomedicodi\": 0, \"Tipoptomedinomb\": null, \"Hojacodi\": 0, \"Item\": 0, \"Periodo\": null, \"Fuente\": null, \"FechaFila\": \"/Date(-62135578800000)/\", \"Cumplimiento\": null, \"CodigoCliente\": null, \"Suministrador\": null, \"RucEmpresa\": null, \"NombreEmpresa\": null, \"Subestacion\": null, \"Tension\": null, \"NroEnvios\": 0, \"FechaPrimerEnvio\": null, \"FechaUltimoEnvio\": null, \"IniRemision\": \"/Date(-62135578800000)/\", \"FinRemision\": \"/Date(-62135578800000)/\", \"IniPeriodo\": \"/Date(-62135578800000)/\", \"Grupotipo\": null, \"Grupourspadre\": 0, \"Lectnomb\": null, \"Grupoabrev\": null, \"Canalcodi\": 0, \"Ptomedibarranomb\": null, \"Famabrev\": null, \"Cuenca\": null, \"Famnomb\": null, \"Famcodi\": 0, \"Tipogenerrer\": null, \"Grupotipocogen\": null, \"Grupointegrante\": null, \"Tipogrupocodi\": 0, \"Fenercolor\": null, \"AreaOperativa\": null, \"Subestacioncodi\": 0, \"Minimo\": null, \"Maximo\": null, \"Promedio\": null, \"SubareaOperativa\": null, \"Orden\": 0, \"Factor\": 0, \"TipoReservaFria\": 0, \"SincronizacionMin\": null, \"SincronizacionTiempo\": null, \"Hophorini\": \"/Date(-62135578800000)/\", \"Hophorfin\": \"/Date(-62135578800000)/\", \"Repptoorden\": null, \"Areaoperativacod"
+   }
+  },
+  "demanda_hoy": {
+   "status": 200,
+   "largo": 56729,
+   "resumen": {
+    "claves": [
+     "Chart",
+     "Data",
+     "LastDate",
+     "LastTime",
+     "LastValue",
+     "EjexDemanda"
+    ],
+    "muestra": "{\"Chart\": {\"Series\": [{\"Name\": \"Ejecutado\", \"Data\": [{\"Nombre\": \"2026/10/25 00:30:00\", \"Valor\": 7282.904, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 01:00:00\", \"Valor\": 7152.755, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 01:30:00\", \"Valor\": 6949.317, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 02:00:00\", \"Valor\": 6936.212, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 02:30:00\", \"Valor\": 6923.79, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 03:00:00\", \"Valor\": 6840.237, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 03:30:00\", \"Valor\": 6692.715, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 04:00:00\", \"Valor\": 6814.069, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 04:30:00\", \"Valor\": 6725.616, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 05:00:00\", \"Valor\": 6672.235, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 05:30:00\", \"Valor\": 6666.089, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 06:00:00\", \"Valor\": 6496.273, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 06:30:00\", \"Valor\": 6491.431, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 07:00:00\", \"Valor\": 6434.166, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 07:30:00\", \"Valor\": 6457.682, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 08:00:00\", \"Valor\": 6581.222, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 08:30:00\", \"Valor\": 6803.521, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\": null, \"Codigo\": 0, \"RER\": null}, {\"Nombre\": \"2026/10/25 09:00:00\", \"Valor\": 6807.08, \"CodColor\": \"#33B8FF\", \"Valores\": null, \"Valores_\""
+   }
+  }
+ }
+}

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es-pe">
+<head>
+    <meta charset="utf-8" />
+    <title>Programa Semanal de Mantenimiento</title>
+    <link rel="icon" href="/Portal/Content/Images/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="description" content="Portal Web del COES SINAC(Comité de Operación Económica del Sistema Interconectado Nacional)">
+    <meta name="keywords" content="COES, COES SINAC, Comité de Operaciones del Sistema Interconectado Nacional, Electricidad, Sector Eléctrico,
+          Programa de Operación Diario, Programa de Operación, SEIN">
+    <meta name="author" content="COES SINAC">
+
+    <link href="/Portal/Content/Css/calendar.css" rel="stylesheet" />
+    <link href="/Portal/Content/Css/table.css" rel="stylesheet" />
+    <link href="/Portal/Content/Css/popup.css" rel="stylesheet" />
+    <link href="/Portal/Content/Css/slick.css" rel="stylesheet">
+    <link href="/Portal/Content/Css/main.coes.css" rel="stylesheet" />
+    
+    <link href="/Portal/Content/Css/tabs.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://use.typekit.net/tnr5oll.css" />
+
+    <script type="text/javascript">
+        var siteRoot = "/Portal/";
+        var urlRoot = "https://www.coes.org.pe";
+    </script>
+
+    <script src="/Portal/Content/Scripts/jquery.js"></script>
+    <script src="/Portal/Content/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="/Portal/Content/Scripts/popup.js"></script>
+    <script src="/Portal/Content/Scripts/master.js"></script>
+    <script src="/Portal/Content/Scripts/datatable.js"></script>
+    <script src="/Portal/Content/Scripts/datepicker.js"></script>
+    <script src="/Portal/Content/Scripts/jquery.easytabs.min.js"></script>
+    <script src="/Portal/Content/Scripts/slick.js"></script>
+    <script src="/Portal/Content/Scripts/main.coes.js"></script>
+    
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                Dark mode
+             */
+
+            //Get the current theme value from local storage
+            const currentTheme = localStorage.getItem('theme')
+
+            //Check user preference at OS level
+          /*  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)')*/
+
+            //Reusable functions to switch to dark or light
+            function switchDark() {
+                //Add a class to the body to enable the dark theme
+                $('body').addClass('dark-theme')
+                //Add the active class to this button
+                $('.dark-mode-on').addClass('active')
+                $('.dark-mode-off').removeClass('active')
+                //Set the theme to 'dark' on the local storage value
+                localStorage.setItem('theme', 'dark')
+            }
+
+            function switchLight() {
+                //Remove the dark theme class from the body
+                $('body').removeClass('dark-theme')
+                //Add the active class to this button
+                $('.dark-mode-on').removeClass('active')
+                $('.dark-mode-off').addClass('active')
+                //Set the theme to 'dark' on the local storage value
+                localStorage.setItem('theme', 'light')
+            }
+
+            //check theme from local storage and from the OS preferences
+            (currentTheme === 'dark') ? switchDark() : switchLight()
+
+            //check user preferences
+            function darkModeSwitch() {
+
+                //determine if the clicked button is dark or light
+                let themeValue = $(this).data('theme')
+
+                //Remove classes from all switch buttons
+                $('.dark-mode-switch').removeClass('active')
+
+                //Switch theme according to the value
+                if (themeValue === 'dark') {
+                    switchDark()
+                } else {
+                    switchLight()
+                }
+            }
+
+            //Theme switch button
+            $('.dark-mode-switch').on('click', darkModeSwitch)
+
+        });
+
+        function eventoMain() {
+            //Main navigation
+            var coesNav = document.getElementById('main-nav')
+
+            coesNav.addEventListener('shown.bs.collapse', function (event) {
+                $('body').toggleClass('nav-expanded');
+            })
+
+            coesNav.addEventListener('hidden.bs.collapse', function (event) {
+                $('body').toggleClass('nav-expanded');
+                $('body').removeClass("nav-expanded");
+            })
+        }
+
+    </script>
+
+    <!--Google Analytics-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-58739217-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+
+</head>
+<body>
+    
+    <div class="site-header">
+
+        
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                aria-controls="main-nav" onclick="eventoMain()" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="container">
+            <nav class="secondary-menu">
+                <a href="/Portal/Operacion/CaractSEIN/BaseDatos">Características del SEIN</a>
+                <a href="JavaScript:openCalendario()">Calendario COES</a>
+                <a href="https://www.coes.org.pe/IntranetCorporativa/">Intranet</a>
+                <a href="https://www.coes.org.pe/extranet">Extranet</a>
+            </nav>
+        </div>
+
+        <div class="container header-content-area--container">
+            <div class="header-content-area">
+                <div class="row align-items-center">
+
+                    <div class="col-12 col-md-4">
+                        <div class="header-icons">
+                            <button class="button-icon button-icon-day dark-mode-switch dark-mode-off" data-theme="light"></button>
+                            <button class="button-icon button-icon-night dark-mode-switch dark-mode-on active" data-theme="dark"></button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="main-logo">
+                            <a href="/Portal/">
+                                <img src="/Portal/Content/img/coes-logo.png" alt="COES" class="logo">
+                                <img src="/Portal/Content/img/coes-logo-dark.png" alt="COES" class="logo-dark-theme">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="header-shortcuts d-flex d-block align-items-center">
+
+                            <a href="https://proveedores.coes.org.pe/" class="button-icon button-icon-people" title="Portal de Proveedores"></a>
+                            <a href="/Portal/contacto/index" class="button-icon button-icon-contact" title="Contáctenos"></a>
+                            <a href="https://tramitevirtual.coes.org.pe/" class="button-icon button-icon-books" title="Portal de Trámite Virtual"></a>
+                            <a href="/Portal/portalinformacion/generacion" class="button-icon button-icon-stats" title="Portal de Información"></a>
+                            <a href="https://outlook.office365.com/owa" class="button-icon button-icon-mail" title="Correo"></a>
+
+                            <div class="search-bar">
+                                
+                                <input type="text" id="txtSearch" class="search-input">
+                                <input type="button" id="btnSearch" class="search-submit">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+        
+        
+
+        
+    </div>
+    <div class="container">
+        <nav class="secondary-menu-movil">
+            <a href="/Portal/Operacion/CaractSEIN/BaseDatos">Características del SEIN</a>
+            <a href="JavaScript:openCalendario()">Calendario COES</a>
+            <a href="https://www.coes.org.pe/IntranetCorporativa/">Intranet</a>
+            <a href="https://www.coes.org.pe/extranet">Extranet</a>
+        </nav>
+    </div>
+    <div class="main-navigation">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="main-nav">
+                        <ul class='navbar-nav justify-content-between'>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Planificación</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='dropdown-item'>Plan de Transmisión</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTT?path=Planificaci%C3%B3n%2FPlan%20de%20Transmision%2FActualizacion%20Plan%20de%20Transmision%202017%20-%202026%2F00_ABC%20del%20Plan%20de%20Transmisi%C3%B3n%2F'>ABC del Plan de Transmisión</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/PrimerPT'>Primer Plan de Transmisión</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTP'>Actualización Plan de Transmisión 2013 - 2022</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTS'>Actualización Plan de Transmisión 2015 - 2024</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTT'>Actualización Plan de Transmisión 2017 - 2026</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTF'>Actualización Plan de Transmisión 2019 - 2028</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTG'>Actualización Plan de Transmisión 2021 - 2030</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTH'>Actualización Plan de Transmisión 2023 - 2032</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTI'>Actualización Plan de Transmisión 2025 - 2034</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/ActualizacionPTJ'>Actualización Plan de Transmisión 2027 - 2036</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/PlanTransmision/Fichas'>Fichas de Información</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Planificacion/Interconexion/'>Estudios de Interconexiones Internacionales</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Planificacion/MargenReserva/'>Estudios de Verificación del Margen de Reserva Firme Objetivo del Sistema</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/planificacion/otrosestudioslp'>Estudios especiales de Largo Plazo</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Planificacion/PlanificacionOLP'>Plan Operativo de Largo Plazo</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Nuevos Proyectos</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/NuevosProyectos/EstudiosPO'>Estudios de Pre Operatividad</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/NuevosProyectos/EstudiosO'>Estudios de Operatividad</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/NuevosProyectos/IntegracionInstalacion'>Integración de Instalaciones al SEIN</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/NuevosProyectos/OperacionComercialUnidades'>Operación Comercial de unidades o centrales de generación</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/NuevosProyectos/ConclusionOperacion'>Conclusión de Operación Comercial y Retiro de Instalaciones del SEIN</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Planificacion/NuevosProyectos/ListaInstalaciones'>Lista de Instalaciones del STTN, STTR y STL</a></li>
+                <li class='nav-item'><a class='nav-link' href='https://sw.coes.org.pe/psms/login.aspx' target='_blank'>Base de Datos - Protecciones (Station Ware)</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Operación</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='dropdown-item'>Programa de Operación</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgOperacion/ProgramaDiario'>Programa Diario</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgOperacion/ActualizacionPD'>Actualización de Programa Diario</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgOperacion/ProgSemanalOp'>Programa Semanal Operación</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgOperacion/RprogDiarioOp'>Reprograma Diario de Operación</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgOperacion/ProgMedianoPO'>Programa Mediano Plazo Operación</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Importación y Excedentes</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ImportacionyExcedentes/CapacidadImport'>Capacidad de Importación</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ImportacionyExcedentes/ExcedentesExp'>Excedentes de Exportación</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Programa de Mantenimiento</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgManten/ProgDiario'>Programa Diario</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgManten/ActualizacionPD'>Actualización de Programa Diario</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgManten/ProgSemanal'>Programa Semanal</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgManten/ProgMensual'>Programa Mensual</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgManten/ProgAnual'>Programa Anual</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/ProgManten/ProgMantenimientoMayor'>Programa Mantenimiento Mayor</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Características del SEIN</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/CaractSEIN/BaseDatos'>Base de Datos</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/equipamiento/equipo/index'>Equipamiento</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Equipamiento/FichaTecnica'>Ficha Técnica</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/CaractSEIN/MapaSEIN'>Mapa del SEIN</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/CaractSEIN/DiagramaUnifilar'>Diagrama Unifilar</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Estudios</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/OperacionSEIN'>Operacion del SEIN</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/Comercializacion'>Comercialización</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/PotenciaEfectiva'>Potencia Efectiva</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/PotenciaMinima'>Potencia Mínima</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/HomologacionModelos'>Homologación de Modelos</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/CostosVariables'>Costos Variables</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/CostosVariablesNoCom'>Costos Variables no Combustibles</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/Estudios/Hidrologia'>Hidrología</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Interconexiones/Reportes/Antecedentes'>Intercambios Internacionales</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Información para aplicación del PR-08</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/InformacionPR08/ListadoContingencias'>Listado de Contingencias</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/InformacionPR08/CapacidadEquiposTransmision'>Capacidad de Equipos de Transmisión</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/Operacion/InformacionPR08/TensionesOperacion'>Tensiones de Operación</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Post Operación</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='dropdown-item'>Demanda de los Agentes</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DemandaBarras/consulta/index?tipo=2'>Distribuidores</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DemandaBarras/consulta/index?tipo=4'>Usuarios Libres</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Reportes</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Reportes/Idcos'>IDCOS</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Reportes/Ieod'>IEOD</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/portalinformacion/demanda?indicador=maxima'>Máxima Demanda</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Reportes/ReporteIndisponibilidad'>Reporte de Indisponibilidad</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Reportes/ReservaCompensableRPF'>Reserva Compensable por RPF</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Reportes/HorasOperación'>Horas de Operación y Numeros de Arranques Anuales</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal//postoperacion/reportes/pruebasaleatorias'>Pruebas Aleatorias PR-25</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Evaluacion y Fallas</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/EvaluacionFallas/'>Evaluación y Fallas</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/EvaluacionFallas/EvaluacionRMC'>Evaluación RMC</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Reportes de Interés</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ReportesInteres/AdecuacionNTIITR'>Adecuación a la NTIITR</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ReportesInteres/SupervisionMantenimiento'>Supervisión Mantenimiento</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ReportesInteres/SupervisionPlanificacion'>Supervisión Planificación</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ReportesInteres/PlanTrabajoOPT'>Plan de Trabajo OPT</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Eventos/Relevantes'>Eventos Relevantes</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Transferencias (Antes del MME)</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ValorizacionTransferencias/ValorizacionTransferenciaEP'>Valorizacion de Transferencia de Energia y Potencia</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/postoperacion/valorizaciontransferencias/pagosstysct'>Asignaciones de Responsabilidad de Pago SST y SCT</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ValorizacionTransferencias/FactoresProporcion'>Factores de Proporción</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ValorizacionTransferencias/CálculoBalanceEF'>Cálculo y Balance de Energía Firme</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ValorizacionTransferencias/CostosMarginalesCP'>Costos Marginales de Corto Plazo Para Licitaciones</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ValorizacionTransferencias/ResarcimientosNTCSE'>Resarcimientos NTCSE</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/ValorizacionTransferencias/CompraVentaPotenciaFirme'>CompraVenta de Potencia Firme</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Informes</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/EvaluacionSemanal'>Evaluación Semanal</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/EvaluacionMensual'>Evaluación Mensual</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/EvaluacionAnual'>Evaluación Anual</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/AnalisisEconomicoDespacho'>Análisis de la Ejecución del Despacho Económico</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/ReservaRotanteRPF'>Reserva Rotante para Regulación Primaria de Frecuencia</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/ReservaRotanteRSF'>Reserva Rotante para Regulación Secundaria de Frecuencia</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/UnidadesGeneracionPruebas'>Unidades de Generación por Pruebas</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/Informes/MagEnergiaDejadaInyectar'>Magnitud de Energía Dejada de Inyectar</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/postoperacion/informes/listadours'>URS calificadas para Regulación Secundaria</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/postoperacion/informes/compensacionconfiabilidad'>Compensación por Confiabilidad de Suministro (CCCSE)</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Gas Natural</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/GasNatural/DeclaracionPreciosGas'>Declaración de Precios de Gas</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/GasNatural/PreciosDeclarados'>Precios Declarados</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/PostOperacion/GasNatural/DocumentosRelacionados'>Documentos relacionados</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Mercado Mayorista</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/mercadomayorista/visualizaciondatos/listadoparticipantes'>Listado de Participantes</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/browser/download?url=Marco%20Normativo%2FProcedimientos%2FTecnicos%2F02%20Condiciones%20de%20Participaci%C3%B3n%20en%20el%20Mercado%20Mayorista%20de%20Electricidad.pdf'>Condiciones y Requisitos del participante del MME</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/mercadomayorista/formato/index'>Formatos para el MME</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/mercadomayorista/garantiasyfideicomiso'>Garantías y Fideicomiso</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/mercadomayorista/reporteindicadores'>Reporte de Indicadores para el monitoreo del MME</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Costos Marginales de Corto Plazo</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/mercadomayorista/costosmarginales/index'>Costos Marginal en Tiempo Real (preliminar)</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/mercadomayorista/costosmarginales/revisados'>Costos Marginales Revisados</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/mercadomayorista/liquidaciones'>Liquidaciones del MME</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/mercadomayorista/informeauditoria'>Auditoría a la metodología</a></li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Directorio e Impugnaciones</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/browser/download?url=Directorio%20e%20Impugnaciones%2FRequisitos%20y%20Plazos%2FRequisitosyplazosdeimpugnacion.doc'>Requisitos y Plazos</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/browser/download?url=Directorio%20e%20Impugnaciones%2FModelos%20de%20Recursos%2FModelodeRecursodeApelacion.doc'>Modelos de Recursos</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/DirectorioImpugnaciones/Impugnaciones/RecursosApelacion'>Recursos de apelación</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Reconsideraciones</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Impugnaciones/DireccionEjecutiva'>Dirección Ejecutiva</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Impugnaciones/Directorio'>Directorio</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Arbitraje</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Arbitraje/Solicitudes'>Solicitudes de Arbitraje</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Arbitraje/LaudosArbitrales'>Laudos Arbitrales</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/browser/download?url=Directorio%20e%20Impugnaciones%2FArbitraje%2FProcesos%20Arbitraje%2FProcesosArbitralesWEB.xls'>Procesos Arbitraje</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Directorio</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Agenda/Directorio'>Agenda</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Acuerdos/Directorio'>Acuerdos</a></li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='dropdown-item'>Asamblea</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Agenda/Asamblea'>Agenda</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/DirectorioImpugnaciones/Acuerdos/Asamblea'>Acuerdos</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Marco Normativo</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/MarcoNormativo/BaseLegal/'>Base Legal</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/MarcoNormativo/Estatuto/'>Estatuto</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Procedimientos</a></li>
+                <li class='nav-item'>
+                    <ul>
+                <li class='nav-item'><a class='nav-link' href='/Portal/MarcoNormativo/Procedimientos/Tecnicos'>Técnicos</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/MarcoNormativo/Procedimientos/Administrativos'>Administrativos</a></li>
+                <li class='nav-item'><a class='nav-link' href='/Portal/browser/download?url=Marco Normativo/Procedimientos/Glosario de Terminos/Glosario%20de%20T%C3%A9rminos.pdf'>Glosario de Términos</a></li>
+                <li class='nav-item'><a class='dropdown-item'>Propuestas de Procedimientos</a></li>                <li class='nav-item'>
+                    <ul>
+                      <li class='nav-item'><a class='nav-link' href='/Portal/MarcoNormativo/Proyectos/ConsultaIntegrantes'>Consulta a los Integrantes</a></li>
+                      <li class='nav-item'><a class='nav-link' href='http://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/electricidad/aprobacion-procedimientos-coes' target='_blank'>Trámite de Aprobación por OSINERGMIN</a></li>
+                    </ul>
+                </li>
+                    </ul>
+                </li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/MarcoNormativo/DecisionesEjecutivasNotasTecnicas'>Decisiones Ejecutivas y Notas Técnicas</a></li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Organización</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/QuienesSomos'>Quiénes somos</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/MisionVisionValores'>Misión, visión y principios</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/CodigoEtica'>Código de ética</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/Politicas'>Politicas del COES</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/EstructuraOrganizacional'>Estructura Organizacional</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/Asamblea'>Asamblea</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Organizacion/Directorio'>Directorio</a></li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Integrantes</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/registrointegrante/integrante'>Registro de Integrantes</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/registrointegrante/reporte/empresa'>Listado de Integrantes</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/integrantes/index'>Información Adicional</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Integrantes/AportesIntegrantes'>Aportes de los Integrantes</a></li>
+            </ul>
+
+    </li>
+    <li class='nav-item dropdown'>
+        <a class='nav-link dropdown-toggle' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false' href='#'>Publicaciones</a>
+
+            <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Publicaciones/Estadisticas/'>Estadísticas Anuales</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Publicaciones/Memorias/'>Memorias Anuales</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Publicaciones/Boletines/'>Boletines Mensuales</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/Publicaciones/Informes/'>Informes Técnicos</a></li>
+                <li class='nav-item'><a class='nav-link bold' href='/Portal/publicaciones/saladeprensa/AppMovil'>Sala de Prensa</a></li>
+            </ul>
+
+    </li>
+</ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="content-area">
+        
+
+
+<div class="main-banner" style="margin-top: -15px; background-image: url(../../Content/Images/Banners/ProgramaDeMantenimiento.jpg)">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-3 order-1 order-md-0">
+            <nav class="sidebar">
+                <ul class="sidebar-nav list-unstyled">
+                    <li class="sidebar-nav--item">
+                        <a href="/Portal/Operacion/ProgManten/ProgDiario" class="sidebar-nav--link">Programa Diario</a>
+                    </li>
+                    <li class="sidebar-nav--item">
+                        <a href="/Portal/Operacion/ProgManten/ActualizacionPD" class="sidebar-nav--link">Actualización de Programa Diario</a>
+                    </li>
+                    <li class="sidebar-nav--item">
+                        <a href="/Portal/Operacion/ProgManten/ProgSemanal" class="sidebar-nav--link sidebar-nav--link-active">Programa Semanal</a>
+                    </li>
+                    <li class="sidebar-nav--item">
+                        <a href="/Portal/Operacion/ProgManten/ProgMensual" class="sidebar-nav--link">Programa Mensual</a>
+                    </li>
+                    <li class="sidebar-nav--item">
+                        <a href="/Portal/Operacion/ProgManten/ProgAnual" class="sidebar-nav--link">Programa Anual</a>
+                    </li>
+                    <li class="sidebar-nav--item">
+                        <a href="/Portal/Operacion/ProgManten/ProgMantenimientoMayor" class="sidebar-nav--link">Programa Mantenimiento Mayor</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col col-md-9 mb-md-4">
+            
+<script src="/Portal/Content/Scripts/jqueryui.js"></script>
+<link href="/Portal/Content/Css/contextmenu.css?v=1.5" rel="stylesheet" />
+<script src="/Portal/Content/Scripts/web.js?v=8.5"></script>
+<script src="/Portal/Content/Scripts/jquery.tooltip.min.js"></script>
+<script src="/Portal/Content/Scripts/contextmenu.js?v=1.5"></script>
+<script src="/Portal/Content/Scripts/multidownload.js"></script>
+<link href="/Portal/Content/Css/browser.css?v=1.5" rel="stylesheet" />
+<link href="/Portal/Content/Css/main.coes.css" rel="stylesheet" />
+<script src="/Portal/Content/Scripts/main.coes.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+      
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+</script>
+
+
+
+
+
+    
+            <div class="col-12 col-md-12 mb-md-4">
+           
+                    <div class="coes-box mb-3">
+                        <div class="coes-box--header">
+                                <h3 class="coes-box--title">Programa semanal</h3>
+                        </div>
+                        <div class="coes-box--content container">
+                            <div class="row">
+                                <div class="coes-views col-12 col-md-6 col-lg-3 d-flex">
+                                    <p class="coes-views--label">Visualización</p>
+                                    <button class="button-icon button-icon-thumbs coes-views--button js-switch-thumbs active"></button>
+                                    <button class="button-icon button-icon-list coes-views--button js-switch-list"></button>
+                                </div>
+                                <div class="coes-search col-12 col-md-6 col-lg-9 d-flex" id="cuadroBusqueda">
+                                    <p class="coes-search--label">Nombre</p>
+                                    <form action="#" id="formularioBusqueda">
+                                        <input type="text" id="campo7" class="coes-search-input">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3" id="cabecera">
+                        <span class="me-2">Descargar: </span>
+                        <button class="button-icon button-icon-file" id="btn-downloadfile"></button>
+                        <button class="button-icon button-icon-zip" id="btn-downloadzip"></button>
+                    </div>
+                    <div id="browserDocument">
+                    </div>
+                    <input type="hidden" id="hfBaseDirectory" value="Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/" />
+                    <input type="hidden" id="hfRelativeDirectory" value="Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/" />
+                    <input type="hidden" id="hfOrigenDirectory" />
+                    <input type="hidden" id="hfOperacionPegar" />
+                    <input type="hidden" id="hfTipoVista" value="B" />
+                    <input type="hidden" id="hfOrigen" value="Local" />
+                    <input type="hidden" id="hfIndicadorHeader" value="S" />
+                    <input type="hidden" id="hfBreadName" value="Programa semanal" />
+                    <input type="hidden" id="hfOrderFolder" value="D" />
+                    <input type="hidden" id="hfblobcod" value="205" />
+
+                    <div class="general-popup" id="popupFolder">
+                        <div id="divContenedorFolder">
+                        </div>
+                    </div>
+
+                    <div id="multiDownload">
+                    </div>
+
+                    <input type="text" id="txtCopy" style="width:1px;height:1px;border:1px none;color:#fff;" />
+             
+                
+                
+
+                <div id="popupVideo" class="general-popup">
+                    <div><span class="button b-close"><span>X</span></span></div>
+
+                    <div class="popup-text" id="contenidoVideo">
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+
+
+
+
+
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg col-md-6 col-sm-6">
+						<p class="footer-top--item footer-top--item-address">
+							Av. Los Conquistadores N° 1144, piso 2 - San Isidro, Lima - Perú.
+						</p>
+					</div>
+
+					<div class="col-lg col-md-6 col-sm-6">
+						<p class="footer-top--item footer-top--item-phone">
+							Teléfono: <a href="tel:511611-8585">(511) 611-8585</a>
+						</p>
+					</div>
+
+					<div class="col-lg col-md-6 col-sm-6">
+						<p class="footer-top--item footer-top--item-cal">
+							<span>Horario de recepción</span>
+							<br />
+							<span>de documentos en</span>
+							<br />
+							<span>mesa de partes</span>
+							<br />
+							<span>virtual:</span>
+							<br />
+							<span>Lunes a Domingo</span>
+							<br />
+							<span>durante las 24 horas</span>
+						</p>
+
+					</div>
+
+					<div class="col-lg col-md-6 col-sm-6">
+						<p class="footer-top--item footer-top--item-cal">
+							<span>Horario de recepción</span>
+							<br />
+							<span>de documentos en</span>
+							<br />
+							<span>mesa de partes</span>
+							<br />
+							<span>presencial: Lunes a</span>
+							<br />
+							<span>Jueves de 07:30 am -</span>
+							<br />
+							<span>06:00 pm</span>
+							<br />
+							<span>Viernes de 07:30 am -</span>
+							<br />
+							<span>01:00 pm</span>
+						</p>
+
+					</div>
+
+					<div class="col-lg col-md-6 col-sm-6">
+						<p class="footer-top--item footer-top--item-cal">
+							<span>Horario de atención:</span>
+							<br />
+							<span>Lunes a Jueves de</span>
+							<br />
+							<span>07:30 am - 06:00 pm</span>
+							<br />
+							<span>Viernes de</span>
+							<br />
+							<span>07:30 am - 01:00 pm</span>
+						</p>
+
+					</div>
+				</div>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 mb-5">
+                        <img src="/Portal/Content/img/logo-white.png" alt="" class="footer-logo">
+                    </div>
+                    <div class="col-md-3 mb-5">
+                        <div class="footer-menu-container">
+                            <h3 class="footer-menu--title">Coes</h3>
+                            <nav class="footer-menu">
+                                <a href="/Portal/OportunidadesTrabajo/Index" class="footer-menu--item">
+                                    Trabaja con nosotros
+                                </a>
+                                <a href="/Portal/Proveedores/RegistroProveedores" class="footer-menu--item">
+                                    Proveedores
+                                </a>
+                                <a href="/Portal/PreguntasFrecuentes/Index" class="footer-menu--item">
+                                    Preguntas Frecuentes
+                                </a>
+                                <a href="/Portal/contacto/index" class="footer-menu--item">
+                                    Contáctanos
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-5">
+
+                        <div class="footer-menu-container">
+                            <h3 class="footer-menu--title">Enlaces de Interés</h3>
+                            <nav class="footer-menu">
+                                <a href="http://www.senamhi.gob.pe/" target="_blank" class="footer-menu--item">
+                                    Senamhi
+                                </a>
+                                <a href="http://www.osinergmin.gob.pe/" target="_blank" class="footer-menu--item">
+                                    Osinergmin
+                                </a>
+                                <a href="http://www.minem.gob.pe/" target="_blank" class="footer-menu--item">
+                                    Ministerio de Energía y Minas
+                                </a>
+                                <a href="/Portal/sitemap/index" class="footer-menu--item">
+                                    Mapa del Sitio
+                                </a>
+
+                                <a href="/Portal/DerechosArco/Index" class="footer-menu--item">
+                                    Derechos Arco
+                                </a>
+                            </nav>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3 mb-5">
+
+                        
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loading" class="loading">
+        <div class="loading-image">
+            <img src="/Portal/Content/Images/loading.gif" />
+        </div>
+    </div>
+    <div id="popupCalendario" class="general-popup" style="width: 100%; height: 900px !important; left: 339.5px !important; position: absolute !important; top: 0px !important; z-index: 9999 !important; opacity: 1; ">
+        <div><span class="button b-close"><span>X</span></span></div>
+        <div id="contenidoCalendario">
+        </div>
+    </div>
+
+
+</body>
+</html>
