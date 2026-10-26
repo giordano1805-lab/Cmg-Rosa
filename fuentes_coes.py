@@ -243,6 +243,7 @@ def parsear_volumenes(filas):
             "variable": texto(etiquetas.get("TIPO", [""] * (j + 1))[j]).capitalize(),
             "unidad": texto(etiquetas.get("FECHA", [""] * (j + 1))[j]),
             "inicio": serie[0], "final": serie[-1], "variacion": serie[-1] - serie[0],
+            "prom": sum(serie) / len(serie),
         })
     return out
 
@@ -357,10 +358,141 @@ def hidro_pasada(hojas):
     return out
 
 
+def recursos_dia(hojas):
+    """{hora 'HH:MM': {pasada, regulacion, eolica}} (MW) de la hoja TIPO_RECURSO."""
+    filas = hojas.get("TIPO_RECURSO") or []
+    cols = {}
+    for f in filas[:15]:
+        for j, v in enumerate(f):
+            n = norm(v)
+            if "PASADA" in n and "HIDRO" not in n:
+                cols.setdefault("pasada", j)
+            elif "REGULACION" in n and "HIDRO" not in n:
+                cols.setdefault("regulacion", j)
+            elif n == "EOLICA":
+                cols.setdefault("eolica", j)
+        if cols:
+            break
+    out = {}
+    for f in filas:
+        h = texto(f[1]) if len(f) > 1 else ""
+        if not re.fullmatch(r"\d{1,2}:\d{2}", h):
+            continue
+        r = {k: numero(f[j]) for k, j in cols.items() if j < len(f) and numero(f[j]) is not None}
+        if r:
+            out[h] = r
+    return out
+
+
+# --------------------------------------------------------------------------- despacho con diésel
+COMB_DIESEL = ("D2", "DIESEL", "B5", "R500", "R6", "RESIDUAL")
+
+
+def _min_dia(hora):
+    """'HH:MM' (fin del intervalo) → minutos desde el inicio del día operativo (30..1440)."""
+    h, m = (int(x) for x in hora.split(":"))
+    v = h * 60 + m
+    return v if v else 1440
+
+
+def es_reserva_fria(*textos):
+    t = " ".join(norm(x) for x in textos)
+    return bool(re.search(r"(^|[\s.])RF[\s_-]", t) or "RESERVA FRIA" in t)
+
+
+def despacho_unidades(hojas):
+    """{unidad: {'empresa', 'mw': {min_dia: MW}}} de la hoja DESPACHO_EJECUTADO."""
+    filas = hojas.get("DESPACHO_EJECUTADO") or []
+    datos = [i for i, f in enumerate(filas) if len(f) > 1 and re.fullmatch(r"\d{1,2}:\d{2}", texto(f[1]))]
+    if not datos:
+        return {}
+    i0 = datos[0]
+    nombres, empresas = filas[i0 - 1], filas[i0 - 2]
+    out = {}
+    for j in range(2, len(nombres)):
+        n = texto(nombres[j])
+        if not n:
+            continue
+        serie = {}
+        for i in datos:
+            f = filas[i]
+            v = numero(f[j]) if j < len(f) else None
+            if v is not None:
+                serie[_min_dia(texto(f[1]))] = v
+        out[n] = {"empresa": texto(empresas[j]) if j < len(empresas) else "", "mw": serie}
+    return out
+
+
+ABREV = (("PUERTO", "PTO"), ("BRAVO", "BRVO"), ("SANTA", "STA"), ("RESERVA FRIA", "RF"), ("LAS FLORES", "LFLORES"))
+
+
+def _clave_unidad(s):
+    s = norm(s)
+    for a, b in ABREV:
+        s = s.replace(a, b)
+    return re.sub(r"[^A-Z0-9]", "", s)
+
+
+def diesel_despacho(hojas, dia: dt.date):
+    """Unidades que operaron con diésel/residual según el HOP del IEOD, con su potencia (DESPACHO_EJECUTADO).
+    Devuelve {'unidades': [...], 'serie': {min_dia: {'rf': MW, 'otras': MW}}}."""
+    hop = [r for r in tabla(hojas.get("HOP", []), ["EMPRESA", "CENTRAL", "MODO DE OPERACION"])
+           if any(k in norm(r.get("MODO DE OPERACION")).rsplit(" - ", 1)[-1] for k in COMB_DIESEL)]
+    desp = despacho_unidades(hojas)
+    clave = {u: _clave_unidad(u) for u in desp}
+    t0 = dt.datetime(dia.year, dia.month, dia.day)
+    agr, serie = {}, {}
+    for r in hop:
+        central = re.sub(r"^C\.?\s?T\.?\s*B?\.?\s*", "", norm(r.get("CENTRAL")))
+        grupo = norm(r.get("GRUPO"))
+        comb = norm(r.get("MODO DE OPERACION")).rsplit(" - ", 1)[-1]
+        kc = _clave_unidad(central)
+        kg = _clave_unidad(grupo)
+        cand = [u for u, k in clave.items() if kc and (kc in k or k in kc)]
+        if grupo and grupo != "CENTRAL":
+            cand = [u for u in cand if kg in clave[u]] or [u for u, k in clave.items() if kg and kg in k and kc[:4] in k]
+        ini, fin = fecha_hora(r.get("INICIO")), fecha_hora(r.get("FINAL"))
+        rf = es_reserva_fria(r.get("CENTRAL"), r.get("EMPRESA"), *cand)
+        nombre = f"{central.title()}" + (f" {grupo}" if grupo and grupo != "CENTRAL" else "")
+        a = agr.setdefault(nombre, {"empresa": texto(r.get("EMPRESA")).title(), "central": central.title(),
+                                     "grupo": grupo, "combustible": comb, "rf": rf, "inicio": ini, "final": fin,
+                                     "tipo": texto(r.get("TIPO OPERACION")), "unidades": cand, "mwh": 0.0,
+                                     "mw_max": 0.0, "minutos": set()})
+        if ini and (a["inicio"] is None or ini < a["inicio"]):
+            a["inicio"] = ini
+        if fin and (a["final"] is None or fin > a["final"]):
+            a["final"] = fin
+        for u in cand:
+            for m, mw in desp[u]["mw"].items():
+                t = t0 + dt.timedelta(minutes=m)
+                if mw > 0 and ini and fin and t > ini and t - dt.timedelta(minutes=30) < fin and (u, m) not in a["minutos"]:
+                    a["minutos"].add((u, m))
+                    a["mwh"] += mw * 0.5
+                    s = serie.setdefault(m, {"rf": 0.0, "otras": 0.0})
+                    s["rf" if rf else "otras"] += mw
+    unidades = []
+    for n, a in agr.items():
+        porm = {}
+        for u, m in a.pop("minutos"):
+            porm[m] = porm.get(m, 0) + desp[u]["mw"][m]
+        a["mw_max"] = max(porm.values()) if porm else None
+        a["mwh"] = round(a["mwh"], 1) if a["unidades"] and porm else None
+        unidades.append({"nombre": n, **a})
+    unidades.sort(key=lambda u: (not u["rf"], -(u["mwh"] or 0)))
+    return {"unidades": unidades, "serie": serie}
+
+
 def ieod_dia(d: dt.date):
-    """Anexo A del IEOD de un día exacto (o {} si no está publicado)."""
-    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO"})
+    """Anexo A del IEOD de un día exacto (o {} si no está publicado): potencia por recurso y volúmenes."""
+    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES"})
     return hojas if fecha == d else {}
+
+
+def volumenes_dia(hojas):
+    """Volumen útil (Hm3) de los embalses con reporte diario en el IEOD: [{cuenca, embalse, prom, final}]."""
+    filas = hojas.get("PRINCIP_VOLÚMENES") or hojas.get("PRINCIP_VOLUMENES") or []
+    return [{"cuenca": r["cuenca"], "embalse": r["embalse"], "prom": r["prom"], "final": r["final"]}
+            for r in parsear_volumenes(filas) if norm(r["unidad"]) == "HM3"]
 
 
 # --------------------------------------------------------------------------- embalses (Evaluación Semanal)
@@ -430,6 +562,7 @@ CENTRALES_CUENCA = {
               ("CH HER1", 0.7)],
     "San Gabán": [("CH Tupuri", 2), ("CH El Ángel 1", 20.1), ("CH El Ángel 2", 20), ("CH El Ángel 3", 20.1),
                   ("CH San Gabán 2", 115.7), ("CH San Gabán 3", 209.3)],
+    "Chaglla": [("CH Chaglla", 450.0), ("PCH Chaglla", 6.0)],
 }
 
 
