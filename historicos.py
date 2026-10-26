@@ -5,6 +5,7 @@ Series históricas para comparar contra el año anterior (cacheadas en data/):
 - data/demanda_diaria.csv   fecha, energia_mwh, intervalos, max_mw     (Portal de Información, desde ene del año previo)
 - data/hidro_pasada.csv     fecha, hora, mw                             (IEOD · TIPO_RECURSO · H. PASADA)
 - data/embalses_semanal.json                                            (Evaluación Semanal · hoja 5.2)
+- data/volumenes_diarios.csv  fecha, cuenca, embalse, prom, final       (IEOD · PRINCIP_VOLÚMENES, Hm3)
 
 Más los gráficos (matplotlib) para el PDF.
 """
@@ -22,6 +23,8 @@ DATA = Path("data")
 F_DEM = DATA / "demanda_diaria.csv"
 F_HID = DATA / "hidro_pasada.csv"
 F_EMB = DATA / "embalses_semanal.json"
+F_VOL = DATA / "volumenes_diarios.csv"
+VENTANA_VOL = 31          # días de volumen diario (año actual y mismas fechas del año anterior)
 
 C_ACT = "#f0590f"     # año actual (naranja Huanchor)
 C_ANT = "#2b4fd1"     # año anterior (azul)
@@ -188,28 +191,117 @@ def guardar_hidro(h):
                 w.writerow([d.isoformat(), hora, f"{h[d][hora]:.1f}"])
 
 
+def leer_vol():
+    """{fecha: {(cuenca, embalse): (prom, final)}}; un día sin embalses queda como {} (ya consultado)."""
+    out = {}
+    if F_VOL.exists():
+        with F_VOL.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                d = out.setdefault(dt.date.fromisoformat(r["fecha"]), {})
+                if r["embalse"] != "-":
+                    d[(r["cuenca"], r["embalse"])] = (float(r["prom"]), float(r["final"]))
+    return out
+
+
+def guardar_vol(v):
+    DATA.mkdir(exist_ok=True)
+    with F_VOL.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fecha", "cuenca", "embalse", "prom", "final"])
+        for d in sorted(v):
+            if not v[d]:
+                w.writerow([d.isoformat(), "-", "-", "", ""])
+            for (c, e), (pr, fi) in sorted(v[d].items()):
+                w.writerow([d.isoformat(), c, e, f"{pr:.5f}", f"{fi:.5f}"])
+
+
+def _un_anio_antes(d: dt.date):
+    try:
+        return d.replace(year=d.year - 1)
+    except ValueError:            # 29 de febrero
+        return d.replace(year=d.year - 1, day=28)
+
+
+def _vol_de(hojas):
+    return {(r["cuenca"], r["embalse"]): (r["prom"], r["final"]) for r in fc.volumenes_dia(hojas)}
+
+
 def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=420):
-    h = leer_hidro()
+    """Rellena hidro de pasada (mes actual y mismo mes del año anterior) y volúmenes diarios de embalses
+    (últimos VENTANA_VOL días y mismas fechas del año anterior) con una sola descarga del IEOD por día."""
+    h, v = leer_hidro(), leer_vol()
     if hojas_dia:
-        v = fc.hidro_pasada(hojas_dia)
-        if v:
-            h[dia] = dict(v)
+        x = fc.hidro_pasada(hojas_dia)
+        if x:
+            h[dia] = dict(x)
+        y = _vol_de(hojas_dia)
+        if y:
+            v[dia] = y
     act = [dt.date(dia.year, dia.month, k) for k in range(1, dia.day + 1)]
     ant = [dt.date(dia.year - 1, dia.month, k) for k in range(1, calendar.monthrange(dia.year - 1, dia.month)[1] + 1)]
-    faltan = [d for d in act[::-1] + ant if d not in h or len(h[d]) < 46]
+    vact = [dia - dt.timedelta(days=k) for k in range(VENTANA_VOL)]
+    vant = [_un_anio_antes(d) for d in vact]
+    falta_h = {d for d in act + ant if d not in h or len(h[d]) < 46}
+    falta_v = {d for d in vact + vant if d not in v}
+    orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant))
     t0 = time.time()
-    for d in faltan:
+    for d in orden:
+        if d not in falta_h and d not in falta_v:
+            continue
         if time.time() - t0 > presupuesto_s:
             break
         try:
-            v = fc.hidro_pasada(fc.ieod_dia(d))
-            if v:
-                h[d] = dict(v)
+            hojas = fc.ieod_dia(d)
+            if not hojas:
+                continue
+            x = fc.hidro_pasada(hojas)
+            if x:
+                h[d] = dict(x)
+            v[d] = _vol_de(hojas)
         except Exception as e:
-            print("hidro pasada", d, e, file=sys.stderr)
+            print("IEOD diario", d, e, file=sys.stderr)
     guardar_hidro(h)
+    guardar_vol(v)
     pend = [d for d in act + ant if d not in h]
     return h, pend
+
+
+def resumen_vol(dia: dt.date):
+    """Volumen útil diario por cuenca (suma de los embalses que el IEOD reporta a diario) vs el año anterior.
+    Chaglla es de regulación horaria: se usa el promedio del día; en el resto, el volumen al cierre del día."""
+    v = leer_vol()
+    out = {}
+    for cuenca in sorted({c for d in v.values() for c, _ in d}):
+        dias = sorted(d for d in v if d <= dia and any(c == cuenca for c, _ in v[d]))
+        if not dias:
+            continue
+        ult = dias[-1]
+        embs = sorted(e for c, e in v[ult] if c == cuenca)
+        k = 0 if cuenca == "Chaglla" else 1
+
+        def total(d):
+            if d not in v or any((cuenca, e) not in v[d] for e in embs):
+                return None
+            return round(sum(v[d][(cuenca, e)][k] for e in embs), 3)
+
+        serie_a, serie_b = [], []
+        for i in range(VENTANA_VOL - 1, -1, -1):
+            d = ult - dt.timedelta(days=i)
+            a, b = total(d), total(_un_anio_antes(d))
+            if a is not None:
+                serie_a.append([d.isoformat(), a])
+            if b is not None:
+                serie_b.append([d.isoformat(), b])
+        t1, t0 = total(ult), total(_un_anio_antes(ult))
+        out[cuenca] = {
+            "fecha": ult.isoformat(), "embalses": embs, "medida": "promedio del día" if k == 0 else "cierre del día",
+            "total": t1, "anterior": t0, "var_pct": (t1 / t0 - 1) * 100 if t1 is not None and t0 else None,
+            "detalle": [[e, round(v[ult][(cuenca, e)][k], 3),
+                         (round(v[_un_anio_antes(ult)][(cuenca, e)][k], 3)
+                          if (cuenca, e) in v.get(_un_anio_antes(ult), {}) else None)] for e in embs],
+            "serie": {str(ult.year): serie_a, str(ult.year - 1): serie_b},
+        }
+    return out
 
 
 def resumen_hidro(h, dia: dt.date):
@@ -285,8 +377,10 @@ def actualizar_embalses(hoy: dt.date):
     return datos
 
 
-def cuencas_seleccionadas(emb):
-    """Bloques de las cuencas de interés, en orden, con comparación de la última semana vs año anterior."""
+def cuencas_seleccionadas(emb, diario=None):
+    """Bloques de las cuencas de interés, en orden, con comparación de la última semana vs año anterior y,
+    si el IEOD reporta a diario una parte representativa del volumen de la cuenca, el dato diario."""
+    diario = diario or {}
     orden = [c for c, _ in fc.CUENCAS_SEMANAL]
     out = []
     for b in sorted([b for b in emb.get("bloques", []) if b.get("cuenca")], key=lambda b: orden.index(b["cuenca"])):
@@ -297,9 +391,18 @@ def cuencas_seleccionadas(emb):
         ant = str(int(act) - 1)
         v0 = b["anios"].get(ant, {}).get(str(sem))
         centrales = fc.CENTRALES_CUENCA.get(b["cuenca"], [])
+        di = diario.get(b["cuenca"])
+        if di and di["total"] is not None and v1:
+            di = {**di, "cobertura": di["total"] / v1}
+            # Rímac/Santa: el IEOD solo trae reservorios de regulación horaria (las lagunas van en el semanal)
+            if b["cuenca"] != "Chaglla" and di["cobertura"] < 0.5:
+                di = {**di, "representativo": False}
+            else:
+                di = {**di, "representativo": True}
         out.append({**b, "semana": sem, "actual": v1, "anterior": v0,
                     "var_pct": (v1 / v0 - 1) * 100 if v1 is not None and v0 else None,
-                    "centrales": centrales, "mw_total": round(sum(mw for _, mw in centrales), 1)})
+                    "centrales": centrales, "mw_total": round(sum(mw for _, mw in centrales), 1),
+                    "diario": di, "solo_diario": b["cuenca"] == "Chaglla" and bool(di and di.get("serie"))})
     return out
 
 
@@ -313,24 +416,51 @@ def grafico_embalses(cuencas, ruta, plt):
     estilos = {0: (C_23, 1.0, "--"), 1: (C_24, 1.2, "-"), 2: (C_ANT, 1.8, "-"), 3: (C_ACT, 2.6, "-")}
     for idx, cu in enumerate(cuencas):
         ax = fig.add_subplot(gs[idx, 0])
-        anios = sorted(cu["anios"], key=int)[-4:]
-        for j, a in enumerate(anios):
-            c, lw, ls = estilos[j + (4 - len(anios))]
-            s = cu["anios"][a]
-            ks = sorted(int(k) for k in s)
-            ax.plot(ks, [s[str(k)] for k in ks], color=c, lw=lw, ls=ls, label=a,
-                    marker="o" if j == len(anios) - 1 else None, ms=2.2)
-        var = f" · {cu['var_pct']:+.0f}% vs {int(anios[-1]) - 1}" if cu["var_pct"] is not None else ""
-        ax.set_title(f"Cuenca del río {cu['cuenca']} — semana {cu['semana']}: {cu['actual']:,.1f} Hm3{var}",
-                     fontsize=8.5, color=NAVY, loc="left")
-        ax.set_xlim(1, 53)
+        di = cu.get("diario") or {}
+        if cu.get("solo_diario"):
+            # Chaglla: embalse de regulación horaria → promedio diario del IEOD (la foto semanal no es representativa)
+            anios = sorted(di["serie"], key=int)
+            fechas = [dt.date.fromisoformat(f) for f, _ in di["serie"][anios[-1]]] or [dt.date.today()]
+            f0 = fechas[0]
+            for a in anios:
+                act = a == anios[-1]
+                pts = di["serie"][a]
+                ax.plot([(dt.date.fromisoformat(f) - f0).days for f, _ in pts], [y for _, y in pts],
+                        color=C_ACT if act else C_ANT, lw=2.6 if act else 1.8, marker="o" if act else None, ms=2.2,
+                        label=a)
+            nd = (fechas[-1] - f0).days
+            paso = max(1, nd // 10)
+            ax.set_xticks(range(0, nd + 1, paso),
+                          [(f0 + dt.timedelta(days=k)).strftime("%d/%m") for k in range(0, nd + 1, paso)])
+            ax.set_xlim(-0.5, nd + 0.5)
+            var = f" · {di['var_pct']:+.0f}% vs {int(anios[-1]) - 1}" if di.get("var_pct") is not None else ""
+            ax.set_title(f"Embalse Chaglla (río Huallaga) — promedio del {dt.date.fromisoformat(di['fecha']):%d/%m}: "
+                         f"{di['total']:,.2f} Hm3{var}", fontsize=8.5, color=NAVY, loc="left")
+            ax.set_xlabel("Volumen útil promedio diario · IEOD", fontsize=7)
+        else:
+            anios = sorted(cu["anios"], key=int)[-4:]
+            for j, a in enumerate(anios):
+                c, lw, ls = estilos[j + (4 - len(anios))]
+                s = cu["anios"][a]
+                ks = sorted(int(k) for k in s)
+                ax.plot(ks, [s[str(k)] for k in ks], color=c, lw=lw, ls=ls, label=a,
+                        marker="o" if j == len(anios) - 1 else None, ms=2.2)
+            var = f" · {cu['var_pct']:+.0f}% vs {int(anios[-1]) - 1}" if cu["var_pct"] is not None else ""
+            ax.set_title(f"Cuenca del río {cu['cuenca']} — semana {cu['semana']}: {cu['actual']:,.1f} Hm3{var}",
+                         fontsize=8.5, color=NAVY, loc="left")
+            ax.set_xlim(1, 53)
+            if di.get("representativo") and di.get("total") is not None:
+                vd = f" ({di['var_pct']:+.0f}% vs año ant.)" if di.get("var_pct") is not None else ""
+                ax.text(0.01, 0.04, f"Dato diario {dt.date.fromisoformat(di['fecha']):%d/%m}: {di['total']:,.1f} Hm3{vd}",
+                        transform=ax.transAxes, fontsize=6.6, color=NAVY,
+                        bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="#d0d4dc"))
+            if idx == n - 1:
+                ax.set_xlabel("Semana del año", fontsize=7)
         ax.set_ylim(bottom=0)
         ax.tick_params(labelsize=6.5)
         ax.grid(alpha=0.3)
         ax.set_ylabel("Hm3", fontsize=7)
         ax.legend(fontsize=6.5, frameon=False, loc="upper right", ncol=4)
-        if idx == n - 1:
-            ax.set_xlabel("Semana del año", fontsize=7)
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
         tx = fig.add_subplot(gs[idx, 1])
@@ -341,7 +471,7 @@ def grafico_embalses(cuencas, ruta, plt):
             tx.text(0.04, 0.86, "\n".join(lineas), fontsize=6.4, color="#202124", va="top", linespacing=1.35)
             tx.text(0.04, 0.02, f"TOTAL = {cu['mw_total']:,.1f} MW", fontsize=7.2, weight="bold", color=NAVY,
                     va="bottom", bbox=dict(boxstyle="round,pad=0.3", fc="#fff3c4", ec="none"))
-    fig.text(0.99, 0.005, "Fuente: COES – Informe de Evaluación Semanal (5.2)", ha="right", fontsize=6, color=GRIS)
+    fig.text(0.99, 0.005, "Fuente: COES – Informe de Evaluación Semanal (5.2) e IEOD (volúmenes diarios)", ha="right", fontsize=6, color=GRIS)
     fig.subplots_adjust(left=0.07, right=0.99, top=1 - 0.3 / (2.55 * n + 0.5), bottom=0.6 / (2.55 * n + 0.5))
     fig.savefig(ruta)
     plt.close(fig)

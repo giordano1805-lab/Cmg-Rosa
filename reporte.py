@@ -174,10 +174,14 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
                  + (f"; líneas ≥220 kV afectadas: {', '.join(e['equipo'] for e in ev_l)}." if ev_l else "."))
     if lin:
         b.append(f"Transmisión: {len({r['equipo'] for r in lin})} líneas ≥220 kV con intervenciones ejecutadas.")
-    cu = [c for c in extra.get("cuencas") or [] if c["var_pct"] is not None]
+    cu = [c for c in extra.get("cuencas") or [] if c["var_pct"] is not None and not c.get("solo_diario")]
     if cu:
         b.append("Embalses vs. año anterior (misma semana): " +
                  ", ".join(f"{c['cuenca']} {c['actual']:,.0f} Hm3 ({c['var_pct']:+.0f}%)" for c in cu) + ".")
+    ch = next((c["diario"] for c in extra.get("cuencas") or [] if c.get("solo_diario")), None)
+    if ch and ch.get("total") is not None:
+        b.append(f"Embalse Chaglla (promedio del {dt.date.fromisoformat(ch['fecha']):%d/%m}): {ch['total']:,.2f} Hm3"
+                 + (f" ({ch['var_pct']:+.0f}% vs. año anterior)." if ch.get("var_pct") is not None else "."))
     if prog is not None:
         g = fc.solo_generacion(prog)
         lp = fc.filtrar_lineas_220(prog)
@@ -373,17 +377,30 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
 
     sem = extra.get("semana_embalses")
     el.append(Paragraph(f"Embalses por cuenca vs. años anteriores <font size=8 color='{GRIS}'>"
-                        f"({sem or 'Evaluación Semanal no disponible'})</font>", h1))
+                        f"({sem or 'Evaluación Semanal no disponible'} · dato diario: IEOD)</font>", h1))
     cu = extra.get("cuencas") or []
     if cu:
-        el.append(tabla(["Cuenca", "Semana", "Volumen actual (Hm3)", "Mismo período año anterior", "Variación",
-                         "Potencia instalada"],
-                        [[c["cuenca"], str(c["semana"]), f"{c['actual']:,.1f}",
-                          f"{c['anterior']:,.1f}" if c["anterior"] is not None else "–",
-                          (f"<font color='#c5221f'>{c['var_pct']:+.0f}%</font>" if (c["var_pct"] or 0) < 0
-                           else (f"{c['var_pct']:+.0f}%" if c["var_pct"] is not None else "–")),
-                          f"{c['mw_total']:,.1f} MW" if c["mw_total"] else "–"] for c in cu],
-                        [0.16, 0.1, 0.2, 0.22, 0.14, 0.18]))
+        def pct(x):
+            if x is None:
+                return "–"
+            return f"<font color='#c5221f'>{x:+.0f}%</font>" if x < 0 else f"{x:+.0f}%"
+
+        def fila(c):
+            di = c.get("diario") or {}
+            if c.get("solo_diario"):
+                return [f"{c['cuenca']} (prom. diario)", f"{dt.date.fromisoformat(di['fecha']):%d/%m}",
+                        f"{di['total']:,.2f}", f"{di['anterior']:,.2f}" if di.get("anterior") is not None else "–",
+                        pct(di.get("var_pct")), "–",
+                        f"{c['mw_total']:,.1f} MW" if c["mw_total"] else "–"]
+            diario = (f"{di['total']:,.1f} ({dt.date.fromisoformat(di['fecha']):%d/%m}) {pct(di.get('var_pct'))}"
+                      if di.get("representativo") and di.get("total") is not None else "solo semanal")
+            return [c["cuenca"], f"sem. {c['semana']}", f"{c['actual']:,.1f}",
+                    f"{c['anterior']:,.1f}" if c["anterior"] is not None else "–", pct(c["var_pct"]), diario,
+                    f"{c['mw_total']:,.1f} MW" if c["mw_total"] else "–"]
+
+        el.append(tabla(["Cuenca", "Fecha", "Volumen (Hm3)", "Mismo período año ant.", "Var.",
+                         "Dato diario IEOD (Hm3)", "Potencia instalada"],
+                        [fila(c) for c in cu], [0.17, 0.08, 0.12, 0.15, 0.08, 0.24, 0.16]))
         el.append(Spacer(1, 4))
         el.append(img(graficos.get("embalses"), 20))
     else:
@@ -509,7 +526,12 @@ def generar(m, hist=None):
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
     try:
         emb = hi.actualizar_embalses(hoy)
-        extra["cuencas"] = hi.cuencas_seleccionadas(emb)
+        try:
+            vol = hi.resumen_vol(dia)
+        except Exception as e:
+            print("Volúmenes diarios no disponibles:", e, file=sys.stderr)
+            vol = {}
+        extra["cuencas"] = hi.cuencas_seleccionadas(emb, vol)
         extra["semana_embalses"] = emb.get("semana")
     except Exception as e:
         print("Embalses semanales no disponibles:", e, file=sys.stderr)

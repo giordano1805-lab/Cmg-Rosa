@@ -243,6 +243,7 @@ def parsear_volumenes(filas):
             "variable": texto(etiquetas.get("TIPO", [""] * (j + 1))[j]).capitalize(),
             "unidad": texto(etiquetas.get("FECHA", [""] * (j + 1))[j]),
             "inicio": serie[0], "final": serie[-1], "variacion": serie[-1] - serie[0],
+            "prom": sum(serie) / len(serie),
         })
     return out
 
@@ -358,9 +359,16 @@ def hidro_pasada(hojas):
 
 
 def ieod_dia(d: dt.date):
-    """Anexo A del IEOD de un día exacto (o {} si no está publicado)."""
-    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO"})
+    """Anexo A del IEOD de un día exacto (o {} si no está publicado): potencia por recurso y volúmenes."""
+    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES"})
     return hojas if fecha == d else {}
+
+
+def volumenes_dia(hojas):
+    """Volumen útil (Hm3) de los embalses con reporte diario en el IEOD: [{cuenca, embalse, prom, final}]."""
+    filas = hojas.get("PRINCIP_VOLÚMENES") or hojas.get("PRINCIP_VOLUMENES") or []
+    return [{"cuenca": r["cuenca"], "embalse": r["embalse"], "prom": r["prom"], "final": r["final"]}
+            for r in parsear_volumenes(filas) if norm(r["unidad"]) == "HM3"]
 
 
 # --------------------------------------------------------------------------- embalses (Evaluación Semanal)
@@ -430,6 +438,7 @@ CENTRALES_CUENCA = {
               ("CH HER1", 0.7)],
     "San Gabán": [("CH Tupuri", 2), ("CH El Ángel 1", 20.1), ("CH El Ángel 2", 20), ("CH El Ángel 3", 20.1),
                   ("CH San Gabán 2", 115.7), ("CH San Gabán 3", 209.3)],
+    "Chaglla": [("CH Chaglla", 450.0), ("PCH Chaglla", 6.0)],
 }
 
 

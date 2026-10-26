@@ -81,6 +81,9 @@ a{color:var(--s1)}
 .emb{display:grid;grid-template-columns:minmax(0,3fr) minmax(170px,1fr);gap:14px}
 .embk{display:flex;gap:22px;margin-bottom:8px;font-size:15px}.embk .lbl{font-size:12px;color:var(--text-2)}
 .cent ul{margin:6px 0 10px;padding-left:16px;font-size:12.5px;color:var(--text-2)}.cent li{margin:2px 0}
+.embd{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin:12px 0 4px;padding:8px 10px;border-radius:8px;background:var(--grid);font-size:13px}
+.embd .lbl{font-size:12px;color:var(--text-2)}
+.chart.sm{height:170px}
 .cent .tot{display:inline-block;background:#fff3c4;color:#001a6f;font-weight:700;font-size:12.5px;padding:3px 8px;border-radius:6px}
 .tecs .tag{margin:2px 4px 2px 0;font-size:12.5px}
 .centt{font-weight:600;color:#001a6f}
@@ -214,12 +217,28 @@ function render(){
   tabla("#t-res",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Ubicación",v:r=>tit(r.ubicacion)},{t:"Equipo",v:r=>r.equipo},{t:"Horario",v:r=>`${r.inicio}–${r.final}`},{t:"Descripción",v:r=>r.descripcion}],D.restricciones);
 
   const ES=D.embalses_semanal||{cuencas:[]};
-  $("#s-embalses").innerHTML=ES.cuencas.length?`<div class="grid"><div class="note" style="margin:0">Volumen útil semanal de embalses y lagunas · ${esc(ES.semana||"")} · Fuente: COES, Informe de Evaluación Semanal (5.2)</div>
-   ${ES.cuencas.map((c,i)=>`<div class="card"><h2>Cuenca del río ${c.cuenca}<small>semana ${c.semana}</small></h2>
+  const pc=x=>x!=null?`<b class="${x<0?"up":"down"}">${(x>0?"+":"")+x.toFixed(0)}%</b>`:"–";
+  const ddmm=s=>s?s.slice(8,10)+"/"+s.slice(5,7):"";
+  const cent=c=>`<div class="cent">${c.centrales.length?`<div class="lbl centt">Centrales</div><ul>${c.centrales.map(([n,mw])=>`<li>${esc(n)} – ${mw} MW</li>`).join("")}</ul><div class="tot">TOTAL = ${f1(c.mw_total)} MW</div>`:""}</div>`;
+  const tarjeta=(c,i)=>{const di=c.diario||{},ya=di.serie?Object.keys(di.serie).sort():[];
+    if(c.solo_diario) return `<div class="card"><h2>Embalse Chaglla · cuenca del río Huallaga<small>promedio diario al ${ddmm(di.fecha)}</small></h2>
+     <div class="emb"><div><div class="embk"><div><div class="lbl">Volumen útil (prom. del día)</div><b>${f2(di.total)} Hm3</b></div><div><div class="lbl">Mismo día ${ya[0]||""}</div><b>${di.anterior!=null?f2(di.anterior)+" Hm3":"–"}</b></div>
+       <div><div class="lbl">Variación</div>${pc(di.var_pct)}</div></div>
+       <div class="chart"><canvas id="c-emb${i}"></canvas></div>
+       <div class="note">Volumen útil del embalse (no caudal) · últimos 31 días vs mismas fechas de ${ya[0]||"el año anterior"}. Es un embalse de regulación horaria (≈4.7 Hm3): sube y baja dentro del día, por eso se usa el promedio diario del IEOD y no la foto semanal.</div></div>
+     ${cent(c)}</div></div>`;
+    const rep=di.representativo&&di.total!=null;
+    return `<div class="card"><h2>Cuenca del río ${c.cuenca}<small>semana ${c.semana}</small></h2>
      <div class="emb"><div><div class="embk"><div><div class="lbl">Volumen actual</div><b>${f1(c.actual)} Hm3</b></div><div><div class="lbl">Misma semana ${+Object.keys(c.anios).sort().pop()-1}</div><b>${c.anterior!=null?f1(c.anterior)+" Hm3":"–"}</b></div>
-       <div><div class="lbl">Variación</div><b class="${(c.var_pct||0)<0?"up":"down"}">${c.var_pct!=null?(c.var_pct>0?"+":"")+c.var_pct.toFixed(0)+"%":"–"}</b></div></div>
-       <div class="chart"><canvas id="c-emb${i}"></canvas></div></div>
-     <div class="cent">${c.centrales.length?`<div class="lbl centt">Centrales</div><ul>${c.centrales.map(([n,mw])=>`<li>${esc(n)} – ${mw} MW</li>`).join("")}</ul><div class="tot">TOTAL = ${f1(c.mw_total)} MW</div>`:""}</div></div></div>`).join("")}</div>`
+       <div><div class="lbl">Variación</div>${pc(c.var_pct)}</div></div>
+       <div class="chart"><canvas id="c-emb${i}"></canvas></div>
+       ${rep?`<div class="embd"><span class="lbl">Dato diario al ${ddmm(di.fecha)} (IEOD)</span><b>${f1(di.total)} Hm3</b><span class="lbl">mismo día ${ya[0]}: ${di.anterior!=null?f1(di.anterior)+" Hm3":"–"}</span>${pc(di.var_pct)}</div>
+         <div class="chart sm"><canvas id="c-embd${i}"></canvas></div>
+         <div class="note">Diario: ${di.embalses.map(esc).join(", ")} (${Math.round(di.cobertura*100)}% del volumen de la cuenca).</div>`
+        :`<div class="note">En esta cuenca el volumen de las lagunas solo se publica en el informe semanal; el IEOD diario solo trae reservorios de regulación${di.total!=null?` (${f2(di.total)} Hm3 al ${ddmm(di.fecha)})`:""}.</div>`}</div>
+     ${cent(c)}</div></div>`};
+  $("#s-embalses").innerHTML=ES.cuencas.length?`<div class="grid"><div class="note" style="margin:0">Volumen útil de embalses y lagunas · semanal: ${esc(ES.semana||"")} (COES, Informe de Evaluación Semanal 5.2) · diario: IEOD del ${ddmm(D.dia_ieod||D.dia)}</div>
+   ${ES.cuencas.map(tarjeta).join("")}</div>`
    :`<div class="card">El Informe de Evaluación Semanal no está disponible.</div>`;
 
   $("#s-prog").innerHTML=D.programado_publicado?`<div class="grid"><div class="card"><h2>Generación · intervenciones programadas<small>${D.hoy} · todas las centrales</small></h2><div id="t-pg"></div></div>
@@ -269,7 +288,16 @@ function dibujar(){
     o.interaction={mode:"nearest",intersect:false};o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
     o.plugins.legend.labels.filter=it=>!/30 min/.test(it.text);
     grafico("#c-hidro",{type:"scatter",data:{datasets:ds},options:o})}
-  (D.embalses_semanal?.cuencas||[]).forEach((c,i)=>{if(!on("#c-emb"+i))return;const ys=Object.keys(c.anios).sort().slice(-4),est=["--muted","--s4","--s1","--s2"].slice(4-ys.length);
+  const diaria=(id,di,dec)=>{const ya=Object.keys(di.serie).sort(),f0=new Date(di.serie[ya[ya.length-1]][0]?.[0]||di.fecha);
+    const x=s=>Math.round((new Date(s)-f0)/864e5),lab=k=>{const d=new Date(f0.getTime()+k*864e5);return String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")};
+    const o=base("Hm3");o.scales.x={type:"linear",grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:5,callback:v=>lab(v)}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
+    o.plugins.tooltip.callbacks.title=it=>lab(it[0].parsed.x);o.plugins.tooltip.callbacks.label=t=>`${t.dataset.label}: ${t.parsed.y.toFixed(dec)} Hm3`;
+    grafico(id,{type:"scatter",data:{datasets:ya.map((y,j)=>{const act=j===ya.length-1,col=css(act?"--s2":"--s1");
+      return {label:y,data:di.serie[y].map(([f,v])=>({x:x(f),y:v})),showLine:true,borderColor:col,backgroundColor:col,borderWidth:act?3:2,pointRadius:act?2.5:0}})},options:o})};
+  (D.embalses_semanal?.cuencas||[]).forEach((c,i)=>{if(!on("#c-emb"+i))return;
+    if(c.solo_diario){diaria("#c-emb"+i,c.diario,2);return}
+    if(c.diario?.representativo&&$("#c-embd"+i))diaria("#c-embd"+i,c.diario,1);
+    const ys=Object.keys(c.anios).sort().slice(-4),est=["--muted","--s4","--s1","--s2"].slice(4-ys.length);
     const o=base("Hm3");o.scales.x={type:"linear",min:1,max:53,grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:4}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
     o.plugins.tooltip.callbacks.title=it=>`Semana ${it[0].parsed.x}`;o.plugins.tooltip.callbacks.label=t=>`${t.dataset.label}: ${f1(t.parsed.y)} Hm3`;
     grafico("#c-emb"+i,{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(c.anios[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,
