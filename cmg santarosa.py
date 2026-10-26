@@ -389,21 +389,50 @@ GRUPOS_GEN = {
 }
 
 
-def generacion(desde: dt.date, hasta: dt.date):
-    """{ts fin de intervalo: {recurso normalizado: MW}} entre dos fechas (inclusive)."""
+def _consulta_gen(desde, hasta, indicador):
     r = post(GEN_URL, {"fechaInicial": desde.strftime("%d/%m/%Y"),
-                       "fechaFinal": (hasta + dt.timedelta(days=1)).strftime("%d/%m/%Y"),
-                       "indicador": 0})
-    series = r.json()["GraficoTipoCombustible"]["Series"]
+                       "fechaFinal": hasta.strftime("%d/%m/%Y"),
+                       "indicador": indicador})
+    try:
+        series = r.json()["GraficoTipoCombustible"]["Series"] or []
+    except Exception:
+        return {}
     out = {}
     for sr in series:
         nombre = norm(sr["Name"])
-        for d in sr["Data"]:
-            ts = dt.datetime.strptime(d["Nombre"], "%Y/%m/%d %H:%M:%S").replace(tzinfo=LIMA)
+        for d in sr.get("Data") or []:
+            try:
+                ts = dt.datetime.strptime(d["Nombre"], "%Y/%m/%d %H:%M:%S").replace(tzinfo=LIMA)
+            except Exception:
+                continue
             if d.get("Valor") is not None:
                 out.setdefault(ts, {})[nombre] = float(d["Valor"])
-    _corregir_bagazo_solar(out)
     return out
+
+
+def generacion(ayer: dt.date, hoy: dt.date):
+    """({ts: {recurso: MW}}, nota). Ayer y hoy se piden por separado; si hoy viene vacío
+    con la fuente normal (indicador 0), se prueban las otras fuentes del portal."""
+    gen, nota = {}, ""
+    for dia in (ayer, hoy):
+        datos = {}
+        for ind in ((0,) if dia == ayer else (0, 1, 2, 3)):
+            try:
+                datos = {t: r for t, r in _consulta_gen(dia, dia + dt.timedelta(days=1), ind).items()
+                         if dia_operativo(t) == dia and sum(r.values()) > 0}
+            except Exception as e:
+                print(f"generación {dia} indicador {ind}: {e}", file=sys.stderr)
+                datos = {}
+            print(f"generación {dia} indicador {ind}: {len(datos)} intervalos")
+            if datos:
+                if dia == hoy and ind != 0:
+                    nota = f"hoy con fuente alternativa del portal (indicador {ind})"
+                break
+        if dia == hoy and not datos:
+            nota = "el COES aún no publica la generación de hoy"
+        gen.update(datos)
+    _corregir_bagazo_solar(gen)
+    return gen, nota
 
 
 def _corregir_bagazo_solar(gen):
@@ -558,7 +587,7 @@ def main():
     grafico_30min(hist, hoy, rutas[3])
     lineas_gen = []
     try:
-        gen = generacion(hoy - dt.timedelta(days=1), hoy)
+        gen, nota_gen = generacion(hoy - dt.timedelta(days=1), hoy)
         if gen:
             rutas.append(Path("g5_generacion.png"))
             grafico_generacion(gen, hoy, rutas[-1])
@@ -567,6 +596,8 @@ def main():
                 top = sorted(((v, g) for g, v in mix.items() if v >= 0.5), reverse=True)
                 lineas_gen = [f"*Mix de producción {hoy:%d/%m}* ({mwh / 1000:,.1f} GWh)",
                               " · ".join(f"{g} {v:.0f}%" for v, g in top)]
+        if nota_gen:
+            lineas_gen.append(f"ℹ️ Generación: {nota_gen}")
     except Exception as e:
         print("Generación no disponible:", e, file=sys.stderr)
         lineas_gen = ["(Generación por recurso no disponible en este momento)"]
