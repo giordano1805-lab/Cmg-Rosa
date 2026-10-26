@@ -377,16 +377,42 @@ def grafico_30min(hist, hoy, ruta):
 
 # --------------------------------------------------------------------------- generación por recurso
 GEN_URL = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
-# grupo -> (color, nombres COES normalizados que lo componen)
+# grupo -> (color, nombres COES normalizados que lo componen; la asignación real la hace grupo_de())
 GRUPOS_GEN = {
-    "Hídrica": ("#2b4fd1", ("HIDRICO",)),
-    "Gas natural": ("#f0590f", ("GAS",)),
+    "Hídrica": ("#2b4fd1", ("HIDRICO", "HIDROELECTRICA")),
+    "Gas natural": ("#f0590f", ("GAS", "GAS DE CAMISEA", "GAS DE MALACAS")),
     "Solar": ("#e9a300", ("SOLAR",)),
     "Eólica": ("#1baf7a", ("EOLICA",)),
     "Carbón": ("#5f6368", ("CARBON",)),
-    "Diésel/Residual/Otros": ("#e34948", ("DIESEL", "RESIDUAL", "NAFTA & GAS REFINERIA")),
     "Biomasa": ("#6250d6", ("BAGAZO", "BIOGAS")),
+    "Diésel": ("#e34948", ("DIESEL",)),
+    "Residual": ("#b0457a", ("RESIDUAL",)),
+    "Nafta y gas de refinería": ("#e87ba4", ("NAFTA & GAS REFINERIA", "FLEXIGAS & GAS REFINERIA")),
+    "Otros": ("#9aa0a6", ()),
 }
+
+
+def grupo_de(nombre):
+    n = nombre.upper()
+    if "HIDR" in n:
+        return "Hídrica"
+    if "SOLAR" in n:
+        return "Solar"
+    if "EOLIC" in n:
+        return "Eólica"
+    if "CARBON" in n:
+        return "Carbón"
+    if "BAGAZO" in n or "BIOGAS" in n or "BIOMASA" in n:
+        return "Biomasa"
+    if "REFINER" in n or "NAFTA" in n:
+        return "Nafta y gas de refinería"
+    if "RESIDUAL" in n:
+        return "Residual"
+    if "DIESEL" in n:
+        return "Diésel"
+    if "GAS" in n:
+        return "Gas natural"
+    return "Otros"
 
 
 def _consulta_gen(desde, hasta, indicador):
@@ -447,21 +473,24 @@ def _corregir_bagazo_solar(gen):
 
 
 # Cuando el IEOD (HOP + despacho por unidad) permite separar el diésel:
-GRUPOS_DIESEL = {"D2 Reserva Fría": "#8f1d2c", "D2 otras centrales": "#e34948", "Residual/Otros": "#e87ba4"}
+GRUPOS_DIESEL = {"D2 Reserva Fría": "#8f1d2c", "D2 otras centrales": "#e34948"}
 
 
 def agrupar(reg, split=None):
     """MW por grupo. split = {'rf': MW, 'otras': MW} separa el diésel (D2 de Reserva Fría / otras centrales)."""
     out = {g: 0.0 for g in GRUPOS_GEN}
     for nombre, mw in reg.items():
-        g = next((g for g, (_, ns) in GRUPOS_GEN.items() if nombre in ns), "Diésel/Residual/Otros")
-        out[g] += mw
+        out[grupo_de(nombre)] += mw
     if split is not None:
-        resto = out.pop("Diésel/Residual/Otros")
-        rf, ot = split.get("rf", 0.0), split.get("otras", 0.0)
-        out["D2 Reserva Fría"] = rf
-        out["D2 otras centrales"] = ot
-        out["Residual/Otros"] = max(0.0, resto - rf - ot)
+        d2 = out.pop("Diésel")
+        rf = split.get("rf", 0.0)
+        res = {}
+        for g, v in out.items():
+            res[g] = v
+            if g == "Biomasa":
+                res["D2 Reserva Fría"] = rf
+                res["D2 otras centrales"] = max(split.get("otras", 0.0), d2 - rf)
+        out = res
     return out
 
 

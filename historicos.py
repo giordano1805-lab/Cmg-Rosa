@@ -227,11 +227,22 @@ def guardar_vol(v):
                 w.writerow([d.isoformat(), c, e, f"{pr:.5f}", f"{fi:.5f}"])
 
 
-def _un_anio_antes(d: dt.date):
+def _un_anio_antes(d: dt.date, n=1):
     try:
-        return d.replace(year=d.year - 1)
+        return d.replace(year=d.year - n)
     except ValueError:            # 29 de febrero
-        return d.replace(year=d.year - 1, day=28)
+        return d.replace(year=d.year - n, day=28)
+
+
+ANIOS_VOL = 3             # años anteriores a comparar en los volúmenes diarios
+
+
+def _clave_emb(e):
+    """Nombre de embalse comparable entre años (el COES cambia prefijos y mayúsculas)."""
+    s = fc.norm(e)
+    for w in ("EMBALSE", "EMBALSES", "PRESA", "RESERVORIO", "LAGO", "PULMON", "COMPENSACION"):
+        s = s.replace(w, " ")
+    return "".join(ch for ch in s if ch.isalnum())
 
 
 def _vol_de(hojas):
@@ -252,7 +263,7 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     act = [dt.date(dia.year, dia.month, k) for k in range(1, dia.day + 1)]
     ant = [dt.date(dia.year - 1, dia.month, k) for k in range(1, calendar.monthrange(dia.year - 1, dia.month)[1] + 1)]
     vact = [dia - dt.timedelta(days=k) for k in range(VENTANA_VOL)]
-    vant = [_un_anio_antes(d) for d in vact]
+    vant = [_un_anio_antes(d, n) for n in range(1, ANIOS_VOL + 1) for d in vact]
     falta_h = {d for d in act + ant if d not in h or not _completo(h[d])}
     falta_v = {d for d in vact + vant if d not in v}
     orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant))
@@ -265,6 +276,8 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
         try:
             hojas = fc.ieod_dia(d)
             if not hojas:
+                if d < dia - dt.timedelta(days=5):
+                    v.setdefault(d, {})      # no publicado: no reintentar en cada corrida
                 continue
             x = fc.recursos_dia(hojas)
             if x:
@@ -289,29 +302,36 @@ def resumen_vol(dia: dt.date):
             continue
         ult = dias[-1]
         embs = sorted(e for c, e in v[ult] if c == cuenca)
+        claves = [_clave_emb(e) for e in embs]
         k = 0 if cuenca == "Chaglla" else 1
 
-        def total(d):
-            if d not in v or any((cuenca, e) not in v[d] for e in embs):
-                return None
-            return round(sum(v[d][(cuenca, e)][k] for e in embs), 3)
+        def valores(d):
+            return {_clave_emb(e): x[k] for (c, e), x in v.get(d, {}).items() if c == cuenca}
 
-        serie_a, serie_b = [], []
-        for i in range(VENTANA_VOL - 1, -1, -1):
-            d = ult - dt.timedelta(days=i)
-            a, b = total(d), total(_un_anio_antes(d))
-            if a is not None:
-                serie_a.append([d.isoformat(), a])
-            if b is not None:
-                serie_b.append([d.isoformat(), b])
+        def total(d):
+            x = valores(d)
+            if not x or any(c not in x for c in claves):
+                return None
+            return round(sum(x[c] for c in claves), 3)
+
+        series = {}
+        for n in range(0, ANIOS_VOL + 1):
+            pts = []
+            for i in range(VENTANA_VOL - 1, -1, -1):
+                d = ult - dt.timedelta(days=i)
+                y = total(_un_anio_antes(d, n) if n else d)
+                if y is not None:
+                    pts.append([d.isoformat(), y])
+            if pts:
+                series[str(ult.year - n)] = pts
         t1, t0 = total(ult), total(_un_anio_antes(ult))
+        x0 = valores(_un_anio_antes(ult))
         out[cuenca] = {
             "fecha": ult.isoformat(), "embalses": embs, "medida": "promedio del día" if k == 0 else "cierre del día",
             "total": t1, "anterior": t0, "var_pct": (t1 / t0 - 1) * 100 if t1 is not None and t0 else None,
             "detalle": [[e, round(v[ult][(cuenca, e)][k], 3),
-                         (round(v[_un_anio_antes(ult)][(cuenca, e)][k], 3)
-                          if (cuenca, e) in v.get(_un_anio_antes(ult), {}) else None)] for e in embs],
-            "serie": {str(ult.year): serie_a, str(ult.year - 1): serie_b},
+                         round(x0[c], 3) if c in x0 else None] for e, c in zip(embs, claves)],
+            "serie": series,
         }
     return out
 
@@ -441,12 +461,13 @@ def grafico_embalses(cuencas, ruta, plt):
             anios = sorted(di["serie"], key=int)
             fechas = [dt.date.fromisoformat(f) for f, _ in di["serie"][anios[-1]]] or [dt.date.today()]
             f0 = fechas[0]
-            for a in anios:
+            anios = anios[-4:]
+            for j, a in enumerate(anios):
                 act = a == anios[-1]
+                c, lw, ls = estilos[j + (4 - len(anios))]
                 pts = di["serie"][a]
                 ax.plot([(dt.date.fromisoformat(f) - f0).days for f, _ in pts], [y for _, y in pts],
-                        color=C_ACT if act else C_ANT, lw=2.6 if act else 1.8, marker="o" if act else None, ms=2.2,
-                        label=a)
+                        color=c, lw=lw, ls=ls, marker="o" if act else None, ms=2.2, label=a)
             nd = (fechas[-1] - f0).days
             paso = max(1, nd // 10)
             ax.set_xticks(range(0, nd + 1, paso),

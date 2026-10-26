@@ -121,36 +121,24 @@ def grafico_demanda(dem_areas, dia, ruta, plt):
 
 
 # --------------------------------------------------------------------------- resumen ejecutivo
+DESACOPLE_MIN = 15.0      # USD/MWh entre barras para hablar de desacople (diferencia nodal por transmisión)
+
+
 def resumen(ind, ieod, prog, dia, m, extra=None):
     extra = extra or {}
     b = []
-    sr_d = ind["diario_b"][m.SR].get(dia)
-    sr_p = ind["prev"].get(m.SR)
-    sr_m = ind["prom_mes_b"][m.SR]
-    if sr_d is not None:
-        var = f"{(sr_d / sr_p - 1) * 100:+.0f}% vs. día anterior" if sr_p else ""
-        b.append(f"CMg Santa Rosa 220 kV: <b>{sr_d:.2f} USD/MWh</b> ({var}); promedio del mes a la fecha "
-                 f"{sr_m:.2f} USD/MWh.")
+    # El CMg, los bloques y la demanda ya se ven en los indicadores y gráficos: aquí solo lo que alerta.
     vals = {k.replace(" 220", ""): v.get(dia) for k, v in ind["diario_b"].items() if v.get(dia) is not None}
     if len(vals) >= 2:
         hi = max(vals, key=vals.get)
         lo = min(vals, key=vals.get)
-        b.append(f"Desacople entre zonas: {hi} {vals[hi]:.2f} vs. {lo} {vals[lo]:.2f} USD/MWh "
-                 f"(spread {vals[hi] - vals[lo]:.2f}).")
-    pu = ind["diario_bl"].get("Punta (18-23 h)", {}).get(dia)
-    ba = ind["diario_bl"].get("Base (23-6 h)", {}).get(dia)
-    if pu and ba:
-        b.append(f"Santa Rosa: punta {pu:.2f} vs. base {ba:.2f} USD/MWh (relación {pu / ba:.2f}x).")
+        if vals[hi] - vals[lo] >= DESACOPLE_MIN:
+            b.append(f"<b>Desacople de precios por congestión de transmisión</b>: {hi} {vals[hi]:.2f} vs. {lo} "
+                     f"{vals[lo]:.2f} USD/MWh (diferencia {vals[hi] - vals[lo]:.2f} USD/MWh).")
     da = ieod.get("demanda_areas") or []
     if da:
         mx = max(da, key=lambda r: r["sein"] or 0)
         b.append(f"Máxima demanda del SEIN: <b>{mx['sein']:,.0f} MW</b> a las {mx['hora']} h.")
-    rd = extra.get("demanda")
-    if rd and rd["mtd_gwh"].get(rd["ant"]):
-        a1, a0 = rd["mtd_gwh"][rd["act"]], rd["mtd_gwh"][rd["ant"]]
-        y1, y0 = rd["ytd_twh"][rd["act"]], rd["ytd_twh"][rd["ant"]]
-        b.append(f"Demanda acumulada del mes: <b>{a1:,.0f} GWh</b> ({(a1 / a0 - 1) * 100:+.1f}% vs. mismo período "
-                 f"{rd['ant']}); en el año {y1:,.2f} TWh ({(y1 / y0 - 1) * 100:+.1f}%).")
     rh = extra.get("hidro")
     if rh and rh["mtd"].get(rh["act"]) and rh["mtd"].get(rh["ant"]):
         m1, m0 = rh["mtd"][rh["act"]], rh["mtd"][rh["ant"]]
@@ -164,12 +152,12 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
                      f"(<b>{(m1 / m0 - 1) * 100:+.0f}%</b>).")
     dd = extra.get("diesel")
     if dd and dd["unidades"]:
-        rf = [u for u in dd["unidades"] if u["rf"]]
-        ot = [u for u in dd["unidades"] if not u["rf"]]
-        b.append("Despacho con diésel/residual: " + "; ".join(
-            f"{'Reserva Fría' if g is rf else 'otras centrales'}: " + ", ".join(
-                f"{u['nombre']}" + (f" ({u['mwh']:,.0f} MWh)" if u.get("mwh") else "") for u in g)
-            for g in (rf, ot) if g) + ".")
+        grupos = {}
+        for u in dd["unidades"]:
+            k = ("D2 Reserva Fría" if u["rf"] else "D2 otras") if u["tipo_comb"] == "Diésel D2" else u["tipo_comb"]
+            grupos.setdefault(k, []).append(f"{u['nombre']}" + (f" ({u['mwh']:,.0f} MWh)" if u.get("mwh") else ""))
+        b.append("Térmicas con diésel, residual o gas de refinería: " +
+                 "; ".join(f"{k}: {', '.join(v)}" for k, v in grupos.items()) + ".")
     ind_g = ieod.get("indisponibilidades") or []
     if ind_g:
         sin = [r for r in ind_g if not r.get("diesel")]
@@ -186,8 +174,6 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
     if ev:
         b.append(f"Eventos: {len(ev)} registrados ({sum(1 for e in ev if e['tipo'].upper() == 'FALLA')} fallas)"
                  + (f"; líneas ≥220 kV afectadas: {', '.join(e['equipo'] for e in ev_l)}." if ev_l else "."))
-    if lin:
-        b.append(f"Transmisión: {len({r['equipo'] for r in lin})} líneas ≥220 kV con intervenciones ejecutadas.")
     cu = [c for c in extra.get("cuencas") or [] if c["var_pct"] is not None and not c.get("solo_diario")]
     if cu:
         b.append("Embalses vs. año anterior (misma semana): " +
@@ -197,11 +183,10 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
         b.append(f"Embalse Chaglla (promedio del {dt.date.fromisoformat(ch['fecha']):%d/%m}): {ch['total']:,.2f} Hm3"
                  + (f" ({ch['var_pct']:+.0f}% vs. año anterior)." if ch.get("var_pct") is not None else "."))
     if prog is not None:
-        g = fc.solo_generacion(prog)
+        g = [r for r in fc.solo_generacion(prog) if r["mw"] > 0 and not r.get("diesel")]
         lp = fc.filtrar_lineas_220(prog)
-        b.append(f"Programado para hoy: {len(g)} intervenciones en generación "
-                 f"({sum(r['mw'] for r in g):,.0f} MW indisponibles) y {len({r['equipo'] for r in lp})} "
-                 f"líneas ≥220 kV.")
+        b.append(f"Programado para hoy: <b>{sum(r['mw'] for r in g):,.0f} MW</b> indisponibles sin diésel en "
+                 f"{len(g)} intervenciones y {len({r['equipo'] for r in lp})} líneas ≥220 kV intervenidas.")
     return b
 
 
@@ -327,11 +312,12 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
     el.append(PageBreak())
     dd = extra.get("diesel")
     if dd and dd["unidades"]:
-        el.append(Paragraph(f"Centrales despachadas con diésel/residual <font size=8 color='{GRIS}'>"
+        el.append(Paragraph(f"Térmicas con diésel, residual o gas de refinería <font size=8 color='{GRIS}'>"
                             f"(IEOD del {dia_ieod:%d/%m/%Y}: HOP y despacho ejecutado)</font>", h2))
         el.append(tabla(["Central / grupo", "Empresa", "Clasificación", "Combustible", "Horario", "MW máx.", "MWh",
                          "Tipo de operación"],
-                        [[u["nombre"], u["empresa"], "Reserva Fría" if u["rf"] else "Otra", u["combustible"],
+                        [[u["nombre"], u["empresa"], ("Reserva Fría" if u["rf"] else "Otra") if u["tipo_comb"] == "Diésel D2" else "–",
+                          f"{u['tipo_comb']} ({u['combustible']})",
                           f"{u['inicio']:%H:%M}–{u['final']:%H:%M}" if u["inicio"] and u["final"] else "",
                           f"{u['mw_max']:,.1f}" if u.get("mw_max") else "–", f"{u['mwh']:,.0f}" if u.get("mwh") else "–",
                           u["tipo"].capitalize()] for u in dd["unidades"]],
@@ -439,8 +425,11 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
     if prog is None:
         el.append(P("El Programa Diario de Intervenciones de hoy aún no está publicado.", nota))
     else:
-        g = sorted(fc.solo_generacion(prog), key=lambda r: (-r["mw"], r["empresa"]))
-        el.append(CondPageBreak(4 * cm)); el.append(Paragraph("Generación (todas las centrales)", h2))
+        todas = fc.solo_generacion(prog)
+        g = sorted([r for r in todas if r["mw"] > 0], key=lambda r: (-r["mw"], r["empresa"]))
+        el.append(CondPageBreak(4 * cm))
+        el.append(Paragraph(f"Generación · intervenciones con MW indisponibles <font size=8 color='{GRIS}'>"
+                            f"({len(todas) - len(g)} sin MW no se muestran)</font>", h2))
         el.append(tabla(["Empresa", "Central", "Unidad", "Horario", "MW", "Descripción"],
                         [[r["empresa"].title(), r["ubicacion"].title(), r["equipo"], periodo(r, hoy), f"{r['mw']:.1f}",
                           r["descripcion"][:150]] for r in g],
@@ -510,6 +499,8 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "demanda_hist": extra.get("demanda"),
         "hidro_pasada": extra.get("hidro"),
         "hidro_regulacion": extra.get("regulacion"),
+        "flujos": extra.get("flujos") or {},
+        "congestion": extra.get("congestion") or {"columnas": [], "registros": []},
         "eolica": extra.get("eolica"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
@@ -551,6 +542,13 @@ def generar(m, hist=None):
 
     extra = {}
     try:
+        if hojas:
+            fc.volcar_hojas(hojas, Path("data") / "explora6")
+            extra["flujos"] = fc.flujos_lineas(hojas)
+            extra["congestion"] = fc.congestiones(hojas)
+    except Exception as e:
+        print("Flujos/congestión no disponibles:", e, file=sys.stderr)
+    try:
         if hojas and dia_ieod:
             extra["diesel"] = fc.diesel_despacho(hojas, dia_ieod)
     except Exception as e:
@@ -581,6 +579,11 @@ def generar(m, hist=None):
     try:
         prog = fc.intervenciones_programadas(hoy)
         prog = prog if prog else None
+        if prog:
+            mh, hs = (fc.combustibles_hop(hojas), fc.centrales_hidro(hojas)) if hojas else ({}, set())
+            for r in prog:
+                r["tecnologia"] = fc.tecnologia(r, mh, hs)
+                r["diesel"] = r["tecnologia"] == "Diésel"
     except Exception as e:
         print("Intervenciones no disponibles:", e, file=sys.stderr)
         prog = None
