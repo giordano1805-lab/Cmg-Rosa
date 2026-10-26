@@ -500,6 +500,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "hidro_pasada": extra.get("hidro"),
         "hidro_regulacion": extra.get("regulacion"),
         "flujos": extra.get("flujos") or {},
+        "enlaces": extra.get("enlaces") or {},
         "congestion": extra.get("congestion") or {"columnas": [], "registros": []},
         "eolica": extra.get("eolica"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
@@ -546,6 +547,7 @@ def generar(m, hist=None):
             fc.volcar_hojas(hojas, Path("data") / "explora6")
             extra["flujos"] = fc.flujos_lineas(hojas)
             extra["congestion"] = fc.congestiones(hojas)
+            extra["enlaces"] = fc.interconexiones(hojas)
     except Exception as e:
         print("Flujos/congestión no disponibles:", e, file=sys.stderr)
     try:
@@ -565,6 +567,14 @@ def generar(m, hist=None):
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
+    try:
+        lis = fc.listados_ieod()
+        if lis:
+            (Path("data") / "explora6").mkdir(parents=True, exist_ok=True)
+            (Path("data") / "explora6" / "listados_ieod.json").write_text(
+                json.dumps(lis, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception as e:
+        print("listados IEOD:", e, file=sys.stderr)
     try:
         emb = hi.actualizar_embalses(hoy)
         try:

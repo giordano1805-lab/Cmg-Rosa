@@ -212,6 +212,8 @@ def leer_vol():
                 d = out.setdefault(dt.date.fromisoformat(r["fecha"]), {})
                 if r["embalse"] != "-":
                     d[(r["cuenca"], r["embalse"])] = (float(r["prom"]), float(r["final"]))
+                elif r["cuenca"] != "-v2":      # marca antigua de "no publicado": se vuelve a intentar
+                    out.pop(dt.date.fromisoformat(r["fecha"]), None)
     return out
 
 
@@ -222,7 +224,7 @@ def guardar_vol(v):
         w.writerow(["fecha", "cuenca", "embalse", "prom", "final"])
         for d in sorted(v):
             if not v[d]:
-                w.writerow([d.isoformat(), "-", "-", "", ""])
+                w.writerow([d.isoformat(), "-v2", "-", "", ""])
             for (c, e), (pr, fi) in sorted(v[d].items()):
                 w.writerow([d.isoformat(), c, e, f"{pr:.5f}", f"{fi:.5f}"])
 

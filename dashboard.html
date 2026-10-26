@@ -220,9 +220,13 @@ function render(){
     [...D.indisponibilidades].sort((a,b)=>(a.diesel-b.diesel)||(b.mw-a.mw)));
 
   const FL=Object.entries(D.flujos||{}).map(([cod,x])=>{const v=x.serie.map(p=>p[1]),ab=v.map(Math.abs);return{cod,...x,max:Math.max(...ab),prom:v.reduce((a,b)=>a+b,0)/v.length,min:Math.min(...v),mx:Math.max(...v)}}).sort((a,b)=>b.max-a.max);
-  const CG=D.congestion||{columnas:[],registros:[]};
+  const CG=D.congestion||{columnas:[],registros:[]},EN=Object.entries(D.enlaces||{});
   $("#s-trans").innerHTML=`<div class="grid">
-   ${CG.registros.length?`<div class="card"><h2>Congestiones en el sistema de transmisión<small>${fuente} · posibles desacoples de precio</small></h2><div id="t-cg"></div></div>`:""}
+   ${EN.length?`<div class="grid g2">${EN.map(([n,e],i)=>{const t=e.total.map(p=>p[1]),mx=t.length?t.reduce((a,b)=>Math.abs(b)>Math.abs(a)?b:a):null,pr=t.length?t.reduce((a,b)=>a+b,0)/t.length:null;
+     return `<div class="card"><h2>Enlace ${esc(n)}<small>${fuente} · MW cada 30 min</small></h2>
+      <div class="embk"><div><div class="lbl">Flujo máximo</div><b>${f0(mx)} MW</b></div><div><div class="lbl">Promedio</div><b>${f0(pr)} MW</b></div><div><div class="lbl">Líneas</div><b>${Object.keys(e.lineas).length}</b></div></div>
+      <div class="chart"><canvas id="c-enl${i}"></canvas></div><div class="note">Total del enlace y cada línea que lo forma. El signo indica el sentido del flujo según el COES.</div></div>`}).join("")}</div>`:""}
+   ${CG.columnas.length?`<div class="card"><h2>Congestiones en el sistema de transmisión<small>${fuente} · posibles desacoples de precio</small></h2>${CG.registros.length?'<div id="t-cg"></div>':'<div class="note" style="margin:0">Sin congestiones registradas ese día.</div>'}</div>`:""}
    ${FL.length?`<div class="card"><h2>Flujo en las líneas ≥220 kV más cargadas<small>${fuente} · MW cada 30 min (signo = sentido del flujo)</small></h2><div class="chart tall"><canvas id="c-flu"></canvas></div></div>
    <div class="card"><h2>Flujos por línea ≥220 kV<small>${fuente} · MW</small></h2><div id="t-flu"></div></div>`:""}
    <div class="card"><h2>Líneas ≥220 kV con intervenciones ejecutadas<small>${fuente}</small></h2><div id="t-lin"></div></div>
@@ -230,7 +234,7 @@ function render(){
    <div class="card"><h2>Restricciones operativas</h2><div id="t-res"></div></div></div>`;
   const colLin=[{t:"Línea",v:r=>r.equipo},{t:"kV",num:1,v:r=>r.kv},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Tramo",v:r=>tit(r.ubicacion)},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},{t:"Estado",v:r=>r.estado},{t:"Descripción",v:r=>r.descripcion}];
   if(CG.registros.length)tabla("#t-cg",CG.columnas.filter(c=>CG.registros.some(r=>r[c])).map(c=>({t:tit(c),v:r=>r[c]||"",h:r=>esc(/^\d{4}-\d\d-\d\dT/.test(r[c]||"")?r[c].slice(0,16).replace("T"," "):r[c]||"")})),CG.registros);
-  if(FL.length)tabla("#t-flu",[{t:"Línea",v:r=>r.cod},{t:"kV",num:1,v:r=>r.kv},{t:"Tramo",v:r=>r.nombre},{t:"Máx. |MW|",num:1,v:r=>r.max,h:r=>f0(r.max)},{t:"Mín.",num:1,v:r=>r.min,h:r=>f0(r.min)},{t:"Máx.",num:1,v:r=>r.mx,h:r=>f0(r.mx)},{t:"Promedio",num:1,v:r=>r.prom,h:r=>f0(r.prom)}],FL);
+  if(FL.length)tabla("#t-flu",[{t:"Línea",v:r=>r.cod},{t:"kV",num:1,v:r=>r.kv},{t:"Medido en",v:r=>tit(r.nombre)},{t:"Máx. |MW|",num:1,v:r=>r.max,h:r=>f0(r.max)},{t:"Mín.",num:1,v:r=>r.min,h:r=>f0(r.min)},{t:"Máx.",num:1,v:r=>r.mx,h:r=>f0(r.mx)},{t:"Promedio",num:1,v:r=>r.prom,h:r=>f0(r.prom)}],FL);
   tabla("#t-lin",colLin,[...D.lineas_220].sort((a,b)=>b.kv-a.kv));
   tabla("#t-ev",[{t:"Tipo",v:r=>tit(r.tipo)},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Equipo",v:r=>`${r.equipo} · ${tit(r.ubicacion)}`},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},
     {t:"kV",num:1,v:r=>r.kv||""},{t:"MW",num:1,v:r=>r.mw||"",h:r=>r.mw?f1(r.mw):""},{t:"Descripción",v:r=>r.descripcion}],D.eventos);
@@ -334,11 +338,17 @@ function dibujar(){
     o.scales.x.ticks.stepSize=ang?6:2;o.scales.x.ticks.maxRotation=0;
     grafico("#c-pgg",{type:"bar",data:{labels:PG.map(r=>`${cor((tit(r.ubicacion).replace(/^Reserva Fria De (Generacion )?/i,"RF ")+(r.equipo==="CENTRAL"?"":" "+r.equipo)).trim())} · ${f0(r.mw)} MW`),
       datasets:[{data:PG.map(r=>[hrs(r.inicio),Math.max(hrs(r.final),hrs(r.inicio)+.25)]),backgroundColor:PG.map(r=>r.diesel?css("--muted")+"55":css(TECC[r.tecnologia]||"--muted")),borderRadius:4,borderSkipped:false,barPercentage:.75}]},options:o})}
+  Object.entries(D.enlaces||{}).forEach(([n,e],i)=>{if(!on("#c-enl"+i))return;
+    const lab=Array.from({length:48},(_,k)=>{const m=(k+1)*30;return `${String(Math.floor(m/60)%24).padStart(2,"0")}:${m%60?"30":"00"}`});
+    const cols=["--s1","--s3","--s4","--s7","--s5","--muted"],ser=(arr)=>{const m=Object.fromEntries(arr);return lab.map((_,k)=>m[(k+1)*30]??null)};
+    const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+    grafico("#c-enl"+i,{type:"line",data:{labels:lab,datasets:[{label:"Total",data:ser(e.total),borderColor:css("--s2"),backgroundColor:css("--s2"),borderWidth:3,pointRadius:0,tension:.2},
+      ...Object.entries(e.lineas).map(([ln,sr],j)=>({label:ln,data:ser(sr),borderColor:css(cols[j%cols.length]),backgroundColor:css(cols[j%cols.length]),borderWidth:1.3,pointRadius:0,tension:.2}))]},options:o})});
   if(on("#c-flu")){const FL=Object.entries(D.flujos||{}).map(([cod,x])=>({cod,...x,max:Math.max(...x.serie.map(p=>Math.abs(p[1])))})).sort((a,b)=>b.max-a.max).slice(0,8);
     const cols=["--s1","--s2","--s3","--s4","--s7","--s8","--s5","--muted"];
     const lab=Array.from({length:48},(_,i)=>{const m=(i+1)*30;return `${String(Math.floor(m/60)%24).padStart(2,"0")}:${m%60?"30":"00"}`});
     const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
-    grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:`${l.cod}${l.nombre?" "+l.nombre:""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
+    grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:`${l.cod}${l.nombre?" ("+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
   const diaria=(id,di,dec)=>{const ya=Object.keys(di.serie).sort(),f0=new Date(di.serie[ya[ya.length-1]][0]?.[0]||di.fecha);
     const x=s=>Math.round((new Date(s)-f0)/864e5),lab=k=>{const d=new Date(f0.getTime()+k*864e5);return String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")};
     const o=base("Hm3");o.scales.x={type:"linear",grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:5,callback:v=>lab(v)}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
