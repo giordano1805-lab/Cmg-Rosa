@@ -377,16 +377,36 @@ def grafico_30min(hist, hoy, ruta):
 
 # --------------------------------------------------------------------------- generación por recurso
 GEN_URL = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
-# grupo -> (color, nombres COES normalizados que lo componen)
+# grupo -> (color, nombres COES normalizados que lo componen; la asignación real la hace grupo_de())
 GRUPOS_GEN = {
-    "Hídrica": ("#2b4fd1", ("HIDRICO",)),
-    "Gas natural": ("#f0590f", ("GAS",)),
+    "Hídrica": ("#2b4fd1", ("HIDRICO", "HIDROELECTRICA")),
+    "Gas natural": ("#f0590f", ("GAS", "GAS DE CAMISEA", "GAS DE MALACAS", "NAFTA & GAS REFINERIA")),
     "Solar": ("#e9a300", ("SOLAR",)),
     "Eólica": ("#1baf7a", ("EOLICA",)),
     "Carbón": ("#5f6368", ("CARBON",)),
-    "Diésel/Residual/Otros": ("#e34948", ("DIESEL", "RESIDUAL", "NAFTA & GAS REFINERIA")),
     "Biomasa": ("#6250d6", ("BAGAZO", "BIOGAS")),
+    "Diésel/Residual": ("#e34948", ("DIESEL", "RESIDUAL")),
+    "Otros": ("#9aa0a6", ()),
 }
+
+
+def grupo_de(nombre):
+    n = nombre.upper()
+    if "HIDR" in n:
+        return "Hídrica"
+    if "SOLAR" in n:
+        return "Solar"
+    if "EOLIC" in n:
+        return "Eólica"
+    if "CARBON" in n:
+        return "Carbón"
+    if "BAGAZO" in n or "BIOGAS" in n or "BIOMASA" in n:
+        return "Biomasa"
+    if "RESIDUAL" in n or "DIESEL" in n:
+        return "Diésel/Residual"
+    if "GAS" in n or "REFINER" in n or "NAFTA" in n:      # el gas de refinería cuenta como gas
+        return "Gas natural"
+    return "Otros"
 
 
 def _consulta_gen(desde, hasta, indicador):
@@ -447,21 +467,24 @@ def _corregir_bagazo_solar(gen):
 
 
 # Cuando el IEOD (HOP + despacho por unidad) permite separar el diésel:
-GRUPOS_DIESEL = {"D2 Reserva Fría": "#8f1d2c", "D2 otras centrales": "#e34948", "Residual/Otros": "#e87ba4"}
+GRUPOS_DIESEL = {"D2 Reserva Fría": "#8f1d2c", "Diésel/Residual otras": "#e34948"}
 
 
 def agrupar(reg, split=None):
     """MW por grupo. split = {'rf': MW, 'otras': MW} separa el diésel (D2 de Reserva Fría / otras centrales)."""
     out = {g: 0.0 for g in GRUPOS_GEN}
     for nombre, mw in reg.items():
-        g = next((g for g, (_, ns) in GRUPOS_GEN.items() if nombre in ns), "Diésel/Residual/Otros")
-        out[g] += mw
+        out[grupo_de(nombre)] += mw
     if split is not None:
-        resto = out.pop("Diésel/Residual/Otros")
-        rf, ot = split.get("rf", 0.0), split.get("otras", 0.0)
-        out["D2 Reserva Fría"] = rf
-        out["D2 otras centrales"] = ot
-        out["Residual/Otros"] = max(0.0, resto - rf - ot)
+        dr = out.pop("Diésel/Residual")
+        rf = min(split.get("rf", 0.0), dr)       # nunca más que lo que el COES reporta como diésel/residual
+        res = {}
+        for g, v in out.items():
+            res[g] = v
+            if g == "Biomasa":
+                res["D2 Reserva Fría"] = rf
+                res["Diésel/Residual otras"] = max(0.0, dr - rf)
+        out = res
     return out
 
 

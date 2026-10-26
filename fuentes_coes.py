@@ -384,8 +384,89 @@ def recursos_dia(hojas):
     return out
 
 
+# --------------------------------------------------------------------------- flujos y congestión (IEOD)
+HOJAS_TRANSMISION = ("FLUJOS", "CONGESTION_SIST_TRANS", "INTERCONEXIONES", "FLUJOS_INTERCONEXIÓN")
+
+
+def volcar_hojas(hojas, carpeta, nombres=HOJAS_TRANSMISION, filas=160, cols=120):
+    """Guarda un extracto CSV de hojas del IEOD (para revisar su formato)."""
+    import csv
+    carpeta.mkdir(parents=True, exist_ok=True)
+    for n in nombres:
+        h = hojas.get(n)
+        if h is None:
+            continue
+        with (carpeta / f"{n}.csv").open("w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            for r in h[:filas]:
+                w.writerow([texto(x) if not isinstance(x, (int, float)) else x for x in list(r)[:cols]])
+
+
+def flujos_lineas(hojas):
+    """Tabla ancha de la hoja FLUJOS: columnas = líneas (código L-xxxx), filas = horas.
+    Devuelve {linea: {'kv', 'nombre', 'serie': [[min_dia, MW], ...]}} solo para ≥220 kV."""
+    filas = hojas.get("FLUJOS") or []
+    datos = []
+    for i, f in enumerate(filas):
+        for j in (0, 1):
+            if len(f) > j and re.fullmatch(r"\d{1,2}:\d{2}", texto(f[j])):
+                datos.append((i, j))
+                break
+    if not datos:
+        return {}
+    i0, jh = datos[0]
+    cab = filas[max(0, i0 - 8):i0]
+    out = {}
+    ncol = max(len(f) for f in filas[i0:i0 + 5])
+    for j in range(jh + 1, ncol):
+        textos = [texto(f[j]) for f in cab if j < len(f) and texto(f[j])]
+        cod = next((m.group(0) for t in textos for m in [re.search(r"\bL-?\s?\d{4}[A-Z]?(/\d)?\b", norm(t))] if m), None)
+        if not cod:
+            continue
+        kv = tension_kv(cod, " ".join(textos))
+        if not kv or kv < 220:
+            continue
+        serie = []
+        for i, _ in datos:
+            f = filas[i]
+            v = numero(f[j]) if j < len(f) else None
+            if v is not None:
+                serie.append([_min_dia(texto(f[jh])), round(v, 1)])
+        if serie:
+            nombre = next((t for t in textos if norm(t) != norm(cod) and not re.fullmatch(r"[\d.,-]+", t)), "")
+            out[cod.replace(" ", "")] = {"kv": kv, "nombre": nombre, "serie": serie}
+    return out
+
+
+def congestiones(hojas):
+    """Registros de la hoja CONGESTION_SIST_TRANS con la cabecera detectada automáticamente."""
+    filas = hojas.get("CONGESTION_SIST_TRANS") or []
+    for i, f in enumerate(filas[:40]):
+        cab = [norm(x) for x in f]
+        if sum(1 for c in cab if c) >= 3 and any(k in " ".join(cab) for k in ("INICIO", "EQUIPO", "LINEA", "HORA")):
+            regs = []
+            for g in filas[i + 1:i + 300]:
+                if not any(texto(x) for x in g):
+                    continue
+                reg = {cab[j]: (fecha_hora(g[j]).isoformat() if isinstance(g[j], dt.datetime) else texto(g[j]))
+                       for j in range(min(len(cab), len(g))) if cab[j] and texto(g[j])}
+                if len(reg) >= 2:
+                    regs.append(reg)
+            return {"columnas": [c for c in cab if c], "registros": regs}
+    return {"columnas": [], "registros": []}
+
+
 # --------------------------------------------------------------------------- despacho con diésel
-COMB_DIESEL = ("D2", "DIESEL", "B5", "R500", "R6", "RESIDUAL")
+COMB_DIESEL = ("D2", "DIESEL", "B5", "R500", "R6", "RESIDUAL", "NLH", "RFG", "NAFTA", "REFINER")
+
+
+def tipo_combustible(comb):
+    c = norm(comb)
+    if any(k in c for k in ("D2", "DIESEL", "B5")):
+        return "Diésel D2"
+    if any(k in c for k in ("R500", "R6", "RESIDUAL")):
+        return "Residual"
+    return "Gas de refinería"
 
 
 def _min_dia(hora):
@@ -450,12 +531,15 @@ def diesel_despacho(hojas, dia: dt.date):
         kg = _clave_unidad(grupo)
         cand = [u for u, k in clave.items() if kc and (kc in k or k in kc)]
         if grupo and grupo != "CENTRAL":
-            cand = [u for u in cand if kg in clave[u]] or [u for u, k in clave.items() if kg and kg in k and kc[:4] in k]
+            toks = [_clave_unidad(t) for t in re.split(r"[\s_&-]+", grupo) if re.search(r"\d", t)] or [kg]
+            cand = ([u for u in cand if all(t in clave[u] for t in toks)]
+                    or [u for u, k in clave.items() if kg and kg in k and kc[:4] in k])
         ini, fin = fecha_hora(r.get("INICIO")), fecha_hora(r.get("FINAL"))
         rf = es_reserva_fria(r.get("CENTRAL"), r.get("EMPRESA"), *cand)
-        nombre = f"{central.title()}" + (f" {grupo}" if grupo and grupo != "CENTRAL" else "")
+        g_corto = " ".join(t for t in re.split(r"[\s_]+", grupo) if re.search(r"\d", t)) or grupo
+        nombre = f"{central.title()}" + (f" {g_corto}" if grupo and grupo != "CENTRAL" else "")
         a = agr.setdefault(nombre, {"empresa": texto(r.get("EMPRESA")).title(), "central": central.title(),
-                                     "grupo": grupo, "combustible": comb, "rf": rf, "inicio": ini, "final": fin,
+                                     "grupo": grupo, "combustible": comb, "tipo_comb": tipo_combustible(comb), "rf": rf, "inicio": ini, "final": fin,
                                      "tipo": texto(r.get("TIPO OPERACION")), "unidades": cand, "mwh": 0.0,
                                      "mw_max": 0.0, "minutos": set()})
         if ini and (a["inicio"] is None or ini < a["inicio"]):
@@ -468,8 +552,9 @@ def diesel_despacho(hojas, dia: dt.date):
                 if mw > 0 and ini and fin and t > ini and t - dt.timedelta(minutes=30) < fin and (u, m) not in a["minutos"]:
                     a["minutos"].add((u, m))
                     a["mwh"] += mw * 0.5
-                    s = serie.setdefault(m, {"rf": 0.0, "otras": 0.0})
-                    s["rf" if rf else "otras"] += mw
+                    if a["tipo_comb"] == "Diésel D2":
+                        s = serie.setdefault(m, {"rf": 0.0, "otras": 0.0})
+                        s["rf" if rf else "otras"] += mw
     unidades = []
     for n, a in agr.items():
         porm = {}
@@ -478,7 +563,8 @@ def diesel_despacho(hojas, dia: dt.date):
         a["mw_max"] = max(porm.values()) if porm else None
         a["mwh"] = round(a["mwh"], 1) if a["unidades"] and porm else None
         unidades.append({"nombre": n, **a})
-    unidades.sort(key=lambda u: (not u["rf"], -(u["mwh"] or 0)))
+    orden_c = {"Diésel D2": 0, "Residual": 1, "Gas de refinería": 2}
+    unidades.sort(key=lambda u: (orden_c[u["tipo_comb"]], not u["rf"], -(u["mwh"] or 0)))
     return {"unidades": unidades, "serie": serie}
 
 
@@ -562,7 +648,8 @@ CENTRALES_CUENCA = {
               ("CH HER1", 0.7)],
     "San Gabán": [("CH Tupuri", 2), ("CH El Ángel 1", 20.1), ("CH El Ángel 2", 20), ("CH El Ángel 3", 20.1),
                   ("CH San Gabán 2", 115.7), ("CH San Gabán 3", 209.3)],
-    "Chaglla": [("CH Chaglla", 450.0), ("PCH Chaglla", 6.0)],
+    # Empresa de Generación Huallaga: en el despacho del COES solo figuran CHAGLLA y CHAGLLA GP1
+    "Chaglla": [("CH Chaglla", 450.0), ("CH Chaglla GP1 (caudal ecológico)", 6.4)],
 }
 
 
