@@ -498,6 +498,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "hidro_pasada": extra.get("hidro"),
         "hidro_regulacion": extra.get("regulacion"),
         "flujos": extra.get("flujos") or {},
+        "prog_mensual": extra.get("prog_mensual") or {"mes": None, "regs": []},
         "enlaces": extra.get("enlaces") or {},
         "congestion": extra.get("congestion") or {"columnas": [], "registros": []},
         "eolica": extra.get("eolica"),
@@ -508,6 +509,37 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
 def m_hist_rango(m, ind, dia):
     """Intervalos del día evaluado y del anterior (para la curva de 30 min)."""
     return [(t, r) for t, r in ind["_hist"].items() if m.dia_operativo(t) in (dia, dia - dt.timedelta(days=1))]
+
+
+# --------------------------------------------------------------------------- programa mensual
+F_PM = Path("data") / "programa_mensual.json"
+
+
+def programa_mensual(hoy, hojas_ieod=None):
+    """Intervenciones de generación con MW indisponibles del Programa Mensual de Mantenimiento (cache 2 días)."""
+    mes = f"{hoy:%Y-%m}"
+    previo = json.loads(F_PM.read_text(encoding="utf-8")) if F_PM.exists() else None
+    if previo and previo.get("mes") == mes and (hoy - dt.date.fromisoformat(previo["consultado"])).days < 2 \
+            and previo.get("regs"):
+        regs = previo["regs"]
+    else:
+        crudos, diag = fc.programa_mensual(hoy)
+        (Path("data") / "explora6").mkdir(parents=True, exist_ok=True)
+        (Path("data") / "explora6" / "programa_mensual_diag.json").write_text(
+            json.dumps(diag, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+        if not crudos:
+            return previo if previo and previo.get("mes") == mes else {"mes": mes, "regs": [], "fuente": None}
+        mh, hs = (fc.combustibles_hop(hojas_ieod), fc.centrales_hidro(hojas_ieod)) if hojas_ieod else ({}, set())
+        regs = []
+        for r in fc.solo_generacion(crudos):
+            if r["mw"] <= 0 or not r["inicio"]:
+                continue
+            r["tecnologia"] = fc.tecnologia(r, mh, hs)
+            r["diesel"] = r["tecnologia"] == "Diésel"
+            regs.append({k: _iso(v) for k, v in r.items()})
+        previo = {"mes": mes, "consultado": hoy.isoformat(), "fuente": diag.get("usado"), "regs": regs}
+        F_PM.write_text(json.dumps(previo, ensure_ascii=False), encoding="utf-8")
+    return previo
 
 
 # --------------------------------------------------------------------------- orquestación
@@ -595,6 +627,10 @@ def generar(m, hist=None):
     except Exception as e:
         print("Intervenciones no disponibles:", e, file=sys.stderr)
         prog = None
+    try:
+        extra["prog_mensual"] = programa_mensual(hoy, hojas)
+    except Exception as e:
+        print("Programa mensual no disponible:", e, file=sys.stderr)
     try:
         gen, _ = m.generacion(dia - dt.timedelta(days=1), dia)
     except Exception as e:
