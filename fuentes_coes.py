@@ -720,16 +720,15 @@ def informe_semanal_reciente():
     return None, {}
 
 
-def embalses_semanales(hojas):
-    """Bloques de la hoja 5.2: [{cuenca, titulo, unidad, anios: {2025: {semana: valor}}}]."""
-    filas = next((v for k, v in hojas.items() if norm(k).startswith("5.2")), None) or []
+def _bloques_semanales(hojas, hoja, prefijo, unidad):
+    """Bloques 'título / años / semanas' de las hojas 5.2 y 5.4 del Informe de Evaluación Semanal."""
+    filas = next((v for k, v in hojas.items() if norm(k).startswith(hoja)), None) or []
     out = []
     for i, f in enumerate(filas[:40]):
         for j, v in enumerate(f):
             t = norm(v)
-            if not t.startswith("VOLUMEN UTIL"):
+            if not t.startswith(prefijo):
                 continue
-            # fila de años debajo del título
             anios = {}
             sig = filas[i + 1] if i + 1 < len(filas) else []
             for k in range(j + 1, min(j + 6, len(sig))):
@@ -748,9 +747,19 @@ def embalses_semanales(hojas):
                     if val is not None:
                         serie[a][int(sem)] = val
             cuenca = next((c for c, claves in CUENCAS_SEMANAL if any(re.search(c2, t) for c2 in claves)), None)
-            out.append({"cuenca": cuenca, "titulo": texto(v), "unidad": "Hm3",
+            out.append({"cuenca": cuenca, "titulo": texto(v), "unidad": unidad,
                         "anios": {a: s for a, s in serie.items() if s}})
     return out
+
+
+def embalses_semanales(hojas):
+    """Hoja 5.2: volumen útil semanal por cuenca (Hm3)."""
+    return _bloques_semanales(hojas, "5.2", "VOLUMEN UTIL", "Hm3")
+
+
+def caudales_semanales(hojas):
+    """Hoja 5.4: caudal natural semanal (m3/s). En Mantaro vienen por tramos (se suman después)."""
+    return _bloques_semanales(hojas, "5.4", "CAUDAL NATURAL", "m3/s")
 
 
 # Centrales por cuenca (MW) para acompañar los gráficos de embalses

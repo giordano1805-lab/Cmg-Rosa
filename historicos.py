@@ -400,22 +400,45 @@ def grafico_hidro(rh, ruta, plt):
 # --------------------------------------------------------------------------- embalses semanales
 def actualizar_embalses(hoy: dt.date):
     previo = json.loads(F_EMB.read_text(encoding="utf-8")) if F_EMB.exists() else None
-    if previo and (hoy - dt.date.fromisoformat(previo["consultado"])).days < 2 and previo.get("bloques"):
+    if (previo and (hoy - dt.date.fromisoformat(previo["consultado"])).days < 2 and previo.get("bloques")
+            and "caudales" in previo):
         return previo
     try:
         semana, hojas = fc.informe_semanal_reciente()
         bloques = fc.embalses_semanales(hojas) if hojas else []
+        caudales = fc.caudales_semanales(hojas) if hojas else []
     except Exception as e:
         print("embalses semanales", e, file=sys.stderr)
-        semana, bloques = None, []
+        semana, bloques, caudales = None, [], []
     if not bloques:
-        return previo or {"semana": None, "bloques": [], "consultado": hoy.isoformat()}
-    datos = {"semana": semana, "consultado": hoy.isoformat(),
-             "bloques": [{**b, "anios": {str(a): {str(k): v for k, v in s.items()} for a, s in b["anios"].items()}}
-                         for b in bloques]}
+        return previo or {"semana": None, "bloques": [], "caudales": [], "consultado": hoy.isoformat()}
+
+    def txt(bs):
+        return [{**b, "anios": {str(a): {str(k): v for k, v in s.items()} for a, s in b["anios"].items()}} for b in bs]
+
+    datos = {"semana": semana, "consultado": hoy.isoformat(), "bloques": txt(bloques), "caudales": txt(caudales)}
     DATA.mkdir(exist_ok=True)
     F_EMB.write_text(json.dumps(datos, ensure_ascii=False), encoding="utf-8")
     return datos
+
+
+def _caudal_cuenca(emb, cuenca):
+    """Caudal natural semanal de la cuenca (hoja 5.4). Si hay varios tramos (Mantaro) se suman semana a semana."""
+    bs = [b for b in emb.get("caudales") or [] if b.get("cuenca") == cuenca]
+    if not bs:
+        return None
+    anios = {}
+    for a in sorted({a for b in bs for a in b["anios"]}, key=int):
+        sems = set.intersection(*[set(b["anios"].get(a, {})) for b in bs])
+        if sems:
+            anios[a] = {k: round(sum(b["anios"][a][k] for b in bs), 3) for k in sorted(sems, key=int)}
+    if not anios:
+        return None
+    act = max(anios, key=int)
+    sem = max(int(k) for k in anios[act])
+    v1, v0 = anios[act].get(str(sem)), anios.get(str(int(act) - 1), {}).get(str(sem))
+    return {"titulos": [b["titulo"] for b in bs], "anios": anios, "semana": sem, "actual": v1, "anterior": v0,
+            "var_pct": (v1 / v0 - 1) * 100 if v1 is not None and v0 else None}
 
 
 def cuencas_seleccionadas(emb, diario=None):
@@ -440,81 +463,82 @@ def cuencas_seleccionadas(emb, diario=None):
                 di = {**di, "representativo": False}
             else:
                 di = {**di, "representativo": True}
-        out.append({**b, "semana": sem, "actual": v1, "anterior": v0,
+        out.append({**b, "semana": sem, "actual": v1, "anterior": v0, "caudal": _caudal_cuenca(emb, b["cuenca"]),
                     "var_pct": (v1 / v0 - 1) * 100 if v1 is not None and v0 else None,
                     "centrales": centrales, "mw_total": round(sum(mw for _, mw in centrales), 1),
-                    "diario": di, "solo_diario": b["cuenca"] == "Chaglla" and bool(di and di.get("serie"))})
+                    "diario": di, "solo_diario": False})
     return out
 
 
+def _semanal(ax, anios_dict, estilos, unidad):
+    anios = sorted(anios_dict, key=int)[-4:]
+    for j, a in enumerate(anios):
+        c, lw, ls = estilos[j + (4 - len(anios))]
+        s = anios_dict[a]
+        ks = sorted(int(k) for k in s)
+        ax.plot(ks, [s[str(k)] for k in ks], color=c, lw=lw, ls=ls, label=a,
+                marker="o" if j == len(anios) - 1 else None, ms=1.8)
+    ax.set_xlim(1, 53)
+    ax.set_ylim(bottom=0)
+    ax.tick_params(labelsize=6)
+    ax.grid(alpha=0.3)
+    ax.set_ylabel(unidad, fontsize=6.5)
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    return anios
+
+
 def grafico_embalses(cuencas, ruta, plt):
-    """Una fila por cuenca: gráfico de volumen útil semanal (izquierda) y centrales de la cuenca (derecha)."""
+    """Una fila por cuenca: caudal natural semanal (izquierda), volumen útil semanal (centro) y centrales."""
     if not cuencas:
         return None
     n = len(cuencas)
-    fig = plt.figure(figsize=(8.5, 2.55 * n + 0.5), dpi=160)
-    gs = fig.add_gridspec(n, 2, width_ratios=[3.1, 1], hspace=0.55, wspace=0.05)
-    estilos = {0: (C_23, 1.0, "--"), 1: (C_24, 1.2, "-"), 2: (C_ANT, 1.8, "-"), 3: (C_ACT, 2.6, "-")}
+    alto = 2.35 * n + 0.6
+    fig = plt.figure(figsize=(8.5, alto), dpi=160)
+    gs = fig.add_gridspec(n, 3, width_ratios=[1.55, 1.55, 0.85], hspace=0.62, wspace=0.22)
+    estilos = {0: (C_23, 0.9, "--"), 1: (C_24, 1.1, "-"), 2: (C_ANT, 1.6, "-"), 3: (C_ACT, 2.3, "-")}
     for idx, cu in enumerate(cuencas):
-        ax = fig.add_subplot(gs[idx, 0])
-        di = cu.get("diario") or {}
-        if cu.get("solo_diario"):
-            # Chaglla: embalse de regulación horaria → promedio diario del IEOD (la foto semanal no es representativa)
-            anios = sorted(di["serie"], key=int)
-            fechas = [dt.date.fromisoformat(f) for f, _ in di["serie"][anios[-1]]] or [dt.date.today()]
-            f0 = fechas[0]
-            anios = anios[-4:]
-            for j, a in enumerate(anios):
-                act = a == anios[-1]
-                c, lw, ls = estilos[j + (4 - len(anios))]
-                pts = di["serie"][a]
-                ax.plot([(dt.date.fromisoformat(f) - f0).days for f, _ in pts], [y for _, y in pts],
-                        color=c, lw=lw, ls=ls, marker="o" if act else None, ms=2.2, label=a)
-            nd = (fechas[-1] - f0).days
-            paso = max(1, nd // 10)
-            ax.set_xticks(range(0, nd + 1, paso),
-                          [(f0 + dt.timedelta(days=k)).strftime("%d/%m") for k in range(0, nd + 1, paso)])
-            ax.set_xlim(-0.5, nd + 0.5)
-            var = f" · {di['var_pct']:+.0f}% vs {int(anios[-1]) - 1}" if di.get("var_pct") is not None else ""
-            ax.set_title(f"Embalse Chaglla (río Huallaga) — promedio del {dt.date.fromisoformat(di['fecha']):%d/%m}: "
-                         f"{di['total']:,.2f} Hm3{var}", fontsize=8.5, color=NAVY, loc="left")
-            ax.set_xlabel("Volumen útil promedio diario · IEOD", fontsize=7)
+        nom = "Embalse Chaglla (río Huallaga)" if cu["cuenca"] == "Chaglla" else f"Cuenca del río {cu['cuenca']}"
+        # caudal natural
+        axq = fig.add_subplot(gs[idx, 0])
+        q = cu.get("caudal")
+        if q:
+            anios = _semanal(axq, q["anios"], estilos, "m3/s")
+            var = f" ({q['var_pct']:+.0f}% vs {int(anios[-1]) - 1})" if q.get("var_pct") is not None else ""
+            axq.set_title(f"$\\bf{{{nom.replace(' ', '~')}}}$\nCaudal natural · sem {q['semana']}: {q['actual']:,.1f} m3/s{var}",
+                          fontsize=7.2, loc="left", color=NAVY)
+            axq.legend(fontsize=5.6, frameon=False, loc="upper right", ncol=2)
         else:
-            anios = sorted(cu["anios"], key=int)[-4:]
-            for j, a in enumerate(anios):
-                c, lw, ls = estilos[j + (4 - len(anios))]
-                s = cu["anios"][a]
-                ks = sorted(int(k) for k in s)
-                ax.plot(ks, [s[str(k)] for k in ks], color=c, lw=lw, ls=ls, label=a,
-                        marker="o" if j == len(anios) - 1 else None, ms=2.2)
-            var = f" · {cu['var_pct']:+.0f}% vs {int(anios[-1]) - 1}" if cu["var_pct"] is not None else ""
-            ax.set_title(f"Cuenca del río {cu['cuenca']} — semana {cu['semana']}: {cu['actual']:,.1f} Hm3{var}",
-                         fontsize=8.5, color=NAVY, loc="left")
-            ax.set_xlim(1, 53)
-            if di.get("representativo") and di.get("total") is not None:
-                vd = f" ({di['var_pct']:+.0f}% vs año ant.)" if di.get("var_pct") is not None else ""
-                ax.text(0.01, 0.04, f"Dato diario {dt.date.fromisoformat(di['fecha']):%d/%m}: {di['total']:,.1f} Hm3{vd}",
-                        transform=ax.transAxes, fontsize=6.6, color=NAVY,
-                        bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="#d0d4dc"))
-            if idx == n - 1:
-                ax.set_xlabel("Semana del año", fontsize=7)
-        ax.set_ylim(bottom=0)
-        ax.tick_params(labelsize=6.5)
-        ax.grid(alpha=0.3)
-        ax.set_ylabel("Hm3", fontsize=7)
-        ax.legend(fontsize=6.5, frameon=False, loc="upper right", ncol=4)
-        for sp in ("top", "right"):
-            ax.spines[sp].set_visible(False)
-        tx = fig.add_subplot(gs[idx, 1])
+            axq.axis("off")
+            axq.set_title(f"$\\bf{{{nom.replace(' ', '~')}}}$", fontsize=7.2, loc="left", color=NAVY)
+            axq.text(0.5, 0.5, "Caudal natural no publicado", ha="center", va="center", fontsize=7, color=GRIS)
+        # volumen útil
+        ax = fig.add_subplot(gs[idx, 1])
+        anios = _semanal(ax, cu["anios"], estilos, "Hm3")
+        var = f" ({cu['var_pct']:+.0f}% vs {int(anios[-1]) - 1})" if cu["var_pct"] is not None else ""
+        ax.set_title(f"\nVolumen útil · sem {cu['semana']}: {cu['actual']:,.1f} Hm3{var}", fontsize=7.2, loc="left")
+        di = cu.get("diario") or {}
+        if di.get("representativo") and di.get("total") is not None:
+            vd = f" ({di['var_pct']:+.0f}%)" if di.get("var_pct") is not None else ""
+            ax.text(0.02, 0.04, f"Diario {dt.date.fromisoformat(di['fecha']):%d/%m}: {di['total']:,.1f} Hm3{vd}",
+                    transform=ax.transAxes, fontsize=5.8, color=NAVY,
+                    bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#d0d4dc"))
+        if idx == n - 1:
+            axq.set_xlabel("Semana del año", fontsize=6.5)
+            ax.set_xlabel("Semana del año", fontsize=6.5)
+        tx = fig.add_subplot(gs[idx, 2])
         tx.axis("off")
         if cu["centrales"]:
             lineas = [f"• {c} – {mw:g} MW" for c, mw in cu["centrales"]]
-            tx.text(0.04, 0.98, "Centrales:", fontsize=7, weight="bold", color=NAVY, va="top")
-            tx.text(0.04, 0.86, "\n".join(lineas), fontsize=6.4, color="#202124", va="top", linespacing=1.35)
-            tx.text(0.04, 0.02, f"TOTAL = {cu['mw_total']:,.1f} MW", fontsize=7.2, weight="bold", color=NAVY,
+            tx.text(0.02, 0.98, "Centrales:", fontsize=6.8, weight="bold", color=NAVY, va="top")
+            tx.text(0.02, 0.86, "\n".join(lineas), fontsize=5.9, color="#202124", va="top", linespacing=1.3)
+            tx.text(0.02, 0.0, f"TOTAL = {cu['mw_total']:,.1f} MW", fontsize=6.8, weight="bold", color=NAVY,
                     va="bottom", bbox=dict(boxstyle="round,pad=0.3", fc="#fff3c4", ec="none"))
-    fig.text(0.99, 0.005, "Fuente: COES – Informe de Evaluación Semanal (5.2) e IEOD (volúmenes diarios)", ha="right", fontsize=6, color=GRIS)
-    fig.subplots_adjust(left=0.07, right=0.99, top=1 - 0.3 / (2.55 * n + 0.5), bottom=0.6 / (2.55 * n + 0.5))
+    h, l = ax.get_legend_handles_labels()
+    fig.legend(h, l, fontsize=7, frameon=False, loc="lower left", ncol=4, bbox_to_anchor=(0.06, 0.0))
+    fig.text(0.99, 0.005, "Fuente: COES – Informe de Evaluación Semanal (5.2 volúmenes, 5.4 caudales) e IEOD (dato diario)",
+             ha="right", fontsize=5.8, color=GRIS)
+    fig.subplots_adjust(left=0.07, right=0.99, top=1 - 0.42 / alto, bottom=0.62 / alto)
     fig.savefig(ruta)
     plt.close(fig)
     return ruta

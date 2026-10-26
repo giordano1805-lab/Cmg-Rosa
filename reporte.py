@@ -402,20 +402,17 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
 
         def fila(c):
             di = c.get("diario") or {}
-            if c.get("solo_diario"):
-                return [f"{c['cuenca']} (prom. diario)", f"{dt.date.fromisoformat(di['fecha']):%d/%m}",
-                        f"{di['total']:,.2f}", f"{di['anterior']:,.2f}" if di.get("anterior") is not None else "–",
-                        pct(di.get("var_pct")), "–",
-                        f"{c['mw_total']:,.1f} MW" if c["mw_total"] else "–"]
             diario = (f"{di['total']:,.1f} ({dt.date.fromisoformat(di['fecha']):%d/%m}) {pct(di.get('var_pct'))}"
                       if di.get("representativo") and di.get("total") is not None else "solo semanal")
-            return [c["cuenca"], f"sem. {c['semana']}", f"{c['actual']:,.1f}",
+            q = c.get("caudal") or {}
+            caudal = f"{q['actual']:,.1f} {pct(q.get('var_pct'))}" if q.get("actual") is not None else "–"
+            return [c["cuenca"], f"sem. {c['semana']}", caudal, f"{c['actual']:,.1f}",
                     f"{c['anterior']:,.1f}" if c["anterior"] is not None else "–", pct(c["var_pct"]), diario,
                     f"{c['mw_total']:,.1f} MW" if c["mw_total"] else "–"]
 
-        el.append(tabla(["Cuenca", "Fecha", "Volumen (Hm3)", "Mismo período año ant.", "Var.",
+        el.append(tabla(["Cuenca", "Semana", "Caudal natural (m3/s) y var.", "Volumen (Hm3)", "Año ant.", "Var.",
                          "Dato diario IEOD (Hm3)", "Potencia instalada"],
-                        [fila(c) for c in cu], [0.17, 0.08, 0.12, 0.15, 0.08, 0.24, 0.16]))
+                        [fila(c) for c in cu], [0.12, 0.08, 0.17, 0.11, 0.09, 0.07, 0.22, 0.14]))
         el.append(Spacer(1, 4))
         el.append(img(graficos.get("embalses"), 20))
     else:
