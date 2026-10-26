@@ -1,0 +1,12 @@
+ANEXO III: LISTADO DE EVENTOS Y FALLAS QUE OCASIONARON INTERRUPCIÓN Y DISMINUCIÓ,,,,,,,,,
+N°,EMPRESA,EQUIPO,FECHA,DESCRIPCIÓN DEL EVENTO,"INTERRUPCIÓN
+(MW)","DISMINUCIÓN 
+(MW)",,,
+32,ATLANTICA TRANSMISION SUR S.A.,L. CHILCA CTM - POROMA - LINEA L-5032,22/09/2026 09:40:53,Desconectó la línea L-5032 (Chilca CTM - Poroma) de 500 kV por actuación de su p,3,,,,
+33,ELECTRO PUNO,L. AZÁNGARO - ANTAUTA - LINEA L-6021,25/09/2026 15:37:07,Desconectó la línea L-6021 (Azangaro - Antauta) de 60 kV por actuación de su pro,1.8,,,,
+34,ELECTROPERU,S.E. TUMBES - TRAFO3D T-200,25/09/2026 19:57:00,Se desconectó la barra de 33 kV del transformador T-200 de 60/33/10 kV de la C.T,10.5,,,,
+35,ELECTROPERU,S.E. TUMBES - TRAFO3D T-200,25/09/2026 20:48:00,Desconectó la barra de 33 kV del transformador T-200 de 60/33/10 kV de la C.T. T,11,,,,
+36,ISA PERU,L. CARHUAQUERO - CHICLAYO OESTE - LINEA L-2240,28/09/2026 04:57:00,"Se produjo una falla monofásica a tierra en la fase ""R"" de la línea L-U1, la cua",26.89,,,,
+37,SINERSA,L. POECHOS - SULLANA - LINEA L-6668,28/09/2026 06:25:59,"Desconectó la línea L-6668 (Sullana - Poechos) de 60 kV, por actuación de su pro",9.6,,,,
+38,ELECTRO SUR ESTE,L. SAN GABÁN II - MAZUCO - LINEA L-1014,28/09/2026 13:42:00,Desconectó la línea L-1014 (San Gabán – Mazuko) de 138 kV por falla bifásica a t,34.13,,,,
+39,ISA PERU,L. CARHUAQUERO - CHICLAYO OESTE - LINEA L-2240,28/09/2026 14:53:00,"Se produjo falla en el seccionador del alimentador CAR-201 de 22.9 kV, durante a",59.85,23.48,,,

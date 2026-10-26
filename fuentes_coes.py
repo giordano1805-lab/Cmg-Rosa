@@ -136,12 +136,13 @@ def listar(ruta):
     return [h.unescape(p) for p, t, e in re.findall(r"openBlob\('([^']+)',\s*'([DF])',\s*'([^']*)'\)", r.text)]
 
 
-def libro(b):
-    """{nombre hoja: filas} desde xlsx o xls."""
+def libro(b, solo=None):
+    """{nombre hoja: filas} desde xlsx o xls (solo: nombres de hojas a leer, para ahorrar tiempo)."""
     try:
         import openpyxl
         wb = openpyxl.load_workbook(io.BytesIO(b), read_only=True, data_only=True)
-        return {ws.title.strip(): [list(r) for r in ws.iter_rows(values_only=True)] for ws in wb.worksheets}
+        return {ws.title.strip(): [list(r) for r in ws.iter_rows(values_only=True)] for ws in wb.worksheets
+                if not solo or ws.title.strip() in solo}
     except Exception:
         import xlrd
         wb = xlrd.open_workbook(file_contents=b)
@@ -149,14 +150,14 @@ def libro(b):
 
 
 # --------------------------------------------------------------------------- IEOD
-def descargar_ieod(hasta: dt.date, dias_atras=4):
+def descargar_ieod(hasta: dt.date, dias_atras=4, solo=None):
     """Último IEOD Anexo A disponible hasta la fecha indicada. Devuelve (fecha, hojas)."""
     for k in range(dias_atras):
         d = hasta - dt.timedelta(days=k)
         carpeta = f"Post Operación/Reportes/IEOD/{d.year}/{d.month:02d}_{MESES[d.month - 1].capitalize()}/{d.day:02d}/"
         b = bajar(carpeta + f"AnexoA_{d:%d%m}.xlsx")
         if b:
-            return d, libro(b)
+            return d, libro(b, solo)
     return None, {}
 
 
@@ -320,3 +321,174 @@ def filtrar_lineas_220(regs):
 
 def solo_generacion(regs):
     return [r for r in regs if r.get("clase") == "G"]
+
+
+# --------------------------------------------------------------------------- demanda histórica
+def demanda_rango(d0: dt.date, d1: dt.date):
+    """[(ts fin de intervalo, MW ejecutado)] entre d0 y d1 inclusive (el portal acepta rangos de un mes)."""
+    j = S.post(RAIZ + "portalinformacion/demanda",
+               data={"fechaInicial": d0.strftime("%d/%m/%Y"), "fechaFinal": d1.strftime("%d/%m/%Y")},
+               timeout=240).json()
+    for s in (j.get("Chart") or {}).get("Series", []):
+        if norm(s["Name"]).startswith("EJECUTADO"):
+            return [(dt.datetime.strptime(d["Nombre"], "%Y/%m/%d %H:%M:%S"), float(d["Valor"]))
+                    for d in s["Data"] if d.get("Valor") is not None]
+    return []
+
+
+# --------------------------------------------------------------------------- hidro de pasada (IEOD)
+def hidro_pasada(hojas):
+    """[(hora 'HH:MM', MW)] de la hoja TIPO_RECURSO (columna H. PASADA)."""
+    filas = hojas.get("TIPO_RECURSO") or []
+    col = None
+    for f in filas[:15]:
+        for j, v in enumerate(f):
+            if "PASADA" in norm(v) and "HIDRO" not in norm(v):
+                col = j
+        if col is not None:
+            break
+    if col is None:
+        return []
+    out = []
+    for f in filas:
+        h = texto(f[1]) if len(f) > 1 else ""
+        if re.fullmatch(r"\d{1,2}:\d{2}", h) and col < len(f) and numero(f[col]) is not None:
+            out.append((h, numero(f[col])))
+    return out
+
+
+def ieod_dia(d: dt.date):
+    """Anexo A del IEOD de un día exacto (o {} si no está publicado)."""
+    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO"})
+    return hojas if fecha == d else {}
+
+
+# --------------------------------------------------------------------------- embalses (Evaluación Semanal)
+CUENCAS_SEMANAL = [("Santa", (r"RIO SANTA\b(?! EULALIA)",)), ("Mantaro", (r"MANTARO",)), ("Rímac", (r"RIMAC",)),
+                   ("San Gabán", (r"SAN GABAN",)), ("Chaglla", (r"CHAGLLA", r"HUALLAGA"))]
+
+
+def informe_semanal_reciente():
+    """(etiqueta de semana, hojas) del último Informe de Evaluación Semanal."""
+    base = "Post Operación/Informes/Evaluacion Semanal/"
+    url = base
+    for _ in range(3):
+        items = listar(url)
+        archivos = [i for i in items if i.lower().endswith((".xlsx", ".xls"))]
+        if archivos:
+            b = bajar(archivos[0])
+            return url.rstrip("/").rsplit("/", 1)[-1], (libro(b) if b else {})
+        carpetas = [i for i in items if i.endswith("/")]
+        if not carpetas:
+            break
+        url = max(carpetas, key=lambda r: [int(x) for x in re.findall(r"\d+", r.rstrip("/").rsplit("/", 1)[-1])[:1]]
+                  or [0])
+    return None, {}
+
+
+def embalses_semanales(hojas):
+    """Bloques de la hoja 5.2: [{cuenca, titulo, unidad, anios: {2025: {semana: valor}}}]."""
+    filas = next((v for k, v in hojas.items() if norm(k).startswith("5.2")), None) or []
+    out = []
+    for i, f in enumerate(filas[:40]):
+        for j, v in enumerate(f):
+            t = norm(v)
+            if not t.startswith("VOLUMEN UTIL"):
+                continue
+            # fila de años debajo del título
+            anios = {}
+            sig = filas[i + 1] if i + 1 < len(filas) else []
+            for k in range(j + 1, min(j + 6, len(sig))):
+                n = numero(sig[k])
+                if n and 2000 < n < 2100:
+                    anios[int(n)] = k
+            if not anios:
+                continue
+            serie = {a: {} for a in anios}
+            for g in filas[i + 2:i + 60]:
+                sem = numero(g[j]) if j < len(g) else None
+                if not sem or not (1 <= sem <= 53):
+                    continue
+                for a, k in anios.items():
+                    val = numero(g[k]) if k < len(g) else None
+                    if val is not None:
+                        serie[a][int(sem)] = val
+            cuenca = next((c for c, claves in CUENCAS_SEMANAL if any(re.search(c2, t) for c2 in claves)), None)
+            out.append({"cuenca": cuenca, "titulo": texto(v), "unidad": "Hm3",
+                        "anios": {a: s for a, s in serie.items() if s}})
+    return out
+
+
+# Centrales por cuenca (MW) para acompañar los gráficos de embalses
+CENTRALES_CUENCA = {
+    "Santa": [("CH Pariac", 4.9), ("CH Santa Cruz I-II", 12), ("CH Manta", 19.8), ("CH Cañón del Pato", 246.6),
+              ("CH Quitaracsa", 112)],
+    "Mantaro": [("CH Malpaso", 48.5), ("CH Pachachaca", 10), ("CH Oroya", 9.1), ("CH Canchayllo", 5.2),
+                ("CH Mantaro", 905.2), ("CH Cerro del Águila", 593.3)],
+    "Rímac": [("CH Huanza", 98.3), ("CH Carhuac", 20.4), ("CH Huinco", 277.9), ("CH Huanchor", 19.8),
+              ("CH Matucana", 137), ("CH Callahuanca", 84.4), ("CH Moyopampa", 69.2), ("CH Huampaní", 30.6),
+              ("CH HER1", 0.7)],
+    "San Gabán": [("CH Tupuri", 2), ("CH El Ángel 1", 20.1), ("CH El Ángel 2", 20), ("CH El Ángel 3", 20.1),
+                  ("CH San Gabán 2", 115.7), ("CH San Gabán 3", 209.3)],
+}
+
+
+# --------------------------------------------------------------------------- tecnología de las unidades
+DIESEL_CLAVES = ("RECKA", "RESERVA FRIA", "RF-", "RF ", "PUERTO MALDONADO", "PUCALLPA", "NEPI", "PUERTO BRAVO",
+                 "MOLLENDO", "TUMBES", "CHILINA", "TAPARACHI", "YARINACOCHA", "SAN NICOLAS", "ELOR",
+                 "BELLAVISTA", "IQUITOS", "ILO 31", "DIESEL", "D2", "B5", "RESIDUAL", "MAK")
+GAS_CLAVES = ("CHILCA", "KALLPA", "FENIX", "VENTANILLA", "SANTA ROSA", "LAS FLORES", "OLLEROS", "MALACAS",
+              "AGUAYTIA", "INDEPENDENCIA", "TALARA", "REFINERIA", "TERMOCHILCA", "CALANA")
+
+
+def combustibles_hop(hojas):
+    """{central normalizada: combustible} a partir de la hoja HOP (unidades que operaron)."""
+    out = {}
+    for r in tabla(hojas.get("HOP", []), ["EMPRESA", "CENTRAL", "MODO DE OPERACION"]):
+        c, modo = norm(r.get("CENTRAL")), norm(r.get("MODO DE OPERACION"))
+        if c and modo:
+            out[re.sub(r"^C\.?\s?T\.?\s*B?\.?\s*", "", c)] = modo.rsplit(" - ", 1)[-1]
+    return out
+
+
+def tecnologia(r, mapa_hop=None, hidro=None):
+    """Hídrica / Gas natural / Diésel / Solar / Eólica / Biomasa / Carbón / Otra."""
+    u, e, d, emp = norm(r.get("ubicacion")), norm(r.get("equipo")), norm(r.get("descripcion")), norm(r.get("empresa"))
+    todo = " ".join((u, e, d, emp))
+    comb = (mapa_hop or {}).get(u, "")
+    if any(k in comb for k in ("D2", "DIESEL", "B5", "R500", "R6", "RESIDUAL")):
+        return "Diésel"
+    if "GAS" in comb and "BIOGAS" not in comb:
+        return "Gas natural"
+    if "BAGAZO" in comb or "BIOGAS" in comb:
+        return "Biomasa"
+    if any(k in todo for k in ("RESERVA FRIA", "RECKA")) or any(re.search(rf"\b{re.escape(k)}\b", u) for k in DIESEL_CLAVES):
+        return "Diésel"
+    if any(k in todo for k in ("BAGAZO", "BIOGAS", "BIOMASA", "HUAYCOLORO", "DONA CATALINA", "PARAMONGA", "ETANOL",
+                               "MAPLE", "CASA GRANDE", "SAN JACINTO", "CANA BRAVA", "AGROLMOS", "LA GRINGA")):
+        return "Biomasa"
+    if hidro and u in hidro or re.search(r"\bC\.?H\b|HIDRO|EMBALSE|PRESA|TURBINA PELTON|RODETE", todo):
+        return "Hídrica"
+    if "SOLAR" in todo or "FOTOVOLT" in todo or re.match(r"^(PFV|CS)", u):
+        return "Solar"
+    if "EOLIC" in todo or "WTG" in todo or "AEROGENERADOR" in todo:
+        return "Eólica"
+    if any(k in u for k in GAS_CLAVES) or re.search(r"\bGAS\b", todo):
+        return "Gas natural"
+    if "CARBON" in todo or "ILO 21" in u:
+        return "Carbón"
+    if any(k in todo for k in ("BAGAZO", "BIOGAS", "BIOMASA", "HUAYCOLORO", "DOÑA CATALINA", "PARAMONGA")):
+        return "Biomasa"
+    return "Hídrica" if re.match(r"^(G\d|CENTRAL)$", e) and not any(k in u for k in GAS_CLAVES) else "Otra"
+
+
+def centrales_hidro(hojas):
+    """Nombres normalizados de centrales hidroeléctricas listadas en TIPO_RECURSO."""
+    out = set()
+    for f in hojas.get("TIPO_RECURSO", []):
+        for v in f:
+            t = norm(v)
+            m = re.match(r"^(?:C\.?\s?H\.?|PCH)\s*(.+)$", t)
+            if m:
+                out.add(m.group(1).strip())
+    return out
