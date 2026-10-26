@@ -486,6 +486,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "generacion": gen_dia, "grupos_gen": {g: m.color_grupo(g) for g in (gen_dia[0] if gen_dia else m.GRUPOS_GEN)
                                               if g != "t"},
         "diesel_unidades": _limpio((dd or {}).get("unidades") or []),
+        "gen_fuente": "IEOD" if extra.get("gen_ieod") == dia else "Portal",
         "demanda_areas": ieod.get("demanda_areas") or [],
         "indisponibilidades": _limpio(ieod.get("indisponibilidades") or []),
         "lineas_220": _limpio(fc.filtrar_lineas_220(ieod.get("mantenimientos") or [])),
@@ -602,6 +603,16 @@ def generar(m, hist=None):
     except Exception as e:
         print("Generación no disponible:", e, file=sys.stderr)
         gen = {}
+    try:
+        # El día con IEOD se toma de la hoja TIPO_RECURSO (clasificación oficial del COES): el portal SCADA
+        # a veces asigna a "diésel/residual" centrales que en realidad operan con gas.
+        gi = fc.generacion_ieod(hojas, dia_ieod) if hojas and dia_ieod else {}
+        if gi:
+            gen = {t: r for t, r in gen.items() if m.dia_operativo(t) != dia_ieod}
+            gen.update(gi)
+            extra["gen_ieod"] = dia_ieod
+    except Exception as e:
+        print("Generación IEOD no disponible:", e, file=sys.stderr)
 
     g = {}
     g["barras"] = tmp / "barras.png"
@@ -614,7 +625,9 @@ def generar(m, hist=None):
     if gen:
         g["generacion"] = tmp / "generacion.png"
         sd = {dia_ieod: extra["diesel"]["serie"]} if extra.get("diesel") and dia_ieod else None
-        m.grafico_generacion(gen, dia, g["generacion"], sd)
+        m.grafico_generacion(gen, dia, g["generacion"], sd,
+                             fuente=f"Fuente: COES – IEOD, producción por tipo de recurso ({dia_ieod:%d/%m}); "
+                                    f"Portal de Información (resto)" if extra.get("gen_ieod") else None)
     g["demanda"] = grafico_demanda(ieod.get("demanda_areas"), dia_ieod or dia, tmp / "demanda.png", plt)
     if extra.get("demanda"):
         g["dem_mensual"] = hi.grafico_demanda_mensual(extra["demanda"], tmp / "dem_mensual.png", plt)

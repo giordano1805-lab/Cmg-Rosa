@@ -194,8 +194,11 @@ function render(){
    ${HP?`<div class="card"><h2>Generación hidroeléctrica de pasada<small>MW · promedio diario vs ${HP.ant} (líneas tenues: cada 30 min)</small></h2><div class="chart tall"><canvas id="c-hidro"></canvas></div></div>`:""}
    ${D.hidro_regulacion?`<div class="card"><h2>Generación hidroeléctrica de embalse (regulación)<small>MW · promedio diario vs ${D.hidro_regulacion.ant}</small></h2><div class="chart tall"><canvas id="c-hreg"></canvas></div></div>`:""}
    ${D.eolica?`<div class="card"><h2>Generación eólica<small>MW · promedio diario vs ${D.eolica.ant}</small></h2><div class="chart tall"><canvas id="c-eol"></canvas></div></div>`:""}
-   <div class="card"><h2>Producción por tipo de recurso<small>MW cada 30 min · ${D.dia}${DU.length||"D2 Reserva Fría" in (D.grupos_gen||{})?" · diésel separado con el IEOD":""}</small></h2><div class="chart tall"><canvas id="c-gen"></canvas></div></div>
-   <div class="card"><h2>Térmicas con diésel, residual o gas de refinería<small>${D.dia_ieod?"IEOD "+D.dia_ieod+" · HOP y despacho ejecutado":"IEOD no disponible"}</small></h2>${DU.length?'<div id="t-dsl"></div>':'<div class="note" style="margin:0">Ninguna central operó con diésel, residual o gas de refinería ese día.</div>'}</div>
+   <div class="card"><h2>Producción por tipo de recurso<small>MW cada 30 min · ${D.dia}${D.gen_fuente==="IEOD"?" · IEOD (clasificación oficial COES)":" · Portal COES (SCADA)"}</small></h2><div class="chart tall"><canvas id="c-gen"></canvas></div></div>
+   <div class="card"><h2>Térmicas con diésel, residual o gas de refinería<small>${D.dia_ieod?"IEOD "+D.dia_ieod+" · HOP y despacho ejecutado":"IEOD no disponible"}</small></h2>${DU.length?'<div id="t-dsl"></div>':'<div class="note" style="margin:0">Ninguna central operó con diésel, residual o gas de refinería ese día.</div>'}${(()=>{
+     const tot=D.generacion.reduce((a,r)=>a+((r["D2 Reserva Fría"]||0)+(r["Diésel/Residual otras"]||0)+(r["Diésel/Residual"]||0))*.5,0);
+     const ide=DU.filter(u=>u.tipo_comb!=="Gas de refinería").reduce((a,u)=>a+(u.mwh||0),0);
+     return `<div class="note">Control: diésel/residual en el gráfico ${f0(tot)} MWh · identificado por central ${f0(ide)} MWh${Math.abs(tot-ide)>Math.max(20,.05*tot)?' · <b style="color:var(--s8)">hay diferencia por revisar</b>':""}. El gas de refinería se cuenta como gas natural.</div>`})()}</div>
    <div class="card"><h2>Demanda por área<small>MW</small></h2><div class="chart"><canvas id="c-dem"></canvas></div></div></div>`;
 
   if(DU.length)tabla("#t-dsl",[{t:"Central / grupo",v:r=>r.nombre},{t:"Empresa",v:r=>r.empresa},
