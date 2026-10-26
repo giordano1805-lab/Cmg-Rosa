@@ -446,27 +446,52 @@ def _corregir_bagazo_solar(gen):
             r["BAGAZO"], r["SOLAR"] = r.get("SOLAR", 0), r.get("BAGAZO", 0)
 
 
-def agrupar(reg):
+# Cuando el IEOD (HOP + despacho por unidad) permite separar el diésel:
+GRUPOS_DIESEL = {"D2 Reserva Fría": "#8f1d2c", "D2 otras centrales": "#e34948", "Residual/Otros": "#e87ba4"}
+
+
+def agrupar(reg, split=None):
+    """MW por grupo. split = {'rf': MW, 'otras': MW} separa el diésel (D2 de Reserva Fría / otras centrales)."""
     out = {g: 0.0 for g in GRUPOS_GEN}
     for nombre, mw in reg.items():
         g = next((g for g, (_, ns) in GRUPOS_GEN.items() if nombre in ns), "Diésel/Residual/Otros")
         out[g] += mw
+    if split is not None:
+        resto = out.pop("Diésel/Residual/Otros")
+        rf, ot = split.get("rf", 0.0), split.get("otras", 0.0)
+        out["D2 Reserva Fría"] = rf
+        out["D2 otras centrales"] = ot
+        out["Residual/Otros"] = max(0.0, resto - rf - ot)
     return out
 
 
-def grafico_generacion(gen, hoy, ruta):
+def min_dia(t):
+    """Minutos desde el inicio del día operativo al fin del intervalo (30..1440)."""
+    u = t - dt.timedelta(minutes=1)
+    return u.hour * 60 + u.minute + 1
+
+
+def color_grupo(g):
+    return GRUPOS_GEN[g][0] if g in GRUPOS_GEN else GRUPOS_DIESEL.get(g, "#9aa0a6")
+
+
+def grafico_generacion(gen, hoy, ruta, diesel=None):
+    """diesel = {fecha: {min_dia: {'rf', 'otras'}}} para separar el D2 en los días con IEOD."""
+    diesel = diesel or {}
     plt = _plt()
     from matplotlib.ticker import MultipleLocator
     ayer = hoy - dt.timedelta(days=1)
     fig, axes = plt.subplots(2, 1, figsize=(8.5, 7.6), dpi=160, sharex=True, sharey=True)
     for ax, dia in zip(axes, (ayer, hoy)):
-        pts = sorted((t, agrupar(r)) for t, r in gen.items() if dia_operativo(t) == dia)
+        sd = diesel.get(dia)
+        pts = sorted((t, agrupar(r, (sd.get(min_dia(t), {}) if sd is not None else None)))
+                     for t, r in gen.items() if dia_operativo(t) == dia)
         if pts:
-            xs = [((t - dt.timedelta(minutes=1)).hour * 60 + (t - dt.timedelta(minutes=1)).minute + 1) / 60
-                  for t, _ in pts]
-            grupos = [g for g in GRUPOS_GEN if any(r[g] > 0.5 for _, r in pts)]
+            xs = [min_dia(t) / 60 for t, _ in pts]
+            orden = list(pts[0][1])
+            grupos = [g for g in orden if any(r[g] > 0.5 for _, r in pts)]
             ax.stackplot(xs, [[r[g] for _, r in pts] for g in grupos],
-                         colors=[GRUPOS_GEN[g][0] for g in grupos], labels=grupos, alpha=0.9, lw=0)
+                         colors=[color_grupo(g) for g in grupos], labels=grupos, alpha=0.9, lw=0)
             tot = [sum(r.values()) for _, r in pts]
             ax.plot(xs, tot, color="#001a6f", lw=1)
             i = max(range(len(tot)), key=tot.__getitem__)
@@ -486,7 +511,11 @@ def grafico_generacion(gen, hoy, ruta):
     axes[1].xaxis.set_minor_locator(MultipleLocator(0.5))
     axes[1].set_xticks(range(0, 25, 2), [f"{h:02d}:00" for h in range(0, 25, 2)])
     axes[1].set_xlabel("Hora (fin del intervalo de 30 min)", fontsize=8)
-    h, l = axes[0].get_legend_handles_labels()
+    vistos = {}
+    for ax in axes:
+        for hh, ll in zip(*ax.get_legend_handles_labels()):
+            vistos.setdefault(ll, hh)
+    h, l = list(vistos.values()), list(vistos)
     fig.legend(h[::-1], l[::-1], fontsize=7.5, loc="lower center", ncol=4, frameon=False,
                bbox_to_anchor=(0.5, 0.012))
     fig.suptitle("Producción del SEIN por tipo de recurso cada 30 min · MW", fontsize=10)

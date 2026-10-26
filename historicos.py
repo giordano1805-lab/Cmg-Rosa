@@ -3,7 +3,7 @@
 Series históricas para comparar contra el año anterior (cacheadas en data/):
 
 - data/demanda_diaria.csv   fecha, energia_mwh, intervalos, max_mw     (Portal de Información, desde ene del año previo)
-- data/hidro_pasada.csv     fecha, hora, mw                             (IEOD · TIPO_RECURSO · H. PASADA)
+- data/recursos.csv         fecha, hora, pasada, regulacion, eolica     (IEOD · TIPO_RECURSO, MW)
 - data/embalses_semanal.json                                            (Evaluación Semanal · hoja 5.2)
 - data/volumenes_diarios.csv  fecha, cuenca, embalse, prom, final       (IEOD · PRINCIP_VOLÚMENES, Hm3)
 
@@ -21,7 +21,9 @@ import fuentes_coes as fc
 
 DATA = Path("data")
 F_DEM = DATA / "demanda_diaria.csv"
-F_HID = DATA / "hidro_pasada.csv"
+F_HID = DATA / "hidro_pasada.csv"     # formato anterior (solo pasada); se migra a recursos.csv
+F_REC = DATA / "recursos.csv"
+RECURSOS = ("pasada", "regulacion", "eolica")
 F_EMB = DATA / "embalses_semanal.json"
 F_VOL = DATA / "volumenes_diarios.csv"
 VENTANA_VOL = 31          # días de volumen diario (año actual y mismas fechas del año anterior)
@@ -173,22 +175,32 @@ def grafico_demanda_acum(rd, ruta, plt):
 
 # --------------------------------------------------------------------------- hidro de pasada
 def leer_hidro():
+    """{fecha: {hora: {pasada, regulacion, eolica}}}."""
     out = {}
-    if F_HID.exists():
+    if F_REC.exists():
+        with F_REC.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                out.setdefault(dt.date.fromisoformat(r["fecha"]), {})[r["hora"]] = {
+                    k: float(r[k]) for k in RECURSOS if r.get(k) not in (None, "")}
+    elif F_HID.exists():
         with F_HID.open(encoding="utf-8") as f:
             for r in csv.DictReader(f):
-                out.setdefault(dt.date.fromisoformat(r["fecha"]), {})[r["hora"]] = float(r["mw"])
+                out.setdefault(dt.date.fromisoformat(r["fecha"]), {})[r["hora"]] = {"pasada": float(r["mw"])}
     return out
 
 
 def guardar_hidro(h):
     DATA.mkdir(exist_ok=True)
-    with F_HID.open("w", newline="", encoding="utf-8") as f:
+    with F_REC.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["fecha", "hora", "mw"])
+        w.writerow(["fecha", "hora", *RECURSOS])
         for d in sorted(h):
             for hora in sorted(h[d], key=_hm_a_horas):
-                w.writerow([d.isoformat(), hora, f"{h[d][hora]:.1f}"])
+                w.writerow([d.isoformat(), hora, *(f"{h[d][hora][k]:.1f}" if k in h[d][hora] else "" for k in RECURSOS)])
+
+
+def _completo(dia_h):
+    return len(dia_h) >= 46 and all(all(k in r for k in RECURSOS) for r in dia_h.values())
 
 
 def leer_vol():
@@ -226,14 +238,14 @@ def _vol_de(hojas):
     return {(r["cuenca"], r["embalse"]): (r["prom"], r["final"]) for r in fc.volumenes_dia(hojas)}
 
 
-def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=420):
+def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     """Rellena hidro de pasada (mes actual y mismo mes del año anterior) y volúmenes diarios de embalses
     (últimos VENTANA_VOL días y mismas fechas del año anterior) con una sola descarga del IEOD por día."""
     h, v = leer_hidro(), leer_vol()
     if hojas_dia:
-        x = fc.hidro_pasada(hojas_dia)
+        x = fc.recursos_dia(hojas_dia)
         if x:
-            h[dia] = dict(x)
+            h[dia] = x
         y = _vol_de(hojas_dia)
         if y:
             v[dia] = y
@@ -241,7 +253,7 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=420):
     ant = [dt.date(dia.year - 1, dia.month, k) for k in range(1, calendar.monthrange(dia.year - 1, dia.month)[1] + 1)]
     vact = [dia - dt.timedelta(days=k) for k in range(VENTANA_VOL)]
     vant = [_un_anio_antes(d) for d in vact]
-    falta_h = {d for d in act + ant if d not in h or len(h[d]) < 46}
+    falta_h = {d for d in act + ant if d not in h or not _completo(h[d])}
     falta_v = {d for d in vact + vant if d not in v}
     orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant))
     t0 = time.time()
@@ -254,9 +266,9 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=420):
             hojas = fc.ieod_dia(d)
             if not hojas:
                 continue
-            x = fc.hidro_pasada(hojas)
+            x = fc.recursos_dia(hojas)
             if x:
-                h[d] = dict(x)
+                h[d] = x
             v[d] = _vol_de(hojas)
         except Exception as e:
             print("IEOD diario", d, e, file=sys.stderr)
@@ -304,7 +316,7 @@ def resumen_vol(dia: dt.date):
     return out
 
 
-def resumen_hidro(h, dia: dt.date):
+def resumen_hidro(h, dia: dt.date, clave="pasada"):
     act, ant = dia.year, dia.year - 1
     diario = {a: {} for a in (act, ant)}
     serie = {a: [] for a in (act, ant)}
@@ -312,14 +324,21 @@ def resumen_hidro(h, dia: dt.date):
         for k in range(1, calendar.monthrange(a, dia.month)[1] + 1):
             d = dt.date(a, dia.month, k)
             if d in h and (a == ant or d <= dia):
-                vals = [h[d][x] for x in sorted(h[d], key=_hm_a_horas)]
-                diario[a][k] = round(sum(vals) / len(vals), 1)
-                serie[a] += [[round(k - 1 + _hm_a_horas(x) / 24, 4), h[d][x]] for x in sorted(h[d], key=_hm_a_horas)]
+                hs = [x for x in sorted(h[d], key=_hm_a_horas) if clave in h[d][x]]
+                if not hs:
+                    continue
+                diario[a][k] = round(sum(h[d][x][clave] for x in hs) / len(hs), 1)
+                serie[a] += [[round(k - 1 + _hm_a_horas(x) / 24, 4), h[d][x][clave]] for x in hs]
     mtd = {}
     for a in (act, ant):
         vals = [v for k, v in diario[a].items() if k <= dia.day]
         mtd[a] = round(sum(vals) / len(vals), 1) if vals else None
-    return {"diario": diario, "serie": serie, "mtd": mtd, "act": act, "ant": ant, "mes": dia.month, "dias": dia.day}
+    return {"diario": diario, "serie": serie, "mtd": mtd, "act": act, "ant": ant, "mes": dia.month, "dias": dia.day,
+            "clave": clave}
+
+
+NOMBRES_REC = {"pasada": "Generación hidroeléctrica de pasada", "regulacion": "Generación hidroeléctrica de embalse (regulación)",
+               "eolica": "Generación eólica"}
 
 
 def grafico_hidro(rh, ruta, plt):
@@ -344,7 +363,7 @@ def grafico_hidro(rh, ruta, plt):
     ax.set_ylim(bottom=0)
     ax.set_ylabel("MW", fontsize=8)
     ax.set_xlabel(f"Día de {MESES_C[rh['mes'] - 1].lower()} (líneas tenues: cada 30 min)", fontsize=8)
-    ax.set_title(f"Generación hidroeléctrica de pasada\n{sub}", fontsize=9.5)
+    ax.set_title(f"{NOMBRES_REC.get(rh.get('clave', 'pasada'))}\n{sub}", fontsize=9.5)
     ax.grid(alpha=0.3)
     ax.legend(fontsize=7.5, frameon=False, loc="lower left", ncol=2)
     for s in ("top", "right"):

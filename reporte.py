@@ -156,6 +156,20 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
         m1, m0 = rh["mtd"][rh["act"]], rh["mtd"][rh["ant"]]
         b.append(f"Hidro de pasada: promedio del mes {m1:,.0f} MW vs. {m0:,.0f} MW en {rh['ant']} "
                  f"(<b>{(m1 / m0 - 1) * 100:+.0f}%</b>).")
+    for k, nom in (("regulacion", "Hidro de embalse"), ("eolica", "Eólica")):
+        rr = extra.get(k)
+        if rr and rr["mtd"].get(rr["act"]) and rr["mtd"].get(rr["ant"]):
+            m1, m0 = rr["mtd"][rr["act"]], rr["mtd"][rr["ant"]]
+            b.append(f"{nom}: promedio del mes {m1:,.0f} MW vs. {m0:,.0f} MW en {rr['ant']} "
+                     f"(<b>{(m1 / m0 - 1) * 100:+.0f}%</b>).")
+    dd = extra.get("diesel")
+    if dd and dd["unidades"]:
+        rf = [u for u in dd["unidades"] if u["rf"]]
+        ot = [u for u in dd["unidades"] if not u["rf"]]
+        b.append("Despacho con diésel/residual: " + "; ".join(
+            f"{'Reserva Fría' if g is rf else 'otras centrales'}: " + ", ".join(
+                f"{u['nombre']}" + (f" ({u['mwh']:,.0f} MWh)" if u.get("mwh") else "") for u in g)
+            for g in (rf, ot) if g) + ".")
     ind_g = ieod.get("indisponibilidades") or []
     if ind_g:
         sin = [r for r in ind_g if not r.get("diesel")]
@@ -311,10 +325,25 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
     el.append(img(graficos.get("generacion"), 11))
     el.append(img(graficos.get("demanda"), 7.5))
     el.append(PageBreak())
-    el.append(Paragraph("Demanda vs. año anterior e hidro de pasada", h1))
+    dd = extra.get("diesel")
+    if dd and dd["unidades"]:
+        el.append(Paragraph(f"Centrales despachadas con diésel/residual <font size=8 color='{GRIS}'>"
+                            f"(IEOD del {dia_ieod:%d/%m/%Y}: HOP y despacho ejecutado)</font>", h2))
+        el.append(tabla(["Central / grupo", "Empresa", "Clasificación", "Combustible", "Horario", "MW máx.", "MWh",
+                         "Tipo de operación"],
+                        [[u["nombre"], u["empresa"], "Reserva Fría" if u["rf"] else "Otra", u["combustible"],
+                          f"{u['inicio']:%H:%M}–{u['final']:%H:%M}" if u["inicio"] and u["final"] else "",
+                          f"{u['mw_max']:,.1f}" if u.get("mw_max") else "–", f"{u['mwh']:,.0f}" if u.get("mwh") else "–",
+                          u["tipo"].capitalize()] for u in dd["unidades"]],
+                        [0.15, 0.2, 0.12, 0.1, 0.1, 0.07, 0.07, 0.19]))
+        el.append(Spacer(1, 6))
+    el.append(Paragraph("Demanda vs. año anterior", h1))
     el.append(img(graficos.get("dem_mensual"), 7.6))
     el.append(img(graficos.get("dem_acum"), 6.6))
-    el.append(img(graficos.get("hidro"), 7.6))
+    el.append(PageBreak())
+    el.append(Paragraph("Hidro de pasada, hidro de embalse y eólica vs. año anterior", h1))
+    for k in ("hidro", "regulacion", "eolica"):
+        el.append(img(graficos.get(k), 7.3))
     el.append(PageBreak())
 
     fuente_ieod = f"IEOD del {dia_ieod:%d/%m/%Y}" if dia_ieod else "IEOD no disponible"
@@ -446,9 +475,12 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         cmg30[b] = [[_iso(t), round(r[b] / m.TC, 2)] for t, r in sorted(m_hist_rango(m, ind, dia))
                     if isinstance(r.get(b), float)]
     gen_dia = []
+    dd = extra.get("diesel")
+    sd = dd["serie"] if dd and dia_ieod == dia else None
     for t, r in sorted(gen.items()):
         if m.dia_operativo(t) == dia:
-            gen_dia.append({"t": _iso(t), **{k: round(v, 1) for k, v in m.agrupar(r).items()}})
+            g = m.agrupar(r, sd.get(m.min_dia(t), {}) if sd is not None else None)
+            gen_dia.append({"t": _iso(t), **{k: round(v, 1) for k, v in g.items()}})
     return {
         "generado": dt.datetime.now(fc.LIMA).isoformat(timespec="minutes"),
         "dia": dia.isoformat(), "hoy": hoy.isoformat(), "dia_ieod": _iso(dia_ieod), "tc": m.TC,
@@ -462,7 +494,9 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
                            for bl in m.BLOQUES},
         "bloques_mes": {bl: (round(v, 2) if v is not None else None) for bl, v in ind["prom_mes_bl"].items()},
         "cmg_30min": cmg30,
-        "generacion": gen_dia, "grupos_gen": {g: c for g, (c, _) in m.GRUPOS_GEN.items()},
+        "generacion": gen_dia, "grupos_gen": {g: m.color_grupo(g) for g in (gen_dia[0] if gen_dia else m.GRUPOS_GEN)
+                                              if g != "t"},
+        "diesel_unidades": _limpio((dd or {}).get("unidades") or []),
         "demanda_areas": ieod.get("demanda_areas") or [],
         "indisponibilidades": _limpio(ieod.get("indisponibilidades") or []),
         "lineas_220": _limpio(fc.filtrar_lineas_220(ieod.get("mantenimientos") or [])),
@@ -475,6 +509,8 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "programado_publicado": prog is not None,
         "demanda_hist": extra.get("demanda"),
         "hidro_pasada": extra.get("hidro"),
+        "hidro_regulacion": extra.get("regulacion"),
+        "eolica": extra.get("eolica"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
 
@@ -515,6 +551,11 @@ def generar(m, hist=None):
 
     extra = {}
     try:
+        if hojas and dia_ieod:
+            extra["diesel"] = fc.diesel_despacho(hojas, dia_ieod)
+    except Exception as e:
+        print("Despacho diésel no disponible:", e, file=sys.stderr)
+    try:
         extra["demanda"] = hi.resumen_demanda(hi.actualizar_demanda(dia), dia)
     except Exception as e:
         print("Demanda histórica no disponible:", e, file=sys.stderr)
@@ -522,6 +563,8 @@ def generar(m, hist=None):
         h, pend = hi.actualizar_hidro(dia, hojas if dia_ieod == dia else None)
         extra["hidro"] = hi.resumen_hidro(h, dia)
         extra["hidro"]["pendientes"] = len(pend)
+        extra["regulacion"] = hi.resumen_hidro(h, dia, "regulacion")
+        extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
     try:
@@ -557,13 +600,17 @@ def generar(m, hist=None):
     m.grafico_30min(hist, dia, g["30min"])
     if gen:
         g["generacion"] = tmp / "generacion.png"
-        m.grafico_generacion(gen, dia, g["generacion"])
+        sd = {dia_ieod: extra["diesel"]["serie"]} if extra.get("diesel") and dia_ieod else None
+        m.grafico_generacion(gen, dia, g["generacion"], sd)
     g["demanda"] = grafico_demanda(ieod.get("demanda_areas"), dia_ieod or dia, tmp / "demanda.png", plt)
     if extra.get("demanda"):
         g["dem_mensual"] = hi.grafico_demanda_mensual(extra["demanda"], tmp / "dem_mensual.png", plt)
         g["dem_acum"] = hi.grafico_demanda_acum(extra["demanda"], tmp / "dem_acum.png", plt)
     if extra.get("hidro"):
         g["hidro"] = hi.grafico_hidro(extra["hidro"], tmp / "hidro.png", plt)
+    for k in ("regulacion", "eolica"):
+        if extra.get(k) and any(extra[k]["diario"].values()):
+            g[k] = hi.grafico_hidro(extra[k], tmp / f"{k}.png", plt)
     if extra.get("cuencas"):
         g["embalses"] = hi.grafico_embalses(extra["cuencas"], tmp / "embalses.png", plt)
 
