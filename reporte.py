@@ -144,6 +144,13 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
         m1, m0 = rh["mtd"][rh["act"]], rh["mtd"][rh["ant"]]
         b.append(f"Hidro de pasada: promedio del mes {m1:,.0f} MW vs. {m0:,.0f} MW en {rh['ant']} "
                  f"(<b>{(m1 / m0 - 1) * 100:+.0f}%</b>).")
+    hc = extra.get("hidro_centrales")
+    if hc and hc["centrales"]:
+        baj = [c for c in hc["centrales"] if c["delta"] < 0][:4]
+        if baj:
+            b.append(f"Centrales hidro con mayor caída vs. {hc['ant']} (días {hc['desde']}–{hc['hasta']}): " +
+                     ", ".join(f"{c['central']} {c['delta']:+,.1f} GWh"
+                               + (f" ({c['var_pct']:+.0f}%)" if c["var_pct"] is not None else "") for c in baj) + ".")
     for k, nom in (("regulacion", "Hidro de embalse"), ("eolica", "Eólica")):
         rr = extra.get(k)
         if rr and rr["mtd"].get(rr["act"]) and rr["mtd"].get(rr["ant"]):
@@ -331,6 +338,18 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
     for k in ("hidro", "regulacion", "eolica"):
         el.append(img(graficos.get(k), 7.3))
     el.append(PageBreak())
+    hc = extra.get("hidro_centrales")
+    if hc and hc["centrales"]:
+        el.append(Paragraph(f"Centrales hidroeléctricas: producción del mes vs. {hc['ant']} "
+                            f"<font size=8 color='{GRIS}'>(días {hc['desde']}–{hc['hasta']} de ambos años, IEOD)</font>", h1))
+        filas = [[c["central"], c["empresa"], c["tipo"], f"{c['act']:,.2f}", f"{c['ant']:,.2f}",
+                  (f"<font color='#c5221f'>{c['delta']:+,.2f}</font>" if c["delta"] < 0 else f"{c['delta']:+,.2f}"),
+                  f"{c['var_pct']:+.0f}%" if c["var_pct"] is not None else "–"] for c in hc["centrales"][:25]]
+        el.append(tabla(["Central", "Empresa", "Tipo", f"GWh {hc['act']}", f"GWh {hc['ant']}", "Diferencia", "Var."],
+                        filas, [0.2, 0.3, 0.1, 0.1, 0.1, 0.11, 0.09]))
+        el.append(P(f"Total hidro: {hc['total_act']:,.1f} GWh vs. {hc['total_ant']:,.1f} GWh. Se muestran las 25 "
+                    f"centrales con mayor caída.", nota))
+        el.append(PageBreak())
 
     fuente_ieod = f"IEOD del {dia_ieod:%d/%m/%Y}" if dia_ieod else "IEOD no disponible"
     el.append(Paragraph(f"Indisponibilidades de generación <font size=8 color='{GRIS}'>({fuente_ieod})</font>", h1))
@@ -498,9 +517,11 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "hidro_pasada": extra.get("hidro"),
         "hidro_regulacion": extra.get("regulacion"),
         "flujos": extra.get("flujos") or {},
+        "prog_mensual": extra.get("prog_mensual") or {"mes": None, "regs": []},
         "enlaces": extra.get("enlaces") or {},
         "congestion": extra.get("congestion") or {"columnas": [], "registros": []},
         "eolica": extra.get("eolica"),
+        "hidro_centrales": extra.get("hidro_centrales"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
 
@@ -508,6 +529,37 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
 def m_hist_rango(m, ind, dia):
     """Intervalos del día evaluado y del anterior (para la curva de 30 min)."""
     return [(t, r) for t, r in ind["_hist"].items() if m.dia_operativo(t) in (dia, dia - dt.timedelta(days=1))]
+
+
+# --------------------------------------------------------------------------- programa mensual
+F_PM = Path("data") / "programa_mensual.json"
+
+
+def programa_mensual(hoy, hojas_ieod=None):
+    """Intervenciones de generación con MW indisponibles del Programa Mensual de Mantenimiento (cache 2 días)."""
+    mes = f"{hoy:%Y-%m}"
+    previo = json.loads(F_PM.read_text(encoding="utf-8")) if F_PM.exists() else None
+    if previo and previo.get("mes") == mes and (hoy - dt.date.fromisoformat(previo["consultado"])).days < 2 \
+            and previo.get("regs"):
+        regs = previo["regs"]
+    else:
+        crudos, diag = fc.programa_mensual(hoy)
+        (Path("data") / "explora6").mkdir(parents=True, exist_ok=True)
+        (Path("data") / "explora6" / "programa_mensual_diag.json").write_text(
+            json.dumps(diag, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+        if not crudos:
+            return previo if previo and previo.get("mes") == mes else {"mes": mes, "regs": [], "fuente": None}
+        mh, hs = (fc.combustibles_hop(hojas_ieod), fc.centrales_hidro(hojas_ieod)) if hojas_ieod else ({}, set())
+        regs = []
+        for r in fc.solo_generacion(crudos):
+            if r["mw"] <= 0 or not r["inicio"]:
+                continue
+            r["tecnologia"] = fc.tecnologia(r, mh, hs)
+            r["diesel"] = r["tecnologia"] == "Diésel"
+            regs.append({k: _iso(v) for k, v in r.items()})
+        previo = {"mes": mes, "consultado": hoy.isoformat(), "fuente": diag.get("usado"), "regs": regs}
+        F_PM.write_text(json.dumps(previo, ensure_ascii=False), encoding="utf-8")
+    return previo
 
 
 # --------------------------------------------------------------------------- orquestación
@@ -562,6 +614,7 @@ def generar(m, hist=None):
         extra["hidro"] = hi.resumen_hidro(h, dia)
         extra["hidro"]["pendientes"] = len(pend)
         extra["regulacion"] = hi.resumen_hidro(h, dia, "regulacion")
+        extra["hidro_centrales"] = hi.resumen_centrales(dia)
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
@@ -595,6 +648,10 @@ def generar(m, hist=None):
     except Exception as e:
         print("Intervenciones no disponibles:", e, file=sys.stderr)
         prog = None
+    try:
+        extra["prog_mensual"] = programa_mensual(hoy, hojas)
+    except Exception as e:
+        print("Programa mensual no disponible:", e, file=sys.stderr)
     try:
         gen, _ = m.generacion(dia - dt.timedelta(days=1), dia)
     except Exception as e:

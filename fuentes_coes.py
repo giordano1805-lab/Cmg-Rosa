@@ -346,6 +346,86 @@ def intervenciones_programadas(dia: dt.date):
     return []
 
 
+def _regs_mantenimiento(hojas):
+    """Registros de intervenciones de cualquier hoja que tenga EMPRESA / EQUIPO / INICIO (formatos variables)."""
+    orden = sorted(hojas, key=lambda k: (not ("PROGRAM" in norm(k) or "MANT" in norm(k)), k))
+    for nombre in orden:
+        filas = tabla(hojas[nombre], ["EMPRESA", "EQUIPO", "INICIO"])
+        if not filas:
+            continue
+        regs = []
+        for r in filas:
+            if not texto(r.get("EMPRESA")):
+                continue
+            r = dict(r)
+            if "MW INDISP." not in r:
+                k = next((k for k in r if k.startswith("MW")), None)
+                r["MW INDISP."] = r.get(k) if k else None
+            if r.get("FINAL") is None:
+                k = next((k for k in r if k.startswith("FIN")), None)
+                r["FINAL"] = r.get(k) if k else None
+            reg = _reg_intervencion(r)
+            if not reg["clase"]:
+                reg["clase"] = clasificar_equipo(reg["equipo"], reg["ubicacion"], reg["descripcion"])
+            regs.append(reg)
+        if regs:
+            return nombre, regs
+    return None, []
+
+
+def programa_mensual(ref: dt.date):
+    """Programa Mensual de Mantenimiento del COES del mes de `ref`: (registros, diagnóstico)."""
+    diag = {"buscado": f"{ref:%Y-%m}", "rutas": []}
+    base = "Operación/Programa de Mantenimiento/Programa Mensual/"
+    anio = next((i for i in _listar_c(base) if i.endswith("/") and _nombre(i).startswith(str(ref.year))), None)
+    diag["rutas"].append([base, _listar_c(base)[:40]])
+    if not anio:
+        return [], diag
+    mes_n = MESES[ref.month - 1]
+    items = _listar_c(anio)
+    diag["rutas"].append([anio, items[:60]])
+    mes = next((i for i in items if i.endswith("/") and (re.match(rf"0?{ref.month}\D", _nombre(i) + "_")
+                                                      or mes_n in norm(_nombre(i)))), None)
+    archivos = []
+    if mes:
+        for i in _listar_c(mes):
+            if i.endswith("/"):
+                archivos += [j for j in _listar_c(i) if not j.endswith("/")]
+            else:
+                archivos.append(i)
+        diag["rutas"].append([mes, _listar_c(mes)[:60]])
+    else:
+        archivos = [i for i in items if not i.endswith("/") and mes_n in norm(_nombre(i))]
+    cl = lambda i: re.sub(r"[^A-Z0-9]", "", norm(_nombre(i)))
+    cands = [i for i in archivos if i.lower().endswith((".zip", ".xlsx", ".xls", ".xlsm"))]
+    cands.sort(key=lambda i: (not ("ANEXO1" in cl(i) or "MANTENIMIENTO" in cl(i)), "ANALISIS" in cl(i), i))
+    diag["candidatos"] = cands[:10]
+    for ruta in cands[:6]:
+        b = bajar(ruta)
+        if not b:
+            continue
+        libros = []
+        if ruta.lower().endswith(".zip"):
+            try:
+                z = zipfile.ZipFile(io.BytesIO(b))
+                libros = [(n, z.read(n)) for n in z.namelist() if n.lower().endswith((".xlsx", ".xls", ".xlsm"))]
+            except Exception:
+                continue
+        else:
+            libros = [(ruta, b)]
+        for n, contenido in libros:
+            try:
+                hojas = libro(contenido)
+            except Exception:
+                continue
+            hoja, regs = _regs_mantenimiento(hojas)
+            diag.setdefault("libros", []).append([n, list(hojas)[:20], hoja, len(regs)])
+            if regs:
+                diag["usado"] = [ruta, n, hoja]
+                return regs, diag
+    return [], diag
+
+
 # --------------------------------------------------------------------------- portal de información
 def demanda_ejecutada(dia: dt.date):
     j = S.post(RAIZ + "portalinformacion/demanda",
@@ -682,6 +762,35 @@ def diesel_despacho(hojas, dia: dt.date):
     orden_c = {"Diésel D2": 0, "Residual": 1, "Gas de refinería": 2}
     unidades.sort(key=lambda u: (orden_c[u["tipo_comb"]], not u["rf"], -(u["mwh"] or 0)))
     return {"unidades": unidades, "serie": serie}
+
+
+def hidro_por_central(hojas):
+    """Energía del día por central hidroeléctrica (MWh, pasada y regulación) del cuadro derecho de TIPO_RECURSO."""
+    filas = hojas.get("TIPO_RECURSO") or []
+    for i, f in enumerate(filas[:15]):
+        cab = [norm(x) for x in f]
+        if "CENTRAL" in cab and any("PASADA" in c and "HIDRO" in c for c in cab):
+            jc = cab.index("CENTRAL")
+            je = cab.index("EMPRESA") if "EMPRESA" in cab else jc - 1
+            jp = next(j for j, c in enumerate(cab) if "PASADA" in c and "HIDRO" in c)
+            jr = next((j for j, c in enumerate(cab) if "REGULACION" in c and "HIDRO" in c), None)
+            out, emp = {}, ""
+            for g in filas[i + 1:]:
+                c = texto(g[jc]) if jc < len(g) else ""
+                e = texto(g[je]) if je < len(g) else ""
+                if norm(e).startswith("TOTAL") or norm(c).startswith("TOTAL"):
+                    break
+                emp = e or emp
+                if not c:
+                    continue
+                vp = numero(g[jp]) if jp < len(g) else None
+                vr = numero(g[jr]) if jr is not None and jr < len(g) else None
+                if vp is None and vr is None:
+                    continue
+                nombre = re.sub(r"^(M\.?C\.?H\.?|C\.?\s?H\.?|P\.?C\.?H\.?|CH)\s*", "", norm(c)).title()
+                out[nombre] = {"empresa": emp.title(), "pasada": vp or 0.0, "regulacion": vr or 0.0}
+            return out
+    return {}
 
 
 def ieod_dia(d: dt.date):
