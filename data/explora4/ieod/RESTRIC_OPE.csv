@@ -1,0 +1,62 @@
+,,,,,,,,
+,,,,,,,,
+,"domingo, 25 de Octubre del 2026",,,,,,,
+,,,,,,,,
+,RESTRICCIONES OPERATIVAS,,,,,,,
+,FECHA,"HORA
+INICIO","HORA
+FINAL",EMPRESA,UBICACIÓN,T.Eq.,EQUIPO,DESCRIPCIÓN
+,25/10/2026,00:00,24:00,ATRIA ENERGIA S.A.C.,C.H. PURMACANA,CH,CENTRAL,"Conforme a lo informado por ATRIA mediante carta, la C.H. PURMACANA se encuentrá fuera de servicio debido a que se prese"
+,25/10/2026,00:00,24:00,CHINANGO S.A.C.,C.H. CHIMAY,CH,CENTRAL,".Según el correo informado el 16/09, a partir del 17/09, por un periodo de 63 días por trabajos de terceros en el río ub"
+,25/10/2026,00:00,24:00,EGASA,S.E. CONVERTIDOR,BARRA,BARRA138KV,EGASA limitó la capacidad del transformador 138 kV/33 kV a 50 MVA por deterioro del aislamiento.
+,25/10/2026,00:00,24:00,EMPRESA DE GENERACION HUALLAGA,C.H. CHAGLLA,CH,CENTRAL,Según lo informado el día 19/02/2026 vía correo electrónico. Se reduce la banda de regulación (RSF) para las unidades G1
+,25/10/2026,00:00,24:00,ENEL GENERACION PIURA S.A.,C.T. MALACAS,CT,CENTRAL,"De acuerdo con comunicación eléctronica del día 09/06, ENEL GENERACIÓN PIURA informa una capacidad de su ducto de almace"
+,25/10/2026,00:00,24:00,ENEL GENERACION PIURA S.A.,C.T. MALACAS,GT,TG4,"De acuerdo a lo informado por correo electrónico el día 22.10.26, con la disponibilidad de aproximadamente 18 MMPCD (509"
+,25/10/2026,00:00,24:00,ENEL GENERACION PIURA S.A.,C.T. MALACAS,GT,TG4,"Según correo del 01/10, se van a tomar nuevos parámetros de TMO y TMA de la Unidad TG4 de la C.T. Malacas, los cuales se"
+,25/10/2026,00:00,24:00,ENEL GENERACION PIURA S.A.,C.T. RESERVA FRIA DE GENERACION TALARA,GT,TG5,De acuerdo con lo informado por ENEL PIURA la unidad TG5 tiene un tiempo entre arranques de 8.5 horas.
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.H. QUITARACSA,CH,CENTRAL,"De acuerdo con la Carta N° ENG/553-2026, la condición operativa requerida consiste en que la CH Quitaracsa opere con una"
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.H. YUNCÁN,GH,G2,"Según la carta N° ENG/577-2025 enviada por su representada, se limita temporalmente como mínimo a 0.95 su factor de pote"
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.H. YUNCÁN,GH,G3,"Según la carta N° ENG/275-2026 enviada por su representada, se limita temporalmente como mínimo a 0.95 su factor de pote"
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.H. YUNCÁN,GH,G3,"Según la carta N° ENG/ 198-2024 enviada por su representada, se opera de forma continua el G3 de la CH Yuncán, debido a "
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.T. CHILCA 1,CT,CENTRAL,"Con carta ENG/971-2023, indica que no puede cumplir con las IO considerada en el PDO_17122023 dado que vulneran la segur"
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.T. CHILCA 1,CT,CENTRAL,"Restricción de temperatura de la C.T Chilca, ver valor en el modelo de despacho."
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.T. CHILCA 1,CT,CENTRAL,"Según carta ENG/587-2026, se informó que debido a un posible trabamiento de la válvula 3 del sistema de enfriamiento de "
+,25/10/2026,00:00,24:00,ENGIE ENERGIA PERU S.A.A.,C.T. CHILCA 2,CT,CENTRAL,"Con carta ENG/971-2023, indica que no puede cumplir con las IO considerada en el PDO_17122023 dado que vulneran la segur"
+,25/10/2026,00:00,24:00,FENIX POWER PERÚ,C.T. FENIX,CT,CENTRAL,"De acuerdo con lo comunicado en el correo del día 06.05.2025, la CT Fenix cuenta con TMO de 168 hrs en todos sus modos d"
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.H. CERRO DEL AGUILA,CH,CENTRAL,"De acuerdo a lo informado el día 17/11 por la empresa KALLPA, las unidades G1, G2 y G3 cada una tiene un TA = 15min."
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.H. MINI CENTRAL CERRO DEL AGUILA,CH,CENTRAL,"De acuerdo con lo informado por Kallpa el día 20.08.2025, la MCH Cerro del Águila tiene TA=0.07h, TMO=0.08h, TMA=0.16h."
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.H. MINI CENTRAL CERRO DEL AGUILA,CH,CENTRAL,Caudal ecológico de la Mini CH Cerro del Águila es de 6.1 m3/s correspondiente al mes de octubre.
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.T. KALLPA,CT,CENTRAL,"Se considera las IO, de acuerdo con la comunicación por correo de Kallpa del día 14.12.2023 a las 22:36 h, entre lo más "
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.T. KALLPA,CT,CENTRAL,"Restricción de temperatura de la C.T Kallpa, ver valor en el modelo de despacho."
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.T. KALLPA,CT,CENTRAL,"Restricciones operativas en ciclo simple.
+Tiempo de Arranque (TA): 37 minutos.
+Tiempo Mínimo de Operación (TMO): 8 horas"
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.T. LAS FLORES,CT,CENTRAL,"De acuerdo con el correo del 15.12 se considera las IO en la Tg de la CT Las Flores:
+-TMO: 8 horas
+-TMA: 0.5 horas"
+,25/10/2026,00:00,24:00,KALLPA GENERACION S.A.,C.T. LAS FLORES,CT,CENTRAL,"De acuerdo con la carta KG- 0086/24, el modo de operación 1x1 tiene TMO=168 horas, TMA=168 horas"
+,25/10/2026,00:00,24:00,ORAZUL ENERGY PERÚ,C.H. CAÑÓN DEL PATO,CH,CENTRAL,"Con carta OZL-0245-2026 enviada el 31/05/2026, se indicó que se establece un nuevo umbral de distribución de caudales en"
+,25/10/2026,00:00,24:00,ORAZUL ENERGY PERÚ,C.H. CAÑÓN DEL PATO,CH,CENTRAL,"De acuerdo con lo informado por Orazul el día 19.08.2025, las unidades G1, G2, G3, G4, G5 y G6 presentan, cada una, las "
+,25/10/2026,00:00,24:00,ORAZUL ENERGY PERÚ,C.H. CAÑÓN DEL PATO,CH,CENTRAL,"De acuerdo con lo informado por Orazul el día 03.10.2025, las unidades G1, G2, G3, G4, G5 y G6, tienen un TMA en Estado "
+,25/10/2026,00:00,24:00,ORAZUL ENERGY PERÚ,C.H. CARHUAQUERO,CH,CENTRAL,La restricción ha sido ratificada con la carta OZL-0592-2024 (Exp: 202400007649). Mantener un caudal mínimo mayor o igua
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.H. HUINCO,CH,CENTRAL,"SERVICIO BLACK START NO DISPONIBLE EN LA C.H. HUINCO, NO ES POSIBLE GARANTIZAR LA EFECTIVIDAD DEL SERVICIO DEBIDO AL RIE"
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.H. MATUCANA,CH,CENTRAL,"SERVICIO BLACK START NO DISPONIBLE EN LA C.H. MATUCANA, NO ES POSIBLE GARANTIZAR LA EFECTIVIDAD DEL SERVICIO DEBIDO AL R"
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.S. CENTRAL SOLAR RUBI,CS,CENTRAL,"Restricción operativa temporal de suspender la regulación por tensión en C.S. Rubí, como consecuencia del evento de ince"
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. SANTA ROSA,GT,TG7,"ORYGEN informó el 27/06, que presentan la restricción operativa temporal de: TG7 de la CT Santa Rosa (EMPOP-24-2024-San "
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. SANTA ROSA,GT,TG7,De acuerdo con la carta EMPOP-773-2024. El modo de operación sin inyección de agua de la unidad TG7 de la CT Santa Rosa 
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. SANTA ROSA,GT,UTI5,"ORYGEN informó el 22/07, que presentan la restricción operativa temporal de: la UTI5 tiene un TMO=6h y TMA=10h."
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. SANTA ROSA,GT,UTI6,"ORYGEN informó el 22/07, que presentan la restricción operativa temporal de:  la UTI6 tiene un TMO=6h y TMA=10h."
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. SANTA ROSA II,GT,TG8,"Según carta GRE-19-2026, ORYGEN comunica que el tiempo de arranque de la unidad TG8 es de 30 minutos, por posible consec"
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. SANTA ROSA II,GT,TG8,"ORYGEN informó el 07/07/2026, que presentan la restricción operativa temporal de: Tiempo de Arranque (TA):30 min, Tiempo"
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. VENTANILLA,CT,CENTRAL,"Con carta EMPOP-225-2023, indica que no puede cumplir con las IO considerada en el PDO_15122023 dado que vulneran la seg"
+,25/10/2026,00:00,24:00,ORYGEN PERU S.A.A.,C.T. VENTANILLA,CT,CENTRAL,"ORYGEN informó mediante carta COES/D-887-2023, que presentan la restricción operativa temporal de: TMO=7.03h y TMA=218mi"
+,25/10/2026,00:00,24:00,SAMAY I S.A.C,C.T. PUERTO BRAVO,CT,CENTRAL,"Con carta SI-0047-2024, se considera las IO para todos los grupos, los siguientes valores en horas: TA (0.43), TMO (2), "
+,25/10/2026,00:00,24:00,STATKRAFT S.A,C.H. CAHUA,CH,CENTRAL,"De acuerdo con lo informado vía correo electronico el día 24.04.26, la unidad G1 de la CH Cahua tiene como limite máximo"
+,25/10/2026,00:00,24:00,STATKRAFT S.A,C.H. CAHUA,GH,G1,"De acuerdo con lo informado vía correo electrónico el día 29.05.26, la unidad G1 de la CH Cahua presenta un limite infer"
+,25/10/2026,00:00,24:00,STATKRAFT S.A,C.H. CAHUA,GH,G2,De acuerdo con lo comunicado por correo el día 20.07. La unidad G2 de la CH Cahua no puede brindad RSF debido a problema
+,25/10/2026,00:00,24:00,STATKRAFT S.A,C.H. CAHUA,GH,G2,"De acuerdo con lo informado vía correo electrónico el día 29.05.26, la unidad G2 de la CH Cahua presenta un limite infer"
+,25/10/2026,00:00,24:00,STATKRAFT S.A,C.H. GALLITO CIEGO,CH,CENTRAL,"De acuerdo con lo informado por Statkraft mediante correo del dia 19.01, la CH Gallito Ciego, no puede brindar servicio "
+,25/10/2026,00:00,24:00,TERMOCHILCA S.A.C.,C.T. SANTO DOMINGO DE LOS OLLEROS,CT,CENTRAL,TERMOCHILCA informó el 22/05/2026 que presentaría la restricción operativa temporal de: Tiempo mínimo entre arranques (T
+,25/10/2026,00:00,24:00,TERMOCHILCA S.A.C.,C.T. SANTO DOMINGO DE LOS OLLEROS,CT,CENTRAL,"Con carta GC-TCH-231-2023, indican: Tiempo entre arranques del modo 1x1 (ciclo combinado TG+TV): 24 horas."
+,25/10/2026,00:00,24:00,TERMOCHILCA S.A.C.,C.T. SANTO DOMINGO DE LOS OLLEROS,CT,CENTRAL,"Con carta TCH-00118-2026, de 13.02.2026, informó la restricción temporal operativa de potencia al mínimo técnico del cic"
+,25/10/2026,00:00,24:00,TERMOSELVA,C.T. AGUAYTÍA,CT,CENTRAL,Disponibilidad de 0 MMSCF para la CT Aguaytía.

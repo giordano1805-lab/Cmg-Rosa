@@ -1,0 +1,144 @@
+{
+ "fecha": "2026-10-26T10:15:57.945814-05:00",
+ "ieod": {
+  "dia": "2026-10-25",
+  "hojas": [
+   "EVENTOS",
+   "PRUEBAS ALEATORIAS",
+   "RESTRIC_OPE",
+   "RMC",
+   "MANTENIMIENTO EJECUTADOS",
+   "INGRESO OC",
+   "DESPACHO_EJECUTADO",
+   "REACTIVA",
+   "DEMANDA_AREAS",
+   "DEMANDA_UL",
+   "TIPO_RECURSO",
+   "GENERACION RER",
+   "VERTIMIENTO RER",
+   "COGENERACIÓN",
+   "EVO_PRO_ENE",
+   "G_AREAS",
+   "HOP",
+   "INDISP",
+   "RESERVA_FRÍA",
+   "PRINCIP_CAUDALES",
+   "PRINCIP_VOLÚMENES",
+   "DESCARGA_LAGUNAS",
+   "VERTIMIENTO_EMBALSES",
+   "STOCK_COMB",
+   "CONSUMO_COMB",
+   "PRESIÓN_GAS",
+   "TEMP_AMB",
+   "DISPONIBILIDAD_GAS",
+   "ENERGÍA_PRIMARIA",
+   "CALOR_ÚTIL",
+   "FLUJOS",
+   "FLUJOS_REACTIVA",
+   "INTERCONEXIONES",
+   "TENSION_BARRA",
+   "DESCONEXIÓN_RT",
+   "AISLADOS_TEMP",
+   "TRANSGRESIONES",
+   "AISLADOS_TEMP_GPS",
+   "DESV_DEMANDA_PRONOS",
+   "DESVIACIÓN",
+   "COSTO_OPE_EJEC",
+   "CALIFICA_OPE_UG",
+   "CONGESTION_SIST_TRANS",
+   "RRPF_RRSF",
+   "FLUJOS_INTERCONEXIÓN",
+   "OBS",
+   "CONCLUSIONES"
+  ]
+ },
+ "intervenciones_archivos": [
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo5_Restricción_de_Suministros_20261026.xlsx",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo5_Restricción_de_Suministros_20261026.xlsx",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo5_Restricción_de_Suministros_20261026.xlsx",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo5_Restricción_de_Suministros_20261026.xlsx",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo5_Restricción_de_Suministros_20261026.xlsx",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo4_Procedimientos_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo4_Procedimientos_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo4_Procedimientos_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo4_Procedimientos_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo4_Procedimientos_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo3_Análisis Eléctrico_20261026_PFD.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo3_Análisis Eléctrico_20261026_PFD.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo3_Análisis Eléctrico_20261026_PFD.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo3_Análisis Eléctrico_20261026_PFD.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo3_Análisis Eléctrico_20261026_PFD.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo2_Análisis Eléctrico_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo2_Análisis Eléctrico_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo2_Análisis Eléctrico_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo2_Análisis Eléctrico_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo2_Análisis Eléctrico_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo1_Intervenciones_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo1_Intervenciones_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo1_Intervenciones_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo1_Intervenciones_20261026.zip",
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo1_Intervenciones_20261026.zip"
+ ],
+ "intervenciones_zip": [
+  "Anexo1_Intervenciones_20261026/",
+  "Anexo1_Intervenciones_20261026/Anexo1_Intervenciones_(Agentes).xls",
+  "Anexo1_Intervenciones_20261026/Anexo1_Intervenciones_(Osinergmin).xls",
+  "Anexo1_Intervenciones_20261026/Thumbs.db"
+ ],
+ "intervenciones_hojas": {
+  "Anexo1_Intervenciones_20261026/Anexo1_Intervenciones_(Agentes).xls": [
+   "MANTTOS",
+   "EQUIPOS",
+   "CONFIG",
+   "Hoja4"
+  ],
+  "Anexo1_Intervenciones_20261026/Anexo1_Intervenciones_(Osinergmin).xls": [
+   "MANTENIMIENTO PROGRAMADO DIARIO"
+  ]
+ },
+ "prog_operacion": {
+  "Anexo2_Hidrologia_20261026.xlsx": [
+   "Embalses",
+   "Generadores"
+  ],
+  "Anexo5_Restricciones_Operativas_20261026.xlsx": [
+   "OPERACIONES"
+  ]
+ },
+ "semanal": {
+  "archivo": "Operación/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls",
+  "hojas": [
+   "MANTTOS",
+   "EQUIPOS",
+   "CONFIG",
+   "Hoja4"
+  ]
+ },
+ "descargas": {
+  "Post Operación/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx": {
+   "status": 200,
+   "bytes": 1213951
+  },
+  "Operación/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo1_Intervenciones_20261026.zip": {
+   "status": 200,
+   "bytes": 726688
+  },
+  "Operación/Programa de Operación/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo2_Hidrologia_20261026.xlsx": {
+   "status": 200,
+   "bytes": 15193
+  },
+  "Operación/Programa de Operación/Programa Diario/2026/10_OCTUBRE/Día 26/Anexo5_Restricciones_Operativas_20261026.xlsx": {
+   "status": 200,
+   "bytes": 16528
+  },
+  "Operación/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls": {
+   "status": 200,
+   "bytes": 2862592
+  }
+ }
+}
