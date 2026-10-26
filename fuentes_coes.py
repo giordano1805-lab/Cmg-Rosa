@@ -150,15 +150,65 @@ def libro(b, solo=None):
 
 
 # --------------------------------------------------------------------------- IEOD
+_LISTADOS = {}
+
+
+def _listar_c(ruta):
+    if ruta not in _LISTADOS:
+        try:
+            _LISTADOS[ruta] = listar(ruta)
+        except Exception:
+            _LISTADOS[ruta] = []
+    return _LISTADOS[ruta]
+
+
+def _nombre(ruta):
+    return ruta.rstrip("/").rsplit("/", 1)[-1]
+
+
+def _buscar_anexo_a(d: dt.date):
+    """Busca el Anexo A recorriendo las carpetas del COES (en años anteriores cambian nombres y formatos)."""
+    base = f"Post Operación/Reportes/IEOD/{d.year}/"
+    mes = next((i for i in _listar_c(base) if i.endswith("/") and re.match(rf"0?{d.month}\D", _nombre(i) + "_")), None)
+    if not mes:
+        return None
+    dia = next((i for i in _listar_c(mes) if i.endswith("/") and re.match(rf"0?{d.day}\D", _nombre(i) + "_")), None)
+    if not dia:
+        return None
+    archivos = [i for i in _listar_c(dia) if not i.endswith("/")]
+    clave = lambda i: re.sub(r"[^A-Z]", "", norm(_nombre(i)))
+    cands = [i for i in archivos if "ANEXOA" in clave(i)] or [i for i in archivos if "IEOD" in clave(i)]
+    for ruta in sorted(cands, key=lambda i: (not i.lower().endswith(".xlsx"), i)):
+        b = bajar(ruta)
+        if not b:
+            continue
+        if ruta.lower().endswith(".zip"):
+            with zipfile.ZipFile(io.BytesIO(b)) as z:
+                inner = next((n for n in z.namelist() if "ANEXOA" in re.sub(r"[^A-Z]", "", norm(n))
+                              and n.lower().endswith((".xlsx", ".xls"))), None)
+                if not inner:
+                    continue
+                b = z.read(inner)
+        return b
+    return None
+
+
 def descargar_ieod(hasta: dt.date, dias_atras=4, solo=None):
     """Último IEOD Anexo A disponible hasta la fecha indicada. Devuelve (fecha, hojas)."""
     for k in range(dias_atras):
         d = hasta - dt.timedelta(days=k)
         carpeta = f"Post Operación/Reportes/IEOD/{d.year}/{d.month:02d}_{MESES[d.month - 1].capitalize()}/{d.day:02d}/"
         b = bajar(carpeta + f"AnexoA_{d:%d%m}.xlsx")
+        if not b and d < dt.date.today() - dt.timedelta(days=3):
+            b = _buscar_anexo_a(d)
         if b:
             return d, libro(b, solo)
     return None, {}
+
+
+def listados_ieod():
+    """Listados de carpetas consultados (para diagnóstico)."""
+    return {k: v for k, v in _LISTADOS.items()}
 
 
 def _reg_intervencion(r):
@@ -418,6 +468,12 @@ def flujos_lineas(hojas):
     cab = filas[max(0, i0 - 8):i0]
     out = {}
     ncol = max(len(f) for f in filas[i0:i0 + 5])
+    fila_ss = next((f for f in cab if f and norm(f[0]).startswith("SS")), [])
+    ss, ultimo = {}, ""
+    for j in range(ncol):
+        if j < len(fila_ss) and texto(fila_ss[j]) and j > jh:
+            ultimo = texto(fila_ss[j])
+        ss[j] = ultimo
     for j in range(jh + 1, ncol):
         textos = [texto(f[j]) for f in cab if j < len(f) and texto(f[j])]
         cod = next((m.group(0) for t in textos for m in [re.search(r"\bL-?\s?\d{4}[A-Z]?(/\d)?\b", norm(t))] if m), None)
@@ -433,8 +489,39 @@ def flujos_lineas(hojas):
             if v is not None:
                 serie.append([_min_dia(texto(f[jh])), round(v, 1)])
         if serie:
-            nombre = next((t for t in textos if norm(t) != norm(cod) and not re.fullmatch(r"[\d.,-]+", t)), "")
+            nombre = ss.get(j) or next((t for t in textos if norm(t) != norm(cod) and not re.fullmatch(r"[\d.,-]+", t)), "")
             out[cod.replace(" ", "")] = {"kv": kv, "nombre": nombre, "serie": serie}
+    return out
+
+
+def interconexiones(hojas):
+    """Hoja INTERCONEXIONES: {enlace: {'lineas': {nombre: [[min_dia, MW]]}, 'total': [[min_dia, MW]]}}.
+    Signo según el COES (p. ej. Centro-Norte negativo = flujo de centro a norte)."""
+    filas = hojas.get("INTERCONEXIONES") or []
+    i0 = next((i for i, f in enumerate(filas[:30]) if len(f) > 1 and norm(f[0]) == "FECHA" and norm(f[1]) == "HORA"), None)
+    if i0 is None:
+        return {}
+    cab, grupos = filas[i0], filas[i0 - 1] if i0 else []
+    out, g = {}, ""
+    cols = []
+    for j in range(2, len(cab)):
+        if j < len(grupos) and texto(grupos[j]):
+            g = re.sub(r"(?i)^interconexi[oó]n\s+", "", texto(grupos[j])).title()
+        n = texto(cab[j])
+        if g and n:
+            cols.append((j, g, n))
+    for j, g, n in cols:
+        serie = []
+        for f in filas[i0 + 1:]:
+            if len(f) > 1 and re.fullmatch(r"\d{1,2}:\d{2}", texto(f[1])) and j < len(f) and numero(f[j]) is not None:
+                serie.append([_min_dia(texto(f[1])), round(numero(f[j]), 1)])
+        if not serie:
+            continue
+        e = out.setdefault(g, {"lineas": {}, "total": []})
+        if norm(n) == "TOTAL":
+            e["total"] = serie
+        else:
+            e["lineas"][n.title().replace("L-", "L-")] = serie
     return out
 
 
