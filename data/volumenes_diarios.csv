@@ -1,0 +1,775 @@
+fecha,cuenca,embalse,prom,final
+2025-09-25,Chaglla,Embalse Chaglla,4.69714,4.92320
+2025-09-25,Mantaro,Embalse Cerro Del Águila,4.66833,4.15000
+2025-09-25,Mantaro,Embalse Junin (Statkraft),122.10107,121.65279
+2025-09-25,Mantaro,Embalse Malpaso,20.98849,20.60066
+2025-09-25,Rímac,Embalse Pallca,0.28892,0.26500
+2025-09-25,Rímac,Presa Huinco,0.22818,0.23478
+2025-09-25,Rímac,Presa Sheque,0.18283,0.18900
+2025-09-25,Rímac,Pulmón Matucana,0.02303,0.01327
+2025-09-25,San Gabán,Embalse Macusani,26.50000,26.50000
+2025-09-25,San Gabán,Presa San Gaban,0.10200,0.05700
+2025-09-25,Santa,Reservorio San Diego,0.21200,0.21100
+2025-09-26,Chaglla,Embalse Chaglla,5.65338,5.90419
+2025-09-26,Mantaro,Embalse Cerro Del Águila,6.60958,7.30000
+2025-09-26,Mantaro,Embalse Junin (Statkraft),122.10087,122.10087
+2025-09-26,Mantaro,Embalse Malpaso,19.99194,19.57754
+2025-09-26,Rímac,Embalse Pallca,0.32433,0.26300
+2025-09-26,Rímac,Presa Huinco,0.14216,0.23352
+2025-09-26,Rímac,Presa Sheque,0.21258,0.21800
+2025-09-26,Rímac,Pulmón Matucana,0.02292,0.01477
+2025-09-26,San Gabán,Embalse Macusani,26.50000,26.50000
+2025-09-26,San Gabán,Presa San Gaban,0.10629,0.04800
+2025-09-26,Santa,Reservorio San Diego,0.20883,0.20700
+2025-09-27,Chaglla,Embalse Chaglla,6.89370,6.97361
+2025-09-27,Mantaro,Embalse Cerro Del Águila,7.90417,8.09000
+2025-09-27,Mantaro,Embalse Junin (Statkraft),121.65279,121.65279
+2025-09-27,Mantaro,Embalse Malpaso,19.47332,19.13869
+2025-09-27,Rímac,Embalse Pallca,0.37879,0.30800
+2025-09-27,Rímac,Presa Huinco,0.16314,0.26681
+2025-09-27,Rímac,Presa Sheque,0.20196,0.18500
+2025-09-27,Rímac,Pulmón Matucana,0.02698,0.02241
+2025-09-27,San Gabán,Embalse Macusani,26.50000,26.50000
+2025-09-27,San Gabán,Presa San Gaban,0.10337,0.04600
+2025-09-27,Santa,Reservorio San Diego,0.20608,0.20500
+2025-09-28,Chaglla,Embalse Chaglla,7.37811,7.95671
+2025-09-28,Mantaro,Embalse Cerro Del Águila,7.32042,6.40000
+2025-09-28,Mantaro,Embalse Junin (Statkraft),121.42895,121.20511
+2025-09-28,Mantaro,Embalse Malpaso,18.90942,18.93682
+2025-09-28,Rímac,Embalse Pallca,0.30038,0.27100
+2025-09-28,Rímac,Presa Huinco,0.20788,0.19528
+2025-09-28,Rímac,Presa Sheque,0.21567,0.24300
+2025-09-28,Rímac,Pulmón Matucana,0.02449,0.02912
+2025-09-28,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-09-28,San Gabán,Presa San Gaban,0.10717,0.05400
+2025-09-28,Santa,Reservorio San Diego,0.20308,0.20100
+2025-09-29,Chaglla,Embalse Chaglla,8.90364,8.99967
+2025-09-29,Mantaro,Embalse Cerro Del Águila,7.47917,7.73000
+2025-09-29,Mantaro,Embalse Junin (Statkraft),120.98146,120.75781
+2025-09-29,Mantaro,Embalse Malpaso,19.13121,19.12531
+2025-09-29,Rímac,Embalse Pallca,0.32742,0.26300
+2025-09-29,Rímac,Presa Huinco,0.16955,0.26688
+2025-09-29,Rímac,Presa Sheque,0.22983,0.24000
+2025-09-29,Rímac,Pulmón Matucana,0.02668,0.01934
+2025-09-29,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-09-29,San Gabán,Presa San Gaban,0.11100,0.07600
+2025-09-29,Santa,Reservorio San Diego,0.20021,0.19900
+2025-09-30,Chaglla,Embalse Chaglla,7.74735,8.16302
+2025-09-30,Mantaro,Embalse Cerro Del Águila,7.42750,7.01000
+2025-09-30,Mantaro,Embalse Junin (Statkraft),120.53436,120.31090
+2025-09-30,Mantaro,Embalse Malpaso,19.55185,19.63285
+2025-09-30,Rímac,Embalse Pallca,0.33379,0.31700
+2025-09-30,Rímac,Presa Huinco,0.17580,0.27195
+2025-09-30,Rímac,Presa Sheque,0.26300,0.23400
+2025-09-30,Rímac,Pulmón Matucana,0.02594,0.01926
+2025-09-30,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-09-30,San Gabán,Presa San Gaban,0.08583,0.06600
+2025-09-30,Santa,Reservorio San Diego,0.19758,0.19700
+2025-10-01,Chaglla,Embalse Chaglla,8.44627,8.83442
+2025-10-01,Mantaro,Embalse Cerro Del Águila,7.19583,7.85000
+2025-10-01,Mantaro,Embalse Junin (Statkraft),120.53436,120.31090
+2025-10-01,Mantaro,Embalse Malpaso,19.91420,19.74057
+2025-10-01,Rímac,Embalse Pallca,0.35821,0.28900
+2025-10-01,Rímac,Presa Huinco,0.15715,0.22583
+2025-10-01,Rímac,Presa Sheque,0.22958,0.25900
+2025-10-01,Rímac,Pulmón Matucana,0.02690,0.03021
+2025-10-01,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-10-01,San Gabán,Presa San Gaban,0.08521,0.07300
+2025-10-01,Santa,Reservorio San Diego,0.19546,0.19400
+2025-10-02,Chaglla,Embalse Chaglla,7.99111,8.12046
+2025-10-02,Mantaro,Embalse Cerro Del Águila,7.58708,6.89000
+2025-10-02,Mantaro,Embalse Junin (Statkraft),118.52750,118.08200
+2025-10-02,Mantaro,Embalse Malpaso,19.97869,19.85294
+2025-10-02,Rímac,Embalse Pallca,0.36108,0.28700
+2025-10-02,Rímac,Presa Huinco,0.15857,0.22725
+2025-10-02,Rímac,Presa Sheque,0.23392,0.25500
+2025-10-02,Rímac,Pulmón Matucana,0.02829,0.03148
+2025-10-02,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-10-02,San Gabán,Presa San Gaban,0.09050,0.12900
+2025-10-02,Santa,Reservorio San Diego,0.19312,0.19200
+2025-10-03,Chaglla,Embalse Chaglla,8.05088,8.01668
+2025-10-03,Mantaro,Embalse Cerro Del Águila,6.78625,6.02000
+2025-10-03,Mantaro,Embalse Junin (Statkraft),117.19400,116.75000
+2025-10-03,Mantaro,Embalse Malpaso,20.17603,20.46386
+2025-10-03,Rímac,Embalse Pallca,0.29712,0.28600
+2025-10-03,Rímac,Presa Huinco,0.19767,0.25507
+2025-10-03,Rímac,Presa Sheque,0.22937,0.22700
+2025-10-03,Rímac,Pulmón Matucana,0.04459,0.00000
+2025-10-03,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-10-03,San Gabán,Presa San Gaban,0.12042,0.14700
+2025-10-03,Santa,Reservorio San Diego,0.19067,0.18900
+2025-10-04,Chaglla,Embalse Chaglla,8.11999,7.69071
+2025-10-04,Mantaro,Embalse Cerro Del Águila,6.76958,7.13000
+2025-10-04,Mantaro,Embalse Junin (Statkraft),117.86000,118.08200
+2025-10-04,Mantaro,Embalse Malpaso,21.11704,21.90863
+2025-10-04,Rímac,Embalse Pallca,0.34175,0.28600
+2025-10-04,Rímac,Presa Huinco,0.18985,0.23439
+2025-10-04,Rímac,Presa Sheque,0.23775,0.25900
+2025-10-04,Rímac,Pulmón Matucana,0.02658,0.01782
+2025-10-04,San Gabán,Embalse Macusani,23.11000,23.11000
+2025-10-04,San Gabán,Presa San Gaban,0.13979,0.13200
+2025-10-04,Santa,Reservorio San Diego,0.18821,0.18700
+2025-10-05,Chaglla,Embalse Chaglla,7.90495,7.04832
+2025-10-05,Mantaro,Embalse Cerro Del Águila,7.27125,6.74000
+2025-10-05,Mantaro,Embalse Junin (Statkraft),118.52750,118.97300
+2025-10-05,Mantaro,Embalse Malpaso,22.26251,22.48661
+2025-10-05,Rímac,Embalse Pallca,0.32825,0.28100
+2025-10-05,Rímac,Presa Huinco,0.20401,0.22286
+2025-10-05,Rímac,Presa Sheque,0.27925,0.23400
+2025-10-05,Rímac,Pulmón Matucana,0.02152,0.01746
+2025-10-05,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-05,San Gabán,Presa San Gaban,0.11079,0.07100
+2025-10-05,Santa,Reservorio San Diego,0.18529,0.18400
+2025-10-06,Chaglla,Embalse Chaglla,7.66564,7.56419
+2025-10-06,Mantaro,Embalse Cerro Del Águila,7.43667,6.52000
+2025-10-06,Mantaro,Embalse Junin (Statkraft),119.19550,119.41800
+2025-10-06,Mantaro,Embalse Malpaso,22.91310,23.02873
+2025-10-06,Rímac,Embalse Pallca,0.36379,0.28200
+2025-10-06,Rímac,Presa Huinco,0.14239,0.22990
+2025-10-06,Rímac,Presa Sheque,0.21446,0.20000
+2025-10-06,Rímac,Pulmón Matucana,0.01804,0.01534
+2025-10-06,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-06,San Gabán,Presa San Gaban,0.10575,0.09800
+2025-10-06,Santa,Reservorio San Diego,0.18300,0.18100
+2025-10-07,Chaglla,Embalse Chaglla,7.70955,7.42729
+2025-10-07,Mantaro,Embalse Cerro Del Águila,6.41125,5.83000
+2025-10-07,Mantaro,Embalse Junin (Statkraft),119.86400,119.86400
+2025-10-07,Mantaro,Embalse Malpaso,23.24206,23.23123
+2025-10-07,Rímac,Embalse Pallca,0.34329,0.29600
+2025-10-07,Rímac,Presa Huinco,0.16464,0.22367
+2025-10-07,Rímac,Presa Sheque,0.22588,0.28500
+2025-10-07,Rímac,Pulmón Matucana,0.02078,0.02356
+2025-10-07,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-07,San Gabán,Presa San Gaban,0.11500,0.06500
+2025-10-07,Santa,Reservorio San Diego,0.18029,0.17900
+2025-10-08,Chaglla,Embalse Chaglla,6.93293,6.04762
+2025-10-08,Mantaro,Embalse Cerro Del Águila,6.76417,6.44000
+2025-10-08,Mantaro,Embalse Junin (Statkraft),120.98150,121.20500
+2025-10-08,Mantaro,Embalse Malpaso,23.24352,23.23123
+2025-10-08,Rímac,Embalse Pallca,0.38442,0.29400
+2025-10-08,Rímac,Presa Huinco,0.17563,0.23089
+2025-10-08,Rímac,Presa Sheque,0.31888,0.32000
+2025-10-08,Rímac,Pulmón Matucana,0.01915,0.02201
+2025-10-08,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-08,San Gabán,Presa San Gaban,0.10825,0.08400
+2025-10-08,Santa,Reservorio San Diego,0.17992,0.17900
+2025-10-09,Chaglla,Embalse Chaglla,5.68525,5.15103
+2025-10-09,Mantaro,Embalse Cerro Del Águila,6.72458,6.49000
+2025-10-09,Mantaro,Embalse Junin (Statkraft),121.42895,121.65279
+2025-10-09,Mantaro,Embalse Malpaso,23.31464,23.25774
+2025-10-09,Rímac,Embalse Pallca,0.35792,0.29900
+2025-10-09,Rímac,Presa Huinco,0.20379,0.22412
+2025-10-09,Rímac,Presa Sheque,0.24450,0.28300
+2025-10-09,Rímac,Pulmón Matucana,0.02108,0.01858
+2025-10-09,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-09,San Gabán,Presa San Gaban,0.12075,0.11400
+2025-10-09,Santa,Reservorio San Diego,0.17746,0.17600
+2025-10-10,Chaglla,Embalse Chaglla,6.29791,5.67123
+2025-10-10,Mantaro,Embalse Cerro Del Águila,7.88750,6.80000
+2025-10-10,Mantaro,Embalse Junin (Statkraft),122.10087,122.10087
+2025-10-10,Mantaro,Embalse Malpaso,23.37667,23.33890
+2025-10-10,Rímac,Embalse Pallca,0.33050,0.26800
+2025-10-10,Rímac,Presa Huinco,0.18248,0.24427
+2025-10-10,Rímac,Presa Sheque,0.30367,0.34400
+2025-10-10,Rímac,Pulmón Matucana,0.02728,0.02716
+2025-10-10,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-10,San Gabán,Presa San Gaban,0.12150,0.10800
+2025-10-10,Santa,Reservorio San Diego,0.17475,0.17400
+2025-10-11,Chaglla,Embalse Chaglla,6.34526,5.91735
+2025-10-11,Mantaro,Embalse Cerro Del Águila,7.06583,6.98000
+2025-10-11,Mantaro,Embalse Junin (Statkraft),122.54934,122.54934
+2025-10-11,Mantaro,Embalse Malpaso,23.41792,23.28661
+2025-10-11,Rímac,Embalse Pallca,0.37129,0.33600
+2025-10-11,Rímac,Presa Huinco,0.14400,0.22303
+2025-10-11,Rímac,Presa Sheque,0.34087,0.35800
+2025-10-11,Rímac,Pulmón Matucana,0.02703,0.01515
+2025-10-11,San Gabán,Embalse Macusani,19.49000,19.49000
+2025-10-11,San Gabán,Presa San Gaban,0.13292,0.12500
+2025-10-11,Santa,Reservorio San Diego,0.17467,0.17400
+2025-10-12,Chaglla,Embalse Chaglla,6.76611,6.87529
+2025-10-12,Mantaro,Embalse Cerro Del Águila,7.07958,7.67000
+2025-10-12,Mantaro,Embalse Junin (Statkraft),121.87683,121.65279
+2025-10-12,Mantaro,Embalse Malpaso,23.37624,23.50142
+2025-10-12,Rímac,Embalse Pallca,0.31783,0.27100
+2025-10-12,Rímac,Presa Huinco,0.20754,0.22141
+2025-10-12,Rímac,Presa Sheque,0.30925,0.32400
+2025-10-12,Rímac,Pulmón Matucana,0.01702,0.01592
+2025-10-12,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-12,San Gabán,Presa San Gaban,0.11562,0.09400
+2025-10-12,Santa,Reservorio San Diego,0.18379,0.18400
+2025-10-13,Chaglla,Embalse Chaglla,7.49335,6.90593
+2025-10-13,Mantaro,Embalse Cerro Del Águila,7.64792,7.69000
+2025-10-13,Mantaro,Embalse Junin (Statkraft),120.08804,119.41826
+2025-10-13,Mantaro,Embalse Malpaso,23.58401,23.65954
+2025-10-13,Rímac,Embalse Pallca,0.34744,0.28276
+2025-10-13,Rímac,Presa Huinco,0.19885,0.20227
+2025-10-13,Rímac,Presa Sheque,0.24621,0.26400
+2025-10-13,Rímac,Pulmón Matucana,0.01486,0.02250
+2025-10-13,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-13,San Gabán,Presa San Gaban,0.11254,0.08600
+2025-10-13,Santa,Reservorio San Diego,0.18312,0.18200
+2025-10-14,Chaglla,Embalse Chaglla,7.99143,6.90961
+2025-10-14,Mantaro,Embalse Cerro Del Águila,6.33542,4.85000
+2025-10-14,Mantaro,Embalse Junin (Statkraft),116.08603,114.97855
+2025-10-14,Mantaro,Embalse Malpaso,23.66157,23.69794
+2025-10-14,Rímac,Embalse Pallca,0.33057,0.27763
+2025-10-14,Rímac,Presa Huinco,0.20541,0.23969
+2025-10-14,Rímac,Presa Sheque,0.22692,0.23600
+2025-10-14,Rímac,Pulmón Matucana,0.02282,0.01972
+2025-10-14,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-14,San Gabán,Presa San Gaban,0.09987,0.08200
+2025-10-14,Santa,Reservorio San Diego,0.18042,0.17900
+2025-10-15,Chaglla,Embalse Chaglla,7.61883,7.31653
+2025-10-15,Mantaro,Embalse Cerro Del Águila,5.47042,6.47000
+2025-10-15,Mantaro,Embalse Junin (Statkraft),111.89480,111.01625
+2025-10-15,Mantaro,Embalse Malpaso,23.89096,24.05684
+2025-10-15,Rímac,Embalse Pallca,0.31470,0.29022
+2025-10-15,Rímac,Presa Huinco,0.18621,0.21506
+2025-10-15,Rímac,Presa Sheque,0.20975,0.25200
+2025-10-15,Rímac,Pulmón Matucana,0.01701,0.01738
+2025-10-15,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-15,San Gabán,Presa San Gaban,0.13358,0.15700
+2025-10-15,Santa,Reservorio San Diego,0.17767,0.17700
+2025-10-16,Chaglla,Embalse Chaglla,9.03721,9.67602
+2025-10-16,Mantaro,Embalse Cerro Del Águila,7.72125,8.23000
+2025-10-16,Mantaro,Embalse Junin (Statkraft),107.30439,106.21647
+2025-10-16,Mantaro,Embalse Malpaso,23.95702,23.90903
+2025-10-16,Rímac,Embalse Pallca,0.36122,0.33194
+2025-10-16,Rímac,Presa Huinco,0.18535,0.23963
+2025-10-16,Rímac,Presa Sheque,0.31850,0.31400
+2025-10-16,Rímac,Pulmón Matucana,0.02717,0.03549
+2025-10-16,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-16,San Gabán,Presa San Gaban,0.15004,0.15700
+2025-10-16,Santa,Reservorio San Diego,0.17479,0.17400
+2025-10-17,Chaglla,Embalse Chaglla,8.41370,7.48319
+2025-10-17,Mantaro,Embalse Cerro Del Águila,7.31833,5.74000
+2025-10-17,Mantaro,Embalse Junin (Statkraft),105.78267,105.34887
+2025-10-17,Mantaro,Embalse Malpaso,23.96509,23.97819
+2025-10-17,Rímac,Embalse Pallca,0.33092,0.34000
+2025-10-17,Rímac,Presa Huinco,0.19565,0.18488
+2025-10-17,Rímac,Presa Sheque,0.31529,0.28900
+2025-10-17,Rímac,Pulmón Matucana,0.00265,0.00100
+2025-10-17,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-17,San Gabán,Presa San Gaban,0.14721,0.14800
+2025-10-17,Santa,Reservorio San Diego,0.17246,0.17100
+2025-10-18,Chaglla,Embalse Chaglla,8.29535,7.41026
+2025-10-18,Mantaro,Embalse Cerro Del Águila,6.48458,8.20000
+2025-10-18,Mantaro,Embalse Junin (Statkraft),102.11053,101.03434
+2025-10-18,Mantaro,Embalse Malpaso,23.89156,23.80852
+2025-10-18,Rímac,Embalse Pallca,0.33992,0.30300
+2025-10-18,Rímac,Presa Huinco,0.15953,0.20922
+2025-10-18,Rímac,Presa Sheque,0.30746,0.26900
+2025-10-18,Rímac,Pulmón Matucana,0.01213,0.01739
+2025-10-18,San Gabán,Embalse Macusani,16.62000,16.62000
+2025-10-18,San Gabán,Presa San Gaban,0.14717,0.14500
+2025-10-18,Santa,Reservorio San Diego,0.17067,0.16900
+2025-10-19,Chaglla,Embalse Chaglla,7.60217,7.32881
+2025-10-19,Mantaro,Embalse Cerro Del Águila,8.32167,8.44000
+2025-10-19,Mantaro,Embalse Junin (Statkraft),97.61265,96.33354
+2025-10-19,Mantaro,Embalse Malpaso,23.77054,23.80852
+2025-10-19,Rímac,Embalse Pallca,0.33683,0.35800
+2025-10-19,Rímac,Presa Huinco,0.18550,0.24361
+2025-10-19,Rímac,Presa Sheque,0.25567,0.24300
+2025-10-19,Rímac,Pulmón Matucana,0.02331,0.02882
+2025-10-19,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-19,San Gabán,Presa San Gaban,0.13867,0.14900
+2025-10-19,Santa,Reservorio San Diego,0.16742,0.16700
+2025-10-20,Chaglla,Embalse Chaglla,7.67999,7.08496
+2025-10-20,Mantaro,Embalse Cerro Del Águila,8.40875,9.12000
+2025-10-20,Mantaro,Embalse Junin (Statkraft),91.89180,90.83908
+2025-10-20,Mantaro,Embalse Malpaso,24.03795,24.03088
+2025-10-20,Rímac,Embalse Pallca,0.31571,0.27600
+2025-10-20,Rímac,Presa Huinco,0.20692,0.19642
+2025-10-20,Rímac,Presa Sheque,0.28667,0.25200
+2025-10-20,Rímac,Pulmón Matucana,0.03319,0.03444
+2025-10-20,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-20,San Gabán,Presa San Gaban,0.14796,0.15500
+2025-10-20,Santa,Reservorio San Diego,0.16517,0.16400
+2025-10-21,Chaglla,Embalse Chaglla,5.94958,5.23954
+2025-10-21,Mantaro,Embalse Cerro Del Águila,8.95708,8.87000
+2025-10-21,Mantaro,Embalse Junin (Statkraft),87.07572,85.82595
+2025-10-21,Mantaro,Embalse Malpaso,24.03414,23.93574
+2025-10-21,Rímac,Embalse Pallca,0.31121,0.26800
+2025-10-21,Rímac,Presa Huinco,0.19704,0.22514
+2025-10-21,Rímac,Presa Sheque,0.28513,0.24900
+2025-10-21,Rímac,Pulmón Matucana,0.03872,0.04268
+2025-10-21,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-21,San Gabán,Presa San Gaban,0.15279,0.14900
+2025-10-21,Santa,Reservorio San Diego,0.16875,0.16900
+2025-10-22,Chaglla,Embalse Chaglla,5.78498,5.54523
+2025-10-22,Mantaro,Embalse Cerro Del Águila,8.96292,9.12000
+2025-10-22,Mantaro,Embalse Junin (Statkraft),84.16763,84.58147
+2025-10-22,Mantaro,Embalse Malpaso,23.77689,23.77400
+2025-10-22,Rímac,Embalse Pallca,0.32783,0.29200
+2025-10-22,Rímac,Presa Huinco,0.17373,0.23833
+2025-10-22,Rímac,Presa Sheque,0.22671,0.21000
+2025-10-22,Rímac,Pulmón Matucana,0.03297,0.02604
+2025-10-22,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-22,San Gabán,Presa San Gaban,0.14250,0.14500
+2025-10-22,Santa,Presa Shapiringo,0.20029,0.20700
+2025-10-22,Santa,Reservorio San Diego,0.16725,0.16600
+2025-10-23,Chaglla,Embalse Chaglla,5.34234,4.55024
+2025-10-23,Mantaro,Embalse Cerro Del Águila,8.87333,8.44000
+2025-10-23,Mantaro,Embalse Junin (Statkraft),83.96061,83.75378
+2025-10-23,Mantaro,Embalse Malpaso,23.37808,23.05129
+2025-10-23,Rímac,Embalse Pallca,0.31954,0.29100
+2025-10-23,Rímac,Presa Huinco,0.17500,0.24000
+2025-10-23,Rímac,Presa Sheque,0.25083,0.25500
+2025-10-23,Rímac,Pulmón Matucana,0.00000,0.00000
+2025-10-23,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-23,San Gabán,Presa San Gaban,0.13729,0.09100
+2025-10-23,Santa,Reservorio San Diego,0.16667,0.16600
+2025-10-24,Chaglla,Embalse Chaglla,4.97455,3.97515
+2025-10-24,Mantaro,Embalse Cerro Del Águila,7.10083,5.39000
+2025-10-24,Mantaro,Embalse Junin (Statkraft),83.13407,82.92764
+2025-10-24,Mantaro,Embalse Malpaso,22.77125,22.62667
+2025-10-24,Rímac,Embalse Pallca,0.34125,0.29000
+2025-10-24,Rímac,Presa Huinco,0.21999,0.19821
+2025-10-24,Rímac,Presa Sheque,0.24996,0.23900
+2025-10-24,Rímac,Pulmón Matucana,0.03747,0.04659
+2025-10-24,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-24,San Gabán,Presa San Gaban,0.10742,0.14900
+2025-10-24,Santa,Reservorio San Diego,0.16492,0.16400
+2025-10-25,Chaglla,Embalse Chaglla,4.66119,4.85555
+2025-10-25,Mantaro,Embalse Cerro Del Águila,6.52750,7.54000
+2025-10-25,Mantaro,Embalse Junin (Statkraft),83.54715,83.75378
+2025-10-25,Mantaro,Embalse Malpaso,22.50120,22.37457
+2025-10-25,Rímac,Embalse Pallca,0.34525,0.33400
+2025-10-25,Rímac,Presa Huinco,0.19372,0.24672
+2025-10-25,Rímac,Presa Sheque,0.24217,0.18900
+2025-10-25,Rímac,Pulmón Matucana,0.02067,0.01430
+2025-10-25,San Gabán,Embalse Macusani,12.64000,12.64000
+2025-10-25,San Gabán,Presa San Gaban,0.14550,0.14100
+2025-10-25,Santa,Reservorio San Diego,0.16292,0.16200
+2025-10-26,Chaglla,Embalse Chaglla,5.79392,5.32732
+2025-10-26,Mantaro,Embalse Cerro Del Águila,7.91875,8.14000
+2025-10-26,Mantaro,Embalse Junin (Statkraft),83.54715,83.34051
+2025-10-26,Mantaro,Embalse Malpaso,22.48770,22.54848
+2025-10-26,Rímac,Embalse Pallca,0.33958,0.32700
+2025-10-26,Rímac,Presa Huinco,0.18438,0.23638
+2025-10-26,Rímac,Presa Sheque,0.22229,0.23100
+2025-10-26,Rímac,Pulmón Matucana,0.02748,0.01644
+2025-10-26,San Gabán,Embalse Macusani,11.20000,11.20000
+2025-10-26,San Gabán,Presa San Gaban,0.13033,0.10700
+2025-10-26,Santa,Reservorio San Diego,0.16067,0.16000
+2025-10-27,Chaglla,Embalse Chaglla,5.73702,6.12524
+2025-10-27,Mantaro,Embalse Cerro Del Águila,8.62583,8.99000
+2025-10-27,Mantaro,Embalse Junin (Statkraft),84.58167,84.99591
+2025-10-27,Mantaro,Embalse Malpaso,22.48155,22.53146
+2025-10-27,Rímac,Embalse Pallca,0.32717,0.29400
+2025-10-27,Rímac,Presa Huinco,0.21603,0.23766
+2025-10-27,Rímac,Presa Sheque,0.24492,0.21000
+2025-10-27,Rímac,Pulmón Matucana,0.02139,0.01766
+2025-10-27,San Gabán,Embalse Macusani,11.20000,11.20000
+2025-10-27,San Gabán,Presa San Gaban,0.13396,0.13000
+2025-10-27,Santa,Reservorio San Diego,0.15871,0.15800
+2025-10-28,Chaglla,Embalse Chaglla,7.21643,6.58021
+2025-10-28,Mantaro,Embalse Cerro Del Águila,8.78875,8.55000
+2025-10-28,Mantaro,Embalse Junin (Statkraft),85.41074,85.41074
+2025-10-28,Mantaro,Embalse Malpaso,22.87946,23.09800
+2025-10-28,Rímac,Embalse Pallca,0.36642,0.31900
+2025-10-28,Rímac,Presa Huinco,0.16767,0.26040
+2025-10-28,Rímac,Presa Sheque,0.24396,0.23300
+2025-10-28,Rímac,Pulmón Matucana,0.02108,0.01022
+2025-10-28,San Gabán,Embalse Macusani,11.20000,11.20000
+2025-10-28,San Gabán,Presa San Gaban,0.14329,0.14300
+2025-10-28,Santa,Reservorio San Diego,0.15721,0.15700
+2025-10-29,Chaglla,Embalse Chaglla,8.35749,8.67119
+2025-10-29,Mantaro,Embalse Cerro Del Águila,8.18750,7.83000
+2025-10-29,Mantaro,Embalse Junin (Statkraft),84.37562,83.34051
+2025-10-29,Rímac,Embalse Pallca,0.35683,0.36800
+2025-10-29,Rímac,Presa Huinco,0.15746,0.22015
+2025-10-29,Rímac,Presa Sheque,0.25142,0.16500
+2025-10-29,Rímac,Pulmón Matucana,0.01767,0.01234
+2025-10-29,San Gabán,Embalse Macusani,11.20000,11.20000
+2025-10-29,San Gabán,Presa San Gaban,0.13750,0.13600
+2025-10-29,Santa,Reservorio San Diego,0.15512,0.15400
+2025-10-30,Chaglla,Embalse Chaglla,8.13507,6.62092
+2025-10-30,Mantaro,Embalse Cerro Del Águila,7.99167,7.82000
+2025-10-30,Mantaro,Embalse Junin (Statkraft),80.25396,79.63876
+2025-10-30,Mantaro,Embalse Malpaso,23.01172,22.93465
+2025-10-30,Rímac,Embalse Pallca,0.37179,0.32300
+2025-10-30,Rímac,Presa Huinco,0.18537,0.25629
+2025-10-30,Rímac,Presa Sheque,0.22096,0.18300
+2025-10-30,Rímac,Pulmón Matucana,0.02017,0.01895
+2025-10-30,San Gabán,Embalse Macusani,11.20000,11.20000
+2025-10-30,San Gabán,Presa San Gaban,0.14117,0.13100
+2025-10-30,Santa,Reservorio San Diego,0.15317,0.15200
+2025-10-31,Chaglla,Embalse Chaglla,7.46974,7.77881
+2025-10-31,Mantaro,Embalse Cerro Del Águila,6.94792,6.17000
+2025-10-31,Mantaro,Embalse Junin (Statkraft),79.63876,79.63876
+2025-10-31,Mantaro,Embalse Malpaso,22.74139,22.53843
+2025-10-31,Rímac,Embalse Pallca,0.32110,0.28872
+2025-10-31,Rímac,Presa Huinco,0.14795,0.21228
+2025-10-31,Rímac,Presa Sheque,0.22258,0.20500
+2025-10-31,Rímac,Pulmón Matucana,0.02158,0.01337
+2025-10-31,San Gabán,Embalse Macusani,11.20000,11.20000
+2025-10-31,San Gabán,Presa San Gaban,0.13983,0.14800
+2025-10-31,Santa,Reservorio San Diego,0.15096,0.15000
+2026-09-25,Chaglla,Embalse Chaglla,1.39922,0.79429
+2026-09-25,Mantaro,Embalse Cerro Del Águila,4.56208,2.73000
+2026-09-25,Mantaro,Embalse Junin (Statkraft),118.74986,118.97253
+2026-09-25,Mantaro,Embalse Malpaso,20.09447,20.19471
+2026-09-25,Rímac,Embalse Pallca,0.33050,0.26700
+2026-09-25,Rímac,Presa Huinco,0.16171,0.24400
+2026-09-25,Rímac,Presa Sheque,0.21325,0.19500
+2026-09-25,Rímac,Pulmón Matucana,0.01336,0.01546
+2026-09-25,San Gabán,Embalse Macusani,31.89000,31.89000
+2026-09-25,San Gabán,Presa San Gaban,0.08833,0.05400
+2026-09-25,Santa,Presa Shapiringo,0.26996,0.27000
+2026-09-25,Santa,Reservorio San Diego,0.52733,0.52800
+2026-09-26,Chaglla,Embalse Chaglla,0.83779,1.10553
+2026-09-26,Mantaro,Embalse Cerro Del Águila,1.17875,0.65000
+2026-09-26,Mantaro,Embalse Junin (Statkraft),119.41826,119.41826
+2026-09-26,Mantaro,Embalse Malpaso,20.37030,19.93318
+2026-09-26,Rímac,Embalse Pallca,0.29650,0.26800
+2026-09-26,Rímac,Presa Huinco,0.17279,0.17200
+2026-09-26,Rímac,Presa Sheque,0.22058,0.16400
+2026-09-26,Rímac,Pulmón Matucana,0.01681,0.02044
+2026-09-26,San Gabán,Embalse Macusani,31.89000,31.89000
+2026-09-26,San Gabán,Presa San Gaban,0.08508,0.03600
+2026-09-26,Santa,Presa Shapiringo,0.26971,0.27000
+2026-09-26,Santa,Reservorio San Diego,0.52750,0.52800
+2026-09-27,Chaglla,Embalse Chaglla,1.21494,1.78192
+2026-09-27,Mantaro,Embalse Cerro Del Águila,1.86125,3.42000
+2026-09-27,Mantaro,Embalse Junin (Statkraft),120.08750,120.31100
+2026-09-27,Mantaro,Embalse Malpaso,19.59590,19.03992
+2026-09-27,Rímac,Embalse Pallca,0.31796,0.30200
+2026-09-27,Rímac,Pulmón Matucana,0.01779,0.01782
+2026-09-27,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-09-27,San Gabán,Presa San Gaban,0.08867,0.04500
+2026-09-27,Santa,Presa Shapiringo,0.26746,0.26200
+2026-09-27,Santa,Reservorio San Diego,0.52750,0.52800
+2026-09-28,Chaglla,Embalse Chaglla,2.14420,1.50877
+2026-09-28,Mantaro,Embalse Cerro Del Águila,4.23083,5.25000
+2026-09-28,Mantaro,Embalse Junin (Statkraft),120.75781,120.75781
+2026-09-28,Mantaro,Embalse Malpaso,19.30231,19.22047
+2026-09-28,Rímac,Embalse Pallca,0.31062,0.27500
+2026-09-28,Rímac,Presa Huinco,0.07521,0.15200
+2026-09-28,Rímac,Presa Sheque,0.25112,0.22500
+2026-09-28,Rímac,Pulmón Matucana,0.01555,0.01214
+2026-09-28,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-09-28,San Gabán,Presa San Gaban,0.10354,0.06300
+2026-09-28,Santa,Presa Shapiringo,0.26200,0.26200
+2026-09-28,Santa,Reservorio San Diego,0.52742,0.52800
+2026-09-29,Chaglla,Embalse Chaglla,1.34162,1.93429
+2026-09-29,Mantaro,Embalse Cerro Del Águila,5.66042,5.06000
+2026-09-29,Mantaro,Embalse Junin (Statkraft),121.42895,121.65279
+2026-09-29,Mantaro,Embalse Malpaso,19.34813,19.55065
+2026-09-29,Rímac,Embalse Pallca,0.35988,0.32000
+2026-09-29,Rímac,Presa Huinco,0.10117,0.17900
+2026-09-29,Rímac,Presa Sheque,0.21804,0.18000
+2026-09-29,Rímac,Pulmón Matucana,0.01526,0.01351
+2026-09-29,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-09-29,San Gabán,Presa San Gaban,0.11588,0.14700
+2026-09-29,Santa,Presa Shapiringo,0.27000,0.27000
+2026-09-29,Santa,Reservorio San Diego,0.52725,0.52700
+2026-09-30,Chaglla,Embalse Chaglla,2.88991,4.07547
+2026-09-30,Mantaro,Embalse Cerro Del Águila,6.45333,7.02000
+2026-09-30,Mantaro,Embalse Junin (Statkraft),121.87683,122.10087
+2026-09-30,Mantaro,Embalse Malpaso,19.12620,19.09411
+2026-09-30,Rímac,Embalse Pallca,0.35446,0.29500
+2026-09-30,Rímac,Presa Huinco,0.09317,0.18000
+2026-09-30,Rímac,Presa Sheque,0.20942,0.21200
+2026-09-30,Rímac,Pulmón Matucana,0.01431,0.01136
+2026-09-30,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-09-30,San Gabán,Presa San Gaban,0.11579,0.09000
+2026-09-30,Santa,Presa Shapiringo,0.26667,0.26500
+2026-09-30,Santa,Reservorio San Diego,0.26546,0.00200
+2026-10-01,Chaglla,Embalse Chaglla,4.86233,3.74277
+2026-10-01,Mantaro,Embalse Cerro Del Águila,8.58708,8.05000
+2026-10-01,Mantaro,Embalse Junin (Statkraft),67.77350,122.99800
+2026-10-01,Mantaro,Embalse Malpaso,19.04166,19.15801
+2026-10-01,Rímac,Embalse Pallca,0.32425,0.26300
+2026-10-01,Rímac,Presa Huinco,0.12412,0.23300
+2026-10-01,Rímac,Presa Sheque,0.22575,0.15500
+2026-10-01,Rímac,Pulmón Matucana,0.01493,0.01049
+2026-10-01,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-10-01,San Gabán,Presa San Gaban,0.10617,0.09600
+2026-10-01,Santa,Presa Shapiringo,0.26958,0.27000
+2026-10-01,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-02,Chaglla,Embalse Chaglla,4.00177,3.15559
+2026-10-02,Mantaro,Embalse Cerro Del Águila,5.94875,4.22000
+2026-10-02,Mantaro,Embalse Junin (Statkraft),123.22250,123.44700
+2026-10-02,Mantaro,Embalse Malpaso,20.01697,20.33634
+2026-10-02,Rímac,Embalse Pallca,0.31821,0.30100
+2026-10-02,Rímac,Presa Huinco,0.10283,0.17700
+2026-10-02,Rímac,Presa Sheque,0.20796,0.18600
+2026-10-02,Rímac,Pulmón Matucana,0.01245,0.01280
+2026-10-02,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-10-02,San Gabán,Presa San Gaban,0.11621,0.12000
+2026-10-02,Santa,Presa Shapiringo,0.26975,0.27000
+2026-10-02,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-03,Chaglla,Embalse Chaglla,2.68865,1.05783
+2026-10-03,Mantaro,Embalse Cerro Del Águila,3.01667,0.85000
+2026-10-03,Mantaro,Embalse Junin (Statkraft),123.67200,123.89700
+2026-10-03,Mantaro,Embalse Malpaso,20.39867,20.28132
+2026-10-03,Rímac,Embalse Pallca,0.30892,0.26800
+2026-10-03,Rímac,Presa Huinco,0.11333,0.18400
+2026-10-03,Rímac,Presa Sheque,0.23721,0.24300
+2026-10-03,Rímac,Pulmón Matucana,0.01559,0.00745
+2026-10-03,San Gabán,Embalse Macusani,28.87000,28.87000
+2026-10-03,San Gabán,Presa San Gaban,0.10946,0.08900
+2026-10-03,Santa,Presa Shapiringo,0.26658,0.26500
+2026-10-03,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-04,Chaglla,Embalse Chaglla,0.71259,0.51439
+2026-10-04,Mantaro,Embalse Cerro Del Águila,1.17542,1.19000
+2026-10-04,Mantaro,Embalse Junin (Statkraft),129.34700,134.34700
+2026-10-04,Mantaro,Embalse Malpaso,19.77968,19.39173
+2026-10-04,Rímac,Embalse Pallca,0.34712,0.32700
+2026-10-04,Rímac,Presa Huinco,0.15562,0.17200
+2026-10-04,Rímac,Presa Sheque,0.22250,0.24300
+2026-10-04,Rímac,Pulmón Matucana,0.02053,0.00790
+2026-10-04,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-04,San Gabán,Presa San Gaban,0.06642,0.03600
+2026-10-04,Santa,Presa Shapiringo,0.26613,0.26900
+2026-10-04,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-05,Chaglla,Embalse Chaglla,0.67921,0.02692
+2026-10-05,Mantaro,Embalse Cerro Del Águila,1.56792,0.67000
+2026-10-05,Mantaro,Embalse Junin (Statkraft),124.57250,124.79800
+2026-10-05,Mantaro,Embalse Malpaso,19.16223,18.94201
+2026-10-05,Rímac,Embalse Pallca,0.33004,0.29300
+2026-10-05,Rímac,Presa Huinco,0.10683,0.22000
+2026-10-05,Rímac,Presa Sheque,0.31217,0.23700
+2026-10-05,Rímac,Pulmón Matucana,0.01016,0.01219
+2026-10-05,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-05,San Gabán,Presa San Gaban,0.09258,0.05100
+2026-10-05,Santa,Presa Shapiringo,0.27000,0.27000
+2026-10-05,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-06,Chaglla,Embalse Chaglla,0.44481,0.07023
+2026-10-06,Mantaro,Embalse Cerro Del Águila,1.33375,1.35000
+2026-10-06,Mantaro,Embalse Junin (Statkraft),125.24800,125.24800
+2026-10-06,Mantaro,Embalse Malpaso,19.27350,19.05921
+2026-10-06,Rímac,Embalse Pallca,0.32971,0.32100
+2026-10-06,Rímac,Presa Huinco,0.14117,0.23500
+2026-10-06,Rímac,Presa Sheque,0.27254,0.17100
+2026-10-06,Rímac,Pulmón Matucana,0.01447,0.00258
+2026-10-06,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-06,San Gabán,Presa San Gaban,0.09808,0.05000
+2026-10-06,Santa,Presa Shapiringo,0.27000,0.27000
+2026-10-06,Santa,Reservorio San Diego,0.00221,0.00300
+2026-10-07,Chaglla,Embalse Chaglla,0.38976,0.13039
+2026-10-07,Mantaro,Embalse Cerro Del Águila,1.22833,0.41000
+2026-10-07,Mantaro,Embalse Junin (Statkraft),125.02300,124.79800
+2026-10-07,Mantaro,Embalse Malpaso,18.97719,18.87976
+2026-10-07,Rímac,Embalse Pallca,0.32029,0.26300
+2026-10-07,Rímac,Presa Huinco,0.14321,0.25100
+2026-10-07,Rímac,Presa Sheque,0.26350,0.24600
+2026-10-07,Rímac,Pulmón Matucana,0.01353,0.00632
+2026-10-07,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-07,San Gabán,Presa San Gaban,0.06679,0.02900
+2026-10-07,Santa,Presa Shapiringo,0.26500,0.26500
+2026-10-07,Santa,Reservorio San Diego,0.00346,0.00400
+2026-10-08,Chaglla,Embalse Chaglla,0.59745,0.81827
+2026-10-08,Mantaro,Embalse Cerro Del Águila,1.11500,1.61000
+2026-10-08,Mantaro,Embalse Junin (Statkraft),124.57250,124.34700
+2026-10-08,Mantaro,Embalse Malpaso,18.92527,19.28520
+2026-10-08,Rímac,Embalse Pallca,0.30346,0.27000
+2026-10-08,Rímac,Presa Huinco,0.19125,0.24500
+2026-10-08,Rímac,Presa Sheque,0.21204,0.17400
+2026-10-08,Rímac,Pulmón Matucana,0.01240,0.01272
+2026-10-08,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-08,San Gabán,Presa San Gaban,0.08967,0.04600
+2026-10-08,Santa,Presa Shapiringo,0.26825,0.26900
+2026-10-08,Santa,Reservorio San Diego,0.00367,0.00200
+2026-10-09,Chaglla,Embalse Chaglla,1.19635,0.73291
+2026-10-09,Mantaro,Embalse Cerro Del Águila,0.77958,0.27000
+2026-10-09,Mantaro,Embalse Junin (Statkraft),124.12212,123.89710
+2026-10-09,Mantaro,Embalse Malpaso,19.42915,19.21526
+2026-10-09,Rímac,Embalse Pallca,0.33950,0.30200
+2026-10-09,Rímac,Presa Huinco,0.13958,0.24000
+2026-10-09,Rímac,Presa Sheque,0.20104,0.14700
+2026-10-09,Rímac,Pulmón Matucana,0.01144,0.00740
+2026-10-09,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-09,San Gabán,Presa San Gaban,0.08142,0.03100
+2026-10-09,Santa,Presa Shapiringo,0.26917,0.26900
+2026-10-09,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-10,Chaglla,Embalse Chaglla,0.51373,0.23095
+2026-10-10,Mantaro,Embalse Cerro Del Águila,0.46542,0.35000
+2026-10-10,Mantaro,Embalse Junin (Statkraft),123.67228,123.44746
+2026-10-10,Mantaro,Embalse Malpaso,19.57079,19.65603
+2026-10-10,Rímac,Embalse Pallca,0.30188,0.26800
+2026-10-10,Rímac,Presa Huinco,0.11100,0.21500
+2026-10-10,Rímac,Presa Sheque,0.22404,0.19800
+2026-10-10,Rímac,Pulmón Matucana,0.01700,0.01304
+2026-10-10,San Gabán,Embalse Macusani,25.59000,25.59000
+2026-10-10,San Gabán,Presa San Gaban,0.08058,0.03800
+2026-10-10,Santa,Presa Shapiringo,0.27000,0.27000
+2026-10-10,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-11,Chaglla,Embalse Chaglla,0.65283,0.39534
+2026-10-11,Mantaro,Embalse Cerro Del Águila,1.47000,2.05000
+2026-10-11,Mantaro,Embalse Junin (Statkraft),123.22284,122.99821
+2026-10-11,Mantaro,Embalse Malpaso,20.18143,20.23989
+2026-10-11,Rímac,Embalse Pallca,0.33217,0.27200
+2026-10-11,Rímac,Presa Huinco,0.16025,0.24200
+2026-10-11,Rímac,Presa Sheque,0.18408,0.18300
+2026-10-11,Rímac,Pulmón Matucana,0.01448,0.00731
+2026-10-11,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-11,San Gabán,Presa San Gaban,0.07429,0.03700
+2026-10-11,Santa,Presa Shapiringo,0.26996,0.27000
+2026-10-11,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-12,Chaglla,Embalse Chaglla,0.49495,0.08150
+2026-10-12,Mantaro,Embalse Cerro Del Águila,2.93417,2.85000
+2026-10-12,Mantaro,Embalse Junin (Statkraft),122.77378,122.54934
+2026-10-12,Mantaro,Embalse Malpaso,20.58346,20.46084
+2026-10-12,Rímac,Embalse Pallca,0.33337,0.26500
+2026-10-12,Rímac,Presa Huinco,0.15754,0.21600
+2026-10-12,Rímac,Presa Sheque,0.20063,0.15500
+2026-10-12,Rímac,Pulmón Matucana,0.01330,0.01749
+2026-10-12,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-12,San Gabán,Presa San Gaban,0.07392,0.04100
+2026-10-12,Santa,Presa Shapiringo,0.26679,0.26300
+2026-10-12,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-13,Chaglla,Embalse Chaglla,1.04887,1.05861
+2026-10-13,Mantaro,Embalse Cerro Del Águila,2.32250,1.58000
+2026-10-13,Mantaro,Embalse Junin (Statkraft),122.54934,122.54934
+2026-10-13,Mantaro,Embalse Malpaso,20.89136,21.34976
+2026-10-13,Rímac,Embalse Pallca,0.31200,0.27200
+2026-10-13,Rímac,Presa Huinco,0.13221,0.21300
+2026-10-13,Rímac,Presa Sheque,0.21808,0.16800
+2026-10-13,Rímac,Pulmón Matucana,0.02309,0.01779
+2026-10-13,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-13,San Gabán,Presa San Gaban,0.09237,0.03300
+2026-10-13,Santa,Presa Shapiringo,0.26258,0.26600
+2026-10-13,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-14,Chaglla,Embalse Chaglla,1.24438,0.89017
+2026-10-14,Mantaro,Embalse Cerro Del Águila,1.94000,2.02000
+2026-10-14,Mantaro,Embalse Junin (Statkraft),119.41846,118.97253
+2026-10-14,Mantaro,Embalse Malpaso,21.53922,21.51092
+2026-10-14,Rímac,Embalse Pallca,0.29071,0.26300
+2026-10-14,Rímac,Presa Huinco,0.15367,0.13600
+2026-10-14,Rímac,Presa Sheque,0.17942,0.18600
+2026-10-14,Rímac,Pulmón Matucana,0.01309,0.00324
+2026-10-14,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-14,San Gabán,Presa San Gaban,0.08450,0.04500
+2026-10-14,Santa,Presa Shapiringo,0.26988,0.27000
+2026-10-14,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-15,Chaglla,Embalse Chaglla,1.03937,0.36980
+2026-10-15,Mantaro,Embalse Cerro Del Águila,2.34333,1.79000
+2026-10-15,Mantaro,Embalse Junin (Statkraft),117.63788,117.19351
+2026-10-15,Mantaro,Embalse Malpaso,21.96775,21.47270
+2026-10-15,Rímac,Embalse Pallca,0.30404,0.27400
+2026-10-15,Rímac,Presa Huinco,0.06858,0.11100
+2026-10-15,Rímac,Presa Sheque,0.21817,0.23800
+2026-10-15,Rímac,Pulmón Matucana,0.02038,0.00853
+2026-10-15,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-15,San Gabán,Presa San Gaban,0.09425,0.04500
+2026-10-15,Santa,Presa Shapiringo,0.24696,0.24600
+2026-10-15,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-16,Chaglla,Embalse Chaglla,0.59025,0.00100
+2026-10-16,Mantaro,Embalse Cerro Del Águila,2.86417,2.85000
+2026-10-16,Mantaro,Embalse Junin (Statkraft),116.30655,115.86336
+2026-10-16,Mantaro,Embalse Malpaso,21.27392,20.64000
+2026-10-16,Rímac,Embalse Pallca,0.32229,0.28759
+2026-10-16,Rímac,Presa Huinco,0.11075,0.17500
+2026-10-16,Rímac,Presa Sheque,0.21796,0.23100
+2026-10-16,Rímac,Pulmón Matucana,0.01460,0.00385
+2026-10-16,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-16,San Gabán,Presa San Gaban,0.10017,0.04300
+2026-10-16,Santa,Presa Shapiringo,0.24800,0.25700
+2026-10-16,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-17,Chaglla,Embalse Chaglla,0.31339,0.06970
+2026-10-17,Mantaro,Embalse Cerro Del Águila,4.14125,4.93000
+2026-10-17,Mantaro,Embalse Junin (Statkraft),113.87517,113.21361
+2026-10-17,Mantaro,Embalse Malpaso,20.53086,19.97671
+2026-10-17,Rímac,Embalse Pallca,0.31748,0.28276
+2026-10-17,Rímac,Presa Huinco,0.16571,0.22600
+2026-10-17,Rímac,Presa Sheque,0.23550,0.21900
+2026-10-17,Rímac,Pulmón Matucana,0.01674,0.01539
+2026-10-17,San Gabán,Embalse Macusani,23.49000,23.49000
+2026-10-17,San Gabán,Presa San Gaban,0.10175,0.03300
+2026-10-17,Santa,Presa Shapiringo,0.26858,0.27000
+2026-10-17,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-18,Chaglla,Embalse Chaglla,0.30575,0.00100
+2026-10-18,Mantaro,Embalse Cerro Del Águila,5.22750,5.11000
+2026-10-18,Mantaro,Embalse Junin (Statkraft),111.23598,110.57795
+2026-10-18,Mantaro,Embalse Malpaso,20.23364,20.59007
+2026-10-18,Rímac,Embalse Pallca,0.30963,0.26303
+2026-10-18,Rímac,Presa Huinco,0.15104,0.19300
+2026-10-18,Rímac,Presa Sheque,0.17696,0.20100
+2026-10-18,Rímac,Pulmón Matucana,0.02196,0.01802
+2026-10-18,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-18,San Gabán,Presa San Gaban,0.08700,0.03100
+2026-10-18,Santa,Presa Shapiringo,0.26108,0.26100
+2026-10-18,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-19,Chaglla,Embalse Chaglla,0.49192,0.50501
+2026-10-19,Mantaro,Embalse Cerro Del Águila,4.63042,3.21000
+2026-10-19,Mantaro,Embalse Junin (Statkraft),108.17473,107.52081
+2026-10-19,Mantaro,Embalse Malpaso,21.63192,21.58971
+2026-10-19,Rímac,Embalse Pallca,0.33918,0.26971
+2026-10-19,Rímac,Presa Huinco,0.11704,0.22300
+2026-10-19,Rímac,Presa Sheque,0.25042,0.27300
+2026-10-19,Rímac,Pulmón Matucana,0.01586,0.00556
+2026-10-19,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-19,San Gabán,Presa San Gaban,0.09679,0.03400
+2026-10-19,Santa,Presa Shapiringo,0.22775,0.19600
+2026-10-19,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-20,Chaglla,Embalse Chaglla,1.55810,0.86985
+2026-10-20,Mantaro,Embalse Cerro Del Águila,2.26583,1.08000
+2026-10-20,Mantaro,Embalse Junin (Statkraft),106.21667,105.78248
+2026-10-20,Mantaro,Embalse Malpaso,22.25416,22.03238
+2026-10-20,Rímac,Embalse Pallca,0.31578,0.26653
+2026-10-20,Rímac,Presa Huinco,0.21425,0.20000
+2026-10-20,Rímac,Presa Sheque,0.20996,0.17100
+2026-10-20,Rímac,Pulmón Matucana,0.01475,0.01217
+2026-10-20,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-20,San Gabán,Presa San Gaban,0.08487,0.03200
+2026-10-20,Santa,Presa Shapiringo,0.24321,0.25800
+2026-10-20,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-21,Chaglla,Embalse Chaglla,0.53326,0.09712
+2026-10-21,Mantaro,Embalse Cerro Del Águila,0.86125,0.78000
+2026-10-21,Mantaro,Embalse Malpaso,22.67874,22.53146
+2026-10-21,Rímac,Embalse Pallca,0.28729,0.27300
+2026-10-21,Rímac,Pulmón Matucana,0.01170,0.01306
+2026-10-21,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-21,San Gabán,Presa San Gaban,0.11267,0.07900
+2026-10-21,Santa,Presa Shapiringo,0.23546,0.24500
+2026-10-21,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-22,Chaglla,Embalse Chaglla,0.89939,1.33570
+2026-10-22,Mantaro,Embalse Cerro Del Águila,3.64500,4.35000
+2026-10-22,Mantaro,Embalse Junin (Statkraft),102.75565,102.32459
+2026-10-22,Mantaro,Embalse Malpaso,23.12449,23.40137
+2026-10-22,Rímac,Embalse Pallca,0.34446,0.27000
+2026-10-22,Rímac,Presa Huinco,0.09717,0.13500
+2026-10-22,Rímac,Presa Sheque,0.20821,0.25400
+2026-10-22,Rímac,Pulmón Matucana,0.01706,0.01816
+2026-10-22,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-22,San Gabán,Presa San Gaban,0.11417,0.05800
+2026-10-22,Santa,Presa Shapiringo,0.20458,0.21900
+2026-10-22,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-23,Chaglla,Embalse Chaglla,1.88769,0.71126
+2026-10-23,Mantaro,Embalse Cerro Del Águila,5.82125,5.56000
+2026-10-23,Mantaro,Embalse Junin (Statkraft),100.82008,100.17613
+2026-10-23,Mantaro,Embalse Malpaso,23.46423,23.44982
+2026-10-23,Rímac,Embalse Pallca,0.31517,0.26600
+2026-10-23,Rímac,Presa Huinco,0.10117,0.18500
+2026-10-23,Rímac,Presa Sheque,0.24646,0.24900
+2026-10-23,Rímac,Pulmón Matucana,0.01569,0.00910
+2026-10-23,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-23,San Gabán,Presa San Gaban,0.07812,0.03800
+2026-10-23,Santa,Presa Shapiringo,0.24146,0.24800
+2026-10-23,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-24,Chaglla,Embalse Chaglla,1.46592,1.00202
+2026-10-24,Mantaro,Embalse Cerro Del Águila,6.04450,5.50700
+2026-10-24,Mantaro,Embalse Junin (Statkraft),98.25132,97.61088
+2026-10-24,Mantaro,Embalse Malpaso,23.45474,23.43575
+2026-10-24,Rímac,Embalse Pallca,0.34033,0.30700
+2026-10-24,Rímac,Presa Huinco,0.10767,0.13600
+2026-10-24,Rímac,Presa Sheque,0.19558,0.15200
+2026-10-24,Rímac,Pulmón Matucana,0.01293,0.02212
+2026-10-24,San Gabán,Embalse Macusani,21.49000,21.49000
+2026-10-24,San Gabán,Presa San Gaban,0.10487,0.07600
+2026-10-24,Santa,Presa Shapiringo,0.25558,0.27000
+2026-10-24,Santa,Reservorio San Diego,0.00200,0.00200
+2026-10-25,Chaglla,Embalse Chaglla,2.22033,3.14993
+2026-10-25,Mantaro,Embalse Cerro Del Águila,7.09975,8.99300
+2026-10-25,Mantaro,Embalse Junin (Statkraft),95.69663,95.05972
+2026-10-25,Mantaro,Embalse Malpaso,23.42120,23.42715
+2026-10-25,Rímac,Embalse Pallca,0.30188,0.28300
+2026-10-25,Rímac,Presa Huinco,0.09079,0.14800
+2026-10-25,Rímac,Presa Sheque,0.20104,0.21800
+2026-10-25,Rímac,Pulmón Matucana,0.02675,0.03098
+2026-10-25,San Gabán,Embalse Macusani,19.80000,19.80000
+2026-10-25,San Gabán,Presa San Gaban,0.07362,0.08400
+2026-10-25,Santa,Presa Shapiringo,0.26283,0.27000
+2026-10-25,Santa,Reservorio San Diego,0.00200,0.00200
