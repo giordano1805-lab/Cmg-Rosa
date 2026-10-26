@@ -535,6 +535,14 @@ def pidio_actualizar(chat):
 
 def main():
     chat = os.environ["TELEGRAM_CHAT_ID"]
+    if os.getenv("MODO") == "explora":
+        import explorar
+        res = explorar.main()
+        ok = sum(1 for p in res["paginas"].values() if p.get("status") == 200)
+        tg("sendMessage", data={"chat_id": chat,
+                                "text": f"🔎 Exploración COES lista: {ok}/{len(res['paginas'])} páginas leídas. "
+                                        "Avísale a Claude."})
+        return
     if os.getenv("MODO") == "escucha":
         if not pidio_actualizar(chat):
             print("Sin pedidos de actualización")
