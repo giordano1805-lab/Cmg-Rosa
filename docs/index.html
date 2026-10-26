@@ -110,7 +110,7 @@ a{color:var(--s1)}
 
 <script>
 const SECC=[["resumen","Resumen"],["precios","Precios"],["oferta","Oferta y demanda"],["embalses","Embalses"],
-["prog","Programado hoy"],["indisp","Indisponibilidades"],["trans","Transmisión y eventos"]];
+["prog","Programado hoy"],["mes","Mantenimiento del mes"],["indisp","Indisponibilidades"],["trans","Transmisión y eventos"]];
 const $=s=>document.querySelector(s);
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const f2=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -195,6 +195,9 @@ function render(){
    ${DH?`<div class="grid g2"><div class="card"><h2>Demanda de energía por mes<small>TWh · ${DH.ant} vs ${DH.act}</small></h2><div class="chart"><canvas id="c-dmes"></canvas></div><div class="note">* Mes en curso: primeros ${DH.dias} días de cada año.</div></div>
    <div class="card"><h2>Demanda acumulada del mes<small>GWh · mismo período del año anterior</small></h2><div class="chart"><canvas id="c-dacum"></canvas></div></div></div>`:""}
    ${HP?`<div class="card"><h2>Generación hidroeléctrica de pasada<small>MW · promedio diario vs ${HP.ant} (líneas tenues: cada 30 min)</small></h2><div class="chart tall"><canvas id="c-hidro"></canvas></div></div>`:""}
+   ${D.hidro_centrales&&D.hidro_centrales.centrales.length?`<div class="card"><h2>¿Qué centrales hidro producen menos que el año pasado?<small>GWh, días ${D.hidro_centrales.desde}–${D.hidro_centrales.hasta} de ${D.hidro_centrales.act} vs mismos días de ${D.hidro_centrales.ant} · IEOD</small></h2>
+     <div class="embk"><div><div class="lbl">Hidro total ${D.hidro_centrales.act}</div><b>${f1(D.hidro_centrales.total_act)} GWh</b></div><div><div class="lbl">Mismos días ${D.hidro_centrales.ant}</div><b>${f1(D.hidro_centrales.total_ant)} GWh</b></div><div><div class="lbl">Diferencia</div>${(x=>`<b class="${x<0?"up":"down"}">${(x>0?"+":"")+x.toFixed(0)}%</b>`)(pct(D.hidro_centrales.total_act,D.hidro_centrales.total_ant)||0)}</div></div>
+     <div class="chart" style="height:460px"><canvas id="c-hcen"></canvas></div><div id="t-hcen"></div></div>`:""}
    ${D.hidro_regulacion?`<div class="card"><h2>Generación hidroeléctrica de embalse (regulación)<small>MW · promedio diario vs ${D.hidro_regulacion.ant}</small></h2><div class="chart tall"><canvas id="c-hreg"></canvas></div></div>`:""}
    ${D.eolica?`<div class="card"><h2>Generación eólica<small>MW · promedio diario vs ${D.eolica.ant}</small></h2><div class="chart tall"><canvas id="c-eol"></canvas></div></div>`:""}
    <div class="card"><h2>Producción por tipo de recurso<small>MW cada 30 min · ${D.dia}${D.gen_fuente==="IEOD"?" · IEOD (clasificación oficial COES)":" · Portal COES (SCADA)"}</small></h2><div class="chart tall"><canvas id="c-gen"></canvas></div></div>
@@ -204,6 +207,10 @@ function render(){
      return `<div class="note">Control: diésel/residual en el gráfico ${f0(tot)} MWh · identificado por central ${f0(ide)} MWh${Math.abs(tot-ide)>Math.max(20,.05*tot)?' · <b style="color:var(--s8)">hay diferencia por revisar</b>':""}. El gas de refinería se cuenta como gas natural.</div>`})()}</div>
    <div class="card"><h2>Demanda por área<small>MW</small></h2><div class="chart"><canvas id="c-dem"></canvas></div></div></div>`;
 
+  if(D.hidro_centrales&&D.hidro_centrales.centrales.length)tabla("#t-hcen",[{t:"Central",v:r=>r.central},{t:"Empresa",v:r=>r.empresa},{t:"Tipo",v:r=>r.tipo},
+    {t:`GWh ${D.hidro_centrales.act}`,num:1,v:r=>r.act,h:r=>f2(r.act)},{t:`GWh ${D.hidro_centrales.ant}`,num:1,v:r=>r.ant,h:r=>f2(r.ant)},
+    {t:"Diferencia",num:1,v:r=>r.delta,h:r=>`<span class="${r.delta<0?"up":"down"}">${r.delta>0?"+":""}${f2(r.delta)}</span>`},
+    {t:"Var.",num:1,v:r=>r.var_pct??0,h:r=>r.var_pct==null?"–":`${r.var_pct>0?"+":""}${r.var_pct.toFixed(0)}%`}],D.hidro_centrales.centrales);
   if(DU.length)tabla("#t-dsl",[{t:"Central / grupo",v:r=>r.nombre},{t:"Empresa",v:r=>r.empresa},
     {t:"Combustible",v:r=>r.tipo_comb||r.combustible,h:r=>`${esc(r.tipo_comb||"")} <span style="color:var(--muted)">(${esc(r.combustible)})</span>`},
     {t:"Clasificación",v:r=>r.rf?1:0,h:r=>r.tipo_comb&&r.tipo_comb!=="Diésel D2"?"–":r.rf?'<span class="tag rf">Reserva Fría</span>':"Otra"},
@@ -268,6 +275,28 @@ function render(){
    ${ES.cuencas.map(tarjeta).join("")}</div>`
    :`<div class="card">El Informe de Evaluación Semanal no está disponible.</div>`;
 
+  const PM=D.prog_mensual||{regs:[]},MR=PM.regs||[],MRs=MR.filter(r=>!r.diesel);
+  const MESN=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","setiembre","octubre","noviembre","diciembre"];
+  let mesTxt="";if(PM.mes){const[a,mm]=PM.mes.split("-");mesTxt=`${MESN[+mm-1]} ${a}`}
+  const diasMes=PM.mes?new Date(+PM.mes.slice(0,4),+PM.mes.slice(5,7),0).getDate():30;
+  const porDia=PM.mes?Array.from({length:diasMes},(_,k)=>{const d0=new Date(`${PM.mes}-${String(k+1).padStart(2,"0")}T00:00`),d1=new Date(d0.getTime()+864e5);
+    return MRs.reduce((a,r)=>{const i=Math.max(d0,new Date(r.inicio)),f=Math.min(d1,new Date(r.final||r.inicio));return a+(f>i?r.mw*(f-i)/864e5:0)},0)}):[];
+  const pmx=porDia.length?Math.max(...porDia):0,ipm=porDia.indexOf(pmx),prom=porDia.length?porDia.reduce((a,b)=>a+b,0)/porDia.length:0;
+  $("#s-mes").innerHTML=MR.length?`<div class="grid">
+    <div class="note" style="margin:0">Programa Mensual de Mantenimiento del COES · ${mesTxt} · solo centrales de generación con MW indisponibles</div>
+    <div class="grid g4"><div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Intervenciones con MW (sin diésel)</div><div class="val">${MRs.length}</div><div class="sub">${new Set(MRs.map(r=>r.ubicacion)).size} centrales</div></div>
+     <div class="card kpi"><div class="lbl">Día con más MW indisponibles</div><div class="val">${f0(pmx)}<small>MW</small></div><div class="sub">${pmx?`${ipm+1} de ${MESN[+PM.mes.slice(5,7)-1]} (promedio del día)`:""}</div></div>
+     <div class="card kpi"><div class="lbl">Promedio del mes</div><div class="val">${f0(prom)}<small>MW</small></div><div class="sub">indisponibles sin diésel</div></div>
+     <div class="card kpi"><div class="lbl">Diésel programado (excluido)</div><div class="val">${MR.length-MRs.length}</div><div class="sub">intervenciones</div></div></div>
+    <div class="card"><h2>MW indisponibles por día<small>${mesTxt} · promedio de cada día por tecnología, sin diésel</small></h2><div class="chart"><canvas id="c-mesd"></canvas></div></div>
+    <div class="card"><h2>Cronograma del mes<small>las ${Math.min(MR.length,25)} intervenciones de mayor MW × días · color por tecnología (diésel en gris claro)</small></h2><div class="chart" style="height:${Math.max(180,Math.min(MR.length,25)*26+60)}px"><canvas id="c-mesg"></canvas></div></div>
+    <div class="card"><h2>Intervenciones programadas del mes<small>${mesTxt}</small></h2><div id="t-mes"></div></div></div>`
+    :`<div class="card">El Programa Mensual de Mantenimiento ${mesTxt?"de "+mesTxt+" ":""}aún no se pudo leer del COES.</div>`;
+  if(MR.length)tabla("#t-mes",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Central",v:r=>tit(r.ubicacion)},{t:"Unidad",v:r=>r.equipo},
+    {t:"Tecnología",v:r=>r.tecnologia||"",h:r=>r.diesel?'<span class="tag">Diésel · excluido</span>':esc(r.tecnologia||"")},
+    {t:"Inicio",v:r=>r.inicio,h:r=>(r.inicio||"").slice(8,10)+"/"+(r.inicio||"").slice(5,7)+" "+(r.inicio||"").slice(11,16)},
+    {t:"Fin",v:r=>r.final||"",h:r=>r.final?r.final.slice(8,10)+"/"+r.final.slice(5,7)+" "+r.final.slice(11,16):""},
+    {t:"MW",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Descripción",v:r=>r.descripcion}],[...MR].sort((a,b)=>(a.inicio>b.inicio?1:-1)));
   const PG=D.programado_gen.filter(r=>r.mw>0),PG0=D.programado_gen.length-PG.length,PGs=PG.filter(r=>!r.diesel);
   const hrs=s=>Math.max(0,Math.min(24,(new Date(s)-new Date(D.hoy+"T00:00"))/36e5));
   $("#s-prog").innerHTML=D.programado_publicado?`<div class="grid">
@@ -350,6 +379,27 @@ function dibujar(){
     const lab=Array.from({length:48},(_,i)=>{const m=(i+1)*30;return `${String(Math.floor(m/60)%24).padStart(2,"0")}:${m%60?"30":"00"}`});
     const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
     grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:`${l.cod}${l.nombre?" ("+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
+  if(on("#c-mesd")){const PM=D.prog_mensual,MRs=PM.regs.filter(r=>!r.diesel),n=new Date(+PM.mes.slice(0,4),+PM.mes.slice(5,7),0).getDate();
+    const tecs=[...new Set(MRs.map(r=>r.tecnologia||"Otra"))],hoyD=D.hoy.slice(0,7)===PM.mes?+D.hoy.slice(8,10):0;
+    const val=(t,k)=>{const d0=new Date(`${PM.mes}-${String(k+1).padStart(2,"0")}T00:00`),d1=new Date(d0.getTime()+864e5);
+      return MRs.filter(r=>(r.tecnologia||"Otra")===t).reduce((a,r)=>{const i=Math.max(d0,new Date(r.inicio)),f=Math.min(d1,new Date(r.final||r.inicio));return a+(f>i?r.mw*(f-i)/864e5:0)},0)};
+    const o=base("MW");o.scales.x.stacked=true;o.scales.y.stacked=true;o.scales.y.beginAtZero=true;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+    grafico("#c-mesd",{type:"bar",data:{labels:Array.from({length:n},(_,k)=>k+1===hoyD?`${k+1} (hoy)`:String(k+1)),
+      datasets:tecs.map(t=>({label:t,data:Array.from({length:n},(_,k)=>val(t,k)),backgroundColor:css(TECC[t]||"--muted"),borderRadius:3}))},options:o})}
+  if(on("#c-mesg")){const PM=D.prog_mensual,y=+PM.mes.slice(0,4),mm=+PM.mes.slice(5,7),n=new Date(y,mm,0).getDate(),h0=new Date(`${PM.mes}-01T00:00`);
+    const dd=s=>Math.max(0,Math.min(n,(new Date(s)-h0)/864e5));
+    const R=PM.regs.map(r=>({...r,a:dd(r.inicio),b:Math.max(dd(r.final||r.inicio),dd(r.inicio)+.15)})).sort((p,q)=>q.mw*(q.b-q.a)-p.mw*(p.b-p.a)).slice(0,25).sort((p,q)=>p.a-q.a);
+    const ang=innerWidth<600,cor=t=>ang&&t.length>16?t.slice(0,15)+"…":t;
+    const o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;
+    o.scales={x:{type:"linear",min:0,max:n,grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:ang?5:2,callback:v=>v+1<=n?String(v+1):""}},y:{grid:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={title:it=>R[it[0].dataIndex].descripcion.slice(0,90),label:it=>{const r=R[it.dataIndex];return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${r.inicio.slice(8,10)}/${r.inicio.slice(5,7)} → ${(r.final||"").slice(8,10)}/${(r.final||"").slice(5,7)}`}};
+    grafico("#c-mesg",{type:"bar",data:{labels:R.map(r=>`${cor((tit(r.ubicacion)+(r.equipo==="CENTRAL"?"":" "+r.equipo)).trim())} · ${f0(r.mw)} MW`),
+      datasets:[{data:R.map(r=>[r.a,r.b]),backgroundColor:R.map(r=>r.diesel?css("--muted")+"55":css(TECC[r.tecnologia]||"--muted")),borderRadius:4,borderSkipped:false,barPercentage:.75}]},options:o})}
+  if(on("#c-hcen")&&D.hidro_centrales){const C=D.hidro_centrales.centrales,sel=[...C.slice(0,12),...C.filter(c=>c.delta>0).slice(-3)].filter((c,i,a)=>a.indexOf(c)===i);
+    const o=base("");o.indexAxis="y";o.plugins.legend.display=false;o.interaction={mode:"nearest",intersect:true};
+    o.scales={x:{grid:{color:css("--grid")},ticks:{color:css("--text-2")},title:{display:true,text:"GWh vs año anterior",color:css("--text-2")}},y:{grid:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={label:it=>{const c=sel[it.dataIndex];return `${f2(c.act)} vs ${f2(c.ant)} GWh (${c.var_pct==null?"–":(c.var_pct>0?"+":"")+c.var_pct.toFixed(0)+"%"})`}};
+    grafico("#c-hcen",{type:"bar",data:{labels:sel.map(c=>c.central),datasets:[{data:sel.map(c=>c.delta),backgroundColor:sel.map(c=>css(c.delta<0?"--s8":"--s4")),borderRadius:4}]},options:o})}
   const diaria=(id,di,dec)=>{const ya=Object.keys(di.serie).sort(),f0=new Date(di.serie[ya[ya.length-1]][0]?.[0]||di.fecha);
     const x=s=>Math.round((new Date(s)-f0)/864e5),lab=k=>{const d=new Date(f0.getTime()+k*864e5);return String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")};
     const o=base("Hm3");o.scales.x={type:"linear",grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:5,callback:v=>lab(v)}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
