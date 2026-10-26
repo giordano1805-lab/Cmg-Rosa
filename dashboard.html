@@ -39,6 +39,7 @@ header .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:0}
 header img{height:40px;display:none}
 header h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.2px;color:var(--brand);padding-left:14px;border-left:1px solid #d9dce6}
 header .meta{margin-left:auto;font-size:12.5px;color:#52514e;text-align:right}
+header .btn{background:var(--naranja);color:#fff;border-radius:8px;padding:6px 11px;font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
 header button{background:transparent;border:1px solid #c9cde0;color:var(--brand);border-radius:8px;padding:5px 9px;cursor:pointer;font:inherit;font-size:12px}
 nav{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--border)}
 nav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
@@ -94,6 +95,7 @@ a{color:var(--s1)}
   <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
   <h1>Monitor diario del SEIN</h1>
   <div class="meta" id="meta">Cargando…</div>
+  <a id="pdf" class="btn" href="#" target="_blank" style="display:none">Descargar PDF</a>
   <button id="tema" title="Cambiar tema claro/oscuro">Tema</button>
 </div></header>
 <nav><div class="wrap" id="tabs"></div></nav>
@@ -276,6 +278,7 @@ function dibujar(){
     grafico("#c-dem",{type:"line",data:{labels:D.demanda_areas.map(r=>r.hora),datasets:[["norte","Norte","--s3"],["centro","Centro","--s1"],["sur","Sur","--s2"]].map(([k,n,c])=>({label:n,data:D.demanda_areas.map(r=>r[k]),fill:true,backgroundColor:css(c),borderColor:css("--surface"),borderWidth:1,pointRadius:0}))},options:o})}
 }
 
+fetch("reportes.json",{cache:"no-store"}).then(r=>r.json()).then(l=>{if(l&&l.length){const a=$("#pdf");a.href="reportes/"+l[0];a.download=l[0];a.style.display="inline-block"}}).catch(()=>{});
 fetch("datos.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;tabs();render();dibujar()})
  .catch(()=>{$("#meta").textContent="No se pudieron cargar los datos."});
 </script>
