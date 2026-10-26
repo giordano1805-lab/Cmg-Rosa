@@ -144,6 +144,13 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
         m1, m0 = rh["mtd"][rh["act"]], rh["mtd"][rh["ant"]]
         b.append(f"Hidro de pasada: promedio del mes {m1:,.0f} MW vs. {m0:,.0f} MW en {rh['ant']} "
                  f"(<b>{(m1 / m0 - 1) * 100:+.0f}%</b>).")
+    hc = extra.get("hidro_centrales")
+    if hc and hc["centrales"]:
+        baj = [c for c in hc["centrales"] if c["delta"] < 0][:4]
+        if baj:
+            b.append(f"Centrales hidro con mayor caída vs. {hc['ant']} (días {hc['desde']}–{hc['hasta']}): " +
+                     ", ".join(f"{c['central']} {c['delta']:+,.1f} GWh"
+                               + (f" ({c['var_pct']:+.0f}%)" if c["var_pct"] is not None else "") for c in baj) + ".")
     for k, nom in (("regulacion", "Hidro de embalse"), ("eolica", "Eólica")):
         rr = extra.get(k)
         if rr and rr["mtd"].get(rr["act"]) and rr["mtd"].get(rr["ant"]):
@@ -331,6 +338,18 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
     for k in ("hidro", "regulacion", "eolica"):
         el.append(img(graficos.get(k), 7.3))
     el.append(PageBreak())
+    hc = extra.get("hidro_centrales")
+    if hc and hc["centrales"]:
+        el.append(Paragraph(f"Centrales hidroeléctricas: producción del mes vs. {hc['ant']} "
+                            f"<font size=8 color='{GRIS}'>(días {hc['desde']}–{hc['hasta']} de ambos años, IEOD)</font>", h1))
+        filas = [[c["central"], c["empresa"], c["tipo"], f"{c['act']:,.2f}", f"{c['ant']:,.2f}",
+                  (f"<font color='#c5221f'>{c['delta']:+,.2f}</font>" if c["delta"] < 0 else f"{c['delta']:+,.2f}"),
+                  f"{c['var_pct']:+.0f}%" if c["var_pct"] is not None else "–"] for c in hc["centrales"][:25]]
+        el.append(tabla(["Central", "Empresa", "Tipo", f"GWh {hc['act']}", f"GWh {hc['ant']}", "Diferencia", "Var."],
+                        filas, [0.2, 0.3, 0.1, 0.1, 0.1, 0.11, 0.09]))
+        el.append(P(f"Total hidro: {hc['total_act']:,.1f} GWh vs. {hc['total_ant']:,.1f} GWh. Se muestran las 25 "
+                    f"centrales con mayor caída.", nota))
+        el.append(PageBreak())
 
     fuente_ieod = f"IEOD del {dia_ieod:%d/%m/%Y}" if dia_ieod else "IEOD no disponible"
     el.append(Paragraph(f"Indisponibilidades de generación <font size=8 color='{GRIS}'>({fuente_ieod})</font>", h1))
@@ -502,6 +521,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "enlaces": extra.get("enlaces") or {},
         "congestion": extra.get("congestion") or {"columnas": [], "registros": []},
         "eolica": extra.get("eolica"),
+        "hidro_centrales": extra.get("hidro_centrales"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
 
@@ -594,6 +614,7 @@ def generar(m, hist=None):
         extra["hidro"] = hi.resumen_hidro(h, dia)
         extra["hidro"]["pendientes"] = len(pend)
         extra["regulacion"] = hi.resumen_hidro(h, dia, "regulacion")
+        extra["hidro_centrales"] = hi.resumen_centrales(dia)
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)

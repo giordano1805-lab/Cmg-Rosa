@@ -764,6 +764,35 @@ def diesel_despacho(hojas, dia: dt.date):
     return {"unidades": unidades, "serie": serie}
 
 
+def hidro_por_central(hojas):
+    """Energía del día por central hidroeléctrica (MWh, pasada y regulación) del cuadro derecho de TIPO_RECURSO."""
+    filas = hojas.get("TIPO_RECURSO") or []
+    for i, f in enumerate(filas[:15]):
+        cab = [norm(x) for x in f]
+        if "CENTRAL" in cab and any("PASADA" in c and "HIDRO" in c for c in cab):
+            jc = cab.index("CENTRAL")
+            je = cab.index("EMPRESA") if "EMPRESA" in cab else jc - 1
+            jp = next(j for j, c in enumerate(cab) if "PASADA" in c and "HIDRO" in c)
+            jr = next((j for j, c in enumerate(cab) if "REGULACION" in c and "HIDRO" in c), None)
+            out, emp = {}, ""
+            for g in filas[i + 1:]:
+                c = texto(g[jc]) if jc < len(g) else ""
+                e = texto(g[je]) if je < len(g) else ""
+                if norm(e).startswith("TOTAL") or norm(c).startswith("TOTAL"):
+                    break
+                emp = e or emp
+                if not c:
+                    continue
+                vp = numero(g[jp]) if jp < len(g) else None
+                vr = numero(g[jr]) if jr is not None and jr < len(g) else None
+                if vp is None and vr is None:
+                    continue
+                nombre = re.sub(r"^(M\.?C\.?H\.?|C\.?\s?H\.?|P\.?C\.?H\.?|CH)\s*", "", norm(c)).title()
+                out[nombre] = {"empresa": emp.title(), "pasada": vp or 0.0, "regulacion": vr or 0.0}
+            return out
+    return {}
+
+
 def ieod_dia(d: dt.date):
     """Anexo A del IEOD de un día exacto (o {} si no está publicado): potencia por recurso y volúmenes."""
     fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES"})
