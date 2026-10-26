@@ -334,6 +334,47 @@ def grafico_sr_bloques(diario, diario_bl, prom_mes, prom_mes_bl, hoy, ruta):
     plt.close(fig)
 
 
+def grafico_30min(hist, hoy, ruta):
+    """CMg cada 30 min de las 3 barras: día anterior (arriba) y día del reporte (abajo)."""
+    plt = _plt()
+    from matplotlib.ticker import MultipleLocator
+    ayer = hoy - dt.timedelta(days=1)
+    fig, axes = plt.subplots(2, 1, figsize=(8.5, 7.6), dpi=160, sharex=True, sharey=True)
+    for ax, dia in zip(axes, (ayer, hoy)):
+        pts = sorted((t, r) for t, r in hist.items() if dia_operativo(t) == dia)
+        ax.axvspan(18, 23, color="#c5221f", alpha=0.06, lw=0)
+        for b, (_, _, color) in BARRAS.items():
+            xs = [((t - dt.timedelta(minutes=1)).hour * 60 + (t - dt.timedelta(minutes=1)).minute + 1) / 60
+                  for t, r in pts if isinstance(r.get(b), float)]
+            ys = [r[b] / TC for t, r in pts if isinstance(r.get(b), float)]
+            if xs:
+                ax.plot(xs, ys, color=color, lw=1.8, marker="o", ms=2.5, label=b)
+                ax.annotate(f"{ys[-1]:.0f}", (xs[-1], ys[-1]), xytext=(4, 0), textcoords="offset points",
+                            va="center", fontsize=7, color=color, weight="bold")
+        n = len(pts)
+        ultimo = f" · hasta {pts[-1][0]:%H:%M}" if pts and n < 48 else ""
+        etiqueta = "Día anterior" if dia == ayer else "Día del reporte"
+        ax.set_title(f"{etiqueta}: {dia:%d/%m/%Y} ({n}/48){ultimo}", fontsize=9, loc="left")
+        ax.grid(alpha=0.3)
+        ax.set_ylabel("USD/MWh", fontsize=8)
+        ax.tick_params(labelsize=7)
+        for s in ("top", "right"):
+            ax.spines[s].set_visible(False)
+    axes[0].text(20.5, axes[0].get_ylim()[1], "Punta", ha="center", va="top", fontsize=7, color="#c5221f")
+    axes[1].set_xlim(0, 24.8)
+    axes[1].xaxis.set_major_locator(MultipleLocator(2))
+    axes[1].xaxis.set_minor_locator(MultipleLocator(0.5))
+    axes[1].set_xticks(range(0, 25, 2), [f"{h:02d}:00" for h in range(0, 25, 2)])
+    axes[1].set_xlabel("Hora (fin del intervalo de 30 min)", fontsize=8)
+    axes[0].legend(fontsize=7.5, loc="upper left", frameon=False, ncol=3)
+    fig.suptitle("CMg tiempo real cada 30 min · USD/MWh", fontsize=10)
+    fig.text(0.99, 0.005, f"Fuente: COES (CMg tiempo real preliminar, PR-07) · TC {TC:.2f} S/ por USD · "
+             "franja roja = punta 18-23 h", ha="right", fontsize=6, color="#5f6368")
+    fig.tight_layout(rect=(0, 0.015, 1, 1))
+    fig.savefig(ruta)
+    plt.close(fig)
+
+
 # --------------------------------------------------------------------------- telegram
 def tg(metodo, **kw):
     r = requests.post(f"https://api.telegram.org/bot{os.environ['TELEGRAM_TOKEN']}/{metodo}",
@@ -404,11 +445,13 @@ def main():
         prom_mes_bl[bl] = promedio([x for v in por_dia.values() for x in v])
 
     n_dia = sum(1 for t in mes if dia_operativo(t) == hoy)
-    rutas = [Path("g1_santarosa.png"), Path("g2_barras.png"), Path("g3_bloques.png")]
+    rutas = [Path("g1_santarosa.png"), Path("g2_barras.png"), Path("g3_bloques.png"),
+             Path("g4_30min.png")]
     if prom_mes_b[SR] is not None:
         grafico_sr_barras(diario_b[SR], prom_mes_b[SR], n_dia, hoy, rutas[0])
         grafico_sr_bloques(diario_b[SR], diario_bl, prom_mes_b[SR], prom_mes_bl, hoy, rutas[2])
     grafico_lineas_barras(diario_b, prom_mes_b, hoy, rutas[1])
+    grafico_30min(hist, hoy, rutas[3])
     rutas = [p for p in rutas if p.exists()]
 
     def f2(v):
