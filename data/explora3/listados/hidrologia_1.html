@@ -1,0 +1,154 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Estudios/Hidrologia/')">Hidrolog&#237;a</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/')">Estudios de series sint&#233;ticas mediano y largo plazo</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div class="coes-box">
+            <ul class="infolist list-unstyled">
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Vilcanota/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Vilcanota/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Vilcanota/', 'D', '')" class="infolist-link">Vilcanota</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/', 'D', '')" class="infolist-link">Tulumayo</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tarma/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tarma/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tarma/', 'D', '')" class="infolist-link">Tarma</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Santa/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Santa/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Santa/', 'D', '')" class="infolist-link">Santa</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/San Gab&#225;n/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/San Gab&#225;n/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/San Gab&#225;n/', 'D', '')" class="infolist-link">San Gab&#225;n</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/R&#237;mac QN2-Tamboraque/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/R&#237;mac QN2-Tamboraque/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/R&#237;mac QN2-Tamboraque/', 'D', '')" class="infolist-link">R&#237;mac QN2-Tamboraque</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/R&#237;mac QN2-Sheque/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/R&#237;mac QN2-Sheque/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/R&#237;mac QN2-Sheque/', 'D', '')" class="infolist-link">R&#237;mac QN2-Sheque</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Paucartambo/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Paucartambo/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Paucartambo/', 'D', '')" class="infolist-link">Paucartambo</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Pativilca/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Pativilca/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Pativilca/', 'D', '')" class="infolist-link">Pativilca</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Mantaro-Tablachaca/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Mantaro-Tablachaca/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Mantaro-Tablachaca/', 'D', '')" class="infolist-link">Mantaro-Tablachaca</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Mantaro- Lago Jun&#237;n/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Mantaro- Lago Jun&#237;n/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Mantaro- Lago Jun&#237;n/', 'D', '')" class="infolist-link">Mantaro- Lago Jun&#237;n</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Locumba/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Locumba/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Locumba/', 'D', '')" class="infolist-link">Locumba</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Jequetepeque/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Jequetepeque/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Jequetepeque/', 'D', '')" class="infolist-link">Jequetepeque</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chira/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chira/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chira/', 'D', '')" class="infolist-link">Chira</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chili/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chili/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chili/', 'D', '')" class="infolist-link">Chili</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chancay/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chancay/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Chancay/', 'D', '')" class="infolist-link">Chancay</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Ca&#241;ete/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Ca&#241;ete/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Ca&#241;ete/', 'D', '')" class="infolist-link">Ca&#241;ete</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/ Informe de AMBIAND-Ambiental Andina/" >
+                        <a href="#" id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/ Informe de AMBIAND-Ambiental Andina/" onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/ Informe de AMBIAND-Ambiental Andina/', 'D', '')" class="infolist-link"> Informe de AMBIAND-Ambiental Andina</a>
+                    </li>
+            </ul>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="S" />
+
+
+
+

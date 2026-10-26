@@ -1,0 +1,187 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/')">Programa de Mantenimiento Diario</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/')">2026</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/')">10_OCTUBRE</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/')">D&#237;a 26</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div id="cntPaginado">
+
+        </div>
+        <div id="contentTop">
+        </div>
+        <div id="contentBusqueda" class="table-responsive">
+                <table id="tbDocumentLibrary" class="tabla-icono table-hover">
+                    <thead id="headDocument">
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="cbSelectAll" />
+                            </th>
+                            <th></th>
+                                        <th>Nombre</th>
+                                        <th>Tipo de documento</th>
+                                        <th>Fecha de Publicaci&#243;n</th>
+                                        <th style="width: 145px;">Tama&#241;o</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf" title="SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf">
+                                <td>
+                                        <input type="checkbox" id="SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf', 'F', '.pdf')"><img src="/Portal/Content/Images/Document/pdficon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf', 'F', '.pdf')">SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf', 'F', '.pdf')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf', 'F', '.pdf')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/SPR-IPDI-299-2026 PROGRAMA DIARIO DE INTERVENCIONES.pdf', 'F', '.pdf')">186.83 KB</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx" title="Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx">
+                                <td>
+                                        <input type="checkbox" id="Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx', 'F', '.xlsx')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx', 'F', '.xlsx')">Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx', 'F', '.xlsx')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx', 'F', '.xlsx')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo5_Restricci&#243;n_de_Suministros_20261026.xlsx', 'F', '.xlsx')">16.62 KB</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip" title="Anexo4_Procedimientos_20261026.zip">
+                                <td>
+                                        <input type="checkbox" id="Anexo4_Procedimientos_20261026.zip" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip', 'F', '.zip')"><img src="/Portal/Content/Images/Document/zipicon.gif" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip', 'F', '.zip')">Anexo4_Procedimientos_20261026.zip</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo4_Procedimientos_20261026.zip', 'F', '.zip')">1,889.79 KB</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip" title="Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip">
+                                <td>
+                                        <input type="checkbox" id="Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip', 'F', '.zip')"><img src="/Portal/Content/Images/Document/zipicon.gif" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip', 'F', '.zip')">Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo3_An&#225;lisis El&#233;ctrico_20261026_PFD.zip', 'F', '.zip')">47,125.99 KB</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip" title="Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip">
+                                <td>
+                                        <input type="checkbox" id="Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip', 'F', '.zip')"><img src="/Portal/Content/Images/Document/zipicon.gif" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip', 'F', '.zip')">Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo2_An&#225;lisis El&#233;ctrico_20261026.zip', 'F', '.zip')">4,030.27 KB</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip" title="Anexo1_Intervenciones_20261026.zip">
+                                <td>
+                                        <input type="checkbox" id="Anexo1_Intervenciones_20261026.zip" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip', 'F', '.zip')"><img src="/Portal/Content/Images/Document/zipicon.gif" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip', 'F', '.zip')">Anexo1_Intervenciones_20261026.zip</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/Anexo1_Intervenciones_20261026.zip', 'F', '.zip')">709.66 KB</td>
+                            </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="N" />
+
+
+
+

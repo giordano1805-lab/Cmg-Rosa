@@ -1,0 +1,159 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Estudios/Hidrologia/')">Hidrolog&#237;a</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/')">Estudios de series sint&#233;ticas mediano y largo plazo</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/')">Tulumayo</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div id="cntPaginado">
+
+        </div>
+        <div id="contentTop">
+        </div>
+        <div id="contentBusqueda" class="table-responsive">
+                <table id="tbDocumentLibrary" class="tabla-icono table-hover">
+                    <thead id="headDocument">
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="cbSelectAll" />
+                            </th>
+                            <th></th>
+                                        <th>Nombre</th>
+                                        <th style="width: 145px;">Tama&#241;o</th>
+                                        <th>Fecha de Publicaci&#243;n</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/ERROR_RESUL_TULUMAYO.xlsx" title="ERROR_RESUL_TULUMAYO.xlsx">
+                                <td>
+                                        <input type="checkbox" id="ERROR_RESUL_TULUMAYO.xlsx" name="cbSelect" value="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/ERROR_RESUL_TULUMAYO.xlsx" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/ERROR_RESUL_TULUMAYO.xlsx', 'F', '.xlsx')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/ERROR_RESUL_TULUMAYO.xlsx', 'F', '.xlsx')">ERROR_RESUL_TULUMAYO.xlsx</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/ERROR_RESUL_TULUMAYO.xlsx', 'F', '.xlsx')">849.81 KB</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/ERROR_RESUL_TULUMAYO.xlsx', 'F', '.xlsx')">10/07/2014</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_RESUMEN_TULUMAYO.xlsx" title="EST_RESUMEN_TULUMAYO.xlsx">
+                                <td>
+                                        <input type="checkbox" id="EST_RESUMEN_TULUMAYO.xlsx" name="cbSelect" value="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_RESUMEN_TULUMAYO.xlsx" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_RESUMEN_TULUMAYO.xlsx', 'F', '.xlsx')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_RESUMEN_TULUMAYO.xlsx', 'F', '.xlsx')">EST_RESUMEN_TULUMAYO.xlsx</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_RESUMEN_TULUMAYO.xlsx', 'F', '.xlsx')">75.87 KB</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_RESUMEN_TULUMAYO.xlsx', 'F', '.xlsx')">10/07/2014</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_SERIE_SINT_TULUMAYO.xls" title="EST_SERIE_SINT_TULUMAYO.xls">
+                                <td>
+                                        <input type="checkbox" id="EST_SERIE_SINT_TULUMAYO.xls" name="cbSelect" value="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_SERIE_SINT_TULUMAYO.xls" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_SERIE_SINT_TULUMAYO.xls', 'F', '.xls')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_SERIE_SINT_TULUMAYO.xls', 'F', '.xls')">EST_SERIE_SINT_TULUMAYO.xls</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_SERIE_SINT_TULUMAYO.xls', 'F', '.xls')">709 KB</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/EST_SERIE_SINT_TULUMAYO.xls', 'F', '.xls')">10/07/2014</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/SERIE_SINT_GRAFICA_TULUMAYO.xlsm" title="SERIE_SINT_GRAFICA_TULUMAYO.xlsm">
+                                <td>
+                                        <input type="checkbox" id="SERIE_SINT_GRAFICA_TULUMAYO.xlsm" name="cbSelect" value="Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/SERIE_SINT_GRAFICA_TULUMAYO.xlsm" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/SERIE_SINT_GRAFICA_TULUMAYO.xlsm', 'F', '.xlsm')"><img src="/Portal/Content/Images/Document/defaulticon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/SERIE_SINT_GRAFICA_TULUMAYO.xlsm', 'F', '.xlsm')">SERIE_SINT_GRAFICA_TULUMAYO.xlsm</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/SERIE_SINT_GRAFICA_TULUMAYO.xlsm', 'F', '.xlsm')">1,585.4 KB</td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Estudios/Hidrologia/Estudios de series sint&#233;ticas mediano y largo plazo/Tulumayo/SERIE_SINT_GRAFICA_TULUMAYO.xlsm', 'F', '.xlsm')">10/07/2014</td>
+                            </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="N" />
+
+
+
+

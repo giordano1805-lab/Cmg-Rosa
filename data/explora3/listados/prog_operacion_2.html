@@ -1,0 +1,179 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/')">Programa de Operaci&#243;n Diario</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/')">2026</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/')">10_OCTUBRE</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div class="coes-box">
+            <ul class="infolist list-unstyled">
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 26/', 'D', '')" class="infolist-link">D&#237;a 26</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 25/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 25/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 25/', 'D', '')" class="infolist-link">D&#237;a 25</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 24/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 24/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 24/', 'D', '')" class="infolist-link">D&#237;a 24</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 23/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 23/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 23/', 'D', '')" class="infolist-link">D&#237;a 23</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 22/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 22/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 22/', 'D', '')" class="infolist-link">D&#237;a 22</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 21/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 21/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 21/', 'D', '')" class="infolist-link">D&#237;a 21</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 20/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 20/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 20/', 'D', '')" class="infolist-link">D&#237;a 20</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 19/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 19/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 19/', 'D', '')" class="infolist-link">D&#237;a 19</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 18/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 18/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 18/', 'D', '')" class="infolist-link">D&#237;a 18</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 17/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 17/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 17/', 'D', '')" class="infolist-link">D&#237;a 17</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 16/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 16/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 16/', 'D', '')" class="infolist-link">D&#237;a 16</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 15/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 15/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 15/', 'D', '')" class="infolist-link">D&#237;a 15</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 14/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 14/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 14/', 'D', '')" class="infolist-link">D&#237;a 14</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 13/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 13/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 13/', 'D', '')" class="infolist-link">D&#237;a 13</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 12/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 12/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 12/', 'D', '')" class="infolist-link">D&#237;a 12</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 11/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 11/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 11/', 'D', '')" class="infolist-link">D&#237;a 11</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 10/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 10/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 10/', 'D', '')" class="infolist-link">D&#237;a 10</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 09/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 09/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 09/', 'D', '')" class="infolist-link">D&#237;a 09</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 08/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 08/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 08/', 'D', '')" class="infolist-link">D&#237;a 08</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 07/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 07/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 07/', 'D', '')" class="infolist-link">D&#237;a 07</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 06/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 06/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 06/', 'D', '')" class="infolist-link">D&#237;a 06</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 05/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 05/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 05/', 'D', '')" class="infolist-link">D&#237;a 05</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 04/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 04/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 04/', 'D', '')" class="infolist-link">D&#237;a 04</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 03/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 03/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 03/', 'D', '')" class="infolist-link">D&#237;a 03</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 02/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 02/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 02/', 'D', '')" class="infolist-link">D&#237;a 02</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 01/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 01/" onclick="openBlob('Operaci&#243;n/Programa de Operaci&#243;n/Programa Diario/2026/10_OCTUBRE/D&#237;a 01/', 'D', '')" class="infolist-link">D&#237;a 01</a>
+                    </li>
+            </ul>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="S" />
+
+
+
+

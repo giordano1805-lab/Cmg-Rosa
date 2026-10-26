@@ -1,0 +1,104 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/')">Actualizaci&#243;n del Programa Diario</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/2013/')">2013</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/2013/04 Abril/')">04 Abril</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div class="coes-box">
+            <ul class="infolist list-unstyled">
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/2013/04 Abril/D&#237;a 02/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/2013/04 Abril/D&#237;a 02/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Actualizaci&#243;n del Programa Diario/2013/04 Abril/D&#237;a 02/', 'D', '')" class="infolist-link">D&#237;a 02</a>
+                    </li>
+            </ul>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="S" />
+
+
+
+

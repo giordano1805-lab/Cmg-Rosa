@@ -1,0 +1,155 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/IEOD/')">IEOD</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/IEOD/2026/')">2026</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/')">10_Octubre</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/')">25</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div id="cntPaginado">
+
+        </div>
+        <div id="contentTop">
+        </div>
+        <div id="contentBusqueda" class="table-responsive">
+                <table id="tbDocumentLibrary" class="tabla-icono table-hover">
+                    <thead id="headDocument">
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="cbSelectAll" />
+                            </th>
+                            <th></th>
+                                        <th>Nombre</th>
+                                        <th style="width: 145px;">Tama&#241;o</th>
+                                        <th>Tipo de documento</th>
+                                        <th>Fecha de Publicaci&#243;n</th>
+                                        <th>Observaci&#243;n 1</th>
+                                        <th>Fecha Modificaci&#243;n 1</th>
+                                        <th>Observaci&#243;n 2</th>
+                                        <th>Fecha Modificaci&#243;n 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf" title="dom_2510.pdf">
+                                <td>
+                                        <input type="checkbox" id="dom_2510.pdf" name="cbSelect" value="Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf" />
+                                </td>
+                                <td onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')"><img src="/Portal/Content/Images/Document/pdficon.png" /></td>
+
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')">dom_2510.pdf</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')">1,237.14 KB</td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')">Informe</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')">26/10/2026</td>
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')"></td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')"></td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')"></td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/dom_2510.pdf', 'F', '.pdf')"></td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx" title="AnexoA_2510.xlsx">
+                                <td>
+                                        <input type="checkbox" id="AnexoA_2510.xlsx" name="cbSelect" value="Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx" />
+                                </td>
+                                <td onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')">AnexoA_2510.xlsx</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')">1,185.5 KB</td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')">Anexos</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')">26/10/2026</td>
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')">Se actualiz&#243; despacho ejecutado de C.E. Wayra Extensi&#243;n; C.S. Wayra Solar; C.T. Tallanca y C.T. Tablazo.</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')"></td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')"></td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/IEOD/2026/10_Octubre/25/AnexoA_2510.xlsx', 'F', '.xlsx')"></td>
+                            </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="N" />
+
+
+
+

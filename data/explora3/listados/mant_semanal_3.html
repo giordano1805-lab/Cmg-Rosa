@@ -1,0 +1,143 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/')">Programa semanal</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/')">2026</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/')">43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/')">Preliminar</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div id="cntPaginado">
+
+        </div>
+        <div id="contentTop">
+        </div>
+        <div id="contentBusqueda" class="table-responsive">
+                <table id="tbDocumentLibrary" class="tabla-icono table-hover">
+                    <thead id="headDocument">
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="cbSelectAll" />
+                            </th>
+                            <th></th>
+                                        <th>Nombre</th>
+                                        <th>Tipo de documento</th>
+                                        <th>Fecha de Publicaci&#243;n</th>
+                                        <th style="width: 145px;">Tama&#241;o</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls" title="Anexo1_intervenciones_(Agentes).xls">
+                                <td>
+                                        <input type="checkbox" id="Anexo1_intervenciones_(Agentes).xls" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls', 'F', '.xls')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls', 'F', '.xls')">Anexo1_intervenciones_(Agentes).xls</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls', 'F', '.xls')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls', 'F', '.xls')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo1_intervenciones_(Agentes).xls', 'F', '.xls')">2,795.5 KB</td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip" title="Anexo4_Procedimientos de Maniobra.zip">
+                                <td>
+                                        <input type="checkbox" id="Anexo4_Procedimientos de Maniobra.zip" name="cbSelect" value="Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip" />
+                                </td>
+                                <td onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip', 'F', '.zip')"><img src="/Portal/Content/Images/Document/zipicon.gif" /></td>
+
+                                            <td  onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip', 'F', '.zip')">Anexo4_Procedimientos de Maniobra.zip</td>
+                                            <td style=text-align:left onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:right onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Semanal/2026/43_SEMANAL N&#176; 43 (24.10.2026 - 30.10.2026)/Preliminar/Anexo4_Procedimientos de Maniobra.zip', 'F', '.zip')">17,398.26 KB</td>
+                            </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="N" />
+
+
+
+

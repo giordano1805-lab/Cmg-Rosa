@@ -1,0 +1,130 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/')">Programa de Mantenimiento Diario</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/')">2026</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div class="coes-box">
+            <ul class="infolist list-unstyled">
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/10_OCTUBRE/', 'D', '')" class="infolist-link">10_OCTUBRE</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/09_SETIEMBRE/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/09_SETIEMBRE/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/09_SETIEMBRE/', 'D', '')" class="infolist-link">09_SETIEMBRE</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/08_AGOSTO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/08_AGOSTO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/08_AGOSTO/', 'D', '')" class="infolist-link">08_AGOSTO</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/07_JULIO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/07_JULIO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/07_JULIO/', 'D', '')" class="infolist-link">07_JULIO</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/06_JUNIO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/06_JUNIO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/06_JUNIO/', 'D', '')" class="infolist-link">06_JUNIO</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/05_MAYO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/05_MAYO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/05_MAYO/', 'D', '')" class="infolist-link">05_MAYO</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/04_ABRIL/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/04_ABRIL/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/04_ABRIL/', 'D', '')" class="infolist-link">04_ABRIL</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/03_MARZO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/03_MARZO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/03_MARZO/', 'D', '')" class="infolist-link">03_MARZO</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/02_FEBRERO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/02_FEBRERO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/02_FEBRERO/', 'D', '')" class="infolist-link">02_FEBRERO</a>
+                    </li>
+                    <li class="infolist-item selector-directory-contextual" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/01_ENERO/" >
+                        <a href="#" id="Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/01_ENERO/" onclick="openBlob('Operaci&#243;n/Programa de Mantenimiento/Programa Diario/2026/01_ENERO/', 'D', '')" class="infolist-link">01_ENERO</a>
+                    </li>
+            </ul>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="S" />
+
+
+
+

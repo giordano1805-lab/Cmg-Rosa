@@ -1,0 +1,150 @@
+
+        <script type="text/javascript">
+            $(function () {
+                $('#cabecera').css("display", "block");
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#btn-busqueda').css("display", "block");
+                $('#btn-indice').css("display", "none");
+            });
+        </script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#cbSelectAll').click(function (e) {
+            var table = $(e.target).closest('table');
+            $('td input:checkbox', table).prop('checked', this.checked);
+        });
+
+        $('.formulario-item-fecha').Zebra_DatePicker({
+        });
+
+        $('#btnConsultar').click(function () {
+            buscarArchivos();
+        });
+
+        $('#campo7').keypress(function (e) {
+            if (e.keyCode == '13') {
+                buscarArchivos();
+                return false;
+            }
+        });
+
+        $('#busquedaDoble').click(function () {
+            $('#campo7').val('');
+            $('#campo39').val('');
+            $('#campo42').val('');
+        });
+
+        //$('#cuadroBusqueda').keypress(function (e) {
+        //    if (e.keyCode == '13') {
+        //        buscarArchivos();
+        //        return false;
+        //    }
+        //});
+    });
+
+    /*
+    List - Thumbs view switch
+*/
+
+    function InfoListViewSwitch() {
+        $('.coes-views button').removeClass('active')
+        $(this).addClass('active')
+
+        if ($(this).hasClass('js-switch-list')) {
+            $('.infolist').addClass('listed')
+        } else {
+            $('.infolist').removeClass('listed')
+        }
+    }
+
+    $('.js-switch-list, .js-switch-thumbs').on('click', InfoListViewSwitch)
+
+    function activeSwitch() {
+        $('.js-switch-list').removeClass('active');
+        $('.js-switch-thumbs').addClass('active');
+        $('.infolist').removeClass('listed');
+    }
+
+    $('.search-clic').on('click', activeSwitch);
+    $('.infolist-link').on('click', activeSwitch);
+</script>
+
+<style type="text/css">
+    .formato {
+        margin-bottom: 20px;
+    }
+</style>
+
+    <div class="bread-crumb" style="margin-left:3px">
+        <ul>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/')">Reporte de Indisponibilidad</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/')">2026</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/')">10_OCTUBRE</a></li>
+                <li><a id="busquedaDoble" class="search-clic" href="JavaScript:openDirectory('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/')">01_Primera_Quincena</a></li>
+        </ul>
+    </div>
+    <div style="clear:both"></div>
+        <div id="cntPaginado">
+
+        </div>
+        <div id="contentTop">
+        </div>
+        <div id="contentBusqueda" class="table-responsive">
+                <table id="tbDocumentLibrary" class="tabla-icono table-hover">
+                    <thead id="headDocument">
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="cbSelectAll" />
+                            </th>
+                            <th></th>
+                                        <th>Nombre</th>
+                                        <th>Fecha de Publicaci&#243;n</th>
+                                        <th>Tipo de documento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.zip" title="PR25_Octubre_2026.zip">
+                                <td>
+                                        <input type="checkbox" id="PR25_Octubre_2026.zip" name="cbSelect" value="Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.zip" />
+                                </td>
+                                <td onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.zip', 'F', '.zip')"><img src="/Portal/Content/Images/Document/zipicon.gif" /></td>
+
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.zip', 'F', '.zip')">PR25_Octubre_2026.zip</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.zip', 'F', '.zip')"></td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.zip', 'F', '.zip')"></td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.xls" title="PR25_Octubre_2026.xls">
+                                <td>
+                                        <input type="checkbox" id="PR25_Octubre_2026.xls" name="cbSelect" value="Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.xls" />
+                                </td>
+                                <td onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.xls', 'F', '.xls')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.xls', 'F', '.xls')">PR25_Octubre_2026.xls</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.xls', 'F', '.xls')"></td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/PR25_Octubre_2026.xls', 'F', '.xls')"></td>
+                            </tr>
+                            <tr style="cursor:pointer" class=selector-file-contextual id="Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/Factor K_Octubre_2026.xlsx" title="Factor K_Octubre_2026.xlsx">
+                                <td>
+                                        <input type="checkbox" id="Factor K_Octubre_2026.xlsx" name="cbSelect" value="Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/Factor K_Octubre_2026.xlsx" />
+                                </td>
+                                <td onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/Factor K_Octubre_2026.xlsx', 'F', '.xlsx')"><img src="/Portal/Content/Images/Document/xlsicon.png" /></td>
+
+                                            <td  onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/Factor K_Octubre_2026.xlsx', 'F', '.xlsx')">Factor K_Octubre_2026.xlsx</td>
+                                            <td style=text-align:right onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/Factor K_Octubre_2026.xlsx', 'F', '.xlsx')"></td>
+                                            <td style=text-align:left onclick="openBlob('Post Operaci&#243;n/Reportes/Reporte de Indisponibilidad/2026/10_OCTUBRE/01_Primera_Quincena/Factor K_Octubre_2026.xlsx', 'F', '.xlsx')"></td>
+                            </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    <input type="hidden" id="hfIndicadorCabecera" value="N" />
+
+
+
+
