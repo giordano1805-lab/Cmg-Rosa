@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitor SEIN Huanchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f4f5f7; --surface:#fcfcfb; --surface-2:#f0f2f5; --border:#e2e4e8;
+  --text:#0b0b0b; --text-2:#52514e; --muted:#8a8986; --brand:#001a6f; --naranja:#ff5716; --amarillo:#ffb210;
+  --s1:#2b4fd1; --s2:#f0590f; --s3:#e9a300; --s4:#1baf7a; --s5:#e87ba4; --s6:#008300; --s7:#6250d6; --s8:#e34948; --base:#6f8bf5; --linea:#001a6f;
+  --grid:rgba(0,0,0,.07); --bad:#c5221f; --good:#137333;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --border:#2f2f2c;
+    --text:#f0efec; --text-2:#c3c2b7; --muted:#8f8e88; --brand:#001a6f; --naranja:#ff5716; --amarillo:#ffb210;
+    --s1:#6f8bf5; --s2:#c93f08; --s3:#b88c14; --s4:#199e70; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767; --base:#9fb1f7; --linea:#f0efec;
+    --grid:rgba(255,255,255,.08); --bad:#f28b82; --good:#81c995;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --border:#2f2f2c;
+  --text:#f0efec; --text-2:#c3c2b7; --muted:#8f8e88; --brand:#001a6f; --naranja:#ff5716; --amarillo:#ffb210;
+  --s1:#6f8bf5; --s2:#c93f08; --s3:#b88c14; --s4:#199e70; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767; --base:#9fb1f7; --linea:#f0efec;
+  --grid:rgba(255,255,255,.08); --bad:#f28b82; --good:#81c995;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,sans-serif}
+header{background:#fff;color:var(--brand);padding:12px 16px;border-bottom:4px solid transparent;border-image:linear-gradient(90deg,var(--naranja),var(--amarillo)) 1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:0}
+header img{height:40px;display:none}
+header h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.2px;color:var(--brand);padding-left:14px;border-left:1px solid #d9dce6}
+header .meta{margin-left:auto;font-size:12.5px;color:#52514e;text-align:right}
+header button{background:transparent;border:1px solid #c9cde0;color:var(--brand);border-radius:8px;padding:5px 9px;cursor:pointer;font:inherit;font-size:12px}
+nav{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav button{border:0;background:none;color:var(--text-2);font:inherit;font-weight:500;padding:12px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--text);border-color:var(--naranja)}
+main{padding:18px 0 40px}
+section{display:none} section.on{display:block}
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;min-width:0}
+.card h2{font-size:14.5px;margin:0 0 10px;font-weight:600}
+.card h2 small{font-weight:400;color:var(--muted);font-size:12px;margin-left:6px}
+.kpi .lbl{color:var(--text-2);font-size:12.5px}
+.kpi .val{font-size:28px;font-weight:700;letter-spacing:-.5px;margin:2px 0}
+.kpi .val small{font-size:13px;font-weight:500;color:var(--text-2);margin-left:3px}
+.kpi .sub{font-size:12.5px;color:var(--text-2)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.up{color:var(--bad)} .down{color:var(--good)}
+ul.bul{margin:0;padding-left:18px} ul.bul li{margin:4px 0}
+.chart{position:relative;height:300px} .chart.tall{height:360px}
+.tools{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.tools input{flex:1;min-width:180px;background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 10px;font:inherit}
+.tools .n{color:var(--muted);font-size:12.5px}
+.tbl{overflow:auto;max-height:520px;border:1px solid var(--border);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:12.5px}
+table.min{min-width:0}
+td.desc{min-width:280px}
+td.cort{white-space:nowrap}
+th,td{padding:6px 9px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+th{position:sticky;top:0;background:var(--surface-2);font-weight:600;color:var(--text-2);cursor:pointer;white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:hover td{background:var(--surface-2)}
+.tag{display:inline-block;border-radius:6px;padding:1px 6px;font-size:11.5px;font-weight:600;background:var(--surface-2);color:var(--text-2)}
+.tag.f{background:rgba(197,34,31,.12);color:var(--bad)}
+.note{color:var(--muted);font-size:12px;margin-top:8px}
+a{color:var(--s1)}
+.pdfs a{display:block;padding:7px 0;border-bottom:1px solid var(--border)}
+@media (max-width:600px){header img{height:30px}header h1{font-size:15px;border:0;padding-left:0;width:100%}.g4{grid-template-columns:1fr 1fr;gap:10px}.kpi{padding:12px}.kpi .val{font-size:21px}.kpi .val small{display:block;margin:0;font-size:11.5px}.chart{height:250px}.chart.tall{height:300px}header .meta{margin-left:0;text-align:left}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
+  <h1>Monitor diario del SEIN</h1>
+  <div class="meta" id="meta">Cargando…</div>
+  <button id="tema" title="Cambiar tema claro/oscuro">Tema</button>
+</div></header>
+<nav><div class="wrap" id="tabs"></div></nav>
+<main class="wrap" id="main"></main>
+
+<script>
+const SECC=[["resumen","Resumen"],["precios","Precios"],["oferta","Oferta y demanda"],["indisp","Indisponibilidades"],
+["trans","Transmisión y eventos"],["embalses","Embalses"],["prog","Programado hoy"],["pdf","Reportes PDF"]];
+const $=s=>document.querySelector(s);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const f2=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2});
+const f0=v=>v==null?"–":Number(v).toLocaleString("es-PE",{maximumFractionDigits:0});
+const f1=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:1,maximumFractionDigits:1});
+const tit=s=>(s||"").toLowerCase().replace(/(^|[\s.(\/-])([a-záéíóúñü])/g,(m,a,b)=>a+b.toUpperCase());
+const hm=s=>{if(!s)return"";const d=new Date(s);return d.toTimeString().slice(0,5)};
+const per=(r,dia)=>{dia=dia||D.dia_ieod||D.dia;const sig=new Date(new Date(dia+"T12:00").getTime()+864e5).toISOString().slice(0,10);
+  const fmt=(s,fin)=>{if(!s)return"";const fecha=s.slice(0,10),t=s.slice(11,16);
+    if(fin&&fecha===sig&&t==="00:00")return"24:00";return fecha===dia?t:`${fecha.slice(8,10)}/${fecha.slice(5,7)} ${t}`};
+  return `${fmt(r.inicio)}–${fmt(r.final,true)}`};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let D,charts=[];
+const SERIE={"Santa Rosa 220":"--s1","Socabaya 220":"--s2","Piura 220":"--s3"};
+const BLOQ={"Punta (18-23 h)":"--s2","Media (6-18 h)":"--s3","Base (23-6 h)":"--base"};
+const GEN={"Hídrica":"--s1","Gas natural":"--s2","Solar":"--s3","Eólica":"--s4","Carbón":"--muted","Diésel/Residual/Otros":"--s8","Biomasa":"--s7"};
+
+function tema(){const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("tema",r.dataset.theme)}catch(e){};dibujar()}
+try{const t=localStorage.getItem("tema");if(t)document.documentElement.dataset.theme=t}catch(e){}
+$("#tema").onclick=tema;
+
+function tabs(){$("#tabs").innerHTML=SECC.map(([k,n])=>`<button data-k="${k}">${n}</button>`).join("");
+  $("#main").innerHTML=SECC.map(([k])=>`<section id="s-${k}"></section>`).join("");
+  document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>ver(b.dataset.k));
+  let k=location.hash.slice(1);try{k=k||localStorage.getItem("tab")}catch(e){};ver(SECC.some(s=>s[0]===k)?k:"resumen")}
+function ver(k){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id==="s-"+k));
+  history.replaceState(null,"","#"+k);try{localStorage.setItem("tab",k)}catch(e){};dibujar()}
+
+function tabla(id,cols,filas,opt={}){
+  const el=$(id);let orden=null,asc=true,q="";
+  function pintar(){let fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
+    if(orden!=null){const c=cols[orden];fs=[...fs].sort((a,b)=>{const x=c.v(a),y=c.v(b);return(x>y?1:x<y?-1:0)*(asc?1:-1)})}
+    el.querySelector("tbody").innerHTML=fs.length?fs.map(f=>"<tr>"+cols.map(c=>`<td class="${c.num?"num":c.t==="Descripción"?"desc":["Horario","Unidad","Línea","Estado"].includes(c.t)?"cort":""}">${c.h?c.h(f):esc(c.v(f))}</td>`).join("")+"</tr>").join("")
+      :`<tr><td colspan="${cols.length}" style="color:var(--muted)">Sin registros.</td></tr>`;
+    el.querySelector(".n").textContent=`${fs.length} de ${filas.length}`}
+  el.innerHTML=`<div class="tools" ${opt.simple?'style="display:none"':""}><input placeholder="Buscar…" aria-label="Buscar"><span class="n"></span></div>
+   <div class="tbl"><table class="${opt.simple?"min":""}"><thead><tr>${cols.map((c,i)=>`<th data-i="${i}" class="${c.num?"num":""}">${c.t}</th>`).join("")}</tr></thead><tbody></tbody></table></div>`;
+  el.querySelector("input").oninput=e=>{q=e.target.value.toLowerCase();pintar()};
+  el.querySelectorAll("th").forEach(th=>th.onclick=()=>{const i=+th.dataset.i;asc=orden===i?!asc:true;orden=i;pintar()});
+  pintar()}
+
+function grafico(id,cfg){const c=new Chart($(id),cfg);charts.push(c);return c}
+function base(yTit){const g=css("--grid"),t=css("--text-2");
+  return{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},
+   plugins:{legend:{labels:{color:t,usePointStyle:true,pointStyle:"circle",boxWidth:7,boxHeight:7,padding:14}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${f2(c.parsed.y)}`}}},
+   scales:{x:{grid:{color:g},ticks:{color:t,maxRotation:0,autoSkip:true}},y:{grid:{color:g},ticks:{color:t},title:{display:!!yTit,text:yTit,color:t}}}}}
+
+function render(){
+  const dia=new Date(D.dia+"T12:00"),fmt=d=>d.toLocaleDateString("es-PE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+  $("#meta").innerHTML=`Día evaluado: <b>${fmt(dia)}</b><br>Actualizado ${new Date(D.generado).toLocaleString("es-PE",{dateStyle:"short",timeStyle:"short"})} · TC ${D.tc}`;
+  const kp=D.barras.map(b=>{const d=D.cmg_diario[b][D.dia],p=D.cmg_prev[b],v=d&&p?(d/p-1)*100:null;
+    return `<div class="card kpi"><div class="lbl"><span class="dot" style="background:var(${SERIE[b]})"></span>CMg ${b} kV</div>
+     <div class="val">${f2(d)}<small>USD/MWh</small></div>
+     <div class="sub">${v==null?"":`<span class="${v>0?"up":"down"}">${v>0?"▲":"▼"} ${Math.abs(v).toFixed(1)}%</span> vs. día anterior · `}mes ${f2(D.cmg_mes[b])}</div></div>`}).join("");
+  const dmx=D.demanda_areas.length?D.demanda_areas.reduce((a,r)=>r.sein>a.sein?r:a):null;
+  const mwI=D.indisponibilidades.reduce((s,r)=>s+(r.mw||0),0);
+  $("#s-resumen").innerHTML=`<div class="grid g4">${kp}
+   <div class="card kpi"><div class="lbl">Máxima demanda SEIN</div><div class="val">${dmx?f0(dmx.sein):"–"}<small>MW</small></div><div class="sub">${dmx?"a las "+dmx.hora+" h":""}</div></div>
+   <div class="card kpi"><div class="lbl">Generación indisponible</div><div class="val">${f0(mwI)}<small>MW</small></div><div class="sub">${D.indisponibilidades.length} registros · ${D.indisponibilidades.filter(r=>!r.programado).length} forzados</div></div>
+   <div class="card kpi"><div class="lbl">Eventos del día</div><div class="val">${D.eventos.length}</div><div class="sub">${D.eventos.filter(e=>/falla/i.test(e.tipo)).length} fallas · ${D.lineas_220.length} intervenciones en líneas ≥220 kV</div></div></div>
+   <div class="grid g2" style="margin-top:14px"><div class="card"><h2>Resumen ejecutivo</h2><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></div>
+   <div class="card"><h2>CMg promedio diario del mes<small>USD/MWh</small></h2><div class="chart"><canvas id="c-mes"></canvas></div></div></div>`;
+
+  $("#s-precios").innerHTML=`<div class="grid">
+   <div class="card"><h2>CMg cada 30 minutos<small>día anterior y día evaluado · USD/MWh</small></h2><div class="chart tall"><canvas id="c-30"></canvas></div></div>
+   <div class="grid g2"><div class="card"><h2>Santa Rosa 220 kV por bloque horario<small>USD/MWh</small></h2><div class="chart"><canvas id="c-bl"></canvas></div></div>
+   <div class="card"><h2>Promedios por bloque</h2><div id="t-bl"></div></div></div></div>`;
+  tabla("#t-bl",[{t:"Bloque",v:r=>r[0],h:r=>`<span class="dot" style="background:var(${BLOQ[r[0]]})"></span>${esc(r[0])}`},{t:"Día",num:1,v:r=>r[1],h:r=>f2(r[1])},{t:"Mes",num:1,v:r=>r[2],h:r=>f2(r[2])}],
+    Object.keys(D.bloques_mes).map(b=>[b,D.bloques_diario[b][D.dia],D.bloques_mes[b]]),{simple:1});
+
+  $("#s-oferta").innerHTML=`<div class="grid">
+   <div class="card"><h2>Producción por tipo de recurso<small>MW cada 30 min · ${D.dia}</small></h2><div class="chart tall"><canvas id="c-gen"></canvas></div></div>
+   <div class="grid g2"><div class="card"><h2>Demanda por área<small>MW</small></h2><div class="chart"><canvas id="c-dem"></canvas></div></div>
+   <div class="card"><h2>Disponibilidad de gas natural<small>Mm3 declarados</small></h2><div id="t-gas"></div></div></div></div>`;
+  tabla("#t-gas",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Gasoducto",v:r=>tit(r.gasoducto)},{t:"Volumen",num:1,v:r=>r.volumen_mm3,h:r=>f0(r.volumen_mm3)}],D.gas);
+
+  const fuente=D.dia_ieod?`IEOD ${D.dia_ieod}`:"IEOD no disponible";
+  $("#s-indisp").innerHTML=`<div class="card"><h2>Indisponibilidades de generación<small>${fuente} · todas las centrales</small></h2><div id="t-ind"></div></div>`;
+  tabla("#t-ind",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Central",v:r=>tit(r.ubicacion)},{t:"Unidad",v:r=>r.equipo},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},
+    {t:"MW",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Tipo",v:r=>r.programado,h:r=>r.programado?'<span class="tag">Programado</span>':'<span class="tag f">Forzado</span>'},{t:"Descripción",v:r=>r.descripcion}],
+    [...D.indisponibilidades].sort((a,b)=>b.mw-a.mw));
+
+  $("#s-trans").innerHTML=`<div class="grid"><div class="card"><h2>Líneas ≥220 kV con intervenciones ejecutadas<small>${fuente}</small></h2><div id="t-lin"></div></div>
+   <div class="card"><h2>Eventos relevantes<small>${fuente}</small></h2><div id="t-ev"></div></div>
+   <div class="card"><h2>Restricciones operativas</h2><div id="t-res"></div></div></div>`;
+  const colLin=[{t:"Línea",v:r=>r.equipo},{t:"kV",num:1,v:r=>r.kv},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Tramo",v:r=>tit(r.ubicacion)},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},{t:"Estado",v:r=>r.estado},{t:"Descripción",v:r=>r.descripcion}];
+  tabla("#t-lin",colLin,[...D.lineas_220].sort((a,b)=>b.kv-a.kv));
+  tabla("#t-ev",[{t:"Tipo",v:r=>tit(r.tipo)},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Equipo",v:r=>`${r.equipo} · ${tit(r.ubicacion)}`},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},
+    {t:"kV",num:1,v:r=>r.kv||""},{t:"MW",num:1,v:r=>r.mw||"",h:r=>r.mw?f1(r.mw):""},{t:"Descripción",v:r=>r.descripcion}],D.eventos);
+  tabla("#t-res",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Ubicación",v:r=>tit(r.ubicacion)},{t:"Equipo",v:r=>r.equipo},{t:"Horario",v:r=>`${r.inicio}–${r.final}`},{t:"Descripción",v:r=>r.descripcion}],D.restricciones);
+
+  $("#s-embalses").innerHTML=`<div class="card"><h2>Embalses principales<small>${fuente} · Mantaro, Chaglla, Rímac, San Gabán, Santa</small></h2><div id="t-emb"></div></div>`;
+  tabla("#t-emb",[{t:"Cuenca",v:r=>r.cuenca},{t:"Embalse",v:r=>r.embalse},{t:"Variable",v:r=>r.variable},{t:"Unidad",v:r=>r.unidad},
+    {t:"00:00",num:1,v:r=>r.inicio,h:r=>r.inicio.toLocaleString("es-PE",{maximumFractionDigits:3})},{t:"24:00",num:1,v:r=>r.final,h:r=>r.final.toLocaleString("es-PE",{maximumFractionDigits:3})},
+    {t:"Variación",num:1,v:r=>r.variacion,h:r=>`<span class="${r.variacion<0?"up":""}">${r.variacion>0?"+":""}${r.variacion.toLocaleString("es-PE",{maximumFractionDigits:3})}</span>`}],
+    [...D.embalses].sort((a,b)=>a.cuenca.localeCompare(b.cuenca)));
+
+  $("#s-prog").innerHTML=D.programado_publicado?`<div class="grid"><div class="card"><h2>Generación · intervenciones programadas<small>${D.hoy} · todas las centrales</small></h2><div id="t-pg"></div></div>
+    <div class="card"><h2>Líneas ≥220 kV · intervenciones programadas<small>${D.hoy}</small></h2><div id="t-pl"></div></div></div>`
+    :`<div class="card">El Programa Diario de Intervenciones de hoy aún no está publicado.</div>`;
+  if(D.programado_publicado){
+    tabla("#t-pg",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Central",v:r=>tit(r.ubicacion)},{t:"Unidad",v:r=>r.equipo},{t:"Horario",v:r=>r.inicio,h:r=>per(r,D.hoy)},{t:"MW",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Descripción",v:r=>r.descripcion}],
+      [...D.programado_gen].sort((a,b)=>b.mw-a.mw));
+    tabla("#t-pl",colLin.map(c=>c.t==="Horario"?{...c,h:r=>per(r,D.hoy)}:c),[...D.programado_lineas].sort((a,b)=>b.kv-a.kv))}
+
+  $("#s-pdf").innerHTML=`<div class="card pdfs"><h2>Reportes diarios en PDF</h2><div id="l-pdf">Cargando…</div></div>`;
+  fetch("reportes.json").then(r=>r.json()).then(l=>{$("#l-pdf").innerHTML=l.map(n=>`<a href="reportes/${n}" target="_blank">${n.replace("Reporte_SEIN_","Reporte del ").replace(".pdf","")}</a>`).join("")||"Sin reportes."}).catch(()=>{$("#l-pdf").textContent="No disponible."});
+}
+
+function dibujar(){
+  if(!D)return;charts.forEach(c=>c.destroy());charts=[];
+  const on=id=>$(id)&&$(id).closest("section").classList.contains("on");
+  if(on("#c-mes")){const dias=[...new Set(D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])))].sort();
+    grafico("#c-mes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:D.barras.map(b=>({label:b,data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2.5,tension:.25}))},options:base("USD/MWh")})}
+  if(on("#c-30")){const t=D.cmg_30min[D.barras[0]].map(p=>p[0]);
+    grafico("#c-30",{type:"line",data:{labels:t.map(s=>{const d=new Date(s);return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")} ${d.toTimeString().slice(0,5)}`}),
+      datasets:D.barras.map(b=>({label:b,data:D.cmg_30min[b].map(p=>p[1]),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:0,pointHoverRadius:5,tension:.2}))},options:base("USD/MWh")})}
+  if(on("#c-bl")){const dias=Object.keys(D.bloques_diario["Punta (18-23 h)"]||{}).sort();const sr=D.cmg_diario["Santa Rosa 220"];
+    grafico("#c-bl",{data:{labels:dias.map(d=>+d.slice(8)),datasets:[
+      {type:"line",label:"Promedio diario",data:dias.map(d=>sr[d]??null),borderColor:css("--linea"),backgroundColor:css("--linea"),borderWidth:2,pointRadius:2.5,order:0},
+      ...Object.keys(BLOQ).map(bl=>({type:"bar",label:bl,data:dias.map(d=>D.bloques_diario[bl][d]??null),backgroundColor:css(BLOQ[bl]),borderRadius:4,order:1,borderWidth:0}))]},options:base("USD/MWh")})}
+  if(on("#c-gen")&&D.generacion.length){const g=Object.keys(D.grupos_gen).filter(k=>D.generacion.some(r=>r[k]>0.5));
+    const o=base("MW");o.scales.y.stacked=true;o.scales.y.beginAtZero=true;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+    grafico("#c-gen",{type:"line",data:{labels:D.generacion.map(r=>hm(r.t)),datasets:g.map(k=>({label:k,data:D.generacion.map(r=>r[k]),fill:true,backgroundColor:css(GEN[k]||"--muted"),borderColor:css("--surface"),borderWidth:1,pointRadius:0,tension:.2}))},options:o})}
+  if(on("#c-dem")&&D.demanda_areas.length){const o=base("MW");o.scales.y.stacked=true;o.scales.y.beginAtZero=true;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+    grafico("#c-dem",{type:"line",data:{labels:D.demanda_areas.map(r=>r.hora),datasets:[["norte","Norte","--s3"],["centro","Centro","--s1"],["sur","Sur","--s2"]].map(([k,n,c])=>({label:n,data:D.demanda_areas.map(r=>r[k]),fill:true,backgroundColor:css(c),borderColor:css("--surface"),borderWidth:1,pointRadius:0}))},options:o})}
+}
+
+fetch("datos.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{D=d;tabs();render();dibujar()})
+ .catch(()=>{$("#meta").textContent="No se pudieron cargar los datos."});
+</script>
+</body>
+</html>
