@@ -36,9 +36,9 @@ ALERTA = float(os.getenv("ALERTA_CMG") or 0)
 
 # etiqueta -> (regex del nombre en el COES, palabra clave para el diagnóstico, color)
 BARRAS = {
-    "Santa Rosa 220": (r"^S(AN)?TA\.?\s*ROSA\s*220$", "ROSA", "#1a73e8"),
-    "Socabaya 220": (r"^SOCABAYA\s*220$", "SOCABAYA", "#e8710a"),
-    "Piura 220": (r"^PIURA(\s*OESTE)?\s*220$", "PIURA", "#188038"),
+    "Santa Rosa 220": (r"^S(AN)?TA\.?\s*ROSA\s*220$", "ROSA", "#2b4fd1"),
+    "Socabaya 220": (r"^SOCABAYA\s*220$", "SOCABAYA", "#f0590f"),
+    "Piura 220": (r"^PIURA(\s*OESTE)?\s*220$", "PIURA", "#e9a300"),
 }
 SIN_DATO = "nd"                    # intervalo consultado, barra no publicada
 
@@ -190,7 +190,7 @@ def actualizar(hist, hoy):
 
 # --------------------------------------------------------------------------- bloques horarios
 # Intervalo de 30 min identificado por su hora de FIN; se clasifica por su hora de INICIO.
-BLOQUES = {"Punta (18-23 h)": "#c5221f", "Media (6-18 h)": "#f29900", "Base (23-6 h)": "#188038"}
+BLOQUES = {"Punta (18-23 h)": "#f0590f", "Media (6-18 h)": "#e9a300", "Base (23-6 h)": "#6f8bf5"}
 
 
 def bloque(ts):
@@ -263,9 +263,9 @@ def grafico_sr_barras(diario, prom_mes, n_dia, hoy, ruta):
         ax.bar(d.day, v, width=0.75, color=color, alpha=0.45 if parcial else 0.9,
                hatch="//" if parcial else None, edgecolor=color, lw=0.5)
         ax.text(d.day, v, f"{v:.0f}", ha="center", va="bottom", fontsize=6.5, rotation=90)
-    ax.axhline(prom_mes, color="#c5221f", lw=1.3, ls="--")
+    ax.axhline(prom_mes, color="#001a6f", lw=1.3, ls="--")
     ndias = calendar.monthrange(hoy.year, hoy.month)[1]
-    _etiqueta_final(ax, ndias + 0.3, prom_mes, f"Prom. mes\n{prom_mes:.2f}", "#c5221f")
+    _etiqueta_final(ax, ndias + 0.3, prom_mes, f"Prom. mes\n{prom_mes:.2f}", "#001a6f")
     if ALERTA:
         ax.axhline(ALERTA, color="#5f6368", lw=1, ls=":")
     _formato(ax, fig, hoy, f"Santa Rosa 220 kV · CMg promedio diario · {MESES[hoy.month - 1]} {hoy.year}",
@@ -318,11 +318,11 @@ def grafico_sr_bloques(diario, diario_bl, prom_mes, prom_mes_bl, hoy, ruta):
     if diario:
         dias = sorted(diario)
         import matplotlib.patheffects as pe
-        ax.plot([d.day for d in dias], [diario[d] for d in dias], color="#0b57d0", lw=2.8,
+        ax.plot([d.day for d in dias], [diario[d] for d in dias], color="#001a6f", lw=2.8,
                 marker="o", ms=5, markeredgecolor="white", markeredgewidth=1,
                 label="Promedio diario", zorder=10,
                 path_effects=[pe.Stroke(linewidth=5, foreground="white"), pe.Normal()])
-        etiquetas.append((prom_mes, f"Prom. diario\n{prom_mes:.2f}", "#1a73e8"))
+        etiquetas.append((prom_mes, f"Prom. diario\n{prom_mes:.2f}", "#001a6f"))
     _formato(ax, fig, hoy, f"Santa Rosa 220 kV · bloques y promedio diario · {MESES[hoy.month - 1]} {hoy.year}",
              " · derecha = promedio del mes")
     ax.grid(axis="x", visible=False)
@@ -342,7 +342,7 @@ def grafico_30min(hist, hoy, ruta):
     fig, axes = plt.subplots(2, 1, figsize=(8.5, 7.6), dpi=160, sharex=True, sharey=True)
     for ax, dia in zip(axes, (ayer, hoy)):
         pts = sorted((t, r) for t, r in hist.items() if dia_operativo(t) == dia)
-        ax.axvspan(18, 23, color="#c5221f", alpha=0.06, lw=0)
+        ax.axvspan(18, 23, color="#ff861d", alpha=0.08, lw=0)
         for b, (_, _, color) in BARRAS.items():
             xs = [((t - dt.timedelta(minutes=1)).hour * 60 + (t - dt.timedelta(minutes=1)).minute + 1) / 60
                   for t, r in pts if isinstance(r.get(b), float)]
@@ -360,7 +360,7 @@ def grafico_30min(hist, hoy, ruta):
         ax.tick_params(labelsize=7)
         for s in ("top", "right"):
             ax.spines[s].set_visible(False)
-    axes[0].text(20.5, axes[0].get_ylim()[1], "Punta", ha="center", va="top", fontsize=7, color="#c5221f")
+    axes[0].text(20.5, axes[0].get_ylim()[1], "Punta", ha="center", va="top", fontsize=7, color="#f0590f")
     axes[1].set_xlim(0, 24.8)
     axes[1].xaxis.set_major_locator(MultipleLocator(2))
     axes[1].xaxis.set_minor_locator(MultipleLocator(0.5))
@@ -369,7 +369,7 @@ def grafico_30min(hist, hoy, ruta):
     axes[0].legend(fontsize=7.5, loc="upper left", frameon=False, ncol=3)
     fig.suptitle("CMg tiempo real cada 30 min · USD/MWh", fontsize=10)
     fig.text(0.99, 0.005, f"Fuente: COES (CMg tiempo real preliminar, PR-07) · TC {TC:.2f} S/ por USD · "
-             "franja roja = punta 18-23 h", ha="right", fontsize=6, color="#5f6368")
+             "franja naranja = punta 18-23 h", ha="right", fontsize=6, color="#5f6368")
     fig.tight_layout(rect=(0, 0.015, 1, 1))
     fig.savefig(ruta)
     plt.close(fig)
@@ -379,13 +379,13 @@ def grafico_30min(hist, hoy, ruta):
 GEN_URL = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 # grupo -> (color, nombres COES normalizados que lo componen)
 GRUPOS_GEN = {
-    "Hídrica": ("#1a73e8", ("HIDRICO",)),
-    "Gas natural": ("#d35400", ("GAS",)),
-    "Solar": ("#fbbc04", ("SOLAR",)),
-    "Eólica": ("#34a853", ("EOLICA",)),
+    "Hídrica": ("#2b4fd1", ("HIDRICO",)),
+    "Gas natural": ("#f0590f", ("GAS",)),
+    "Solar": ("#e9a300", ("SOLAR",)),
+    "Eólica": ("#1baf7a", ("EOLICA",)),
     "Carbón": ("#5f6368", ("CARBON",)),
-    "Diésel/Residual/Otros": ("#c5221f", ("DIESEL", "RESIDUAL", "NAFTA & GAS REFINERIA")),
-    "Biomasa": ("#8d6e63", ("BAGAZO", "BIOGAS")),
+    "Diésel/Residual/Otros": ("#e34948", ("DIESEL", "RESIDUAL", "NAFTA & GAS REFINERIA")),
+    "Biomasa": ("#6250d6", ("BAGAZO", "BIOGAS")),
 }
 
 
@@ -468,7 +468,7 @@ def grafico_generacion(gen, hoy, ruta):
             ax.stackplot(xs, [[r[g] for _, r in pts] for g in grupos],
                          colors=[GRUPOS_GEN[g][0] for g in grupos], labels=grupos, alpha=0.9, lw=0)
             tot = [sum(r.values()) for _, r in pts]
-            ax.plot(xs, tot, color="#202124", lw=1)
+            ax.plot(xs, tot, color="#001a6f", lw=1)
             i = max(range(len(tot)), key=tot.__getitem__)
             ax.annotate(f"máx {tot[i]:,.0f} MW · {pts[i][0]:%H:%M}", (xs[i], tot[i]), xytext=(0, 6),
                         textcoords="offset points", ha="center", fontsize=7, weight="bold")
@@ -542,6 +542,19 @@ def main():
         tg("sendMessage", data={"chat_id": chat,
                                 "text": f"🔎 Exploración COES lista: {ok}/{len(res['paginas'])} páginas leídas. "
                                         "Avísale a Claude."})
+        return
+    if os.getenv("MODO") == "pdf":
+        import reporte
+        ruta, bullets = reporte.generar(sys.modules[__name__])
+        limpio = [re.sub(r"<[^>]+>", "", t) for t in bullets]
+        repo = os.getenv("GITHUB_REPOSITORY", "")
+        url = (f"https://{repo.split('/')[0]}.github.io/{repo.split('/')[1]}/" if "/" in repo else "")
+        cap = "📊 Reporte diario del SEIN\n" + "\n".join("• " + t for t in limpio[:4])
+        if url:
+            cap += f"\n\nDashboard: {url}"
+        with ruta.open("rb") as f:
+            tg("sendDocument", data={"chat_id": chat, "caption": cap[:1020]}, files={"document": f})
+        print("OK reporte PDF", ruta)
         return
     if os.getenv("MODO") == "escucha":
         if not pidio_actualizar(chat):
