@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: cmg-${{ github.event.inputs.modo }}
+  group: cmg2-${{ github.event.inputs.modo }}
 jobs:
   cmg:
     runs-on: ubuntu-latest
