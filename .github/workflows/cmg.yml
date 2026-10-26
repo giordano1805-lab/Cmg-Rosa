@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "reporte o escucha"
+        description: "reporte, escucha, pdf o explora"
         default: "reporte"
 permissions:
   contents: write
@@ -12,13 +12,13 @@ concurrency:
 jobs:
   cmg:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests matplotlib
+      - run: pip install requests matplotlib openpyxl xlrd reportlab
       - env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -30,6 +30,8 @@ jobs:
         run: |
           git config user.name "cmg-bot"
           git config user.email "cmg-bot@users.noreply.github.com"
-          git pull --rebase -q || true
-          git add data || true
-          git diff --cached --quiet || (git commit -m "CMg $(date -u +%FT%H:%MZ)" && git push)
+          git add data docs || true
+          if ! git diff --cached --quiet; then
+            git commit -m "CMg $(date -u +%FT%H:%MZ)"
+            for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
+          fi
