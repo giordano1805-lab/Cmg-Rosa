@@ -1,0 +1,674 @@
+{
+ "fecha": "2026-10-26T09:53:39.117187-05:00",
+ "carpetas": {
+  "mant_diario": {
+   "niveles": [
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  },
+  "mant_actualizacion": {
+   "niveles": [
+    {
+     "url": "Operación/Programa de Mantenimiento/Actualización del Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Actualización del Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Actualización del Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Actualización del Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Actualización del Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Actualización del Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Actualización del Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Actualización del Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  },
+  "mant_semanal": {
+   "niveles": [
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Semanal/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Semanal/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Semanal/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Semanal/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Semanal/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Semanal/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Mantenimiento/Programa Semanal/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Mantenimiento/Programa Semanal/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  },
+  "indisponibilidad": {
+   "niveles": [
+    {
+     "url": "Post Operación/Reportes/Reporte de Indisponibilidad/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/Reporte de Indisponibilidad/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Post Operación/Reportes/Reporte de Indisponibilidad/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/Reporte de Indisponibilidad/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Post Operación/Reportes/Reporte de Indisponibilidad/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/Reporte de Indisponibilidad/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Post Operación/Reportes/Reporte de Indisponibilidad/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/Reporte de Indisponibilidad/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  },
+  "ieod": {
+   "niveles": [
+    {
+     "url": "Post Operación/Reportes/IEOD/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/IEOD/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Post Operación/Reportes/IEOD/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/IEOD/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Post Operación/Reportes/IEOD/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/IEOD/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Post Operación/Reportes/IEOD/",
+     "status": 200,
+     "carpetas": [
+      "Post Operación/Reportes/IEOD/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  },
+  "prog_operacion": {
+   "niveles": [
+    {
+     "url": "Operación/Programa de Operación/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Operación/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Operación/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Operación/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Operación/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Operación/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Programa de Operación/Programa Diario/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Programa de Operación/Programa Diario/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  },
+  "hidrologia": {
+   "niveles": [
+    {
+     "url": "Operación/Estudios/Hidrologia/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Estudios/Hidrologia/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Estudios/Hidrologia/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Estudios/Hidrologia/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Estudios/Hidrologia/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Estudios/Hidrologia/"
+     ],
+     "archivos": [],
+     "filas": []
+    },
+    {
+     "url": "Operación/Estudios/Hidrologia/",
+     "status": 200,
+     "carpetas": [
+      "Operación/Estudios/Hidrologia/"
+     ],
+     "archivos": [],
+     "filas": []
+    }
+   ]
+  }
+ },
+ "eventos": {
+  "status": 200,
+  "cabecera": [
+   "Ver detalle",
+   "Empresa",
+   "Ubicación",
+   "Equipo",
+   "Inicio",
+   "Final",
+   "Descripción"
+  ],
+  "n_filas": 9,
+  "filas": [
+   [],
+   [
+    "",
+    "CONELSUR LT SAC",
+    "S.E. PORTILLO",
+    "SS.EE.",
+    "26/10/2026 09:35:00",
+    "27/10/2026 00:00:00",
+    "DECLARACIÓN DE SITUACIÓN EXCEPCIONAL EN LA S.E. PORTILLO 60 kV"
+   ],
+   [
+    "",
+    "ELECTRO ORIENTE",
+    "L. BELAUNDE TERRY - TARAPOTO",
+    "L-1018",
+    "26/10/2026 08:49:00",
+    "27/10/2026 00:00:00",
+    "DECLARACIÓN DE SITUACIÓN EXCEPCIONAL EN LA LÍNEA L-1018 (BELAUNDE TERRY - TARAPOTO) DE 138 kV"
+   ],
+   [
+    "",
+    "ELECTRO UCAYALI",
+    "S.E. PUCALLPA",
+    "SS.EE.",
+    "25/10/2026 07:41:00",
+    "25/10/2026 16:22:00",
+    "RECHAZO MANUAL DE CARGA A LOS USUARIOS REGULADOS DE LA S.E. PUCALLPA"
+   ],
+   [
+    "",
+    "EGESUR",
+    "C.T. INDEPENDENCIA",
+    "INDEP_G3",
+    "25/10/2026 21:09:00",
+    "26/10/2026 00:00:00",
+    "DESCONEXIÓN DEL GENERADOR G3 DE LA.C.T. INDEPENDENCIA"
+   ],
+   [
+    "",
+    "EGESUR",
+    "C.T. INDEPENDENCIA",
+    "INDEP_G4",
+    "25/10/2026 20:03:00",
+    "26/10/2026 00:00:00",
+    "DESCONEXIÓN DEL GENERADOR G4 DE LA.C.T. INDEPENDENCIA"
+   ],
+   [
+    "",
+    "ELECTRO ORIENTE",
+    "L. BELAUNDE TERRY - TARAPOTO",
+    "L-1018",
+    "25/10/2026 18:12:00",
+    "25/10/2026 22:15:00",
+    "DECLARACIÓN DE SITUACIÓN EXCEPCIONAL EN LA LÍNEA L-1018 (BELAUNDE TERRY - TARAPOTO) DE 138 kV"
+   ],
+   [
+    "",
+    "TRANSMANTARO",
+    "L. MANTARO - COTARUSE",
+    "L-2051",
+    "25/10/2026 14:39:00",
+    "25/10/2026 17:48:00",
+    "DESCONEXIÓN DE LA LÍNEA L-2051 (CAMPO ARMIÑO - COTARUSE) DE 220 KV Y EL GENERADOR G1 DE LA C.H. RESTITUCIÓN"
+   ],
+   [
+    "",
+    "EGASA",
+    "C.H. CHARCANI II",
+    "G3",
+    "25/10/2026 11:04:00",
+    "25/10/2026 12:20:00",
+    "DESCONEXIÓN DEL GENERADOR G3 DE LA C.H. CHARCANI II"
+   ]
+  ],
+  "ids": [
+   "325704",
+   "325703",
+   "325700",
+   "325698",
+   "325697",
+   "325696",
+   "325695",
+   "325694"
+  ],
+  "detalle": {
+   "id": "325704",
+   "texto": "Inicio: 26/10/2026 09:35:00 Final 27/10/2026 00:00:00 Asunto: DECLARACIÓN DE SITUACIÓN EXCEPCIONAL EN LA S.E. PORTILLO 60 kV Detalle Se declaró situación excepcional en la S.E. Portillo por apertura del interruptor del acoplamiento de barras de 60 kV, debido a sobrecarga en la línea L-6578 (Portillo - Santa Clara) de 60 kV, quedando las líneas L-6011 y L-6578 conectadas a la barra \"B\" y el resto de los equipos a la barra \"A\", con el propósito de asegurar el abastecimiento oportuno de la demanda en la SE Santa Clara, de acuerdo con lo establecido en el Artículo 95 del Reglamento de la LCE."
+  }
+ },
+ "portal_info": {
+  "gen_ayer": {
+   "series": {
+    "BAGAZO": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "BIOGÁS": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "CARBÓN": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "DIESEL": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "EÓLICA": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "GAS": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "HÍDRICO": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "NAFTA & GAS REFINERÍA": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "RESIDUAL": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "SOLAR": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    }
+   },
+   "n_empresas": 69,
+   "empresa_ejemplo": {
+    "ListaCentral": [],
+    "ListaRecursos": [],
+    "ListaCostOper": [],
+    "ListaCostoComp": [],
+    "Medifecha": "/Date(-62135578800000)/",
+    "Meditotal": 12817.0,
+    "Emprnomb": "KALLPA GENERACION S.A.",
+    "FechaFila": "/Date(-62135578800000)/",
+    "IniRemision": "/Date(-62135578800000)/",
+    "FinRemision": "/Date(-62135578800000)/",
+    "IniPeriodo": "/Date(-62135578800000)/",
+    "Hophorini": "/Date(-62135578800000)/",
+    "Hophorfin": "/Date(-62135578800000)/",
+    "FechaMD": "/Date(-62135578800000)/",
+    "ListaMedicion48": null
+   },
+   "central_ejemplo": null,
+   "grafico_empresa_keys": [
+    "SeriesAdicional",
+    "Categorias",
+    "Series"
+   ]
+  },
+  "gen_hoy": {
+   "series": {
+    "BAGAZO": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "BIOGÁS": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "CARBÓN": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "DIESEL": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "EÓLICA": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "GAS": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "HÍDRICO": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "NAFTA & GAS REFINERÍA": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "RESIDUAL": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    },
+    "SOLAR": {
+     "n": 19,
+     "primero": "2026/10/26 00:30:00",
+     "ultimo": "2026/10/26 09:30:00"
+    }
+   },
+   "n_empresas": 77,
+   "empresa_ejemplo": {
+    "ListaCentral": [],
+    "ListaRecursos": [],
+    "ListaCostOper": [],
+    "ListaCostoComp": [],
+    "Medifecha": "/Date(-62135578800000)/",
+    "Meditotal": 13965.111425,
+    "Emprnomb": "KALLPA GENERACION S.A.",
+    "FechaFila": "/Date(-62135578800000)/",
+    "IniRemision": "/Date(-62135578800000)/",
+    "FinRemision": "/Date(-62135578800000)/",
+    "IniPeriodo": "/Date(-62135578800000)/",
+    "Hophorini": "/Date(-62135578800000)/",
+    "Hophorfin": "/Date(-62135578800000)/",
+    "FechaMD": "/Date(-62135578800000)/",
+    "ListaMedicion48": null
+   },
+   "central_ejemplo": null,
+   "grafico_empresa_keys": [
+    "SeriesAdicional",
+    "Categorias",
+    "Series"
+   ]
+  },
+  "gen_ayer_hoy": {
+   "series": {
+    "BAGAZO": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "BIOGÁS": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "CARBÓN": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "DIESEL": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "EÓLICA": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "GAS": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "HÍDRICO": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "NAFTA & GAS REFINERÍA": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "RESIDUAL": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    },
+    "SOLAR": {
+     "n": 48,
+     "primero": "2026/10/25 00:30:00",
+     "ultimo": "2026/10/26 00:00:00"
+    }
+   },
+   "n_empresas": 77,
+   "empresa_ejemplo": {
+    "ListaCentral": [],
+    "ListaRecursos": [],
+    "ListaCostOper": [],
+    "ListaCostoComp": [],
+    "Medifecha": "/Date(-62135578800000)/",
+    "Meditotal": 26782.111425,
+    "Emprnomb": "KALLPA GENERACION S.A.",
+    "FechaFila": "/Date(-62135578800000)/",
+    "IniRemision": "/Date(-62135578800000)/",
+    "FinRemision": "/Date(-62135578800000)/",
+    "IniPeriodo": "/Date(-62135578800000)/",
+    "Hophorini": "/Date(-62135578800000)/",
+    "Hophorfin": "/Date(-62135578800000)/",
+    "FechaMD": "/Date(-62135578800000)/",
+    "ListaMedicion48": null
+   },
+   "central_ejemplo": null,
+   "grafico_empresa_keys": [
+    "SeriesAdicional",
+    "Categorias",
+    "Series"
+   ]
+  },
+  "demanda": {
+   "claves": [
+    "Chart",
+    "Data",
+    "LastDate",
+    "LastTime",
+    "LastValue",
+    "EjexDemanda"
+   ],
+   "series": {
+    "Ejecutado": {
+     "n": 67,
+     "ultimo": {
+      "Nombre": "2026/10/26 09:30:00",
+      "Valor": 7985.02126,
+      "CodColor": "#33B8FF",
+      "Valores": null,
+      "Valores_": null,
+      "Codigo": 0,
+      "RER": null
+     }
+    },
+    "Programación Diaria": {
+     "n": 96,
+     "ultimo": {
+      "Nombre": "2026/10/27 00:00:00",
+      "Valor": 7289.28525,
+      "CodColor": "#3DD4B5",
+      "Valores": null,
+      "Valores_": null,
+      "Codigo": 0,
+      "RER": null
+     }
+    },
+    "Programación Semanal": {
+     "n": 96,
+     "ultimo": {
+      "Nombre": "2026/10/27 00:00:00",
+      "Valor": 7396.81576,
+      "CodColor": "#FF7A33",
+      "Valores": null,
+      "Valores_": null,
+      "Codigo": 0,
+      "RER": null
+     }
+    }
+   },
+   "LastDate": null,
+   "LastTime": null,
+   "LastValue": 0
+  }
+ }
+}
