@@ -107,6 +107,18 @@ def tension_kv(equipo, descripcion=""):
     return int(m.group(1)) if m else None
 
 
+def clasificar_equipo(equipo, ubicacion="", descripcion=""):
+    """G = unidad o central de generación, T = transmisión (cuando el archivo no trae la columna)."""
+    e, u, d = norm(equipo), norm(ubicacion), norm(descripcion)
+    if re.match(r"^(L|CL|T|AT|TR|SA|SB|IN|REB|R|B|SVC|CS|BC)-?\s?\d", e) or e in ("SS.EE.", "BARRA") or "BARRA" in e:
+        return "T"
+    if (e == "CENTRAL" or re.match(r"^(G|TG|TV|GT|ST|U|CC|MAK|INDEP_G|RF-|PFV|WTG|AG)\w*", e)
+            or re.match(r"^(C\.?[HTSE]\.?|CENTRAL|PARQUE|PLANTA)\b", u)
+            or any(k in d for k in ("GENERADOR", "UNIDAD", "TURBINA", "CENTRAL"))):
+        return "G"
+    return "T"
+
+
 def es_linea(equipo, tipo=""):
     return bool(re.match(r"^L-?\s?\d{4}", norm(equipo))) or "LINEA" in norm(tipo)
 
@@ -270,10 +282,15 @@ def intervenciones_programadas(dia: dt.date):
                 for n in z.namelist():
                     if n.lower().endswith((".xlsx", ".xls", ".xlsm")):
                         hojas = libro(z.read(n))
-                        filas = hojas.get("MANTENIMIENTO PROGRAMADO DIARIO") or next(iter(hojas.values()))
-                        return [_reg_intervencion(r) for r in
-                                tabla(filas, ["EMPRESA", "EQUIPO", "INICIO", "MW INDISP."])
+                        nombre = next((k for k in hojas if "PROGRAMADO" in norm(k)), None) or \
+                            next((k for k in hojas if "MANTTO" in norm(k)), None) or next(iter(hojas))
+                        regs = [_reg_intervencion(r) for r in
+                                tabla(hojas[nombre], ["EMPRESA", "EQUIPO", "INICIO", "MW INDISP."])
                                 if texto(r.get("EMPRESA"))]
+                        for r in regs:
+                            if not r["clase"]:
+                                r["clase"] = clasificar_equipo(r["equipo"], r["ubicacion"], r["descripcion"])
+                        return regs
     return []
 
 
