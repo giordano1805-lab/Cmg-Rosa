@@ -1,159 +1,225 @@
 #!/usr/bin/env python3
 """
-Explorador de fuentes del portal COES (se ejecuta una sola vez con modo=explora).
+Explorador de fuentes COES · segunda pasada (modo=explora).
 
-Para cada página candidata guarda en data/explora/:
-  - texto visible, formularios, scripts y llamadas AJAX encontradas en el HTML y en los .js
-  - pruebas de endpoints conocidos o deducidos
-El resultado queda en el repositorio para analizarlo y diseñar el reporte.
+Guarda en data/explora2/ la estructura real de:
+  - Repositorio de archivos del portal (mantenimientos, indisponibilidad, IEOD, programa diario, hidrología)
+    vía /Portal/browser/vistadatos: lista carpetas, baja a la más reciente y analiza los últimos archivos
+  - Eventos relevantes vía /Portal/eventos/relevantes/lista y /detalle
+  - Generación (SCADA) y demanda del Portal de Información, pidiendo ayer y hoy por separado
 """
 import datetime as dt
+import html as htmlmod
+import io
 import json
 import re
+import subprocess
 import sys
+import zipfile
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 import requests
 
 LIMA = ZoneInfo("America/Lima")
-RAIZ = "https://www.coes.org.pe"
-OUT = Path("data") / "explora"
+RAIZ = "https://www.coes.org.pe/Portal/"
+OUT = Path("data") / "explora2"
 
-PAGINAS = {
-    "eventos_relevantes": "/Portal/Eventos/Relevantes",
-    "mant_prog_diario": "/Portal/Operacion/ProgManten/ProgDiario",
-    "mant_actualizacion_pd": "/Portal/Operacion/ProgManten/ActualizacionPD",
-    "mant_prog_semanal": "/Portal/Operacion/ProgManten/ProgSemanal",
-    "indisponibilidad": "/Portal/PostOperacion/Reportes/ReporteIndisponibilidad",
-    "ieod": "/Portal/PostOperacion/Reportes/Ieod",
-    "idcos": "/Portal/PostOperacion/Reportes/Idcos",
-    "prog_operacion_diario": "/Portal/Operacion/ProgOperacion/ProgramaDiario",
-    "max_demanda": "/Portal/portalinformacion/demanda?indicador=maxima",
-    "pi_generacion": "/Portal/portalinformacion/generacion",
-    "pi_demanda": "/Portal/portalinformacion/demanda",
-    "pi_hidrologia": "/Portal/portalinformacion/hidrologia",
-    "pi_index": "/Portal/portalinformacion/index",
-    "hidrologia_estudios": "/Portal/Operacion/Estudios/Hidrologia",
+CARPETAS = {
+    "mant_diario": ("Operación/Programa de Mantenimiento/Programa Diario/", "Programa de Mantenimiento Diario"),
+    "mant_actualizacion": ("Operación/Programa de Mantenimiento/Actualización del Programa Diario/",
+                           "Actualización del Programa Diario"),
+    "mant_semanal": ("Operación/Programa de Mantenimiento/Programa Semanal/", "Programa semanal"),
+    "indisponibilidad": ("Post Operación/Reportes/Reporte de Indisponibilidad/", "Reporte de Indisponibilidad"),
+    "ieod": ("Post Operación/Reportes/IEOD/", "IEOD"),
+    "prog_operacion": ("Operación/Programa de Operación/Programa Diario/", "Programa de Operación Diario"),
+    "hidrologia": ("Operación/Estudios/Hidrologia/", "Hidrología"),
 }
 
 S = requests.Session()
-S.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"})
-
-PAT_AJAX = re.compile(
-    r"""(?:url\s*:\s*|\.(?:post|get|load|getJSON)\s*\(\s*|controlador\s*\+\s*|href\s*=\s*)['"]([^'"]{3,200})['"]""",
-    re.I)
-PAT_CONTROLADOR = re.compile(r"""(?:var|let|const)\s+(\w*(?:controlador|url|ruta)\w*)\s*=\s*['"]([^'"]+)['"]""", re.I)
-PAT_DATA = re.compile(r"data\s*:\s*\{([^}]{0,400})\}", re.S)
+S.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36",
+                  "X-Requested-With": "XMLHttpRequest"})
 
 
-def texto_visible(html):
-    html = re.sub(r"(?is)<(script|style).*?</\1>", " ", html)
-    t = re.sub(r"(?s)<[^>]+>", " ", html)
-    return re.sub(r"\s+", " ", t).strip()
+def instalar():
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "openpyxl", "xlrd", "pypdf"], check=False)
 
 
-def formularios(html):
-    out = []
-    for m in re.finditer(r"(?is)<(input|select|textarea)\b([^>]*)>", html):
-        attrs = dict(re.findall(r'(\w[\w-]*)\s*=\s*"([^"]*)"', m.group(2)))
-        if attrs.get("type") in ("hidden", "text", "date", None, "checkbox", "radio") or m.group(1) != "input":
-            out.append({k: attrs.get(k) for k in ("id", "name", "type", "value") if attrs.get(k)})
-    for m in re.finditer(r'(?is)<select\b[^>]*id="([^"]+)"[^>]*>(.*?)</select>', html):
-        ops = re.findall(r'<option[^>]*value="([^"]*)"[^>]*>([^<]*)', m.group(2))[:40]
-        out.append({"select": m.group(1), "opciones": ops})
-    return out
+def limpio(t):
+    return re.sub(r"\s+", " ", htmlmod.unescape(re.sub(r"(?s)<[^>]+>", " ", t))).strip()
 
 
-def analizar_js(codigo):
-    hall = {"ajax": sorted(set(PAT_AJAX.findall(codigo))),
-            "variables": sorted(set(f"{a} = {b}" for a, b in PAT_CONTROLADOR.findall(codigo))),
-            "data": [re.sub(r"\s+", " ", d)[:300] for d in PAT_DATA.findall(codigo)][:40]}
-    return hall
+# --------------------------------------------------------------------------- repositorio de archivos
+def listar(base, url, nombre):
+    r = S.post(RAIZ + "browser/vistadatos", data={"baseDirectory": base, "url": url, "indicador": "S",
+                                                  "initialLink": nombre, "orderFolder": "D"}, timeout=90)
+    h = r.text
+    carpetas, archivos = [], []
+    for m in re.finditer(r"openDirectory\('([^']+)'\)", h):
+        if m.group(1) not in carpetas and m.group(1) not in ("Empty",):
+            carpetas.append(htmlmod.unescape(m.group(1)))
+    for m in re.finditer(r'class="[^"]*selector-file-contextual[^"]*"[^>]*id="([^"]+)"', h):
+        archivos.append(htmlmod.unescape(m.group(1)))
+    for m in re.finditer(r'id="([^"]+)"[^>]*class="[^"]*selector-file-contextual', h):
+        archivos.append(htmlmod.unescape(m.group(1)))
+    for m in re.finditer(r"(?:download|descargar\w*)\(\s*'([^']+\.(?:xlsx?|xlsm|pdf|zip|csv|txt|docx?))'", h, re.I):
+        archivos.append(htmlmod.unescape(m.group(1)))
+    archivos = list(dict.fromkeys(archivos))
+    filas = [limpio(f)[:200] for f in re.findall(r"(?is)<tr[^>]*>(.*?)</tr>", h)][:60]
+    return {"status": r.status_code, "carpetas": carpetas[:80], "archivos": archivos[:80], "filas": filas,
+            "html": h[:20000]}
 
 
-def explorar_pagina(nombre, ruta):
-    url = urljoin(RAIZ, ruta)
-    info = {"url": url}
+def analizar_archivo(ruta):
+    r = S.get(RAIZ + "browser/download?url=" + quote(ruta, safe="/"), timeout=180)
+    b = r.content
+    info = {"ruta": ruta, "status": r.status_code, "bytes": len(b),
+            "content_type": r.headers.get("content-type", "")}
+    ext = ruta.lower().rsplit(".", 1)[-1]
     try:
-        r = S.get(url, timeout=60)
-        info["status"] = r.status_code
-        html = r.text
+        if ext in ("xlsx", "xlsm") or b[:2] == b"PK" and ext not in ("zip", "docx"):
+            import openpyxl
+            wb = openpyxl.load_workbook(io.BytesIO(b), read_only=True, data_only=True)
+            info["hojas"] = {}
+            for ws in wb.worksheets[:40]:
+                filas = []
+                for i, row in enumerate(ws.iter_rows(values_only=True)):
+                    if i >= 40:
+                        break
+                    vals = [str(v)[:40] for v in row[:25] if v is not None]
+                    if vals:
+                        filas.append(vals)
+                info["hojas"][ws.title] = {"dim": ws.max_row and f"{ws.max_row}x{ws.max_column}", "filas": filas}
+        elif ext == "xls":
+            import xlrd
+            wb = xlrd.open_workbook(file_contents=b)
+            info["hojas"] = {}
+            for sh in wb.sheets()[:40]:
+                filas = []
+                for i in range(min(sh.nrows, 40)):
+                    vals = [str(v)[:40] for v in sh.row_values(i)[:25] if str(v).strip()]
+                    if vals:
+                        filas.append(vals)
+                info["hojas"][sh.name] = {"dim": f"{sh.nrows}x{sh.ncols}", "filas": filas}
+        elif ext == "pdf":
+            from pypdf import PdfReader
+            pdf = PdfReader(io.BytesIO(b))
+            info["paginas"] = len(pdf.pages)
+            info["texto"] = "\n".join((p.extract_text() or "") for p in pdf.pages[:4])[:6000]
+        elif ext == "zip":
+            z = zipfile.ZipFile(io.BytesIO(b))
+            info["contenido"] = z.namelist()[:100]
+        else:
+            info["inicio"] = b[:1500].decode("latin-1", "replace")
     except Exception as e:
-        info["error"] = str(e)
-        return info
-    info["texto"] = texto_visible(html)[:4000]
-    info["formularios"] = formularios(html)
-    inline = "\n".join(re.findall(r"(?is)<script[^>]*>(.*?)</script>", html))
-    info["js_inline"] = analizar_js(inline)
-    srcs = re.findall(r'(?i)<script[^>]+src="([^"]+)"', html)
-    info["scripts"] = srcs
-    info["js_externos"] = {}
-    for src in srcs:
-        if any(x in src.lower() for x in ("jquery", "bootstrap", "google", "highcharts", "moment", "datatables",
-                                           "select2", "modernizr", "gtag", "analytics")):
-            continue
-        u = urljoin(url, src)
-        if "coes.org.pe" not in u:
-            continue
-        try:
-            codigo = S.get(u, timeout=60).text
-            info["js_externos"][u] = analizar_js(codigo)
-            (OUT / "js").mkdir(parents=True, exist_ok=True)
-            (OUT / "js" / (re.sub(r"[^\w.]+", "_", u.split("coes.org.pe")[-1])[:120])).write_text(
-                codigo[:300_000], encoding="utf-8")
-        except Exception as e:
-            info["js_externos"][u] = {"error": str(e)}
-    (OUT / "html").mkdir(parents=True, exist_ok=True)
-    (OUT / "html" / f"{nombre}.html").write_text(html[:600_000], encoding="utf-8")
+        info["error_analisis"] = repr(e)
     return info
 
 
-def probar_endpoints():
-    """Pruebas de endpoints AJAX deducidos de los .js (se completan en una segunda pasada)."""
+def explorar_carpeta(clave, base, nombre):
+    res = {"niveles": []}
+    url = base
+    for nivel in range(4):
+        lst = listar(base, url, nombre)
+        res["niveles"].append({"url": url, **{k: v for k, v in lst.items() if k != "html"}})
+        (OUT / "listados").mkdir(parents=True, exist_ok=True)
+        (OUT / "listados" / f"{clave}_{nivel}.html").write_text(lst["html"], encoding="utf-8")
+        if lst["archivos"]:
+            res["archivos_analizados"] = [analizar_archivo(a) for a in lst["archivos"][:2]]
+            break
+        if not lst["carpetas"]:
+            break
+        hijas = [c for c in lst["carpetas"] if c.startswith(url) and c != url] or lst["carpetas"]
+        # carpeta más reciente: mayor por nombre (años/meses/días suelen ordenarse así)
+        url = sorted(hijas, key=lambda c: [int(x) if x.isdigit() else x for x in re.split(r"(\d+)", c)])[-1]
+    return res
+
+
+# --------------------------------------------------------------------------- eventos
+def explorar_eventos():
     hoy = dt.datetime.now(LIMA).date()
     ayer = hoy - dt.timedelta(days=1)
-    pruebas = {
-        "gen_indicador0_ayer": ("POST", "/Portal/portalinformacion/generacion",
-                                {"fechaInicial": ayer.strftime("%d/%m/%Y"), "fechaFinal": hoy.strftime("%d/%m/%Y"),
-                                 "indicador": 0}),
-        "gen_indicador0_hoy": ("POST", "/Portal/portalinformacion/generacion",
-                               {"fechaInicial": hoy.strftime("%d/%m/%Y"),
-                                "fechaFinal": (hoy + dt.timedelta(days=1)).strftime("%d/%m/%Y"), "indicador": 0}),
-        "demanda_hoy": ("POST", "/Portal/portalinformacion/demanda",
-                        {"fechaInicial": ayer.strftime("%d/%m/%Y"),
-                         "fechaFinal": (hoy + dt.timedelta(days=1)).strftime("%d/%m/%Y"), "indicador": 0}),
-    }
+    datos = {"FechaInicio": ayer.strftime("%d/%m/%Y"), "FechaFin": hoy.strftime("%d/%m/%Y"),
+             "IdTipoEvento": 0, "Version": "N", "Turno": "", "IdTipoEmpresa": 0, "IdEmpresa": 0,
+             "IdFamilia": 0, "IndInterrupcion": -1, "NroPagina": 1}
+    r = S.post(RAIZ + "eventos/relevantes/lista", data=datos, timeout=90)
+    h = r.text
+    (OUT / "eventos_lista.html").write_text(h[:200000], encoding="utf-8")
+    cab = [limpio(c) for c in re.findall(r"(?is)<th[^>]*>(.*?)</th>", h)]
+    filas = [[limpio(c)[:160] for c in re.findall(r"(?is)<td[^>]*>(.*?)</td>", f)]
+             for f in re.findall(r"(?is)<tr[^>]*>(.*?)</tr>", h)]
+    ids = re.findall(r"verEvento\((\d+)\)", h)
+    det = {}
+    if ids:
+        d = S.post(RAIZ + "eventos/relevantes/detalle", data={"idEvento": ids[0]}, timeout=90).text
+        (OUT / "evento_detalle.html").write_text(d[:100000], encoding="utf-8")
+        det = {"id": ids[0], "texto": limpio(d)[:3000]}
+    return {"status": r.status_code, "cabecera": cab, "n_filas": len(filas), "filas": filas[:25],
+            "ids": ids[:30], "detalle": det}
+
+
+# --------------------------------------------------------------------------- generación y demanda
+def explorar_portal_info():
+    hoy = dt.datetime.now(LIMA).date()
     out = {}
-    for k, (met, ruta, data) in pruebas.items():
+    for etiqueta, d0, d1 in (("ayer", hoy - dt.timedelta(days=1), hoy - dt.timedelta(days=1)),
+                             ("hoy", hoy, hoy), ("ayer_hoy", hoy - dt.timedelta(days=1), hoy)):
         try:
-            r = S.request(met, urljoin(RAIZ, ruta), data=data, timeout=60,
-                          headers={"X-Requested-With": "XMLHttpRequest"})
-            cuerpo = r.text
-            resumen = cuerpo[:1500]
-            try:
-                j = r.json()
-                resumen = {"claves": list(j.keys()) if isinstance(j, dict) else type(j).__name__,
-                           "muestra": json.dumps(j, ensure_ascii=False)[:2500]}
-            except Exception:
-                pass
-            out[k] = {"status": r.status_code, "largo": len(cuerpo), "resumen": resumen}
+            j = S.post(RAIZ + "portalinformacion/generacion",
+                       data={"fechaInicial": d0.strftime("%d/%m/%Y"), "fechaFinal": d1.strftime("%d/%m/%Y"),
+                             "indicador": 0}, timeout=120).json()
+            ser = j["GraficoTipoCombustible"]["Series"] or []
+            emp = j.get("ListadoPorEmpresa") or []
+            out[f"gen_{etiqueta}"] = {
+                "series": {s["Name"]: {"n": len(s["Data"]), "primero": s["Data"][0]["Nombre"] if s["Data"] else None,
+                                       "ultimo": s["Data"][-1]["Nombre"] if s["Data"] else None}
+                           for s in ser},
+                "n_empresas": len(emp),
+                "empresa_ejemplo": {k: v for k, v in (emp[0] if emp else {}).items()
+                                    if v not in (None, 0, [], "") or k.startswith("Lista")},
+                "central_ejemplo": (emp[0].get("ListaCentral") or [None])[0] if emp else None,
+                "grafico_empresa_keys": list((j.get("GraficoPorEmpresa") or {}).keys())
+                if isinstance(j.get("GraficoPorEmpresa"), dict) else str(type(j.get("GraficoPorEmpresa"))),
+            }
         except Exception as e:
-            out[k] = {"error": str(e)}
+            out[f"gen_{etiqueta}"] = {"error": repr(e)}
+    try:
+        j = S.post(RAIZ + "portalinformacion/demanda",
+                   data={"fechaInicial": (hoy - dt.timedelta(days=1)).strftime("%d/%m/%Y"),
+                         "fechaFinal": hoy.strftime("%d/%m/%Y")}, timeout=120).json()
+        out["demanda"] = {"claves": list(j.keys()),
+                          "series": {s["Name"]: {"n": len(s["Data"]),
+                                                 "ultimo": s["Data"][-1] if s["Data"] else None}
+                                     for s in (j.get("Chart") or {}).get("Series", [])},
+                          "LastDate": j.get("LastDate"), "LastTime": j.get("LastTime"),
+                          "LastValue": j.get("LastValue")}
+    except Exception as e:
+        out["demanda"] = {"error": repr(e)}
     return out
 
 
 def main():
+    instalar()
     OUT.mkdir(parents=True, exist_ok=True)
-    resultado = {"fecha": dt.datetime.now(LIMA).isoformat(), "paginas": {}}
-    for nombre, ruta in PAGINAS.items():
-        print("explorando", nombre, file=sys.stderr)
-        resultado["paginas"][nombre] = explorar_pagina(nombre, ruta)
-    resultado["pruebas"] = probar_endpoints()
-    (OUT / "resultado.json").write_text(json.dumps(resultado, ensure_ascii=False, indent=1), encoding="utf-8")
-    print("OK exploración guardada en", OUT)
-    return resultado
+    res = {"fecha": dt.datetime.now(LIMA).isoformat(), "carpetas": {}}
+    for clave, (base, nombre) in CARPETAS.items():
+        print("carpeta", clave, file=sys.stderr)
+        try:
+            res["carpetas"][clave] = explorar_carpeta(clave, base, nombre)
+        except Exception as e:
+            res["carpetas"][clave] = {"error": repr(e)}
+    try:
+        res["eventos"] = explorar_eventos()
+    except Exception as e:
+        res["eventos"] = {"error": repr(e)}
+    res["portal_info"] = explorar_portal_info()
+    (OUT / "resultado.json").write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str),
+                                        encoding="utf-8")
+    ok = sum(1 for c in res["carpetas"].values() if c.get("archivos_analizados"))
+    print("OK exploración 2 guardada")
+    return {"paginas": {k: {"status": 200 if v.get("archivos_analizados") else 0}
+                        for k, v in res["carpetas"].items()}}
 
 
 if __name__ == "__main__":
