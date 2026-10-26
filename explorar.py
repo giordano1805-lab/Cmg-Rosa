@@ -24,7 +24,7 @@ import requests
 
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
-OUT = Path("data") / "explora2"
+OUT = Path("data") / "explora3"
 
 CARPETAS = {
     "mant_diario": ("Operación/Programa de Mantenimiento/Programa Diario/", "Programa de Mantenimiento Diario"),
@@ -51,24 +51,29 @@ def limpio(t):
 
 
 # --------------------------------------------------------------------------- repositorio de archivos
+MESES_N = {m: i for i, m in enumerate(["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO",
+                                       "SETIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"], 1)}
+MESES_N["SEPTIEMBRE"] = 9
+
+
+def clave_orden(ruta):
+    nombre = ruta.rstrip("/").rsplit("/", 1)[-1].upper()
+    mes = next((n for m, n in MESES_N.items() if m in nombre), 0)
+    nums = [int(x) for x in re.findall(r"\d+", nombre)]
+    return (nums[:1] if nums and nums[0] > 31 else []) + [mes] + nums
+
+
 def listar(base, url, nombre):
     r = S.post(RAIZ + "browser/vistadatos", data={"baseDirectory": base, "url": url, "indicador": "S",
                                                   "initialLink": nombre, "orderFolder": "D"}, timeout=90)
     h = r.text
     carpetas, archivos = [], []
-    for m in re.finditer(r"openDirectory\('([^']+)'\)", h):
-        if m.group(1) not in carpetas and m.group(1) not in ("Empty",):
-            carpetas.append(htmlmod.unescape(m.group(1)))
-    for m in re.finditer(r'class="[^"]*selector-file-contextual[^"]*"[^>]*id="([^"]+)"', h):
-        archivos.append(htmlmod.unescape(m.group(1)))
-    for m in re.finditer(r'id="([^"]+)"[^>]*class="[^"]*selector-file-contextual', h):
-        archivos.append(htmlmod.unescape(m.group(1)))
-    for m in re.finditer(r"(?:download|descargar\w*)\(\s*'([^']+\.(?:xlsx?|xlsm|pdf|zip|csv|txt|docx?))'", h, re.I):
-        archivos.append(htmlmod.unescape(m.group(1)))
+    for ruta, tipo, ext in re.findall(r"openBlob\('([^']+)',\s*'([DF])',\s*'([^']*)'\)", h):
+        ruta = htmlmod.unescape(ruta)
+        (carpetas if tipo == "D" else archivos).append(ruta)
+    carpetas = list(dict.fromkeys(carpetas))
     archivos = list(dict.fromkeys(archivos))
-    filas = [limpio(f)[:200] for f in re.findall(r"(?is)<tr[^>]*>(.*?)</tr>", h)][:60]
-    return {"status": r.status_code, "carpetas": carpetas[:80], "archivos": archivos[:80], "filas": filas,
-            "html": h[:20000]}
+    return {"status": r.status_code, "carpetas": carpetas[:120], "archivos": archivos[:120], "html": h[:30000]}
 
 
 def analizar_archivo(ruta):
@@ -120,19 +125,18 @@ def analizar_archivo(ruta):
 def explorar_carpeta(clave, base, nombre):
     res = {"niveles": []}
     url = base
-    for nivel in range(4):
+    for nivel in range(6):
         lst = listar(base, url, nombre)
         res["niveles"].append({"url": url, **{k: v for k, v in lst.items() if k != "html"}})
         (OUT / "listados").mkdir(parents=True, exist_ok=True)
         (OUT / "listados" / f"{clave}_{nivel}.html").write_text(lst["html"], encoding="utf-8")
         if lst["archivos"]:
-            res["archivos_analizados"] = [analizar_archivo(a) for a in lst["archivos"][:2]]
+            arch = sorted(lst["archivos"], key=clave_orden, reverse=True)
+            res["archivos_analizados"] = [analizar_archivo(a) for a in arch[:2]]
             break
         if not lst["carpetas"]:
             break
-        hijas = [c for c in lst["carpetas"] if c.startswith(url) and c != url] or lst["carpetas"]
-        # carpeta más reciente: mayor por nombre (años/meses/días suelen ordenarse así)
-        url = sorted(hijas, key=lambda c: [int(x) if x.isdigit() else x for x in re.split(r"(\d+)", c)])[-1]
+        url = max(lst["carpetas"], key=clave_orden)
     return res
 
 
