@@ -255,13 +255,13 @@ function render(){
        <div class="note">Volumen útil del embalse (no caudal) · últimos 31 días vs mismas fechas de ${ya.slice(0,-1).join(", ")||"años anteriores"}. Es un embalse de regulación diaria: sube y baja dentro del día, por eso se usa el promedio diario del IEOD y no la foto semanal.</div></div>
      ${cent(c)}</div></div>`;
     const rep=di.representativo&&di.total!=null;
-    return `<div class="card"><h2>Cuenca del río ${c.cuenca}<small>semana ${c.semana}</small></h2>
+    return `<div class="card"><h2>${c.cuenca==="Chaglla"?"Embalse Chaglla · cuenca del río Huallaga":"Cuenca del río "+c.cuenca}<small>semana ${c.semana}</small></h2>
      <div class="emb"><div><div class="embk"><div><div class="lbl">Volumen actual</div><b>${f1(c.actual)} Hm3</b></div><div><div class="lbl">Misma semana ${+Object.keys(c.anios).sort().pop()-1}</div><b>${c.anterior!=null?f1(c.anterior)+" Hm3":"–"}</b></div>
        <div><div class="lbl">Variación</div>${pc(c.var_pct)}</div></div>
        <div class="chart"><canvas id="c-emb${i}"></canvas></div>
        ${rep?`<div class="embd"><span class="lbl">Dato diario al ${ddmm(di.fecha)} (IEOD)</span><b>${f1(di.total)} Hm3</b><span class="lbl">mismo día ${yp}: ${di.anterior!=null?f1(di.anterior)+" Hm3":"–"}</span>${pc(di.var_pct)}</div>
          <div class="chart sm"><canvas id="c-embd${i}"></canvas></div>
-         <div class="note">Diario: ${di.embalses.map(esc).join(", ")} (${Math.round(di.cobertura*100)}% del volumen de la cuenca).</div>`
+         <div class="note">${c.cuenca==="Chaglla"?"Diario: volumen útil promedio de cada día (el embalse sube y baja dentro del día; el semanal es el valor a fin de semana).":`Diario: ${di.embalses.map(esc).join(", ")} (${Math.round(di.cobertura*100)}% del volumen de la cuenca).`}</div>`
         :`<div class="note">En esta cuenca el volumen de las lagunas solo se publica en el informe semanal; el IEOD diario solo trae reservorios de regulación${di.total!=null?` (${f2(di.total)} Hm3 al ${ddmm(di.fecha)})`:""}.</div>`}</div>
      ${cent(c)}</div></div>`};
   $("#s-embalses").innerHTML=ES.cuencas.length?`<div class="grid"><div class="note" style="margin:0">Volumen útil de embalses y lagunas · semanal: ${esc(ES.semana||"")} (COES, Informe de Evaluación Semanal 5.2) · diario: IEOD del ${ddmm(D.dia_ieod||D.dia)}</div>
@@ -270,11 +270,9 @@ function render(){
 
   const PG=D.programado_gen.filter(r=>r.mw>0),PG0=D.programado_gen.length-PG.length,PGs=PG.filter(r=>!r.diesel);
   const hrs=s=>Math.max(0,Math.min(24,(new Date(s)-new Date(D.hoy+"T00:00"))/36e5));
-  const perfil=Array.from({length:48},(_,i)=>{const t=i/2+.25;return PGs.filter(r=>hrs(r.inicio)<=t&&hrs(r.final)>t).reduce((a,r)=>a+r.mw,0)});
-  const pmax=Math.max(0,...perfil),ipmax=perfil.indexOf(pmax);
   $("#s-prog").innerHTML=D.programado_publicado?`<div class="grid">
     <div class="grid g4"><div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">MW indisponibles programados (sin diésel)</div><div class="val">${f0(PGs.reduce((a,r)=>a+r.mw,0))}<small>MW</small></div><div class="sub">${PGs.length} intervenciones con MW</div></div>
-     <div class="card kpi"><div class="lbl">Máximo simultáneo</div><div class="val">${f0(pmax)}<small>MW</small></div><div class="sub">${pmax?`entre ${String(Math.floor(ipmax/2)).padStart(2,"0")}:${ipmax%2?"30":"00"} y ${String(Math.floor((ipmax+1)/2)).padStart(2,"0")}:${(ipmax+1)%2?"30":"00"}`:""}</div></div>
+
      <div class="card kpi"><div class="lbl">Diésel programado (excluido)</div><div class="val">${f0(PG.filter(r=>r.diesel).reduce((a,r)=>a+r.mw,0))}<small>MW</small></div><div class="sub">${PG.filter(r=>r.diesel).length} intervenciones</div></div>
      <div class="card kpi"><div class="lbl">Líneas ≥220 kV intervenidas</div><div class="val">${new Set(D.programado_lineas.map(r=>r.equipo)).size}</div><div class="sub">programadas hoy</div></div></div>
     <div class="card"><h2>MW indisponibles a lo largo del día<small>${D.hoy} · suma de intervenciones programadas sin diésel</small></h2><div class="chart"><canvas id="c-pgh"></canvas></div></div>

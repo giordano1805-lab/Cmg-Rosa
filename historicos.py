@@ -443,7 +443,7 @@ def cuencas_seleccionadas(emb, diario=None):
         out.append({**b, "semana": sem, "actual": v1, "anterior": v0,
                     "var_pct": (v1 / v0 - 1) * 100 if v1 is not None and v0 else None,
                     "centrales": centrales, "mw_total": round(sum(mw for _, mw in centrales), 1),
-                    "diario": di, "solo_diario": b["cuenca"] == "Chaglla" and bool(di and di.get("serie"))})
+                    "diario": di, "solo_diario": False})
     return out
 
 
@@ -488,7 +488,8 @@ def grafico_embalses(cuencas, ruta, plt):
                 ax.plot(ks, [s[str(k)] for k in ks], color=c, lw=lw, ls=ls, label=a,
                         marker="o" if j == len(anios) - 1 else None, ms=2.2)
             var = f" · {cu['var_pct']:+.0f}% vs {int(anios[-1]) - 1}" if cu["var_pct"] is not None else ""
-            ax.set_title(f"Cuenca del río {cu['cuenca']} — semana {cu['semana']}: {cu['actual']:,.1f} Hm3{var}",
+            nom = "Embalse Chaglla (río Huallaga)" if cu["cuenca"] == "Chaglla" else f"Cuenca del río {cu['cuenca']}"
+            ax.set_title(f"{nom} — semana {cu['semana']}: {cu['actual']:,.1f} Hm3{var}",
                          fontsize=8.5, color=NAVY, loc="left")
             ax.set_xlim(1, 53)
             if di.get("representativo") and di.get("total") is not None:
