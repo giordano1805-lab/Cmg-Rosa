@@ -466,7 +466,7 @@ def tipo_combustible(comb):
         return "Diésel D2"
     if any(k in c for k in ("R500", "R6", "RESIDUAL")):
         return "Residual"
-    return "Nafta / gas de refinería"
+    return "Gas de refinería"
 
 
 def _min_dia(hora):
@@ -563,7 +563,7 @@ def diesel_despacho(hojas, dia: dt.date):
         a["mw_max"] = max(porm.values()) if porm else None
         a["mwh"] = round(a["mwh"], 1) if a["unidades"] and porm else None
         unidades.append({"nombre": n, **a})
-    orden_c = {"Diésel D2": 0, "Residual": 1, "Nafta / gas de refinería": 2}
+    orden_c = {"Diésel D2": 0, "Residual": 1, "Gas de refinería": 2}
     unidades.sort(key=lambda u: (orden_c[u["tipo_comb"]], not u["rf"], -(u["mwh"] or 0)))
     return {"unidades": unidades, "serie": serie}
 

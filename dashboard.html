@@ -123,7 +123,7 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 let D,charts=[];
 const SERIE={"Santa Rosa 220":"--s1","Socabaya 220":"--s2","Piura 220":"--s3"};
 const BLOQ={"Punta (18-23 h)":"--s2","Media (6-18 h)":"--s3","Base (23-6 h)":"--base"};
-const GEN={"Hídrica":"--s1","Gas natural":"--s2","Solar":"--s3","Eólica":"--s4","Carbón":"--muted","Biomasa":"--s7","Diésel":"--s8","Residual":"--s10","Nafta y gas de refinería":"--s5","Otros":"--muted","D2 Reserva Fría":"--s9","D2 otras centrales":"--s8"};
+const GEN={"Hídrica":"--s1","Gas natural":"--s2","Solar":"--s3","Eólica":"--s4","Carbón":"--muted","Biomasa":"--s7","Diésel/Residual":"--s8","Otros":"--muted","D2 Reserva Fría":"--s9","Diésel/Residual otras":"--s8"};
 
 function tema(){const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
   r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("tema",r.dataset.theme)}catch(e){};dibujar()}
