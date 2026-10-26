@@ -91,8 +91,8 @@ a{color:var(--s1)}
 <main class="wrap" id="main"></main>
 
 <script>
-const SECC=[["resumen","Resumen"],["precios","Precios"],["oferta","Oferta y demanda"],["indisp","Indisponibilidades"],
-["trans","Transmisión y eventos"],["embalses","Embalses"],["prog","Programado hoy"],["pdf","Reportes PDF"]];
+const SECC=[["resumen","Resumen"],["precios","Precios"],["oferta","Oferta y demanda"],["embalses","Embalses"],
+["prog","Programado hoy"],["pdf","Reportes PDF"],["indisp","Indisponibilidades"],["trans","Transmisión y eventos"]];
 const $=s=>document.querySelector(s);
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const f2=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -167,9 +167,7 @@ function render(){
 
   $("#s-oferta").innerHTML=`<div class="grid">
    <div class="card"><h2>Producción por tipo de recurso<small>MW cada 30 min · ${D.dia}</small></h2><div class="chart tall"><canvas id="c-gen"></canvas></div></div>
-   <div class="grid g2"><div class="card"><h2>Demanda por área<small>MW</small></h2><div class="chart"><canvas id="c-dem"></canvas></div></div>
-   <div class="card"><h2>Disponibilidad de gas natural<small>Mm3 declarados</small></h2><div id="t-gas"></div></div></div></div>`;
-  tabla("#t-gas",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Gasoducto",v:r=>tit(r.gasoducto)},{t:"Volumen",num:1,v:r=>r.volumen_mm3,h:r=>f0(r.volumen_mm3)}],D.gas);
+   <div class="card"><h2>Demanda por área<small>MW</small></h2><div class="chart"><canvas id="c-dem"></canvas></div></div></div>`;
 
   const fuente=D.dia_ieod?`IEOD ${D.dia_ieod}`:"IEOD no disponible";
   $("#s-indisp").innerHTML=`<div class="card"><h2>Indisponibilidades de generación<small>${fuente} · todas las centrales</small></h2><div id="t-ind"></div></div>`;
