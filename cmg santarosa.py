@@ -535,7 +535,8 @@ def pidio_actualizar(chat):
 
 def main():
     chat = os.environ["TELEGRAM_CHAT_ID"]
-    if os.getenv("MODO") == "explora":
+    MODO = (os.getenv("MODO") or "reporte").strip().lower()
+    if MODO == "explora":
         import explorar
         res = explorar.main()
         ok = sum(1 for p in res["paginas"].values() if p.get("status") == 200)
@@ -543,7 +544,7 @@ def main():
                                 "text": f"🔎 Exploración COES lista: {ok}/{len(res['paginas'])} páginas leídas. "
                                         "Avísale a Claude."})
         return
-    if os.getenv("MODO") == "pdf":
+    if MODO == "pdf":
         import reporte
         ruta, bullets = reporte.generar(sys.modules[__name__])
         limpio = [re.sub(r"<[^>]+>", "", t) for t in bullets]
@@ -556,7 +557,7 @@ def main():
             tg("sendDocument", data={"chat_id": chat, "caption": cap[:1020]}, files={"document": f})
         print("OK reporte PDF", ruta)
         return
-    if os.getenv("MODO") == "escucha":
+    if MODO == "escucha":
         if not pidio_actualizar(chat):
             print("Sin pedidos de actualización")
             return
