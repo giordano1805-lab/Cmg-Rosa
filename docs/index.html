@@ -116,13 +116,22 @@ const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim
 const f2=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2});
 const f0=v=>v==null?"–":Number(v).toLocaleString("es-PE",{maximumFractionDigits:0});
 const f1=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:1,maximumFractionDigits:1});
-const tit=s=>(s||"").toLowerCase().replace(/(^|[\s.(\/-])([a-záéíóúñü])/g,(m,a,b)=>a+b.toUpperCase());
+const romanos=s=>String(s??"").replace(/\b(ii|iii|iv|vi|vii|viii|ix|xi|xii)\b/gi,m=>m.toUpperCase());
+const tit=s=>romanos((s||"").toLowerCase().replace(/(^|[\s.(\/-])([a-záéíóúñü])/g,(m,a,b)=>a+b.toUpperCase()));
 const hm=s=>{if(!s)return"";const d=new Date(s);return d.toTimeString().slice(0,5)};
 const per=(r,dia)=>{dia=dia||D.dia_ieod||D.dia;const sig=new Date(new Date(dia+"T12:00").getTime()+864e5).toISOString().slice(0,10);
   const fmt=(s,fin)=>{if(!s)return"";const fecha=s.slice(0,10),t=s.slice(11,16);
     if(fin&&fecha===sig&&t==="00:00")return"24:00";return fecha===dia?t:`${fecha.slice(8,10)}/${fecha.slice(5,7)} ${t}`};
   return `${fmt(r.inicio)}–${fmt(r.final,true)}`};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+// MW indisponibles en el instante t sin doble conteo: si una central tiene un registro "CENTRAL" y además
+// registros por unidad al mismo tiempo, se toma el mayor de los dos (no la suma).
+function mwActivo(regs,t,filtro){const por={};
+  regs.forEach(r=>{if(filtro&&!filtro(r))return;const i=new Date(r.inicio),f=new Date(r.final||r.inicio);if(!(i<=t&&f>t))return;
+    const c=por[r.ubicacion]||(por[r.ubicacion]={cen:0,uni:{}});
+    if((r.equipo||"").toUpperCase()==="CENTRAL")c.cen=Math.max(c.cen,r.mw);else c.uni[r.equipo]=Math.max(c.uni[r.equipo]||0,r.mw)});
+  return Object.values(por).reduce((a,c)=>a+Math.max(c.cen,Object.values(c.uni).reduce((x,y)=>x+y,0)),0)}
+function mwDia(regs,dia,filtro){const d0=new Date(dia+"T00:00");let s=0;for(let k=0;k<48;k++)s+=mwActivo(regs,new Date(d0.getTime()+(k*30+15)*6e4),filtro);return s/48}
 let D,charts=[];
 const SERIE={"Santa Rosa 220":"--s1","Socabaya 220":"--s2","Piura 220":"--s3"};
 const BLOQ={"Punta (18-23 h)":"--s2","Media (6-18 h)":"--s3","Base (23-6 h)":"--base"};
@@ -145,7 +154,7 @@ function tabla(id,cols,filas,opt={}){
   const el=$(id);let orden=null,asc=true,q="";
   function pintar(){let fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
     if(orden!=null){const c=cols[orden];fs=[...fs].sort((a,b)=>{const x=c.v(a),y=c.v(b);return(x>y?1:x<y?-1:0)*(asc?1:-1)})}
-    el.querySelector("tbody").innerHTML=fs.length?fs.map(f=>"<tr>"+cols.map(c=>`<td class="${c.num?"num":c.t==="Descripción"?"desc":["Horario","Unidad","Línea","Estado"].includes(c.t)?"cort":""}">${c.h?c.h(f):esc(c.v(f))}</td>`).join("")+"</tr>").join("")
+    el.querySelector("tbody").innerHTML=fs.length?fs.map(f=>"<tr>"+cols.map(c=>`<td class="${c.num?"num":c.t==="Descripción"?"desc":["Horario","Unidad","Línea","Estado"].includes(c.t)?"cort":""}">${c.num?(c.h?c.h(f):esc(c.v(f))):romanos(c.h?c.h(f):esc(c.v(f)))}</td>`).join("")+"</tr>").join("")
       :`<tr><td colspan="${cols.length}" style="color:var(--muted)">Sin registros.</td></tr>`;
     el.querySelector(".n").textContent=`${fs.length} de ${filas.length}`}
   el.innerHTML=`<div class="tools" ${opt.simple?'style="display:none"':""}><input placeholder="Buscar…" aria-label="Buscar"><span class="n"></span></div>
@@ -279,8 +288,7 @@ function render(){
   const MESN=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","setiembre","octubre","noviembre","diciembre"];
   let mesTxt="";if(PM.mes){const[a,mm]=PM.mes.split("-");mesTxt=`${MESN[+mm-1]} ${a}`}
   const diasMes=PM.mes?new Date(+PM.mes.slice(0,4),+PM.mes.slice(5,7),0).getDate():30;
-  const porDia=PM.mes?Array.from({length:diasMes},(_,k)=>{const d0=new Date(`${PM.mes}-${String(k+1).padStart(2,"0")}T00:00`),d1=new Date(d0.getTime()+864e5);
-    return MRs.reduce((a,r)=>{const i=Math.max(d0,new Date(r.inicio)),f=Math.min(d1,new Date(r.final||r.inicio));return a+(f>i?r.mw*(f-i)/864e5:0)},0)}):[];
+  const porDia=PM.mes?Array.from({length:diasMes},(_,k)=>mwDia(MRs,`${PM.mes}-${String(k+1).padStart(2,"0")}`)):[];
   const pmx=porDia.length?Math.max(...porDia):0,ipm=porDia.indexOf(pmx),prom=porDia.length?porDia.reduce((a,b)=>a+b,0)/porDia.length:0;
   $("#s-mes").innerHTML=MR.length?`<div class="grid">
     <div class="note" style="margin:0">Programa Mensual de Mantenimiento del COES · ${mesTxt} · solo centrales de generación con MW indisponibles</div>
@@ -357,7 +365,7 @@ function dibujar(){
     const o=base("MW");o.scales.y.stacked=true;o.scales.y.beginAtZero=true;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
     const lab=Array.from({length:48},(_,i)=>`${String(Math.floor(i/2)).padStart(2,"0")}:${i%2?"30":"00"}`);
     grafico("#c-pgh",{type:"line",data:{labels:lab,datasets:tecs.map(t=>({label:t,stepped:true,fill:true,pointRadius:0,borderWidth:1,borderColor:css("--surface"),backgroundColor:css(TECC[t]||"--muted"),
-      data:lab.map((_,i)=>PGs.filter(r=>(r.tecnologia||"Otra")===t&&hrs(r.inicio)<=i/2+.25&&hrs(r.final)>i/2+.25).reduce((a,r)=>a+r.mw,0))}))},options:o})}
+      data:lab.map((_,i)=>mwActivo(PGs,new Date(h0.getTime()+(i*30+15)*6e4),r=>(r.tecnologia||"Otra")===t))}))},options:o})}
   if(on("#c-pgg")){const h0=new Date(D.hoy+"T00:00"),hrs=s=>Math.max(0,Math.min(24,(new Date(s)-h0)/36e5));
     const PG=D.programado_gen.filter(r=>r.mw>0).sort((a,b)=>b.mw-a.mw).slice(0,20);
     const o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;
@@ -381,8 +389,7 @@ function dibujar(){
     grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:`${l.cod}${l.nombre?" ("+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
   if(on("#c-mesd")){const PM=D.prog_mensual,MRs=PM.regs.filter(r=>!r.diesel),n=new Date(+PM.mes.slice(0,4),+PM.mes.slice(5,7),0).getDate();
     const tecs=[...new Set(MRs.map(r=>r.tecnologia||"Otra"))],hoyD=D.hoy.slice(0,7)===PM.mes?+D.hoy.slice(8,10):0;
-    const val=(t,k)=>{const d0=new Date(`${PM.mes}-${String(k+1).padStart(2,"0")}T00:00`),d1=new Date(d0.getTime()+864e5);
-      return MRs.filter(r=>(r.tecnologia||"Otra")===t).reduce((a,r)=>{const i=Math.max(d0,new Date(r.inicio)),f=Math.min(d1,new Date(r.final||r.inicio));return a+(f>i?r.mw*(f-i)/864e5:0)},0)};
+    const val=(t,k)=>mwDia(MRs,`${PM.mes}-${String(k+1).padStart(2,"0")}`,r=>(r.tecnologia||"Otra")===t);
     const o=base("MW");o.scales.x.stacked=true;o.scales.y.stacked=true;o.scales.y.beginAtZero=true;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
     grafico("#c-mesd",{type:"bar",data:{labels:Array.from({length:n},(_,k)=>k+1===hoyD?`${k+1} (hoy)`:String(k+1)),
       datasets:tecs.map(t=>({label:t,data:Array.from({length:n},(_,k)=>val(t,k)),backgroundColor:css(TECC[t]||"--muted"),borderRadius:3}))},options:o})}
@@ -399,7 +406,7 @@ function dibujar(){
     const o=base("");o.indexAxis="y";o.plugins.legend.display=false;o.interaction={mode:"nearest",intersect:true};
     o.scales={x:{grid:{color:css("--grid")},ticks:{color:css("--text-2")},title:{display:true,text:"GWh vs año anterior",color:css("--text-2")}},y:{grid:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
     o.plugins.tooltip.callbacks={label:it=>{const c=sel[it.dataIndex];return `${f2(c.act)} vs ${f2(c.ant)} GWh (${c.var_pct==null?"–":(c.var_pct>0?"+":"")+c.var_pct.toFixed(0)+"%"})`}};
-    grafico("#c-hcen",{type:"bar",data:{labels:sel.map(c=>c.central),datasets:[{data:sel.map(c=>c.delta),backgroundColor:sel.map(c=>css(c.delta<0?"--s8":"--s4")),borderRadius:4}]},options:o})}
+    grafico("#c-hcen",{type:"bar",data:{labels:sel.map(c=>romanos(c.central)),datasets:[{data:sel.map(c=>c.delta),backgroundColor:sel.map(c=>css(c.delta<0?"--s8":"--s4")),borderRadius:4}]},options:o})}
   const diaria=(id,di,dec)=>{const ya=Object.keys(di.serie).sort(),f0=new Date(di.serie[ya[ya.length-1]][0]?.[0]||di.fecha);
     const x=s=>Math.round((new Date(s)-f0)/864e5),lab=k=>{const d=new Date(f0.getTime()+k*864e5);return String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")};
     const o=base("Hm3");o.scales.x={type:"linear",grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:5,callback:v=>lab(v)}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
