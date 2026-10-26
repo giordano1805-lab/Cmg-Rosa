@@ -1,0 +1,710 @@
+{
+ "demanda_rango_mes_2025": {
+  "series": {
+   "Ejecutado": {
+    "n": 1440,
+    "primero": "2025/09/01 00:30:00",
+    "ultimo": "2025/10/01 00:00:00"
+   },
+   "Programación Diaria": {
+    "n": 1440,
+    "primero": "2025/09/01 00:30:00",
+    "ultimo": "2025/10/01 00:00:00"
+   },
+   "Programación Semanal": {
+    "n": 1440,
+    "primero": "2025/09/01 00:30:00",
+    "ultimo": "2025/10/01 00:00:00"
+   }
+  },
+  "claves": [
+   "Chart",
+   "Data",
+   "LastDate",
+   "LastTime",
+   "LastValue",
+   "EjexDemanda"
+  ],
+  "Data": "[{'Fecha': '2025/09/01 00:30', 'ValorEjecutado': 6195.08446, 'ValorProgramacionDiaria': 6171.03993, 'ValorProgramacionSemanal': 6173.00503}, {'Fecha': '2025/09/01 01:00', 'ValorEjecutado': 6057.0547, 'ValorProgramacionDiaria': 6047.96497, 'ValorProgramacionSemanal': 6173.00503}, {'Fecha': '2025/09/01 01:30', 'ValorEjecutado': 6049.42108, 'ValorProgramacionDiaria': 5968.23301, 'ValorProgramacionSemanal': 5998.78129}, {'Fecha': '2025/09/01 02:00', 'ValorEjecutado': 6016.77767, 'ValorProgramacionDiaria': 5894.97447, 'ValorProgramacionSemanal': 5998.78129}, {'Fecha': '2025/09/01 02:30', 'ValorEjecutado': 5828.91201, 'ValorProgramacionDiaria': 5860.74702, 'ValorProgramacionSemanal': 5951.05696}, {'Fecha': '2025/09/01 03:00', 'ValorEjecutado': 5922.44805, 'ValorProgramacionDiaria': 5840.16624, 'ValorProgramacionSemanal': 5951.05696}, {'Fecha': '2025/09/01 03:30', 'ValorEjecutado': 5891.83353, 'ValorProgramacionDiaria': 5834.79251, 'ValorProgramacionSemanal': 5925.82396}, {'Fecha': '2025/09/01 04:00', 'ValorEjecutado': 5894.77527, 'ValorProgramacionDiaria': 5831.72409, 'ValorProgramacionSemanal': 5925.82396}, {'Fecha': '2025/09/01 04:30', 'ValorEjecutado': 5887.64385, 'ValorProgramacionDiaria': 5877.02261, 'ValorProgramacionSemanal': 5992.61835}, {'Fecha': '2025/09/01 05:00', 'ValorEjecutado': 5897.08346, 'ValorProgramacionDiaria': 5943.50515, 'ValorProgramacionSemanal': 5992.61835}, {'Fecha': '2025/09/01 05:30', 'ValorEjecutado': 6052.89847, 'ValorProgramacionDiaria': 6055.76643, '"
+ },
+ "demanda_dia_2025": {
+  "series": {
+   "Ejecutado": {
+    "n": 48,
+    "primero": "2025/10/25 00:30:00",
+    "ultimo": "2025/10/26 00:00:00"
+   },
+   "Programación Diaria": {
+    "n": 48,
+    "primero": "2025/10/25 00:30:00",
+    "ultimo": "2025/10/26 00:00:00"
+   },
+   "Programación Semanal": {
+    "n": 48,
+    "primero": "2025/10/25 00:30:00",
+    "ultimo": "2025/10/26 00:00:00"
+   }
+  },
+  "claves": [
+   "Chart",
+   "Data",
+   "LastDate",
+   "LastTime",
+   "LastValue",
+   "EjexDemanda"
+  ],
+  "Data": "[{'Fecha': '2025/10/25 00:30', 'ValorEjecutado': 6886.93738, 'ValorProgramacionDiaria': 6654.9226, 'ValorProgramacionSemanal': 6682.6544}, {'Fecha': '2025/10/25 01:00', 'ValorEjecutado': 6718.49481, 'ValorProgramacionDiaria': 6570.36772, 'ValorProgramacionSemanal': 6682.6544}, {'Fecha': '2025/10/25 01:30', 'ValorEjecutado': 6658.12537, 'ValorProgramacionDiaria': 6478.21083, 'ValorProgramacionSemanal': 6463.13821}, {'Fecha': '2025/10/25 02:00', 'ValorEjecutado': 6624.4619, 'ValorProgramacionDiaria': 6402.87499, 'ValorProgramacionSemanal': 6463.13821}, {'Fecha': '2025/10/25 02:30', 'ValorEjecutado': 6594.23772, 'ValorProgramacionDiaria': 6346.74042, 'ValorProgramacionSemanal': 6351.18071}, {'Fecha': '2025/10/25 03:00', 'ValorEjecutado': 6549.53932, 'ValorProgramacionDiaria': 6361.93284, 'ValorProgramacionSemanal': 6351.18071}, {'Fecha': '2025/10/25 03:30', 'ValorEjecutado': 6536.39703, 'ValorProgramacionDiaria': 6341.97661, 'ValorProgramacionSemanal': 6312.86656}, {'Fecha': '2025/10/25 04:00', 'ValorEjecutado': 6534.63742, 'ValorProgramacionDiaria': 6380.40613, 'ValorProgramacionSemanal': 6312.86656}, {'Fecha': '2025/10/25 04:30', 'ValorEjecutado': 6456.60066, 'ValorProgramacionDiaria': 6418.14665, 'ValorProgramacionSemanal': 6336.02548}, {'Fecha': '2025/10/25 05:00', 'ValorEjecutado': 6601.25791, 'ValorProgramacionDiaria': 6438.68396, 'ValorProgramacionSemanal': 6336.02548}, {'Fecha': '2025/10/25 05:30', 'ValorEjecutado': 6594.47746, 'ValorProgramacionDiaria': 6475.68128, 'Val"
+ },
+ "demanda_rango_semana_2026": {
+  "series": {
+   "Ejecutado": {
+    "n": 336,
+    "primero": "2026/10/18 00:30:00",
+    "ultimo": "2026/10/25 00:00:00"
+   },
+   "Programación Diaria": {
+    "n": 336,
+    "primero": "2026/10/18 00:30:00",
+    "ultimo": "2026/10/25 00:00:00"
+   },
+   "Programación Semanal": {
+    "n": 336,
+    "primero": "2026/10/18 00:30:00",
+    "ultimo": "2026/10/25 00:00:00"
+   }
+  },
+  "claves": [
+   "Chart",
+   "Data",
+   "LastDate",
+   "LastTime",
+   "LastValue",
+   "EjexDemanda"
+  ],
+  "Data": "[{'Fecha': '2026/10/18 00:30', 'ValorEjecutado': 7197.38806, 'ValorProgramacionDiaria': 7002.35223, 'ValorProgramacionSemanal': 6967.65469}, {'Fecha': '2026/10/18 01:00', 'ValorEjecutado': 7076.31618, 'ValorProgramacionDiaria': 6883.20296, 'ValorProgramacionSemanal': 6967.65469}, {'Fecha': '2026/10/18 01:30', 'ValorEjecutado': 6872.42639, 'ValorProgramacionDiaria': 6749.34283, 'ValorProgramacionSemanal': 6726.33391}, {'Fecha': '2026/10/18 02:00', 'ValorEjecutado': 6779.15662, 'ValorProgramacionDiaria': 6680.73028, 'ValorProgramacionSemanal': 6726.33391}, {'Fecha': '2026/10/18 02:30', 'ValorEjecutado': 6842.31475, 'ValorProgramacionDiaria': 6599.4617, 'ValorProgramacionSemanal': 6646.06705}, {'Fecha': '2026/10/18 03:00', 'ValorEjecutado': 6724.41188, 'ValorProgramacionDiaria': 6551.36677, 'ValorProgramacionSemanal': 6646.06705}, {'Fecha': '2026/10/18 03:30', 'ValorEjecutado': 6634.19507, 'ValorProgramacionDiaria': 6511.7219, 'ValorProgramacionSemanal': 6573.88907}, {'Fecha': '2026/10/18 04:00', 'ValorEjecutado': 6637.91619, 'ValorProgramacionDiaria': 6488.99872, 'ValorProgramacionSemanal': 6573.88907}, {'Fecha': '2026/10/18 04:30', 'ValorEjecutado': 6589.17362, 'ValorProgramacionDiaria': 6501.5457, 'ValorProgramacionSemanal': 6572.36772}, {'Fecha': '2026/10/18 05:00', 'ValorEjecutado': 6687.88768, 'ValorProgramacionDiaria': 6488.55294, 'ValorProgramacionSemanal': 6572.36772}, {'Fecha': '2026/10/18 05:30', 'ValorEjecutado': 6603.97179, 'ValorProgramacionDiaria': 6506.5906, 'Val"
+ },
+ "prog_semanal_op": {
+  "base": "Operación/Programa de Operación/Programa Semanal Operación/",
+  "rastro": [
+   {
+    "url": "Operación/Programa de Operación/Programa Semanal Operación/",
+    "carpetas": [
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2025/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2024/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2023/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2022/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2021/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2020/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2019/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2018/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2017/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2016/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2015/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2014/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2013/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2012/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Operación/Programa de Operación/Programa Semanal Operación/2026/",
+    "carpetas": [
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/42_SEMANAL N° 42 (17.10.2026 - 23.10.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/41_SEMANAL N° 41 (10.10.2026 - 16.10.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/40_SEMANAL N° 40 (03.10.2026 - 09.10.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/39_SEMANAL N° 39 (26.09.2026 - 02.10.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/38_SEMANAL N° 38 (19.09.2026 - 25.09.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/37_SEMANAL N° 37 (12.09.2026 - 18.09.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/36_SEMANAL N° 36 (05.09.2026 - 11.09.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/35_SEMANAL N° 35 (29.08.2026 - 04.09.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/34_SEMANAL N° 34 (22.08.2026 - 28.08.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/33_SEMANAL N° 33 (15.08.2026 - 21.08.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/32_SEMANAL N° 32 (08.08.2026 - 14.08.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/31_SEMANAL N° 31 (01.08.2026 - 07.08.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/30_SEMANAL N° 30 (25.07.2026 - 31.07.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/29_SEMANAL N° 29 (18.07.2026 - 24.07.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/28_SEMANAL N° 28 (11.07.2026 - 17.07.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/27_SEMANAL N° 27 (04.07.2026 - 10.07.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/26_SEMANAL N° 26 (27.06.2026 - 03.07.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/25_SEMANAL N° 25 (20.06.2026 - 26.06.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/24_SEMANAL N° 24 (13.06.2026 - 19.06.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/23_SEMANAL N° 23 (06.06.2026 - 12.06.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/22_SEMANAL N° 22 (30.05.2026 - 05.06.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/21_SEMANAL N° 21 (23.05.2026 - 29.05.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/20_SEMANAL N° 20 (16.05.2026 - 22.05.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/19_SEMANAL N° 19 (09.05.2026 - 15.05.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/18_SEMANAL N° 18 (02.05.2026 - 08.05.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/17_SEMANAL N° 17 (25.04.2026 - 01.05.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/16_SEMANAL N° 16 (18.04.2026 - 24.04.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/15_SEMANAL N° 15 (11.04.2026 - 17.04.2026)/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/14_SEMANAL N° 14 (04.04.2026 - 10.04.2026)/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/",
+    "carpetas": [
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Final/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/",
+    "carpetas": [],
+    "archivos": [
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/PSO_Sem43_2026_Preliminar.xlsx",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/PSO_Sem43_2026_Preliminar.xlsx",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/PSO_Sem43_2026_Preliminar.xlsx",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/PSO_Sem43_2026_Preliminar.xlsx",
+     "Operación/Programa de Operación/Programa Semanal Operación/2026/43_SEMANAL N° 43 (24.10.2026 - 30.10.2026)/Preliminar/PSO_Sem43_2026_Preliminar.xlsx"
+    ]
+   }
+  ],
+  "volcados": {
+   "PSO_Sem43_2026_Preliminar_xlsx": {
+    "2026-10-24": 63,
+    "2026-10-25": 63,
+    "2026-10-26": 63,
+    "2026-10-27": 63,
+    "2026-10-28": 63,
+    "2026-10-29": 63,
+    "2026-10-30": 63
+   }
+  }
+ },
+ "eval_semanal": {
+  "base": "Post Operación/Informes/Evaluacion Semanal/",
+  "rastro": [
+   {
+    "url": "Post Operación/Informes/Evaluacion Semanal/",
+    "carpetas": [
+     "Post Operación/Informes/Evaluacion Semanal/2026/",
+     "Post Operación/Informes/Evaluacion Semanal/2025/",
+     "Post Operación/Informes/Evaluacion Semanal/2024/",
+     "Post Operación/Informes/Evaluacion Semanal/2023/",
+     "Post Operación/Informes/Evaluacion Semanal/2022/",
+     "Post Operación/Informes/Evaluacion Semanal/2021/",
+     "Post Operación/Informes/Evaluacion Semanal/2020/",
+     "Post Operación/Informes/Evaluacion Semanal/2019/",
+     "Post Operación/Informes/Evaluacion Semanal/2018/",
+     "Post Operación/Informes/Evaluacion Semanal/2017/",
+     "Post Operación/Informes/Evaluacion Semanal/2016/",
+     "Post Operación/Informes/Evaluacion Semanal/2015/",
+     "Post Operación/Informes/Evaluacion Semanal/2014/",
+     "Post Operación/Informes/Evaluacion Semanal/2013/",
+     "Post Operación/Informes/Evaluacion Semanal/2012/",
+     "Post Operación/Informes/Evaluacion Semanal/2011/",
+     "Post Operación/Informes/Evaluacion Semanal/2010/",
+     "Post Operación/Informes/Evaluacion Semanal/2009/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Post Operación/Informes/Evaluacion Semanal/2026/",
+    "carpetas": [
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 42 (17.09.2026 - 23.10.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 41 (10.09.2026 - 16.10.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 40 (03.09.2026 - 09.10.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 39 (26.09.2026 - 02.10.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 38 (19.09.2026 - 25.09.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 37 (12.09.2026 - 18.09.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 36 (05.09.2026 - 11.09.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 35 (29.08.2026 - 04.09.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 34 (22.08.2026 - 28.08.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 33 (15.08.2026 - 21.08.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 32 (08.08.2026 - 14.08.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 31 (01.08.2026 - 07.08.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 30 (25.07.2026 - 31.07.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 29 (18.07.2026 - 24.07.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 28 (11.07.2026 - 17.07.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 27 (04.07.2026 - 10.07.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 26 (27.06.2026 - 03.07.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 25 (20.06.2026 - 26.06.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 24 (13.06.2026 - 19.06.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 23 (06.06.2026 - 12.06.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 22 (30.05.2026 - 05.06.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 21 (23.05.2026 - 29.05.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 20 (16.05.2026 - 22.05.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 19 (09.05.2026 - 15.05.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 18 (02.05.2026 - 08.05.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 17 (25.04.2026 - 01.05.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 16 (18.04.2026 - 24.04.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 15 (11.04.2026 - 17.04.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 14 (04.04.2026 - 10.04.2026)/",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 13 (28.03.2026 -03.04.2026)/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 42 (17.09.2026 - 23.10.2026)/",
+    "carpetas": [],
+    "archivos": [
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 42 (17.09.2026 - 23.10.2026)/Informe_Semanal_SEM42_2026.xlsx",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 42 (17.09.2026 - 23.10.2026)/Informe_Semanal_SEM42_2026.xlsx",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 42 (17.09.2026 - 23.10.2026)/Informe_Semanal_SEM42_2026.xlsx",
+     "Post Operación/Informes/Evaluacion Semanal/2026/SEMANAL N° 42 (17.09.2026 - 23.10.2026)/Informe_Semanal_SEM42_2026.xlsx"
+    ]
+   }
+  ],
+  "volcados": {
+   "Informe_Semanal_SEM42_2026_xlsx": {
+    "Portada": 0,
+    "Índice": 76,
+    "Resumen_Relevante": 58,
+    "Resumen_Producción": 422,
+    "1.1": 57,
+    "2.1": 151,
+    "2.2": 294,
+    "2.3": 95,
+    "2.4": 212,
+    "2.5": 119,
+    "3.1": 237,
+    "3.2": 108,
+    "3.3": 117,
+    "4.1": 265,
+    "4.2": 230,
+    "4.3": 244,
+    "5.1": 66,
+    "5.2": 74,
+    "5.3": 266,
+    "5.4": 74,
+    "6.1": 100,
+    "7.1": 50,
+    "8.1": 52,
+    "8.2": 23,
+    "9.1": 45,
+    "9.2": 41,
+    "9.3": 41,
+    "10.1": 77,
+    "11.1": 56,
+    "12.1": 51,
+    "13.1": 56,
+    "13.2": 190,
+    "Contraportada": 70
+   }
+  }
+ },
+ "eval_mensual": {
+  "base": "Post Operación/Informes/Evaluación Mensual/",
+  "rastro": [
+   {
+    "url": "Post Operación/Informes/Evaluación Mensual/",
+    "carpetas": [
+     "Post Operación/Informes/Evaluación Mensual/2026/",
+     "Post Operación/Informes/Evaluación Mensual/2025/",
+     "Post Operación/Informes/Evaluación Mensual/2024/",
+     "Post Operación/Informes/Evaluación Mensual/2023/",
+     "Post Operación/Informes/Evaluación Mensual/2022/",
+     "Post Operación/Informes/Evaluación Mensual/2021/",
+     "Post Operación/Informes/Evaluación Mensual/2020/",
+     "Post Operación/Informes/Evaluación Mensual/2019/",
+     "Post Operación/Informes/Evaluación Mensual/2018/",
+     "Post Operación/Informes/Evaluación Mensual/2017/",
+     "Post Operación/Informes/Evaluación Mensual/2016/",
+     "Post Operación/Informes/Evaluación Mensual/2015/",
+     "Post Operación/Informes/Evaluación Mensual/2014/",
+     "Post Operación/Informes/Evaluación Mensual/2013/",
+     "Post Operación/Informes/Evaluación Mensual/2012/",
+     "Post Operación/Informes/Evaluación Mensual/2011/",
+     "Post Operación/Informes/Evaluación Mensual/2010/",
+     "Post Operación/Informes/Evaluación Mensual/2009/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Post Operación/Informes/Evaluación Mensual/2026/",
+    "carpetas": [
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/",
+     "Post Operación/Informes/Evaluación Mensual/2026/08. Agosto/",
+     "Post Operación/Informes/Evaluación Mensual/2026/07. Julio/",
+     "Post Operación/Informes/Evaluación Mensual/2026/06. Junio/",
+     "Post Operación/Informes/Evaluación Mensual/2026/05. Mayo/",
+     "Post Operación/Informes/Evaluación Mensual/2026/04. Abril/",
+     "Post Operación/Informes/Evaluación Mensual/2026/03. Marzo/",
+     "Post Operación/Informes/Evaluación Mensual/2026/02. Febrero/",
+     "Post Operación/Informes/Evaluación Mensual/2026/01. Enero/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/",
+    "carpetas": [],
+    "archivos": [
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.xlsx",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.xlsx",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.xlsx",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.xlsx",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.xlsx",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.pdf",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.pdf",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.pdf",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.pdf",
+     "Post Operación/Informes/Evaluación Mensual/2026/09. Setiembre/Inf_setiembre_2026_SGI.pdf"
+    ]
+   }
+  ],
+  "volcados": {
+   "Inf_setiembre_2026_SGI_xlsx": {
+    "Portada": 0,
+    "Índice": 56,
+    "1. Resumen": 68,
+    "2. Oferta de generación": 43,
+    "3. Tipo Generación": 66,
+    "4. Tipo Recurso": 61,
+    "5. RER": 63,
+    "6. FP RER": 75,
+    "7. Generacion empresa": 83,
+    "8. Max Potencia": 61,
+    "9. Pot. Empresa": 82,
+    "10. Volúmenes": 63,
+    "11. Volúmenes": 109,
+    "12.Caudales": 254,
+    "13.Caudales": 74,
+    "14. CMg": 59,
+    "15. Mapa CMg": 68,
+    "16. Congestiones": 54,
+    "17. Eventos": 248,
+    "18. ANEXOI-1": 86,
+    "19. ANEXOI-2": 117,
+    "20. ANEXOI-3": 87,
+    "21. ANEXOII-1": 259,
+    "22. ANEXOII-2": 83,
+    "23. ANEXOII-3": 90,
+    "24. ANEXOII-4": 41,
+    "25.ANEXO III -1": 13,
+    "26.ANEXO III-2": 12,
+    "26.ANEXO III-3": 12,
+    "26.ANEXO III-4": 10,
+    "26.ANEXO III-5": 6,
+    "Contraportada": 65
+   }
+  }
+ },
+ "prog_mediano": {
+  "base": "Operación/Programa de Operación/Programa Mediano Plazo Operación/",
+  "rastro": [
+   {
+    "url": "Operación/Programa de Operación/Programa Mediano Plazo Operación/",
+    "carpetas": [
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2025/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2024/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2023/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2022/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2021/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2020/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2019/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2018/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2017/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2016/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2015/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2014/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/",
+    "carpetas": [
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/09_SETIEMBRE/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/08_AGOSTO/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/07_JULIO/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/06_JUNIO/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/05_MAYO/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/04_ABRIL/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/03_MARZO/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/02_FEBRERO/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/01_ENERO/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/",
+    "carpetas": [
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/01_ Formatos e Información/"
+    ],
+    "archivos": []
+   },
+   {
+    "url": "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/",
+    "carpetas": [],
+    "archivos": [
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/PMPO_OCTUBRE2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/PMPO_OCTUBRE2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/PMPO_OCTUBRE2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/PMPO_OCTUBRE2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/PMPO_OCTUBRE2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Inf.Mediano.Plazo_Octubre2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Inf.Mediano.Plazo_Octubre2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Inf.Mediano.Plazo_Octubre2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Inf.Mediano.Plazo_Octubre2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Inf.Mediano.Plazo_Octubre2026.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Dashboard_COES_Octubre.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Dashboard_COES_Octubre.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Dashboard_COES_Octubre.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Dashboard_COES_Octubre.zip",
+     "Operación/Programa de Operación/Programa Mediano Plazo Operación/2026/10_OCTUBRE/02_Informes/Dashboard_COES_Octubre.zip"
+    ]
+   }
+  ],
+  "volcados": {
+   "PMPO_OCTUBRE2026_zip": {
+    "zip": [
+     "Anexo1_ResultadosMP_OctubreS4026.xlsx",
+     "Archivos_V17.3_S4026.zip",
+     "Dashboard_COES_Octubre.zip",
+     "Demanda_Octubre2026.zip",
+     "Inf.Mediano.Plazo_Octubre2026.zip",
+     "SPR-059-2026_CartaMedianoPlazo-Octubre2026.pdf",
+     "SPR-IPMPO-10-2026_Programa_Mediano_Plazo-Octubre2026.pdf"
+    ]
+   },
+   "Inf_Mediano_Plazo_Octubre2026_zip": {
+    "zip": [
+     "SPR-IPMPO-10-2026_Programa_Mediano_Plazo-Octubre2026.pdf",
+     "Anexo1_ResultadosMP_OctubreS4026.xlsx",
+     "Dashboard_COES_Octubre.zip",
+     "SPR-059-2026_CartaMedianoPlazo-Octubre2026.pdf"
+    ]
+   }
+  }
+ },
+ "ieod": {
+  "dia": "2026-10-25"
+ },
+ "ieod_2025": {
+  "dia": "2025-10-25",
+  "hojas": [
+   "EVENTOS",
+   "RESTRIC_OPE",
+   "MANTENIMIENTO EJECUTADOS",
+   "INGRESO OC",
+   "DESPACHO_EJECUTADO",
+   "REACTIVA",
+   "DEMANDA_AREAS",
+   "DEMANDA_UL",
+   "TIPO_RECURSO",
+   "GENERACION RER",
+   "COGENERACIÓN",
+   "EVO_PRO_ENE",
+   "G_AREAS",
+   "HOP",
+   "INDISP",
+   "RESERVA_FRÍA",
+   "PRINCIP_CAUDALES",
+   "PRINCIP_VOLÚMENES",
+   "DESCARGA_LAGUNAS",
+   "VERTIMIENTO_EMBALSES",
+   "STOCK_COMB",
+   "CONSUMO_COMB",
+   "PRESIÓN_GAS",
+   "TEMP_AMB",
+   "DISPONIBILIDAD_GAS",
+   "ENERGÍA_PRIMARIA",
+   "CALOR_ÚTIL",
+   "FLUJOS",
+   "FLUJOS_REACTIVA",
+   "INTERCONEXIONES",
+   "TENSION_BARRA",
+   "DESCONEXIÓN_RT",
+   "AISLADOS_TEMP",
+   "TRANSGRESIONES",
+   "AISLADOS_TEMP_GPS",
+   "DESV_DEMANDA_PRONOS",
+   "DESVIACIÓN",
+   "COSTO_OPE_EJEC",
+   "CALIFICA_OPE_UG",
+   "CONGESTION_SIST_TRANS",
+   "RRPF_RRSF",
+   "FLUJOS_INTERCONEXIÓN",
+   "OBS",
+   "CONCLUSIONES"
+  ],
+  "tipo_recurso": [
+   [
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None"
+   ],
+   [
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None"
+   ],
+   [
+    "None",
+    "sábado, 25 de Octubre del 2025",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None"
+   ],
+   [
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None"
+   ],
+   [
+    "None",
+    "REPORTE POTENCIA GENERADA POR ",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None",
+    "None"
+   ],
+   [
+    "None",
+    "HORA",
+    "\nH. PASADA\n",
+    "\nH. REGULACION\n",
+    "\nGAS DE CAMISEA\n",
+    "\nGAS DE MALACAS\n",
+    "\nDIÉSEL\n",
+    "RESIDUAL",
+    "NAFTA+GAS DE REFINERIA",
+    "FLEXIGAS+GAS DE REFINERIA",
+    "\nBAGAZO\n",
+    "\nBIOGÁS\n",
+    "\nSOLAR\n",
+    "\nEÓLICA\n",
+    "TOTAL",
+    "None"
+   ],
+   [
+    "None",
+    "00:30",
+    "1131.8",
+    "2931.4",
+    "2120.6",
+    "46.7",
+    "0",
+    "None",
+    "None",
+    "None",
+    "63.9",
+    "7.5",
+    "0",
+    "493.03738",
+    "6794.93738",
+    "None"
+   ],
+   [
+    "None",
+    "01:00",
+    "1134",
+    "2709.7",
+    "2159.5",
+    "46.5",
+    "0",
+    "None",
+    "None",
+    "None",
+    "62.8",
+    "7.5",
+    "0",
+    "506.39481",
+    "6626.39481",
+    "None"
+   ],
+   [
+    "None",
+    "01:30",
+    "1108.6",
+    "2616.5",
+    "2222.7",
+    "46.9",
+    "0",
+    "None",
+    "None",
+    "None",
+    "62.9",
+    "7.5",
+    "0",
+    "500.82537",
+    "6565.92537",
+    "None"
+   ],
+   [
+    "None",
+    "02:00",
+    "1103.7",
+    "2662.3",
+    "2125.3",
+    "46.7",
+    "0",
+    "None",
+    "None",
+    "None",
+    "62",
+    "7.5",
+    "0",
+    "524.9619",
+    "6532.4619",
+    "None"
+   ]
+  ]
+ }
+}

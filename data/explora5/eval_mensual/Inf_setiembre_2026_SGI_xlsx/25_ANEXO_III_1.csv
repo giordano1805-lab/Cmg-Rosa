@@ -1,0 +1,15 @@
+ANEXO III: LISTADO DE EVENTOS Y FALLAS QUE OCASIONARON INTERRUPCIÓN Y DISMINUCIÓ,,,,,,,,,
+N°,EMPRESA,EQUIPO,FECHA,DESCRIPCIÓN DEL EVENTO,"INTERRUPCIÓN
+(MW)","DISMINUCIÓN 
+(MW)",,,
+1,ELECTRO UCAYALI,L. PQUE INDUSTRIAL - PUCALLPA - LINEA L-6475,02/09/2026 11:53:32,Desconectaron simultáneamente las líneas L-6475 y L-6476 (Pucallpa ISA - Pucallp,50,,,,
+2,ELECTRO UCAYALI,L. PQUE INDUSTRIAL - PUCALLPA - LINEA L-6475,02/09/2026 12:43:57,Desconectó la línea L-6475 (Pucallpa ISA - Pucallpa EUC) de 60 kV por falla debi,26.6,,,,
+3,RED DE ENERGIA DEL PERU S.A.,S.E. QUENCORO - TRAFO3D T47-131,02/09/2026 14:28:00,"A las 14:28 h y 14:29 h se coordinó con los CC-KLP y CC-STK respectivamente, rec",0.59,,,,
+4,RED DE ENERGIA DEL PERU S.A.,S.E. QUENCORO - TRAFO3D T47-131,03/09/2026 10:56:00,"A las 10:56 h y 10:57 h se coordinó con los CC-KLP y CC-STK respectivamente, rec",0.59,,,,
+5,RED DE ENERGIA DEL PERU S.A.,S.E. QUENCORO - TRAFO3D T47-131,03/09/2026 16:25:00,"A las 16:27 h y 16:25 h se coordinó con los CC-KLP y CC-STK respectivamente, rec",0.59,,,,
+6,HIDRANDINA,L. NEPEÑA - CASMA - LINEA L-1113,03/09/2026 23:45:00,Desconectó la línea L-1113 (Nepeña - Casma) de 138 kV por actuación de su protec,7.6,,,,
+7,ELECTRONOROESTE S.A.,S.E. TUMBES - BARRA BARRA33KV,04/09/2026 06:27:45,"Desconectó la barra de 33 kV de la C.T. Tumbes, mediante la apertura del interru",5.4,,,,
+8,ELECTRONOROESTE S.A.,L. POECHOS - LAS LOMAS - LINEA L-6570,04/09/2026 09:08:54,Desconectó la línea L-6570 (Poechos - Las Lomas) de 60 kV por actuación de su pr,6.47,,,,
+9,RED DE ENERGIA DEL PERU S.A.,S.E. QUENCORO - TRAFO3D T47-131,04/09/2026 11:17:00,"A las 11:17 h se coordinó con los CC-KLP y CC-STK, rechazar la carga de sus clie",0.59,,,,
+10,ISA PERU,L. TINGO MARÍA - VIZCARRA - LINEA L-2252,04/09/2026 14:42:33,Desconectó la línea L-2252 (Vizcarra - Tingo María) de 220 kV por actuación de s,,52.88,,,
+11,RED DE ENERGIA DEL PERU S.A.,S.E. QUENCORO - TRAFO3D T47-131,04/09/2026 18:38:00,"A las 18:38 h se coordinó con los CC-KLP y CC-STK, rechazar la carga de sus clie",0.59,,,,
