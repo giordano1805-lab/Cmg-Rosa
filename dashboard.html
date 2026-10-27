@@ -108,6 +108,7 @@ details.det summary{font-weight:600;color:var(--text-2)}
 .alerta.alta{border-left-color:#c5221f}.alerta.media{border-left-color:var(--naranja)}
 .blq{margin-bottom:8px}.blq .lbl{margin-bottom:2px}
 .det summary{cursor:pointer;color:var(--text-2);font-size:13px;margin-top:6px}
+.rng{display:flex;gap:22px;margin:6px 0 4px}.rng div{display:flex;flex-direction:column}.rng b{font-size:24px;font-weight:700}.rng .lbl{font-size:12px}
 .neu{display:inline-block;margin-left:6px;font-size:12px;color:var(--text-2);font-weight:600}
 .seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--grid);margin:4px 0 10px;flex-wrap:wrap}
 .seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:5px 12px;border-radius:7px;cursor:pointer}
@@ -278,7 +279,7 @@ function render(){
        <div class="note">Precio capturado = Σ(MW × CMg) / Σ MW de cada media hora: refleja el precio de las horas en que Huanchor generó. Es referencial con el CMg de ${esc(HU.barra)}; no considera contratos ni la barra exacta de valorización.</div></div>
       <div class="card"><h2>Cuenca del río Rímac<small>${esc(D.embalses_semanal?.semana||"")}</small></h2>
        ${rim?`<div class="embk"><div><div class="lbl">Caudal natural</div><b>${rim.caudal?f1(rim.caudal.actual)+" m3/s":"–"}</b>${rim.caudal?neu(rim.caudal.var_pct):""}</div><div><div class="lbl">Volumen útil</div><b>${f1(rim.actual)} Hm3</b>${neu(rim.var_pct)}</div></div>
-        <div class="chart sm"><canvas id="c-hur"></canvas></div><div class="note">Variaciones frente a la misma semana de ${+Object.keys(rim.anios).sort().pop()-1}. Detalle en la pestaña Embalses.</div>`:'<div class="note">Sin datos semanales.</div>'}</div></div>
+        <div class="chart"><canvas id="c-hur"></canvas></div><div class="note">Variaciones frente a la misma semana de ${+Object.keys(rim.anios).sort().pop()-1}. Detalle en la pestaña Embalses.</div>`:'<div class="note">Sin datos semanales.</div>'}</div></div>
      <div class="card"><h2>Intervenciones de Huanchor<small>programa diario, programa mensual y ejecutado</small></h2>${mant.length?'<div id="t-hum"></div>':'<div class="note" style="margin:0">Sin intervenciones registradas para Huanchor en los programas ni en el IEOD.</div>'}</div></div>`;
     if(mant.length)tabla("#t-hum",[{t:"Origen",v:r=>r.origen},{t:"Unidad",v:r=>r.equipo},{t:"Inicio",v:r=>r.inicio||"",h:r=>(r.inicio||"").slice(0,16).replace("T"," ")},
       {t:"Fin",v:r=>r.final||"",h:r=>(r.final||"").slice(0,16).replace("T"," ")},{t:"MW",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Descripción",v:r=>r.descripcion}],mant,{simple:mant.length<8});
@@ -288,9 +289,14 @@ function render(){
    <div class="grid g4">${D.barras.filter(b=>b!==D.barras[0]).map(b=>{const d=(D.cmg_diario[b][D.dia]??null),r=D.cmg_diario[D.barras[0]][D.dia],df=d!=null&&r!=null?d-r:null;
       const ds=Object.keys(D.cmg_diario[b]).map(k=>D.cmg_diario[b][k]-(D.cmg_diario[D.barras[0]][k]??D.cmg_diario[b][k])),pm=ds.length?ds.reduce((a,x)=>a+x,0)/ds.length:null;
       return `<div class="card kpi"><div class="lbl">Diferencial ${b.replace(" 220","")} − ${D.barras[0].replace(" 220","")}</div><div class="val">${df==null?"–":(df>0?"+":"")+f2(df)}<small>USD/MWh</small></div><div class="sub">promedio del mes ${(pm>0?"+":"")+f2(pm)}${Math.abs(df||0)>=(D.umbrales?.desacople||15)?' · <b>desacople</b>':""}</div></div>`}).join("")}
-     ${(()=>{const u=D.umbrales||{},sr=D.cmg_30min[D.barras[0]].filter(p=>(p[0].slice(0,10)===D.dia&&p[0].slice(11,16)!=="00:00")||p[0].slice(0,16)===`${D.hoy}T00:00`).map(p=>p[1]);
-      return `<div class="card kpi"><div class="lbl">${D.barras[0]} en el día</div><div class="val">${f2(Math.min(...sr))}<small>– ${f2(Math.max(...sr))}</small></div><div class="sub">mín – máx USD/MWh</div></div>
-       <div class="card kpi"><div class="lbl">Medias horas fuera de rango</div><div class="val">${sr.filter(v=>v>=u.cmg_alto).length} / ${sr.filter(v=>v<=u.cmg_bajo).length}</div><div class="sub">≥ ${u.cmg_alto} / ≤ ${u.cmg_bajo} USD/MWh (umbrales)</div></div>`})()}</div>
+     ${(()=>{const u=D.umbrales||{},sr=D.cmg_30min[D.barras[0]].filter(p=>(p[0].slice(0,10)===D.dia&&p[0].slice(11,16)!=="00:00")||p[0].slice(0,16)===`${D.hoy}T00:00`).map(p=>p[1]),srp=D.cmg_30min[D.barras[0]].filter(p=>(p[0].slice(0,10)===D.dia&&p[0].slice(11,16)!=="00:00")||p[0].slice(0,16)===`${D.hoy}T00:00`),
+        hr=p=>p?(p[0].slice(11,16)==="00:00"?"24:00":p[0].slice(11,16)):"",hmin=hr(srp.find(p=>p[1]===Math.min(...sr))),hmax=hr(srp.find(p=>p[1]===Math.max(...sr)));
+      return `<div class="card kpi"><div class="lbl">Rango del día · ${D.barras[0].replace(" 220","")}</div>
+        <div class="rng"><div><span class="lbl">Mínimo</span><b>${f2(Math.min(...sr))}</b><span class="sub">${hmin} h</span></div><div><span class="lbl">Máximo</span><b>${f2(Math.max(...sr))}</b><span class="sub">${hmax} h</span></div></div>
+        <div class="sub">USD/MWh · media hora más barata y más cara</div></div>
+       <div class="card kpi"><div class="lbl">Medias horas con precio extremo</div>
+        <div class="rng"><div><span class="lbl">Sobre ${u.cmg_alto}</span><b>${sr.filter(v=>v>=u.cmg_alto).length}</b></div><div><span class="lbl">Bajo ${u.cmg_bajo}</span><b>${sr.filter(v=>v<=u.cmg_bajo).length}</b></div></div>
+        <div class="sub">de 48 medias horas · USD/MWh (umbrales configurables)</div></div>`})()}</div>
    <div class="card"><h2>Diferencial diario frente a ${D.barras[0]}<small>USD/MWh · positivo = la barra está más cara</small></h2><div class="chart"><canvas id="c-dif"></canvas></div></div>
    <div class="card"><h2>CMg cada 30 minutos<small>día anterior y día evaluado · USD/MWh</small></h2><div class="chart tall"><canvas id="c-30"></canvas></div></div>
    <div class="grid g2"><div class="card"><h2>Santa Rosa 220 kV por bloque horario<small>USD/MWh</small></h2><div class="chart"><canvas id="c-bl"></canvas></div></div>
@@ -554,9 +560,9 @@ function dibujar(){
   if(on("#c-huc")&&D.huanchor){const H=D.huanchor,o=base("USD/MWh");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)}`;
     grafico("#c-huc",{type:"line",data:{labels:H.diario.map(x=>x.dia),datasets:[{label:"Precio capturado",data:H.diario.map(x=>x.capturado),borderColor:css("--s2"),backgroundColor:css("--s2"),borderWidth:3,pointRadius:2.5},
       {label:"CMg promedio",data:H.diario.map(x=>x.cmg),borderColor:css("--s1"),backgroundColor:css("--s1"),borderWidth:2,pointRadius:0,borderDash:[5,4]}]},options:o})}
-  if(on("#c-hur")){const rim=(D.embalses_semanal?.cuencas||[]).find(c=>c.cuenca==="Rímac");if(rim){const ys=Object.keys(rim.anios).sort().slice(-2);
+  if(on("#c-hur")){const rim=(D.embalses_semanal?.cuencas||[]).find(c=>c.cuenca==="Rímac");if(rim){const ys=Object.keys(rim.anios).sort().slice(-4),est=["--muted","--s4","--s1","--s2"].slice(4-ys.length);
     const o=base("Hm3");o.scales.x={type:"linear",min:1,max:53,grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:8}};o.scales.y.beginAtZero=true;
-    grafico("#c-hur",{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(rim.anios[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,borderColor:css(j?"--s2":"--s1"),backgroundColor:css(j?"--s2":"--s1"),borderWidth:j?3:2,pointRadius:0}))},options:o})}}
+    grafico("#c-hur",{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(rim.anios[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,borderColor:css(est[j]),backgroundColor:css(est[j]),borderWidth:j===ys.length-1?3:(j===ys.length-2?2:1.2),borderDash:j===0&&ys.length===4?[5,4]:[],pointRadius:0}))},options:o})}}
   if(on("#c-dif")){const ref=D.barras[0],dias=Object.keys(D.cmg_diario[ref]).sort(),u=D.umbrales?.desacople||15;
     const o=base("USD/MWh");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${c.parsed.y>0?"+":""}${f2(c.parsed.y)}`;
     grafico("#c-dif",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:[...D.barras.filter(b=>b!==ref).map(b=>({label:`${b.replace(" 220","")} − ${ref.replace(" 220","")}`,data:dias.map(d=>D.cmg_diario[b][d]!=null?D.cmg_diario[b][d]-D.cmg_diario[ref][d]:null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2.5,tension:.2})),
