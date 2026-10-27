@@ -347,17 +347,11 @@ def resumen_huanchor(dia: dt.date, hist, barra, tc):
     }
 
 
-def resumen_centrales(dia: dt.date):
-    """Energía hidráulica por central en lo que va del mes vs los mismos días del año anterior."""
-    c = leer_hc()
-    dias = [k for k in range(1, dia.day + 1)
-            if c.get(dt.date(dia.year, dia.month, k)) and c.get(_un_anio_antes(dt.date(dia.year, dia.month, k)))]
-    if not dias:
-        return None
+def _agregar_centrales(c, fechas):
     tot = {}
-    for k in dias:
-        for n_anio, d in ((0, dt.date(dia.year, dia.month, k)), (1, _un_anio_antes(dt.date(dia.year, dia.month, k)))):
-            for n, (e, pa, re_) in c[d].items():
+    for d in fechas:
+        for n_anio, f in ((0, d), (1, _un_anio_antes(d))):
+            for n, (e, pa, re_) in c[f].items():
                 t = tot.setdefault(n, {"central": n, "empresa": e, "act": 0.0, "ant": 0.0, "pasada": 0.0, "regulacion": 0.0})
                 t["act" if n_anio == 0 else "ant"] += pa + re_
                 if n_anio == 0:
@@ -366,8 +360,8 @@ def resumen_centrales(dia: dt.date):
                     t["empresa"] = e or t["empresa"]
     filas = []
     for t in tot.values():
-        t["act"], t["ant"] = round(t["act"] / 1000, 2), round(t["ant"] / 1000, 2)       # GWh
-        t["delta"] = round(t["act"] - t["ant"], 2)
+        t["act"], t["ant"] = round(t["act"] / 1000, 3), round(t["ant"] / 1000, 3)       # GWh
+        t["delta"] = round(t["act"] - t["ant"], 3)
         t["var_pct"] = (t["act"] / t["ant"] - 1) * 100 if t["ant"] else None
         t["tipo"] = "Regulación" if t["regulacion"] > t["pasada"] else "Pasada"
         t["central"] = " ".join(w.upper() if w.upper() in ("II", "III", "IV", "VI", "VII", "HER") else w
@@ -376,9 +370,23 @@ def resumen_centrales(dia: dt.date):
             t.pop(k)
         filas.append(t)
     filas.sort(key=lambda t: t["delta"])
-    return {"dias": len(dias), "desde": dias[0], "hasta": dias[-1], "mes": dia.month, "act": dia.year,
-            "ant": dia.year - 1, "centrales": filas,
-            "total_act": round(sum(t["act"] for t in filas), 2), "total_ant": round(sum(t["ant"] for t in filas), 2)}
+    return filas, round(sum(t["act"] for t in filas), 2), round(sum(t["ant"] for t in filas), 2)
+
+
+def resumen_centrales(dia: dt.date):
+    """Energía hidráulica por central en lo que va del mes (y en el día evaluado) vs el año anterior."""
+    c = leer_hc()
+    dias = [k for k in range(1, dia.day + 1)
+            if c.get(dt.date(dia.year, dia.month, k)) and c.get(_un_anio_antes(dt.date(dia.year, dia.month, k)))]
+    if not dias:
+        return None
+    filas, ta, tb = _agregar_centrales(c, [dt.date(dia.year, dia.month, k) for k in dias])
+    out = {"dias": len(dias), "desde": dias[0], "hasta": dias[-1], "mes": dia.month, "act": dia.year,
+           "ant": dia.year - 1, "centrales": filas, "total_act": ta, "total_ant": tb, "dia": None}
+    if c.get(dia) and c.get(_un_anio_antes(dia)):
+        fd, da, db = _agregar_centrales(c, [dia])
+        out["dia"] = {"fecha": dia.isoformat(), "centrales": fd, "total_act": da, "total_ant": db}
+    return out
 
 
 def _un_anio_antes(d: dt.date, n=1):
