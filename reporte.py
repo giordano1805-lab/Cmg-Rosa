@@ -933,6 +933,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "eolica": extra.get("eolica"),
         "hidro_centrales": extra.get("hidro_centrales"),
         "huanchor": extra.get("huanchor"),
+        "cmg_proy": extra.get("cmg_proy"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
 
@@ -1004,6 +1005,49 @@ def programa_mensual(hoy, hojas_ieod=None):
     return previo
 
 
+
+def cmg_proyectado(m, hist, dia, hoy):
+    """CMg proyectado del Programa Semanal (YUPANA) en USD/MWh por día y barra, con la unidad verificada."""
+    serie, meta = fc.cmg_programa_semanal(hoy)
+    try:
+        (Path("data") / "explora6").mkdir(parents=True, exist_ok=True)
+        (Path("data") / "explora6" / "programa_semanal_cmg_diag.json").write_text(
+            json.dumps({**meta, "intervalos": len(serie)}, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+    except Exception:
+        pass
+    if not serie:
+        return None
+    # unidad: la declarada en el archivo o, si no la declara, contrastando con el CMg ejecutado de los mismos intervalos
+    unidad, metodo = meta.get("unidad"), "declarada en el archivo"
+    if not unidad:
+        ratios = []
+        for t, v in serie.items():
+            ej = (hist.get(t.replace(tzinfo=fc.LIMA)) or {}).get(m.SR)
+            if isinstance(v.get(m.SR), float) and v[m.SR] > 0 and isinstance(ej, float) and ej > 0:
+                ratios.append(v[m.SR] / (ej / m.TC))
+        ratios.sort()
+        r = ratios[len(ratios) // 2] if ratios else None
+        if r and 2.4 <= r <= 4.8:
+            unidad, metodo = "S/.", f"inferida: proyectado/ejecutado ≈ {r:.2f} (≈ TC)"
+        elif r and 0.55 <= r <= 1.8:
+            unidad, metodo = "USD", f"inferida: proyectado/ejecutado ≈ {r:.2f}"
+        else:
+            return {"error": "No se pudo verificar la unidad del CMg proyectado; no se publica.", "archivos": meta["archivos"]}
+    k = 1 / m.TC if unidad == "S/." else 1.0
+    diario, n = {}, {}
+    for t, v in serie.items():
+        d = (t - dt.timedelta(minutes=1)).date().isoformat()
+        for b, x in v.items():
+            diario.setdefault(b, {}).setdefault(d, []).append(x * k)
+    out_d = {b: {d: round(sum(x) / len(x), 2) for d, x in sorted(dd.items())} for b, dd in diario.items()}
+    out_n = {b: {d: len(x) for d, x in sorted(dd.items())} for b, dd in diario.items()}
+    sem = meta["semanas"]
+    return {"diario": out_d, "n": out_n, "unidad_origen": unidad, "metodo_unidad": metodo,
+            "archivos": [a.split("/")[-1] for a in meta["archivos"]],
+            "version": "Final" if any("/FINAL/" in fc.norm(a) + "/" for a in meta["archivos"]) else "Preliminar",
+            "semanas": [f"{s_['desde']} a {s_['hasta']}" for s_ in sem], "nombres": meta.get("nombres"),
+            "consultado": hoy.isoformat()}
+
 # --------------------------------------------------------------------------- orquestación
 def generar(m, hist=None):
     """Genera PDF y datos del dashboard. Devuelve (ruta_pdf, texto_resumen)."""
@@ -1065,6 +1109,10 @@ def generar(m, hist=None):
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
+    try:
+        extra["cmg_proy"] = cmg_proyectado(m, ind["_hist"], dia, hoy)
+    except Exception as e:
+        print("CMg proyectado (programa semanal) no disponible:", e, file=sys.stderr)
     try:
         lis = fc.listados_ieod()
         if lis:

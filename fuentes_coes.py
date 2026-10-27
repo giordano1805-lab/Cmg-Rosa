@@ -1033,3 +1033,167 @@ def centrales_hidro(hojas):
             if m:
                 out.add(m.group(1).strip())
     return out
+
+
+# --------------------------------------------------------------------------- Programa Semanal (YUPANA)
+# Barras a extraer del despacho semanal: etiqueta -> regex sobre el nombre normalizado
+BARRAS_PSO = {
+    "Santa Rosa 220": r"S(AN)?TA\.?\s*ROSA.*220",
+    "Socabaya 220": r"SOCABAYA.*220",
+    "Piura 220": r"PIURA(\s*OESTE)?.*220",
+    "Huanchor 50": r"HUANCHOR",
+    "Matucana": r"MATUCANA",
+}
+_RX_SEM = re.compile(r"\((\d{2})\.(\d{2})\.(\d{4})\s*-\s*(\d{2})\.(\d{2})\.(\d{4})\)")
+
+
+def _semanas_pso(hoy: dt.date):
+    """Carpetas del Programa Semanal de Operación que cubren `hoy` y la semana siguiente (si ya existe)."""
+    out = []
+    for anio in sorted({hoy.year, (hoy + dt.timedelta(days=7)).year}):
+        for c in _listar_c(f"Operación/Programa de Operación/Programa Semanal Operación/{anio}/"):
+            m = _RX_SEM.search(_nombre(c))
+            if not c.endswith("/") or not m:
+                continue
+            d0 = dt.date(int(m[3]), int(m[2]), int(m[1]))
+            d1 = dt.date(int(m[6]), int(m[5]), int(m[4]))
+            if d1 >= hoy - dt.timedelta(days=7) and d0 <= hoy + dt.timedelta(days=7):
+                out.append((d0, d1, c))
+    return sorted(out)
+
+
+def _archivos_rec(ruta, prof=2):
+    items = _listar_c(ruta)
+    arch = [i for i in items if not i.endswith("/")]
+    if prof:
+        for c in items:
+            if c.endswith("/"):
+                arch += _archivos_rec(c, prof - 1)
+    return arch
+
+
+def _libros_de(b, nombre):
+    """[(nombre, hojas)] desde un xlsx/xlsm/xls o desde los libros dentro de un zip."""
+    if nombre.lower().endswith(".zip"):
+        out = []
+        with zipfile.ZipFile(io.BytesIO(b)) as z:
+            for n in z.namelist():
+                if n.lower().endswith((".xlsx", ".xlsm", ".xls")) and re.search(r"DESPACHO|CMG|MARGINAL", norm(n)):
+                    out.append((n, libro(z.read(n))))
+        return out
+    return [(nombre, libro(b))]
+
+
+def _fecha_de_hoja(nombre, filas):
+    m = re.search(r"(\d{4})[_\-./](\d{1,2})[_\-./](\d{1,2})", nombre) or None
+    if m:
+        return dt.date(int(m[1]), int(m[2]), int(m[3]))
+    m = re.search(r"(\d{1,2})[_\-./](\d{1,2})[_\-./](\d{4})", nombre)
+    if m:
+        return dt.date(int(m[3]), int(m[2]), int(m[1]))
+    for f in filas[:8]:
+        for v in f[:12]:
+            x = fecha_hora(v)
+            if x and 2015 < x.year < 2100:
+                return x.date()
+    return None
+
+
+def _unidad_cmg(filas):
+    t = " ".join(norm(v) for f in filas[:12] for v in f[:40] if v not in (None, ""))
+    if re.search(r"S/\.?|SOLES|S\./", t):
+        return "S/."
+    if re.search(r"US\$|USD|DOLAR|\$/MWH", t):
+        return "USD"
+    return None
+
+
+def _cmg_en_hoja(nombre, filas):
+    """{datetime fin de intervalo: {barra: valor}} si la hoja tiene barras en columnas y tiempos en filas."""
+    for i, f in enumerate(filas[:40]):
+        cols = {}
+        for j, v in enumerate(f):
+            n = norm(v)
+            for b, rx in BARRAS_PSO.items():
+                if n and re.search(rx, n) and b not in cols:
+                    cols[b] = j
+        if len([b for b in cols if b in ("Santa Rosa 220", "Socabaya 220", "Piura 220")]) < 2:
+            continue
+        base = _fecha_de_hoja(nombre, filas[:i + 1])
+        out, prev = {}, None
+        for g in filas[i + 1:i + 2000]:
+            fecha, hora, full = None, None, None
+            for v in g[:3]:
+                if isinstance(v, dt.time):
+                    hora = (v.hour, v.minute)
+                    continue
+                h = texto(v)
+                if re.fullmatch(r"\d{1,2}:\d{2}(:\d{2})?", h):
+                    hora = (int(h.split(":")[0]), int(h.split(":")[1]))
+                    continue
+                x = fecha_hora(v)
+                if x and x.year > 2015:
+                    if x.hour or x.minute:
+                        full = x
+                    else:
+                        fecha = x.date()
+            if full:
+                ts = full
+            elif hora and (fecha or base):
+                ts = dt.datetime.combine(fecha or base, dt.time()) + dt.timedelta(hours=hora[0], minutes=hora[1])
+                if prev and ts <= prev:                        # 00:00 / 24:00 del día siguiente
+                    ts += dt.timedelta(days=1)
+            else:
+                ts = None
+            if not ts:
+                continue
+            prev = ts
+            vals = {b: numero(g[j]) for b, j in cols.items() if j < len(g) and numero(g[j]) is not None}
+            if vals:
+                out[ts] = vals
+        if out:
+            return out, {b: norm(f[j]) for b, j in cols.items()}
+    return {}, {}
+
+
+def cmg_programa_semanal(hoy: dt.date):
+    """CMg proyectado (YUPANA) del Programa Semanal de Operación del COES para las semanas que cubren `hoy`.
+    Devuelve (serie {datetime: {barra: valor en la unidad publicada}}, meta)."""
+    meta = {"semanas": [], "archivos": [], "hojas": [], "unidad": None, "nombres": {}}
+    serie = {}
+    for d0, d1, carpeta in _semanas_pso(hoy):
+        arch = _archivos_rec(carpeta)
+        final = [a for a in arch if "/FINAL/" in norm(a) + "/"] or arch
+        cands = [a for a in final if re.search(r"DESPACHO|CMG|MARGINAL", norm(_nombre(a)))]
+        if not cands:
+            cands = [a for a in final if a.lower().endswith((".zip", ".xlsx", ".xlsm"))]
+        meta["semanas"].append({"carpeta": carpeta, "desde": d0.isoformat(), "hasta": d1.isoformat(),
+                                "archivos": [_nombre(a) for a in arch][:40]})
+        for a in cands[:4]:
+            b = bajar(a)
+            if not b:
+                continue
+            try:
+                libros = _libros_de(b, _nombre(a))
+            except Exception as e:
+                meta["hojas"].append({"archivo": _nombre(a), "error": str(e)[:200]})
+                continue
+            hallado = False
+            for nlib, hojas in libros:
+                for nh, filas in hojas.items():
+                    if not re.search(r"CMG|MARGINAL|BARRA", norm(nh) + " " + " ".join(norm(v) for f in filas[:6] for v in f[:20])):
+                        continue
+                    s, nombres = _cmg_en_hoja(nh, filas)
+                    meta["hojas"].append({"archivo": _nombre(a), "libro": nlib, "hoja": nh, "intervalos": len(s),
+                                          "cabecera": [[texto(v) for v in f[:14]] for f in filas[:8]]})
+                    if s:
+                        hallado = True
+                        meta["nombres"].update(nombres)
+                        meta["unidad"] = meta["unidad"] or _unidad_cmg(filas)
+                        for t, v in s.items():
+                            if d0 <= (t - dt.timedelta(minutes=1)).date() <= d1:
+                                serie[t] = v
+            if hallado:
+                meta["archivos"].append(a)
+                break
+    return serie, meta
