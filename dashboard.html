@@ -429,7 +429,25 @@ function render(){
   enlazarAcc()}
 function rerender(k){try{R[k]()}catch(e){$("#s-"+k).innerHTML=est("error","No se pudo mostrar esta sección.")}enlazarAcc();dibujar()}
 
+
+/* CMg proyectado del Programa Semanal (YUPANA): días posteriores al corte dentro del mes evaluado */
+function proyMes(b){const P=D.cmg_proy;if(!P||!P.diario||!P.diario[b])return null;const mes=D.dia.slice(0,7),ej=D.cmg_diario[b]||{};
+  const fut=Object.entries(P.diario[b]).filter(([d])=>d>D.dia&&d.slice(0,7)===mes).sort();
+  const pas=Object.entries(P.diario[b]).filter(([d])=>d<=D.dia&&fin(ej[d]));
+  const nMes=new Date(+mes.slice(0,4),+mes.slice(5,7),0).getDate(),ejd=Object.entries(ej).filter(([d])=>d<=D.dia);
+  const vals=[...ejd.map(x=>x[1]),...fut.map(x=>x[1])];
+  return{fut,est:vals.length?vals.reduce((a,x)=>a+x,0)/vals.length:null,dias:vals.length,nMes,nEj:ejd.length,
+    desvio:pas.length?pas.reduce((a,[d,v])=>a+Math.abs(v-ej[d]),0)/pas.length:null,nPas:pas.length,sesgo:pas.length?pas.reduce((a,[d,v])=>a+(v-ej[d]),0)/pas.length:null}}
 /* ---------- 1. RESUMEN ---------- */
+function notaProy(){const P=D.cmg_proy;
+  if(P&&P.error)return `<div class="note">Proyección del Programa Semanal no publicada: ${esc(P.error)}</div>`;
+  const x=proyMes("Santa Rosa 220");if(!x||!x.fut.length)return P?`<div class="note">El Programa Semanal vigente no tiene días posteriores al corte dentro de este mes.</div>`:"";
+  const d1=x.fut[0][0],d2=x.fut[x.fut.length-1][0];
+  return `<div class="strip" style="margin-top:10px;padding:10px 12px;border-radius:10px;border:1px dashed var(--card-b)">
+   <div><div class="lbl">Promedio del mes estimado · Santa Rosa</div><b>${f2(x.est)} USD/MWh</b> <span class="mut">ejecutado ${f2(D.cmg_mes["Santa Rosa 220"])} (1–${+D.dia.slice(8,10)})</span></div>
+   <div><div class="lbl">Proyectado ${ddmm(d1)}–${ddmm(d2)}</div><b>${f2(x.fut.reduce((a,v)=>a+v[1],0)/x.fut.length)} USD/MWh</b> <span class="mut">promedio de ${x.fut.length} días</span></div>
+   ${x.nPas?`<div><div class="lbl">Desvío en días ya ejecutados</div><b>±${f2(x.desvio)}</b> <span class="mut">${x.sesgo>0?"sobreestimó":"subestimó"} ${f2(Math.abs(x.sesgo))} en ${x.nPas} días</span></div>`:""}
+   <div class="mut" style="flex-basis:100%">Estimado, no ejecutado: combina ${x.nEj} días ejecutados y ${x.fut.length} proyectados (${x.dias} de ${x.nMes} días del mes${x.dias<x.nMes?"; faltan días sin proyección publicada":""}). Proyección: COES, Programa Semanal de Operación (YUPANA), versión ${esc(P.version)}, semana ${esc((P.semanas||[]).map(w=>w.split(" a ").map(fN).join("–")).join(" y "))}; unidad ${esc(P.metodo_unidad)}.</div></div>`}
 R.resumen=()=>{const TB=D.tablero,el=$("#s-resumen");
   if(!TB){el.innerHTML=hdr("Resumen del SEIN",fL(D.dia))+est("vacio","El resumen ejecutivo se genera en la próxima corrida.");return}
   const K=TB.kpis,EV=D.eventos||[],nF=EV.filter(e=>/falla/i.test(e.tipo)).length,mes=MESN[+TB.dia.slice(5,7)-1];
@@ -447,8 +465,8 @@ R.resumen=()=>{const TB=D.tablero,el=$("#s-resumen");
    </div>
    ${(D.alertas||[]).length?`<div class="alertas" aria-label="Alertas por umbral">${D.alertas.map(a=>`<a class="alerta ${a.nivel}" href="#${a.seccion}" onclick="ver('${a.seccion}');return false"><b>${esc(a.titulo)}</b><span>${esc(a.motivo)}</span></a>`).join("")}</div>`:""}
    <div class="grid g64">
-    ${box(`Evolución del CMg · ${mes}`,`Santa Rosa 220 kV · USD/MWh · promedio diario del 1 al ${+TB.dia.slice(8,10)} de ${mes} (corte: ${fL(TB.dia)}) · toca la leyenda para ver otras barras`,
-      cv("c-mes",`Evolución del CMg promedio diario de Santa Rosa en ${mes}; último valor ${f2(K.precio.valor)} USD/MWh y promedio del mes ${f2(D.cmg_mes["Santa Rosa 220"])}.`,"tall"))}
+    ${box(`Evolución del CMg · ${mes}`,`Santa Rosa 220 kV · USD/MWh · promedio diario ejecutado del 1 al ${+TB.dia.slice(8,10)} de ${mes} (corte: ${fL(TB.dia)})${(proyMes("Santa Rosa 220")||{fut:[]}).fut.length?" y proyección del Programa Semanal en la zona sombreada":""} · toca la leyenda para ver otras barras`,
+      cv("c-mes",`Evolución del CMg promedio diario de Santa Rosa en ${mes}; último valor ${f2(K.precio.valor)} USD/MWh y promedio del mes ${f2(D.cmg_mes["Santa Rosa 220"])}.`,"tall")+notaProy())}
     <div class="card"><h2>Qué vigilar · ${fL(TB.hoy)}<small>Programación del ${fN(TB.hoy)} y programa mensual · hasta 3 asuntos</small></h2>
      ${TB.vigilar.length?`<div class="lst">${TB.vigilar.slice(0,3).map(x=>`<div class="it"><span class="ii">${ico(icV[x.seccion]||"info",22)}</span><div class="tx"><b>${esc(x.texto)}</b>${x.horario?`<span>Horario programado: ${esc(x.horario)}</span>`:""}</div><div class="hr"><button class="lnk" onclick="ver('${x.seccion}')">Ver detalle →</button></div></div>`).join("")}</div>`
       :est("vacio","Sin asuntos programados relevantes para la próxima jornada.")}</div>
@@ -458,17 +476,22 @@ R.resumen=()=>{const TB=D.tablero,el=$("#s-resumen");
       <div class="blq"><div class="lbl centt">Todos los datos</div><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></div>`)}
    ${pie("COES – costos marginales (portal), Portal de Información (demanda), IEOD (eventos e indisponibilidades) y Programa Diario de Intervenciones",`${fL(TB.dia)} · mes ${mes} hasta el corte`)}
   </div>`};
-DR.resumen=()=>{if(!$("#c-mes"))return;const dias=[...new Set(D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])))].sort(),ref=D.barras[0];
-  const pm=D.cmg_mes[ref],srv=dias.map(d=>D.cmg_diario[ref][d]??null),ult=srv.length-1;
+DR.resumen=()=>{if(!$("#c-mes"))return;const ref=D.barras[0],px=proyMes(ref),fut=px?px.fut.map(x=>x[0]):[];
+  const dias=[...new Set([...D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])),...fut])].sort();
+  const pm=D.cmg_mes[ref],srv=dias.map(d=>d<=D.dia?(D.cmg_diario[ref][d]??null):null),ult=dias.indexOf(D.dia)>=0?dias.indexOf(D.dia):srv.length-1;
+  const pry=fut.length?dias.map(d=>d===D.dia?srv[ult]:(d>D.dia?(D.cmg_proy.diario[ref][d]??null):null)):null;
   const imx=srv.reduce((b,v,i)=>v!=null&&(b<0||v>srv[b])?i:b,-1);
   const plug={id:"anot",afterDatasetsDraw(c){const x=c.ctx,m=c.getDatasetMeta(0);x.save();x.font="600 10.5px Inter,sans-serif";x.textAlign="center";
     if(imx>=0&&imx!==ult&&m.data[imx]){x.fillStyle=css("--text-2");x.fillText(`▾ máx. ${f0(srv[imx])}`,m.data[imx].x,m.data[imx].y-10)}
     const p=m.data[ult];if(p&&srv[ult]!=null){x.fillStyle=css("--naranja");x.font="700 12px Inter,sans-serif";x.textAlign="right";x.fillText(`${f2(srv[ult])}`,p.x-8,p.y-10)}
-    if(fin(pm)){const y=c.scales.y.getPixelForValue(pm);x.fillStyle=css("--text-2");x.font="600 11px Inter,sans-serif";x.textAlign="right";x.fillText(`promedio del mes ${f2(pm)}`,c.chartArea.right-4,y-6)}x.restore()}};
+    if(pry&&ult<dias.length-1){const xa=c.scales.x.getPixelForValue(ult),xb=c.chartArea.right;x.fillStyle=css("--naranja")+"10";x.fillRect(xa,c.chartArea.top,xb-xa,c.chartArea.bottom-c.chartArea.top);
+      x.fillStyle=css("--naranja");x.font="600 10.5px Inter,sans-serif";x.textAlign="left";x.fillText("proyectado",xa+6,c.chartArea.top+12)}
+    if(fin(pm)){const y=c.scales.y.getPixelForValue(pm);x.fillStyle=css("--text-2");x.font="600 11px Inter,sans-serif";x.textAlign="right";x.fillText(`promedio del mes ${f2(pm)}`,pry?c.scales.x.getPixelForValue(ult)-10:c.chartArea.right-4,y-6)}x.restore()}};
   const o=base("USD/MWh");o.layout={padding:{top:14}};o.scales.y.beginAtZero=true;
   grafico("#c-mes",{type:"line",data:{labels:dias.map(d=>`${+d.slice(8)} ${MESC[+d.slice(5,7)-1]}`),datasets:[
     {label:"Santa Rosa 220 kV",data:srv,borderColor:css("--navy"),backgroundColor:degr(css("--navy"),"38"),fill:true,borderWidth:3,tension:.25,pointRadius:srv.map((_,i)=>i===ult?6:0),pointBackgroundColor:css("--naranja")},
-    {label:"Promedio del mes",data:dias.map(()=>pm),borderColor:css("--muted"),borderDash:[6,4],borderWidth:1.5,pointRadius:0},
+    ...(pry?[{label:"Proyectado (Programa Semanal)",data:pry,borderColor:css("--navy"),backgroundColor:css("--surface"),pointBorderColor:css("--navy"),borderDash:[6,4],borderWidth:2.4,tension:.25,pointRadius:pry.map((v,i)=>i>ult&&v!=null?3:0),pointStyle:"rectRot"}]:[]),
+    {label:"Promedio del mes",data:dias.map(d=>d<=D.dia?pm:null),borderColor:css("--muted"),borderDash:[6,4],borderWidth:1.5,pointRadius:0},
     ...D.barras.slice(1).map(b=>({label:corta(b)+" 220 kV",data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:0,tension:.25,hidden:true}))]},
     options:o,plugins:[plug]})};
 
@@ -605,7 +628,7 @@ R.precios=()=>{const el=$("#s-precios"),ref=D.barras[0],mes=MESN[+D.dia.slice(5,
      <div class="note">Punta: 18:00–23:00 · Media: 06:00–18:00 · Base: 23:00–06:00. Cada media hora se asigna por su hora de inicio (la que termina a las 18:30 es punta).</div></div>
    </div>
    <div class="accs">
-    ${acc("pr-hist","line","Histórico de precios",`<div class="grid">${box(`CMg promedio diario · ${mes}`,"USD/MWh · tres barras",cv("c-pmes","Promedio diario del CMg de las tres barras en el mes."))}
+    ${acc("pr-hist","line","Histórico de precios",`<div class="grid">${box(`CMg promedio diario · ${mes}`,`USD/MWh · tres barras${D.cmg_proy&&D.cmg_proy.diario?" · líneas punteadas: proyectado del Programa Semanal (YUPANA), no ejecutado":""}`,cv("c-pmes","Promedio diario del CMg de las tres barras en el mes."))}
       ${box("Diferencia diaria frente a Santa Rosa","USD/MWh · positivo = la barra está más cara que Santa Rosa",cv("c-dif","Diferencia diaria de Socabaya y Piura frente a Santa Rosa."))}
       ${(()=>{const u=D.umbrales||{};const v=A.filter(fin),kmin=v.length?A.indexOf(Math.min(...v)):-1,kmax=v.length?A.indexOf(Math.max(...v)):-1;
         return `<div class="card"><h2>Rango del día · Santa Rosa<small>${fL(D.dia)} · USD/MWh</small></h2><div class="embk"><div><div class="lbl">Media hora más barata</div><b>${v.length?f2(A[kmin]):"–"}</b> <span class="mut">${kmin>=0?labFin[kmin]+" h":""}</span></div>
@@ -629,8 +652,11 @@ DR.precios=()=>{const ref=D.barras[0];
       if(PRA)ds.push({label:`${corta(b)} · ${ddmm(sumD(D.dia,-1))}`,data:prDia(b,sumD(D.dia,-1)),borderColor:css(SERIE[b])+"88",backgroundColor:css(SERIE[b]),borderDash:[5,4],borderWidth:1.4,pointRadius:0,tension:.2})});
     const o=base("USD/MWh");o.plugins.legend.display=PRA;o.scales.x.ticks.maxTicksLimit=9;o.plugins.tooltip.callbacks.title=it=>`${it[0].label} h`;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${fin(c.parsed.y)?f2(c.parsed.y):"sin dato"}`;
     grafico("#c-30",{type:"line",data:{labels:labFin,datasets:ds},options:o})}
-  if($("#c-pmes")){const dias=Object.keys(D.cmg_diario[ref]).sort(),o=base("USD/MWh");
-    grafico("#c-pmes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:D.barras.map(b=>({label:corta(b),data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2,tension:.2}))},options:o})}
+  if($("#c-pmes")){const fut=D.barras.flatMap(b=>(proyMes(b)||{fut:[]}).fut.map(x=>x[0])),dias=[...new Set([...Object.keys(D.cmg_diario[ref]),...fut])].sort(),o=base("USD/MWh");
+    const ds=D.barras.map(b=>({label:corta(b),data:dias.map(d=>d<=D.dia?(D.cmg_diario[b][d]??null):null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2,tension:.2}));
+    D.barras.forEach(b=>{const P=proyMes(b);if(P&&P.fut.length)ds.push({label:`${corta(b)} · proyectado`,data:dias.map(d=>d===D.dia?D.cmg_diario[b][d]??null:d>D.dia?(D.cmg_proy.diario[b][d]??null):null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderDash:[5,4],borderWidth:1.6,pointRadius:0,tension:.2})});
+    o.plugins.legend.labels.filter=i=>!/proyectado/.test(i.text);
+    grafico("#c-pmes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:ds},options:o})}
   if($("#c-dif")){const dias=Object.keys(D.cmg_diario[ref]).sort(),u=D.umbrales?.desacople||15;
     const o=base("USD/MWh");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${c.parsed.y>0?"+":""}${f2(c.parsed.y)}`;o.plugins.legend.labels.filter=i=>i.text!=="";
     grafico("#c-dif",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:[...D.barras.filter(b=>b!==ref).map(b=>({label:`${corta(b)} − ${corta(ref)}`,data:dias.map(d=>fin(D.cmg_diario[b][d])&&fin(D.cmg_diario[ref][d])?D.cmg_diario[b][d]-D.cmg_diario[ref][d]:null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2.5,tension:.2})),
