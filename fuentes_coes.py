@@ -483,6 +483,29 @@ def perfil_indisponible(regs, dia: dt.date):
             "mwh": round(prom * 24, 0), "cierre": perfil[-1] if perfil else 0.0}
 
 
+def codigo_linea(txt):
+    m = re.search(r"\bL-?\s?(\d{4}[A-Z]?)\b", norm(txt))
+    return f"L-{m.group(1)}" if m else None
+
+
+def tramos_lineas(*listas):
+    """{código de línea: 'Subestación A – Subestación B'} a partir de los registros del COES.
+    Prioriza el tramo escrito en la descripción, p. ej. 'L-2051 (CAMPO ARMIÑO - COTARUSE)'."""
+    out = {}
+    for regs in listas:
+        for r in regs or []:
+            d = texto(r.get("descripcion"))
+            for m in re.finditer(r"\bL-?\s?(\d{4}[A-Z]?)\s*\(([^()]{3,60}?)\s*-\s*([^()]{3,60}?)\)", d):
+                if not re.search(r"\d{3}", m.group(2) + m.group(3)):
+                    out[f"L-{m.group(1)}"] = f"{m.group(2).strip()} – {m.group(3).strip()}"
+            cod = codigo_linea(r.get("equipo"))
+            u = texto(r.get("ubicacion"))
+            if cod and cod not in out and " - " in u:
+                a, b = u.split(" - ", 1)
+                out[cod] = f"{a.strip()} – {b.strip()}"
+    return {k: " – ".join(w.strip().title().replace("?", "ñ") for w in v.split("–")) for k, v in out.items()}
+
+
 def solo_generacion(regs):
     return [r for r in regs if r.get("clase") == "G"]
 
@@ -603,7 +626,23 @@ def flujos_lineas(hojas):
                 serie.append([_min_dia(texto(f[jh])), round(v, 1)])
         if serie:
             nombre = ss.get(j) or next((t for t in textos if norm(t) != norm(cod) and not re.fullmatch(r"[\d.,-]+", t)), "")
-            out[cod.replace(" ", "")] = {"kv": kv, "nombre": nombre, "serie": serie}
+            k = cod.replace(" ", "")
+            prev = out.get(k)
+            ext = (prev or {}).get("extremos", [])
+            if nombre and nombre not in ext:
+                ext = ext + [nombre]
+            out[k] = {"kv": kv, "nombre": nombre, "serie": serie, "extremos": ext}
+    return out
+
+
+def tramos_de_flujos(flujos):
+    """Si una línea se mide en sus dos subestaciones, el tramo es 'SE A – SE B'."""
+    out = {}
+    for cod, x in (flujos or {}).items():
+        ext = [re.sub(r"(?i)^S\.?E\.?\s+", "", e).strip().title() for e in x.get("extremos", [])]
+        ext = list(dict.fromkeys(e for e in ext if e))
+        if len(ext) >= 2:
+            out[cod] = f"{ext[0]} – {ext[1]}"
     return out
 
 

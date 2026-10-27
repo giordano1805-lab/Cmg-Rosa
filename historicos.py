@@ -113,7 +113,22 @@ def resumen_demanda(dem, dia: dt.date):
                 serie.append(round(s, 2))
         acum[a] = serie
     anual = {a: sum(v for m, v in mensual[a].items() if m < dia.month) + mtd[a] / 1e3 for a in (act, ant)}
+    def _ant(d):
+        try:
+            return d.replace(year=d.year - 1)
+        except ValueError:
+            return d.replace(year=d.year - 1, day=28)
+
+    # máximas (misma fuente para ambos años: demanda ejecutada del Portal COES)
+    max_dia = {act: (dem.get(dia) or {}).get("max"), ant: (dem.get(_ant(dia)) or {}).get("max")}
+    max_mes = {}
+    for a in (act, ant):
+        ds = [d for d in dem if d.year == a and d.month == dia.month and d.day <= ndias]
+        if ds:
+            d = max(ds, key=lambda x: dem[x]["max"])
+            max_mes[a] = {"fecha": d.isoformat(), "mw": dem[d]["max"]}
     return {"mensual": {a: {m: round(v, 4) for m, v in sorted(mensual[a].items())} for a in mensual},
+            "max_dia": max_dia, "max_mes": max_mes,
             "mtd_gwh": {a: round(v, 1) for a, v in mtd.items()}, "dias": ndias, "acum_gwh": acum,
             "ytd_twh": {a: round(v, 3) for a, v in anual.items()}, "mes": dia.month, "act": act, "ant": ant}
 
