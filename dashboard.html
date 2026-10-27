@@ -84,6 +84,9 @@ a{color:var(--s1)}
 .embd{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin:12px 0 4px;padding:8px 10px;border-radius:8px;background:var(--grid);font-size:13px}
 .embd .lbl{font-size:12px;color:var(--text-2)}
 .chart.sm{height:170px}
+.seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--grid);margin:4px 0 10px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:5px 12px;border-radius:7px;cursor:pointer}
+.seg button.on{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.12)}
 .embq .centt{margin-bottom:4px}
 .centrow{margin-top:12px;font-size:12.5px;color:var(--text-2);line-height:1.7}
 .centrow .tot{display:inline-block;background:#fff3c4;color:#001a6f;font-weight:700;padding:1px 8px;border-radius:6px;margin-left:6px}
@@ -132,6 +135,10 @@ function mwActivo(regs,t,filtro){const por={};
     if((r.equipo||"").toUpperCase()==="CENTRAL")c.cen=Math.max(c.cen,r.mw);else c.uni[r.equipo]=Math.max(c.uni[r.equipo]||0,r.mw)});
   return Object.values(por).reduce((a,c)=>a+Math.max(c.cen,Object.values(c.uni).reduce((x,y)=>x+y,0)),0)}
 function mwDia(regs,dia,filtro){const d0=new Date(dia+"T00:00");let s=0;for(let k=0;k<48;k++)s+=mwActivo(regs,new Date(d0.getTime()+(k*30+15)*6e4),filtro);return s/48}
+let HCF="Todas";
+function hcSel(){const H=D.hidro_centrales,C=H.centrales.filter(c=>HCF==="Todas"||c.tipo===HCF);
+  return{C,act:C.reduce((a,c)=>a+c.act,0),ant:C.reduce((a,c)=>a+c.ant,0)}}
+function hcFiltro(f){HCF=f;render();dibujar()}
 let D,charts=[];
 const SERIE={"Santa Rosa 220":"--s1","Socabaya 220":"--s2","Piura 220":"--s3"};
 const BLOQ={"Punta (18-23 h)":"--s2","Media (6-18 h)":"--s3","Base (23-6 h)":"--base"};
@@ -205,7 +212,8 @@ function render(){
    <div class="card"><h2>Demanda acumulada del mes<small>GWh · mismo período del año anterior</small></h2><div class="chart"><canvas id="c-dacum"></canvas></div></div></div>`:""}
    ${HP?`<div class="card"><h2>Generación hidroeléctrica de pasada<small>MW · promedio diario vs ${HP.ant} (líneas tenues: cada 30 min)</small></h2><div class="chart tall"><canvas id="c-hidro"></canvas></div></div>`:""}
    ${D.hidro_centrales&&D.hidro_centrales.centrales.length?`<div class="card"><h2>¿Qué centrales hidro producen menos que el año pasado?<small>GWh, días ${D.hidro_centrales.desde}–${D.hidro_centrales.hasta} de ${D.hidro_centrales.act} vs mismos días de ${D.hidro_centrales.ant} · IEOD</small></h2>
-     <div class="embk"><div><div class="lbl">Hidro total ${D.hidro_centrales.act}</div><b>${f1(D.hidro_centrales.total_act)} GWh</b></div><div><div class="lbl">Mismos días ${D.hidro_centrales.ant}</div><b>${f1(D.hidro_centrales.total_ant)} GWh</b></div><div><div class="lbl">Diferencia</div>${(x=>`<b class="${x<0?"up":"down"}">${(x>0?"+":"")+x.toFixed(0)}%</b>`)(pct(D.hidro_centrales.total_act,D.hidro_centrales.total_ant)||0)}</div></div>
+     <div class="seg">${[["Todas","Todas"],["Regulación","De embalse (regulación)"],["Pasada","De pasada"]].map(([k,n])=>`<button class="${HCF===k?"on":""}" onclick="hcFiltro('${k}')">${n}</button>`).join("")}</div>
+     ${(S=>`<div class="embk"><div><div class="lbl">${HCF==="Todas"?"Hidro total":HCF==="Pasada"?"Hidro de pasada":"Hidro de embalse"} ${D.hidro_centrales.act}</div><b>${f1(S.act)} GWh</b></div><div><div class="lbl">Mismos días ${D.hidro_centrales.ant}</div><b>${f1(S.ant)} GWh</b></div><div><div class="lbl">Diferencia</div>${(x=>`<b class="${x<0?"up":"down"}">${(x>0?"+":"")+x.toFixed(0)}%</b>`)(pct(S.act,S.ant)||0)}</div><div><div class="lbl">Centrales</div><b>${S.C.length}</b></div></div>`)(hcSel())}
      <div class="chart" style="height:460px"><canvas id="c-hcen"></canvas></div><div id="t-hcen"></div></div>`:""}
    ${D.hidro_regulacion?`<div class="card"><h2>Generación hidroeléctrica de embalse (regulación)<small>MW · promedio diario vs ${D.hidro_regulacion.ant}</small></h2><div class="chart tall"><canvas id="c-hreg"></canvas></div></div>`:""}
    ${D.eolica?`<div class="card"><h2>Generación eólica<small>MW · promedio diario vs ${D.eolica.ant}</small></h2><div class="chart tall"><canvas id="c-eol"></canvas></div></div>`:""}
@@ -219,7 +227,7 @@ function render(){
   if(D.hidro_centrales&&D.hidro_centrales.centrales.length)tabla("#t-hcen",[{t:"Central",v:r=>r.central},{t:"Empresa",v:r=>r.empresa},{t:"Tipo",v:r=>r.tipo},
     {t:`GWh ${D.hidro_centrales.act}`,num:1,v:r=>r.act,h:r=>f2(r.act)},{t:`GWh ${D.hidro_centrales.ant}`,num:1,v:r=>r.ant,h:r=>f2(r.ant)},
     {t:"Diferencia",num:1,v:r=>r.delta,h:r=>`<span class="${r.delta<0?"up":"down"}">${r.delta>0?"+":""}${f2(r.delta)}</span>`},
-    {t:"Var.",num:1,v:r=>r.var_pct??0,h:r=>r.var_pct==null?"–":`${r.var_pct>0?"+":""}${r.var_pct.toFixed(0)}%`}],D.hidro_centrales.centrales);
+    {t:"Var.",num:1,v:r=>r.var_pct??0,h:r=>r.var_pct==null?"–":`${r.var_pct>0?"+":""}${r.var_pct.toFixed(0)}%`}],hcSel().C);
   if(DU.length)tabla("#t-dsl",[{t:"Central / grupo",v:r=>r.nombre},{t:"Empresa",v:r=>r.empresa},
     {t:"Combustible",v:r=>r.tipo_comb||r.combustible,h:r=>`${esc(r.tipo_comb||"")} <span style="color:var(--muted)">(${esc(r.combustible)})</span>`},
     {t:"Clasificación",v:r=>r.rf?1:0,h:r=>r.tipo_comb&&r.tipo_comb!=="Diésel D2"?"–":r.rf?'<span class="tag rf">Reserva Fría</span>':"Otra"},
@@ -402,7 +410,7 @@ function dibujar(){
     o.plugins.tooltip.callbacks={title:it=>R[it[0].dataIndex].descripcion.slice(0,90),label:it=>{const r=R[it.dataIndex];return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${r.inicio.slice(8,10)}/${r.inicio.slice(5,7)} → ${(r.final||"").slice(8,10)}/${(r.final||"").slice(5,7)}`}};
     grafico("#c-mesg",{type:"bar",data:{labels:R.map(r=>`${cor((tit(r.ubicacion)+(r.equipo==="CENTRAL"?"":" "+r.equipo)).trim())} · ${f0(r.mw)} MW`),
       datasets:[{data:R.map(r=>[r.a,r.b]),backgroundColor:R.map(r=>r.diesel?css("--muted")+"55":css(TECC[r.tecnologia]||"--muted")),borderRadius:4,borderSkipped:false,barPercentage:.75}]},options:o})}
-  if(on("#c-hcen")&&D.hidro_centrales){const C=D.hidro_centrales.centrales,sel=[...C.slice(0,12),...C.filter(c=>c.delta>0).slice(-3)].filter((c,i,a)=>a.indexOf(c)===i);
+  if(on("#c-hcen")&&D.hidro_centrales){const C=hcSel().C,sel=[...C.slice(0,12),...C.filter(c=>c.delta>0).slice(-3)].filter((c,i,a)=>a.indexOf(c)===i);
     const o=base("");o.indexAxis="y";o.plugins.legend.display=false;o.interaction={mode:"nearest",intersect:true};
     o.scales={x:{grid:{color:css("--grid")},ticks:{color:css("--text-2")},title:{display:true,text:"GWh vs año anterior",color:css("--text-2")}},y:{grid:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
     o.plugins.tooltip.callbacks={label:it=>{const c=sel[it.dataIndex];return `${f2(c.act)} vs ${f2(c.ant)} GWh (${c.var_pct==null?"–":(c.var_pct>0?"+":"")+c.var_pct.toFixed(0)+"%"})`}};
