@@ -648,7 +648,7 @@ def tramos_de_flujos(flujos):
 
 def interconexiones(hojas):
     """Hoja INTERCONEXIONES: {enlace: {'lineas': {nombre: [[min_dia, MW]]}, 'total': [[min_dia, MW]]}}.
-    Signo según el COES (p. ej. Centro-Norte negativo = flujo de centro a norte)."""
+    Signo tal como lo publica el COES; la hoja no indica el sentido, así que no se reinterpreta."""
     filas = hojas.get("INTERCONEXIONES") or []
     i0 = next((i for i, f in enumerate(filas[:30]) if len(f) > 1 and norm(f[0]) == "FECHA" and norm(f[1]) == "HORA"), None)
     if i0 is None:

@@ -57,7 +57,7 @@ def indicadores_cmg(m, hist, dia):
     mes = {t: r for t, r in hist.items()
            if (m.dia_operativo(t).year, m.dia_operativo(t).month) == (dia.year, dia.month)
            and m.dia_operativo(t) <= dia}
-    diario_b, prom_mes_b = {}, {}
+    diario_b, prom_mes_b, n_b = {}, {}, {}
     for b in m.BARRAS:
         por_dia = {}
         for t, r in mes.items():
@@ -65,6 +65,7 @@ def indicadores_cmg(m, hist, dia):
                 por_dia.setdefault(m.dia_operativo(t), []).append(r[b] / m.TC)
         diario_b[b] = {d: m.promedio(v) for d, v in por_dia.items()}
         prom_mes_b[b] = m.promedio([x for v in por_dia.values() for x in v])
+        n_b.setdefault(b, {d: len(v) for d, v in por_dia.items()})
     diario_bl, prom_mes_bl = {}, {}
     for bl in m.BLOQUES:
         por_dia = {}
@@ -81,7 +82,7 @@ def indicadores_cmg(m, hist, dia):
         prev[b] = m.promedio(vals)
     n_dia = sum(1 for t in mes if m.dia_operativo(t) == dia)
     return {"mes": mes, "diario_b": diario_b, "prom_mes_b": prom_mes_b, "diario_bl": diario_bl,
-            "prom_mes_bl": prom_mes_bl, "prev": prev, "n_dia": n_dia}
+            "prom_mes_bl": prom_mes_bl, "prev": prev, "n_dia": n_dia, "n_b": n_b}
 
 
 def grafico_demanda(dem_areas, dia, ruta, plt):
@@ -271,11 +272,15 @@ def resumen_bloques(ind, ieod, prog, dia, hoy, m, extra):
                          if hu.get("mes_mwh_ant") else "."))
         d = hu["diario"][-1] if hu["diario"] else {}
         if d.get("capturado") is not None:
-            hu_b.append(f"Precio capturado del día {d['capturado']:.2f} USD/MWh vs CMg promedio {d['cmg']:.2f}; "
-                        f"ingreso spot referencial {d['ingreso']:,.0f} USD.")
-        if hu.get("capturado_mes"):
-            hu_b.append(f"Precio capturado del mes {hu['capturado_mes']:.2f} USD/MWh "
-                        f"({_pct(hu['capturado_mes'], hu['cmg_mes']):+.1f}% vs CMg promedio de los mismos días, {hu['cmg_mes']:.2f}).")
+            hu_b.append(f"Precio capturado del día {d['capturado']:.2f} USD/MWh (barra Huanchor 50 kV; Matucana solo si falta); "
+                        f"ingreso spot referencial {d['ingreso']:,.0f} USD" +
+                        (f", cobertura {d['cobertura']:.0f}% de la energía." if d.get("cobertura") is not None and d["cobertura"] < 100 else "."))
+        if hu.get("capturado_mes") is not None:
+            hu_b.append(f"{hu['titulo_precio']} del mes: {hu['capturado_mes']:.2f} USD/MWh "
+                        f"(Huanchor {hu['pct_h'] or 0:.0f}% · Matucana {hu['pct_m'] or 0:.0f}% de la energía; "
+                        f"cobertura {hu['cobertura'] or 0:.0f}%). Promedio de la misma referencia: {hu['cmg_ref_mes']:.2f}.")
+        elif hu.get("energia_perfil"):
+            hu_b.append("Precio capturado de Huanchor: sin dato disponible (no se publicó CMg en Huanchor 50 kV ni en Matucana).")
     rim = next((c for c in extra.get("cuencas") or [] if c["cuenca"] == "Rímac"), None)
     if rim:
         q = rim.get("caudal") or {}
@@ -387,14 +392,13 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
     # 1. conclusión
     partes = []
     if sr is not None:
-        partes.append(f"El {_fecha_txt(dia)}, {m.SR.replace(' 220', '')} cerró en {sr:.2f} USD/MWh" +
+        partes.append(f"El {_fecha_txt(dia)}, {m.SR.replace(' 220', '')} promedió {sr:.2f} USD/MWh" +
                       (f", {abs(v_d):.1f}% {'menos' if v_d < 0 else 'más'} que el día anterior" if v_d is not None else "") + ".")
     if hid_v is not None:
-        partes.append(f"La {hid_txt} sigue {'por debajo' if hid_v < 0 else 'por encima'} de {dia.year - 1} "
-                      f"({hid_v:+.0f}%).")
+        partes.append(f"La {hid_txt} va {hid_v:+.0f}% frente al mismo período de {dia.year - 1}.")
     if sp and sp["max"] > 0:
-        partes.append(f"Para el {_fecha_txt(hoy)}, revisar las restricciones programadas (hasta {sp['max']:,.0f} MW "
-                      f"fuera a las {sp['hora_max']} h).")
+        partes.append(f"Para el {_fecha_txt(hoy)} se programan hasta {sp['max']:,.0f} MW indisponibles a la vez "
+                      f"(sin diésel, {sp['hora_max']} h).")
     out["conclusion"] = " ".join(partes)
     # 2. indicadores
     da = ieod.get("demanda_areas") or []
@@ -897,6 +901,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_diario": {b: {d.isoformat(): round(v, 2) for d, v in sorted(ind["diario_b"][b].items())}
                        for b in m.BARRAS},
         "cmg_mes": {b: (round(v, 2) if v is not None else None) for b, v in ind["prom_mes_b"].items()},
+        "cmg_n": {b: {d.isoformat(): n for d, n in sorted(ind["n_b"].get(b, {}).items())} for b in m.BARRAS},
         "cmg_prev": {b: (round(v, 2) if v is not None else None) for b, v in ind["prev"].items()},
         "bloques_diario": {bl: {d.isoformat(): round(v, 2) for d, v in sorted(ind["diario_bl"][bl].items())}
                            for bl in m.BLOQUES},
@@ -1056,7 +1061,7 @@ def generar(m, hist=None):
         extra["hidro"]["pendientes"] = len(pend)
         extra["regulacion"] = hi.resumen_hidro(h, dia, "regulacion")
         extra["hidro_centrales"] = hi.resumen_centrales(dia)
-        extra["huanchor"] = hi.resumen_huanchor(dia, ind["_hist"], m.SR, m.TC)
+        extra["huanchor"] = hi.resumen_huanchor(dia, ind["_hist"], m.TC, m.leer_diag_hu())
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
