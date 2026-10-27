@@ -1225,6 +1225,12 @@ def cmg_programa_semanal(hoy: dt.date):
                 continue
             hallado = False
             for nlib, hojas in libros:
+                try:   # extracto de cada hoja para revisar el formato real (data/explora7/<archivo>/<hoja>.csv)
+                    from pathlib import Path as _P
+                    volcar_hojas(hojas, _P("data") / "explora7" / re.sub(r"[^\w.-]", "_", f"{_nombre(a)}_{nlib}")[:80],
+                                 nombres=list(hojas)[:25], filas=120, cols=60)
+                except Exception:
+                    pass
                 for nh, filas in hojas.items():
                     s_, nombres = _cmg_en_hoja(nh, filas)
                     if not s_:
