@@ -384,7 +384,11 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
     out["kpis"] = {
         "precio": {"valor": sr, "var_dia": v_d, "var_mes": v_m, "prom_mes": sr_m, "barra": m.SR,
                    "otras": {b: ind["diario_b"][b].get(dia) for b in m.BARRAS if b != m.SR}},
-        "demanda": {"valor": mx["sein"] if mx else None, "hora": mx["hora"] if mx else None},
+        "demanda": {"valor": mx["sein"] if mx else None, "hora": mx["hora"] if mx else None,
+                    "var_mes": (_pct(extra["demanda"]["mtd_gwh"][extra["demanda"]["act"]],
+                                     extra["demanda"]["mtd_gwh"][extra["demanda"]["ant"]])
+                                if extra.get("demanda") and extra["demanda"]["mtd_gwh"].get(extra["demanda"]["ant"]) else None),
+                    "ant": extra["demanda"]["ant"] if extra.get("demanda") else None},
         "indisp": {"max": st["max"], "hora": st["hora_max"], "prog": st["programado"]["prom"],
                    "forz": st["forzado"]["prom"], "forz_max": st["forzado"]["max"]} if st else None,
         "proxima": {"fecha": hoy.isoformat(), "max": sp["max"] if sp else None, "hora": sp["hora_max"] if sp else None,
@@ -399,6 +403,13 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
                       (f"{v_d:+.1f}% frente a ayer" if v_d is not None else "") +
                       (f" y {abs(v_m):.0f}% {'bajo' if v_m < 0 else 'sobre'} el promedio del mes ({sr_m:.2f})."
                        if v_m is not None else ".")})
+    rd = extra.get("demanda")
+    if rd and rd["mtd_gwh"].get(rd["ant"]):
+        a1, a0 = rd["mtd_gwh"][rd["act"]], rd["mtd_gwh"][rd["ant"]]
+        t = f"Energía del mes {a1:,.0f} GWh, {_pct(a1, a0):+.1f}% frente a los mismos {rd['dias']} días de {rd['ant']}"
+        if mx:
+            t += f"; máxima del {_fecha_txt(dia)} {mx['sein']:,.0f} MW a las {mx['hora']} h"
+        saber.append({"tema": "Demanda", "seccion": "oferta", "texto": t + "."})
     if hid_v is not None:
         txt = f"La {hid_txt} va {hid_v:+.0f}% frente al mismo período de {dia.year - 1}"
         if hc and hc.get("centrales"):
@@ -406,6 +417,13 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
             if baj:
                 txt += "; las mayores caídas: " + ", ".join(f"{c['central']} ({c['delta']:+.1f} GWh)" for c in baj)
         saber.append({"tema": "Oferta hídrica", "seccion": "oferta", "texto": txt + "."})
+    eo = extra.get("eolica")
+    if eo and eo["mtd"].get(eo["act"]) and eo["mtd"].get(eo["ant"]):
+        e1, e0 = eo["mtd"][eo["act"]], eo["mtd"][eo["ant"]]
+        hoy_e = (eo["diario"].get(eo["act"]) or {}).get(dia.day)
+        saber.append({"tema": "Eólica", "seccion": "oferta", "texto":
+                      f"Promedio del mes {e1:,.0f} MW, {_pct(e1, e0):+.0f}% frente a {eo['ant']}"
+                      + (f"; el {_fecha_txt(dia)} promedió {hoy_e:,.0f} MW" if hoy_e is not None else "") + "."})
     oper = None
     vals = {k: v.get(dia) for k, v in ind["diario_b"].items() if v.get(dia) is not None}
     cg = (extra.get("congestion") or {}).get("registros") or []
@@ -429,7 +447,7 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
                 f"de los cuales {st['forzado']['max']:,.0f} MW forzados."}
     if oper:
         saber.append(oper)
-    out["saber"] = [{**x, "texto": romanos(x["texto"])} for x in saber[:3]]
+    out["saber"] = [{**x, "texto": romanos(x["texto"])} for x in saber[:5]]
     # 4. qué vigilar (máx. 3, por relevancia)
     vig = []
     for r in _unicos(sorted(g, key=lambda r: -r["mw"]))[:2]:
@@ -599,7 +617,9 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
         pr, de, ix, px = k["precio"], k["demanda"], k["indisp"], k["proxima"]
         fila = [cel("Precio de referencia", f"{pr['valor']:.2f} USD/MWh" if pr["valor"] is not None else "–",
                     f"{pr['barra']} · {pr['var_dia']:+.1f}% diario" if pr["var_dia"] is not None else pr["barra"]),
-                cel("Demanda máxima", f"{de['valor']:,.0f} MW" if de["valor"] else "–", f"pico a las {de['hora']} h" if de["hora"] else ""),
+                cel("Demanda máxima", f"{de['valor']:,.0f} MW" if de["valor"] else "–",
+                    (f"pico a las {de['hora']} h" if de["hora"] else "") +
+                    (f" · mes {de['var_mes']:+.1f}% vs {de['ant']}" if de.get("var_mes") is not None else "")),
                 cel("Indisponibilidad", f"{ix['max']:,.0f} MW" if ix else "–",
                     f"máx. simultáneo · prog. {ix['prog']:,.0f} / forz. {ix['forz']:,.0f} MW prom." if ix else ""),
                 cel(f"Próxima jornada · {_fecha_txt(hoy)}", f"{px['max']:,.0f} MW" if px["max"] else "–",

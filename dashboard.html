@@ -230,7 +230,7 @@ function render(){
       <div class="card kpi"><div class="lbl">Precio de referencia</div><div class="val">${f2(K.precio.valor)}<small>USD/MWh</small></div>
        <div class="sub">${esc(K.precio.barra.replace(" 220",""))} · ${flecha(K.precio.var_dia)} diario</div>
        <div class="sub2">${Object.entries(K.precio.otras).map(([b,v])=>`${esc(b.replace(" 220",""))} ${f2(v)}`).join(" · ")}</div></div>
-      <div class="card kpi"><div class="lbl">Demanda máxima</div><div class="val">${f0(K.demanda.valor)}<small>MW</small></div><div class="sub">${K.demanda.hora?"pico a las "+K.demanda.hora+" h":""}</div></div>
+      <div class="card kpi"><div class="lbl">Demanda máxima</div><div class="val">${f0(K.demanda.valor)}<small>MW</small></div><div class="sub">${K.demanda.hora?"pico a las "+K.demanda.hora+" h":""}</div><div class="sub2">${K.demanda.var_mes!=null?`energía del mes ${flecha(K.demanda.var_mes)} vs ${K.demanda.ant}`:""}</div></div>
       <div class="card kpi"><div class="lbl">Indisponibilidad</div><div class="val">${K.indisp?f0(K.indisp.max):"–"}<small>MW</small></div>
        <div class="sub">${K.indisp?`máximo simultáneo · ${K.indisp.hora} h`:""}</div><div class="sub2">${K.indisp?`programada ${f0(K.indisp.prog)} · forzada ${f0(K.indisp.forz)} MW (prom.)`:""}</div></div>
       <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Próxima jornada · ${+K.proxima.fecha.slice(8,10)} ${MES[+K.proxima.fecha.slice(5,7)-1]}</div><div class="val">${K.proxima.max!=null?f0(K.proxima.max):"–"}<small>MW fuera</small></div>
