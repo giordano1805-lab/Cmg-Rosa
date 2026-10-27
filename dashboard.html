@@ -87,6 +87,21 @@ a{color:var(--s1)}
 .embd .lbl{font-size:12px;color:var(--text-2)}
 .chart.sm{height:170px}
 .tools .csv{border:1px solid var(--border);background:var(--surface);color:var(--text-2);border-radius:7px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer;margin-left:6px}
+.hero{background:linear-gradient(90deg,rgba(255,87,22,.08),rgba(255,178,16,.05));border-color:transparent}
+.hero .lbl{letter-spacing:.08em;font-weight:700;color:var(--naranja);font-size:12px}
+.concl{font-size:17px;line-height:1.5;margin:6px 0 0;font-weight:500}
+.sub2{font-size:12px;color:var(--muted);margin-top:4px}
+.saber{display:grid;gap:8px}
+.punto{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--text);padding:8px 10px;border-radius:8px;background:var(--grid);font-size:14px;line-height:1.45}
+.punto .tema{flex:0 0 112px;font-weight:700;color:var(--brand)}
+:root[data-theme="dark"] .punto .tema{color:#9fb1f7}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .punto .tema{color:#9fb1f7}}
+.vig{margin:0;padding-left:20px;display:grid;gap:6px}
+.vig a{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;text-decoration:none;color:var(--text);font-size:14px}
+.vig .hor{font-size:12px;color:var(--text-2);background:var(--grid);padding:1px 7px;border-radius:5px}
+.vig .ir{font-size:12px;color:var(--naranja);margin-left:auto}
+details.det summary{font-weight:600;color:var(--text-2)}
+@media (max-width:600px){.punto{flex-direction:column;gap:2px}.punto .tema{flex:none}.concl{font-size:15px}}
 .alertas{display:grid;gap:6px;margin-bottom:12px}
 .alerta{display:block;padding:7px 10px;border-radius:8px;border-left:4px solid var(--muted);background:var(--grid);color:var(--text);text-decoration:none;font-size:13px}
 .alerta b{margin-right:6px}.alerta span{color:var(--text-2)}
@@ -206,6 +221,28 @@ function render(){
      <div class="sub">${v==null?"":`<span class="neu" style="margin:0">${v>0?"▲":"▼"} ${Math.abs(v).toFixed(1)}%</span> vs. día anterior · `}mes ${f2(D.cmg_mes[b])}</div></div>`}).join("");
   const dmx=D.demanda_areas.length?D.demanda_areas.reduce((a,r)=>r.sein>a.sein?r:a):null;
   const sinD=D.indisponibilidades.filter(r=>!r.diesel);const mwI=sinD.reduce((s,r)=>s+(r.mw||0),0),IS=D.indisp_stats;
+  const TB=D.tablero;
+  if(TB){const K=TB.kpis,MES=["ene","feb","mar","abr","may","jun","jul","ago","set","oct","nov","dic"],fc=d=>`${+d.slice(8,10)} ${MES[+d.slice(5,7)-1].toUpperCase()} ${d.slice(0,4)}`;
+    const flecha=v=>v==null?"":`${v<0?"↓":"↑"}${Math.abs(v).toFixed(1)}%`;
+    $("#s-resumen").innerHTML=`<div class="grid">
+     <div class="card hero"><div class="lbl">RESUMEN · ${fc(TB.dia)}</div><p class="concl">${esc(TB.conclusion)}</p></div>
+     <div class="grid g4">
+      <div class="card kpi"><div class="lbl">Precio de referencia</div><div class="val">${f2(K.precio.valor)}<small>USD/MWh</small></div>
+       <div class="sub">${esc(K.precio.barra.replace(" 220",""))} · ${flecha(K.precio.var_dia)} diario</div>
+       <div class="sub2">${Object.entries(K.precio.otras).map(([b,v])=>`${esc(b.replace(" 220",""))} ${f2(v)}`).join(" · ")}</div></div>
+      <div class="card kpi"><div class="lbl">Demanda máxima</div><div class="val">${f0(K.demanda.valor)}<small>MW</small></div><div class="sub">${K.demanda.hora?"pico a las "+K.demanda.hora+" h":""}</div></div>
+      <div class="card kpi"><div class="lbl">Indisponibilidad</div><div class="val">${K.indisp?f0(K.indisp.max):"–"}<small>MW</small></div>
+       <div class="sub">${K.indisp?`máximo simultáneo · ${K.indisp.hora} h`:""}</div><div class="sub2">${K.indisp?`programada ${f0(K.indisp.prog)} · forzada ${f0(K.indisp.forz)} MW (prom.)`:""}</div></div>
+      <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Próxima jornada · ${+K.proxima.fecha.slice(8,10)} ${MES[+K.proxima.fecha.slice(5,7)-1]}</div><div class="val">${K.proxima.max!=null?f0(K.proxima.max):"–"}<small>MW fuera</small></div>
+       <div class="sub">${K.proxima.max!=null?"máximo a las "+K.proxima.hora+" h":"programa aún no publicado"}</div><div class="sub2">${K.proxima.principal?"Principal: "+esc(K.proxima.principal):""}</div></div></div>
+     ${(D.alertas||[]).length?`<div class="alertas">${D.alertas.map(a=>`<a class="alerta ${a.nivel}" href="#${a.seccion}" onclick="ver('${a.seccion}');return false"><b>${esc(a.titulo)}</b><span>${esc(a.motivo)}</span></a>`).join("")}</div>`:""}
+     <div class="card"><h2>Lo que debes saber</h2><div class="saber">${TB.saber.map(x=>`<a class="punto" href="#${x.seccion}" onclick="ver('${x.seccion}');return false"><span class="tema">${esc(x.tema)}</span><span>${esc(x.texto)}</span></a>`).join("")}</div></div>
+     <div class="card"><h2>Evolución del precio · ${esc(K.precio.barra)}<small>USD/MWh, promedio diario del mes · ▾ máximo del mes y los 3 días con mayor desacople entre barras · toca la leyenda para comparar otras barras</small></h2><div class="chart tall"><canvas id="c-mes"></canvas></div></div>
+     <div class="card"><h2>Qué vigilar · ${fc(TB.hoy)}</h2>${TB.vigilar.length?`<ol class="vig">${TB.vigilar.map(x=>`<li><a href="#${x.seccion}" onclick="ver('${x.seccion}');return false"><span>${esc(x.texto)}</span>${x.horario?`<span class="hor">${esc(x.horario)}</span>`:""}<span class="ir">Ver →</span></a></li>`).join("")}</ol>`:'<div class="note" style="margin:0">Sin asuntos programados relevantes.</div>'}</div>
+     <details class="card det"><summary>Ver detalle completo del día</summary>
+      ${D.bloques?[["paso","Qué pasó"],["huanchor","Huanchor"],["vigilar","Programación y mantenimiento"]].filter(([k])=>(D.bloques[k]||[]).length).map(([k,n])=>`<div class="blq"><div class="lbl centt">${n}</div><ul class="bul">${D.bloques[k].map(t=>`<li>${t}</li>`).join("")}</ul></div>`).join(""):""}
+      <div class="blq"><div class="lbl centt">Todos los datos</div><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></div></details></div>`;
+  }else{
   $("#s-resumen").innerHTML=`<div class="grid g4">${kp}
    <div class="card kpi"><div class="lbl">Máxima demanda SEIN</div><div class="val">${dmx?f0(dmx.sein):"–"}<small>MW</small></div><div class="sub">${dmx?"a las "+dmx.hora+" h":""}</div></div>
    <div class="card kpi"><div class="lbl">Indisponible sin diésel · máx. simultáneo</div><div class="val">${f0(IS?IS.max:mwI)}<small>MW</small></div><div class="sub">${IS?`promedio ${f0(IS.prom)} MW · forzado máx. ${f0(IS.forzado.max)} MW`:sinD.length+" registros"}</div></div>
@@ -216,6 +253,8 @@ function render(){
        +`<details class="det"><summary>Ver detalle completo</summary><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></details>`
       :`<ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul>`}</div>
    <div class="card"><h2>CMg promedio diario del mes<small>USD/MWh</small></h2><div class="chart"><canvas id="c-mes"></canvas></div></div></div>`;
+
+  }
 
   const HU=D.huanchor;
   if(HU){const dd=HU.diario,hoyD=dd[dd.length-1]||{},vp=(a,b)=>a!=null&&b?(a/b-1)*100:null,neu=x=>x==null?"":`<span class="neu">${x>0?"▲":"▼"} ${Math.abs(x).toFixed(1)}%</span>`;
@@ -404,8 +443,24 @@ function render(){
 function dibujar(){
   if(!D)return;charts.forEach(c=>c.destroy());charts=[];
   const on=id=>$(id)&&$(id).closest("section").classList.contains("on");
-  if(on("#c-mes")){const dias=[...new Set(D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])))].sort();
-    grafico("#c-mes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:D.barras.map(b=>({label:b,data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2.5,tension:.25}))},options:base("USD/MWh")})}
+  if(on("#c-mes")){const dias=[...new Set(D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])))].sort(),ref=D.barras[0],u=D.umbrales||{desacople:15,cmg_alto:150};
+    const pm=D.cmg_mes[ref],srv=dias.map(d=>D.cmg_diario[ref][d]??null),ult=srv.length-1;
+    // anotaciones solo en días relevantes: desacople entre barras o CMg sobre el umbral alto
+    // solo los 3 días con mayor desacople sobre el umbral (y precios sobre el umbral alto), para no saturar
+    const difs=dias.map(d=>{const v=D.barras.map(b=>D.cmg_diario[b][d]).filter(x=>x!=null);return v.length>1?Math.max(...v)-Math.min(...v):0});
+    const top=difs.map((x,i)=>[x,i]).filter(([x])=>x>=u.desacople).sort((a,b)=>b[0]-a[0]).slice(0,3).map(([,i])=>i);
+    const imx=srv.reduce((b,v,i)=>v!=null&&(b<0||v>srv[b])?i:b,-1);
+    const notas=dias.map((d,i)=>top.includes(i)?`desacople ${f0(difs[i])}`:(i===imx?`máx. ${f0(srv[i])}`:""));
+    const plug={id:"anot",afterDatasetsDraw(c){const x=c.ctx,m=c.getDatasetMeta(0);x.save();x.font="600 10.5px Inter,sans-serif";x.textAlign="center";
+      notas.forEach((n,i)=>{if(!n||!m.data[i])return;const p=m.data[i];x.fillStyle=css("--text-2");x.fillText("▾ "+n,p.x,p.y-10)});
+      const p=m.data[ult];if(p&&srv[ult]!=null){x.fillStyle=css("--naranja");x.font="700 12px Inter,sans-serif";x.textAlign="right";x.fillText(`${f2(srv[ult])}`,p.x-8,p.y+18)}
+      const y=c.scales.y.getPixelForValue(pm);x.fillStyle=css("--text-2");x.font="11px Inter,sans-serif";x.textAlign="left";x.fillText(`promedio del mes ${f2(pm)}`,c.chartArea.left+6,y-5);x.restore()}};
+    const o=base("USD/MWh");o.layout={padding:{top:14}};
+    grafico("#c-mes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:[
+      {label:ref,data:srv,borderColor:css(SERIE[ref]),backgroundColor:css(SERIE[ref]),borderWidth:3,tension:.25,pointRadius:srv.map((_,i)=>i===ult?6:2.5),pointBackgroundColor:srv.map((_,i)=>i===ult?css("--naranja"):css(SERIE[ref]))},
+      {label:"Promedio del mes",data:dias.map(()=>pm),borderColor:css("--muted"),borderDash:[6,4],borderWidth:1.5,pointRadius:0},
+      ...D.barras.slice(1).map(b=>({label:b,data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2,tension:.25,hidden:true}))]},
+      options:o,plugins:[plug]})}
   if(on("#c-30")){const t=D.cmg_30min[D.barras[0]].map(p=>p[0]);
     grafico("#c-30",{type:"line",data:{labels:t.map(s=>{const d=new Date(s);return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")} ${d.toTimeString().slice(0,5)}`}),
       datasets:D.barras.map(b=>({label:b,data:D.cmg_30min[b].map(p=>p[1]),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:0,pointHoverRadius:5,tension:.2}))},options:base("USD/MWh")})}

@@ -324,6 +324,141 @@ def resumen_bloques(ind, ieod, prog, dia, hoy, m, extra):
     return {"paso": f(paso), "huanchor": f(hu_b), "vigilar": f(vig)}
 
 
+MESES_TXT = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "setiembre", "octubre",
+             "noviembre", "diciembre"]
+
+
+def _fecha_txt(d):
+    return f"{d.day} de {MESES_TXT[d.month - 1]}"
+
+
+def _hora(r, dia):
+    i, f = r.get("inicio"), r.get("final")
+    if isinstance(i, str):
+        i = dt.datetime.fromisoformat(i)
+    if isinstance(f, str):
+        f = dt.datetime.fromisoformat(f)
+    if not i:
+        return ""
+    fin = "24:00" if f and f.date() > dia and f.hour == 0 and f.minute == 0 else (f"{f:%H:%M}" if f else "")
+    return f"{max(i, dt.datetime(dia.year, dia.month, dia.day)):%H:%M}–{fin}"
+
+
+def _corto(t, n=70):
+    t = " ".join(str(t or "").split()).lower()
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
+
+def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
+    """Resumen para leer en 30 segundos: conclusión, 4 indicadores, 3 mensajes y hasta 3 asuntos a vigilar.
+    Solo hechos medidos; no se atribuyen causas."""
+    out = {"dia": dia.isoformat(), "hoy": hoy.isoformat()}
+    sr, sr_p, sr_m = ind["diario_b"][m.SR].get(dia), ind["prev"].get(m.SR), ind["prom_mes_b"][m.SR]
+    v_d, v_m = _pct(sr, sr_p), _pct(sr, sr_m)
+    hc, rh = extra.get("hidro_centrales"), extra.get("hidro")
+    if hc and hc.get("total_ant"):
+        hid_v, hid_txt = _pct(hc["total_act"], hc["total_ant"]), "generación hidroeléctrica acumulada del mes"
+    elif rh and rh["mtd"].get(rh["ant"]):
+        hid_v, hid_txt = _pct(rh["mtd"][rh["act"]], rh["mtd"][rh["ant"]]), "hidro de pasada del mes"
+    else:
+        hid_v, hid_txt = None, ""
+    g = [r for r in fc.solo_generacion(prog or []) if r["mw"] > 0 and not r.get("diesel")]
+    sp = fc.perfil_indisponible(g, hoy) if g else None
+    principal = max(g, key=lambda r: r["mw"]) if g else None
+    # 1. conclusión
+    partes = []
+    if sr is not None:
+        partes.append(f"El {_fecha_txt(dia)}, {m.SR.replace(' 220', '')} cerró en {sr:.2f} USD/MWh" +
+                      (f", {abs(v_d):.1f}% {'menos' if v_d < 0 else 'más'} que el día anterior" if v_d is not None else "") + ".")
+    if hid_v is not None:
+        partes.append(f"La {hid_txt} sigue {'por debajo' if hid_v < 0 else 'por encima'} de {dia.year - 1} "
+                      f"({hid_v:+.0f}%).")
+    if sp and sp["max"] > 0:
+        partes.append(f"Para el {_fecha_txt(hoy)}, revisar las restricciones programadas (hasta {sp['max']:,.0f} MW "
+                      f"fuera a las {sp['hora_max']} h).")
+    out["conclusion"] = " ".join(partes)
+    # 2. indicadores
+    da = ieod.get("demanda_areas") or []
+    mx = max(da, key=lambda r: r["sein"] or 0) if da else None
+    st = extra.get("indisp_stats")
+    out["kpis"] = {
+        "precio": {"valor": sr, "var_dia": v_d, "var_mes": v_m, "prom_mes": sr_m, "barra": m.SR,
+                   "otras": {b: ind["diario_b"][b].get(dia) for b in m.BARRAS if b != m.SR}},
+        "demanda": {"valor": mx["sein"] if mx else None, "hora": mx["hora"] if mx else None},
+        "indisp": {"max": st["max"], "hora": st["hora_max"], "prog": st["programado"]["prom"],
+                   "forz": st["forzado"]["prom"], "forz_max": st["forzado"]["max"]} if st else None,
+        "proxima": {"fecha": hoy.isoformat(), "max": sp["max"] if sp else None, "hora": sp["hora_max"] if sp else None,
+                    "principal": (f"{_unidad(principal)} · {principal['mw']:.0f} MW · {_hora(principal, hoy)}"
+                                  if principal else None)},
+    }
+    # 3. lo que debes saber (dato + significado)
+    saber = []
+    if sr is not None:
+        saber.append({"tema": "Precio", "seccion": "precios", "texto":
+                      f"{m.SR.replace(' 220', '')} {sr:.2f} USD/MWh: " +
+                      (f"{v_d:+.1f}% frente a ayer" if v_d is not None else "") +
+                      (f" y {abs(v_m):.0f}% {'bajo' if v_m < 0 else 'sobre'} el promedio del mes ({sr_m:.2f})."
+                       if v_m is not None else ".")})
+    if hid_v is not None:
+        txt = f"La {hid_txt} va {hid_v:+.0f}% frente al mismo período de {dia.year - 1}"
+        if hc and hc.get("centrales"):
+            baj = [c for c in hc["centrales"] if c["delta"] < 0][:2]
+            if baj:
+                txt += "; las mayores caídas: " + ", ".join(f"{c['central']} ({c['delta']:+.1f} GWh)" for c in baj)
+        saber.append({"tema": "Oferta hídrica", "seccion": "oferta", "texto": txt + "."})
+    oper = None
+    vals = {k: v.get(dia) for k, v in ind["diario_b"].items() if v.get(dia) is not None}
+    cg = (extra.get("congestion") or {}).get("registros") or []
+    ev_f = fc.filtrar_lineas_220([e for e in ieod.get("eventos") or [] if fc.norm(e.get("tipo")) == "FALLA"])
+    if len(vals) >= 2 and max(vals.values()) - min(vals.values()) >= UMBRALES["desacople"]:
+        a, b = max(vals, key=vals.get), min(vals, key=vals.get)
+        oper = {"tema": "Operación", "seccion": "trans", "texto":
+                f"Desacople entre {a} y {b}: {vals[a] - vals[b]:.2f} USD/MWh de diferencia; revisar transmisión."}
+    elif cg:
+        oper = {"tema": "Operación", "seccion": "trans",
+                "texto": f"Se registraron {len(cg)} congestiones de transmisión; pueden separar los precios entre barras."}
+    elif st and st["forzado"]["max"] >= UMBRALES["forzado"]:
+        oper = {"tema": "Operación", "seccion": "indisp",
+                "texto": f"Indisponibilidad forzada de hasta {st['forzado']['max']:,.0f} MW simultáneos."}
+    elif ev_f:
+        oper = {"tema": "Operación", "seccion": "trans", "texto":
+                f"Falla en líneas ≥220 kV ({', '.join(sorted({e['equipo'] for e in ev_f}))}); sin desacople relevante de precios."}
+    elif st:
+        oper = {"tema": "Operación", "seccion": "indisp", "texto":
+                f"Hasta {st['max']:,.0f} MW fuera de servicio a la vez ({st['hora_max']} h), "
+                f"de los cuales {st['forzado']['max']:,.0f} MW forzados."}
+    if oper:
+        saber.append(oper)
+    out["saber"] = [{**x, "texto": romanos(x["texto"])} for x in saber[:3]]
+    # 4. qué vigilar (máx. 3, por relevancia)
+    vig = []
+    for r in _unicos(sorted(g, key=lambda r: -r["mw"]))[:2]:
+        vig.append({"texto": f"{_unidad(r)} fuera de servicio ({r['mw']:.0f} MW): {_corto(r['descripcion'])}",
+                    "horario": _hora(r, hoy), "seccion": "prog", "peso": r["mw"]})
+    own = [r for r in prog or [] if "HUANCHOR" in fc.norm(r.get("ubicacion"))]
+    for r in own[:1]:
+        vig.append({"texto": f"Intervención en Huanchor {r['equipo']}: {_corto(r['descripcion'])}",
+                    "horario": _hora(r, hoy), "seccion": "huanchor", "peso": 1e6})
+    lp = fc.filtrar_lineas_220(prog or [])
+    if lp:
+        r = max(lp, key=lambda r: r.get("kv") or 0)
+        vig.append({"texto": f"{len({x['equipo'] for x in lp})} líneas ≥220 kV intervenidas; la de mayor tensión: "
+                             f"{r['equipo']} {r['ubicacion'].title()}", "horario": _hora(r, hoy), "seccion": "prog",
+                    "peso": 50})
+    pm = (extra.get("prog_mensual") or {}).get("regs") or []
+    prox = sorted([r for r in pm if not r.get("diesel") and r["mw"] >= 50
+                   and hoy < dt.datetime.fromisoformat(r["inicio"]).date() <= hoy + dt.timedelta(days=7)],
+                  key=lambda r: -r["mw"])
+    if prox:
+        r = prox[0]
+        vig.append({"texto": f"Desde el {_fecha_txt(dt.datetime.fromisoformat(r['inicio']).date())}: "
+                             f"{_unidad(r)} {r['mw']:.0f} MW en mantenimiento", "horario": "", "seccion": "mes",
+                    "peso": r["mw"] * 0.4})
+    vig.sort(key=lambda x: -x["peso"])
+    out["vigilar"] = [{k: romanos(v) if isinstance(v, str) else v for k, v in x.items() if k != "peso"} for x in vig[:3]]
+    return out
+
+
 def alertas(ind, ieod, dia_ieod, prog, dia, m, extra):
     """Alertas explicables: nivel, título, qué la activó y dónde ver el detalle."""
     out, U = [], UMBRALES
@@ -451,19 +586,49 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
         canvas.restoreState()
 
     el = []
-    el.append(Paragraph("Resumen ejecutivo", h1))
+    tb = extra.get("tablero")
     bl = extra.get("bloques") or {}
-    for k, tit_ in (("paso", "Qué pasó"), ("huanchor", "Qué implica para Huanchor"), ("vigilar", "Qué vigilar")):
-        if bl.get(k):
-            el.append(Paragraph(tit_, h2))
-            for t in bl[k]:
-                el.append(Paragraph(t, bul, bulletText="•"))
-    for a in extra.get("alertas") or []:
-        el.append(Paragraph(f"<font color='{'#c5221f' if a['nivel'] == 'alta' else GRIS}'><b>⚑ {a['titulo']}:</b></font> "
-                            f"{a['motivo']}", bul))
-    if not bl:
-        for t in bullets:
-            el.append(Paragraph(t, bul, bulletText="•"))
+    if tb:
+        el.append(Paragraph(f"Resumen · {_fecha_txt(dia)} {dia.year}", h1))
+        el.append(Paragraph(f"<b>{tb['conclusion']}</b>", ParagraphStyle("concl", parent=txt, fontSize=10.5,
+                                                                          leading=14, spaceAfter=6)))
+        k = tb["kpis"]
+        kp = ParagraphStyle("kpr", parent=txt, leading=16)
+        cel = lambda t, v, sub: P(f"<font size=7.5 color='{GRIS}'>{t}</font><br/><font size=14 color='{AZUL}'><b>{v}</b>"
+                                  f"</font><br/><font size=7 color='{GRIS}'>{sub}</font>", kp)
+        pr, de, ix, px = k["precio"], k["demanda"], k["indisp"], k["proxima"]
+        fila = [cel("Precio de referencia", f"{pr['valor']:.2f} USD/MWh" if pr["valor"] is not None else "–",
+                    f"{pr['barra']} · {pr['var_dia']:+.1f}% diario" if pr["var_dia"] is not None else pr["barra"]),
+                cel("Demanda máxima", f"{de['valor']:,.0f} MW" if de["valor"] else "–", f"pico a las {de['hora']} h" if de["hora"] else ""),
+                cel("Indisponibilidad", f"{ix['max']:,.0f} MW" if ix else "–",
+                    f"máx. simultáneo · prog. {ix['prog']:,.0f} / forz. {ix['forz']:,.0f} MW prom." if ix else ""),
+                cel(f"Próxima jornada · {_fecha_txt(hoy)}", f"{px['max']:,.0f} MW" if px["max"] else "–",
+                    (px["principal"] or "sin restricciones programadas")[:60])]
+        t = Table([fila], colWidths=[ancho / 4] * 4)
+        t.setStyle(TableStyle([("BOX", (0, 0), (-1, -1), 0.6, colors.HexColor("#d9dce6")),
+                               ("LINEBEFORE", (1, 0), (-1, 0), 0.4, colors.HexColor("#d9dce6")),
+                               ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                               ("TOPPADDING", (0, 0), (-1, -1), 6), ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
+        el.append(t)
+        el.append(Paragraph("Lo que debes saber", h2))
+        for x in tb["saber"]:
+            el.append(Paragraph(f"<b>{x['tema']}.</b> {x['texto']}", bul, bulletText="•"))
+        if tb["vigilar"]:
+            el.append(Paragraph(f"Qué vigilar · {_fecha_txt(hoy)}", h2))
+            for i, x in enumerate(tb["vigilar"], 1):
+                el.append(Paragraph(f"<b>{i}.</b> {x['texto']}" + (f" <font color='{GRIS}'>({x['horario']})</font>"
+                                                                   if x["horario"] else ""), bul))
+        for a in extra.get("alertas") or []:
+            el.append(Paragraph(f"<font color='{'#c5221f' if a['nivel'] == 'alta' else GRIS}'><b>⚑ {a['titulo']}:</b></font> "
+                                f"{a['motivo']}", bul))
+        if bl.get("huanchor"):
+            el.append(Paragraph("Huanchor", h2))
+            for t_ in bl["huanchor"]:
+                el.append(Paragraph(t_, bul, bulletText="•"))
+    else:
+        el.append(Paragraph("Resumen ejecutivo", h1))
+        for t_ in bullets:
+            el.append(Paragraph(t_, bul, bulletText="•"))
     el.append(Spacer(1, 6))
 
     # KPIs de precios
@@ -677,6 +842,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "dia": dia.isoformat(), "hoy": hoy.isoformat(), "dia_ieod": _iso(dia_ieod), "tc": m.TC,
         "resumen": bullets,
         "bloques": extra.get("bloques"),
+        "tablero": extra.get("tablero"),
         "alertas": extra.get("alertas") or [],
         "umbrales": UMBRALES,
         "barras": list(m.BARRAS), "colores": {b: c for b, (_, _, c) in m.BARRAS.items()},
@@ -925,6 +1091,7 @@ def generar(m, hist=None):
     bullets = resumen(ind, ieod, prog, dia, m, extra)
     try:
         extra["bloques"] = resumen_bloques(ind, ieod, prog, dia, hoy, m, extra)
+        extra["tablero"] = resumen_tablero(ind, ieod, prog, dia, hoy, m, extra)
     except Exception as e:
         print("resumen en bloques:", e, file=sys.stderr)
     try:
