@@ -1038,9 +1038,9 @@ def centrales_hidro(hojas):
 # --------------------------------------------------------------------------- Programa Semanal (YUPANA)
 # Barras a extraer del despacho semanal: etiqueta -> regex sobre el nombre normalizado
 BARRAS_PSO = {
-    "Santa Rosa 220": r"S(AN)?TA\.?\s*ROSA.*220",
-    "Socabaya 220": r"SOCABAYA.*220",
-    "Piura 220": r"PIURA(\s*OESTE)?.*220",
+    "Santa Rosa 220": r"S(AN)?TA\.?\s*ROSA",
+    "Socabaya 220": r"SOCABAYA",
+    "Piura 220": r"PIURA",
     "Huanchor 50": r"HUANCHOR",
     "Matucana": r"MATUCANA",
 }
@@ -1073,12 +1073,19 @@ def _archivos_rec(ruta, prof=2):
 
 
 def _libros_de(b, nombre):
-    """[(nombre, hojas)] desde un xlsx/xlsm/xls o desde los libros dentro de un zip."""
+    """[(nombre, hojas)] desde un xlsx/xlsm/xls o desde los libros/csv dentro de un zip."""
+    import csv as _csv
     if nombre.lower().endswith(".zip"):
         out = []
         with zipfile.ZipFile(io.BytesIO(b)) as z:
-            for n in z.namelist():
-                if n.lower().endswith((".xlsx", ".xlsm", ".xls")) and re.search(r"DESPACHO|CMG|MARGINAL", norm(n)):
+            ns = [n for n in z.namelist() if n.lower().endswith((".xlsx", ".xlsm", ".xls", ".csv"))]
+            pref = [n for n in ns if re.search(r"CMG|MARGINAL|BARRA|DESPACHO", norm(n))] or ns[:6]
+            for n in pref[:8]:
+                if n.lower().endswith(".csv"):
+                    t = z.read(n).decode("utf-8", "ignore")
+                    sep = ";" if t[:2000].count(";") > t[:2000].count(",") else ","
+                    out.append((n, {_nombre(n): [r for r in _csv.reader(io.StringIO(t), delimiter=sep)][:5000]}))
+                else:
                     out.append((n, libro(z.read(n))))
         return out
     return [(nombre, libro(b))]
@@ -1111,13 +1118,20 @@ def _unidad_cmg(filas):
 def _cmg_en_hoja(nombre, filas):
     """{datetime fin de intervalo: {barra: valor}} si la hoja tiene barras en columnas y tiempos en filas."""
     for i, f in enumerate(filas[:40]):
-        cols = {}
+        cands = {}
         for j, v in enumerate(f):
             n = norm(v)
             for b, rx in BARRAS_PSO.items():
-                if n and re.search(rx, n) and b not in cols:
-                    cols[b] = j
+                if n and re.search(rx, n):
+                    cands.setdefault(b, []).append((j, n))
+        # si hay varias (p. ej. SANTA ROSA 60 y 220) se prefiere la de 220 kV para las barras de mercado
+        cols = {b: next((j for j, n in cs if "220" in n), cs[0][0]) if b.endswith("220") else cs[0][0]
+                for b, cs in cands.items()}
         if len([b for b in cols if b in ("Santa Rosa 220", "Socabaya 220", "Piura 220")]) < 2:
+            continue
+        # evita leer el despacho de centrales (p. ej. C.T. Santa Rosa) como si fueran barras
+        ctx = norm(nombre) + " " + " ".join(norm(v) for g in filas[:i + 1] for v in g[:40])
+        if "Socabaya 220" not in cols and not re.search(r"CMG|MARGINAL|BARRA", ctx):
             continue
         base = _fecha_de_hoja(nombre, filas[:i + 1])
         out, prev = {}, None
@@ -1156,22 +1170,53 @@ def _cmg_en_hoja(nombre, filas):
     return {}, {}
 
 
+def _cmg_transpuesta(nombre, filas):
+    """Variante con barras en filas y fecha/hora en columnas."""
+    cab_i, tiempos = None, {}
+    for i, f in enumerate(filas[:30]):
+        ts = {}
+        for j, v in enumerate(f):
+            x = fecha_hora(v)
+            if x and x.year > 2015:
+                ts[j] = x
+        if len(ts) >= 24:
+            cab_i, tiempos = i, ts
+            break
+    if cab_i is None:
+        return {}, {}
+    out, nombres = {}, {}
+    for f in filas[cab_i + 1:cab_i + 3000]:
+        etiqueta = " ".join(norm(v) for v in f[:4] if texto(v))
+        for b, rx in BARRAS_PSO.items():
+            if b not in nombres and etiqueta and re.search(rx, etiqueta):
+                nombres[b] = etiqueta
+                for j, t in tiempos.items():
+                    x = numero(f[j]) if j < len(f) else None
+                    if x is not None:
+                        out.setdefault(t, {})[b] = x
+    if len([b for b in nombres if b in ("Santa Rosa 220", "Socabaya 220", "Piura 220")]) < 2:
+        return {}, {}
+    return out, nombres
+
+
 def cmg_programa_semanal(hoy: dt.date):
     """CMg proyectado (YUPANA) del Programa Semanal de Operación del COES para las semanas que cubren `hoy`.
     Devuelve (serie {datetime: {barra: valor en la unidad publicada}}, meta)."""
     meta = {"semanas": [], "archivos": [], "hojas": [], "unidad": None, "nombres": {}}
     serie = {}
     for d0, d1, carpeta in _semanas_pso(hoy):
-        arch = _archivos_rec(carpeta)
+        arch = list(dict.fromkeys(_archivos_rec(carpeta)))
         final = [a for a in arch if "/FINAL/" in norm(a) + "/"] or arch
-        cands = [a for a in final if re.search(r"DESPACHO|CMG|MARGINAL", norm(_nombre(a)))]
-        if not cands:
-            cands = [a for a in final if a.lower().endswith((".zip", ".xlsx", ".xlsm"))]
+        orden = lambda a: (0 if "DESPACHO" in norm(_nombre(a)) else 1 if "YUPANA" in norm(_nombre(a)) else
+                           2 if re.search(r"CMG|MARGINAL", norm(_nombre(a))) else 3)
+        cands = sorted([a for a in final if a.lower().endswith((".zip", ".xlsx", ".xlsm", ".xls"))
+                        and not re.search(r"COSTO VARIABLE", norm(_nombre(a)))], key=orden)
         meta["semanas"].append({"carpeta": carpeta, "desde": d0.isoformat(), "hasta": d1.isoformat(),
                                 "archivos": [_nombre(a) for a in arch][:40]})
         for a in cands[:4]:
-            b = bajar(a)
+            b = bajar(a, timeout=240)
             if not b:
+                meta["hojas"].append({"archivo": _nombre(a), "error": "no se pudo descargar"})
                 continue
             try:
                 libros = _libros_de(b, _nombre(a))
@@ -1181,16 +1226,17 @@ def cmg_programa_semanal(hoy: dt.date):
             hallado = False
             for nlib, hojas in libros:
                 for nh, filas in hojas.items():
-                    if not re.search(r"CMG|MARGINAL|BARRA", norm(nh) + " " + " ".join(norm(v) for f in filas[:6] for v in f[:20])):
-                        continue
-                    s, nombres = _cmg_en_hoja(nh, filas)
-                    meta["hojas"].append({"archivo": _nombre(a), "libro": nlib, "hoja": nh, "intervalos": len(s),
-                                          "cabecera": [[texto(v) for v in f[:14]] for f in filas[:8]]})
-                    if s:
+                    s_, nombres = _cmg_en_hoja(nh, filas)
+                    if not s_:
+                        s_, nombres = _cmg_transpuesta(nh, filas)
+                    meta["hojas"].append({"archivo": _nombre(a), "libro": nlib, "hoja": nh, "filas": len(filas),
+                                          "intervalos": len(s_), "barras": nombres,
+                                          "cabecera": [[texto(v)[:30] for v in f[:12]] for f in filas[:8]]})
+                    if s_:
                         hallado = True
                         meta["nombres"].update(nombres)
                         meta["unidad"] = meta["unidad"] or _unidad_cmg(filas)
-                        for t, v in s.items():
+                        for t, v in s_.items():
                             if d0 <= (t - dt.timedelta(minutes=1)).date() <= d1:
                                 serie[t] = v
             if hallado:
