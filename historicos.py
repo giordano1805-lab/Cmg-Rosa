@@ -27,6 +27,8 @@ RECURSOS = ("pasada", "regulacion", "eolica")
 F_EMB = DATA / "embalses_semanal.json"
 F_VOL = DATA / "volumenes_diarios.csv"
 F_HC = DATA / "hidro_centrales.csv"
+F_HU = DATA / "huanchor_30min.csv"
+CENTRAL_PROPIA = "Huanchor"
 VENTANA_VOL = 31          # días de volumen diario (año actual y mismas fechas del año anterior)
 
 C_ACT = "#f0590f"     # año actual (naranja Huanchor)
@@ -111,7 +113,22 @@ def resumen_demanda(dem, dia: dt.date):
                 serie.append(round(s, 2))
         acum[a] = serie
     anual = {a: sum(v for m, v in mensual[a].items() if m < dia.month) + mtd[a] / 1e3 for a in (act, ant)}
+    def _ant(d):
+        try:
+            return d.replace(year=d.year - 1)
+        except ValueError:
+            return d.replace(year=d.year - 1, day=28)
+
+    # máximas (misma fuente para ambos años: demanda ejecutada del Portal COES)
+    max_dia = {act: (dem.get(dia) or {}).get("max"), ant: (dem.get(_ant(dia)) or {}).get("max")}
+    max_mes = {}
+    for a in (act, ant):
+        ds = [d for d in dem if d.year == a and d.month == dia.month and d.day <= ndias]
+        if ds:
+            d = max(ds, key=lambda x: dem[x]["max"])
+            max_mes[a] = {"fecha": d.isoformat(), "mw": dem[d]["max"]}
     return {"mensual": {a: {m: round(v, 4) for m, v in sorted(mensual[a].items())} for a in mensual},
+            "max_dia": max_dia, "max_mes": max_mes,
             "mtd_gwh": {a: round(v, 1) for a, v in mtd.items()}, "dias": ndias, "acum_gwh": acum,
             "ytd_twh": {a: round(v, 3) for a, v in anual.items()}, "mes": dia.month, "act": act, "ant": ant}
 
@@ -258,6 +275,76 @@ def _hc_de(hojas):
     return {n: (x["empresa"], x["pasada"], x["regulacion"]) for n, x in fc.hidro_por_central(hojas).items()}
 
 
+def leer_hu():
+    out = {}
+    if F_HU.exists():
+        with F_HU.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                d = out.setdefault(dt.date.fromisoformat(r["fecha"]), {})
+                if r["min"] != "-":
+                    d[int(r["min"])] = float(r["mw"])
+    return out
+
+
+def guardar_hu(u):
+    DATA.mkdir(exist_ok=True)
+    with F_HU.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fecha", "min", "mw"])
+        for d in sorted(u):
+            if not u[d]:
+                w.writerow([d.isoformat(), "-", ""])
+            for k in sorted(u[d]):
+                w.writerow([d.isoformat(), k, f"{u[d][k]:.2f}"])
+
+
+def resumen_huanchor(dia: dt.date, hist, barra, tc):
+    """Producción de CH Huanchor en el mes vs año anterior, perfil del día y precio capturado con el CMg de `barra`."""
+    hc, hu = leer_hc(), leer_hu()
+
+    def mwh(d):
+        x = hc.get(d, {}).get(CENTRAL_PROPIA)
+        return round(x[1] + x[2], 2) if x else None
+
+    cmg = {}
+    for t, r in hist.items():
+        v = r.get(barra)
+        if isinstance(v, (int, float)):
+            u = t - dt.timedelta(minutes=1)
+            cmg.setdefault(u.date(), {})[u.hour * 60 + u.minute + 1] = v / tc
+    diario = []
+    for k in range(1, dia.day + 1):
+        d = dt.date(dia.year, dia.month, k)
+        perf, pr = hu.get(d) or {}, cmg.get(d) or {}
+        comunes = [m for m in perf if m in pr]
+        e = sum(perf[m] for m in comunes) * 0.5
+        diario.append({
+            "dia": k, "mwh": mwh(d), "mwh_ant": mwh(_un_anio_antes(d)),
+            "cmg": round(sum(pr.values()) / len(pr), 2) if pr else None,
+            "capturado": round(sum(perf[m] * pr[m] for m in comunes) * 0.5 / e, 2) if e > 0 else None,
+            "ingreso": round(sum(perf[m] * pr[m] for m in comunes) * 0.5, 0) if comunes else None,
+            "energia_30": round(e, 1) if comunes else None,
+        })
+    con = [x for x in diario if x["mwh"] is not None and x["mwh_ant"] is not None]
+    cap = [x for x in diario if x["capturado"] is not None]
+    e_cap = sum(x["energia_30"] for x in cap)
+    perfil = hu.get(dia) or {}
+    return {
+        "central": CENTRAL_PROPIA, "barra": barra, "mes": dia.month, "act": dia.year, "ant": dia.year - 1,
+        "diario": diario,
+        "mes_mwh": round(sum(x["mwh"] for x in con), 1), "mes_mwh_ant": round(sum(x["mwh_ant"] for x in con), 1),
+        "dias_comp": len(con),
+        "capturado_mes": round(sum(x["ingreso"] for x in cap) / e_cap, 2) if e_cap else None,
+        # CMg simple de los mismos días con precio capturado (para comparar manzanas con manzanas)
+        "cmg_mes": round(sum(x["cmg"] for x in cap) / len(cap), 2) if cap else None,
+        "ingreso_mes": round(sum(x["ingreso"] for x in cap), 0) if cap else None,
+        "dias_capturado": len(cap),
+        "perfil": [[m, perfil.get(m), round(cmg.get(dia, {}).get(m), 2) if cmg.get(dia, {}).get(m) is not None else None]
+                   for m in range(30, 1441, 30)],
+        "dia_mwh": mwh(dia), "dia_mwh_ant": mwh(_un_anio_antes(dia)),
+    }
+
+
 def resumen_centrales(dia: dt.date):
     """Energía hidráulica por central en lo que va del mes vs los mismos días del año anterior."""
     c = leer_hc()
@@ -317,7 +404,7 @@ def _vol_de(hojas):
 def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     """Rellena hidro de pasada (mes actual y mismo mes del año anterior) y volúmenes diarios de embalses
     (últimos VENTANA_VOL días y mismas fechas del año anterior) con una sola descarga del IEOD por día."""
-    h, v, hc = leer_hidro(), leer_vol(), leer_hc()
+    h, v, hc, hu = leer_hidro(), leer_vol(), leer_hc(), leer_hu()
     if hojas_dia:
         x = fc.recursos_dia(hojas_dia)
         if x:
@@ -328,13 +415,16 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
         z = _hc_de(hojas_dia)
         if z:
             hc[dia] = z
+        w = fc.despacho_unidad(hojas_dia)
+        if w:
+            hu[dia] = w
     act = [dt.date(dia.year, dia.month, k) for k in range(1, dia.day + 1)]
     ant = [dt.date(dia.year - 1, dia.month, k) for k in range(1, calendar.monthrange(dia.year - 1, dia.month)[1] + 1)]
     vact = [dia - dt.timedelta(days=k) for k in range(VENTANA_VOL)]
     vant = [_un_anio_antes(d, n) for n in range(1, ANIOS_VOL + 1) for d in vact]
     falta_h = {d for d in act + ant if d not in h or not _completo(h[d])}
     falta_v = {d for d in vact + vant if d not in v}
-    falta_c = {d for d in act + [_un_anio_antes(x) for x in act] if d not in hc}
+    falta_c = {d for d in act + [_un_anio_antes(x) for x in act] if d not in hc} | {d for d in act if d not in hu}
     orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant))
     t0 = time.time()
     for d in orden:
@@ -353,11 +443,14 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
                 h[d] = x
             v[d] = _vol_de(hojas)
             hc[d] = _hc_de(hojas)
+            if d.year == dia.year:
+                hu[d] = fc.despacho_unidad(hojas)
         except Exception as e:
             print("IEOD diario", d, e, file=sys.stderr)
     guardar_hidro(h)
     guardar_vol(v)
     guardar_hc(hc)
+    guardar_hu(hu)
     pend = [d for d in act + ant if d not in h]
     return h, pend
 
@@ -467,6 +560,20 @@ def grafico_hidro(rh, ruta, plt):
 
 
 # --------------------------------------------------------------------------- embalses semanales
+def etiqueta_semana(txt):
+    """'SEMANAL N° 42 (17.09.2026 - 23.10.2026)' → 'Semana 42 · 17/10 al 23/10/2026' (el COES a veces trae mal el inicio)."""
+    import re
+    if not txt:
+        return txt
+    m = re.search(r"(\d+)\D+(\d{1,2})\.(\d{1,2})\.(\d{4})\s*-\s*(\d{1,2})\.(\d{1,2})\.(\d{4})", txt)
+    if not m:
+        return txt
+    n, *f = m.groups()
+    fin = dt.date(int(f[5]), int(f[4]), int(f[3]))
+    ini = fin - dt.timedelta(days=6)
+    return f"Semana {int(n)} · {ini:%d/%m} al {fin:%d/%m/%Y}"
+
+
 def actualizar_embalses(hoy: dt.date):
     previo = json.loads(F_EMB.read_text(encoding="utf-8")) if F_EMB.exists() else None
     if (previo and (hoy - dt.date.fromisoformat(previo["consultado"])).days < 2 and previo.get("bloques")

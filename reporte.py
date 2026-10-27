@@ -184,12 +184,11 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
                      f"promedio {st['prom']:,.0f} MW ({st['mwh']:,.0f} MWh de capacidad indisponible); forzado "
                      f"promedio {st['forzado']['prom']:,.0f} MW. Mayores: " +
                      ", ".join(f"{r['ubicacion'].title()} {r['equipo']} ({r['mw']:.0f} MW)" for r in top) + ".")
-    lin = fc.filtrar_lineas_220(ieod.get("mantenimientos") or [])
     ev = ieod.get("eventos") or []
     ev_l = fc.filtrar_lineas_220(ev)
     if ev:
         b.append(f"Eventos: {len(ev)} registrados ({sum(1 for e in ev if e['tipo'].upper() == 'FALLA')} fallas)"
-                 + (f"; líneas ≥220 kV afectadas: {', '.join(e['equipo'] for e in ev_l)}." if ev_l else "."))
+                 + (f"; líneas ≥220 kV afectadas: {', '.join(lin(e['equipo']) for e in ev_l)}." if ev_l else "."))
     cu = [c for c in extra.get("cuencas") or [] if c["var_pct"] is not None and not c.get("solo_diario")]
     if cu:
         b.append("Embalses vs. año anterior (misma semana): " +
@@ -319,7 +318,7 @@ def resumen_bloques(ind, ieod, prog, dia, hoy, m, extra):
         vig.append(f"Hubo {len(cg['registros'])} congestiones de transmisión el día evaluado (ver Transmisión).")
     ev_l = fc.filtrar_lineas_220([e for e in ieod.get("eventos") or [] if fc.norm(e.get("tipo")) == "FALLA"])
     if ev_l:
-        vig.append("Fallas en líneas ≥220 kV: " + ", ".join(sorted({e['equipo'] for e in ev_l})) + ".")
+        vig.append("Fallas en líneas ≥220 kV: " + ", ".join(lin(x) for x in sorted({e['equipo'] for e in ev_l})) + ".")
     f = lambda xs: [romanos(x) for x in xs][:4]
     return {"paso": f(paso), "huanchor": f(hu_b), "vigilar": f(vig)}
 
@@ -347,6 +346,26 @@ def _hora(r, dia):
 def _corto(t, n=70):
     t = " ".join(str(t or "").split()).lower()
     return t if len(t) <= n else t[:n].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
+
+TRAMOS = {}       # código de línea → "A – B" (se llena en generar() y se acumula en data/tramos_lineas.json)
+
+
+def lin(cod):
+    """'L-2051' → 'L-2051 (Campo Armiño – Cotaruse)' si se conoce el tramo."""
+    t = TRAMOS.get(fc.codigo_linea(cod) or cod)
+    return f"{cod} ({t})" if t else cod
+
+
+def _max_dem(rd):
+    """Máxima demanda del día y del mes vs año anterior (Portal COES, misma fuente en ambos años)."""
+    if not rd or not rd.get("max_dia"):
+        return {}
+    a, b = rd["act"], rd["ant"]
+    d1, d0 = rd["max_dia"].get(a), rd["max_dia"].get(b)
+    m1, m0 = (rd.get("max_mes") or {}).get(a), (rd.get("max_mes") or {}).get(b)
+    return {"portal": d1, "portal_ant": d0, "delta_dia": round(d1 - d0, 1) if d1 and d0 else None,
+            "mes": m1, "mes_ant": m0, "delta_mes": round(m1["mw"] - m0["mw"], 1) if m1 and m0 else None}
 
 
 def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
@@ -384,7 +403,12 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
     out["kpis"] = {
         "precio": {"valor": sr, "var_dia": v_d, "var_mes": v_m, "prom_mes": sr_m, "barra": m.SR,
                    "otras": {b: ind["diario_b"][b].get(dia) for b in m.BARRAS if b != m.SR}},
-        "demanda": {"valor": mx["sein"] if mx else None, "hora": mx["hora"] if mx else None},
+        "demanda": {"valor": mx["sein"] if mx else None, "hora": mx["hora"] if mx else None,
+                    "var_mes": (_pct(extra["demanda"]["mtd_gwh"][extra["demanda"]["act"]],
+                                     extra["demanda"]["mtd_gwh"][extra["demanda"]["ant"]])
+                                if extra.get("demanda") and extra["demanda"]["mtd_gwh"].get(extra["demanda"]["ant"]) else None),
+                    "ant": extra["demanda"]["ant"] if extra.get("demanda") else None,
+                    **_max_dem(extra.get("demanda"))},
         "indisp": {"max": st["max"], "hora": st["hora_max"], "prog": st["programado"]["prom"],
                    "forz": st["forzado"]["prom"], "forz_max": st["forzado"]["max"]} if st else None,
         "proxima": {"fecha": hoy.isoformat(), "max": sp["max"] if sp else None, "hora": sp["hora_max"] if sp else None,
@@ -399,6 +423,19 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
                       (f"{v_d:+.1f}% frente a ayer" if v_d is not None else "") +
                       (f" y {abs(v_m):.0f}% {'bajo' if v_m < 0 else 'sobre'} el promedio del mes ({sr_m:.2f})."
                        if v_m is not None else ".")})
+    rd = extra.get("demanda")
+    if rd and rd["mtd_gwh"].get(rd["ant"]):
+        a1, a0 = rd["mtd_gwh"][rd["act"]], rd["mtd_gwh"][rd["ant"]]
+        t = f"Energía del mes {a1:,.0f} GWh, {_pct(a1, a0):+.1f}% frente a los mismos {rd['dias']} días de {rd['ant']}"
+        md = _max_dem(rd)
+        if md.get("delta_dia") is not None:
+            t += (f"; máxima del {_fecha_txt(dia)} {md['portal']:,.0f} MW, {md['delta_dia']:+,.0f} MW frente al mismo día "
+                  f"de {rd['ant']}")
+        elif mx:
+            t += f"; máxima del {_fecha_txt(dia)} {mx['sein']:,.0f} MW a las {mx['hora']} h"
+        if md.get("delta_mes") is not None:
+            t += f". Máxima del mes {md['mes']['mw']:,.0f} MW ({md['delta_mes']:+,.0f} MW vs {rd['ant']})"
+        saber.append({"tema": "Demanda", "seccion": "oferta", "texto": t + "."})
     if hid_v is not None:
         txt = f"La {hid_txt} va {hid_v:+.0f}% frente al mismo período de {dia.year - 1}"
         if hc and hc.get("centrales"):
@@ -406,6 +443,13 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
             if baj:
                 txt += "; las mayores caídas: " + ", ".join(f"{c['central']} ({c['delta']:+.1f} GWh)" for c in baj)
         saber.append({"tema": "Oferta hídrica", "seccion": "oferta", "texto": txt + "."})
+    eo = extra.get("eolica")
+    if eo and eo["mtd"].get(eo["act"]) and eo["mtd"].get(eo["ant"]):
+        e1, e0 = eo["mtd"][eo["act"]], eo["mtd"][eo["ant"]]
+        hoy_e = (eo["diario"].get(eo["act"]) or {}).get(dia.day)
+        saber.append({"tema": "Eólica", "seccion": "oferta", "texto":
+                      f"Promedio del mes {e1:,.0f} MW, {_pct(e1, e0):+.0f}% frente a {eo['ant']}"
+                      + (f"; el {_fecha_txt(dia)} promedió {hoy_e:,.0f} MW" if hoy_e is not None else "") + "."})
     oper = None
     vals = {k: v.get(dia) for k, v in ind["diario_b"].items() if v.get(dia) is not None}
     cg = (extra.get("congestion") or {}).get("registros") or []
@@ -422,14 +466,14 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
                 "texto": f"Indisponibilidad forzada de hasta {st['forzado']['max']:,.0f} MW simultáneos."}
     elif ev_f:
         oper = {"tema": "Operación", "seccion": "trans", "texto":
-                f"Falla en líneas ≥220 kV ({', '.join(sorted({e['equipo'] for e in ev_f}))}); sin desacople relevante de precios."}
+                f"Falla en líneas ≥220 kV: {', '.join(lin(x) for x in sorted({e['equipo'] for e in ev_f}))}; sin desacople relevante de precios."}
     elif st:
         oper = {"tema": "Operación", "seccion": "indisp", "texto":
                 f"Hasta {st['max']:,.0f} MW fuera de servicio a la vez ({st['hora_max']} h), "
                 f"de los cuales {st['forzado']['max']:,.0f} MW forzados."}
     if oper:
         saber.append(oper)
-    out["saber"] = [{**x, "texto": romanos(x["texto"])} for x in saber[:3]]
+    out["saber"] = [{**x, "texto": romanos(x["texto"])} for x in saber[:5]]
     # 4. qué vigilar (máx. 3, por relevancia)
     vig = []
     for r in _unicos(sorted(g, key=lambda r: -r["mw"]))[:2]:
@@ -443,7 +487,7 @@ def resumen_tablero(ind, ieod, prog, dia, hoy, m, extra):
     if lp:
         r = max(lp, key=lambda r: r.get("kv") or 0)
         vig.append({"texto": f"{len({x['equipo'] for x in lp})} líneas ≥220 kV intervenidas; la de mayor tensión: "
-                             f"{r['equipo']} {r['ubicacion'].title()}", "horario": _hora(r, hoy), "seccion": "prog",
+                             f"{lin(r['equipo'])}", "horario": _hora(r, hoy), "seccion": "prog",
                     "peso": 50})
     pm = (extra.get("prog_mensual") or {}).get("regs") or []
     prox = sorted([r for r in pm if not r.get("diesel") and r["mw"] >= 50
@@ -599,7 +643,10 @@ def construir_pdf(ruta, dia, hoy, ind, ieod, dia_ieod, prog, graficos, bullets, 
         pr, de, ix, px = k["precio"], k["demanda"], k["indisp"], k["proxima"]
         fila = [cel("Precio de referencia", f"{pr['valor']:.2f} USD/MWh" if pr["valor"] is not None else "–",
                     f"{pr['barra']} · {pr['var_dia']:+.1f}% diario" if pr["var_dia"] is not None else pr["barra"]),
-                cel("Demanda máxima", f"{de['valor']:,.0f} MW" if de["valor"] else "–", f"pico a las {de['hora']} h" if de["hora"] else ""),
+                cel("Demanda máxima", f"{(de.get('portal') or de['valor']):,.0f} MW" if (de.get('portal') or de["valor"]) else "–",
+                    (f"pico a las {de['hora']} h" if de["hora"] else "") +
+                    (f" · {de['delta_dia']:+,.0f} MW vs {de['ant']}" if de.get("delta_dia") is not None else "") +
+                    (f" · mes {de['var_mes']:+.1f}% vs {de['ant']}" if de.get("var_mes") is not None else "")),
                 cel("Indisponibilidad", f"{ix['max']:,.0f} MW" if ix else "–",
                     f"máx. simultáneo · prog. {ix['prog']:,.0f} / forz. {ix['forz']:,.0f} MW prom." if ix else ""),
                 cel(f"Próxima jornada · {_fecha_txt(hoy)}", f"{px['max']:,.0f} MW" if px["max"] else "–",
@@ -843,6 +890,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "resumen": bullets,
         "bloques": extra.get("bloques"),
         "tablero": extra.get("tablero"),
+        "tramos": dict(TRAMOS),
         "alertas": extra.get("alertas") or [],
         "umbrales": UMBRALES,
         "barras": list(m.BARRAS), "colores": {b: c for b, (_, _, c) in m.BARRAS.items()},
@@ -1088,6 +1136,16 @@ def generar(m, hist=None):
     if extra.get("cuencas"):
         g["embalses"] = hi.grafico_embalses(extra["cuencas"], tmp / "embalses.png", plt)
 
+    try:
+        f_tr = Path("data") / "tramos_lineas.json"
+        previo = json.loads(f_tr.read_text(encoding="utf-8")) if f_tr.exists() else {}
+        nuevos = fc.tramos_lineas(prog or [], ieod.get("eventos"), ieod.get("mantenimientos"),
+                                  (extra.get("prog_mensual") or {}).get("regs"))
+        TRAMOS.clear()
+        TRAMOS.update({**fc.tramos_de_flujos(extra.get("flujos")), **previo, **nuevos})
+        f_tr.write_text(json.dumps(dict(sorted(TRAMOS.items())), ensure_ascii=False, indent=0), encoding="utf-8")
+    except Exception as e:
+        print("tramos de líneas:", e, file=sys.stderr)
     bullets = resumen(ind, ieod, prog, dia, m, extra)
     try:
         extra["bloques"] = resumen_bloques(ind, ieod, prog, dia, hoy, m, extra)

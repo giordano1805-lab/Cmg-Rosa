@@ -160,6 +160,7 @@ function mwActivo(regs,t,filtro){const por={};
     if((r.equipo||"").toUpperCase()==="CENTRAL")c.cen=Math.max(c.cen,r.mw);else c.uni[r.equipo]=Math.max(c.uni[r.equipo]||0,r.mw)});
   return Object.values(por).reduce((a,c)=>a+Math.max(c.cen,Object.values(c.uni).reduce((x,y)=>x+y,0)),0)}
 function mwDia(regs,dia,filtro){const d0=new Date(dia+"T00:00");let s=0;for(let k=0;k<48;k++)s+=mwActivo(regs,new Date(d0.getTime()+(k*30+15)*6e4),filtro);return s/48}
+const lin=t=>{const m=String(t||"").match(/L-?\s?(\d{4}[A-Z]?)/i);if(!m)return t;const tr=(D.tramos||{})["L-"+m[1]];return tr&&!String(t).includes(tr)?`${t} (${tr})`:t};
 let HCF="Todas";
 function hcSel(){const H=D.hidro_centrales,C=H.centrales.filter(c=>HCF==="Todas"||c.tipo===HCF);
   return{C,act:C.reduce((a,c)=>a+c.act,0),ant:C.reduce((a,c)=>a+c.ant,0)}}
@@ -230,7 +231,7 @@ function render(){
       <div class="card kpi"><div class="lbl">Precio de referencia</div><div class="val">${f2(K.precio.valor)}<small>USD/MWh</small></div>
        <div class="sub">${esc(K.precio.barra.replace(" 220",""))} · ${flecha(K.precio.var_dia)} diario</div>
        <div class="sub2">${Object.entries(K.precio.otras).map(([b,v])=>`${esc(b.replace(" 220",""))} ${f2(v)}`).join(" · ")}</div></div>
-      <div class="card kpi"><div class="lbl">Demanda máxima</div><div class="val">${f0(K.demanda.valor)}<small>MW</small></div><div class="sub">${K.demanda.hora?"pico a las "+K.demanda.hora+" h":""}</div></div>
+      <div class="card kpi"><div class="lbl">Demanda máxima</div><div class="val">${f0(K.demanda.portal??K.demanda.valor)}<small>MW</small></div><div class="sub">${K.demanda.hora?"pico a las "+K.demanda.hora+" h":""}</div><div class="sub2">${K.demanda.delta_dia!=null?`<b>${K.demanda.delta_dia>0?"+":""}${f0(K.demanda.delta_dia)} MW</b> vs mismo día ${K.demanda.ant} (${f0(K.demanda.portal_ant)} MW)<br>`:""}${K.demanda.var_mes!=null?`energía del mes ${flecha(K.demanda.var_mes)} vs ${K.demanda.ant}`:""}</div></div>
       <div class="card kpi"><div class="lbl">Indisponibilidad</div><div class="val">${K.indisp?f0(K.indisp.max):"–"}<small>MW</small></div>
        <div class="sub">${K.indisp?`máximo simultáneo · ${K.indisp.hora} h`:""}</div><div class="sub2">${K.indisp?`programada ${f0(K.indisp.prog)} · forzada ${f0(K.indisp.forz)} MW (prom.)`:""}</div></div>
       <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Próxima jornada · ${+K.proxima.fecha.slice(8,10)} ${MES[+K.proxima.fecha.slice(5,7)-1]}</div><div class="val">${K.proxima.max!=null?f0(K.proxima.max):"–"}<small>MW fuera</small></div>
@@ -364,8 +365,8 @@ function render(){
    <div class="card"><h2>Eventos relevantes<small>${fuente}</small></h2><div id="t-ev"></div></div>
    <div class="card"><h2>Restricciones operativas</h2><div id="t-res"></div></div></div>`;
   const colLin=[{t:"Línea",v:r=>r.equipo},{t:"kV",num:1,v:r=>r.kv},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Tramo",v:r=>tit(r.ubicacion)},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},{t:"Estado",v:r=>r.estado},{t:"Descripción",v:r=>r.descripcion}];
-  if(CG.registros.length)tabla("#t-cg",CG.columnas.filter(c=>CG.registros.some(r=>r[c])).map(c=>({t:tit(c),v:r=>r[c]||"",h:r=>esc(/^\d{4}-\d\d-\d\dT/.test(r[c]||"")?r[c].slice(0,16).replace("T"," "):r[c]||"")})),CG.registros);
-  if(FL.length)tabla("#t-flu",[{t:"Línea",v:r=>r.cod},{t:"kV",num:1,v:r=>r.kv},{t:"Medido en",v:r=>tit(r.nombre)},{t:"Máx. |MW|",num:1,v:r=>r.max,h:r=>f0(r.max)},{t:"Mín.",num:1,v:r=>r.min,h:r=>f0(r.min)},{t:"Máx.",num:1,v:r=>r.mx,h:r=>f0(r.mx)},{t:"Promedio",num:1,v:r=>r.prom,h:r=>f0(r.prom)}],FL);
+  if(CG.registros.length)tabla("#t-cg",CG.columnas.filter(c=>CG.registros.some(r=>r[c])).map(c=>({t:tit(c),v:r=>r[c]||"",h:r=>esc(/^\d{4}-\d\d-\d\dT/.test(r[c]||"")?r[c].slice(0,16).replace("T"," "):lin(r[c]||""))})),CG.registros);
+  if(FL.length)tabla("#t-flu",[{t:"Línea",v:r=>r.cod},{t:"Tramo",v:r=>(D.tramos||{})[r.cod]||""},{t:"kV",num:1,v:r=>r.kv},{t:"Medido en",v:r=>tit(r.nombre)},{t:"Máx. |MW|",num:1,v:r=>r.max,h:r=>f0(r.max)},{t:"Mín.",num:1,v:r=>r.min,h:r=>f0(r.min)},{t:"Máx.",num:1,v:r=>r.mx,h:r=>f0(r.mx)},{t:"Promedio",num:1,v:r=>r.prom,h:r=>f0(r.prom)}],FL);
   tabla("#t-lin",colLin,[...D.lineas_220].sort((a,b)=>b.kv-a.kv));
   tabla("#t-ev",[{t:"Tipo",v:r=>tit(r.tipo)},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Equipo",v:r=>`${r.equipo} · ${tit(r.ubicacion)}`},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},
     {t:"kV",num:1,v:r=>r.kv||""},{t:"MW",num:1,v:r=>r.mw||"",h:r=>r.mw?f1(r.mw):""},{t:"Descripción",v:r=>r.descripcion}],D.eventos);
@@ -513,12 +514,12 @@ function dibujar(){
     const cols=["--s1","--s3","--s4","--s7","--s5","--muted"],ser=(arr)=>{const m=Object.fromEntries(arr);return lab.map((_,k)=>m[(k+1)*30]??null)};
     const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
     grafico("#c-enl"+i,{type:"line",data:{labels:lab,datasets:[{label:"Total",data:ser(e.total),borderColor:css("--s2"),backgroundColor:css("--s2"),borderWidth:3,pointRadius:0,tension:.2},
-      ...Object.entries(e.lineas).map(([ln,sr],j)=>({label:ln,data:ser(sr),borderColor:css(cols[j%cols.length]),backgroundColor:css(cols[j%cols.length]),borderWidth:1.3,pointRadius:0,tension:.2}))]},options:o})});
+      ...Object.entries(e.lineas).map(([ln,sr],j)=>({label:(m=>m&&(D.tramos||{})["L-"+m[1]]?`L-${m[1]} ${(D.tramos||{})["L-"+m[1]]}`:ln)(String(ln).match(/L-?\s?(\d{4}[A-Z]?)/i)),data:ser(sr),borderColor:css(cols[j%cols.length]),backgroundColor:css(cols[j%cols.length]),borderWidth:1.3,pointRadius:0,tension:.2}))]},options:o})});
   if(on("#c-flu")){const FL=Object.entries(D.flujos||{}).map(([cod,x])=>({cod,...x,max:Math.max(...x.serie.map(p=>Math.abs(p[1])))})).sort((a,b)=>b.max-a.max).slice(0,8);
     const cols=["--s1","--s2","--s3","--s4","--s7","--s8","--s5","--muted"];
     const lab=Array.from({length:48},(_,i)=>{const m=(i+1)*30;return `${String(Math.floor(m/60)%24).padStart(2,"0")}:${m%60?"30":"00"}`});
     const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
-    grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:`${l.cod}${l.nombre?" ("+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
+    grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:(D.tramos||{})[l.cod]?`${l.cod} ${(D.tramos||{})[l.cod]}`:`${l.cod}${l.nombre?" (medido en "+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
   if(on("#c-mesd")){const PM=D.prog_mensual,MRs=PM.regs.filter(r=>!r.diesel),n=new Date(+PM.mes.slice(0,4),+PM.mes.slice(5,7),0).getDate();
     const tecs=[...new Set(MRs.map(r=>r.tecnologia||"Otra"))],hoyD=D.hoy.slice(0,7)===PM.mes?+D.hoy.slice(8,10):0;
     const val=(t,k)=>mwDia(MRs,`${PM.mes}-${String(k+1).padStart(2,"0")}`,r=>(r.tecnologia||"Otra")===t);

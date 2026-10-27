@@ -450,6 +450,62 @@ def filtrar_lineas_220(regs):
     return out
 
 
+def mw_simultaneo(regs, t):
+    """MW fuera de servicio en el instante t sin contar dos veces la misma capacidad: por central se toma el
+    mayor entre el registro de central completa y la suma de sus unidades (cada unidad una sola vez)."""
+    por = {}
+    for r in regs:
+        i, f = r.get("inicio"), r.get("final") or r.get("inicio")
+        if isinstance(i, str):
+            i = dt.datetime.fromisoformat(i)
+        if isinstance(f, str):
+            f = dt.datetime.fromisoformat(f)
+        if not i or not (i <= t < f):
+            continue
+        c = por.setdefault(norm(r.get("ubicacion")), {"cen": 0.0, "uni": {}})
+        mw = r.get("mw") or 0.0
+        if norm(r.get("equipo")) == "CENTRAL":
+            c["cen"] = max(c["cen"], mw)
+        else:
+            u = norm(r.get("equipo"))
+            c["uni"][u] = max(c["uni"].get(u, 0.0), mw)
+    return sum(max(c["cen"], sum(c["uni"].values())) for c in por.values())
+
+
+def perfil_indisponible(regs, dia: dt.date):
+    """Perfil de 48 medias horas (MW) sin doble conteo + estadísticos del día."""
+    t0 = dt.datetime(dia.year, dia.month, dia.day)
+    perfil = [round(mw_simultaneo(regs, t0 + dt.timedelta(minutes=30 * k + 15)), 1) for k in range(48)]
+    mx = max(perfil) if perfil else 0.0
+    k = perfil.index(mx) if perfil else 0
+    prom = sum(perfil) / 48
+    return {"perfil": perfil, "max": mx, "hora_max": f"{k // 2:02d}:{30 * (k % 2):02d}", "prom": round(prom, 1),
+            "mwh": round(prom * 24, 0), "cierre": perfil[-1] if perfil else 0.0}
+
+
+def codigo_linea(txt):
+    m = re.search(r"\bL-?\s?(\d{4}[A-Z]?)\b", norm(txt))
+    return f"L-{m.group(1)}" if m else None
+
+
+def tramos_lineas(*listas):
+    """{código de línea: 'Subestación A – Subestación B'} a partir de los registros del COES.
+    Prioriza el tramo escrito en la descripción, p. ej. 'L-2051 (CAMPO ARMIÑO - COTARUSE)'."""
+    out = {}
+    for regs in listas:
+        for r in regs or []:
+            d = texto(r.get("descripcion"))
+            for m in re.finditer(r"\bL-?\s?(\d{4}[A-Z]?)\s*\(([^()]{3,60}?)\s*-\s*([^()]{3,60}?)\)", d):
+                if not re.search(r"\d{3}", m.group(2) + m.group(3)):
+                    out[f"L-{m.group(1)}"] = f"{m.group(2).strip()} – {m.group(3).strip()}"
+            cod = codigo_linea(r.get("equipo"))
+            u = texto(r.get("ubicacion"))
+            if cod and cod not in out and " - " in u:
+                a, b = u.split(" - ", 1)
+                out[cod] = f"{a.strip()} – {b.strip()}"
+    return {k: " – ".join(w.strip().title().replace("?", "ñ") for w in v.split("–")) for k, v in out.items()}
+
+
 def solo_generacion(regs):
     return [r for r in regs if r.get("clase") == "G"]
 
@@ -570,7 +626,23 @@ def flujos_lineas(hojas):
                 serie.append([_min_dia(texto(f[jh])), round(v, 1)])
         if serie:
             nombre = ss.get(j) or next((t for t in textos if norm(t) != norm(cod) and not re.fullmatch(r"[\d.,-]+", t)), "")
-            out[cod.replace(" ", "")] = {"kv": kv, "nombre": nombre, "serie": serie}
+            k = cod.replace(" ", "")
+            prev = out.get(k)
+            ext = (prev or {}).get("extremos", [])
+            if nombre and nombre not in ext:
+                ext = ext + [nombre]
+            out[k] = {"kv": kv, "nombre": nombre, "serie": serie, "extremos": ext}
+    return out
+
+
+def tramos_de_flujos(flujos):
+    """Si una línea se mide en sus dos subestaciones, el tramo es 'SE A – SE B'."""
+    out = {}
+    for cod, x in (flujos or {}).items():
+        ext = [re.sub(r"(?i)^S\.?E\.?\s+", "", e).strip().title() for e in x.get("extremos", [])]
+        ext = list(dict.fromkeys(e for e in ext if e))
+        if len(ext) >= 2:
+            out[cod] = f"{ext[0]} – {ext[1]}"
     return out
 
 
@@ -710,6 +782,17 @@ def _clave_unidad(s):
     return re.sub(r"[^A-Z0-9]", "", s)
 
 
+UNIDAD_PROPIA = "HUANCHOR"
+
+
+def despacho_unidad(hojas, nombre=UNIDAD_PROPIA):
+    """{min_dia: MW} de una unidad en DESPACHO_EJECUTADO (por defecto CH Huanchor)."""
+    du = despacho_unidades(hojas)
+    clave = next((u for u in du if norm(u) == norm(nombre)), None) or \
+        next((u for u in du if norm(nombre) in norm(u)), None)
+    return dict(du[clave]["mw"]) if clave else {}
+
+
 def diesel_despacho(hojas, dia: dt.date):
     """Unidades que operaron con diésel/residual según el HOP del IEOD, con su potencia (DESPACHO_EJECUTADO).
     Devuelve {'unidades': [...], 'serie': {min_dia: {'rf': MW, 'otras': MW}}}."""
@@ -795,7 +878,8 @@ def hidro_por_central(hojas):
 
 def ieod_dia(d: dt.date):
     """Anexo A del IEOD de un día exacto (o {} si no está publicado): potencia por recurso y volúmenes."""
-    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES"})
+    fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES",
+                                                          "DESPACHO_EJECUTADO"})
     return hojas if fecha == d else {}
 
 
