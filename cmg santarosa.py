@@ -42,6 +42,17 @@ BARRAS = {
 }
 SIN_DATO = "nd"                    # intervalo consultado, barra no publicada
 
+# Barras para valorizar CH Huanchor (no son referencias de mercado; no se mezclan con BARRAS).
+# Prioridad por intervalo: Huanchor 50 kV -> Matucana -> sin dato. Nunca Santa Rosa.
+# El nombre exacto publicado por el COES se guarda en data/barras_huanchor.json (con todas las
+# candidatas) para verificar identificador y tensión; MATUCANA_BARRA fija una barra concreta.
+BARRAS_HU = {
+    "Huanchor 50": (r"^(C\.?H\.?\s*)?HUANCHOR\s*50(\s*KV)?$", "HUANCHOR", "#ff5716"),
+    "Matucana": (os.getenv("MATUCANA_BARRA") or r"^MATUCANA\s*\d+(\s*KV)?$", "MATUCANA", "#6b7a99"),
+}
+TODAS = {**BARRAS, **BARRAS_HU}
+DIAG_HU = Path("data") / "barras_huanchor.json"
+
 CSV_PATH = Path("data") / "cmg.csv"
 PRESUPUESTO_SEG = 12 * 60
 HILOS = 4
@@ -116,7 +127,7 @@ def leer_hist():
             reg = {"corr": int(r["correlativo"])}
             if "cmg_soles" in r:                       # formato anterior: solo Santa Rosa
                 r = {**r, "Santa Rosa 220": r["cmg_soles"]}
-            for b in BARRAS:
+            for b in TODAS:
                 v = (r.get(b) or "").strip()
                 if v == SIN_DATO:
                     reg[b] = SIN_DATO
@@ -130,11 +141,11 @@ def guardar_hist(hist):
     CSV_PATH.parent.mkdir(exist_ok=True)
     with CSV_PATH.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["ts", "correlativo", *BARRAS])
+        w.writerow(["ts", "correlativo", *TODAS])
         for ts in sorted(hist):
             reg = hist[ts]
             fila = [ts.isoformat(), reg["corr"]]
-            for b in BARRAS:
+            for b in TODAS:
                 v = reg.get(b)
                 fila.append("" if v is None else v if v == SIN_DATO else f"{v:.2f}")
             w.writerow(fila)
@@ -146,7 +157,7 @@ def dia_operativo(ts):
 
 
 def incompleto(reg):
-    return any(b not in reg for b in BARRAS)
+    return any(b not in reg for b in TODAS)
 
 
 def actualizar(hist, hoy):
@@ -173,7 +184,7 @@ def actualizar(hist, hoy):
             if mapa:
                 muestra = mapa
                 reg = {"corr": c}
-                for b, (rx, _, _) in BARRAS.items():
+                for b, (rx, _, _) in TODAS.items():
                     nombre, val = elegir(mapa, rx)
                     reg[b] = SIN_DATO if val is None else val
                     if nombre:
@@ -185,7 +196,32 @@ def actualizar(hist, hoy):
                     f.cancel()
                 break
     faltan = max(len(pendientes) - nuevos - fallos, 0)
+    if muestra:
+        guardar_diag_hu(muestra, nombres)
     return nombres, muestra, nuevos, faltan
+
+
+def guardar_diag_hu(muestra, nombres):
+    """Deja constancia de qué barra exacta se usó para Huanchor/Matucana y qué candidatas publica el COES."""
+    try:
+        DIAG_HU.parent.mkdir(exist_ok=True)
+        DIAG_HU.write_text(json.dumps({
+            "actualizado": dt.datetime.now(LIMA).isoformat(timespec="minutes"),
+            "usadas": {b: nombres.get(b) for b in BARRAS_HU},
+            "regex": {b: rx for b, (rx, _, _) in BARRAS_HU.items()},
+            "candidatas": {b: sorted(n for n in muestra if kw in n) for b, (_, kw, _) in BARRAS_HU.items()},
+            "total_barras_mapa": len(muestra),
+            "barras_mapa": sorted(muestra),
+        }, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception as e:
+        print("diag barras Huanchor:", e, file=sys.stderr)
+
+
+def leer_diag_hu():
+    try:
+        return json.loads(DIAG_HU.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
 
 
 # --------------------------------------------------------------------------- bloques horarios

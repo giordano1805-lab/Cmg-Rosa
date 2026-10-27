@@ -298,66 +298,116 @@ def guardar_hu(u):
                 w.writerow([d.isoformat(), k, f"{u[d][k]:.2f}"])
 
 
-def resumen_huanchor(dia: dt.date, hist, barra, tc):
-    """Producción de CH Huanchor en el mes vs año anterior, perfil del día y precio capturado con el CMg de `barra`."""
+BARRA_HU, BARRA_MAT = "Huanchor 50", "Matucana"
+
+
+def precio_huanchor(hist, tc):
+    """{fecha operativa: {minuto fin: (USD/MWh, "H"|"M")}} con prioridad por intervalo
+    Huanchor 50 kV -> Matucana. Intervalo sin ninguna de las dos = ausente (no se rellena)."""
+    out = {}
+    for t, r in hist.items():
+        v, src = r.get(BARRA_HU), "H"
+        if not isinstance(v, (int, float)):
+            v, src = r.get(BARRA_MAT), "M"
+        if not isinstance(v, (int, float)):
+            continue
+        u = t - dt.timedelta(minutes=1)
+        out.setdefault(u.date(), {})[u.hour * 60 + u.minute + 1] = (v / tc, src)
+    return out
+
+
+def _titulo_precio(e_h, e_m, parcial):
+    if e_h > 0 and e_m == 0:
+        t = "Precio capturado · Huanchor 50 kV"
+    elif e_m > 0 and e_h == 0:
+        t = "Precio capturado estimado · referencia Matucana"
+    elif e_h > 0 and e_m > 0:
+        t = "Precio capturado estimado · Huanchor / Matucana"
+    else:
+        return "Precio capturado · sin dato disponible"
+    return t + (" (parcial)" if parcial else "")
+
+
+def resumen_huanchor(dia: dt.date, hist, tc, diag=None):
+    """Producción de CH Huanchor en el mes vs año anterior, perfil del día y valorización referencial
+    con el CMg de Huanchor 50 kV (o Matucana si falta ese intervalo). Santa Rosa NO se usa."""
     hc, hu = leer_hc(), leer_hu()
+    pr_all = precio_huanchor(hist, tc)
 
     def mwh(d):
         x = hc.get(d, {}).get(CENTRAL_PROPIA)
         return round(x[1] + x[2], 2) if x else None
 
-    cmg = {}
-    for t, r in hist.items():
-        v = r.get(barra)
-        if isinstance(v, (int, float)):
-            u = t - dt.timedelta(minutes=1)
-            cmg.setdefault(u.date(), {})[u.hour * 60 + u.minute + 1] = v / tc
     diario = []
+    tot = {"e": 0.0, "e_h": 0.0, "e_m": 0.0, "ing": 0.0, "n_int": 0, "n_h": 0, "n_m": 0, "n_sin": 0}
     for k in range(1, dia.day + 1):
         d = dt.date(dia.year, dia.month, k)
-        perf, pr = hu.get(d) or {}, cmg.get(d) or {}
-        comunes = [m for m in perf if m in pr]
-        e = sum(perf[m] for m in comunes) * 0.5
+        perf, pr = hu.get(d) or {}, pr_all.get(d) or {}
+        e = sum(v for v in perf.values()) * 0.5                       # MWh del perfil 30 min
+        e_h = sum(perf[m] for m in perf if m in pr and pr[m][1] == "H") * 0.5
+        e_m = sum(perf[m] for m in perf if m in pr and pr[m][1] == "M") * 0.5
+        ing = sum(perf[m] * pr[m][0] for m in perf if m in pr) * 0.5
+        n_sin = sum(1 for m in range(30, 1441, 30) if m not in pr)
+        if perf:
+            tot["e"] += e; tot["e_h"] += e_h; tot["e_m"] += e_m; tot["ing"] += ing
+            tot.setdefault("dias_perfil", []).append(d)
+        elif mwh(d):
+            tot["e"] += mwh(d)                     # día sin perfil 30 min: energía sin valorizar
+            tot.setdefault("dias_sin_perfil", []).append(k)
+        n_h = sum(1 for x in pr.values() if x[1] == "H")
+        n_m = sum(1 for x in pr.values() if x[1] == "M")
+        tot["n_int"] += 48; tot["n_h"] += n_h; tot["n_m"] += n_m; tot["n_sin"] += n_sin
+        e_val = e_h + e_m
         diario.append({
             "dia": k, "mwh": mwh(d), "mwh_ant": mwh(_un_anio_antes(d)),
-            "cmg": round(sum(pr.values()) / len(pr), 2) if pr else None,
-            "capturado": round(sum(perf[m] * pr[m] for m in comunes) * 0.5 / e, 2) if e > 0 else None,
-            "ingreso": round(sum(perf[m] * pr[m] for m in comunes) * 0.5, 0) if comunes else None,
-            "energia_30": round(e, 1) if comunes else None,
+            "cmg": round(sum(x[0] for x in pr.values()) / len(pr), 2) if pr else None,
+            "capturado": round(ing / e_val, 2) if e_val > 0 else None,
+            "ingreso": round(ing, 0) if e_val > 0 else None,
+            "energia_30": round(e, 1) if perf else None,
+            "e_h": round(e_h, 1), "e_m": round(e_m, 1),
+            "cobertura": round(e_val / e * 100, 1) if e > 0 else None,
+            "n_h": n_h, "n_m": n_m, "n_sin": n_sin,
         })
     con = [x for x in diario if x["mwh"] is not None and x["mwh_ant"] is not None]
-    cap = [x for x in diario if x["capturado"] is not None]
-    e_cap = sum(x["energia_30"] for x in cap)
+    e_val = tot["e_h"] + tot["e_m"]
+    cobertura = round(e_val / tot["e"] * 100, 1) if tot["e"] > 0 else None
+    parcial = bool(tot["e"] > 0 and e_val < tot["e"] - 1e-6)
+    # promedio de la misma referencia en los mismos días valorizados (todas sus medias horas con precio)
+    precios_mes = [x[0] for d in tot.get("dias_perfil", []) for x in (pr_all.get(d) or {}).values()]
     perfil = hu.get(dia) or {}
+    pd_ = pr_all.get(dia) or {}
+    usadas = (diag or {}).get("usadas") or {}
     return {
-        "central": CENTRAL_PROPIA, "barra": barra, "mes": dia.month, "act": dia.year, "ant": dia.year - 1,
+        "central": CENTRAL_PROPIA, "mes": dia.month, "act": dia.year, "ant": dia.year - 1,
+        "barra_hu": usadas.get(BARRA_HU), "barra_mat": usadas.get(BARRA_MAT),
+        "candidatas": (diag or {}).get("candidatas") or {}, "diag_fecha": (diag or {}).get("actualizado"),
         "diario": diario,
         "mes_mwh": round(sum(x["mwh"] for x in con), 1), "mes_mwh_ant": round(sum(x["mwh_ant"] for x in con), 1),
         "dias_comp": len(con),
-        "capturado_mes": round(sum(x["ingreso"] for x in cap) / e_cap, 2) if e_cap else None,
-        # CMg promedio de todas las medias horas de los mismos días con precio capturado
-        # (mismo cálculo que el "promedio del mes" del resto del tablero)
-        "cmg_mes": (lambda v: round(sum(v) / len(v), 2) if v else None)(
-            [c for x in cap for c in cmg.get(dt.date(dia.year, dia.month, x["dia"]), {}).values()]),
-        "ingreso_mes": round(sum(x["ingreso"] for x in cap), 0) if cap else None,
-        "dias_capturado": len(cap),
-        "perfil": [[m, perfil.get(m), round(cmg.get(dia, {}).get(m), 2) if cmg.get(dia, {}).get(m) is not None else None]
+        "titulo_precio": _titulo_precio(tot["e_h"], tot["e_m"], parcial),
+        "capturado_mes": round(tot["ing"] / e_val, 2) if e_val > 0 else None,
+        "ingreso_mes": round(tot["ing"], 0) if e_val > 0 else None,
+        "energia_perfil": round(tot["e"], 1), "energia_h": round(tot["e_h"], 1), "energia_m": round(tot["e_m"], 1),
+        "energia_sin": round(tot["e"] - e_val, 1),
+        "pct_h": round(tot["e_h"] / tot["e"] * 100, 1) if tot["e"] > 0 else None,
+        "pct_m": round(tot["e_m"] / tot["e"] * 100, 1) if tot["e"] > 0 else None,
+        "cobertura": cobertura, "parcial": parcial,
+        # promedio simple de la MISMA referencia (Huanchor->Matucana) en todas las medias horas con precio
+        "cmg_ref_mes": round(sum(precios_mes) / len(precios_mes), 2) if precios_mes else None,
+        "int_total": tot["n_int"], "int_h": tot["n_h"], "int_m": tot["n_m"], "int_sin": tot["n_sin"],
+        "dias_capturado": sum(1 for x in diario if x["capturado"] is not None),
+        "dias_sin_perfil": tot.get("dias_sin_perfil", []), "dias_mes": dia.day,
+        "perfil": [[m, perfil.get(m), round(pd_[m][0], 2) if m in pd_ else None, pd_[m][1] if m in pd_ else None]
                    for m in range(30, 1441, 30)],
         "dia_mwh": mwh(dia), "dia_mwh_ant": mwh(_un_anio_antes(dia)),
     }
 
 
-def resumen_centrales(dia: dt.date):
-    """Energía hidráulica por central en lo que va del mes vs los mismos días del año anterior."""
-    c = leer_hc()
-    dias = [k for k in range(1, dia.day + 1)
-            if c.get(dt.date(dia.year, dia.month, k)) and c.get(_un_anio_antes(dt.date(dia.year, dia.month, k)))]
-    if not dias:
-        return None
+def _agregar_centrales(c, fechas):
     tot = {}
-    for k in dias:
-        for n_anio, d in ((0, dt.date(dia.year, dia.month, k)), (1, _un_anio_antes(dt.date(dia.year, dia.month, k)))):
-            for n, (e, pa, re_) in c[d].items():
+    for d in fechas:
+        for n_anio, f in ((0, d), (1, _un_anio_antes(d))):
+            for n, (e, pa, re_) in c[f].items():
                 t = tot.setdefault(n, {"central": n, "empresa": e, "act": 0.0, "ant": 0.0, "pasada": 0.0, "regulacion": 0.0})
                 t["act" if n_anio == 0 else "ant"] += pa + re_
                 if n_anio == 0:
@@ -366,8 +416,8 @@ def resumen_centrales(dia: dt.date):
                     t["empresa"] = e or t["empresa"]
     filas = []
     for t in tot.values():
-        t["act"], t["ant"] = round(t["act"] / 1000, 2), round(t["ant"] / 1000, 2)       # GWh
-        t["delta"] = round(t["act"] - t["ant"], 2)
+        t["act"], t["ant"] = round(t["act"] / 1000, 3), round(t["ant"] / 1000, 3)       # GWh
+        t["delta"] = round(t["act"] - t["ant"], 3)
         t["var_pct"] = (t["act"] / t["ant"] - 1) * 100 if t["ant"] else None
         t["tipo"] = "Regulación" if t["regulacion"] > t["pasada"] else "Pasada"
         t["central"] = " ".join(w.upper() if w.upper() in ("II", "III", "IV", "VI", "VII", "HER") else w
@@ -376,9 +426,23 @@ def resumen_centrales(dia: dt.date):
             t.pop(k)
         filas.append(t)
     filas.sort(key=lambda t: t["delta"])
-    return {"dias": len(dias), "desde": dias[0], "hasta": dias[-1], "mes": dia.month, "act": dia.year,
-            "ant": dia.year - 1, "centrales": filas,
-            "total_act": round(sum(t["act"] for t in filas), 2), "total_ant": round(sum(t["ant"] for t in filas), 2)}
+    return filas, round(sum(t["act"] for t in filas), 2), round(sum(t["ant"] for t in filas), 2)
+
+
+def resumen_centrales(dia: dt.date):
+    """Energía hidráulica por central en lo que va del mes (y en el día evaluado) vs el año anterior."""
+    c = leer_hc()
+    dias = [k for k in range(1, dia.day + 1)
+            if c.get(dt.date(dia.year, dia.month, k)) and c.get(_un_anio_antes(dt.date(dia.year, dia.month, k)))]
+    if not dias:
+        return None
+    filas, ta, tb = _agregar_centrales(c, [dt.date(dia.year, dia.month, k) for k in dias])
+    out = {"dias": len(dias), "desde": dias[0], "hasta": dias[-1], "mes": dia.month, "act": dia.year,
+           "ant": dia.year - 1, "centrales": filas, "total_act": ta, "total_ant": tb, "dia": None}
+    if c.get(dia) and c.get(_un_anio_antes(dia)):
+        fd, da, db = _agregar_centrales(c, [dia])
+        out["dia"] = {"fecha": dia.isoformat(), "centrales": fd, "total_act": da, "total_ant": db}
+    return out
 
 
 def _un_anio_antes(d: dt.date, n=1):
