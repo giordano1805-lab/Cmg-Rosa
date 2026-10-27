@@ -184,7 +184,6 @@ def resumen(ind, ieod, prog, dia, m, extra=None):
                      f"promedio {st['prom']:,.0f} MW ({st['mwh']:,.0f} MWh de capacidad indisponible); forzado "
                      f"promedio {st['forzado']['prom']:,.0f} MW. Mayores: " +
                      ", ".join(f"{r['ubicacion'].title()} {r['equipo']} ({r['mw']:.0f} MW)" for r in top) + ".")
-    lin = fc.filtrar_lineas_220(ieod.get("mantenimientos") or [])
     ev = ieod.get("eventos") or []
     ev_l = fc.filtrar_lineas_220(ev)
     if ev:
