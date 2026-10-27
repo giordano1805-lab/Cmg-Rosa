@@ -1107,7 +1107,7 @@ def _fecha_de_hoja(nombre, filas):
 
 
 def _unidad_cmg(filas):
-    t = " ".join(norm(v) for f in filas[:12] for v in f[:40] if v not in (None, ""))
+    t = " ".join(norm(v) for f in filas[:12] for v in f if v not in (None, ""))
     if re.search(r"S/\.?|SOLES|S\./", t):
         return "S/."
     if re.search(r"US\$|USD|DOLAR|\$/MWH", t):
@@ -1118,20 +1118,32 @@ def _unidad_cmg(filas):
 def _cmg_en_hoja(nombre, filas):
     """{datetime fin de intervalo: {barra: valor}} si la hoja tiene barras en columnas y tiempos en filas."""
     for i, f in enumerate(filas[:40]):
+        # etiqueta de grupo por columna (celdas combinadas: se arrastra el último texto hacia la derecha)
+        grupos = []
+        for g in filas[:i]:
+            ult, fila_g = "", []
+            for j in range(len(f)):
+                t_ = norm(g[j]) if j < len(g) else ""
+                ult = t_ or ult
+                fila_g.append(ult)
+            grupos.append(fila_g)
+        rx_cmg = r"CMG|C\.\s*MG|MARGINAL|\bBARRAS?\b"
         cands = {}
         for j, v in enumerate(f):
             n = norm(v)
+            if not n:
+                continue
+            ctx = " ".join(gr[j] for gr in grupos) + " " + n
+            # solo columnas dentro de un bloque de costos marginales / barras (no el despacho de centrales)
+            if not re.search(rx_cmg, ctx):
+                continue
             for b, rx in BARRAS_PSO.items():
-                if n and re.search(rx, n):
+                if re.search(rx, n):
                     cands.setdefault(b, []).append((j, n))
         # si hay varias (p. ej. SANTA ROSA 60 y 220) se prefiere la de 220 kV para las barras de mercado
         cols = {b: next((j for j, n in cs if "220" in n), cs[0][0]) if b.endswith("220") else cs[0][0]
                 for b, cs in cands.items()}
         if len([b for b in cols if b in ("Santa Rosa 220", "Socabaya 220", "Piura 220")]) < 2:
-            continue
-        # evita leer el despacho de centrales (p. ej. C.T. Santa Rosa) como si fueran barras
-        ctx = norm(nombre) + " " + " ".join(norm(v) for g in filas[:i + 1] for v in g[:40])
-        if "Socabaya 220" not in cols and not re.search(r"CMG|MARGINAL|BARRA", ctx):
             continue
         base = _fecha_de_hoja(nombre, filas[:i + 1])
         out, prev = {}, None
@@ -1228,7 +1240,7 @@ def cmg_programa_semanal(hoy: dt.date):
                 try:   # extracto de cada hoja para revisar el formato real (data/explora7/<archivo>/<hoja>.csv)
                     from pathlib import Path as _P
                     volcar_hojas(hojas, _P("data") / "explora7" / re.sub(r"[^\w.-]", "_", f"{_nombre(a)}_{nlib}")[:80],
-                                 nombres=list(hojas)[:25], filas=120, cols=60)
+                                 nombres=list(hojas)[:25], filas=120, cols=700)
                 except Exception:
                     pass
                 for nh, filas in hojas.items():
