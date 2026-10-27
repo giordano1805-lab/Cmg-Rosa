@@ -335,8 +335,10 @@ def resumen_huanchor(dia: dt.date, hist, barra, tc):
         "mes_mwh": round(sum(x["mwh"] for x in con), 1), "mes_mwh_ant": round(sum(x["mwh_ant"] for x in con), 1),
         "dias_comp": len(con),
         "capturado_mes": round(sum(x["ingreso"] for x in cap) / e_cap, 2) if e_cap else None,
-        # CMg simple de los mismos días con precio capturado (para comparar manzanas con manzanas)
-        "cmg_mes": round(sum(x["cmg"] for x in cap) / len(cap), 2) if cap else None,
+        # CMg promedio de todas las medias horas de los mismos días con precio capturado
+        # (mismo cálculo que el "promedio del mes" del resto del tablero)
+        "cmg_mes": (lambda v: round(sum(v) / len(v), 2) if v else None)(
+            [c for x in cap for c in cmg.get(dt.date(dia.year, dia.month, x["dia"]), {}).values()]),
         "ingreso_mes": round(sum(x["ingreso"] for x in cap), 0) if cap else None,
         "dias_capturado": len(cap),
         "perfil": [[m, perfil.get(m), round(cmg.get(dia, {}).get(m), 2) if cmg.get(dia, {}).get(m) is not None else None]

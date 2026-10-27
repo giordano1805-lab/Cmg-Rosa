@@ -275,7 +275,7 @@ def resumen_bloques(ind, ieod, prog, dia, hoy, m, extra):
                         f"ingreso spot referencial {d['ingreso']:,.0f} USD.")
         if hu.get("capturado_mes"):
             hu_b.append(f"Precio capturado del mes {hu['capturado_mes']:.2f} USD/MWh "
-                        f"({_pct(hu['capturado_mes'], hu['cmg_mes']):+.1f}% vs CMg simple de los mismos días).")
+                        f"({_pct(hu['capturado_mes'], hu['cmg_mes']):+.1f}% vs CMg promedio de los mismos días, {hu['cmg_mes']:.2f}).")
     rim = next((c for c in extra.get("cuencas") or [] if c["cuenca"] == "Rímac"), None)
     if rim:
         q = rim.get("caudal") or {}
