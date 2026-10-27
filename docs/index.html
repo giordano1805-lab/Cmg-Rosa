@@ -45,6 +45,8 @@ nav{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px 
 nav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 nav button{border:0;background:none;color:var(--text-2);font:inherit;font-weight:500;padding:12px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
 nav button.on{color:var(--text);border-color:var(--naranja)}
+#secsel{display:none;width:100%;margin:8px 0;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-weight:600}
+@media (max-width:700px){nav button{display:none}#secsel{display:block}}
 main{padding:18px 0 40px}
 section{display:none} section.on{display:block}
 .grid{display:grid;gap:14px}
@@ -84,6 +86,29 @@ a{color:var(--s1)}
 .embd{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin:12px 0 4px;padding:8px 10px;border-radius:8px;background:var(--grid);font-size:13px}
 .embd .lbl{font-size:12px;color:var(--text-2)}
 .chart.sm{height:170px}
+.tools .csv{border:1px solid var(--border);background:var(--surface);color:var(--text-2);border-radius:7px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer;margin-left:6px}
+.hero{background:linear-gradient(90deg,rgba(255,87,22,.08),rgba(255,178,16,.05));border-color:transparent}
+.hero .lbl{letter-spacing:.08em;font-weight:700;color:var(--naranja);font-size:12px}
+.concl{font-size:17px;line-height:1.5;margin:6px 0 0;font-weight:500}
+.sub2{font-size:12px;color:var(--muted);margin-top:4px}
+.saber{display:grid;gap:8px}
+.punto{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--text);padding:8px 10px;border-radius:8px;background:var(--grid);font-size:14px;line-height:1.45}
+.punto .tema{flex:0 0 112px;font-weight:700;color:var(--brand)}
+:root[data-theme="dark"] .punto .tema{color:#9fb1f7}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .punto .tema{color:#9fb1f7}}
+.vig{margin:0;padding-left:20px;display:grid;gap:6px}
+.vig a{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;text-decoration:none;color:var(--text);font-size:14px}
+.vig .hor{font-size:12px;color:var(--text-2);background:var(--grid);padding:1px 7px;border-radius:5px}
+.vig .ir{font-size:12px;color:var(--naranja);margin-left:auto}
+details.det summary{font-weight:600;color:var(--text-2)}
+@media (max-width:600px){.punto{flex-direction:column;gap:2px}.punto .tema{flex:none}.concl{font-size:15px}}
+.alertas{display:grid;gap:6px;margin-bottom:12px}
+.alerta{display:block;padding:7px 10px;border-radius:8px;border-left:4px solid var(--muted);background:var(--grid);color:var(--text);text-decoration:none;font-size:13px}
+.alerta b{margin-right:6px}.alerta span{color:var(--text-2)}
+.alerta.alta{border-left-color:#c5221f}.alerta.media{border-left-color:var(--naranja)}
+.blq{margin-bottom:8px}.blq .lbl{margin-bottom:2px}
+.det summary{cursor:pointer;color:var(--text-2);font-size:13px;margin-top:6px}
+.neu{display:inline-block;margin-left:6px;font-size:12px;color:var(--text-2);font-weight:600}
 .seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--grid);margin:4px 0 10px;flex-wrap:wrap}
 .seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:5px 12px;border-radius:7px;cursor:pointer}
 .seg button.on{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.12)}
@@ -112,8 +137,8 @@ a{color:var(--s1)}
 <main class="wrap" id="main"></main>
 
 <script>
-const SECC=[["resumen","Resumen"],["precios","Precios"],["oferta","Oferta y demanda"],["embalses","Embalses"],
-["prog","Programado hoy"],["mes","Mantenimiento del mes"],["indisp","Indisponibilidades"],["trans","Transmisión y eventos"]];
+const SECC=[["resumen","Resumen"],["huanchor","Huanchor"],["precios","Precios"],["oferta","Oferta y demanda"],["embalses","Embalses"],
+["prog","Programación"],["mes","Mantenimiento del mes"],["indisp","Indisponibilidades"],["trans","Transmisión y eventos"]];
 const $=s=>document.querySelector(s);
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const f2=v=>v==null?"–":Number(v).toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -135,6 +160,7 @@ function mwActivo(regs,t,filtro){const por={};
     if((r.equipo||"").toUpperCase()==="CENTRAL")c.cen=Math.max(c.cen,r.mw);else c.uni[r.equipo]=Math.max(c.uni[r.equipo]||0,r.mw)});
   return Object.values(por).reduce((a,c)=>a+Math.max(c.cen,Object.values(c.uni).reduce((x,y)=>x+y,0)),0)}
 function mwDia(regs,dia,filtro){const d0=new Date(dia+"T00:00");let s=0;for(let k=0;k<48;k++)s+=mwActivo(regs,new Date(d0.getTime()+(k*30+15)*6e4),filtro);return s/48}
+const lin=t=>{const m=String(t||"").match(/L-?\s?(\d{4}[A-Z]?)/i);if(!m)return t;const tr=(D.tramos||{})["L-"+m[1]];return tr&&!String(t).includes(tr)?`${t} (${tr})`:t};
 let HCF="Todas";
 function hcSel(){const H=D.hidro_centrales,C=H.centrales.filter(c=>HCF==="Todas"||c.tipo===HCF);
   return{C,act:C.reduce((a,c)=>a+c.act,0),ant:C.reduce((a,c)=>a+c.ant,0)}}
@@ -153,11 +179,14 @@ function tema(){const r=document.documentElement;const dark=r.dataset.theme?r.da
 try{const t=localStorage.getItem("tema");if(t)document.documentElement.dataset.theme=t}catch(e){}
 $("#tema").onclick=tema;
 
-function tabs(){$("#tabs").innerHTML=SECC.map(([k,n])=>`<button data-k="${k}">${n}</button>`).join("");
+function etq(k,n){return k==="prog"&&D&&D.hoy?`${n} · ${D.hoy.slice(8,10)}/${D.hoy.slice(5,7)}`:n}
+function tabs(){$("#tabs").innerHTML=SECC.map(([k,n])=>`<button data-k="${k}">${etq(k,n)}</button>`).join("")
+    +`<select id="secsel" aria-label="Sección">${SECC.map(([k,n])=>`<option value="${k}">${etq(k,n)}</option>`).join("")}</select>`;
+  $("#secsel").onchange=e=>ver(e.target.value);
   $("#main").innerHTML=SECC.map(([k])=>`<section id="s-${k}"></section>`).join("");
   document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>ver(b.dataset.k));
   let k=location.hash.slice(1);try{k=k||localStorage.getItem("tab")}catch(e){};ver(SECC.some(s=>s[0]===k)?k:"resumen")}
-function ver(k){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+function ver(k){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.k===k));if($("#secsel"))$("#secsel").value=k;
   document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id==="s-"+k));
   history.replaceState(null,"","#"+k);try{localStorage.setItem("tab",k)}catch(e){};dibujar()}
 
@@ -168,9 +197,13 @@ function tabla(id,cols,filas,opt={}){
     el.querySelector("tbody").innerHTML=fs.length?fs.map(f=>"<tr>"+cols.map(c=>`<td class="${c.num?"num":c.t==="Descripción"?"desc":["Horario","Unidad","Línea","Estado"].includes(c.t)?"cort":""}">${c.num?(c.h?c.h(f):esc(c.v(f))):romanos(c.h?c.h(f):esc(c.v(f)))}</td>`).join("")+"</tr>").join("")
       :`<tr><td colspan="${cols.length}" style="color:var(--muted)">Sin registros.</td></tr>`;
     el.querySelector(".n").textContent=`${fs.length} de ${filas.length}`}
-  el.innerHTML=`<div class="tools" ${opt.simple?'style="display:none"':""}><input placeholder="Buscar…" aria-label="Buscar"><span class="n"></span></div>
+  el.innerHTML=`<div class="tools" ${opt.simple?'style="display:none"':""}><input placeholder="Buscar…" aria-label="Buscar"><span class="n"></span><button class="csv" title="Descargar CSV">CSV</button></div>
    <div class="tbl"><table class="${opt.simple?"min":""}"><thead><tr>${cols.map((c,i)=>`<th data-i="${i}" class="${c.num?"num":""}">${c.t}</th>`).join("")}</tr></thead><tbody></tbody></table></div>`;
   el.querySelector("input").oninput=e=>{q=e.target.value.toLowerCase();pintar()};
+  el.querySelector(".csv").onclick=()=>{const fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
+    const c=x=>{const t=String(x??"").replace(/"/g,'""');return /[",;\n]/.test(t)?`"${t}"`:t};
+    const txt="\ufeff"+[cols.map(k=>c(k.t)).join(";"),...fs.map(f=>cols.map(k=>c(typeof k.v(f)==="number"?String(k.v(f)).replace(".",","):k.v(f))).join(";"))].join("\n");
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/csv"}));a.download=(id.replace("#","")||"tabla")+"_"+D.dia+".csv";a.click()};
   el.querySelectorAll("th").forEach(th=>th.onclick=()=>{const i=+th.dataset.i;asc=orden===i?!asc:true;orden=i;pintar()});
   pintar()}
 
@@ -186,17 +219,79 @@ function render(){
   const kp=D.barras.map(b=>{const d=D.cmg_diario[b][D.dia],p=D.cmg_prev[b],v=d&&p?(d/p-1)*100:null;
     return `<div class="card kpi"><div class="lbl"><span class="dot" style="background:var(${SERIE[b]})"></span>CMg ${b} kV</div>
      <div class="val">${f2(d)}<small>USD/MWh</small></div>
-     <div class="sub">${v==null?"":`<span class="${v>0?"up":"down"}">${v>0?"▲":"▼"} ${Math.abs(v).toFixed(1)}%</span> vs. día anterior · `}mes ${f2(D.cmg_mes[b])}</div></div>`}).join("");
+     <div class="sub">${v==null?"":`<span class="neu" style="margin:0">${v>0?"▲":"▼"} ${Math.abs(v).toFixed(1)}%</span> vs. día anterior · `}mes ${f2(D.cmg_mes[b])}</div></div>`}).join("");
   const dmx=D.demanda_areas.length?D.demanda_areas.reduce((a,r)=>r.sein>a.sein?r:a):null;
-  const sinD=D.indisponibilidades.filter(r=>!r.diesel);const mwI=sinD.reduce((s,r)=>s+(r.mw||0),0);
+  const sinD=D.indisponibilidades.filter(r=>!r.diesel);const mwI=sinD.reduce((s,r)=>s+(r.mw||0),0),IS=D.indisp_stats;
+  const TB=D.tablero;
+  if(TB){const K=TB.kpis,MES=["ene","feb","mar","abr","may","jun","jul","ago","set","oct","nov","dic"],fc=d=>`${+d.slice(8,10)} ${MES[+d.slice(5,7)-1].toUpperCase()} ${d.slice(0,4)}`;
+    const flecha=v=>v==null?"":`${v<0?"↓":"↑"}${Math.abs(v).toFixed(1)}%`;
+    $("#s-resumen").innerHTML=`<div class="grid">
+     <div class="card hero"><div class="lbl">RESUMEN · ${fc(TB.dia)}</div><p class="concl">${esc(TB.conclusion)}</p></div>
+     <div class="grid g4">
+      <div class="card kpi"><div class="lbl">Precio de referencia</div><div class="val">${f2(K.precio.valor)}<small>USD/MWh</small></div>
+       <div class="sub">${esc(K.precio.barra.replace(" 220",""))} · ${flecha(K.precio.var_dia)} diario</div>
+       <div class="sub2">${Object.entries(K.precio.otras).map(([b,v])=>`${esc(b.replace(" 220",""))} ${f2(v)}`).join(" · ")}</div></div>
+      <div class="card kpi"><div class="lbl">Demanda máxima</div><div class="val">${f0(K.demanda.portal??K.demanda.valor)}<small>MW</small></div><div class="sub">${K.demanda.hora?"pico a las "+K.demanda.hora+" h":""}</div><div class="sub2">${K.demanda.delta_dia!=null?`<b>${K.demanda.delta_dia>0?"+":""}${f0(K.demanda.delta_dia)} MW</b> vs mismo día ${K.demanda.ant} (${f0(K.demanda.portal_ant)} MW)<br>`:""}${K.demanda.var_mes!=null?`energía del mes ${flecha(K.demanda.var_mes)} vs ${K.demanda.ant}`:""}</div></div>
+      <div class="card kpi"><div class="lbl">Indisponibilidad</div><div class="val">${K.indisp?f0(K.indisp.max):"–"}<small>MW</small></div>
+       <div class="sub">${K.indisp?`máximo simultáneo · ${K.indisp.hora} h`:""}</div><div class="sub2">${K.indisp?`programada ${f0(K.indisp.prog)} · forzada ${f0(K.indisp.forz)} MW (prom.)`:""}</div></div>
+      <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Próxima jornada · ${+K.proxima.fecha.slice(8,10)} ${MES[+K.proxima.fecha.slice(5,7)-1]}</div><div class="val">${K.proxima.max!=null?f0(K.proxima.max):"–"}<small>MW fuera</small></div>
+       <div class="sub">${K.proxima.max!=null?"máximo a las "+K.proxima.hora+" h":"programa aún no publicado"}</div><div class="sub2">${K.proxima.principal?"Principal: "+esc(K.proxima.principal):""}</div></div></div>
+     ${(D.alertas||[]).length?`<div class="alertas">${D.alertas.map(a=>`<a class="alerta ${a.nivel}" href="#${a.seccion}" onclick="ver('${a.seccion}');return false"><b>${esc(a.titulo)}</b><span>${esc(a.motivo)}</span></a>`).join("")}</div>`:""}
+     <div class="card"><h2>Lo que debes saber</h2><div class="saber">${TB.saber.map(x=>`<a class="punto" href="#${x.seccion}" onclick="ver('${x.seccion}');return false"><span class="tema">${esc(x.tema)}</span><span>${esc(x.texto)}</span></a>`).join("")}</div></div>
+     <div class="card"><h2>Evolución del precio · ${esc(K.precio.barra)}<small>USD/MWh, promedio diario del mes · ▾ máximo del mes y los 3 días con mayor desacople entre barras · toca la leyenda para comparar otras barras</small></h2><div class="chart tall"><canvas id="c-mes"></canvas></div></div>
+     <div class="card"><h2>Qué vigilar · ${fc(TB.hoy)}</h2>${TB.vigilar.length?`<ol class="vig">${TB.vigilar.map(x=>`<li><a href="#${x.seccion}" onclick="ver('${x.seccion}');return false"><span>${esc(x.texto)}</span>${x.horario?`<span class="hor">${esc(x.horario)}</span>`:""}<span class="ir">Ver →</span></a></li>`).join("")}</ol>`:'<div class="note" style="margin:0">Sin asuntos programados relevantes.</div>'}</div>
+     <details class="card det"><summary>Ver detalle completo del día</summary>
+      ${D.bloques?[["paso","Qué pasó"],["huanchor","Huanchor"],["vigilar","Programación y mantenimiento"]].filter(([k])=>(D.bloques[k]||[]).length).map(([k,n])=>`<div class="blq"><div class="lbl centt">${n}</div><ul class="bul">${D.bloques[k].map(t=>`<li>${t}</li>`).join("")}</ul></div>`).join(""):""}
+      <div class="blq"><div class="lbl centt">Todos los datos</div><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></div></details></div>`;
+  }else{
   $("#s-resumen").innerHTML=`<div class="grid g4">${kp}
    <div class="card kpi"><div class="lbl">Máxima demanda SEIN</div><div class="val">${dmx?f0(dmx.sein):"–"}<small>MW</small></div><div class="sub">${dmx?"a las "+dmx.hora+" h":""}</div></div>
-   <div class="card kpi"><div class="lbl">Generación indisponible (sin diésel)</div><div class="val">${f0(mwI)}<small>MW</small></div><div class="sub">${sinD.length} registros · ${sinD.filter(r=>!r.programado).length} forzados</div></div>
-   <div class="card kpi"><div class="lbl">Eventos del día</div><div class="val">${D.eventos.length}</div><div class="sub">${D.eventos.filter(e=>/falla/i.test(e.tipo)).length} fallas · ${D.lineas_220.length} intervenciones en líneas ≥220 kV</div></div></div>
-   <div class="grid g2" style="margin-top:14px"><div class="card"><h2>Resumen ejecutivo</h2><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></div>
+   <div class="card kpi"><div class="lbl">Indisponible sin diésel · máx. simultáneo</div><div class="val">${f0(IS?IS.max:mwI)}<small>MW</small></div><div class="sub">${IS?`promedio ${f0(IS.prom)} MW · forzado máx. ${f0(IS.forzado.max)} MW`:sinD.length+" registros"}</div></div>
+   <div class="card kpi"><div class="lbl">Eventos del día</div><div class="val">${D.eventos.length}</div><div class="sub">${(n=>`${n} fallas · ${D.eventos.length-n} otros`)(D.eventos.filter(e=>/falla/i.test(e.tipo)).length)} · ${new Set(D.eventos.map(e=>e.equipo)).size} equipos afectados</div></div></div>
+   <div class="grid g2" style="margin-top:14px"><div class="card"><h2>Resumen ejecutivo</h2>
+     ${(D.alertas||[]).length?`<div class="alertas">${D.alertas.map(a=>`<a class="alerta ${a.nivel}" href="#${a.seccion}" onclick="ver('${a.seccion}');return false"><b>${esc(a.titulo)}</b><span>${esc(a.motivo)}</span></a>`).join("")}</div>`:""}
+     ${D.bloques?[["paso","Qué pasó"],["huanchor","Qué implica para Huanchor"],["vigilar","Qué vigilar"]].filter(([k])=>(D.bloques[k]||[]).length).map(([k,n])=>`<div class="blq"><div class="lbl centt">${n}</div><ul class="bul">${D.bloques[k].map(t=>`<li>${t}</li>`).join("")}</ul></div>`).join("")
+       +`<details class="det"><summary>Ver detalle completo</summary><ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul></details>`
+      :`<ul class="bul">${D.resumen.map(t=>`<li>${t}</li>`).join("")}</ul>`}</div>
    <div class="card"><h2>CMg promedio diario del mes<small>USD/MWh</small></h2><div class="chart"><canvas id="c-mes"></canvas></div></div></div>`;
 
+  }
+
+  const HU=D.huanchor;
+  if(HU){const dd=HU.diario,hoyD=dd[dd.length-1]||{},vp=(a,b)=>a!=null&&b?(a/b-1)*100:null,neu=x=>x==null?"":`<span class="neu">${x>0?"▲":"▼"} ${Math.abs(x).toFixed(1)}%</span>`;
+    const esH=r=>/HUANCHOR/i.test(r.ubicacion||"")||/HUANCHOR/i.test(r.empresa||"");
+    const mant=[...(D.programado_gen||[]).filter(esH).map(r=>({...r,origen:"Programa diario "+D.hoy})),...((D.prog_mensual||{}).regs||[]).filter(esH).map(r=>({...r,origen:"Programa mensual"})),
+      ...(D.indisponibilidades||[]).filter(esH).map(r=>({...r,origen:"Ejecutado (IEOD)"}))];
+    const rim=(D.embalses_semanal?.cuencas||[]).find(c=>c.cuenca==="Rímac");
+    $("#s-huanchor").innerHTML=`<div class="grid">
+     <div class="note" style="margin:0">CH Huanchor · cuenca del río Rímac · energía del IEOD (COES) y CMg ${esc(HU.barra)} del COES. Valores de ${D.dia}.</div>
+     <div class="grid g4">
+      <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Energía del ${D.dia.slice(8,10)}/${D.dia.slice(5,7)}</div><div class="val">${f1(HU.dia_mwh)}<small>MWh</small></div><div class="sub">${neu(vp(HU.dia_mwh,HU.dia_mwh_ant))} vs ${f1(HU.dia_mwh_ant)} MWh el mismo día de ${HU.ant}</div></div>
+      <div class="card kpi"><div class="lbl">Energía del mes (${HU.dias_comp} días)</div><div class="val">${f0(HU.mes_mwh)}<small>MWh</small></div><div class="sub">${neu(vp(HU.mes_mwh,HU.mes_mwh_ant))} vs ${f0(HU.mes_mwh_ant)} MWh en ${HU.ant} · ${f1(HU.mes_mwh/(HU.dias_comp*24||1))} MW medios</div></div>
+      <div class="card kpi"><div class="lbl">Precio capturado del mes</div><div class="val">${f2(HU.capturado_mes)}<small>USD/MWh</small></div><div class="sub">CMg promedio simple de los mismos ${HU.dias_capturado} días: ${f2(HU.cmg_mes)} · ${HU.capturado_mes&&HU.cmg_mes?((HU.capturado_mes/HU.cmg_mes-1)*100>0?"+":"")+((HU.capturado_mes/HU.cmg_mes-1)*100).toFixed(1)+"%":""}</div></div>
+      <div class="card kpi"><div class="lbl">Ingreso spot referencial del mes</div><div class="val">${HU.ingreso_mes!=null?f0(HU.ingreso_mes/1000):"–"}<small>miles USD</small></div><div class="sub">${HU.dias_capturado} días · energía × CMg ${esc(HU.barra)}</div></div></div>
+     <div class="grid g2">
+      <div class="card"><h2>Energía diaria<small>MWh · ${HU.act} vs ${HU.ant}</small></h2><div class="chart"><canvas id="c-hud"></canvas></div></div>
+      <div class="card"><h2>Producción y CMg del ${D.dia.slice(8,10)}/${D.dia.slice(5,7)}<small>MW cada 30 min · USD/MWh</small></h2><div class="chart"><canvas id="c-hup"></canvas></div></div></div>
+     <div class="grid g2">
+      <div class="card"><h2>Precio capturado vs CMg promedio<small>USD/MWh por día</small></h2><div class="chart"><canvas id="c-huc"></canvas></div>
+       <div class="note">Precio capturado = Σ(MW × CMg) / Σ MW de cada media hora: refleja el precio de las horas en que Huanchor generó. Es referencial con el CMg de ${esc(HU.barra)}; no considera contratos ni la barra exacta de valorización.</div></div>
+      <div class="card"><h2>Cuenca del río Rímac<small>${esc(D.embalses_semanal?.semana||"")}</small></h2>
+       ${rim?`<div class="embk"><div><div class="lbl">Caudal natural</div><b>${rim.caudal?f1(rim.caudal.actual)+" m3/s":"–"}</b>${rim.caudal?neu(rim.caudal.var_pct):""}</div><div><div class="lbl">Volumen útil</div><b>${f1(rim.actual)} Hm3</b>${neu(rim.var_pct)}</div></div>
+        <div class="chart sm"><canvas id="c-hur"></canvas></div><div class="note">Variaciones frente a la misma semana de ${+Object.keys(rim.anios).sort().pop()-1}. Detalle en la pestaña Embalses.</div>`:'<div class="note">Sin datos semanales.</div>'}</div></div>
+     <div class="card"><h2>Intervenciones de Huanchor<small>programa diario, programa mensual y ejecutado</small></h2>${mant.length?'<div id="t-hum"></div>':'<div class="note" style="margin:0">Sin intervenciones registradas para Huanchor en los programas ni en el IEOD.</div>'}</div></div>`;
+    if(mant.length)tabla("#t-hum",[{t:"Origen",v:r=>r.origen},{t:"Unidad",v:r=>r.equipo},{t:"Inicio",v:r=>r.inicio||"",h:r=>(r.inicio||"").slice(0,16).replace("T"," ")},
+      {t:"Fin",v:r=>r.final||"",h:r=>(r.final||"").slice(0,16).replace("T"," ")},{t:"MW",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Descripción",v:r=>r.descripcion}],mant,{simple:mant.length<8});
+  }else $("#s-huanchor").innerHTML=`<div class="card">Los datos de Huanchor se completan en la próxima corrida.</div>`;
+
   $("#s-precios").innerHTML=`<div class="grid">
+   <div class="grid g4">${D.barras.filter(b=>b!==D.barras[0]).map(b=>{const d=(D.cmg_diario[b][D.dia]??null),r=D.cmg_diario[D.barras[0]][D.dia],df=d!=null&&r!=null?d-r:null;
+      const ds=Object.keys(D.cmg_diario[b]).map(k=>D.cmg_diario[b][k]-(D.cmg_diario[D.barras[0]][k]??D.cmg_diario[b][k])),pm=ds.length?ds.reduce((a,x)=>a+x,0)/ds.length:null;
+      return `<div class="card kpi"><div class="lbl">Diferencial ${b.replace(" 220","")} − ${D.barras[0].replace(" 220","")}</div><div class="val">${df==null?"–":(df>0?"+":"")+f2(df)}<small>USD/MWh</small></div><div class="sub">promedio del mes ${(pm>0?"+":"")+f2(pm)}${Math.abs(df||0)>=(D.umbrales?.desacople||15)?' · <b>desacople</b>':""}</div></div>`}).join("")}
+     ${(()=>{const u=D.umbrales||{},sr=D.cmg_30min[D.barras[0]].filter(p=>(p[0].slice(0,10)===D.dia&&p[0].slice(11,16)!=="00:00")||p[0].slice(0,16)===`${D.hoy}T00:00`).map(p=>p[1]);
+      return `<div class="card kpi"><div class="lbl">${D.barras[0]} en el día</div><div class="val">${f2(Math.min(...sr))}<small>– ${f2(Math.max(...sr))}</small></div><div class="sub">mín – máx USD/MWh</div></div>
+       <div class="card kpi"><div class="lbl">Medias horas fuera de rango</div><div class="val">${sr.filter(v=>v>=u.cmg_alto).length} / ${sr.filter(v=>v<=u.cmg_bajo).length}</div><div class="sub">≥ ${u.cmg_alto} / ≤ ${u.cmg_bajo} USD/MWh (umbrales)</div></div>`})()}</div>
+   <div class="card"><h2>Diferencial diario frente a ${D.barras[0]}<small>USD/MWh · positivo = la barra está más cara</small></h2><div class="chart"><canvas id="c-dif"></canvas></div></div>
    <div class="card"><h2>CMg cada 30 minutos<small>día anterior y día evaluado · USD/MWh</small></h2><div class="chart tall"><canvas id="c-30"></canvas></div></div>
    <div class="grid g2"><div class="card"><h2>Santa Rosa 220 kV por bloque horario<small>USD/MWh</small></h2><div class="chart"><canvas id="c-bl"></canvas></div></div>
    <div class="card"><h2>Promedios por bloque</h2><div id="t-bl"></div></div></div></div>`;
@@ -243,11 +338,13 @@ function render(){
   const dsl=D.indisponibilidades.filter(r=>r.diesel),mwP=sinD.filter(r=>r.programado).reduce((s,r)=>s+r.mw,0),mwF=mwI-mwP;
   const porTec={};sinD.forEach(r=>porTec[r.tecnologia||"Otra"]=(porTec[r.tecnologia||"Otra"]||0)+r.mw);
   $("#s-indisp").innerHTML=`<div class="grid"><div class="grid g4">
-    <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Indisponible sin diésel</div><div class="val">${f0(mwI)}<small>MW</small></div><div class="sub">${sinD.length} registros</div></div>
-    <div class="card kpi"><div class="lbl">Programado</div><div class="val">${f0(mwP)}<small>MW</small></div><div class="sub">sin diésel</div></div>
-    <div class="card kpi"><div class="lbl">Forzado</div><div class="val up">${f0(mwF)}<small>MW</small></div><div class="sub">${sinD.filter(r=>!r.programado).length} registros sin diésel</div></div>
-    <div class="card kpi"><div class="lbl">Diésel (excluido del total)</div><div class="val" style="color:var(--muted)">${f0(dsl.reduce((s,r)=>s+r.mw,0))}<small>MW</small></div><div class="sub">${dsl.length} registros</div></div></div>
-   <div class="card"><h2>Por tecnología<small>MW indisponibles sin diésel</small></h2><div class="tecs">${Object.entries(porTec).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<span class="tag">${k}: ${f0(v)} MW</span>`).join(" ")}</div></div>
+    <div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Máximo simultáneo sin diésel</div><div class="val">${f0(IS?IS.max:mwI)}<small>MW</small></div><div class="sub">${IS?"a las "+IS.hora_max+" h · "+IS.unidades+" unidades":sinD.length+" registros"}</div></div>
+    <div class="card kpi"><div class="lbl">Promedio del día</div><div class="val">${f0(IS?IS.prom:0)}<small>MW</small></div><div class="sub">${IS?f0(IS.mwh)+" MWh de capacidad · al cierre "+f0(IS.cierre)+" MW":""}</div></div>
+    <div class="card kpi"><div class="lbl">Programado / forzado (promedio)</div><div class="val">${f0(IS?IS.programado.prom:mwP)}<small>/ </small><span class="up">${f0(IS?IS.forzado.prom:mwF)}</span><small>MW</small></div><div class="sub">máx. forzado ${f0(IS?IS.forzado.max:mwF)} MW</div></div>
+    <div class="card kpi"><div class="lbl">Diésel (excluido)</div><div class="val" style="color:var(--muted)">${f0(IS?IS.diesel_max:dsl.reduce((s,r)=>s+r.mw,0))}<small>MW</small></div><div class="sub">${dsl.length} registros · máximo simultáneo</div></div></div>
+   ${IS?`<div class="card"><h2>Capacidad fuera de servicio a lo largo del día<small>${fuente} · MW sin diésel, cada unidad contada una sola vez</small></h2><div class="chart"><canvas id="c-indp"></canvas></div>
+     <div class="note">La suma de los ${IS.registros} registros (${f0(IS.suma_registros)} MW) no es potencia simultánea: los registros tienen horarios distintos y a veces una central figura completa y por unidades. Los MWh son capacidad indisponible, no generación perdida.</div></div>`:""}
+   <div class="card"><h2>Por tecnología<small>suma de registros sin diésel (MW)</small></h2><div class="tecs">${Object.entries(porTec).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<span class="tag">${k}: ${f0(v)} MW</span>`).join(" ")}</div></div>
    <div class="card"><h2>Detalle de indisponibilidades<small>${fuente} · todas las centrales</small></h2><div id="t-ind"></div></div></div>`;
   tabla("#t-ind",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Central",v:r=>tit(r.ubicacion)},{t:"Unidad",v:r=>r.equipo},
     {t:"Tecnología",v:r=>r.tecnologia||"",h:r=>r.diesel?'<span class="tag">Diésel · excluido</span>':esc(r.tecnologia||"")},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},
@@ -262,14 +359,14 @@ function render(){
       <div class="embk"><div><div class="lbl">Flujo máximo</div><b>${f0(mx)} MW</b></div><div><div class="lbl">Promedio</div><b>${f0(pr)} MW</b></div><div><div class="lbl">Líneas</div><b>${Object.keys(e.lineas).length}</b></div></div>
       <div class="chart"><canvas id="c-enl${i}"></canvas></div><div class="note">Total del enlace y cada línea que lo forma. El signo indica el sentido del flujo según el COES.</div></div>`}).join("")}</div>`:""}
    ${CG.columnas.length?`<div class="card"><h2>Congestiones en el sistema de transmisión<small>${fuente} · posibles desacoples de precio</small></h2>${CG.registros.length?'<div id="t-cg"></div>':'<div class="note" style="margin:0">Sin congestiones registradas ese día.</div>'}</div>`:""}
-   ${FL.length?`<div class="card"><h2>Flujo en las líneas ≥220 kV más cargadas<small>${fuente} · MW cada 30 min (signo = sentido del flujo)</small></h2><div class="chart tall"><canvas id="c-flu"></canvas></div></div>
+   ${FL.length?`<div class="card"><h2>Líneas ≥220 kV con mayor flujo absoluto<small>${fuente} · MW cada 30 min (signo = sentido del flujo)</small></h2><div class="chart tall"><canvas id="c-flu"></canvas></div></div>
    <div class="card"><h2>Flujos por línea ≥220 kV<small>${fuente} · MW</small></h2><div id="t-flu"></div></div>`:""}
    <div class="card"><h2>Líneas ≥220 kV con intervenciones ejecutadas<small>${fuente}</small></h2><div id="t-lin"></div></div>
    <div class="card"><h2>Eventos relevantes<small>${fuente}</small></h2><div id="t-ev"></div></div>
    <div class="card"><h2>Restricciones operativas</h2><div id="t-res"></div></div></div>`;
   const colLin=[{t:"Línea",v:r=>r.equipo},{t:"kV",num:1,v:r=>r.kv},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Tramo",v:r=>tit(r.ubicacion)},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},{t:"Estado",v:r=>r.estado},{t:"Descripción",v:r=>r.descripcion}];
-  if(CG.registros.length)tabla("#t-cg",CG.columnas.filter(c=>CG.registros.some(r=>r[c])).map(c=>({t:tit(c),v:r=>r[c]||"",h:r=>esc(/^\d{4}-\d\d-\d\dT/.test(r[c]||"")?r[c].slice(0,16).replace("T"," "):r[c]||"")})),CG.registros);
-  if(FL.length)tabla("#t-flu",[{t:"Línea",v:r=>r.cod},{t:"kV",num:1,v:r=>r.kv},{t:"Medido en",v:r=>tit(r.nombre)},{t:"Máx. |MW|",num:1,v:r=>r.max,h:r=>f0(r.max)},{t:"Mín.",num:1,v:r=>r.min,h:r=>f0(r.min)},{t:"Máx.",num:1,v:r=>r.mx,h:r=>f0(r.mx)},{t:"Promedio",num:1,v:r=>r.prom,h:r=>f0(r.prom)}],FL);
+  if(CG.registros.length)tabla("#t-cg",CG.columnas.filter(c=>CG.registros.some(r=>r[c])).map(c=>({t:tit(c),v:r=>r[c]||"",h:r=>esc(/^\d{4}-\d\d-\d\dT/.test(r[c]||"")?r[c].slice(0,16).replace("T"," "):lin(r[c]||""))})),CG.registros);
+  if(FL.length)tabla("#t-flu",[{t:"Línea",v:r=>r.cod},{t:"Tramo",v:r=>(D.tramos||{})[r.cod]||""},{t:"kV",num:1,v:r=>r.kv},{t:"Medido en",v:r=>tit(r.nombre)},{t:"Máx. |MW|",num:1,v:r=>r.max,h:r=>f0(r.max)},{t:"Mín.",num:1,v:r=>r.min,h:r=>f0(r.min)},{t:"Máx.",num:1,v:r=>r.mx,h:r=>f0(r.mx)},{t:"Promedio",num:1,v:r=>r.prom,h:r=>f0(r.prom)}],FL);
   tabla("#t-lin",colLin,[...D.lineas_220].sort((a,b)=>b.kv-a.kv));
   tabla("#t-ev",[{t:"Tipo",v:r=>tit(r.tipo)},{t:"Empresa",v:r=>tit(r.empresa)},{t:"Equipo",v:r=>`${r.equipo} · ${tit(r.ubicacion)}`},{t:"Horario",v:r=>r.inicio,h:r=>per(r)},
     {t:"kV",num:1,v:r=>r.kv||""},{t:"MW",num:1,v:r=>r.mw||"",h:r=>r.mw?f1(r.mw):""},{t:"Descripción",v:r=>r.descripcion}],D.eventos);
@@ -290,7 +387,7 @@ function render(){
      </div>
      ${rep?`<div class="embd"><span class="lbl">Volumen diario al ${ddmm(di.fecha)} (IEOD)</span><b>${f1(di.total)} Hm3</b><span class="lbl">mismo día ${yp}: ${di.anterior!=null?f1(di.anterior)+" Hm3":"–"}</span>${pc(di.var_pct)}</div>
        <div class="chart sm"><canvas id="c-embd${i}"></canvas></div>
-       <div class="note">${c.cuenca==="Chaglla"?"Diario: volumen útil promedio de cada día (el embalse sube y baja dentro del día; el semanal es el valor a fin de semana).":`Diario: ${di.embalses.map(esc).join(", ")} (${Math.round(di.cobertura*100)}% del volumen de la cuenca).`}</div>`
+       <div class="note">${c.cuenca==="Chaglla"?"Diario: volumen útil promedio de cada día (el embalse sube y baja dentro del día; el semanal es el valor a fin de semana).":`Diario (IEOD, cierre del ${ddmm(di.fecha)}): solo embalses con reporte diario (${di.embalses.map(esc).join(", ")}); no incluye todas las lagunas. Semanal (informe del COES): todo el volumen útil de la cuenca a fin de semana. Por eso sus variaciones pueden diferir.`}</div>`
       :`<div class="note">El volumen de las lagunas de esta cuenca solo se publica en el informe semanal.</div>`}
      ${c.centrales.length?`<div class="centrow"><span class="lbl centt">Centrales:</span> ${c.centrales.map(([n,mw])=>`${esc(n)} ${mw} MW`).join(" · ")} <span class="tot">TOTAL = ${f1(c.mw_total)} MW</span></div>`:""}</div>`};
   $("#s-embalses").innerHTML=ES.cuencas.length?`<div class="grid"><div class="note" style="margin:0">Caudal natural (izquierda) y volumen útil del embalse (derecha) · semanal: ${esc(ES.semana||"")} (COES, Informe de Evaluación Semanal 5.4 y 5.2) · diario: IEOD del ${ddmm(D.dia_ieod||D.dia)}</div>
@@ -311,8 +408,15 @@ function render(){
      <div class="card kpi"><div class="lbl">Diésel programado (excluido)</div><div class="val">${MR.length-MRs.length}</div><div class="sub">intervenciones</div></div></div>
     <div class="card"><h2>MW indisponibles por día<small>${mesTxt} · promedio de cada día por tecnología, sin diésel</small></h2><div class="chart"><canvas id="c-mesd"></canvas></div></div>
     <div class="card"><h2>Cronograma del mes<small>las ${Math.min(MR.length,25)} intervenciones de mayor MW × días · color por tecnología (diésel en gris claro)</small></h2><div class="chart" style="height:${Math.max(180,Math.min(MR.length,25)*26+60)}px"><canvas id="c-mesg"></canvas></div></div>
+    <div class="card"><h2>Próximos 7 días<small>intervenciones sin diésel activas o que empiezan entre ${D.hoy.slice(8,10)}/${D.hoy.slice(5,7)} y ${(d=>d.toISOString().slice(8,10)+"/"+d.toISOString().slice(5,7))(new Date(new Date(D.hoy+"T12:00").getTime()+7*864e5))}</small></h2><div id="t-mes7"></div></div>
     <div class="card"><h2>Intervenciones programadas del mes<small>${mesTxt}</small></h2><div id="t-mes"></div></div></div>`
     :`<div class="card">El Programa Mensual de Mantenimiento ${mesTxt?"de "+mesTxt+" ":""}aún no se pudo leer del COES.</div>`;
+  if(MR.length){const h0=new Date(D.hoy+"T00:00"),h7=new Date(h0.getTime()+8*864e5);
+    tabla("#t-mes7",[{t:"Central",v:r=>tit(r.ubicacion)},{t:"Unidad",v:r=>r.equipo},{t:"Tecnología",v:r=>r.tecnologia||""},
+      {t:"Inicio",v:r=>r.inicio,h:r=>r.inicio.slice(8,10)+"/"+r.inicio.slice(5,7)},{t:"Fin",v:r=>r.final||"",h:r=>r.final?r.final.slice(8,10)+"/"+r.final.slice(5,7):""},
+      {t:"Estado",v:r=>new Date(r.inicio)<=h0?0:1,h:r=>new Date(r.inicio)<=h0?'<span class="tag">En curso</span>':'<span class="tag">Inicia</span>'},
+      {t:"MW",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Descripción",v:r=>r.descripcion}],
+      MRs.filter(r=>new Date(r.inicio)<h7&&new Date(r.final||r.inicio)>h0).sort((a,b)=>b.mw-a.mw))}
   if(MR.length)tabla("#t-mes",[{t:"Empresa",v:r=>tit(r.empresa)},{t:"Central",v:r=>tit(r.ubicacion)},{t:"Unidad",v:r=>r.equipo},
     {t:"Tecnología",v:r=>r.tecnologia||"",h:r=>r.diesel?'<span class="tag">Diésel · excluido</span>':esc(r.tecnologia||"")},
     {t:"Inicio",v:r=>r.inicio,h:r=>(r.inicio||"").slice(8,10)+"/"+(r.inicio||"").slice(5,7)+" "+(r.inicio||"").slice(11,16)},
@@ -321,11 +425,11 @@ function render(){
   const PG=D.programado_gen.filter(r=>r.mw>0),PG0=D.programado_gen.length-PG.length,PGs=PG.filter(r=>!r.diesel);
   const hrs=s=>Math.max(0,Math.min(24,(new Date(s)-new Date(D.hoy+"T00:00"))/36e5));
   $("#s-prog").innerHTML=D.programado_publicado?`<div class="grid">
-    <div class="grid g4"><div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">MW indisponibles programados (sin diésel)</div><div class="val">${f0(PGs.reduce((a,r)=>a+r.mw,0))}<small>MW</small></div><div class="sub">${PGs.length} intervenciones con MW</div></div>
+    <div class="grid g4"><div class="card kpi" style="border-color:var(--naranja);border-width:2px"><div class="lbl">Máximo simultáneo sin diésel</div><div class="val">${f0(D.prog_stats?D.prog_stats.max:0)}<small>MW</small></div><div class="sub">${D.prog_stats?`a las ${D.prog_stats.hora_max} h · promedio ${f0(D.prog_stats.prom)} MW`:""} · ${PGs.length} intervenciones</div></div>
 
-     <div class="card kpi"><div class="lbl">Diésel programado (excluido)</div><div class="val">${f0(PG.filter(r=>r.diesel).reduce((a,r)=>a+r.mw,0))}<small>MW</small></div><div class="sub">${PG.filter(r=>r.diesel).length} intervenciones</div></div>
+     <div class="card kpi"><div class="lbl">Diésel programado (excluido)</div><div class="val">${f0(D.prog_stats?D.prog_stats.diesel_max:PG.filter(r=>r.diesel).reduce((a,r)=>a+r.mw,0))}<small>MW</small></div><div class="sub">${PG.filter(r=>r.diesel).length} intervenciones · máximo simultáneo</div></div>
      <div class="card kpi"><div class="lbl">Líneas ≥220 kV intervenidas</div><div class="val">${new Set(D.programado_lineas.map(r=>r.equipo)).size}</div><div class="sub">programadas hoy</div></div></div>
-    <div class="card"><h2>MW indisponibles a lo largo del día<small>${D.hoy} · suma de intervenciones programadas sin diésel</small></h2><div class="chart"><canvas id="c-pgh"></canvas></div></div>
+    <div class="card"><h2>MW indisponibles a lo largo del día<small>${D.hoy} · sin diésel, cada unidad contada una sola vez</small></h2><div class="chart"><canvas id="c-pgh"></canvas></div></div>
     <div class="card"><h2>Cronograma de intervenciones con MW indisponibles<small>${D.hoy} · las ${Math.min(PG.length,20)} de mayor potencia · color por tecnología (diésel en gris claro)</small></h2><div class="chart" style="height:${Math.max(160,Math.min(PG.length,20)*26+60)}px"><canvas id="c-pgg"></canvas></div></div>
     <div class="card"><h2>Generación · intervenciones con MW indisponibles<small>${D.hoy}</small></h2><div id="t-pg"></div>${PG0?`<div class="note">No se muestran ${PG0} intervenciones sin MW indisponibles (pruebas, mantenimientos que no restringen potencia).</div>`:""}</div>
     <div class="card"><h2>Líneas ≥220 kV · intervenciones programadas<small>${D.hoy}</small></h2><div id="t-pl"></div></div></div>`
@@ -340,8 +444,24 @@ function render(){
 function dibujar(){
   if(!D)return;charts.forEach(c=>c.destroy());charts=[];
   const on=id=>$(id)&&$(id).closest("section").classList.contains("on");
-  if(on("#c-mes")){const dias=[...new Set(D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])))].sort();
-    grafico("#c-mes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:D.barras.map(b=>({label:b,data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2.5,tension:.25}))},options:base("USD/MWh")})}
+  if(on("#c-mes")){const dias=[...new Set(D.barras.flatMap(b=>Object.keys(D.cmg_diario[b])))].sort(),ref=D.barras[0],u=D.umbrales||{desacople:15,cmg_alto:150};
+    const pm=D.cmg_mes[ref],srv=dias.map(d=>D.cmg_diario[ref][d]??null),ult=srv.length-1;
+    // anotaciones solo en días relevantes: desacople entre barras o CMg sobre el umbral alto
+    // solo los 3 días con mayor desacople sobre el umbral (y precios sobre el umbral alto), para no saturar
+    const difs=dias.map(d=>{const v=D.barras.map(b=>D.cmg_diario[b][d]).filter(x=>x!=null);return v.length>1?Math.max(...v)-Math.min(...v):0});
+    const top=difs.map((x,i)=>[x,i]).filter(([x])=>x>=u.desacople).sort((a,b)=>b[0]-a[0]).slice(0,3).map(([,i])=>i);
+    const imx=srv.reduce((b,v,i)=>v!=null&&(b<0||v>srv[b])?i:b,-1);
+    const notas=dias.map((d,i)=>top.includes(i)?`desacople ${f0(difs[i])}`:(i===imx?`máx. ${f0(srv[i])}`:""));
+    const plug={id:"anot",afterDatasetsDraw(c){const x=c.ctx,m=c.getDatasetMeta(0);x.save();x.font="600 10.5px Inter,sans-serif";x.textAlign="center";
+      notas.forEach((n,i)=>{if(!n||!m.data[i])return;const p=m.data[i];x.fillStyle=css("--text-2");x.fillText("▾ "+n,p.x,p.y-10)});
+      const p=m.data[ult];if(p&&srv[ult]!=null){x.fillStyle=css("--naranja");x.font="700 12px Inter,sans-serif";x.textAlign="right";x.fillText(`${f2(srv[ult])}`,p.x-8,p.y+18)}
+      const y=c.scales.y.getPixelForValue(pm);x.fillStyle=css("--text-2");x.font="11px Inter,sans-serif";x.textAlign="left";x.fillText(`promedio del mes ${f2(pm)}`,c.chartArea.left+6,y-5);x.restore()}};
+    const o=base("USD/MWh");o.layout={padding:{top:14}};
+    grafico("#c-mes",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:[
+      {label:ref,data:srv,borderColor:css(SERIE[ref]),backgroundColor:css(SERIE[ref]),borderWidth:3,tension:.25,pointRadius:srv.map((_,i)=>i===ult?6:2.5),pointBackgroundColor:srv.map((_,i)=>i===ult?css("--naranja"):css(SERIE[ref]))},
+      {label:"Promedio del mes",data:dias.map(()=>pm),borderColor:css("--muted"),borderDash:[6,4],borderWidth:1.5,pointRadius:0},
+      ...D.barras.slice(1).map(b=>({label:b,data:dias.map(d=>D.cmg_diario[b][d]??null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2,tension:.25,hidden:true}))]},
+      options:o,plugins:[plug]})}
   if(on("#c-30")){const t=D.cmg_30min[D.barras[0]].map(p=>p[0]);
     grafico("#c-30",{type:"line",data:{labels:t.map(s=>{const d=new Date(s);return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")} ${d.toTimeString().slice(0,5)}`}),
       datasets:D.barras.map(b=>({label:b,data:D.cmg_30min[b].map(p=>p[1]),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:0,pointHoverRadius:5,tension:.2}))},options:base("USD/MWh")})}
@@ -394,12 +514,12 @@ function dibujar(){
     const cols=["--s1","--s3","--s4","--s7","--s5","--muted"],ser=(arr)=>{const m=Object.fromEntries(arr);return lab.map((_,k)=>m[(k+1)*30]??null)};
     const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
     grafico("#c-enl"+i,{type:"line",data:{labels:lab,datasets:[{label:"Total",data:ser(e.total),borderColor:css("--s2"),backgroundColor:css("--s2"),borderWidth:3,pointRadius:0,tension:.2},
-      ...Object.entries(e.lineas).map(([ln,sr],j)=>({label:ln,data:ser(sr),borderColor:css(cols[j%cols.length]),backgroundColor:css(cols[j%cols.length]),borderWidth:1.3,pointRadius:0,tension:.2}))]},options:o})});
+      ...Object.entries(e.lineas).map(([ln,sr],j)=>({label:(m=>m&&(D.tramos||{})["L-"+m[1]]?`L-${m[1]} ${(D.tramos||{})["L-"+m[1]]}`:ln)(String(ln).match(/L-?\s?(\d{4}[A-Z]?)/i)),data:ser(sr),borderColor:css(cols[j%cols.length]),backgroundColor:css(cols[j%cols.length]),borderWidth:1.3,pointRadius:0,tension:.2}))]},options:o})});
   if(on("#c-flu")){const FL=Object.entries(D.flujos||{}).map(([cod,x])=>({cod,...x,max:Math.max(...x.serie.map(p=>Math.abs(p[1])))})).sort((a,b)=>b.max-a.max).slice(0,8);
     const cols=["--s1","--s2","--s3","--s4","--s7","--s8","--s5","--muted"];
     const lab=Array.from({length:48},(_,i)=>{const m=(i+1)*30;return `${String(Math.floor(m/60)%24).padStart(2,"0")}:${m%60?"30":"00"}`});
     const o=base("MW");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
-    grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:`${l.cod}${l.nombre?" ("+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
+    grafico("#c-flu",{type:"line",data:{labels:lab,datasets:FL.map((l,j)=>{const m=Object.fromEntries(l.serie);return{label:(D.tramos||{})[l.cod]?`${l.cod} ${(D.tramos||{})[l.cod]}`:`${l.cod}${l.nombre?" (medido en "+tit(l.nombre.replace(/^SE\s+/i,""))+")":""}`,data:lab.map((_,i)=>m[(i+1)*30]??null),borderColor:css(cols[j]),backgroundColor:css(cols[j]),borderWidth:2,pointRadius:0,tension:.2}})},options:o})}
   if(on("#c-mesd")){const PM=D.prog_mensual,MRs=PM.regs.filter(r=>!r.diesel),n=new Date(+PM.mes.slice(0,4),+PM.mes.slice(5,7),0).getDate();
     const tecs=[...new Set(MRs.map(r=>r.tecnologia||"Otra"))],hoyD=D.hoy.slice(0,7)===PM.mes?+D.hoy.slice(8,10):0;
     const val=(t,k)=>mwDia(MRs,`${PM.mes}-${String(k+1).padStart(2,"0")}`,r=>(r.tecnologia||"Otra")===t);
@@ -420,6 +540,28 @@ function dibujar(){
     o.scales={x:{grid:{color:css("--grid")},ticks:{color:css("--text-2")},title:{display:true,text:`${HCU==="MW"?"MW medios":"GWh"} vs año anterior`,color:css("--text-2")}},y:{grid:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
     o.plugins.tooltip.callbacks={label:it=>{const c=sel[it.dataIndex];return `${hcF(c.act)} vs ${hcF(c.ant)} ${HCU} (${c.var_pct==null?"–":(c.var_pct>0?"+":"")+c.var_pct.toFixed(0)+"%"})`}};
     grafico("#c-hcen",{type:"bar",data:{labels:sel.map(c=>romanos(c.central)),datasets:[{data:sel.map(c=>c.delta*hcK()),backgroundColor:sel.map(c=>css(c.delta<0?"--s8":"--s4")),borderRadius:4}]},options:o})}
+  if(on("#c-indp")&&D.indisp_stats){const P=D.indisp_stats.perfil,lab=P.map((_,k)=>`${String(Math.floor(k/2)).padStart(2,"0")}:${k%2?"30":"00"}`);
+    const o=base("MW");o.scales.y.beginAtZero=true;o.plugins.legend.display=false;o.plugins.tooltip.callbacks.label=c=>`${f0(c.parsed.y)} MW fuera de servicio`;
+    grafico("#c-indp",{type:"line",data:{labels:lab,datasets:[{data:P,stepped:true,fill:true,borderColor:css("--s2"),backgroundColor:css("--s2")+"33",borderWidth:2,pointRadius:0}]},options:o})}
+  if(on("#c-hud")&&D.huanchor){const H=D.huanchor,o=base("MWh");o.scales.y.beginAtZero=true;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f1(c.parsed.y)} MWh`;
+    grafico("#c-hud",{data:{labels:H.diario.map(x=>x.dia),datasets:[{type:"line",label:String(H.ant),data:H.diario.map(x=>x.mwh_ant),borderColor:css("--s1"),backgroundColor:css("--s1"),borderWidth:2,pointRadius:0,order:0},
+      {type:"bar",label:String(H.act),data:H.diario.map(x=>x.mwh),backgroundColor:css("--s2"),borderRadius:3,order:1}]},options:o})}
+  if(on("#c-hup")&&D.huanchor){const H=D.huanchor,lab=H.perfil.map(p=>{const m=p[0];return `${String(Math.floor(m/60)%24).padStart(2,"0")}:${m%60?"30":"00"}`});
+    const o=base("MW");o.scales.y.beginAtZero=true;o.scales.y2={position:"right",grid:{display:false},ticks:{color:css("--text-2")},title:{display:true,text:"USD/MWh",color:css("--text-2")}};
+    o.plugins.tooltip.callbacks.label=c=>c.dataset.yAxisID==="y2"?`CMg: ${f2(c.parsed.y)} USD/MWh`:`Huanchor: ${f1(c.parsed.y)} MW`;
+    grafico("#c-hup",{data:{labels:lab,datasets:[{type:"line",label:"CMg "+H.barra,data:H.perfil.map(p=>p[2]),yAxisID:"y2",borderColor:css("--linea"),backgroundColor:css("--linea"),borderWidth:2,pointRadius:0,order:0},
+      {type:"bar",label:"Huanchor (MW)",data:H.perfil.map(p=>p[1]),backgroundColor:css("--s1"),borderRadius:2,order:1}]},options:o})}
+  if(on("#c-huc")&&D.huanchor){const H=D.huanchor,o=base("USD/MWh");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)}`;
+    grafico("#c-huc",{type:"line",data:{labels:H.diario.map(x=>x.dia),datasets:[{label:"Precio capturado",data:H.diario.map(x=>x.capturado),borderColor:css("--s2"),backgroundColor:css("--s2"),borderWidth:3,pointRadius:2.5},
+      {label:"CMg promedio",data:H.diario.map(x=>x.cmg),borderColor:css("--s1"),backgroundColor:css("--s1"),borderWidth:2,pointRadius:0,borderDash:[5,4]}]},options:o})}
+  if(on("#c-hur")){const rim=(D.embalses_semanal?.cuencas||[]).find(c=>c.cuenca==="Rímac");if(rim){const ys=Object.keys(rim.anios).sort().slice(-2);
+    const o=base("Hm3");o.scales.x={type:"linear",min:1,max:53,grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:8}};o.scales.y.beginAtZero=true;
+    grafico("#c-hur",{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(rim.anios[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,borderColor:css(j?"--s2":"--s1"),backgroundColor:css(j?"--s2":"--s1"),borderWidth:j?3:2,pointRadius:0}))},options:o})}}
+  if(on("#c-dif")){const ref=D.barras[0],dias=Object.keys(D.cmg_diario[ref]).sort(),u=D.umbrales?.desacople||15;
+    const o=base("USD/MWh");o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${c.parsed.y>0?"+":""}${f2(c.parsed.y)}`;
+    grafico("#c-dif",{type:"line",data:{labels:dias.map(d=>+d.slice(8)),datasets:[...D.barras.filter(b=>b!==ref).map(b=>({label:`${b.replace(" 220","")} − ${ref.replace(" 220","")}`,data:dias.map(d=>D.cmg_diario[b][d]!=null?D.cmg_diario[b][d]-D.cmg_diario[ref][d]:null),borderColor:css(SERIE[b]),backgroundColor:css(SERIE[b]),borderWidth:2,pointRadius:2.5,tension:.2})),
+      {label:`umbral ±${u}`,data:dias.map(()=>u),borderColor:css("--muted"),borderDash:[4,4],borderWidth:1,pointRadius:0},{label:"",data:dias.map(()=>-u),borderColor:css("--muted"),borderDash:[4,4],borderWidth:1,pointRadius:0}]},
+      options:{...o,plugins:{...o.plugins,legend:{...o.plugins.legend,labels:{...o.plugins.legend.labels,filter:i=>i.text!==""}}}}})}
   const diaria=(id,di,dec)=>{const ya=Object.keys(di.serie).sort(),f0=new Date(di.serie[ya[ya.length-1]][0]?.[0]||di.fecha);
     const x=s=>Math.round((new Date(s)-f0)/864e5),lab=k=>{const d=new Date(f0.getTime()+k*864e5);return String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")};
     const o=base("Hm3");o.scales.x={type:"linear",grid:{color:css("--grid")},ticks:{color:css("--text-2"),stepSize:5,callback:v=>lab(v)}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
