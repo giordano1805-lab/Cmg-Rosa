@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-26T22:21-05:00",
+ "actualizado": "2026-10-26T22:24-05:00",
  "usadas": {
   "Huanchor 50": null,
   "Matucana": "MATUCANA 220"
@@ -14,7 +14,7 @@
    "MATUCANA 220"
   ]
  },
- "total_barras_mapa": 114,
+ "total_barras_mapa": 115,
  "barras_mapa": [
   "AGUAYTIA 138",
   "AGUAYTIA 220",
@@ -92,6 +92,7 @@
   "OLLEROS 500",
   "OROYA 220",
   "PACHACHACA 220",
+  "PAQUILLUSI 220",
   "PARAGSHA2 138",
   "PARAGSHA2 220",
   "PARAMONGA EXISTENTE 138",
