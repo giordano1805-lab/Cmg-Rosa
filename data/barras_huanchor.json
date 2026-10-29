@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-29T15:34-05:00",
+ "actualizado": "2026-10-29T17:18-05:00",
  "usadas": {
   "Huanchor 50": null,
   "Matucana": "MATUCANA 220"
@@ -14,7 +14,7 @@
    "MATUCANA 220"
   ]
  },
- "total_barras_mapa": 114,
+ "total_barras_mapa": 115,
  "barras_mapa": [
   "AGUAYTIA 138",
   "AGUAYTIA 220",
@@ -123,6 +123,7 @@
   "TINTAYA EXISTENTE 138",
   "TINTAYA NUEVA 220",
   "TOCACHE 138",
+  "TOQUEPALA 138",
   "TRUJILLO 220",
   "VENTANILLA 220",
   "VIZCARRA 220",
