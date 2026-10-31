@@ -1,4 +1,65 @@
 fecha,central,empresa,pasada,regulacion
+2023-10-30,8 De Agosto,Generación Andina S.A.C.,329.05,0.00
+2023-10-30,Angel Ii,Generadora De Energía Del Perú,297.05,0.00
+2023-10-30,Angel Iii,Generadora De Energía Del Perú,298.55,0.00
+2023-10-30,Arcata,Statkraft S.A,71.55,0.00
+2023-10-30,Aricota I,Egesur,0.00,165.10
+2023-10-30,Cahua,Statkraft S.A,841.65,0.00
+2023-10-30,Callahuanca,Enel Generacion Peru S.A.A.,0.00,1524.50
+2023-10-30,Cana Brava,Orazul Energy Perú,95.35,0.00
+2023-10-30,Canchayllo,Empresa De Generacion Electrica Canchayllo Sac,61.75,0.00
+2023-10-30,Canon Del Pato,Orazul Energy Perú,0.00,0.25
+2023-10-30,Carhuac,Andean Power S.A.C.,236.05,0.00
+2023-10-30,Carhuaquero,Orazul Energy Perú,0.00,1295.05
+2023-10-30,Carhuaquero Iv,Orazul Energy Perú,194.20,0.00
+2023-10-30,Cerro Del Aguila,Kallpa Generacion S.A.,82.40,0.00
+2023-10-30,Chaglla,Empresa De Generacion Huallaga,154.40,0.00
+2023-10-30,Chancay,Sinersa,414.70,0.00
+2023-10-30,Charcani Iii,Egasa,163.25,0.00
+2023-10-30,Charcani Iv,Egasa,0.00,270.05
+2023-10-30,Charcani V,Egasa,0.00,1665.90
+2023-10-30,Charcani Vi,Egasa,0.00,164.35
+2023-10-30,Cheves,Statkraft S.A,0.00,1642.55
+2023-10-30,Chimay,Chinango S.A.C.,0.00,1528.25
+2023-10-30,El Carmen,Generación Andina S.A.C.,126.00,0.00
+2023-10-30,El Platanal,Celepsa,0.00,1870.55
+2023-10-30,Gallito Ciego,Statkraft S.A,0.00,391.10
+2023-10-30,Her 1,Enel Generacion Peru S.A.A.,8.25,0.00
+2023-10-30,Huampani,Enel Generacion Peru S.A.A.,626.05,0.00
+2023-10-30,Huanchor,Hidroelectrica Huanchor S.A.C.,352.95,0.00
+2023-10-30,Huanza,Empresa De Generacion Huanza,0.00,740.35
+2023-10-30,Huasahuasi I,Egejunin,175.60,0.00
+2023-10-30,Huinco,Enel Generacion Peru S.A.A.,0.00,2281.30
+2023-10-30,Imperial,Hidrocañete S.A.,83.30,0.00
+2023-10-30,La Joya,Generadora De Energía Del Perú,141.30,0.00
+2023-10-30,La Virgen,La Virgen,928.85,0.00
+2023-10-30,Las Pizarras,Empresa Electrica Rio Doble,161.75,0.00
+2023-10-30,Machupicchu,Egemsa,2721.20,0.00
+2023-10-30,Malpaso,Statkraft S.A,0.00,369.75
+2023-10-30,Manta I,Peruana De Inversiones En Energias Renovables S.A.,256.50,0.00
+2023-10-30,Mantaro,Electroperu,0.00,13587.90
+2023-10-30,Maranon,Celepsa Renovables S.R.L.,442.15,0.00
+2023-10-30,Matucana,Enel Generacion Peru S.A.A.,0.00,1909.10
+2023-10-30,Moyopampa,Enel Generacion Peru S.A.A.,1535.70,0.00
+2023-10-30,Oroya,Statkraft S.A,186.95,0.00
+2023-10-30,Pariac,Statkraft S.A,59.70,0.00
+2023-10-30,Poechos Ii,Sinersa,124.80,0.00
+2023-10-30,Potrero,Empresa Electrica Agua Azul,317.05,0.00
+2023-10-30,Purmacana,Atria Energia S.A.C.,5.70,0.00
+2023-10-30,Renovandes H1,Empresa De Generacion Electrica Santa Ana S.A.C.,496.20,0.00
+2023-10-30,Restitucion,Electroperu,4532.95,0.00
+2023-10-30,Roncador,Maja Energia S.A.C.,58.25,0.00
+2023-10-30,Rucuy,Empresa De Generacion Electrica Rio Baños S.A.C.,273.80,0.00
+2023-10-30,Runatullo Ii,Egejunin,242.25,0.00
+2023-10-30,Runatullo Iii,Egejunin,347.30,0.00
+2023-10-30,San Gaban Ii,San Gaban,0.00,1659.00
+2023-10-30,Santa Cruz I,Egejunin,170.50,0.00
+2023-10-30,Santa Teresa,Inland Energy Sac,1364.80,0.00
+2023-10-30,Yanango,Chinango S.A.C.,404.55,0.00
+2023-10-30,Yanapampa,Electrica Yanapampa Sac,75.31,0.00
+2023-10-30,Yarucaya,Huaura Power Group S.A.,406.60,0.00
+2023-10-30,Yaupi,Statkraft S.A,2140.90,0.00
+2023-10-30,Yuncan,Engie,0.00,1739.05
 2025-10-01,8 De Agosto,Generación Andina S.A.C.,252.00,0.00
 2025-10-01,Angel I,Generadora De Energía Del Perú,124.40,0.00
 2025-10-01,Angel Ii,Generadora De Energía Del Perú,136.60,0.00
@@ -1885,6 +1946,72 @@ fecha,central,empresa,pasada,regulacion
 2025-10-29,Yarucaya,Huaura Power Group S.A.,446.40,0.00
 2025-10-29,Yaupi,Statkraft S.A,2558.05,0.00
 2025-10-29,Yuncan,Engie Energia Peru S.A.A.,0.00,2959.00
+2025-10-30,8 De Agosto,Generación Andina S.A.C.,410.55,0.00
+2025-10-30,Anashironi,Vari Energia S.A.C.,497.40,0.00
+2025-10-30,Angel I,Generadora De Energía Del Perú,489.60,0.00
+2025-10-30,Angel Ii,Generadora De Energía Del Perú,489.60,0.00
+2025-10-30,Angel Iii,Generadora De Energía Del Perú,480.00,0.00
+2025-10-30,Arcata,Statkraft S.A,48.00,0.00
+2025-10-30,Aricota I,Egesur,0.00,178.45
+2025-10-30,Aricota Ii,Egesur,0.00,138.00
+2025-10-30,Cahua,Statkraft S.A,959.20,0.00
+2025-10-30,Callahuanca,Orygen Peru S.A.A.,0.00,1103.10
+2025-10-30,Cana Brava,Orazul Energy Perú,130.65,0.00
+2025-10-30,Canchayllo,Empresa De Generacion Electrica Canchayllo Sac,90.75,0.00
+2025-10-30,Canon Del Pato,Orazul Energy Perú,0.00,4988.80
+2025-10-30,Carhuac,Andean Power S.A.C.,375.45,0.00
+2025-10-30,Carhuaquero,Orazul Energy Perú,0.00,2161.10
+2025-10-30,Carhuaquero Iv,Orazul Energy Perú,237.70,0.00
+2025-10-30,Cerro Del Aguila,Kallpa Generacion S.A.,249.65,0.00
+2025-10-30,Chaglla,Empresa De Generacion Huallaga,155.20,0.00
+2025-10-30,Chancay,Sinersa,459.60,0.00
+2025-10-30,Charcani Iii,Egasa,164.45,0.00
+2025-10-30,Charcani Iv,Egasa,0.00,294.20
+2025-10-30,Charcani V,Egasa,0.00,1964.75
+2025-10-30,Cheves,Statkraft S.A,0.00,1825.80
+2025-10-30,Chimay,Chinango S.A.C.,0.00,3630.15
+2025-10-30,El Carmen,Generación Andina S.A.C.,194.60,0.00
+2025-10-30,El Platanal,Celepsa,0.00,2990.90
+2025-10-30,Gallito Ciego,Statkraft S.A,0.00,376.55
+2025-10-30,Her 1,Orygen Peru S.A.A.,14.40,0.00
+2025-10-30,Huallin,Asociación Santa Lucia De Chacas,57.95,0.00
+2025-10-30,Huampani,Orygen Peru S.A.A.,718.35,0.00
+2025-10-30,Huanchor,Hidroelectrica Huanchor S.A.C.,437.25,0.00
+2025-10-30,Huanza,Empresa De Generacion Huanza,0.00,1619.05
+2025-10-30,Huasahuasi I,Egejunin,349.30,0.00
+2025-10-30,Huinco,Orygen Peru S.A.A.,0.00,3363.50
+2025-10-30,Imperial,Hidrocañete S.A.,84.15,0.00
+2025-10-30,La Joya,Generadora De Energía Del Perú,165.30,0.00
+2025-10-30,La Virgen,La Virgen,0.00,1303.00
+2025-10-30,Las Pizarras,Empresa Electrica Rio Doble,456.50,0.00
+2025-10-30,Machupicchu,Egemsa,3996.00,0.00
+2025-10-30,Malpaso,Statkraft S.A,0.00,689.60
+2025-10-30,Manta I,Peruana De Inversiones En Energias Renovables S.A.,473.10,0.00
+2025-10-30,Mantaro,Electroperu,0.00,15188.05
+2025-10-30,Maranon,Celepsa Renovables S.R.L.,451.20,0.00
+2025-10-30,Matucana,Orygen Peru S.A.A.,0.00,2034.75
+2025-10-30,Moyopampa,Orygen Peru S.A.A.,1535.80,0.00
+2025-10-30,Oroya,Statkraft S.A,135.45,0.00
+2025-10-30,Pachachaca,Statkraft S.A,193.90,0.00
+2025-10-30,Pariac,Inversiones Shaqsha S.A.C.,102.10,0.00
+2025-10-30,Poechos Ii,Sinersa,152.25,0.00
+2025-10-30,Potrero,Empresa Electrica Agua Azul,479.90,0.00
+2025-10-30,Purmacana,Atria Energia S.A.C.,9.60,0.00
+2025-10-30,Restitucion,Electroperu,5209.20,0.00
+2025-10-30,Roncador,Maja Energia S.A.C.,84.00,0.00
+2025-10-30,Rucuy,Empresa De Generacion Electrica Rio Baños S.A.C.,412.95,0.00
+2025-10-30,Runatullo Ii,Egejunin,325.55,0.00
+2025-10-30,Runatullo Iii,Egejunin,458.80,0.00
+2025-10-30,San Gaban Ii,San Gaban,0.00,2654.15
+2025-10-30,San Gaban Iii,Hydro Global Perú S.A.C.,0.00,4880.00
+2025-10-30,Santa Cruz I,Egejunin,198.55,0.00
+2025-10-30,Santa Teresa,Inland Energy Sac,2180.45,0.00
+2025-10-30,Tupuri,San Gaban,28.70,0.00
+2025-10-30,Yanango,Chinango S.A.C.,812.00,0.00
+2025-10-30,Yanapampa,Electrica Yanapampa Sac,74.65,0.00
+2025-10-30,Yarucaya,Huaura Power Group S.A.,445.95,0.00
+2025-10-30,Yaupi,Statkraft S.A,2604.70,0.00
+2025-10-30,Yuncan,Engie Energia Peru S.A.A.,0.00,2844.70
 2026-10-01,8 De Agosto,Generación Andina S.A.C.,223.15,0.00
 2026-10-01,Angel I,Generadora De Energía Del Perú,203.35,0.00
 2026-10-01,Angel Ii,Generadora De Energía Del Perú,212.90,0.00
@@ -3759,3 +3886,69 @@ fecha,central,empresa,pasada,regulacion
 2026-10-29,Yarucaya,Huaura Power Group S.A.,403.20,0.00
 2026-10-29,Yaupi,Statkraft S.A,2160.05,0.00
 2026-10-29,Yuncan,Engie Energia Peru S.A.A.,0.00,2075.40
+2026-10-30,8 De Agosto,Generación Andina S.A.C.,495.00,0.00
+2026-10-30,Anashironi,Vari Energia S.A.C.,231.75,0.00
+2026-10-30,Angel I,Generadora De Energía Del Perú,338.93,0.00
+2026-10-30,Angel Ii,Generadora De Energía Del Perú,358.48,0.00
+2026-10-30,Angel Iii,Generadora De Energía Del Perú,355.99,0.00
+2026-10-30,Arcata,Inversiones Shaqsha S.A.C.,43.20,0.00
+2026-10-30,Aricota I,Egesur,0.00,185.05
+2026-10-30,Aricota Ii,Egesur,0.00,120.65
+2026-10-30,Cahua,Statkraft S.A,762.90,0.00
+2026-10-30,Callahuanca,Orygen Peru S.A.A.,0.00,1601.40
+2026-10-30,Cana Brava,Orazul Energy Perú,105.15,0.00
+2026-10-30,Canchayllo,Empresa De Generacion Electrica Canchayllo Sac,88.40,0.00
+2026-10-30,Canon Del Pato,Orazul Energy Perú,0.00,4192.35
+2026-10-30,Carhuac,Andean Power S.A.C.,413.40,0.00
+2026-10-30,Carhuaquero,Orazul Energy Perú,0.00,1468.10
+2026-10-30,Carhuaquero Iv,Orazul Energy Perú,238.70,0.00
+2026-10-30,Cerro Del Aguila,Kallpa Generacion S.A.,74.50,0.00
+2026-10-30,Chaglla,Empresa De Generacion Huallaga,153.60,0.00
+2026-10-30,Chancay,Sinersa,179.75,0.00
+2026-10-30,Charcani Iii,Egasa,162.00,0.00
+2026-10-30,Charcani V,Egasa,0.00,1694.80
+2026-10-30,Cheves,Statkraft S.A,0.00,1272.15
+2026-10-30,Chimay,Chinango S.A.C.,0.00,2657.45
+2026-10-30,El Carmen,Generación Andina S.A.C.,182.85,0.00
+2026-10-30,El Platanal,Celepsa,0.00,1625.95
+2026-10-30,Gallito Ciego,Statkraft S.A,0.00,297.05
+2026-10-30,Her 1,Orygen Peru S.A.A.,14.40,0.00
+2026-10-30,Huallin,Asociación Santa Lucia De Chacas,70.30,0.00
+2026-10-30,Huampani,Orygen Peru S.A.A.,709.65,0.00
+2026-10-30,Huanchor,Hidroelectrica Huanchor S.A.C.,355.70,0.00
+2026-10-30,Huanza,Empresa De Generacion Huanza,0.00,1728.35
+2026-10-30,Huasahuasi I,Egejunin,169.60,0.00
+2026-10-30,Huinco,Orygen Peru S.A.A.,0.00,3581.65
+2026-10-30,Imperial,Hidrocañete S.A.,80.25,0.00
+2026-10-30,La Joya,Generadora De Energía Del Perú,183.60,0.00
+2026-10-30,La Virgen,La Virgen,0.00,776.90
+2026-10-30,Las Pizarras,Empresa Electrica Rio Doble,233.35,0.00
+2026-10-30,Machupicchu,Egemsa,3730.95,0.00
+2026-10-30,Malpaso,Statkraft S.A,0.00,449.25
+2026-10-30,Manta I,Celaris Energy S.A.,75.80,0.00
+2026-10-30,Mantaro,Electroperu,0.00,13443.20
+2026-10-30,Maranon,Celepsa Renovables S.R.L.,310.50,0.00
+2026-10-30,Matucana,Orygen Peru S.A.A.,0.00,1677.20
+2026-10-30,Moyopampa,Orygen Peru S.A.A.,1532.20,0.00
+2026-10-30,Oroya,Transmision Andina De Generacion S.A.C.,168.70,0.00
+2026-10-30,Pachachaca,Transmision Andina De Generacion S.A.C.,97.50,0.00
+2026-10-30,Pariac,Inversiones Shaqsha S.A.C.,61.10,0.00
+2026-10-30,Poechos Ii,Sinersa,67.20,0.00
+2026-10-30,Potrero,Empresa Electrica Agua Azul,68.55,0.00
+2026-10-30,Quitaracsa,Engie Energia Peru S.A.A.,0.00,752.50
+2026-10-30,Renovandes H1,Empresa De Generacion Electrica Santa Ana S.A.C.,487.90,0.00
+2026-10-30,Restitucion,Electroperu,4497.05,0.00
+2026-10-30,Roncador,Maja Energia S.A.C.,42.50,0.00
+2026-10-30,Rucuy,Sinersa,479.95,0.00
+2026-10-30,Runatullo Ii,Egejunin,134.35,0.00
+2026-10-30,Runatullo Iii,Egejunin,197.10,0.00
+2026-10-30,San Gaban Ii,San Gaban,0.00,2400.80
+2026-10-30,San Gaban Iii,Hydro Global Perú S.A.C.,0.00,4169.25
+2026-10-30,Santa Cruz I,Egejunin,185.25,0.00
+2026-10-30,Santa Teresa,Inland Energy Sac,2031.35,0.00
+2026-10-30,Tupuri,San Gaban,29.55,0.00
+2026-10-30,Yanango,Chinango S.A.C.,444.10,0.00
+2026-10-30,Yanapampa,Electrica Yanapampa Sac,66.85,0.00
+2026-10-30,Yarucaya,Huaura Power Group S.A.,392.75,0.00
+2026-10-30,Yaupi,Statkraft S.A,2146.95,0.00
+2026-10-30,Yuncan,Engie Energia Peru S.A.A.,0.00,1772.25
