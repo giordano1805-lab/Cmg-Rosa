@@ -1,5 +1,5 @@
 {
- "buscado": "2026-10",
+ "buscado": "2026-11",
  "rutas": [
   [
    "Operación/Programa de Mantenimiento/Programa Mensual/",
@@ -37,24 +37,24 @@
    ]
   ],
   [
-   "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/",
+   "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/",
    [
-    "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Preliminar/",
-    "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/"
+    "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Preliminar/",
+    "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/"
    ]
   ]
  ],
  "candidatos": [
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/ACTA_DE_REUNION_PMI_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/ACTA_DE_REUNION_PMI_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/ACTA_DE_REUNION_PMI_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/ACTA_DE_REUNION_PMI_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/ACTA_DE_REUNION_PMI_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/PMENSUAL_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/PMENSUAL_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/PMENSUAL_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/PMENSUAL_OCTUBRE_2026.zip",
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/PMENSUAL_OCTUBRE_2026.zip"
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/ACTA_DE_REUNION_PMI_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/ACTA_DE_REUNION_PMI_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/ACTA_DE_REUNION_PMI_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/ACTA_DE_REUNION_PMI_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/ACTA_DE_REUNION_PMI_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/PMENSUAL_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/PMENSUAL_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/PMENSUAL_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/PMENSUAL_NOVIEMBRE_2026.zip",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/PMENSUAL_NOVIEMBRE_2026.zip"
  ],
  "libros": [
   [
@@ -66,45 +66,19 @@
    0
   ],
   [
-   "UNIDADES DE GENERACION OCTUBRE 2026_REUNION.xlsx",
+   "EQUIPOS DE TRANSMISION NOVIEMBRE 2026_REUNION.xlsx",
    [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
    ],
    null,
    0
   ],
   [
-   "EQUIPOS DE TRANSMISION OCTUBRE 2026_REUNION.xlsx",
+   "UNIDADES DE GENERACION NOVIEMBRE 2026_REUNION.xlsx",
    [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
-   ],
-   null,
-   0
-  ],
-  [
-   "LEYENDA.xlsx",
-   [
-    "Hoja1"
-   ],
-   null,
-   0
-  ],
-  [
-   "UNIDADES DE GENERACION OCTUBRE 2026_REUNION.xlsx",
-   [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
-   ],
-   null,
-   0
-  ],
-  [
-   "EQUIPOS DE TRANSMISION OCTUBRE 2026_REUNION.xlsx",
-   [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
    ],
    null,
    0
@@ -118,45 +92,19 @@
    0
   ],
   [
-   "UNIDADES DE GENERACION OCTUBRE 2026_REUNION.xlsx",
+   "EQUIPOS DE TRANSMISION NOVIEMBRE 2026_REUNION.xlsx",
    [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
    ],
    null,
    0
   ],
   [
-   "EQUIPOS DE TRANSMISION OCTUBRE 2026_REUNION.xlsx",
+   "UNIDADES DE GENERACION NOVIEMBRE 2026_REUNION.xlsx",
    [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
-   ],
-   null,
-   0
-  ],
-  [
-   "LEYENDA.xlsx",
-   [
-    "Hoja1"
-   ],
-   null,
-   0
-  ],
-  [
-   "UNIDADES DE GENERACION OCTUBRE 2026_REUNION.xlsx",
-   [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
-   ],
-   null,
-   0
-  ],
-  [
-   "EQUIPOS DE TRANSMISION OCTUBRE 2026_REUNION.xlsx",
-   [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
    ],
    null,
    0
@@ -170,25 +118,77 @@
    0
   ],
   [
-   "UNIDADES DE GENERACION OCTUBRE 2026_REUNION.xlsx",
+   "EQUIPOS DE TRANSMISION NOVIEMBRE 2026_REUNION.xlsx",
    [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
    ],
    null,
    0
   ],
   [
-   "EQUIPOS DE TRANSMISION OCTUBRE 2026_REUNION.xlsx",
+   "UNIDADES DE GENERACION NOVIEMBRE 2026_REUNION.xlsx",
    [
-    "AÑO_2026_MES_10_EN_SERVICIO",
-    "AÑO_2026_MES_10_FS"
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
    ],
    null,
    0
   ],
   [
-   "Anexo1_Intervenciones/Anexo1_Intervenciones_(Agentes)_OCTUBRE_2026.xlsm",
+   "LEYENDA.xlsx",
+   [
+    "Hoja1"
+   ],
+   null,
+   0
+  ],
+  [
+   "EQUIPOS DE TRANSMISION NOVIEMBRE 2026_REUNION.xlsx",
+   [
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
+   ],
+   null,
+   0
+  ],
+  [
+   "UNIDADES DE GENERACION NOVIEMBRE 2026_REUNION.xlsx",
+   [
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
+   ],
+   null,
+   0
+  ],
+  [
+   "LEYENDA.xlsx",
+   [
+    "Hoja1"
+   ],
+   null,
+   0
+  ],
+  [
+   "EQUIPOS DE TRANSMISION NOVIEMBRE 2026_REUNION.xlsx",
+   [
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
+   ],
+   null,
+   0
+  ],
+  [
+   "UNIDADES DE GENERACION NOVIEMBRE 2026_REUNION.xlsx",
+   [
+    "AÑO_2026_MES_11_EN_SERVICIO",
+    "AÑO_2026_MES_11_FS"
+   ],
+   null,
+   0
+  ],
+  [
+   "Anexo1_Intervenciones/Anexo1_Intervenciones_(Agentes)_NOVIEMBRE_2026.xlsm",
    [
     "MANTTOS",
     "EQUIPOS",
@@ -200,8 +200,8 @@
   ]
  ],
  "usado": [
-  "Operación/Programa de Mantenimiento/Programa Mensual/2026/10_OCTUBRE/Final/PMENSUAL_OCTUBRE_2026.zip",
-  "Anexo1_Intervenciones/Anexo1_Intervenciones_(Agentes)_OCTUBRE_2026.xlsm",
+  "Operación/Programa de Mantenimiento/Programa Mensual/2026/11_NOVIEMBRE/Final/PMENSUAL_NOVIEMBRE_2026.zip",
+  "Anexo1_Intervenciones/Anexo1_Intervenciones_(Agentes)_NOVIEMBRE_2026.xlsm",
   "MANTTOS"
  ]
 }
