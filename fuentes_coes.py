@@ -1145,6 +1145,11 @@ def _cmg_en_hoja(nombre, filas):
                 for b, cs in cands.items()}
         if len([b for b in cols if b in ("Santa Rosa 220", "Socabaya 220", "Piura 220")]) < 2:
             continue
+        # columnas adicionales del mismo despacho YUPANA (reserva eficiente, demanda, flujos de enlaces)
+        for j, v in enumerate(f):
+            k = EXTRAS_PSO.get(re.sub(r"\s+", " ", norm(v)))
+            if k and k not in cols:
+                cols[k] = j
         base = _fecha_de_hoja(nombre, filas[:i + 1])
         out, prev = {}, None
         for g in filas[i + 1:i + 2000]:
@@ -1156,6 +1161,8 @@ def _cmg_en_hoja(nombre, filas):
                 h = texto(v)
                 if re.fullmatch(r"\d{1,2}:\d{2}(:\d{2})?", h):
                     hora = (int(h.split(":")[0]), int(h.split(":")[1]))
+                    if hora == (23, 59):                        # el COES rotula 24:00 como 23:59
+                        hora = (24, 0)
                     continue
                 x = fecha_hora(v)
                 if x and x.year > 2015:
@@ -1175,11 +1182,24 @@ def _cmg_en_hoja(nombre, filas):
                 continue
             prev = ts
             vals = {b: numero(g[j]) for b, j in cols.items() if j < len(g) and numero(g[j]) is not None}
-            if vals:
+            if any(not b.startswith("_") for b in vals):
+                # en el despacho del COES la celda de reserva vacía significa 0 MW (así lo grafica el propio COES)
+                for b in ("_ref", "_ref_gas", "_ref_carbon"):
+                    if b in cols and b not in vals:
+                        vals[b] = 0.0
                 out[ts] = vals
         if out:
             return out, {b: norm(f[j]) for b, j in cols.items()}
     return {}, {}
+
+
+# encabezado normalizado del Anexo 1 (Despacho) del Programa Semanal -> clave interna (empieza con "_": no es barra)
+EXTRAS_PSO = {
+    "RESERVA FRIA TERMICA": "_rf_termica", "RESERVA EFICIENTE": "_ref", "RESERVA EFICIENTE GAS": "_ref_gas",
+    "RESERVA EFICIENTE CARBON": "_ref_carbon", "DEMANDA COES": "_demanda",
+    "FLUJO ENLACE CENTRO - SUR": "_flujo_cs", "FLUJO ENLACE CENTRO - NORTE": "_flujo_cn",
+    "CMG TRUJILLO YUPANA(US$/MWH)": "_cmg_trujillo",
+}
 
 
 def _cmg_transpuesta(nombre, filas):

@@ -1066,11 +1066,19 @@ def cmg_proyectado(m, hist, dia, hoy):
     for t, v in serie.items():
         d = (t - dt.timedelta(minutes=1)).date().isoformat()
         for b, x in v.items():
+            if b.startswith("_"):
+                continue
             diario.setdefault(b, {}).setdefault(d, []).append(x * k)
+    # reserva fría y reserva eficiente (MW) del mismo despacho, cada 30 min
+    claves = ["_rf_termica", "_ref", "_ref_gas", "_ref_carbon"]
+    reserva = [[t.strftime("%Y-%m-%dT%H:%M"), *[round(serie[t][c], 1) if isinstance(serie[t].get(c), float) else None
+                                              for c in claves]]
+               for t in sorted(serie) if any(c in serie[t] for c in claves)]
     out_d = {b: {d: round(sum(x) / len(x), 2) for d, x in sorted(dd.items())} for b, dd in diario.items()}
     out_n = {b: {d: len(x) for d, x in sorted(dd.items())} for b, dd in diario.items()}
     sem = meta["semanas"]
-    return {"diario": out_d, "n": out_n, "unidad_origen": unidad, "metodo_unidad": metodo,
+    return {"diario": out_d, "n": out_n, "unidad_origen": unidad, "reserva": reserva,
+            "reserva_cols": ["Reserva fría térmica", "Reserva eficiente", "Reserva eficiente gas", "Reserva eficiente carbón"], "metodo_unidad": metodo,
             "archivos": [a.split("/")[-1] for a in meta["archivos"]],
             "version": "Final" if any("/FINAL/" in fc.norm(a) + "/" for a in meta["archivos"]) else "Preliminar",
             "semanas": [f"{s_['desde']} a {s_['hasta']}" for s_ in sem], "nombres": meta.get("nombres"),

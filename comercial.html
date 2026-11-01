@@ -133,7 +133,17 @@ const romanos=s=>String(s??"").replace(/\b(ii|iii|iv|vi|vii|viii|ix|xi|xii)\b/gi
 const tit=s=>romanos((s||"").toLowerCase().replace(/(^|[\s.(\/-])([a-záéíóúñü])/g,(m,a,b)=>a+b.toUpperCase()));
 const mesesEntre=(a,b)=>{const o=[];let [y,m]=a.split("-").map(Number);const [y2,m2]=b.split("-").map(Number);while(y<y2||(y===y2&&m<=m2)){o.push(`${y}-${String(m).padStart(2,"0")}`);m++;if(m>12){m=1;y++}}return o};
 const mLab=k=>`${MESL[+k.slice(5)-1]}-${k.slice(2,4)}`;
-let D=null,C=null,charts=[];
+let D=null,C=null,charts=[],VRF=false;
+// Reserva del Programa Semanal para la semana operativa (sábado–viernes) que contiene la fecha del reporte
+function resSemana(){const P=D.cmg_proy;if(!P||!P.reserva||!P.reserva.length)return null;
+  const h=new Date(D.hoy+"T12:00"),sat=new Date(h);sat.setDate(h.getDate()-((h.getDay()+1)%7));const iso=x=>x.toISOString().slice(0,10);
+  const d0=iso(sat),fri=new Date(sat);fri.setDate(sat.getDate()+6);const d1=iso(fri);
+  const fdia=t=>{const d=new Date(t);d.setMinutes(d.getMinutes()-1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
+  let rs=P.reserva.filter(r=>{const f=fdia(r[0]);return f>=d0&&f<=d1});if(!rs.length)rs=P.reserva;
+  const g=rs.filter(r=>fin(r[3]));if(!g.length)return null;
+  const min=g.reduce((a,r)=>r[3]<a[1]?[r[0],r[3]]:a,[g[0][0],g[0][3]]),now=new Date(D.generado);
+  const ahora=g.filter(r=>new Date(r[0])<=new Date(now.getTime()+18e5)).pop();
+  return{rs,d0,d1,sem:semanaCOES(d0),min,prom:g.reduce((a,r)=>a+r[3],0)/g.length,ahora:ahora?[ahora[0],ahora[3]]:null,cero:g.filter(r=>r[3]<=0.5).length}}
 // Semana operativa del COES: de sábado a viernes; la semana 1 empieza el primer sábado del año
 function semanaCOES(s){const d=new Date(s+"T12:00");let y=d.getFullYear(),p=new Date(y,0,1,12);while(p.getDay()!==6)p.setDate(p.getDate()+1);
   if(d<p){y--;p=new Date(y,0,1,12);while(p.getDay()!==6)p.setDate(p.getDate()+1)}return Math.floor((d-p)/864e5/7)+1}
@@ -212,7 +222,15 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
     <div class="card" style="align-self:start;border-style:dashed"><h3>Hidro<small>Comentario comercial (editable en comercial.json)</small></h3><p style="margin:0;font-size:15px">❏ ${esc(C.nota_hidro||"—")}</p></div>
     <div class="card"><h3>CMg proyectado de la semana<small>Programa Semanal de Operación (YUPANA) vs ejecutado · Santa Rosa 220 kV · USD/MWh</small></h3>
      ${D.cmg_proy&&D.cmg_proy.diario?cv("c-pry","CMg proyectado frente a ejecutado","sm"):`<div class="estado">${esc(D.cmg_proy&&D.cmg_proy.error||"La proyección semanal aún no se pudo leer del COES.")}</div>`}</div></div>
-   <div class="note">La curva de Reserva Fría Eficiente del SEIN aún no tiene una fuente automatizada en este tablero; se incorporará cuando se identifique el archivo publicado por el COES.</div></section>
+   ${(()=>{const R=resSemana();if(!R)return `<div class="estado" style="margin-top:14px">${esc(D.cmg_proy&&D.cmg_proy.error||"La reserva eficiente se lee del Anexo 1 (Despacho) del Programa Semanal; aún no está disponible en los datos publicados.")}</div>`;
+     return `<div class="card" style="margin-top:14px"><h3>Reserva eficiente de gas en el SEIN · Semana N° ${R.sem} · ${ddmm(R.d0)} al ${ddmm(R.d1)}<small>MW cada 30 min · Programa Semanal de Operación del COES (Anexo 1 · Despacho YUPANA, versión ${esc(D.cmg_proy.version)}) · proyección, no ejecutado</small></h3>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+       <span class="pill gr">Mínimo ${f0(R.min[1])} MW · ${R.min[0].slice(8,10)}/${R.min[0].slice(5,7)} ${R.min[0].slice(11,16)} h</span>
+       <span class="pill gr">Promedio ${f0(R.prom)} MW</span>${R.ahora?`<span class="pill">Ahora (${R.ahora[0].slice(11,16)} h): ${f0(R.ahora[1])} MW</span>`:""}
+       ${R.cero?`<span class="pill" style="background:linear-gradient(180deg,#e34948,#c5221f)">${R.cero} medias horas sin reserva de gas</span>`:""}</div>
+      <label class="mut" style="display:inline-flex;gap:6px;align-items:center;margin-bottom:6px;cursor:pointer"><input type="checkbox" id="rf-ter" ${VRF?"checked":""} onchange="VRF=this.checked;render()"> Mostrar reserva fría térmica (eje derecho)</label>
+      ${cv("c-res","Reserva eficiente de gas proyectada para la semana","tall")}
+      <div class="note">Según el COES: la reserva eficiente de gas es la suma de las unidades a gas no despachadas más la reserva rotante de gas; es un cálculo aproximado que no considera limitaciones de ningún tipo.</div></div>`})()}</section>
 
   <section class="sec" id="caudales"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución de los caudales – ${esc((ES.semana||"").split("·")[0])}</h2></div><span class="pill gr">${esc(ES.semana||"")}</span></div>
    <div class="grid g2">${ES.cuencas.filter(c=>c.caudal).map((c,i)=>`<div class="card"><h3>${esc((c.caudal.titulos||[])[0]||"Caudal natural "+c.cuenca)}<small>m³/s · por semana · ${Object.keys(c.caudal.anios).sort().slice(-4).join(", ")}</small></h3>${cv("c-q"+i,"Caudal natural de "+c.cuenca,"sm")}</div>`).join("")||'<div class="estado">Sin informe semanal.</div>'}</div></section>
@@ -279,6 +297,18 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
       {label:"Real",data:real.map(x=>x?x.v:null),backgroundColor:real.map(x=>x&&x.parcial?css("--naranja")+"88":css("--naranja")),borderRadius:3}]},options:o,plugins:[lb]})}
   if(prj&&prj[SR]&&$("#c-pry")){const ds=Object.keys(prj[SR]).sort(),o=base("USD/MWh");o.plugins.tooltip.callbacks.title=it=>it[0].label;
     graf("#c-pry",{type:"bar",data:{labels:ds.map(ddmm),datasets:[{label:"Proyectado (YUPANA)",data:ds.map(d=>prj[SR][d]),backgroundColor:css("--navy")+"aa",borderRadius:3},{type:"line",label:"Ejecutado",data:ds.map(d=>d<=D.dia?D.cmg_diario[SR][d]??null:null),borderColor:css("--naranja"),backgroundColor:css("--naranja"),borderWidth:2.4,pointRadius:3}]},options:o})}
+  {const R=resSemana();if(R&&$("#c-res")){const DS=["dom","lun","mar","mié","jue","vie","sáb"];
+    const lab=R.rs.map(r=>{const d=new Date(r[0]);return `${DS[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} ${r[0].slice(11,16)}`});
+    const o=base("MW");o.scales.y.beginAtZero=true;const ini=i=>R.rs[i]&&R.rs[i][0].endsWith("T00:30");
+    o.scales.x.ticks={color:css("--text-2"),autoSkip:false,maxRotation:0,callback:(v,i)=>ini(i)?lab[i].slice(0,-6):null};
+    o.scales.x.grid={color:c=>ini(c.index)?css("--grid"):"transparent",drawTicks:false};
+    o.plugins.tooltip.callbacks={title:it=>lab[it[0].dataIndex]+" h",label:c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`};
+    if(VRF)o.scales.y2={position:"right",beginAtZero:true,grid:{display:false},border:{display:false},ticks:{color:css("--text-2")},title:{display:true,text:"Reserva fría térmica (MW)",color:css("--text-2")}};
+    const verde="#22c55e";
+    graf("#c-res",{type:"line",data:{labels:lab,datasets:[
+      {label:"Reserva eficiente gas",data:R.rs.map(r=>r[3]),stepped:true,fill:true,borderColor:"#16a34a",backgroundColor:c=>{const{ctx,chartArea}=c.chart;if(!chartArea)return verde+"55";const g=ctx.createLinearGradient(0,chartArea.top,0,chartArea.bottom);g.addColorStop(0,verde+"aa");g.addColorStop(1,verde+"22");return g},borderWidth:1.6,pointRadius:0},
+      ...(R.rs.some(r=>fin(r[4])&&r[4]>0)?[{label:"Reserva eficiente carbón",data:R.rs.map(r=>r[4]),stepped:true,borderColor:"#6b7280",borderWidth:1.4,pointRadius:0}]:[]),
+      ...(VRF?[{label:"Reserva fría térmica",data:R.rs.map(r=>r[1]),yAxisID:"y2",stepped:true,borderColor:css("--navy"),borderDash:[5,4],borderWidth:1.6,pointRadius:0}]:[])]},options:o})}}
   const sem_=(id,A,un)=>{const ys=Object.keys(A).sort().slice(-4),est=ANIOC.slice(4-ys.length);const o=base(un);
     o.scales.x={type:"linear",min:1,max:53,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:3},title:{display:true,text:"Semanas",color:css("--text-2")}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
     o.plugins.tooltip.callbacks={title:it=>`Semana ${it[0].parsed.x}`,label:t=>`${t.dataset.label}: ${f1(t.parsed.y)} ${un}`};
