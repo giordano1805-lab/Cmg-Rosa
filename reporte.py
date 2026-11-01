@@ -901,6 +901,8 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_diario": {b: {d.isoformat(): round(v, 2) for d, v in sorted(ind["diario_b"][b].items())}
                        for b in m.BARRAS},
         "cmg_mes": {b: (round(v, 2) if v is not None else None) for b, v in ind["prom_mes_b"].items()},
+        "cmg_mensual": cmg_mensual(m, ind["_hist"]),
+        "cmg_hoy": cmg_ultimo(m, ind["_hist"], hoy),
         "cmg_n": {b: {d.isoformat(): n for d, n in sorted(ind["n_b"].get(b, {}).items())} for b in m.BARRAS},
         "cmg_prev": {b: (round(v, 2) if v is not None else None) for b, v in ind["prev"].items()},
         "bloques_diario": {bl: {d.isoformat(): round(v, 2) for d, v in sorted(ind["diario_bl"][bl].items())}
@@ -936,6 +938,32 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_proy": extra.get("cmg_proy"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
+
+
+def cmg_mensual(m, hist):
+    """Promedio mensual (USD/MWh) de todas las medias horas guardadas, por barra: {barra: {AAAA-MM: [prom, n]}}."""
+    acc = {}
+    for t, r in hist.items():
+        k = f"{m.dia_operativo(t):%Y-%m}"
+        for b in m.TODAS:
+            if isinstance(r.get(b), float):
+                a = acc.setdefault(b, {}).setdefault(k, [0.0, 0])
+                a[0] += r[b] / m.TC
+                a[1] += 1
+    return {b: {k: [round(v[0] / v[1], 2), v[1]] for k, v in sorted(d.items())} for b, d in acc.items()}
+
+
+def cmg_ultimo(m, hist, hoy):
+    """Último intervalo publicado del día del reporte (CMg preliminar en tiempo real), por barra."""
+    ts = sorted(t for t in hist if m.dia_operativo(t) == hoy)
+    if not ts:
+        return None
+    t = ts[-1]
+    return {"ts": _iso(t), "n": len(ts), "barras": {b: round(hist[t][b] / m.TC, 2) for b in m.TODAS
+                                                     if isinstance(hist[t].get(b), float)},
+            "promedio": {b: round(sum(hist[x][b] for x in ts if isinstance(hist[x].get(b), float)) / m.TC /
+                                  max(1, sum(1 for x in ts if isinstance(hist[x].get(b), float))), 2)
+                         for b in m.TODAS if any(isinstance(hist[x].get(b), float) for x in ts)}}
 
 
 def m_hist_rango(m, ind, dia):
@@ -1062,6 +1090,10 @@ def generar(m, hist=None):
     if hist is None:
         hist = m.leer_hist()
         m.actualizar(hist, dia)
+        try:                                     # intervalos ya publicados del día del reporte (CMg al momento)
+            m.actualizar(hist, hoy)
+        except Exception as e:
+            print("CMg del día en curso no disponible:", e, file=sys.stderr)
         m.guardar_hist(hist)
     ind = indicadores_cmg(m, hist, dia)
     ind["_hist"] = hist
@@ -1215,6 +1247,11 @@ def generar(m, hist=None):
     DOCS.mkdir(exist_ok=True)
     if Path("dashboard.html").exists():
         (DOCS / "index.html").write_text(Path("dashboard.html").read_text(encoding="utf-8"), encoding="utf-8")
+    # Reporte comercial: página propia que lee datos.json (automático) y comercial.json (datos comerciales editables)
+    if Path("comercial.html").exists():
+        (DOCS / "comercial.html").write_text(Path("comercial.html").read_text(encoding="utf-8"), encoding="utf-8")
+    if Path("comercial.json").exists() and not (DOCS / "comercial.json").exists():
+        (DOCS / "comercial.json").write_text(Path("comercial.json").read_text(encoding="utf-8"), encoding="utf-8")
     if LOGO.exists():
         (DOCS / "logo.png").write_bytes(LOGO.read_bytes())
     (DOCS / ".nojekyll").write_text("")
