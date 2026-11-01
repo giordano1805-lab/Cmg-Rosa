@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "reporte, escucha, pdf o explora"
+        description: "reporte, escucha, pdf, comercial o explora"
         default: "reporte"
 permissions:
   contents: write
