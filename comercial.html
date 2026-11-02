@@ -117,8 +117,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
   <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
   <h1>Reporte comercial</h1>
   <div class="meta" id="meta" aria-live="polite">Cargando…</div>
-  <a class="btn pri" id="coes" href="#" target="_blank" rel="noopener" title="Pide al bot de Telegram una nueva lectura de los datos del COES (tarda unos minutos)">📡 Actualizar desde el COES</a>
-  <button class="btn" id="upd" type="button" title="Vuelve a leer la última versión publicada">⟳ Recargar</button>
+  <button class="btn pri" id="upd" type="button" title="Vuelve a leer la última versión publicada">⟳ Recargar</button>
   <button class="btn" type="button" onclick="print()">Imprimir / PDF</button>
   <button class="btn" id="tema" type="button" aria-label="Cambiar tema claro u oscuro">Tema</button>
 </div></header>
@@ -371,12 +370,14 @@ const hhmm=s=>new Date(s).toLocaleString("es-PE",{day:"2-digit",month:"2-digit",
 function cargar(manual){$("#upd").disabled=true;$("#upd").textContent="⟳ Recargando…";const antes=D&&D.generado,v=Date.now();
   Promise.all([fetch("datos.json?v="+v,{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch("comercial.json?v="+v,{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))])
    .then(([d,c])=>{D=d;C=c||{};render();
-     const b=$("#coes");if(D.bot){b.href=`https://t.me/${D.bot}?start=comercial`;b.style.display=""}else b.style.display="none";
-     if(manual)aviso(antes&&antes===D.generado?`Sin datos nuevos: la última actualización es del ${hhmm(D.generado)} · usa «Actualizar desde el COES» para pedir una nueva.`:`Datos actualizados al ${hhmm(D.generado)}`)})
+     if(manual)aviso(antes&&antes===D.generado?`Sin datos nuevos: la última actualización es del ${hhmm(D.generado)}; se actualiza sola cada hora.`:`Datos actualizados al ${hhmm(D.generado)}`)})
    .catch(()=>{$("#main").innerHTML='<div class="estado par">No se pudieron cargar los datos publicados (datos.json). Intenta de nuevo en unos minutos.</div>'})
    .finally(()=>{$("#upd").disabled=false;$("#upd").textContent="⟳ Recargar"})}
-$("#coes").onclick=e=>{if(!D||!D.bot){e.preventDefault();return}aviso("Se abrió Telegram: envía el mensaje al bot. En unos minutos llega el enlace con los datos nuevos; luego toca «Recargar».")};
 $("#upd").onclick=()=>cargar(true);
+// se revisa sola cada 5 minutos y al volver a la pestaña: si el flujo programado publicó datos nuevos, se actualiza sin tocar nada
+function revisar(){if(document.hidden||!D)return;fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null)
+  .then(d=>{if(d&&d.generado!==D.generado){D=d;render();aviso(`Datos actualizados al ${hhmm(D.generado)}`)}}).catch(()=>{})}
+setInterval(revisar,5*60*1000);document.addEventListener("visibilitychange",revisar);
 try{const t=localStorage.getItem("tema");if(t)document.documentElement.dataset.theme=t}catch(e){}
 $("#tema").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("tema",r.dataset.theme)}catch(e){};if(D)render()};
 cargar();
