@@ -198,30 +198,34 @@ function cmgVista(){const SR="Santa Rosa 220";
 function mantDiaDatos(){const PG=(D.programado_gen||[]).filter(r=>r.mw>0),sin=PG.filter(r=>!r.diesel),h0=new Date(D.hoy+"T00:00");
   const p=LAB48.map((_,k)=>mwActivo(sin,new Date(h0.getTime()+(k*30+15)*6e4))),mx=Math.max(0,...p);
   return{PG,sin,p,mx,k:p.indexOf(mx),prom:p.reduce((a,b)=>a+b,0)/48,tecs:[...new Set(sin.map(r=>r.tecnologia||"Otra"))]}}
+function ganttDia(){const R=mantDiaDatos(),h0=new Date(D.hoy+"T00:00"),hr=x=>Math.max(0,Math.min(24,(new Date(x)-h0)/36e5)),g={};
+  R.PG.forEach(r=>{const k=r.ubicacion+"|"+r.equipo;(g[k]=g[k]||{r,regs:[]}).regs.push(r)});
+  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion)).replace(/^Reserva Fria De (Generacion )?/i,"RF ")}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo} · ${f0(Math.max(...f.regs.map(x=>x.mw)))} MW`;return innerWidth<700&&t.length>24?t.slice(0,23)+"…":t};
+  const filas=Object.values(g).sort((a,b)=>Math.max(...b.regs.map(x=>x.mw))-Math.max(...a.regs.map(x=>x.mw))).slice(0,30);
+  return{R,filas:filas.map(lbl),pts:filas.flatMap(f=>f.regs.map(r=>({x:[hr(r.inicio),Math.max(hr(r.final||r.inicio),hr(r.inicio)+.25)],y:lbl(f),r})))}}
 function mantDiaHTML(){if(!D.programado_publicado)return `<div class="estado">El Programa Diario de Intervenciones del ${ddmm(D.hoy)} aún no está publicado.</div>`;
-  const R=mantDiaDatos();
+  const G=ganttDia(),R=G.R;
   return `<div class="grid g3">${kc("⚡","Máximo simultáneo sin diésel",f0(R.mx),"MW",R.mx?`a las ${LAB48[R.k]} h · ${fL(D.hoy)}`:"")}${kc("◷","Promedio del día",f0(R.prom),"MW","integral ÷ 24 h, sin diésel")}${kc("🔧","Intervenciones con MW",R.PG.length,"",`${R.PG.filter(r=>r.diesel).length} de unidades diésel (no suman al máximo)`)}</div>
-   <div class="grid g64" style="margin-top:14px"><div class="card"><h3>Potencia indisponible por media hora · ${fL(D.hoy)}<small>Programa Diario de Intervenciones del COES · por tecnología · cada unidad contada una sola vez</small></h3>${cv("c-mpd","Potencia indisponible programada del día","tall")}</div>
-   <div class="card"><h3>Unidades intervenidas · ${ddmm(D.hoy)}<small>Ordenadas por MW</small></h3><ul class="mant" style="columns:1">${R.PG.sort((a,b)=>b.mw-a.mw).slice(0,18).map(r=>`<li><b>${esc(romanos(tit(r.ubicacion)))}${r.equipo&&r.equipo!=="CENTRAL"?" "+esc(r.equipo):" Central"}</b><span class="mut">${esc(per(r,D.hoy))}</span>${r.diesel?'<span class="tg">diésel</span>':""}<span class="mw">${f0(r.mw)} MW</span></li>`).join("")}</ul>${R.PG.length>18?`<div class="note">${R.PG.length-18} más en el Dashboard → Programación.</div>`:""}</div></div>`}
+   <div class="card" style="margin-top:14px"><h3>Intervenciones del día · ${fL(D.hoy)}<small>Programa Diario de Intervenciones del COES · horario de cada unidad (00:00–24:00) · color por tecnología (diésel en gris)</small></h3>
+    ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(200,G.filas.length*24+70)}px"><canvas id="c-mgd" role="img" aria-label="Intervenciones programadas del día por unidad y horario"></canvas></div></div>`}
+const lgdTec=pts=>`<div class="lgd">${Object.entries(TECC).filter(([t])=>pts.some(p=>p.r.tecnologia===t&&!p.r.diesel)).map(([t,c])=>`<span><i style="background:${c}"></i>${t}</span>`).join("")}${pts.some(p=>p.r.diesel)?'<span><i style="background:#b8bec9"></i>Diésel</span>':""}</div>`;
 function ganttMes(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7),a=new Date(`${mes}-01T00:00`),b=new Date(+mes.slice(0,4),+mes.slice(5,7),1),n=(b-a)/864e5;
   const min=+(C.mantenimientos_mw_minimo??20),dd=s=>(Math.max(a,Math.min(b,new Date(s)))-a)/864e5,g={};
   (PM.regs||[]).filter(r=>(r.mw||0)>=min).forEach(r=>{const k=r.ubicacion+"|"+r.equipo;(g[k]=g[k]||{r,regs:[],peso:0}).regs.push(r);g[k].peso+=r.mw*(dd(r.final||r.inicio)-dd(r.inicio))});
-  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion))}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo}`;return innerWidth<700&&t.length>18?t.slice(0,17)+"…":t};
+  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion)).replace(/^Reserva Fria De (Generacion )?/i,"RF ")}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo} · ${f0(Math.max(...f.regs.map(x=>x.mw)))} MW`;return innerWidth<700&&t.length>24?t.slice(0,23)+"…":t};
   const top=Object.values(g).sort((x,y)=>y.peso-x.peso).slice(0,30).sort((x,y)=>Math.min(...x.regs.map(r=>dd(r.inicio)))-Math.min(...y.regs.map(r=>dd(r.inicio))));
   return{a,n,filas:top.map(lbl),pts:top.flatMap(f=>f.regs.map(r=>({x:[dd(r.inicio),Math.max(dd(r.final||r.inicio),dd(r.inicio)+.06)],y:lbl(f),r})))}}
-function mantMesHTML(MM){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7);if(!(PM.regs||[]).length)return '<div class="estado">Programa mensual no disponible.</div>';
+function mantMesHTML(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7);
+  if(!(PM.regs||[]).length||mes!==D.hoy.slice(0,7))return `<div class="estado">El Programa Mensual de Mantenimiento de ${MESN[+D.hoy.slice(5,7)-1]} aún no está disponible.</div>`;
   const G=ganttMes();
-  return `<div class="card"><h3>Ventanas de mantenimiento · ${MESN[+mes.slice(5)-1]} ${mes.slice(0,4)}<small>Programa Mensual de Mantenimiento del COES · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · color por tecnología (diésel en gris) · línea naranja: hoy</small></h3>
-    <div class="lgd">${Object.entries(TECC).filter(([t])=>G.pts.some(p=>p.r.tecnologia===t&&!p.r.diesel)).map(([t,c])=>`<span><i style="background:${c}"></i>${t}</span>`).join("")}${G.pts.some(p=>p.r.diesel)?'<span><i style="background:#b8bec9"></i>Diésel</span>':""}</div>
-    <div class="chart" style="height:${Math.max(220,G.filas.length*22+70)}px"><canvas id="c-mmg" role="img" aria-label="Ventanas de mantenimiento del mes"></canvas></div></div>
-   <div class="card" style="margin-top:14px"><h3>Centrales en mantenimiento ${MESL[+mes.slice(5)-1]}-${mes.slice(2,4)}<small>Días del mes por central y unidad</small></h3>
-    ${MM.length?`<ul class="mant">${MM.map(x=>`<li><b>${esc(romanos(tit(x.c)))}${x.u&&x.u!=="CENTRAL"?" "+esc(x.u):" Central"}</b><span class="mut">${esc(x.txt)}</span>${x.dsl?'<span class="tg">diésel</span>':""}<span class="mw">${f0(x.mw)} MW</span></li>`).join("")}</ul>`:'<div class="estado">Sin intervenciones con MW en el mes.</div>'}</div>`}
+  return `<div class="card"><h3>Ventanas de mantenimiento · ${MESN[+mes.slice(5)-1]} ${mes.slice(0,4)}<small>Programa Mensual de Mantenimiento del COES · mes en curso · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · color por tecnología (diésel en gris) · línea naranja: hoy</small></h3>
+    ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(220,G.filas.length*22+70)}px"><canvas id="c-mmg" role="img" aria-label="Ventanas de mantenimiento del mes"></canvas></div></div>`}
 /* ---------- render ---------- */
 function render(){charts.forEach(c=>c.destroy());charts=[];
   const hoy=D.hoy,sem=semanaCOES(hoy),SR="Santa Rosa 220",mes=MESN[+D.dia.slice(5,7)-1],anio=D.dia.slice(0,4);
   $("#meta").innerHTML=`Semana N° ${sem} · <b>${fL(hoy)}</b><br>Datos SEIN al ${ddmm(D.dia)} · actualizado ${new Date(D.generado).toLocaleString("es-PE",{dateStyle:"short",timeStyle:"short"})}`;
   $("#nav").innerHTML=SECS.map(([k,n],i)=>`<a href="#${k}">${i+1}. ${n}</a>`).join("");
-  const MM=mantMes(),ES=D.embalses_semanal||{cuencas:[]},cH=D.cmg_hoy,CV=cmgVista();
+  const ES=D.embalses_semanal||{cuencas:[]},cH=D.cmg_hoy,CV=cmgVista();
   const rimac=ES.cuencas.find(c=>c.cuenca==="Rímac");
   // CMg mensual: real automático si hay datos del mes; si no, el valor cargado en comercial.json
   const CM=C.cmg_mensual_manual||{},barraM=CM.barra||SR,auto=(D.cmg_mensual||{})[barraM]||{};
@@ -252,7 +256,7 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
 
   <section class="sec" id="mant"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mantenimientos de centrales</h2></div>
     <div class="seg" role="group" aria-label="Vista">${[["dia","Por día"],["mes","Por mes"]].map(([k,n])=>`<button type="button" aria-pressed="${MTM===k}" onclick="MTM='${k}';render()">${n}</button>`).join("")}</div></div>
-   ${MTM==="dia"?mantDiaHTML():mantMesHTML(MM)}</section>
+   ${MTM==="dia"?mantDiaHTML():mantMesHTML()}</section>
 
   <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mercado y reserva eficiente</h2></div>${cH?`<span class="pill gr">CMg preliminar ${ddmm(hoy)} · ${cH.ts.slice(11,16).replace("23:59","24:00")} h</span>`:""}</div>
    <div class="grid g3">${cH?Object.entries(cH.barras).map(([b,v])=>kc("⚡",`CMg ${esc(b.replace(" 220"," 220 kV").replace("Huanchor 50","Huanchor 50 kV"))}`,f2(v),"USD/MWh",`último intervalo · promedio del día hasta ahora ${f2(cH.promedio[b])} (${cH.n} medias horas)`)).join(""):'<div class="estado">Aún no hay intervalos publicados del día del reporte.</div>'}</div>
@@ -323,11 +327,13 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
     graf(id,{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(A[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,borderColor:css(est[j]),backgroundColor:css(est[j]),borderWidth:j===ys.length-1?2.8:1.6,pointRadius:2}))},options:o})};
   ES.cuencas.filter(c=>c.caudal).forEach((c,i)=>sem_("#c-q"+i,c.caudal.anios,"m³/s"));
   ES.cuencas.forEach((c,i)=>sem_("#c-v"+i,c.anios,"hm³"));
-  if(MTM==="dia"&&$("#c-mpd")){const R=mantDiaDatos(),h0=new Date(D.hoy+"T00:00"),o=base("MW");o.scales.y.beginAtZero=true;o.scales.y.stacked=true;o.scales.x.ticks.maxTicksLimit=9;
-    o.plugins.tooltip.callbacks={title:it=>`${LAB48[it[0].dataIndex]} h`,label:c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`,afterBody:it=>{const a=R.sin.filter(r=>new Date(r.inicio)<=new Date(h0.getTime()+(it[0].dataIndex*30+15)*6e4)&&new Date(r.final||r.inicio)>new Date(h0.getTime()+(it[0].dataIndex*30+15)*6e4)).sort((x,y)=>y.mw-x.mw);
-      return a.slice(0,8).map(r=>`• ${romanos(tit(r.ubicacion))}${r.equipo!=="CENTRAL"?" "+r.equipo:""} ${f0(r.mw)} MW`)}};
-    graf("#c-mpd",{type:"line",data:{labels:LAB48,datasets:R.tecs.map(t=>({label:t,stepped:true,fill:true,pointRadius:0,borderWidth:1,borderColor:css("--surface"),backgroundColor:TECC[t]||"#94a3b8",
-      data:LAB48.map((_,k)=>mwActivo(R.sin,new Date(h0.getTime()+(k*30+15)*6e4),r=>(r.tecnologia||"Otra")===t))}))},options:o})}
+  if(MTM==="dia"&&$("#c-mgd")){const G=ganttDia(),o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;o.layout={padding:{top:16}};
+    o.scales={x:{type:"linear",min:0,max:24,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:innerWidth<700?6:2,maxRotation:0,callback:v=>String(v).padStart(2,"0")+":00"}},
+      y:{type:"category",labels:G.filas,grid:{display:false},border:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={title:it=>it[0].raw.r.descripcion.slice(0,90),label:it=>{const r=it.raw.r;return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${per(r,D.hoy)}${r.estado?" · "+r.estado:""}`}};
+    const ahora={id:"ahora",afterDatasetsDraw(c){const n=new Date(D.generado),v=(n-new Date(D.hoy+"T00:00"))/36e5;if(v<0||v>24)return;const x=c.ctx,px=c.scales.x.getPixelForValue(v);x.save();x.strokeStyle=css("--naranja");x.lineWidth=2;x.beginPath();x.moveTo(px,c.chartArea.top);x.lineTo(px,c.chartArea.bottom);x.stroke();
+      x.fillStyle=css("--naranja");x.font="600 10.5px Inter,sans-serif";x.textAlign="center";x.fillText("ahora "+n.toTimeString().slice(0,5),px,c.chartArea.top-5);x.restore()}};
+    graf("#c-mgd",{type:"bar",data:{datasets:[{data:G.pts,backgroundColor:G.pts.map(p=>p.r.diesel?"#b8bec9":(TECC[p.r.tecnologia]||"#94a3b8")),borderRadius:3,borderSkipped:false,barPercentage:.7,categoryPercentage:.9}]},options:o,plugins:[ahora]})}
   if(MTM==="mes"&&$("#c-mmg")){const G=ganttMes();const o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;o.layout={padding:{top:16}};
     const dl=v=>{const d=new Date(G.a.getTime()+v*864e5);return `${d.getDate()} ${MESC[d.getMonth()]}`};
     o.scales={x:{type:"linear",min:0,max:G.n,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:innerWidth<700?7:2,maxRotation:0,callback:v=>v<G.n?dl(v):""}},
