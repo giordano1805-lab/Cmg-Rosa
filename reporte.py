@@ -10,6 +10,7 @@ Uso desde el script principal:  reporte.generar(m)  donde m es el módulo "cmg s
 import calendar
 import datetime as dt
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -903,6 +904,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_mes": {b: (round(v, 2) if v is not None else None) for b, v in ind["prom_mes_b"].items()},
         "cmg_mensual": cmg_mensual(m, ind["_hist"]),
         "cmg_mes_ant": cmg_mes_anterior(m, ind["_hist"], dia),
+        "bot": bot_usuario(),
         "gen_mes_ant": extra.get("gen_mes_ant"),
         "cmg_hoy": cmg_ultimo(m, ind["_hist"], hoy),
         "cmg_n": {b: {d.isoformat(): n for d, n in sorted(ind["n_b"].get(b, {}).items())} for b in m.BARRAS},
@@ -940,6 +942,18 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_proy": extra.get("cmg_proy"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
+
+
+def bot_usuario():
+    """Usuario del bot de Telegram (para el botón que pide una actualización desde el reporte)."""
+    tok = os.getenv("TELEGRAM_TOKEN")
+    if not tok or tok == "x":
+        return None
+    try:
+        import requests
+        return requests.get(f"https://api.telegram.org/bot{tok}/getMe", timeout=20).json()["result"]["username"]
+    except Exception:
+        return None
 
 
 def cmg_mes_anterior(m, hist, dia):

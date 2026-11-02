@@ -635,9 +635,13 @@ def pidio_actualizar(chat):
     updates = r.get("result", [])
     if not updates:
         return False
-    pedido = any(str(u.get("message", {}).get("chat", {}).get("id")) == str(chat)
-                 and "ACTUALIZA" in norm(u.get("message", {}).get("text", ""))
-                 for u in updates)
+    textos = [norm(u.get("message", {}).get("text", "")) for u in updates
+              if str(u.get("message", {}).get("chat", {}).get("id")) == str(chat)]
+    # "comercial" (botón del reporte comercial o mensaje) -> reporte comercial; "dashboard" -> dashboard;
+    # "actualiza" -> reporte de CMg con gráficos
+    pedido = ("comercial" if any("COMERCIAL" in t for t in textos) else
+              "pdf" if any("DASHBOARD" in t for t in textos) else
+              "reporte" if any("ACTUALIZA" in t for t in textos) else False)
     ultimo = max(u["update_id"] for u in updates)
     requests.get(f"https://api.telegram.org/bot{os.environ['TELEGRAM_TOKEN']}/getUpdates",
                  params={"offset": ultimo + 1, "timeout": 0}, timeout=30)
@@ -647,6 +651,17 @@ def pidio_actualizar(chat):
 def main():
     chat = os.environ["TELEGRAM_CHAT_ID"]
     MODO = (os.getenv("MODO") or "reporte").strip().lower()
+    if MODO == "escucha":
+        pedido = pidio_actualizar(chat)
+        if not pedido:
+            print("Sin pedidos de actualización")
+            return
+        if pedido in ("comercial", "pdf"):
+            tg("sendMessage", data={"chat_id": chat, "text": "⏳ Actualizando con datos del COES… en unos minutos te llega el enlace."})
+            MODO = pedido
+        else:
+            tg("sendMessage", data={"chat_id": chat, "text": "⏳ Actualizando CMg… en unos minutos te llegan los gráficos."})
+            MODO = "reporte"
     if MODO == "explora":
         import explorar
         res = explorar.main()
@@ -670,11 +685,6 @@ def main():
                                     "text": f"📊 Dashboard del SEIN actualizado ({ruta.stem[-10:]}):\n{url}?v={int(time.time())}"})
         print("OK dashboard", ruta)
         return
-    if MODO == "escucha":
-        if not pidio_actualizar(chat):
-            print("Sin pedidos de actualización")
-            return
-        tg("sendMessage", data={"chat_id": chat, "text": "⏳ Actualizando CMg… en unos minutos te llegan los gráficos."})
     ahora = dt.datetime.now(LIMA)
     hoy = dia_operativo(ahora - dt.timedelta(minutes=30))   # a las 00:20 reporta el día que cerró
     hist = leer_hist()

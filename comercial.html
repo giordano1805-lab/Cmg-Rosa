@@ -103,6 +103,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .tools button{border:1px solid var(--card-b);background:var(--surface);color:var(--text-2);border-radius:7px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
 .box{border-radius:12px;padding:12px 14px;background:linear-gradient(180deg,#1aa3a3,#138585);color:#fff;text-align:center;font-weight:700;box-shadow:var(--sombra)}
 .box b{display:block;font-size:22px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:20;background:#0b1f4d;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);max-width:92vw;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
 .pie{display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between;color:var(--muted);font-size:11.5px;border-top:1px dashed var(--card-b);padding-top:8px;margin-top:22px}
 .pie b{color:var(--text-2)}
 @media (max-width:860px){.g2,.g3,.g64{grid-template-columns:1fr}.mant{columns:1}.portada h2{font-size:34px}}
@@ -115,7 +117,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
   <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
   <h1>Reporte comercial</h1>
   <div class="meta" id="meta" aria-live="polite">Cargando…</div>
-  <button class="btn pri" id="upd" type="button" title="Volver a leer los datos publicados">⟳ Actualizar</button>
+  <a class="btn pri" id="coes" href="#" target="_blank" rel="noopener" title="Pide al bot de Telegram una nueva lectura de los datos del COES (tarda unos minutos)">📡 Actualizar desde el COES</a>
+  <button class="btn" id="upd" type="button" title="Vuelve a leer la última versión publicada">⟳ Recargar</button>
   <button class="btn" type="button" onclick="print()">Imprimir / PDF</button>
   <button class="btn" id="tema" type="button" aria-label="Cambiar tema claro u oscuro">Tema</button>
 </div></header>
@@ -369,12 +372,18 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
   const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
   document.querySelectorAll("section.sec").forEach(s=>obs.observe(s))}
 
-function cargar(){$("#upd").disabled=true;$("#upd").textContent="⟳ Actualizando…";
-  Promise.all([fetch("datos.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch("comercial.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))])
-   .then(([d,c])=>{D=d;C=c||{};render()})
+function aviso(t){let e=$("#toast");if(!e){e=document.createElement("div");e.id="toast";e.className="toast";e.setAttribute("role","status");document.body.appendChild(e)}
+  e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),5000)}
+const hhmm=s=>new Date(s).toLocaleString("es-PE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+function cargar(manual){$("#upd").disabled=true;$("#upd").textContent="⟳ Recargando…";const antes=D&&D.generado,v=Date.now();
+  Promise.all([fetch("datos.json?v="+v,{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch("comercial.json?v="+v,{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))])
+   .then(([d,c])=>{D=d;C=c||{};render();
+     const b=$("#coes");if(D.bot){b.href=`https://t.me/${D.bot}?start=comercial`;b.style.display=""}else b.style.display="none";
+     if(manual)aviso(antes&&antes===D.generado?`Sin datos nuevos: la última actualización es del ${hhmm(D.generado)} · usa «Actualizar desde el COES» para pedir una nueva.`:`Datos actualizados al ${hhmm(D.generado)}`)})
    .catch(()=>{$("#main").innerHTML='<div class="estado par">No se pudieron cargar los datos publicados (datos.json). Intenta de nuevo en unos minutos.</div>'})
-   .finally(()=>{$("#upd").disabled=false;$("#upd").textContent="⟳ Actualizar"})}
-$("#upd").onclick=cargar;
+   .finally(()=>{$("#upd").disabled=false;$("#upd").textContent="⟳ Recargar"})}
+$("#coes").onclick=e=>{if(!D||!D.bot){e.preventDefault();return}aviso("Se abrió Telegram: envía el mensaje al bot. En unos minutos llega el enlace con los datos nuevos; luego toca «Recargar».")};
+$("#upd").onclick=()=>cargar(true);
 try{const t=localStorage.getItem("tema");if(t)document.documentElement.dataset.theme=t}catch(e){}
 $("#tema").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("tema",r.dataset.theme)}catch(e){};if(D)render()};
 cargar();
