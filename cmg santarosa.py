@@ -29,6 +29,29 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+
+def _cargar_fuentes():
+    """Usa la copia más nueva de fuentes_coes.py. Al subir desde el celular el archivo a veces queda como
+    "fuentes coes.py" (con espacio); se carga igual como módulo fuentes_coes."""
+    import importlib.util
+    aqui = Path(__file__).resolve().parent
+    mejor, ver = None, ""
+    for nombre in ("fuentes_coes.py", "fuentes coes.py"):
+        p = aqui / nombre
+        if p.exists():
+            v = (re.search(r'VERSION_FC\s*=\s*"([^"]+)"', p.read_text(encoding="utf-8", errors="ignore")) or [None, ""])[1]
+            if mejor is None or v > ver:
+                mejor, ver = p, v
+    if mejor and mejor.name != "fuentes_coes.py":
+        spec = importlib.util.spec_from_file_location("fuentes_coes", mejor)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules["fuentes_coes"] = mod
+        spec.loader.exec_module(mod)
+        print(f"fuentes_coes cargado desde '{mejor.name}' (versión {ver})")
+
+
+_cargar_fuentes()
+
 LIMA = ZoneInfo("America/Lima")
 BASE = "https://www.coes.org.pe/Portal/mercadomayorista/costosmarginales"
 TC = float(os.getenv("TC") or 3.45)
