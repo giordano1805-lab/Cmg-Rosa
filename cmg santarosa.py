@@ -664,10 +664,10 @@ def main():
         if url and MODO == "comercial":
             # Reporte comercial: página aparte (comercial.html); el dashboard y su PDF no cambian
             tg("sendMessage", data={"chat_id": chat, "disable_web_page_preview": "true",
-                                    "text": f"💼 Reporte comercial actualizado ({ruta.stem[-10:]}):\n{url}comercial.html"})
+                                    "text": f"💼 Reporte comercial actualizado ({ruta.stem[-10:]}):\n{url}comercial.html?v={int(time.time())}"})
         elif url:
             tg("sendMessage", data={"chat_id": chat, "disable_web_page_preview": "true",
-                                    "text": f"📊 Dashboard del SEIN actualizado ({ruta.stem[-10:]}):\n{url}"})
+                                    "text": f"📊 Dashboard del SEIN actualizado ({ruta.stem[-10:]}):\n{url}?v={int(time.time())}"})
         print("OK dashboard", ruta)
         return
     if MODO == "escucha":
