@@ -64,6 +64,10 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .card{background:linear-gradient(180deg,var(--surface),color-mix(in srgb,var(--surface) 92%,var(--bg)));border:1px solid var(--card-b);border-radius:14px;padding:14px 16px;min-width:0;box-shadow:var(--sombra)}
 .card h3{margin:0 0 8px;font-size:15px;color:var(--h1)}.card h3 small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
 .chart{position:relative;height:300px}.chart.tall{height:380px}.chart.sm{height:230px}
+.seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--tinte2);box-shadow:inset 0 1px 2px rgba(0,26,111,.08);flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer;min-height:32px}
+.seg button[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;font-weight:600;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
+.seg button:disabled{opacity:.45;cursor:not-allowed}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(180deg,#ff6a2e,var(--naranja));box-shadow:0 2px 8px -3px rgba(255,87,22,.6)}
 .pill.nv{background:linear-gradient(180deg,#26449c,#001a6f);box-shadow:0 2px 8px -3px rgba(0,26,111,.6)}
 .pill.gr{background:var(--surface-2);color:var(--text-2);box-shadow:none;border:1px solid var(--card-b);font-weight:600}
@@ -154,7 +158,8 @@ const graf=(id,cfg)=>{const el=$(id);if(!el)return;charts.push(new Chart(el,cfg)
 const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" aria-label="${esc(txt)}"></canvas></div>`;
 const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
 const ANIOC=["--muted","--s4","--navy","--naranja"];
-const SECS=[["cmg","Evolución CMg"],["mercado","Mercado hoy"],["caudales","Caudales"],["volumenes","Embalses"],["balances","Balances"],["ofertas","Ofertas"]];
+const SECS=[["cmg","Evolución CMg"],["mant","Mantenimientos"],["mercado","Mercado y reserva"],["caudales","Caudales"],["volumenes","Embalses"]];
+let CMM="act",MTM="dia";
 
 function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
   const pintar=()=>{const fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
@@ -176,19 +181,51 @@ function mantMes(){const PM=D.prog_mensual||{},min=+(C.mantenimientos_mw_minimo?
       const k2=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}`;if(k2===mes)x.dias.add(t.getDate());else if(k2>mes)x.sigue=true;if(t>b)break}});
   return Object.values(g).filter(x=>x.dias.size).map(x=>{const ds=[...x.dias].sort((a,b)=>a-b),rg=[];ds.forEach(d=>{const u=rg[rg.length-1];if(u&&d===u[1]+1)u[1]=d;else rg.push([d,d])});
     return{...x,txt:rg.map(([a,b])=>a===b?`${a}`:`${a} al ${b}`).join(", ")+(x.sigue&&ds[ds.length-1]===nD?" (continúa)":"")}}).sort((a,b)=>b.mw-a.mw)}
-function potencia(){const P=C.potencia||{},meses=mesesEntre(P.desde||"2026-01",P.hasta||"2028-12");
-  const act=(r,k)=>r.desde<=k&&k<=r.hasta;const clientes=[...new Set((P.contratos||[]).map(c=>c.cliente))];
-  const dem=meses.map(k=>(P.contratos||[]).filter(c=>act(c,k)).reduce((a,c)=>a+c.mw,0));
-  const comp=meses.map(k=>(P.compras||[]).filter(c=>act(c,k)).reduce((a,c)=>a+c.mw,0));
-  const ofe=meses.map((k,i)=>(P.huanchor_firme_mw||0)+comp[i]);
-  return{meses,clientes,dem,comp,ofe,def:meses.map((k,i)=>Math.max(0,dem[i]-ofe[i])),act}}
-
+const LAB48=Array.from({length:48},(_,i)=>`${String(Math.floor(i/2)).padStart(2,"0")}:${i%2?"30":"00"}`);
+const TECC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eólica":"#1baf7a","Biomasa":"#6250d6","Carbón":"#e87ba4","Diésel":"#e34948","Otra":"#94a3b8"};
+// MW indisponibles en el instante t sin doble conteo (por central: el mayor entre "CENTRAL" y la suma de sus unidades)
+function mwActivo(regs,t,filtro){const por={};regs.forEach(r=>{if(filtro&&!filtro(r))return;const i=new Date(r.inicio),f=new Date(r.final||r.inicio);if(!(i<=t&&f>t))return;
+  const c=por[r.ubicacion]||(por[r.ubicacion]={cen:0,uni:{}});if((r.equipo||"").toUpperCase()==="CENTRAL")c.cen=Math.max(c.cen,r.mw||0);else c.uni[r.equipo]=Math.max(c.uni[r.equipo]||0,r.mw||0)});
+  return Object.values(por).reduce((a,c)=>a+Math.max(c.cen,Object.values(c.uni).reduce((x,y)=>x+y,0)),0)}
+const per=(r,dia)=>{const sig=new Date(new Date(dia+"T12:00").getTime()+864e5).toISOString().slice(0,10);
+  const fmt=(s,fn)=>{if(!s)return"";const f=s.slice(0,10),t=s.slice(11,16);if(fn&&f===sig&&t==="00:00")return"24:00";return f===dia?t:`${ddmm(f)} ${t}`};return `${fmt(r.inicio)}–${fmt(r.final,true)}`};
+// CMg del mes elegido: en curso (con proyección) o el mes anterior completo
+function cmgVista(){const SR="Santa Rosa 220";
+  if(CMM==="ant"&&D.cmg_mes_ant){const A=D.cmg_mes_ant;return{diario:A.diario,bloques:A.bloques,prom:A.prom,bprom:A.bloques_prom,completo:true,n:A.dias,
+    mesTxt:`${MESN[+A.mes.slice(5)-1][0].toUpperCase()+MESN[+A.mes.slice(5)-1].slice(1)} ${A.mes.slice(0,4)}`}}
+  const m=MESN[+D.dia.slice(5,7)-1];return{diario:D.cmg_diario,bloques:D.bloques_diario,prom:D.cmg_mes,bprom:D.bloques_mes,completo:false,mesTxt:`${m[0].toUpperCase()+m.slice(1)} ${D.dia.slice(0,4)}`}}
+// Programa diario de intervenciones del día del reporte
+function mantDiaDatos(){const PG=(D.programado_gen||[]).filter(r=>r.mw>0),sin=PG.filter(r=>!r.diesel),h0=new Date(D.hoy+"T00:00");
+  const p=LAB48.map((_,k)=>mwActivo(sin,new Date(h0.getTime()+(k*30+15)*6e4))),mx=Math.max(0,...p);
+  return{PG,sin,p,mx,k:p.indexOf(mx),prom:p.reduce((a,b)=>a+b,0)/48,tecs:[...new Set(sin.map(r=>r.tecnologia||"Otra"))]}}
+function ganttDia(){const R=mantDiaDatos(),h0=new Date(D.hoy+"T00:00"),hr=x=>Math.max(0,Math.min(24,(new Date(x)-h0)/36e5)),g={};
+  R.PG.forEach(r=>{const k=r.ubicacion+"|"+r.equipo;(g[k]=g[k]||{r,regs:[]}).regs.push(r)});
+  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion)).replace(/^Reserva Fria De (Generacion )?/i,"RF ")}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo} · ${f0(Math.max(...f.regs.map(x=>x.mw)))} MW`;return innerWidth<700&&t.length>24?t.slice(0,23)+"…":t};
+  const filas=Object.values(g).sort((a,b)=>Math.max(...b.regs.map(x=>x.mw))-Math.max(...a.regs.map(x=>x.mw))).slice(0,30);
+  return{R,filas:filas.map(lbl),pts:filas.flatMap(f=>f.regs.map(r=>({x:[hr(r.inicio),Math.max(hr(r.final||r.inicio),hr(r.inicio)+.25)],y:lbl(f),r})))}}
+function mantDiaHTML(){if(!D.programado_publicado)return `<div class="estado">El Programa Diario de Intervenciones del ${ddmm(D.hoy)} aún no está publicado.</div>`;
+  const G=ganttDia(),R=G.R;
+  return `<div class="grid g3">${kc("⚡","Máximo simultáneo sin diésel",f0(R.mx),"MW",R.mx?`a las ${LAB48[R.k]} h · ${fL(D.hoy)}`:"")}${kc("◷","Promedio del día",f0(R.prom),"MW","integral ÷ 24 h, sin diésel")}${kc("🔧","Intervenciones con MW",R.PG.length,"",`${R.PG.filter(r=>r.diesel).length} de unidades diésel (no suman al máximo)`)}</div>
+   <div class="card" style="margin-top:14px"><h3>Intervenciones del día · ${fL(D.hoy)}<small>Programa Diario de Intervenciones del COES · horario de cada unidad (00:00–24:00) · color por tecnología (diésel en gris)</small></h3>
+    ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(200,G.filas.length*24+70)}px"><canvas id="c-mgd" role="img" aria-label="Intervenciones programadas del día por unidad y horario"></canvas></div></div>`}
+const lgdTec=pts=>`<div class="lgd">${Object.entries(TECC).filter(([t])=>pts.some(p=>p.r.tecnologia===t&&!p.r.diesel)).map(([t,c])=>`<span><i style="background:${c}"></i>${t}</span>`).join("")}${pts.some(p=>p.r.diesel)?'<span><i style="background:#b8bec9"></i>Diésel</span>':""}</div>`;
+function ganttMes(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7),a=new Date(`${mes}-01T00:00`),b=new Date(+mes.slice(0,4),+mes.slice(5,7),1),n=(b-a)/864e5;
+  const min=+(C.mantenimientos_mw_minimo??20),dd=s=>(Math.max(a,Math.min(b,new Date(s)))-a)/864e5,g={};
+  (PM.regs||[]).filter(r=>(r.mw||0)>=min).forEach(r=>{const k=r.ubicacion+"|"+r.equipo;(g[k]=g[k]||{r,regs:[],peso:0}).regs.push(r);g[k].peso+=r.mw*(dd(r.final||r.inicio)-dd(r.inicio))});
+  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion)).replace(/^Reserva Fria De (Generacion )?/i,"RF ")}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo} · ${f0(Math.max(...f.regs.map(x=>x.mw)))} MW`;return innerWidth<700&&t.length>24?t.slice(0,23)+"…":t};
+  const top=Object.values(g).sort((x,y)=>y.peso-x.peso).slice(0,30).sort((x,y)=>Math.min(...x.regs.map(r=>dd(r.inicio)))-Math.min(...y.regs.map(r=>dd(r.inicio))));
+  return{a,n,filas:top.map(lbl),pts:top.flatMap(f=>f.regs.map(r=>({x:[dd(r.inicio),Math.max(dd(r.final||r.inicio),dd(r.inicio)+.06)],y:lbl(f),r})))}}
+function mantMesHTML(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7);
+  if(!(PM.regs||[]).length||mes!==D.hoy.slice(0,7))return `<div class="estado">El Programa Mensual de Mantenimiento de ${MESN[+D.hoy.slice(5,7)-1]} aún no está disponible.</div>`;
+  const G=ganttMes();
+  return `<div class="card"><h3>Ventanas de mantenimiento · ${MESN[+mes.slice(5)-1]} ${mes.slice(0,4)}<small>Programa Mensual de Mantenimiento del COES · mes en curso · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · color por tecnología (diésel en gris) · línea naranja: hoy</small></h3>
+    ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(220,G.filas.length*22+70)}px"><canvas id="c-mmg" role="img" aria-label="Ventanas de mantenimiento del mes"></canvas></div></div>`}
 /* ---------- render ---------- */
 function render(){charts.forEach(c=>c.destroy());charts=[];
   const hoy=D.hoy,sem=semanaCOES(hoy),SR="Santa Rosa 220",mes=MESN[+D.dia.slice(5,7)-1],anio=D.dia.slice(0,4);
   $("#meta").innerHTML=`Semana N° ${sem} · <b>${fL(hoy)}</b><br>Datos SEIN al ${ddmm(D.dia)} · actualizado ${new Date(D.generado).toLocaleString("es-PE",{dateStyle:"short",timeStyle:"short"})}`;
   $("#nav").innerHTML=SECS.map(([k,n],i)=>`<a href="#${k}">${i+1}. ${n}</a>`).join("");
-  const MM=mantMes(),ES=D.embalses_semanal||{cuencas:[]},cH=D.cmg_hoy,P=potencia(),PR=C.potencia||{},EN=C.energia||{};
+  const ES=D.embalses_semanal||{cuencas:[]},cH=D.cmg_hoy,CV=cmgVista();
   const rimac=ES.cuencas.find(c=>c.cuenca==="Rímac");
   // CMg mensual: real automático si hay datos del mes; si no, el valor cargado en comercial.json
   const CM=C.cmg_mensual_manual||{},barraM=CM.barra||SR,auto=(D.cmg_mensual||{})[barraM]||{};
@@ -203,20 +240,25 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
     ${cH&&cH.barras[SR]!=null?`<div><span>CMg al ${cH.ts.slice(11,16).replace("23:59","24:00")} h</span><b>${f2(cH.barras[SR])}</b><span>USD/MWh · Santa Rosa</span></div>`:""}
     ${D.demanda_hist?`<div><span>Demanda del mes</span><b>${f0(D.demanda_hist.mtd_gwh[D.demanda_hist.act])} GWh</b><span>${(x=>x>0?"+":"")((D.demanda_hist.mtd_gwh[D.demanda_hist.act]/D.demanda_hist.mtd_gwh[D.demanda_hist.ant]-1)*100)}${f1((D.demanda_hist.mtd_gwh[D.demanda_hist.act]/D.demanda_hist.mtd_gwh[D.demanda_hist.ant]-1)*100)}% vs ${D.demanda_hist.ant}</span></div>`:""}
     ${rimac?`<div><span>Volumen útil Rímac</span><b>${f1(rimac.actual)} hm³</b><span>semana ${rimac.semana} · ${rimac.var_pct>0?"+":""}${f0(rimac.var_pct)}% vs año ant.</span></div>`:""}
-    <div><span>Déficit de potencia máx. 2027</span><b>${f1(Math.max(0,...P.def.filter((_,i)=>P.meses[i].startsWith("2027"))))} MW</b><span>contratado − (firme + compras)</span></div></div></div>
+    </div></div>
 
-  <section class="sec" id="cmg"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución CMg</h2></div><span class="pill">AVG = ${f0(D.cmg_mes[SR])} USD/MWh</span></div>
-   <div class="card"><h3>CMg – ${mes[0].toUpperCase()+mes.slice(1)} ${anio} (USD/MWh)<small>Barras: Santa Rosa 220 kV por bloque (base 23–6 h, media 6–18 h, punta 18–23 h) · líneas: promedio diario por barra · datos hasta el ${ddmm(D.dia)}${D.cmg_proy&&D.cmg_proy.diario?" · punteado: proyectado del Programa Semanal":""}</small></h3>${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
-   <div class="grid g64" style="margin-top:14px">
-    <div class="card"><h3>Centrales en mantenimiento ${MESL[+((D.prog_mensual||{}).mes||D.dia).slice(5,7)-1]}-${((D.prog_mensual||{}).mes||D.dia).slice(2,4)}<small>Programa Mensual de Mantenimiento del COES · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · días del mes</small></h3>
-     ${MM.length?`<ul class="mant">${MM.slice(0,26).map(x=>`<li><b>${esc(romanos(tit(x.c)))}${x.u&&x.u!=="CENTRAL"?" "+esc(x.u):" Central"}</b><span class="mut">${esc(x.txt)}</span>${x.dsl?'<span class="tg">diésel</span>':""}<span class="mw">${f0(x.mw)} MW</span></li>`).join("")}</ul>${MM.length>26?`<div class="note">${MM.length-26} intervenciones más en el Dashboard → Mantenimiento del mes.</div>`:""}`:'<div class="estado">Programa mensual no disponible.</div>'}</div>
-    <div class="grid">
+  <section class="sec" id="cmg"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución CMg</h2></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div class="seg" role="group" aria-label="Mes">${[["act","Mes en curso"],["ant","Mes anterior completo"]].map(([k,n])=>`<button type="button" aria-pressed="${CMM===k}" onclick="CMM='${k}';render()" ${k==="ant"&&!D.cmg_mes_ant?"disabled title='Aún no hay un mes anterior completo guardado'":""}>${n}</button>`).join("")}</div>
+    <span class="pill">AVG = ${f0(CV.prom[SR])} USD/MWh</span></div></div>
+   <div class="card"><h3>CMg – ${CV.mesTxt} (USD/MWh)<small>Barras: Santa Rosa 220 kV por bloque (base 23–6 h, media 6–18 h, punta 18–23 h) · líneas: promedio diario por barra · ${CV.completo?`mes completo (${CV.n} días)`:`datos hasta el ${ddmm(D.dia)}`}${CMM==="act"&&D.cmg_proy&&D.cmg_proy.diario?" · punteado: proyectado del Programa Semanal":""}</small></h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${D.barras.map(b=>`<span class="pill gr">${esc(b.replace(" 220",""))}: ${f2(CV.prom[b])}</span>`).join("")}${Object.entries(CV.bprom||{}).map(([k,v])=>`<span class="pill gr">${esc(k.replace(/ \(.*/,""))} SR: ${f2(v)}</span>`).join("")}</div>
+    ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
+   <div class="grid g2" style="margin-top:14px">
      <div class="card"><h3>Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días`:""}</small></h3>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
 
-  <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mercado al momento del reporte</h2></div>${cH?`<span class="pill gr">CMg preliminar ${ddmm(hoy)} · ${cH.ts.slice(11,16).replace("23:59","24:00")} h</span>`:""}</div>
+  <section class="sec" id="mant"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mantenimientos de centrales</h2></div>
+    <div class="seg" role="group" aria-label="Vista">${[["dia","Por día"],["mes","Por mes"]].map(([k,n])=>`<button type="button" aria-pressed="${MTM===k}" onclick="MTM='${k}';render()">${n}</button>`).join("")}</div></div>
+   ${MTM==="dia"?mantDiaHTML():mantMesHTML()}</section>
+
+  <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mercado y reserva eficiente</h2></div>${cH?`<span class="pill gr">CMg preliminar ${ddmm(hoy)} · ${cH.ts.slice(11,16).replace("23:59","24:00")} h</span>`:""}</div>
    <div class="grid g3">${cH?Object.entries(cH.barras).map(([b,v])=>kc("⚡",`CMg ${esc(b.replace(" 220"," 220 kV").replace("Huanchor 50","Huanchor 50 kV"))}`,f2(v),"USD/MWh",`último intervalo · promedio del día hasta ahora ${f2(cH.promedio[b])} (${cH.n} medias horas)`)).join(""):'<div class="estado">Aún no hay intervalos publicados del día del reporte.</div>'}</div>
    <div class="grid g64" style="margin-top:14px;grid-template-columns:minmax(0,38fr) minmax(0,62fr)">
     <div class="card" style="align-self:start;border-style:dashed"><h3>Hidro<small>Comentario comercial (editable en comercial.json)</small></h3><p style="margin:0;font-size:15px">❏ ${esc(C.nota_hidro||"—")}</p></div>
@@ -239,50 +281,20 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
    <div class="grid g2">${ES.cuencas.map((c,i)=>`<div class="card"><h3>${esc(c.titulo||c.cuenca)}<small>hm³ · semana ${c.semana}: ${f1(c.actual)} (${c.var_pct>0?"+":""}${f0(c.var_pct)}% vs misma semana del año anterior)</small></h3>${cv("c-v"+i,"Volumen útil de "+c.cuenca,"sm")}
      ${c.centrales.length?`<div class="cent"><b>Centrales:</b> ${c.centrales.map(([n,mw])=>`${esc(n)} – ${mw} MW`).join(" · ")} <span class="tot">TOTAL = ${f1(c.mw_total)} MW</span></div>`:""}</div>`).join("")}</div></section>
 
-  <section class="sec" id="balances"><div class="sh"><div class="t"><small>BALANCES</small><h2>Potencia y energía</h2></div><span class="pill gr">Datos comerciales al ${esc(C.actualizado||"")}</span></div>
-   <div class="grid g64">
-    <div class="card"><h3>Balance de potencia firme vs contratada (MW)<small>Barras: potencia contratada por cliente · línea naranja: potencia firme de Huanchor (${f1(PR.huanchor_firme_mw)} MW) + compras de potencia</small></h3>${cv("c-pot","Balance mensual de potencia","tall")}</div>
-    <div class="grid">
-     <div class="card"><h3>Déficit de potencia<small>Máximo mensual del período: contratado − (firme + compras)</small></h3><div id="t-def"></div></div>
-     <div class="card"><h3>Compras de potencia</h3><div id="t-com"></div></div></div></div>
-   <div class="grid g64" style="margin-top:14px">
-    <div class="card"><h3>Cobertura 2027 · GWh<small>Déficit de energía reportado: ${esc((EN.deficit_reportado||[]).map(x=>`${x.periodo} ${f1(x.gwh)} GWh`).join(" · "))} · BCP ${f0(EN.bcp_usd_mwh)} USD/MWh</small></h3>${cv("c-cob","Cobertura de energía 2027 por mes","sm")}</div>
-    <div class="grid">${EN.cierre?`<div class="box">${f1(EN.cierre.gwh)} GWh<b>${f1(EN.cierre.precio)} USD/MWh</b>${esc(EN.cierre.texto)} · ${esc(EN.cierre.meses||"")}</div>`:""}
-     <div class="card"><div class="mut">El balance horario de energía requiere los perfiles de consumo de cada cliente y la generación esperada de Huanchor; aquí se muestra la cobertura mensual. Edita contratos, compras y coberturas en <b>docs/comercial.json</b>.</div></div></div></div></section>
-
-  <section class="sec" id="ofertas"><div class="sh"><div class="t"><small>OFERTAS</small><h2>Enviadas y por ofertar</h2></div><span class="pill gr">${(C.ofertas_enviadas||[]).length} enviadas · ${(C.por_ofertar||[]).length} por ofertar</span></div>
-   <div class="card"><h3>Ofertas enviadas</h3><div id="t-ofe"></div></div>
-   <div class="card" style="margin-top:14px"><h3>Por ofertar</h3><div id="t-por"></div></div></section>
-
-  <div class="pie"><span><b>Fuentes:</b> COES (CMg tiempo real preliminar, Portal de Información, IEOD, Programa Mensual de Mantenimiento, Informe de Evaluación Semanal, Programa Semanal de Operación) y datos comerciales de Huanchor (${esc(C.fuente||"comercial.json")}).</span><span><b>Actualizado:</b> ${new Date(D.generado).toLocaleString("es-PE")}</span></div>`;
-
-  // tablas
-  const defR=Object.fromEntries((PR.deficit_reportado||[]).map(x=>[x.periodo,x.mw]));
-  tabla("#t-def",[{t:"Período",v:r=>r.periodo},{t:"Calculado (MW)",num:1,v:r=>r.calc,h:r=>`<b>${f1(r.calc)}</b>`},{t:"Reportado (MW)",num:1,v:r=>r.rep,h:r=>fin(r.rep)?f1(r.rep):"–"},
-    {t:"Estado",v:r=>r.ok,h:r=>!fin(r.rep)?'<span class="chip">sin referencia</span>':Math.abs(r.calc-r.rep)<.05?'<span class="chip ok">coincide</span>':'<span class="chip or">revisar contratos</span>'}],
-    (PR.deficit_reportado||[]).map(x=>{const v=P.meses.map((k,i)=>k>=x.desde&&k<=x.hasta?P.def[i]:null).filter(fin);return{periodo:x.periodo,calc:v.length?Math.max(...v):0,rep:defR[x.periodo]}}),{simple:1});
-  tabla("#t-com",[{t:"Generadora",v:r=>r.generadora},{t:"Potencia (MW)",num:1,v:r=>r.mw,h:r=>f1(r.mw)},{t:"Período",v:r=>r.desde===r.hasta?mLab(r.desde):`${mLab(r.desde)} – ${mLab(r.hasta)}`},{t:"Precio USD/kW-mes",num:1,v:r=>r.precio,h:r=>f2(r.precio)}],PR.compras||[],{simple:1});
-  const st=s=>/adjudic/i.test(s)?"ok":/aprob/i.test(s)?"ok":/envi[oó]/i.test(s)?"":"or";
-  tabla("#t-ofe",[{t:"N°",num:1,v:r=>r.n},{t:"Cliente",v:r=>r.cliente,h:r=>`<b>${esc(r.cliente)}</b>`},{t:"Potencia MW",v:r=>r.mw},{t:"FC",v:r=>r.fc},{t:"Suministrador",v:r=>r.suministrador},
-    {t:"Precio actualizado",num:1,v:r=>r.precio_act,h:r=>f1(r.precio_act)},{t:"Precio base",num:1,v:r=>r.precio_base,h:r=>f1(r.precio_base)},
-    {t:"Riesgos",num:1,v:r=>r.fijo_riesgo,h:r=>f2(r.fijo_riesgo)},{t:"Margen",num:1,v:r=>r.fijo_margen,h:r=>f2(r.fijo_margen)},
-    {t:"Riesgos",num:1,v:r=>r.cmg_riesgo,h:r=>typeof r.cmg_riesgo==="number"?f2(r.cmg_riesgo):esc(r.cmg_riesgo??"–")},{t:"Margen",num:1,v:r=>r.cmg_margen,h:r=>f2(r.cmg_margen)},
-    {t:"Precio ofertado USD/MWh",v:r=>r.ofertado,h:r=>`<b>${esc(r.ofertado)}</b>`},{t:"Período",v:r=>r.periodo},{t:"Status",v:r=>r.status,h:r=>`<span class="chip ${st(r.status)}">${esc(r.status)}</span>`}],C.ofertas_enviadas||[],
-    {grp:`<tr class="grp"><th class="vacio" colspan="7"></th><th colspan="2">Precio fijo · USD/MWh</th><th colspan="2">Precio CMg · USD/MWh</th><th class="vacio" colspan="3"></th></tr>`});
-  tabla("#t-por",[{t:"Cliente",v:r=>r.cliente},{t:"Potencia (MW)",num:1,v:r=>r.mw},{t:"FC",v:r=>r.fc},{t:"Suministrador",v:r=>r.suministrador}],C.por_ofertar||[]);
+  <div class="pie"><span><b>Fuentes:</b> COES (CMg tiempo real preliminar, Portal de Información, IEOD, Programa Mensual de Mantenimiento, Informe de Evaluación Semanal, Programa Semanal de Operación).</span><span><b>Actualizado:</b> ${new Date(D.generado).toLocaleString("es-PE")}</span></div>`;
 
   // gráficos
-  const dias=Object.keys(D.cmg_diario[SR]).sort(),BL=[["Base (23-6 h)","Base","--base"],["Media (6-18 h)","Media","--media"],["Punta (18-23 h)","Punta","--punta"]];
-  const prj=D.cmg_proy&&D.cmg_proy.diario?D.cmg_proy.diario:null,fut=prj&&prj[SR]?Object.keys(prj[SR]).filter(d=>d>D.dia&&d.slice(0,7)===D.dia.slice(0,7)).sort():[];
+  const dias=Object.keys(CV.diario[SR]||{}).sort(),BL=[["Base (23-6 h)","Base","--base"],["Media (6-18 h)","Media","--media"],["Punta (18-23 h)","Punta","--punta"]];
+  const prj=D.cmg_proy&&D.cmg_proy.diario?D.cmg_proy.diario:null,fut=CMM==="act"&&prj&&prj[SR]?Object.keys(prj[SR]).filter(d=>d>D.dia&&d.slice(0,7)===D.dia.slice(0,7)).sort():[];
   const dd=[...dias,...fut];
   const etq={id:"etq",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10px Inter,sans-serif";x.textAlign="center";
     [[3,"--s8",-8],[4,"--s4",-8]].forEach(([k,col,dy])=>{const m=c.getDatasetMeta(k);if(!m||m.hidden)return;x.lineWidth=3;x.strokeStyle=css("--surface");x.lineJoin="round";m.data.forEach((p,i)=>{const v=c.data.datasets[k].data[i];if(fin(v)&&innerWidth>700){const y=k===3?p.y+15:p.y+dy;x.strokeText(f1(v),p.x,y);x.fillStyle=css(col);x.fillText(f1(v),p.x,y)}})});x.restore()}};
-  const o1=base("USD/MWh");o1.scales.y.beginAtZero=true;o1.plugins.tooltip.callbacks.title=it=>`${it[0].label} de ${mes}`;
+  const o1=base("USD/MWh");o1.scales.y.beginAtZero=true;o1.plugins.tooltip.callbacks.title=it=>`${it[0].label} de ${CV.mesTxt}`;
   graf("#c-cmg",{data:{labels:dd.map(d=>+d.slice(8)),datasets:[
-    ...BL.map(([k,n,col])=>({type:"bar",label:n,data:dd.map(d=>(D.bloques_diario[k]||{})[d]??null),backgroundColor:css(col)+"cc",borderRadius:3,order:2})),
-    {type:"line",label:"Sta. Rosa",data:dd.map(d=>D.cmg_diario[SR][d]??null),borderColor:css("--s8"),backgroundColor:css("--s8"),borderWidth:2.4,pointRadius:2,tension:.25,order:0},
-    {type:"line",label:"Piura",data:dd.map(d=>(D.cmg_diario["Piura 220"]||{})[d]??null),borderColor:css("--s4"),backgroundColor:css("--s4"),borderWidth:2,pointRadius:2,tension:.25,order:0},
-    {type:"line",label:"Socabaya",data:dd.map(d=>(D.cmg_diario["Socabaya 220"]||{})[d]??null),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.25,order:0},
+    ...BL.map(([k,n,col])=>({type:"bar",label:n,data:dd.map(d=>(CV.bloques[k]||{})[d]??null),backgroundColor:css(col)+"cc",borderRadius:3,order:2})),
+    {type:"line",label:"Sta. Rosa",data:dd.map(d=>CV.diario[SR][d]??null),borderColor:css("--s8"),backgroundColor:css("--s8"),borderWidth:2.4,pointRadius:2,tension:.25,order:0},
+    {type:"line",label:"Piura",data:dd.map(d=>(CV.diario["Piura 220"]||{})[d]??null),borderColor:css("--s4"),backgroundColor:css("--s4"),borderWidth:2,pointRadius:2,tension:.25,order:0},
+    {type:"line",label:"Socabaya",data:dd.map(d=>(CV.diario["Socabaya 220"]||{})[d]??null),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.25,order:0},
     ...(fut.length?[{type:"line",label:"Sta. Rosa · proyectado",data:dd.map(d=>d===D.dia?D.cmg_diario[SR][d]:d>D.dia?prj[SR][d]:null),borderColor:css("--s8"),borderDash:[6,4],borderWidth:2,pointRadius:0,order:0}]:[])]},options:o1,plugins:[etq]});
   if(D.demanda_hist){const H=D.demanda_hist,ms=Array.from({length:H.mes},(_,i)=>i+1);
     const va=ms.map(m=>m===H.mes?H.mtd_gwh[H.ant]/1e3:(H.mensual[H.ant][m]??null)),vb=ms.map(m=>H.mensual[H.act][m]??null);
@@ -315,19 +327,21 @@ function render(){charts.forEach(c=>c.destroy());charts=[];
     graf(id,{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(A[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,borderColor:css(est[j]),backgroundColor:css(est[j]),borderWidth:j===ys.length-1?2.8:1.6,pointRadius:2}))},options:o})};
   ES.cuencas.filter(c=>c.caudal).forEach((c,i)=>sem_("#c-q"+i,c.caudal.anios,"m³/s"));
   ES.cuencas.forEach((c,i)=>sem_("#c-v"+i,c.anios,"hm³"));
-  {const PAL={"Distriluz":"#0f766e","IKSA":"#2dd4bf","Norocbre":"#1d4ed8","MEFICO":"#1e3a8a","COFACO":"#60a5fa","Textil San Ramón":"#0b1f4d","IDAT":"#94a3b8","LDS":"#b8bec9","Hilton":"#f5b400","Textil San Jacinto":"#a9c9f2"};
-    const cols=["#0f766e","#2dd4bf","#1d4ed8","#1e3a8a","#60a5fa","#0b1f4d","#94a3b8","#b8bec9","#f5b400","#a9c9f2","#7c3aed"];const o=base("MW");o.scales.x.stacked=true;o.scales.y.stacked=true;o.scales.y.beginAtZero=true;
-    o.scales.x.ticks.maxRotation=90;o.scales.x.ticks.minRotation=innerWidth<700?90:60;o.plugins.legend.position="bottom";
-    o.plugins.tooltip.callbacks.label=c=>c.parsed.y?`${c.dataset.label}: ${f1(c.parsed.y)} MW`:null;
-    o.plugins.tooltip.callbacks.footer=it=>{const i=it[0].dataIndex;return `Contratado ${f1(P.dem[i])} · firme+compras ${f1(P.ofe[i])}${P.def[i]>0?` · déficit ${f1(P.def[i])} MW`:""}`};
-    const col=k=>PAL[P.clientes[k]]||cols[k%cols.length];
-    graf("#c-pot",{data:{labels:P.meses.map(mLab),datasets:[
-      ...P.clientes.map((cl,k)=>({type:"bar",label:cl,stack:"d",data:P.meses.map(m=>(PR.contratos||[]).filter(c=>c.cliente===cl&&P.act(c,m)).reduce((a,c)=>a+c.mw,0)||null),backgroundColor:col(k),barPercentage:1,categoryPercentage:.96})),
-      {type:"line",stack:"o1",label:"Firme Huanchor + compras",data:P.ofe,borderColor:css("--naranja"),borderDash:[6,4],borderWidth:2.4,pointRadius:0,stepped:"middle",order:-1},
-      {type:"line",stack:"o2",label:"Firme Huanchor",data:P.meses.map(()=>PR.huanchor_firme_mw),borderColor:css("--s9")||"#8f1d2c",borderDash:[3,3],borderWidth:1.6,pointRadius:0,order:-1}]},options:o})}
-  {const cb=EN.cobertura_2027_gwh||{},ms=mesesEntre("2027-01","2027-12"),o=base("GWh");o.plugins.legend.display=false;o.layout={padding:{top:14}};o.scales.y.beginAtZero=true;
-    const lb={id:"lb3",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 11px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";c.getDatasetMeta(0).data.forEach((b,i)=>{const v=cb[ms[i]];if(fin(v))x.fillText(f1(v),b.x,b.y-5)});x.restore()}};
-    graf("#c-cob",{type:"bar",data:{labels:ms.map(mLab),datasets:[{label:"Cobertura",data:ms.map(k=>cb[k]??null),backgroundColor:ms.map(k=>EN.cierre&&k>="2027-07"&&k<="2027-11"?css("--teal"):css("--navy")),borderRadius:4}]},options:o,plugins:[lb]})}
+  if(MTM==="dia"&&$("#c-mgd")){const G=ganttDia(),o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;o.layout={padding:{top:16}};
+    o.scales={x:{type:"linear",min:0,max:24,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:innerWidth<700?6:2,maxRotation:0,callback:v=>String(v).padStart(2,"0")+":00"}},
+      y:{type:"category",labels:G.filas,grid:{display:false},border:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={title:it=>it[0].raw.r.descripcion.slice(0,90),label:it=>{const r=it.raw.r;return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${per(r,D.hoy)}${r.estado?" · "+r.estado:""}`}};
+    const ahora={id:"ahora",afterDatasetsDraw(c){const n=new Date(D.generado),v=(n-new Date(D.hoy+"T00:00"))/36e5;if(v<0||v>24)return;const x=c.ctx,px=c.scales.x.getPixelForValue(v);x.save();x.strokeStyle=css("--naranja");x.lineWidth=2;x.beginPath();x.moveTo(px,c.chartArea.top);x.lineTo(px,c.chartArea.bottom);x.stroke();
+      x.fillStyle=css("--naranja");x.font="600 10.5px Inter,sans-serif";x.textAlign="center";x.fillText("ahora "+n.toTimeString().slice(0,5),px,c.chartArea.top-5);x.restore()}};
+    graf("#c-mgd",{type:"bar",data:{datasets:[{data:G.pts,backgroundColor:G.pts.map(p=>p.r.diesel?"#b8bec9":(TECC[p.r.tecnologia]||"#94a3b8")),borderRadius:3,borderSkipped:false,barPercentage:.7,categoryPercentage:.9}]},options:o,plugins:[ahora]})}
+  if(MTM==="mes"&&$("#c-mmg")){const G=ganttMes();const o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;o.layout={padding:{top:16}};
+    const dl=v=>{const d=new Date(G.a.getTime()+v*864e5);return `${d.getDate()} ${MESC[d.getMonth()]}`};
+    o.scales={x:{type:"linear",min:0,max:G.n,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:innerWidth<700?7:2,maxRotation:0,callback:v=>v<G.n?dl(v):""}},
+      y:{type:"category",labels:G.filas,grid:{display:false},border:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={title:it=>it[0].raw.r.descripcion.slice(0,90),label:it=>{const r=it.raw.r;return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${ddmm(r.inicio)} ${r.inicio.slice(11,16)} → ${ddmm(r.final||"")} ${(r.final||"").slice(11,16)}`}};
+    const corte={id:"corte",afterDatasetsDraw(c){const v=(new Date(D.hoy+"T00:00")-G.a)/864e5;if(v<0||v>G.n)return;const x=c.ctx,px=c.scales.x.getPixelForValue(v);x.save();x.strokeStyle=css("--naranja");x.lineWidth=2;x.beginPath();x.moveTo(px,c.chartArea.top);x.lineTo(px,c.chartArea.bottom);x.stroke();
+      x.fillStyle=css("--naranja");x.font="600 10.5px Inter,sans-serif";x.textAlign="center";x.fillText("hoy "+ddmm(D.hoy),px,c.chartArea.top-5);x.restore()}};
+    graf("#c-mmg",{type:"bar",data:{datasets:[{data:G.pts,backgroundColor:G.pts.map(p=>p.r.diesel?"#b8bec9":(TECC[p.r.tecnologia]||"#94a3b8")),borderRadius:3,borderSkipped:false,barPercentage:.7,categoryPercentage:.9}]},options:o,plugins:[corte]})}
   // sección activa en el menú
   const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
   document.querySelectorAll("section.sec").forEach(s=>obs.observe(s))}

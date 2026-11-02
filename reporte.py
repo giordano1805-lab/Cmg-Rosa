@@ -902,6 +902,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
                        for b in m.BARRAS},
         "cmg_mes": {b: (round(v, 2) if v is not None else None) for b, v in ind["prom_mes_b"].items()},
         "cmg_mensual": cmg_mensual(m, ind["_hist"]),
+        "cmg_mes_ant": cmg_mes_anterior(m, ind["_hist"], dia),
         "cmg_hoy": cmg_ultimo(m, ind["_hist"], hoy),
         "cmg_n": {b: {d.isoformat(): n for d, n in sorted(ind["n_b"].get(b, {}).items())} for b in m.BARRAS},
         "cmg_prev": {b: (round(v, 2) if v is not None else None) for b, v in ind["prev"].items()},
@@ -938,6 +939,21 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_proy": extra.get("cmg_proy"),
         "embalses_semanal": {"semana": extra.get("semana_embalses"), "cuencas": extra.get("cuencas") or []},
     }
+
+
+def cmg_mes_anterior(m, hist, dia):
+    """Mes calendario anterior completo (promedios diarios por barra y por bloque de Santa Rosa), si está guardado."""
+    fin_ant = dia.replace(day=1) - dt.timedelta(days=1)
+    ind = indicadores_cmg(m, hist, fin_ant)
+    if not any(ind["diario_b"].get(b) for b in m.BARRAS):
+        return None
+    r2 = lambda v: round(v, 2) if v is not None else None
+    return {"mes": f"{fin_ant:%Y-%m}", "dias": fin_ant.day,
+            "diario": {b: {d.isoformat(): r2(v) for d, v in sorted(ind["diario_b"][b].items())} for b in m.BARRAS},
+            "prom": {b: r2(v) for b, v in ind["prom_mes_b"].items()},
+            "bloques": {bl: {d.isoformat(): r2(v) for d, v in sorted(ind["diario_bl"][bl].items())} for bl in m.BLOQUES},
+            "bloques_prom": {bl: r2(v) for bl, v in ind["prom_mes_bl"].items()},
+            "n": {b: sum(ind["n_b"].get(b, {}).values()) for b in m.BARRAS}}
 
 
 def cmg_mensual(m, hist):
