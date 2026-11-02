@@ -103,6 +103,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .tools button{border:1px solid var(--card-b);background:var(--surface);color:var(--text-2);border-radius:7px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
 .box{border-radius:12px;padding:12px 14px;background:linear-gradient(180deg,#1aa3a3,#138585);color:#fff;text-align:center;font-weight:700;box-shadow:var(--sombra)}
 .box b{display:block;font-size:22px}
+.barra{position:sticky;top:44px;z-index:4;display:none;align-items:center;gap:10px;padding:9px 16px;background:#fff1e8;color:#8a2d00;font-size:13px;border-bottom:1px solid rgba(255,87,22,.25)}
+.barra.on{display:flex}.barra .sp{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}.modal .caja{background:var(--surface);color:var(--text);border-radius:14px;max-width:460px;width:100%;padding:18px;box-shadow:0 20px 60px -20px rgba(0,0,0,.6)}
+.modal h3{margin:0 0 6px;color:var(--h1)}.modal ol{padding-left:18px;font-size:13px;color:var(--text-2)}.modal input{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit;margin:6px 0 10px}
+.modal .fila{display:flex;gap:8px;justify-content:flex-end}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:20;background:#0b1f4d;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);max-width:92vw;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 .pie{display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between;color:var(--muted);font-size:11.5px;border-top:1px dashed var(--card-b);padding-top:8px;margin-top:22px}
@@ -117,11 +124,19 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
   <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
   <h1>Reporte comercial</h1>
   <div class="meta" id="meta" aria-live="polite">Cargando…</div>
-  <button class="btn pri" id="upd" type="button" title="Vuelve a leer la última versión publicada">⟳ Recargar</button>
+  <button class="btn pri" id="act" type="button" title="Trae los datos más recientes del COES (tarda unos 10 minutos)">⟳ Actualizar</button>
   <button class="btn" type="button" onclick="print()">Imprimir / PDF</button>
   <button class="btn" id="tema" type="button" aria-label="Cambiar tema claro u oscuro">Tema</button>
 </div></header>
 <nav aria-label="Secciones del reporte"><div class="wrap" id="nav"></div></nav>
+<div class="barra" id="barra" role="status"><span class="sp"></span><span id="barra-t">Actualizando con datos del COES…</span></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-t"><div class="caja">
+ <h3 id="m-t">Activar el botón Actualizar (solo una vez)</h3>
+ <p class="mut" style="margin:0 0 6px">Para que el botón pueda iniciar la actualización en GitHub necesita una clave de tu cuenta. Se guarda solo en este teléfono o computadora; no queda en la página publicada.</p>
+ <ol><li>En GitHub: <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</b>.</li>
+  <li>Repository access: <b>Only select repositories → Cmg-Rosa</b>.</li><li>Permissions → Repository → <b>Actions: Read and write</b>. Expiración: 1 año.</li><li>Copia la clave (empieza con <code>github_pat_</code>) y pégala aquí.</li></ol>
+ <input id="m-tok" type="password" placeholder="github_pat_…" aria-label="Clave de GitHub" autocomplete="off">
+ <div class="fila"><button class="btn" type="button" id="m-no">Cancelar</button><button class="btn pri" type="button" id="m-si">Guardar y actualizar</button></div></div></div>
 <main class="wrap" id="main"><div class="estado" role="status">Cargando datos…</div></main>
 <script>
 const $=s=>document.querySelector(s);
@@ -367,13 +382,32 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
 function aviso(t){let e=$("#toast");if(!e){e=document.createElement("div");e.id="toast";e.className="toast";e.setAttribute("role","status");document.body.appendChild(e)}
   e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),5000)}
 const hhmm=s=>new Date(s).toLocaleString("es-PE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
-function cargar(manual){$("#upd").disabled=true;$("#upd").textContent="⟳ Recargando…";const antes=D&&D.generado,v=Date.now();
+function cargar(manual){const v=Date.now();
   Promise.all([fetch("datos.json?v="+v,{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch("comercial.json?v="+v,{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))])
-   .then(([d,c])=>{D=d;C=c||{};render();
-     if(manual)aviso(antes&&antes===D.generado?`Sin datos nuevos: la última actualización es del ${hhmm(D.generado)}; se actualiza sola cada hora.`:`Datos actualizados al ${hhmm(D.generado)}`)})
+   .then(([d,c])=>{D=d;C=c||{};render()})
    .catch(()=>{$("#main").innerHTML='<div class="estado par">No se pudieron cargar los datos publicados (datos.json). Intenta de nuevo en unos minutos.</div>'})
-   .finally(()=>{$("#upd").disabled=false;$("#upd").textContent="⟳ Recargar"})}
-$("#upd").onclick=()=>cargar(true);
+}
+// ---- botón Actualizar: inicia el flujo de GitHub (modo "datos") y espera a que se publiquen los datos nuevos
+const REPO=(()=>{const o=location.hostname.split(".")[0],r=location.pathname.split("/").filter(Boolean)[0];return o&&r&&location.hostname.endsWith("github.io")?`${o}/${r}`:"giordano1805-lab/Cmg-Rosa"})();
+const tokGet=()=>{try{return localStorage.getItem("gh_tok")||""}catch(e){return ""}},tokSet=t=>{try{t?localStorage.setItem("gh_tok",t):localStorage.removeItem("gh_tok")}catch(e){}};
+let esperando=null;
+function barra(t){const b=$("#barra");if(t){$("#barra-t").textContent=t;b.classList.add("on")}else b.classList.remove("on")}
+function disparar(tok){const b=$("#act");b.disabled=true;b.textContent="⟳ Iniciando…";
+  fetch(`https://api.github.com/repos/${REPO}/actions/workflows/cmg.yml/dispatches`,{method:"POST",headers:{"Accept":"application/vnd.github+json","Authorization":"Bearer "+tok,"X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{modo:"datos"}})})
+   .then(r=>{if(r.status===204){esperar();return}
+     if(r.status===401||r.status===403||r.status===404){tokSet("");aviso("La clave no es válida o no tiene permiso de Actions en Cmg-Rosa. Vuelve a ingresarla.");b.disabled=false;b.textContent="⟳ Actualizar";abrirModal();return}
+     throw new Error(r.status)})
+   .catch(e=>{aviso("No se pudo iniciar la actualización ("+e.message+"). Revisa tu conexión e inténtalo de nuevo.");b.disabled=false;b.textContent="⟳ Actualizar"})}
+function esperar(){const b=$("#act"),ini=D&&D.generado,t0=Date.now();b.textContent="⟳ Actualizando…";
+  barra("Actualizando con datos del COES… suele tardar unos 10 minutos. Puedes seguir usando la página.");
+  clearInterval(esperando);esperando=setInterval(()=>{const min=Math.round((Date.now()-t0)/6e4);barra(`Actualizando con datos del COES… ${min} min. Suele tardar unos 10 minutos.`);
+    fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.generado!==ini){clearInterval(esperando);D=d;render();barra("");b.disabled=false;b.textContent="⟳ Actualizar";aviso(`Listo: datos actualizados al ${hhmm(D.generado)}`)}
+      else if(Date.now()-t0>30*6e4){clearInterval(esperando);barra("");b.disabled=false;b.textContent="⟳ Actualizar";aviso("La actualización está tardando más de lo normal; revisa la pestaña Actions en GitHub.")}}).catch(()=>{})},60*1000)}
+function abrirModal(){$("#modal").classList.add("on");setTimeout(()=>$("#m-tok").focus(),50)}
+$("#m-no").onclick=()=>$("#modal").classList.remove("on");
+$("#m-si").onclick=()=>{const t=$("#m-tok").value.trim();if(!/^(github_pat_|ghp_)/.test(t)){aviso("La clave debe empezar con github_pat_");return}tokSet(t);$("#modal").classList.remove("on");$("#m-tok").value="";disparar(t)};
+$("#act").onclick=()=>{const t=tokGet();t?disparar(t):abrirModal()};
 // se revisa sola cada 5 minutos y al volver a la pestaña: si el flujo programado publicó datos nuevos, se actualiza sin tocar nada
 function revisar(){if(document.hidden||!D)return;fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null)
   .then(d=>{if(d&&d.generado!==D.generado){D=d;render();aviso(`Datos actualizados al ${hhmm(D.generado)}`)}}).catch(()=>{})}
