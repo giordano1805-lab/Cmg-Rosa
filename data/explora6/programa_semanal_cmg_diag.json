@@ -38,7 +38,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -163,7 +171,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -288,7 +304,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -413,7 +437,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -538,7 +570,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -663,7 +703,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -788,7 +836,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -913,7 +969,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1038,7 +1102,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1163,7 +1235,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1288,7 +1368,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1413,7 +1501,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1538,7 +1634,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1663,7 +1767,15 @@
    "intervalos": 48,
    "barras": {
     "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+    "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+    "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+    "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+    "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+    "_rf_termica": "RESERVA FRIA TERMICA",
+    "_ref": "RESERVA EFICIENTE",
+    "_ref_gas": "RESERVA EFICIENTE GAS",
+    "_ref_carbon": "RESERVA EFICIENTE CARBON",
+    "_demanda": "DEMANDA COES"
    },
    "cabecera": [
     [
@@ -1784,7 +1896,15 @@
  "unidad": "USD",
  "nombres": {
   "Santa Rosa 220": "CMG SANTA ROSA YUPANA(US$/MWH)",
-  "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)"
+  "Socabaya 220": "CMG SOCABAYA YUPANA(US$/MWH)",
+  "_flujo_cs": "FLUJO ENLACE CENTRO - SUR",
+  "_flujo_cn": "FLUJO ENLACE CENTRO - NORTE",
+  "_cmg_trujillo": "CMG TRUJILLO YUPANA(US$/MWH)",
+  "_rf_termica": "RESERVA FRIA TERMICA",
+  "_ref": "RESERVA EFICIENTE",
+  "_ref_gas": "RESERVA EFICIENTE GAS",
+  "_ref_carbon": "RESERVA EFICIENTE CARBON",
+  "_demanda": "DEMANDA COES"
  },
  "intervalos": 672
 }
