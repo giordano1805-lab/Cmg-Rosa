@@ -20,6 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+VERSION_FC = "2026-11-02"   # sube esta fecha en cada cambio: si hay dos copias, se usa la más nueva
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
