@@ -160,7 +160,7 @@ const graf=(id,cfg)=>{const el=$(id);if(!el)return;charts.push(new Chart(el,cfg)
 const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" aria-label="${esc(txt)}"></canvas></div>`;
 const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
 const ANIOC=["--muted","--s4","--navy","--naranja"];
-const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Mercado y reserva"],["caudales","Caudales"],["volumenes","Embalses"]];
+const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
 let CMM="act",MTM="dia",GNM=null;
 
 function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
@@ -275,14 +275,9 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     <div class="seg" role="group" aria-label="Vista">${[["dia","Por día"],["mes","Por mes"]].map(([k,n])=>`<button type="button" aria-pressed="${MTM===k}" onclick="MTM='${k}';render()">${n}</button>`).join("")}</div></div>
    ${MTM==="dia"?mantDiaHTML():mantMesHTML()}</section>
 
-  <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mercado y reserva eficiente</h2></div>${cH?`<span class="pill gr">CMg preliminar ${ddmm(hoy)} · ${cH.ts.slice(11,16).replace("23:59","24:00")} h</span>`:""}</div>
-   <div class="grid g3">${cH?Object.entries(cH.barras).map(([b,v])=>kc("⚡",`CMg ${esc(b.replace(" 220"," 220 kV").replace("Huanchor 50","Huanchor 50 kV"))}`,f2(v),"USD/MWh",`último intervalo · promedio del día hasta ahora ${f2(cH.promedio[b])} (${cH.n} medias horas)`)).join(""):'<div class="estado">Aún no hay intervalos publicados del día del reporte.</div>'}</div>
-   <div class="grid g64" style="margin-top:14px;grid-template-columns:minmax(0,38fr) minmax(0,62fr)">
-    <div class="card" style="align-self:start;border-style:dashed"><h3>Hidro<small>Comentario comercial (editable en comercial.json)</small></h3><p style="margin:0;font-size:15px">❏ ${esc(C.nota_hidro||"—")}</p></div>
-    <div class="card"><h3>CMg proyectado de la semana<small>Programa Semanal de Operación (YUPANA) vs ejecutado · Santa Rosa 220 kV · USD/MWh</small></h3>
-     ${D.cmg_proy&&D.cmg_proy.diario?cv("c-pry","CMg proyectado frente a ejecutado","sm"):`<div class="estado">${esc(D.cmg_proy&&D.cmg_proy.error||"La proyección semanal aún no se pudo leer del COES.")}</div>`}</div></div>
-   ${(()=>{const R=resSemana();if(!R)return `<div class="estado" style="margin-top:14px">${esc(D.cmg_proy&&D.cmg_proy.error||"La reserva eficiente se lee del Anexo 1 (Despacho) del Programa Semanal; aún no está disponible en los datos publicados.")}</div>`;
-     return `<div class="card" style="margin-top:14px"><h3>Reserva eficiente de gas en el SEIN · Semana N° ${R.sem} · ${ddmm(R.d0)} al ${ddmm(R.d1)}<small>MW cada 30 min · Programa Semanal de Operación del COES (Anexo 1 · Despacho YUPANA, versión ${esc(D.cmg_proy.version)}) · proyección, no ejecutado</small></h3>
+  <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Reserva eficiente de gas</h2></div></div>
+   ${(()=>{const R=resSemana();if(!R)return `<div class="estado">${esc(D.cmg_proy&&D.cmg_proy.error||"La reserva eficiente se lee del Anexo 1 (Despacho) del Programa Semanal; aún no está disponible en los datos publicados.")}</div>`;
+     return `<div class="card"><h3>Reserva eficiente de gas en el SEIN · Semana N° ${R.sem} · ${ddmm(R.d0)} al ${ddmm(R.d1)}<small>MW cada 30 min · Programa Semanal de Operación del COES (Anexo 1 · Despacho YUPANA, versión ${esc(D.cmg_proy.version)}) · proyección, no ejecutado</small></h3>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
        <span class="pill gr">Mínimo ${f0(R.min[1])} MW · ${R.min[0].slice(8,10)}/${R.min[0].slice(5,7)} ${R.min[0].slice(11,16)} h</span>
        <span class="pill gr">Promedio ${f0(R.prom)} MW</span>${R.ahora?`<span class="pill">Ahora (${R.ahora[0].slice(11,16)} h): ${f0(R.ahora[1])} MW</span>`:""}
@@ -324,8 +319,6 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     const o=base("USD/MWh");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=real[c.dataIndex];return c.datasetIndex&&r?`Real: ${f1(r.v)} (${r.auto?"COES"+(r.parcial?", mes en curso":""):"cargado"})`:`${c.dataset.label}: ${f1(c.parsed.y)}`};
     graf("#c-cpr",{type:"bar",data:{labels:meses.map(mLab),datasets:[{label:"Proyectado",data:proy,backgroundColor:css("--navy"),borderRadius:3},
       {label:"Real",data:real.map(x=>x?x.v:null),backgroundColor:real.map(x=>x&&x.parcial?css("--naranja")+"88":css("--naranja")),borderRadius:3}]},options:o,plugins:[lb]})}
-  if(prj&&prj[SR]&&$("#c-pry")){const ds=Object.keys(prj[SR]).sort(),o=base("USD/MWh");o.plugins.tooltip.callbacks.title=it=>it[0].label;
-    graf("#c-pry",{type:"bar",data:{labels:ds.map(ddmm),datasets:[{label:"Proyectado (YUPANA)",data:ds.map(d=>prj[SR][d]),backgroundColor:css("--navy")+"aa",borderRadius:3},{type:"line",label:"Ejecutado",data:ds.map(d=>d<=D.dia?D.cmg_diario[SR][d]??null:null),borderColor:css("--naranja"),backgroundColor:css("--naranja"),borderWidth:2.4,pointRadius:3}]},options:o})}
   {const R=resSemana();if(R&&$("#c-res")){const DS=["dom","lun","mar","mié","jue","vie","sáb"];
     const lab=R.rs.map(r=>{const d=new Date(r[0]);return `${DS[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} ${r[0].slice(11,16)}`});
     const o=base("MW");o.scales.y.beginAtZero=true;const ini=i=>R.rs[i]&&R.rs[i][0].endsWith("T00:30");
