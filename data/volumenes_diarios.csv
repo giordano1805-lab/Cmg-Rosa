@@ -49,6 +49,7 @@ fecha,cuenca,embalse,prom,final
 2023-10-31,-v2,-,,
 2023-11-01,-v2,-,,
 2023-11-02,-v2,-,,
+2023-11-03,-v2,-,,
 2024-09-25,-v2,-,,
 2024-09-26,-v2,-,,
 2024-09-27,-v2,-,,
@@ -88,6 +89,7 @@ fecha,cuenca,embalse,prom,final
 2024-10-31,-v2,-,,
 2024-11-01,-v2,-,,
 2024-11-02,-v2,-,,
+2024-11-03,-v2,-,,
 2025-09-25,Chaglla,Embalse Chaglla,4.69714,4.92320
 2025-09-25,Mantaro,Embalse Cerro Del Águila,4.66833,4.15000
 2025-09-25,Mantaro,Embalse Junin (Statkraft),122.10107,121.65279
@@ -1282,3 +1284,15 @@ fecha,cuenca,embalse,prom,final
 2026-11-02,San Gabán,Presa San Gaban,0.10929,0.07400
 2026-11-02,Santa,Presa Shapiringo,0.23275,0.23100
 2026-11-02,Santa,Reservorio San Diego,0.00200,0.00200
+2026-11-03,Chaglla,Embalse Chaglla,4.97236,6.10086
+2026-11-03,Mantaro,Embalse Cerro Del Águila,10.79004,10.57500
+2026-11-03,Mantaro,Embalse Junin (Statkraft),70.52300,70.72300
+2026-11-03,Mantaro,Embalse Malpaso,21.60066,20.97134
+2026-11-03,Rímac,Embalse Pallca,0.31379,0.30400
+2026-11-03,Rímac,Presa Huinco,0.17246,0.24500
+2026-11-03,Rímac,Presa Sheque,0.25950,0.20300
+2026-11-03,Rímac,Pulmón Matucana,0.01614,0.01892
+2026-11-03,San Gabán,Embalse Macusani,19.15000,19.15000
+2026-11-03,San Gabán,Presa San Gaban,0.10329,0.11200
+2026-11-03,Santa,Presa Shapiringo,0.22854,0.23900
+2026-11-03,Santa,Reservorio San Diego,0.00200,0.00200
