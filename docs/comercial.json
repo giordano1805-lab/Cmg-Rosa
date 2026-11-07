@@ -1,0 +1,407 @@
+{
+ "_ayuda": "Datos comerciales del Reporte Comercial. Edita este archivo en GitHub (docs/comercial.json) y guarda: la página se actualiza al recargar. Los datos del SEIN (CMg, demanda, caudales, embalses, mantenimientos) se actualizan solos con cada corrida del flujo. Meses: AAAA-MM.",
+ "actualizado": "2026-10-26",
+ "fuente": "Reporte Comercial Semana 43 (26/10/2026) — transcrito; validar",
+ "nota_hidro": "Se observa mayor aporte hidro al sistema.",
+ "mantenimientos_mw_minimo": 20,
+ "cmg_mensual_manual": {
+  "barra": "Santa Rosa 220",
+  "proyectado": {
+   "2026-01": 27,
+   "2026-02": 27,
+   "2026-03": 27,
+   "2026-04": 51,
+   "2026-05": 28,
+   "2026-06": 31,
+   "2026-07": 47,
+   "2026-08": 32,
+   "2026-09": 38,
+   "2026-10": 33,
+   "2026-11": 31,
+   "2026-12": 28
+  },
+  "real": {
+   "2026-01": 32,
+   "2026-02": 28,
+   "2026-03": 125,
+   "2026-04": 24,
+   "2026-05": 29,
+   "2026-06": 34,
+   "2026-07": 98,
+   "2026-08": 107,
+   "2026-09": 134
+  }
+ },
+ "potencia": {
+  "huanchor_firme_mw": 19.8,
+  "desde": "2026-01",
+  "hasta": "2028-12",
+  "contratos": [
+   {
+    "cliente": "Distriluz",
+    "mw": 5.2,
+    "desde": "2027-01",
+    "hasta": "2027-12"
+   },
+   {
+    "cliente": "IKSA",
+    "mw": 2.0,
+    "desde": "2026-01",
+    "hasta": "2028-12"
+   },
+   {
+    "cliente": "Norocbre",
+    "mw": 6.0,
+    "desde": "2026-01",
+    "hasta": "2026-09"
+   },
+   {
+    "cliente": "Norocbre",
+    "mw": 9.0,
+    "desde": "2026-10",
+    "hasta": "2028-12"
+   },
+   {
+    "cliente": "MEFICO",
+    "mw": 1.5,
+    "desde": "2026-01",
+    "hasta": "2028-12"
+   },
+   {
+    "cliente": "COFACO",
+    "mw": 2.5,
+    "desde": "2026-01",
+    "hasta": "2028-12"
+   },
+   {
+    "cliente": "Textil San Ramón",
+    "mw": 3.2,
+    "desde": "2026-01",
+    "hasta": "2028-12"
+   },
+   {
+    "cliente": "IDAT",
+    "mw": 0.3,
+    "desde": "2026-01",
+    "hasta": "2028-12"
+   },
+   {
+    "cliente": "LDS",
+    "mw": 20.0,
+    "desde": "2026-03",
+    "hasta": "2026-05"
+   },
+   {
+    "cliente": "Hilton",
+    "mw": 0.4,
+    "desde": "2027-01",
+    "hasta": "2027-12"
+   },
+   {
+    "cliente": "Textil San Jacinto",
+    "mw": 7.9,
+    "desde": "2026-10",
+    "hasta": "2028-12"
+   }
+  ],
+  "compras": [
+   {
+    "generadora": "Samay",
+    "mw": 15.7,
+    "desde": "2026-03",
+    "hasta": "2026-05",
+    "precio": 0.4
+   },
+   {
+    "generadora": "Egejunin",
+    "mw": 7.9,
+    "desde": "2026-05",
+    "hasta": "2026-05",
+    "precio": 0.29
+   },
+   {
+    "generadora": "Egejunin",
+    "mw": 3.6,
+    "desde": "2026-06",
+    "hasta": "2026-12",
+    "precio": 0.29
+   },
+   {
+    "generadora": "Egejunin (variable)",
+    "mw": 2.0,
+    "desde": "2026-09",
+    "hasta": "2026-12",
+    "precio": 0.3
+   },
+   {
+    "generadora": "Carhuac",
+    "mw": 2.0,
+    "desde": "2027-01",
+    "hasta": "2027-06",
+    "precio": 0.35
+   },
+   {
+    "generadora": "Carhuac",
+    "mw": 7.0,
+    "desde": "2027-07",
+    "hasta": "2027-12",
+    "precio": 0.35
+   }
+  ],
+  "deficit_reportado": [
+   {
+    "periodo": "H1-27",
+    "mw": 10.2,
+    "desde": "2027-01",
+    "hasta": "2027-06"
+   },
+   {
+    "periodo": "H2-27",
+    "mw": 5.2,
+    "desde": "2027-07",
+    "hasta": "2027-12"
+   },
+   {
+    "periodo": "2028",
+    "mw": 6.6,
+    "desde": "2028-01",
+    "hasta": "2028-12"
+   }
+  ]
+ },
+ "energia": {
+  "deficit_reportado": [
+   {
+    "periodo": "2027",
+    "gwh": 8.5
+   }
+  ],
+  "cobertura_2027_gwh": {
+   "2027-02": 0.5,
+   "2027-04": 0.3,
+   "2027-06": 0.2,
+   "2027-07": 1.0,
+   "2027-08": 2.0,
+   "2027-09": 2.0,
+   "2027-10": 1.5,
+   "2027-11": 1.0
+  },
+  "cierre": {
+   "texto": "Celaris",
+   "gwh": 7.5,
+   "precio": 45.3,
+   "meses": "jul–nov 2027"
+  },
+  "bcp_usd_mwh": 38
+ },
+ "ofertas_enviadas": [
+  {
+   "n": 1,
+   "cliente": "Hotel Country Club - LP Hoteles S.A",
+   "mw": "0.40",
+   "fc": "51%",
+   "suministrador": "ATRIA",
+   "precio_act": 40.0,
+   "precio_base": 42.5,
+   "fijo_riesgo": 1.8,
+   "fijo_margen": 2.0,
+   "cmg_riesgo": 3.8,
+   "cmg_margen": 2.0,
+   "ofertado": "Cmg+5.8 · 46.33",
+   "periodo": "Ene27 - Dic29",
+   "status": "Se envió propuesta"
+  },
+  {
+   "n": 2,
+   "cliente": "ARCOPA",
+   "mw": "1.60",
+   "fc": "18%",
+   "suministrador": "KONDU",
+   "precio_act": 46.0,
+   "precio_base": 42.5,
+   "fijo_riesgo": 4.1,
+   "fijo_margen": 3.0,
+   "cmg_riesgo": null,
+   "cmg_margen": 3.0,
+   "ofertado": "Cmg+9.08 · 49.58",
+   "periodo": "Ene27 - Dic29",
+   "status": "Se envió propuesta"
+  },
+  {
+   "n": 3,
+   "cliente": "Aceros Chilca",
+   "mw": "0.20",
+   "fc": "38%",
+   "suministrador": "SDF",
+   "precio_act": null,
+   "precio_base": null,
+   "fijo_riesgo": null,
+   "fijo_margen": null,
+   "cmg_riesgo": 7.2,
+   "cmg_margen": 4.0,
+   "ofertado": "Cmg+11.2",
+   "periodo": "Oct2026 - Dic2026",
+   "status": "Adjudicado"
+  },
+  {
+   "n": 4,
+   "cliente": "Minera Corona",
+   "mw": "16.00",
+   "fc": "80%",
+   "suministrador": "ORYGEN",
+   "precio_act": null,
+   "precio_base": null,
+   "fijo_riesgo": null,
+   "fijo_margen": null,
+   "cmg_riesgo": 3.95,
+   "cmg_margen": 1.5,
+   "ofertado": "Cmg+5.45",
+   "periodo": "Nov2026 - Dic2027",
+   "status": "Se envió propuesta"
+  },
+  {
+   "n": 5,
+   "cliente": "Procesadora Perú",
+   "mw": "2.50",
+   "fc": "28%",
+   "suministrador": "COELVISAC",
+   "precio_act": 42.6,
+   "precio_base": 42.5,
+   "fijo_riesgo": 2.6,
+   "fijo_margen": 2.5,
+   "cmg_riesgo": 5.6,
+   "cmg_margen": 2.5,
+   "ofertado": "Cmg+8.10 · 47.60",
+   "periodo": "Ene27 - Dic30",
+   "status": "Se envió propuesta"
+  },
+  {
+   "n": 6,
+   "cliente": "Colanfish",
+   "mw": "0.40",
+   "fc": "39%",
+   "suministrador": "REGULADO",
+   "precio_act": null,
+   "precio_base": 42.5,
+   "fijo_riesgo": 9.4,
+   "fijo_margen": 4.0,
+   "cmg_riesgo": 12.5,
+   "cmg_margen": 4.0,
+   "ofertado": "Cmg+16.45 · 55.95",
+   "periodo": "Ene27 - Dic29",
+   "status": "Se envió propuesta"
+  },
+  {
+   "n": 7,
+   "cliente": "Enotria",
+   "mw": "0.75",
+   "fc": "45%",
+   "suministrador": "ORYGEN",
+   "precio_act": 54.4,
+   "precio_base": 42.5,
+   "fijo_riesgo": 1.8,
+   "fijo_margen": 3.0,
+   "cmg_riesgo": 4.8,
+   "cmg_margen": 3.0,
+   "ofertado": "Cmg+7.8 · 47.32",
+   "periodo": "Feb27 - Dic30",
+   "status": "Hoy se enviará la propuesta"
+  },
+  {
+   "n": 8,
+   "cliente": "SEAL",
+   "mw": "Oct 37.5 · Nov 19.7 · Dic 19.9",
+   "fc": "65%",
+   "suministrador": "Mercado regulado",
+   "precio_act": null,
+   "precio_base": null,
+   "fijo_riesgo": null,
+   "fijo_margen": null,
+   "cmg_riesgo": "2026: 4.1 · 2027: 2.8 · 2028: 2.8",
+   "cmg_margen": 2.0,
+   "ofertado": "2026: Cmg + 6.1 / 2027: Cmg + 4.8 · Pot. total (F 5 MW, V 1 MW) · 2028: Cmg + 4.8 · Pot. total (F 6.7 MW, V 13 MW)",
+   "periodo": "Nov2026 - Dic2028",
+   "status": "Se enviará propuesta considerando potencia fija y variable, fuera de bases"
+  },
+  {
+   "n": 9,
+   "cliente": "Celaris - Respaldo de energía",
+   "mw": "Según listado de clientes",
+   "fc": "-",
+   "suministrador": "-",
+   "precio_act": null,
+   "precio_base": null,
+   "fijo_riesgo": null,
+   "fijo_margen": null,
+   "cmg_riesgo": 1.5,
+   "cmg_margen": 3.0,
+   "ofertado": "Cmg+4.5",
+   "periodo": "Ene27 - Dic27",
+   "status": "Propuesta aprobada. Celaris transferirá mensualmente a Huanchor la potencia firme."
+  },
+  {
+   "n": 10,
+   "cliente": "Corporación Latimar",
+   "mw": "0.70",
+   "fc": "53%",
+   "suministrador": "FENIX POWER",
+   "precio_act": 47.8,
+   "precio_base": 42.5,
+   "fijo_riesgo": 1.1,
+   "fijo_margen": 4.0,
+   "cmg_riesgo": 3.6,
+   "cmg_margen": 4.0,
+   "ofertado": "Cmg+7.64 · 47.64",
+   "periodo": "Ene27 - Dic29",
+   "status": "Se envió propuesta"
+  },
+  {
+   "n": 11,
+   "cliente": "Transmaria del Perú",
+   "mw": "1.30",
+   "fc": "40%",
+   "suministrador": "COELVISAC",
+   "precio_act": 47.3,
+   "precio_base": 42.5,
+   "fijo_riesgo": 1.4,
+   "fijo_margen": 3.0,
+   "cmg_riesgo": 4.0,
+   "cmg_margen": 3.0,
+   "ofertado": "Cmg+7 · 46.97",
+   "periodo": "Ene27 - Dic29",
+   "status": "Se envió propuesta"
+  }
+ ],
+ "por_ofertar": [
+  {
+   "cliente": "Grupo Costa del Sol",
+   "mw": "19.0",
+   "fc": "-",
+   "suministrador": "Se envió consultas a los TDR"
+  },
+  {
+   "cliente": "PROSEGUR",
+   "mw": "0.20",
+   "fc": "15%",
+   "suministrador": "Cliente regulado"
+  },
+  {
+   "cliente": "Agrícola y Ganadera Chavín de Huantar",
+   "mw": "2.20",
+   "fc": "35%",
+   "suministrador": "Electro Dunas"
+  },
+  {
+   "cliente": "Agroindustria Molinera del Perú",
+   "mw": "0.50",
+   "fc": "40%",
+   "suministrador": "Cliente regulado"
+  },
+  {
+   "cliente": "Grupo DC (Camposol, Marinasol, Ecopacking y Minera OCP)",
+   "mw": "16.7",
+   "fc": "44%",
+   "suministrador": "Atria, Kallpa"
+  }
+ ]
+}

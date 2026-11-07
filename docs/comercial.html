@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reporte Comercial Huanchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f4f5f7;--surface:#fff;--surface-2:#f0f2f5;--border:#e2e4e8;--text:#0b0b0b;--text-2:#52514e;--muted:#7c7b77;
+  --brand:#001a6f;--naranja:#ff5716;--amarillo:#ffb210;--navy:#1d3a8a;--h1:#001a6f;
+  --s1:#2b4fd1;--s2:#f0590f;--s3:#e9a300;--s4:#1baf7a;--s5:#e87ba4;--s7:#6250d6;--s8:#e34948;--s9:#8f1d2c;
+  --base:#1f6f9f;--media:#f0590f;--punta:#13803f;--teal:#1aa3a3;
+  --grid:rgba(0,0,0,.07);--card-b:rgba(0,26,111,.09);--sombra:0 1px 2px rgba(16,24,40,.04),0 8px 24px -12px rgba(0,26,111,.14);
+  --tinte:rgba(255,87,22,.10);--tinte2:rgba(0,26,111,.06);--ok:#137333;--bad:#c5221f;
+}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){color-scheme:dark;
+  --bg:#121211;--surface:#1a1a19;--surface-2:#232321;--border:#2f2f2c;--text:#f0efec;--text-2:#c3c2b7;--muted:#9a9993;
+  --navy:#9fb1f7;--h1:#c9d3ff;--s1:#6f8bf5;--s2:#ff7a3d;--s3:#d1a21c;--s4:#26b583;--s7:#9085e9;--s8:#ee6b6b;--base:#5fa7d6;--media:#ff7a3d;--punta:#36b56a;--teal:#3cc4c4;
+  --grid:rgba(255,255,255,.08);--card-b:rgba(255,255,255,.07);--sombra:0 10px 28px -14px rgba(0,0,0,.7);--tinte:rgba(255,106,46,.16);--tinte2:rgba(143,166,255,.10);--ok:#81c995;--bad:#f28b82}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#121211;--surface:#1a1a19;--surface-2:#232321;--border:#2f2f2c;--text:#f0efec;--text-2:#c3c2b7;--muted:#9a9993;
+  --navy:#9fb1f7;--h1:#c9d3ff;--s1:#6f8bf5;--s2:#ff7a3d;--s3:#d1a21c;--s4:#26b583;--s7:#9085e9;--s8:#ee6b6b;--base:#5fa7d6;--media:#ff7a3d;--punta:#36b56a;--teal:#3cc4c4;
+  --grid:rgba(255,255,255,.08);--card-b:rgba(255,255,255,.07);--sombra:0 10px 28px -14px rgba(0,0,0,.7);--tinte:rgba(255,106,46,.16);--tinte2:rgba(143,166,255,.10);--ok:#81c995;--bad:#f28b82}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;color:var(--text);font:14px/1.45 Inter,system-ui,sans-serif;
+  background:radial-gradient(1200px 420px at 85% -120px,rgba(255,178,16,.10),transparent 60%),radial-gradient(900px 380px at -10% -80px,rgba(0,26,111,.07),transparent 60%),var(--bg)}
+:focus-visible{outline:2px solid var(--naranja);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{background:#fff;padding:12px 16px;border-bottom:4px solid transparent;border-image:linear-gradient(90deg,var(--naranja),var(--amarillo)) 1;box-shadow:0 1px 0 rgba(0,26,111,.06)}
+header .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:0}
+header img{height:40px;display:none}
+header h1{font-size:17px;margin:0;font-weight:700;color:var(--brand);padding-left:14px;border-left:1px solid #d9dce6}
+header .meta{margin-left:auto;font-size:12.5px;color:#52514e;text-align:right}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:8px;padding:7px 12px;font:inherit;font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap;cursor:pointer;border:1px solid #c9cde0;background:#fff;color:var(--brand)}
+.btn.pri{background:linear-gradient(180deg,#ff6a2e,var(--naranja));border-color:transparent;color:#fff;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--surface) 84%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav a{color:var(--text-2);text-decoration:none;font-weight:500;padding:12px 11px;border-bottom:2px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--text);background:var(--tinte2)}
+nav a.on{color:var(--text);font-weight:600;border-color:var(--naranja)}
+main{padding:18px 0 48px}
+.portada{position:relative;overflow:hidden;border-radius:18px;padding:34px 32px;background:
+  radial-gradient(circle at 1px 1px,rgba(43,79,209,.18) 1px,transparent 1.4px) 0 0/10px 10px,linear-gradient(115deg,var(--surface) 42%,rgba(234,240,255,.9) 42.2%);border:1px solid var(--card-b);box-shadow:var(--sombra)}
+:root[data-theme="dark"] .portada{background:radial-gradient(circle at 1px 1px,rgba(143,166,255,.16) 1px,transparent 1.4px) 0 0/10px 10px,linear-gradient(115deg,var(--surface) 42%,#1b2547 42.2%)}
+.portada .eyb{font-weight:800;color:var(--brand);letter-spacing:.02em;font-size:13px}
+:root[data-theme="dark"] .portada .eyb{color:#c9d3ff}
+.portada h2{margin:10px 0 6px;font-size:44px;line-height:1.02;letter-spacing:-1px;border-left:6px solid var(--naranja);padding-left:14px}
+.portada h2 span{display:block;color:var(--naranja)} .portada h2 b{color:var(--h1)}
+.portada .sem{font-size:18px;color:var(--text-2);margin:8px 0 0 20px}
+.portada .kp{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.portada .kp div{flex:1 1 140px;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(4px);border:1px solid var(--card-b);border-radius:12px;padding:10px 14px;min-width:150px}
+.portada .kp b{display:block;font-size:22px;color:var(--h1);font-variant-numeric:tabular-nums}.portada .kp span{font-size:12px;color:var(--text-2)}
+section.sec{margin-top:26px;scroll-margin-top:60px}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.sh .t{border-left:6px solid;border-image:linear-gradient(180deg,var(--naranja),var(--amarillo)) 1;padding-left:12px}
+.sh .t small{display:block;font-weight:800;color:var(--naranja);font-size:13px;letter-spacing:.04em}
+.sh h2{margin:2px 0 0;font-size:24px;color:var(--h1);letter-spacing:-.3px}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.g4{grid-template-columns:1fr}}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g64{grid-template-columns:minmax(0,62fr) minmax(0,38fr)}
+.card{background:linear-gradient(180deg,var(--surface),color-mix(in srgb,var(--surface) 92%,var(--bg)));border:1px solid var(--card-b);border-radius:14px;padding:14px 16px;min-width:0;box-shadow:var(--sombra)}
+.card h3{margin:0 0 8px;font-size:15px;color:var(--h1)}.card h3 small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
+.chart{position:relative;height:300px}.chart.tall{height:380px}.chart.sm{height:230px}
+.seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--tinte2);box-shadow:inset 0 1px 2px rgba(0,26,111,.08);flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer;min-height:32px}
+.seg button[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;font-weight:600;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
+.seg button:disabled{opacity:.45;cursor:not-allowed}
+.dg{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,20fr);gap:16px}.sepv{border-left:1px dashed var(--card-b);padding-left:12px}
+.tgl{border:1px solid rgba(255,87,22,.45);background:var(--tinte);color:#c2410c;font:inherit;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tgl[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;border-color:transparent}
+.t2{font-weight:700;color:var(--h1);font-size:13px;margin:16px 0 4px}
+@media (max-width:700px){.dg{grid-template-columns:1fr}.sepv{border-left:0;padding-left:0;border-top:1px dashed var(--card-b);padding-top:8px}}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(180deg,#ff6a2e,var(--naranja));box-shadow:0 2px 8px -3px rgba(255,87,22,.6)}
+.pill.nv{background:linear-gradient(180deg,#26449c,#001a6f);box-shadow:0 2px 8px -3px rgba(0,26,111,.6)}
+.pill.gr{background:var(--surface-2);color:var(--text-2);box-shadow:none;border:1px solid var(--card-b);font-weight:600}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--tinte2);color:var(--text-2)}
+.chip.ok{background:rgba(27,175,122,.14);color:#0f7a54}.chip.or{background:var(--tinte);color:#c2410c}.chip.bad{background:rgba(197,34,31,.12);color:var(--bad)}
+.mut{color:var(--muted);font-size:12.5px}.note{color:var(--muted);font-size:12px;margin-top:8px}
+.estado{display:flex;gap:8px;align-items:center;padding:12px 14px;border-radius:10px;border:1px dashed var(--card-b);color:var(--text-2);font-size:13px;background:var(--surface)}
+.estado.par{border-style:solid;border-color:transparent;background:#fff1e8;color:#8a2d00}
+:root[data-theme="dark"] .estado.par{background:#3a2216;color:#ffc9a8}
+.mant{margin:0;padding:0;list-style:none;columns:2;column-gap:22px}
+.mant li{break-inside:avoid;padding:6px 0;border-bottom:1px dashed var(--card-b);font-size:13px;display:flex;gap:8px;align-items:baseline}
+.mant li b{color:var(--h1)}.mant .mw{margin-left:auto;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mant .tg{font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;background:var(--tinte2);color:var(--text-2)}
+.lgd{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--text-2);margin:-2px 0 6px}
+.lgd i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.kc{display:flex;gap:12px;align-items:flex-start}
+.kc .ki{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--tinte);color:var(--naranja)}
+.kc .l{color:var(--text-2);font-size:13px;font-weight:600}.kc .v{font-size:28px;font-weight:700;color:var(--h1);font-variant-numeric:tabular-nums;line-height:1.15}
+.kc .v small{font-size:13px;font-weight:500;color:var(--text-2);margin-left:4px}.kc .s{font-size:12.5px;color:var(--text-2);margin-top:2px}
+.cent{font-size:12.5px;color:var(--text-2);margin-top:8px;line-height:1.7}
+.cent .tot{display:inline-block;background:#fff3c4;color:#001a6f;font-weight:700;padding:1px 8px;border-radius:6px;margin-left:6px}
+.tbl{overflow:auto;border:1px solid var(--card-b);border-radius:10px;max-height:560px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:640px}table.min{min-width:0}
+th,td{padding:7px 9px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+th{position:sticky;top:0;background:color-mix(in srgb,var(--surface-2) 85%,var(--tinte2));font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-2);white-space:nowrap}
+thead tr.grp th{text-align:center;background:linear-gradient(180deg,#1aa3a3,#138585);color:#fff}
+thead tr.grp th.vacio{background:color-mix(in srgb,var(--surface-2) 85%,var(--tinte2))}
+tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--surface) 96%,var(--tinte2))}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tools{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.tools input{flex:1;min-width:160px;background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 10px;font:inherit}
+.tools .n{color:var(--muted);font-size:12.5px}
+.tools button{border:1px solid var(--card-b);background:var(--surface);color:var(--text-2);border-radius:7px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
+.box{border-radius:12px;padding:12px 14px;background:linear-gradient(180deg,#1aa3a3,#138585);color:#fff;text-align:center;font-weight:700;box-shadow:var(--sombra)}
+.box b{display:block;font-size:22px}
+.barra{position:sticky;top:44px;z-index:4;display:none;align-items:center;gap:10px;padding:9px 16px;background:#fff1e8;color:#8a2d00;font-size:13px;border-bottom:1px solid rgba(255,87,22,.25)}
+.barra.on{display:flex}.barra .sp{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}.modal .caja{background:var(--surface);color:var(--text);border-radius:14px;max-width:460px;width:100%;padding:18px;box-shadow:0 20px 60px -20px rgba(0,0,0,.6)}
+.modal h3{margin:0 0 6px;color:var(--h1)}.modal ol{padding-left:18px;font-size:13px;color:var(--text-2)}.modal input{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit;margin:6px 0 10px}
+.modal .fila{display:flex;gap:8px;justify-content:flex-end}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:20;background:#0b1f4d;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);max-width:92vw;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.pie{display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between;color:var(--muted);font-size:11.5px;border-top:1px dashed var(--card-b);padding-top:8px;margin-top:22px}
+.pie b{color:var(--text-2)}
+@media (max-width:860px){.g2,.g3,.g64{grid-template-columns:1fr}.mant{columns:1}.portada h2{font-size:34px}}
+@media (max-width:600px){header img{height:30px}header h1{font-size:15px;border:0;padding-left:0;width:100%}header .meta{margin-left:0;text-align:left}.portada{padding:24px 18px}.portada h2{font-size:30px}.chart{height:250px}.chart.tall{height:300px}}
+@media print{nav,header .btn,#tema{display:none!important}body{background:#fff}section.sec{break-before:page}.card{box-shadow:none}}
+.nuevas{margin-top:10px;border:1px solid color-mix(in srgb,var(--naranja) 35%,transparent);background:color-mix(in srgb,var(--naranja) 7%,transparent);border-radius:12px;padding:10px 12px}
+.nuevas .nh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.nuevas .nh small{color:var(--muted)}
+.nuevas .tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--naranja);border-radius:6px;padding:2px 6px}
+.nuevas ul{list-style:none;margin:8px 0 4px;padding:0;display:grid;gap:6px}
+.nuevas li{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:6px 0;border-top:1px dashed color-mix(in srgb,var(--naranja) 30%,transparent)}
+.nuevas li small{grid-column:1/-1;color:var(--muted);font-size:12px}.nuevas .mw{font-weight:800;color:var(--naranja);font-variant-numeric:tabular-nums}
+.nuevas .nf{display:block;color:var(--muted);font-size:11px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
+  <h1>Reporte comercial</h1>
+  <div class="meta" id="meta" aria-live="polite">Cargando…</div>
+  <button class="btn pri" id="act" type="button" title="Trae los datos más recientes del COES (tarda unos 10 minutos)">⟳ Actualizar</button>
+  <button class="btn" type="button" onclick="print()">Imprimir / PDF</button>
+  <button class="btn" id="tema" type="button" aria-label="Cambiar tema claro u oscuro">Tema</button>
+</div></header>
+<nav aria-label="Secciones del reporte"><div class="wrap" id="nav"></div></nav>
+<div class="barra" id="barra" role="status"><span class="sp"></span><span id="barra-t">Actualizando con datos del COES…</span></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-t"><div class="caja">
+ <h3 id="m-t">Activar el botón Actualizar (solo una vez)</h3>
+ <p class="mut" style="margin:0 0 6px">Para que el botón pueda iniciar la actualización en GitHub necesita una clave de tu cuenta. Se guarda solo en este teléfono o computadora; no queda en la página publicada.</p>
+ <ol><li>En GitHub: <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</b>.</li>
+  <li>Repository access: <b>Only select repositories → Cmg-Rosa</b>.</li><li>Permissions → Repository → <b>Actions: Read and write</b>. Expiración: 1 año.</li><li>Copia la clave (empieza con <code>github_pat_</code>) y pégala aquí.</li></ol>
+ <input id="m-tok" type="password" placeholder="github_pat_…" aria-label="Clave de GitHub" autocomplete="off">
+ <div class="fila"><button class="btn" type="button" id="m-no">Cancelar</button><button class="btn pri" type="button" id="m-si">Guardar y actualizar</button></div></div></div>
+<main class="wrap" id="main"><div class="estado" role="status">Cargando datos…</div></main>
+<script>
+const $=s=>document.querySelector(s);
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fin=v=>v!=null&&isFinite(v);
+const nf=(a,b)=>v=>fin(v)?Number(v).toLocaleString("es-PE",{minimumFractionDigits:a,maximumFractionDigits:b}):"–";
+const f0=nf(0,0),f1=nf(1,1),f2=nf(2,2);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const MESC=["ene","feb","mar","abr","may","jun","jul","ago","set","oct","nov","dic"],MESN=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","setiembre","octubre","noviembre","diciembre"];
+const MESL=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Set","Oct","Nov","Dic"];
+const fL=s=>s?`${+s.slice(8,10)} de ${MESN[+s.slice(5,7)-1]} de ${s.slice(0,4)}`:"";
+const ddmm=s=>s?s.slice(8,10)+"/"+s.slice(5,7):"";
+const romanos=s=>String(s??"").replace(/\b(ii|iii|iv|vi|vii|viii|ix|xi|xii)\b/gi,m=>m.toUpperCase());
+const tit=s=>romanos((s||"").toLowerCase().replace(/(^|[\s.(\/-])([a-záéíóúñü])/g,(m,a,b)=>a+b.toUpperCase()));
+const mesesEntre=(a,b)=>{const o=[];let [y,m]=a.split("-").map(Number);const [y2,m2]=b.split("-").map(Number);while(y<y2||(y===y2&&m<=m2)){o.push(`${y}-${String(m).padStart(2,"0")}`);m++;if(m>12){m=1;y++}}return o};
+const mLab=k=>`${MESL[+k.slice(5)-1]}-${k.slice(2,4)}`;
+let D=null,C=null,charts=[],VRF=false;
+// Reserva del Programa Semanal para la semana operativa (sábado–viernes) que contiene la fecha del reporte
+function resSemana(){const P=D.cmg_proy;if(!P||!P.reserva||!P.reserva.length)return null;
+  const h=new Date(D.hoy+"T12:00"),sat=new Date(h);sat.setDate(h.getDate()-((h.getDay()+1)%7));const iso=x=>x.toISOString().slice(0,10);
+  const d0=iso(sat),fri=new Date(sat);fri.setDate(sat.getDate()+6);const d1=iso(fri);
+  const fdia=t=>{const d=new Date(t);d.setMinutes(d.getMinutes()-1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
+  let rs=P.reserva.filter(r=>{const f=fdia(r[0]);return f>=d0&&f<=d1});if(!rs.length)rs=P.reserva;
+  const g=rs.filter(r=>fin(r[3]));if(!g.length)return null;
+  const min=g.reduce((a,r)=>r[3]<a[1]?[r[0],r[3]]:a,[g[0][0],g[0][3]]),now=new Date(D.generado);
+  const ahora=g.filter(r=>new Date(r[0])<=new Date(now.getTime()+18e5)).pop();
+  return{rs,d0,d1,sem:semanaCOES(d0),min,prom:g.reduce((a,r)=>a+r[3],0)/g.length,ahora:ahora?[ahora[0],ahora[3]]:null,cero:g.filter(r=>r[3]<=0.5).length}}
+// Semana operativa del COES: de sábado a viernes; la semana 1 empieza el primer sábado del año
+function semanaCOES(s){const d=new Date(s+"T12:00");let y=d.getFullYear(),p=new Date(y,0,1,12);while(p.getDay()!==6)p.setDate(p.getDate()+1);
+  if(d<p){y--;p=new Date(y,0,1,12);while(p.getDay()!==6)p.setDate(p.getDate()+1)}return Math.floor((d-p)/864e5/7)+1}
+function base(yTit){const g=css("--grid"),t=css("--text-2");return{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
+  plugins:{legend:{labels:{color:t,usePointStyle:true,pointStyle:"circle",boxWidth:7,boxHeight:7,padding:14}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${f1(c.parsed.y)}`}}},
+  scales:{x:{grid:{color:g,drawTicks:false},border:{display:false},ticks:{color:t,maxRotation:0,autoSkip:true,padding:6}},y:{grid:{color:g,drawTicks:false},border:{display:false},ticks:{color:t,padding:6},title:{display:!!yTit,text:yTit,color:t}}}}}
+const graf=(id,cfg)=>{const el=$(id);if(!el)return;charts.push(new Chart(el,cfg))};
+const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" aria-label="${esc(txt)}"></canvas></div>`;
+const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
+const ANIOC=["--muted","--s4","--navy","--naranja"];
+const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
+let CMM="act",MTM="dia",GNM=null,DTP=false;
+
+function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
+  const pintar=()=>{const fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
+    box.querySelector("tbody").innerHTML=fs.map(f=>"<tr>"+cols.map(c=>`<td class="${c.num?"num":""}">${c.h?c.h(f):esc(c.v(f)??"–")}</td>`).join("")+"</tr>").join("")||`<tr><td colspan="${cols.length}" class="mut">Sin registros.</td></tr>`;
+    box.querySelector(".n").textContent=`${fs.length} de ${filas.length}`};
+  box.innerHTML=`<div class="tools" ${o.simple?'style="display:none"':""}><input placeholder="Buscar…" aria-label="Buscar"><span class="n"></span><button type="button">⭳ CSV</button></div><div class="tbl" tabindex="0"><table class="${o.simple?"min":""}"><thead>${o.grp||""}<tr>${cols.map(c=>`<th class="${c.num?"num":""}">${c.t}</th>`).join("")}</tr></thead><tbody></tbody></table></div>`;
+  box.querySelector("input").oninput=e=>{q=e.target.value.toLowerCase();pintar()};
+  box.querySelector("button").onclick=()=>{const c=x=>{const t=String(x??"").replace(/"/g,'""');return /[",;\n]/.test(t)?`"${t}"`:t};
+    const txt="﻿"+[cols.map(k=>c(k.t)).join(";"),...filas.map(f=>cols.map(k=>{const v=k.v(f);return c(typeof v==="number"?String(v).replace(".",","):v)}).join(";"))].join("\n");
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/csv"}));a.download=`${id}.csv`;a.click()};
+  pintar()}
+
+/* ---------- datos derivados ---------- */
+function mantMes(){const PM=D.prog_mensual||{},min=+(C.mantenimientos_mw_minimo??20),g={},mes=PM.mes||D.dia.slice(0,7);
+  const nD=new Date(+mes.slice(0,4),+mes.slice(5,7),0).getDate();
+  (PM.regs||[]).filter(r=>(r.mw||0)>=min).forEach(r=>{const k=r.ubicacion+"|"+r.equipo;const x=g[k]||(g[k]={c:r.ubicacion,u:r.equipo,mw:0,dsl:r.diesel,dias:new Set(),sigue:false});
+    x.mw=Math.max(x.mw,r.mw);const a=new Date(r.inicio),b=new Date(new Date(r.final||r.inicio).getTime()-6e4);
+    for(let t=new Date(a.getFullYear(),a.getMonth(),a.getDate(),12);t<=b||t.toDateString()===b.toDateString();t=new Date(t.getTime()+864e5)){
+      const k2=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}`;if(k2===mes)x.dias.add(t.getDate());else if(k2>mes)x.sigue=true;if(t>b)break}});
+  return Object.values(g).filter(x=>x.dias.size).map(x=>{const ds=[...x.dias].sort((a,b)=>a-b),rg=[];ds.forEach(d=>{const u=rg[rg.length-1];if(u&&d===u[1]+1)u[1]=d;else rg.push([d,d])});
+    return{...x,txt:rg.map(([a,b])=>a===b?`${a}`:`${a} al ${b}`).join(", ")+(x.sigue&&ds[ds.length-1]===nD?" (continúa)":"")}}).sort((a,b)=>b.mw-a.mw)}
+const LAB48=Array.from({length:48},(_,i)=>`${String(Math.floor(i/2)).padStart(2,"0")}:${i%2?"30":"00"}`);
+const TECC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eólica":"#1baf7a","Biomasa":"#6250d6","Carbón":"#e87ba4","Diésel":"#e34948","Otra":"#94a3b8"};
+// MW indisponibles en el instante t sin doble conteo (por central: el mayor entre "CENTRAL" y la suma de sus unidades)
+function mwActivo(regs,t,filtro){const por={};regs.forEach(r=>{if(filtro&&!filtro(r))return;const i=new Date(r.inicio),f=new Date(r.final||r.inicio);if(!(i<=t&&f>t))return;
+  const c=por[r.ubicacion]||(por[r.ubicacion]={cen:0,uni:{}});if((r.equipo||"").toUpperCase()==="CENTRAL")c.cen=Math.max(c.cen,r.mw||0);else c.uni[r.equipo]=Math.max(c.uni[r.equipo]||0,r.mw||0)});
+  return Object.values(por).reduce((a,c)=>a+Math.max(c.cen,Object.values(c.uni).reduce((x,y)=>x+y,0)),0)}
+const per=(r,dia)=>{const sig=new Date(new Date(dia+"T12:00").getTime()+864e5).toISOString().slice(0,10);
+  const fmt=(s,fn)=>{if(!s)return"";const f=s.slice(0,10),t=s.slice(11,16);if(fn&&f===sig&&t==="00:00")return"24:00";return f===dia?t:`${ddmm(f)} ${t}`};return `${fmt(r.inicio)}–${fmt(r.final,true)}`};
+// CMg del mes elegido: en curso (con proyección) o el mes anterior completo
+function cmgVista(){const SR="Santa Rosa 220";
+  if(CMM==="ant"&&D.cmg_mes_ant){const A=D.cmg_mes_ant;return{diario:A.diario,bloques:A.bloques,prom:A.prom,bprom:A.bloques_prom,completo:true,n:A.dias,
+    mesTxt:`${MESN[+A.mes.slice(5)-1][0].toUpperCase()+MESN[+A.mes.slice(5)-1].slice(1)} ${A.mes.slice(0,4)}`}}
+  const m=MESN[+D.dia.slice(5,7)-1];return{diario:D.cmg_diario,bloques:D.bloques_diario,prom:D.cmg_mes,bprom:D.bloques_mes,completo:false,mesTxt:`${m[0].toUpperCase()+m.slice(1)} ${D.dia.slice(0,4)}`}}
+// Programa diario de intervenciones del día del reporte
+function mantDiaDatos(){const PG=(D.programado_gen||[]).filter(r=>r.mw>0),sin=PG.filter(r=>!r.diesel),h0=new Date(D.hoy+"T00:00");
+  const p=LAB48.map((_,k)=>mwActivo(sin,new Date(h0.getTime()+(k*30+15)*6e4))),mx=Math.max(0,...p);
+  return{PG,sin,p,mx,k:p.indexOf(mx),prom:p.reduce((a,b)=>a+b,0)/48,tecs:[...new Set(sin.map(r=>r.tecnologia||"Otra"))]}}
+function ganttDia(){const R=mantDiaDatos(),h0=new Date(D.hoy+"T00:00"),hr=x=>Math.max(0,Math.min(24,(new Date(x)-h0)/36e5)),g={};
+  R.PG.forEach(r=>{const k=r.ubicacion+"|"+r.equipo;(g[k]=g[k]||{r,regs:[]}).regs.push(r)});
+  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion)).replace(/^Reserva Fria De (Generacion )?/i,"RF ")}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo} · ${f0(Math.max(...f.regs.map(x=>x.mw)))} MW`;return innerWidth<700&&t.length>24?t.slice(0,23)+"…":t};
+  const filas=Object.values(g).sort((a,b)=>Math.max(...b.regs.map(x=>x.mw))-Math.max(...a.regs.map(x=>x.mw))).slice(0,30);
+  return{R,filas:filas.map(lbl),pts:filas.flatMap(f=>f.regs.map(r=>({x:[hr(r.inicio),Math.max(hr(r.final||r.inicio),hr(r.inicio)+.25)],y:lbl(f),r})))}}
+function mantDiaHTML(){if(!D.programado_publicado)return `<div class="estado">El Programa Diario de Intervenciones del ${ddmm(D.hoy)} aún no está publicado.</div>`;
+  const G=ganttDia(),R=G.R;
+  return `<div class="grid g3">${kc("⚡","Máximo simultáneo sin diésel",f0(R.mx),"MW",R.mx?`a las ${LAB48[R.k]} h · ${fL(D.hoy)}`:"")}${kc("◷","Promedio del día",f0(R.prom),"MW","integral ÷ 24 h, sin diésel")}${kc("🔧","Intervenciones con MW",R.PG.length,"",`${R.PG.filter(r=>r.diesel).length} de unidades diésel (no suman al máximo)`)}</div>
+   <div class="card" style="margin-top:14px"><h3>Intervenciones del día · ${fL(D.hoy)}<small>Programa Diario de Intervenciones del COES · horario de cada unidad (00:00–24:00) · color por tecnología (diésel en gris)</small></h3>
+    ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(200,G.filas.length*24+70)}px"><canvas id="c-mgd" role="img" aria-label="Intervenciones programadas del día por unidad y horario"></canvas></div></div>`}
+const lgdTec=pts=>`<div class="lgd">${Object.entries(TECC).filter(([t])=>pts.some(p=>p.r.tecnologia===t&&!p.r.diesel)).map(([t,c])=>`<span><i style="background:${c}"></i>${t}</span>`).join("")}${pts.some(p=>p.r.diesel)?'<span><i style="background:#b8bec9"></i>Diésel</span>':""}</div>`;
+function ganttMes(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7),a=new Date(`${mes}-01T00:00`),b=new Date(+mes.slice(0,4),+mes.slice(5,7),1),n=(b-a)/864e5;
+  const min=+(C.mantenimientos_mw_minimo??20),dd=s=>(Math.max(a,Math.min(b,new Date(s)))-a)/864e5,g={};
+  (PM.regs||[]).filter(r=>(r.mw||0)>=min).forEach(r=>{const k=r.ubicacion+"|"+r.equipo;(g[k]=g[k]||{r,regs:[],peso:0}).regs.push(r);g[k].peso+=r.mw*(dd(r.final||r.inicio)-dd(r.inicio))});
+  const lbl=f=>{const t=`${romanos(tit(f.r.ubicacion)).replace(/^Reserva Fria De (Generacion )?/i,"RF ")}${f.r.equipo==="CENTRAL"?"":" "+f.r.equipo} · ${f0(Math.max(...f.regs.map(x=>x.mw)))} MW`;return innerWidth<700&&t.length>24?t.slice(0,23)+"…":t};
+  const top=Object.values(g).sort((x,y)=>y.peso-x.peso).slice(0,30).sort((x,y)=>Math.min(...x.regs.map(r=>dd(r.inicio)))-Math.min(...y.regs.map(r=>dd(r.inicio))));
+  return{a,n,filas:top.map(lbl),pts:top.flatMap(f=>f.regs.map(r=>({x:[dd(r.inicio),Math.max(dd(r.final||r.inicio),dd(r.inicio)+.06)],y:lbl(f),r})))}}
+function mantMesHTML(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7);
+  if(!(PM.regs||[]).length||mes!==D.hoy.slice(0,7))return `<div class="estado">El Programa Mensual de Mantenimiento de ${MESN[+D.hoy.slice(5,7)-1]} aún no está disponible.</div>`;
+  const G=ganttMes();
+  return `<div class="card"><h3>Ventanas de mantenimiento · ${MESN[+mes.slice(5)-1]} ${mes.slice(0,4)}<small>Programa Mensual de Mantenimiento del COES · mes en curso · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · color por tecnología (diésel en gris) · línea naranja: hoy</small></h3>
+    ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(220,G.filas.length*22+70)}px"><canvas id="c-mmg" role="img" aria-label="Ventanas de mantenimiento del mes"></canvas></div></div>`}
+const GENR=[["pasada","Hidro de pasada","💧"],["regulacion","Hidro de embalse","🌊"],["eolica","Eólica","🌬"],["solar","Solar","☀"]];
+const GENC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eólica":"#1baf7a","Carbón":"#5f6368","Biomasa":"#6250d6","Diésel/Residual":"#e34948","D2 Reserva Fría":"#8f1d2c","Diésel/Residual otras":"#e34948","Otros":"#9aa0a6"};
+// mes en curso sin datos todavía (el IEOD del día 1 se publica al día siguiente): se abre el mes anterior completo
+const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica,D.solar].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
+function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica,solar:D.solar}[k]||null}
+// nota por tecnología: centrales que generaron este período y no el mismo período del año anterior (o al revés)
+function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c=G&&G[k];
+  if(!c)return `<div class="note">Comparación por central: se arma con los días que tengan datos en ambos años.</div>`;
+  const M=`${MESC[H.mes-1]} ${H.ant}`,fd=f=>f.split("-").reverse().join("/");
+  const oc=x=>x.oc?`Operación comercial COES${x.oc.fecha?` ${fd(x.oc.fecha)}`:""}`:"";
+  const mw=x=>x.mw_max!=null?x.mw_max:null,tot=c.nuevas.reduce((a,x)=>a+(mw(x)||0),0);
+  const nv=c.nuevas.length?`<div class="nuevas"><div class="nh"><span class="tag">NUEVAS</span><b>${c.nuevas.length} central${c.nuevas.length>1?"es":""}${tot?` · ${f0(tot)} MW`:""}</b><small>sin operación en ${M}</small></div>
+    <ul>${c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b><span class="mw">${mw(x)!=null?`${f0(mw(x))} MW máx.`:`${f1(x.mw_medio)} MW medio`}</span><small>${f0(x.mwh)} MWh en ${c.dias} días${mw(x)!=null?` · ${f1(x.mw_medio)} MW medio`:""}${oc(x)?` · ${oc(x)}`:""}</small></li>`).join("")}</ul>
+    <small class="nf">MW máx.: mayor potencia registrada en el despacho ejecutado del IEOD (referencia de capacidad).</small></div>`:"";
+  const o=[...(c.sin_gen_ant||[]).map(x=>`<li><b>${esc(romanos(x.central))}</b>: genera ${f0(x.mwh)} MWh; no generó en esos días de ${M} (ya operaba: parada o mantenimiento)</li>`),
+           ...c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${M}; sin generación este período${oc(x)?` · ${oc(x)}`:""}</li>`)];
+  return nv||o.length?`${nv}${o.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${o.join("")}</ul>`:""}`
+    :`<div class="note">Sin centrales nuevas: las mismas centrales generando que en ${M}.</div>`}
+function tipoHTML(){const T=D.tipo_cliente;
+  if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
+  const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
+  return `<div class="dg"><div>${cv("c-tip","Crecimiento mensual de usuarios libres y regulados","sm")}</div><div class="sepv">${cv("c-tipa","Crecimiento acumulado por tipo de cliente","sm")}</div></div>
+   <div class="note">Fuente: retiros de clientes libres y regulados del LVTEA mensual del COES (archivo Resumen, Cuadro 4)${T.meses.some(x=>x.fuente==="IEOD")?`; meses aún sin LVTEA (${T.meses.filter(x=>x.fuente==="IEOD").map(x=>MESL[x.mes-1]).join(", ")}): IEOD, usuarios libres (DEMANDA_UL) y regulado = demanda total − libres`:""}. ${falta.length?`Sin dato completo aún: ${falta.join(", ")} (se completa en las próximas corridas).`:""}</div>`}
+/* ---------- render ---------- */
+function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";
+  const hoy=D.hoy,sem=semanaCOES(hoy),SR="Santa Rosa 220",mes=MESN[+D.dia.slice(5,7)-1],anio=D.dia.slice(0,4);
+  $("#meta").innerHTML=`Semana N° ${sem} · <b>${fL(hoy)}</b><br>Datos SEIN al ${ddmm(D.dia)} · actualizado ${new Date(D.generado).toLocaleString("es-PE",{dateStyle:"short",timeStyle:"short"})}`;
+  $("#nav").innerHTML=SECS.map(([k,n],i)=>`<a href="#${k}">${i+1}. ${n}</a>`).join("");
+  const ES=D.embalses_semanal||{cuencas:[]},cH=D.cmg_hoy,CV=cmgVista();
+  const rimac=ES.cuencas.find(c=>c.cuenca==="Rímac");
+  // CMg mensual: real automático si hay datos del mes; si no, el valor cargado en comercial.json
+  const CM=C.cmg_mensual_manual||{},barraM=CM.barra||SR,auto=(D.cmg_mensual||{})[barraM]||{};
+  const meses=Array.from({length:12},(_,i)=>`${anio}-${String(i+1).padStart(2,"0")}`);
+  const real=meses.map(k=>auto[k]&&auto[k][1]>=48*5?{v:auto[k][0],auto:1,parcial:k===D.dia.slice(0,7)}:(CM.real||{})[k]!=null?{v:CM.real[k],auto:0}:null);
+  const proy=meses.map(k=>(CM.proyectado||{})[k]??null);
+  const avg=a=>{const v=a.filter(fin);return v.length?v.reduce((x,y)=>x+y,0)/v.length:null};
+  const avR=avg(real.map(x=>x&&!x.parcial?x.v:null)),avP=avg(proy);
+  $("#main").innerHTML=`
+  <div class="portada"><div class="eyb">HIDROELÉCTRICA HUANCHOR</div><h2><span>REPORTE</span><b>COMERCIAL</b></h2><div class="sem">Semana N° ${sem} · ${fL(hoy)}</div>
+   <div class="kp"><div><span>CMg Santa Rosa · ${mes}</span><b>${f2(D.cmg_mes[SR])}</b><span>USD/MWh, 1–${+D.dia.slice(8,10)}</span></div>
+    ${cH&&cH.barras[SR]!=null?`<div><span>CMg al ${cH.ts.slice(11,16).replace("23:59","24:00")} h</span><b>${f2(cH.barras[SR])}</b><span>USD/MWh · Santa Rosa</span></div>`:""}
+    ${D.demanda_hist?`<div><span>Demanda del mes</span><b>${f0(D.demanda_hist.mtd_gwh[D.demanda_hist.act])} GWh</b><span>${(x=>x>0?"+":"")((D.demanda_hist.mtd_gwh[D.demanda_hist.act]/D.demanda_hist.mtd_gwh[D.demanda_hist.ant]-1)*100)}${f1((D.demanda_hist.mtd_gwh[D.demanda_hist.act]/D.demanda_hist.mtd_gwh[D.demanda_hist.ant]-1)*100)}% vs ${D.demanda_hist.ant}</span></div>`:""}
+    ${rimac?`<div><span>Volumen útil Rímac</span><b>${f1(rimac.actual)} hm³</b><span>semana ${rimac.semana} · ${rimac.var_pct>0?"+":""}${f0(rimac.var_pct)}% vs año ant.</span></div>`:""}
+    </div></div>
+
+  <section class="sec" id="cmg"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución CMg</h2></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div class="seg" role="group" aria-label="Mes">${[["act","Mes en curso"],["ant","Mes anterior completo"]].map(([k,n])=>`<button type="button" aria-pressed="${CMM===k}" onclick="CMM='${k}';render()" ${k==="ant"&&!D.cmg_mes_ant?"disabled title='Aún no hay un mes anterior completo guardado'":""}>${n}</button>`).join("")}</div>
+    <span class="pill">AVG = ${f0(CV.prom[SR])} USD/MWh</span></div></div>
+   <div class="card"><h3>CMg – ${CV.mesTxt} (USD/MWh)<small>Barras: Santa Rosa 220 kV por bloque (base 23–6 h, media 6–18 h, punta 18–23 h) · líneas: promedio diario por barra · ${CV.completo?`mes completo (${CV.n} días)`:`datos hasta el ${ddmm(D.dia)}`}${CMM==="act"&&D.cmg_proy&&D.cmg_proy.diario?" · punteado: proyectado del Programa Semanal":""}</small></h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${D.barras.map(b=>`<span class="pill gr">${esc(b.replace(" 220",""))}: ${f2(CV.prom[b])}</span>`).join("")}${Object.entries(CV.bprom||{}).map(([k,v])=>`<span class="pill gr">${esc(k.replace(/ \(.*/,""))} SR: ${f2(v)}</span>`).join("")}</div>
+    ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
+   <div class="grid g2" style="margin-top:14px">
+     <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
+      <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar crecimiento por tipo de cliente":"▸ Ver crecimiento por tipo de cliente"}</button></div>
+      <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
+      ${DTP?`<div id="dtp"><div class="t2">Crecimiento mensual por tipo de cliente · % vs mismo mes del año anterior</div>${tipoHTML()}</div>`:""}</div>
+     <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
+   </div></section>
+
+  <section class="sec" id="gen"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Generación</h2></div></div>
+   ${D.generacion&&D.generacion.length?`<div class="card"><h3>Despacho del día anterior por tecnología · ${fL(D.dia)}<small>MW cada 30 min · ${D.gen_fuente==="IEOD"?"IEOD (clasificación oficial del COES)":"Portal de Información del COES (SCADA)"} · máxima ${f0(Math.max(...D.generacion.map(r=>Object.keys(D.grupos_gen).reduce((a,k)=>a+(r[k]||0),0))))} MW</small></h3>${cv("c-gdes","Despacho por tecnología del día anterior","tall")}</div>`:'<div class="estado">El despacho del día anterior aún no está disponible.</div>'}
+   <div class="sh" style="margin-top:18px"><div class="t" style="border:0;padding:0"><h2 style="font-size:18px">Hidro y eólica frente al año anterior · potencia media (MW)</h2></div>
+    <div class="seg" role="group" aria-label="Mes">${[["act","Mes en curso"],["ant","Mes anterior completo"]].map(([k,n])=>`<button type="button" aria-pressed="${GNM===k}" onclick="GNM='${k}';render()" ${k==="ant"&&!D.gen_mes_ant?"disabled":""}${k==="act"&&!genHayAct()?" disabled title='Aún no hay datos del IEOD de este mes'":""}>${n}</button>`).join("")}</div></div>
+   ${!genHayAct()?`<div class="note" style="margin:-4px 0 10px">El mes en curso aún no tiene datos del IEOD (se publica al día siguiente); se muestra el mes anterior completo.</div>`:""}
+   <div class="grid g4">${GENR.map(([k,n,ic])=>{const H=genH(k);if(!H||H.mtd[H.act]==null)return `<div class="estado">${n}: sin datos.</div>`;const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
+     return kc(ic,`${n} · ${MESN[H.mes-1]} ${H.act}`,f0(H.mtd[H.act]),"MW",`${v==null?"":`<span class="chip ${v<0?"or":"ok"}">${v>0?"▲ +":"▼ −"}${f1(Math.abs(v))}%</span> `}vs ${f0(H.mtd[H.ant])} MW en ${H.ant} · días 1–${H.dias}`)}).join("")}</div>
+   <div class="grid g2" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card"><h3>${n}<small>MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}</small></h3>${cv("c-g"+k,n+" por día frente al año anterior","sm")}${notaCambios(k,H)}</div>`:""}).join("")}</div>
+   <div class="note">Potencia media = energía del día ÷ 24 h, comparable entre días y años aunque el mes esté incompleto. Fuente: IEOD del COES (producción por tipo de recurso; energía por central: cuadro de centrales hidroeléctricas y despacho ejecutado). Las fechas de operación comercial se toman de las publicaciones del COES «Operación Comercial de unidades o centrales de generación».</div></section>
+
+  <section class="sec" id="mant"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mantenimientos de centrales</h2></div>
+    <div class="seg" role="group" aria-label="Vista">${[["dia","Por día"],["mes","Por mes"]].map(([k,n])=>`<button type="button" aria-pressed="${MTM===k}" onclick="MTM='${k}';render()">${n}</button>`).join("")}</div></div>
+   ${MTM==="dia"?mantDiaHTML():mantMesHTML()}</section>
+
+  <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Reserva eficiente de gas</h2></div></div>
+   ${(()=>{const R=resSemana();if(!R)return `<div class="estado">${esc(D.cmg_proy&&D.cmg_proy.error||"La reserva eficiente se lee del Anexo 1 (Despacho) del Programa Semanal; aún no está disponible en los datos publicados.")}</div>`;
+     return `<div class="card"><h3>Reserva eficiente de gas en el SEIN · Semana N° ${R.sem} · ${ddmm(R.d0)} al ${ddmm(R.d1)}<small>MW cada 30 min · Programa Semanal de Operación del COES (Anexo 1 · Despacho YUPANA, versión ${esc(D.cmg_proy.version)}) · proyección, no ejecutado</small></h3>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+       <span class="pill gr">Mínimo ${f0(R.min[1])} MW · ${R.min[0].slice(8,10)}/${R.min[0].slice(5,7)} ${R.min[0].slice(11,16)} h</span>
+       <span class="pill gr">Promedio ${f0(R.prom)} MW</span>${R.ahora?`<span class="pill">Ahora (${R.ahora[0].slice(11,16)} h): ${f0(R.ahora[1])} MW</span>`:""}
+       ${R.cero?`<span class="pill" style="background:linear-gradient(180deg,#e34948,#c5221f)">${R.cero} medias horas sin reserva de gas</span>`:""}</div>
+      <label class="mut" style="display:inline-flex;gap:6px;align-items:center;margin-bottom:6px;cursor:pointer"><input type="checkbox" id="rf-ter" ${VRF?"checked":""} onchange="VRF=this.checked;render()"> Mostrar reserva fría térmica (eje derecho)</label>
+      ${cv("c-res","Reserva eficiente de gas proyectada para la semana","tall")}
+      <div class="note">Según el COES: la reserva eficiente de gas es la suma de las unidades a gas no despachadas más la reserva rotante de gas; es un cálculo aproximado que no considera limitaciones de ningún tipo.</div></div>`})()}</section>
+
+  <section class="sec" id="caudales"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución de los caudales – ${esc((ES.semana||"").split("·")[0])}</h2></div><span class="pill gr">${esc(ES.semana||"")}</span></div>
+   <div class="grid g2">${ES.cuencas.filter(c=>c.caudal).map((c,i)=>`<div class="card"><h3>${esc((c.caudal.titulos||[])[0]||"Caudal natural "+c.cuenca)}<small>m³/s · por semana · ${Object.keys(c.caudal.anios).sort().slice(-4).join(", ")}</small></h3>${cv("c-q"+i,"Caudal natural de "+c.cuenca,"sm")}</div>`).join("")||'<div class="estado">Sin informe semanal.</div>'}</div></section>
+
+  <section class="sec" id="volumenes"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución de volúmenes de los embalses y lagunas – ${esc((ES.semana||"").split("·")[0])}</h2></div></div>
+   <div class="grid g2">${ES.cuencas.map((c,i)=>`<div class="card"><h3>${esc(c.titulo||c.cuenca)}<small>hm³ · semana ${c.semana}: ${f1(c.actual)} (${c.var_pct>0?"+":""}${f0(c.var_pct)}% vs misma semana del año anterior)</small></h3>${cv("c-v"+i,"Volumen útil de "+c.cuenca,"sm")}
+     ${c.centrales.length?`<div class="cent"><b>Centrales:</b> ${c.centrales.map(([n,mw])=>`${esc(n)} – ${mw} MW`).join(" · ")} <span class="tot">TOTAL = ${f1(c.mw_total)} MW</span></div>`:""}</div>`).join("")}</div></section>
+
+  <div class="pie"><span><b>Fuentes:</b> COES (CMg tiempo real preliminar, Portal de Información, IEOD, Programa Mensual de Mantenimiento, Informe de Evaluación Semanal, Programa Semanal de Operación).</span><span><b>Actualizado:</b> ${new Date(D.generado).toLocaleString("es-PE")}</span></div>`;
+
+  // gráficos
+  const dias=Object.keys(CV.diario[SR]||{}).sort(),BL=[["Base (23-6 h)","Base","--base"],["Media (6-18 h)","Media","--media"],["Punta (18-23 h)","Punta","--punta"]];
+  const prj=D.cmg_proy&&D.cmg_proy.diario?D.cmg_proy.diario:null,fut=CMM==="act"&&prj&&prj[SR]?Object.keys(prj[SR]).filter(d=>d>D.dia&&d.slice(0,7)===D.dia.slice(0,7)).sort():[];
+  const dd=[...dias,...fut];
+  const etq={id:"etq",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10px Inter,sans-serif";x.textAlign="center";
+    [[3,"--s8",-8],[4,"--s4",-8]].forEach(([k,col,dy])=>{const m=c.getDatasetMeta(k);if(!m||m.hidden)return;x.lineWidth=3;x.strokeStyle=css("--surface");x.lineJoin="round";m.data.forEach((p,i)=>{const v=c.data.datasets[k].data[i];if(fin(v)&&innerWidth>700){const y=k===3?p.y+15:p.y+dy;x.strokeText(f1(v),p.x,y);x.fillStyle=css(col);x.fillText(f1(v),p.x,y)}})});x.restore()}};
+  const o1=base("USD/MWh");o1.scales.y.beginAtZero=true;o1.plugins.tooltip.callbacks.title=it=>`${it[0].label} de ${CV.mesTxt}`;
+  graf("#c-cmg",{data:{labels:dd.map(d=>+d.slice(8)),datasets:[
+    ...BL.map(([k,n,col])=>({type:"bar",label:n,data:dd.map(d=>(CV.bloques[k]||{})[d]??null),backgroundColor:css(col)+"cc",borderRadius:3,order:2})),
+    {type:"line",label:"Sta. Rosa",data:dd.map(d=>CV.diario[SR][d]??null),borderColor:css("--s8"),backgroundColor:css("--s8"),borderWidth:2.4,pointRadius:2,tension:.25,order:0},
+    {type:"line",label:"Piura",data:dd.map(d=>(CV.diario["Piura 220"]||{})[d]??null),borderColor:css("--s4"),backgroundColor:css("--s4"),borderWidth:2,pointRadius:2,tension:.25,order:0},
+    {type:"line",label:"Socabaya",data:dd.map(d=>(CV.diario["Socabaya 220"]||{})[d]??null),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.25,order:0},
+    ...(fut.length?[{type:"line",label:"Sta. Rosa · proyectado",data:dd.map(d=>d===D.dia?D.cmg_diario[SR][d]:d>D.dia?prj[SR][d]:null),borderColor:css("--s8"),borderDash:[6,4],borderWidth:2,pointRadius:0,order:0}]:[])]},options:o1,plugins:[etq]});
+  if(D.demanda_hist){const H=D.demanda_hist,ms=Array.from({length:H.mes},(_,i)=>i+1);
+    const va=ms.map(m=>m===H.mes?H.mtd_gwh[H.ant]/1e3:(H.mensual[H.ant][m]??null)),vb=ms.map(m=>H.mensual[H.act][m]??null);
+    const lb={id:"lb",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";const m=c.getDatasetMeta(1);
+      m.data.forEach((b,i)=>{if(va[i]&&vb[i]){const p=(vb[i]/va[i]-1)*100;x.fillText(`${p>0?"+":""}${f1(p)}%`,b.x-b.width/2,Math.min(b.y,c.getDatasetMeta(0).data[i].y)-6)}});x.restore()}};
+    const o=base("TWh");o.layout={padding:{top:16}};o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)} TWh`;
+    graf("#c-dem",{type:"bar",data:{labels:ms.map(m=>MESL[m-1]+(m===H.mes?"*":"")),datasets:[{label:String(H.ant),data:va,backgroundColor:css("--teal"),borderRadius:3},{label:String(H.act),data:vb,backgroundColor:css("--s1"),borderRadius:3}]},options:o,plugins:[lb]})}
+  if(D.demanda_hist&&$("#c-dema")){const H=D.demanda_hist,a=H.ytd_twh[H.ant],b=H.ytd_twh[H.act],o=base("");o.layout={padding:{top:16}};o.plugins.legend.display=false;o.scales.y.beginAtZero=true;
+    o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)} TWh`;
+    const lb={id:"lba",afterDatasetsDraw(c){const x=c.ctx,m0=c.getDatasetMeta(0).data[0],m1=c.getDatasetMeta(1).data[0];if(!m0||!m1||!a)return;x.save();x.font="700 11px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";
+      x.fillText(`${(b/a-1)*100>0?"+":""}${f1((b/a-1)*100)}%`,(m0.x+m1.x)/2,Math.min(m0.y,m1.y)-6);x.restore()}};
+    graf("#c-dema",{type:"bar",data:{labels:[`Acum. Ene–${MESL[H.mes-1]}*`],datasets:[{label:String(H.ant),data:[a],backgroundColor:css("--teal"),borderRadius:4},{label:String(H.act),data:[b],backgroundColor:css("--s1"),borderRadius:4}]},options:o,plugins:[lb]})}
+  {const T=D.tipo_cliente;if(T&&T.meses_ok&&T.meses_ok.length&&$("#c-tip")){const ms=T.meses,L=ms.map(x=>x.libre??null),R=ms.map(x=>x.regulado??null);
+    const lb={id:"lbt",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10px Inter,sans-serif";x.textAlign="center";[0,1].forEach(k=>{x.fillStyle=k?"#c2410c":css("--h1");c.getDatasetMeta(k).data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v))x.fillText(`${v>0?"+":""}${f1(v)}`,b.x,v>=0?b.y-4:b.y+12)})});x.restore()}};
+    let o=base("%");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=ms[c.dataIndex];return `${c.dataset.label}: ${c.parsed.y>0?"+":""}${f1(c.parsed.y)}% (${f0(c.datasetIndex?r.regulado_gwh:r.libre_gwh)} GWh)`};
+    o.plugins.tooltip.callbacks.footer=it=>{const r=ms[it[0].dataIndex];return r.pct_libre?`Libres: ${f1(r.pct_libre)}% del total · fuente ${r.fuente}`:""};
+    graf("#c-tip",{type:"bar",data:{labels:ms.map(x=>MESL[x.mes-1]+(x.parcial?"*":"")),datasets:[{label:"Libre",data:L,backgroundColor:"#001a6f",borderRadius:3},{label:"Regulado",data:R,backgroundColor:"#ff5716",borderRadius:3}]},options:o,plugins:[lb]});
+    if(T.acum){o=base("");o.layout={padding:{top:14}};o.plugins.legend.display=false;
+      graf("#c-tipa",{type:"bar",data:{labels:[`Acum. ${T.meses_ok.length} meses`],datasets:[{label:"Libre",data:[T.acum.libre],backgroundColor:"#001a6f",borderRadius:4},{label:"Regulado",data:[T.acum.regulado],backgroundColor:"#ff5716",borderRadius:4}]},options:o,plugins:[lb]})}}}
+  {const lb={id:"lb2",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.textAlign="center";
+      [0,1].forEach(k=>{const m=c.getDatasetMeta(k);m.data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v)){x.fillStyle=css(k?"--naranja":"--navy");x.fillText(f0(v),b.x,b.y-4)}})});x.restore()}};
+    const o=base("USD/MWh");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=real[c.dataIndex];return c.datasetIndex&&r?`Real: ${f1(r.v)} (${r.auto?"COES"+(r.parcial?", mes en curso":""):"cargado"})`:`${c.dataset.label}: ${f1(c.parsed.y)}`};
+    graf("#c-cpr",{type:"bar",data:{labels:meses.map(mLab),datasets:[{label:"Proyectado",data:proy,backgroundColor:css("--navy"),borderRadius:3},
+      {label:"Real",data:real.map(x=>x?x.v:null),backgroundColor:real.map(x=>x&&x.parcial?css("--naranja")+"88":css("--naranja")),borderRadius:3}]},options:o,plugins:[lb]})}
+  {const R=resSemana();if(R&&$("#c-res")){const DS=["dom","lun","mar","mié","jue","vie","sáb"];
+    const lab=R.rs.map(r=>{const d=new Date(r[0]);return `${DS[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} ${r[0].slice(11,16)}`});
+    const o=base("MW");o.scales.y.beginAtZero=true;const ini=i=>R.rs[i]&&R.rs[i][0].endsWith("T00:30");
+    o.scales.x.ticks={color:css("--text-2"),autoSkip:false,maxRotation:0,callback:(v,i)=>ini(i)?lab[i].slice(0,-6):null};
+    o.scales.x.grid={color:c=>ini(c.index)?css("--grid"):"transparent",drawTicks:false};
+    o.plugins.tooltip.callbacks={title:it=>lab[it[0].dataIndex]+" h",label:c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`};
+    if(VRF)o.scales.y2={position:"right",beginAtZero:true,grid:{display:false},border:{display:false},ticks:{color:css("--text-2")},title:{display:true,text:"Reserva fría térmica (MW)",color:css("--text-2")}};
+    const verde="#22c55e";
+    graf("#c-res",{type:"line",data:{labels:lab,datasets:[
+      {label:"Reserva eficiente gas",data:R.rs.map(r=>r[3]),stepped:true,fill:true,borderColor:"#16a34a",backgroundColor:c=>{const{ctx,chartArea}=c.chart;if(!chartArea)return verde+"55";const g=ctx.createLinearGradient(0,chartArea.top,0,chartArea.bottom);g.addColorStop(0,verde+"aa");g.addColorStop(1,verde+"22");return g},borderWidth:1.6,pointRadius:0},
+      ...(R.rs.some(r=>fin(r[4])&&r[4]>0)?[{label:"Reserva eficiente carbón",data:R.rs.map(r=>r[4]),stepped:true,borderColor:"#6b7280",borderWidth:1.4,pointRadius:0}]:[]),
+      ...(VRF?[{label:"Reserva fría térmica",data:R.rs.map(r=>r[1]),yAxisID:"y2",stepped:true,borderColor:css("--navy"),borderDash:[5,4],borderWidth:1.6,pointRadius:0}]:[])]},options:o})}}
+  const sem_=(id,A,un)=>{const ys=Object.keys(A).sort().slice(-4),est=ANIOC.slice(4-ys.length);const o=base(un);
+    o.scales.x={type:"linear",min:1,max:53,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:3},title:{display:true,text:"Semanas",color:css("--text-2")}};o.scales.y.beginAtZero=true;o.interaction={mode:"nearest",axis:"x",intersect:false};
+    o.plugins.tooltip.callbacks={title:it=>`Semana ${it[0].parsed.x}`,label:t=>`${t.dataset.label}: ${f1(t.parsed.y)} ${un}`};
+    graf(id,{type:"scatter",data:{datasets:ys.map((y,j)=>({label:y,data:Object.entries(A[y]).map(([k,v])=>({x:+k,y:v})).sort((p,q)=>p.x-q.x),showLine:true,borderColor:css(est[j]),backgroundColor:css(est[j]),borderWidth:j===ys.length-1?2.8:1.6,pointRadius:2}))},options:o})};
+  ES.cuencas.filter(c=>c.caudal).forEach((c,i)=>sem_("#c-q"+i,c.caudal.anios,"m³/s"));
+  ES.cuencas.forEach((c,i)=>sem_("#c-v"+i,c.anios,"hm³"));
+  if(MTM==="dia"&&$("#c-mgd")){const G=ganttDia(),o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;o.layout={padding:{top:16}};
+    o.scales={x:{type:"linear",min:0,max:24,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:innerWidth<700?6:2,maxRotation:0,callback:v=>String(v).padStart(2,"0")+":00"}},
+      y:{type:"category",labels:G.filas,grid:{display:false},border:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={title:it=>it[0].raw.r.descripcion.slice(0,90),label:it=>{const r=it.raw.r;return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${per(r,D.hoy)}${r.estado?" · "+r.estado:""}`}};
+    const ahora={id:"ahora",afterDatasetsDraw(c){const n=new Date(D.generado),v=(n-new Date(D.hoy+"T00:00"))/36e5;if(v<0||v>24)return;const x=c.ctx,px=c.scales.x.getPixelForValue(v);x.save();x.strokeStyle=css("--naranja");x.lineWidth=2;x.beginPath();x.moveTo(px,c.chartArea.top);x.lineTo(px,c.chartArea.bottom);x.stroke();
+      x.fillStyle=css("--naranja");x.font="600 10.5px Inter,sans-serif";x.textAlign="center";x.fillText("ahora "+n.toTimeString().slice(0,5),px,c.chartArea.top-5);x.restore()}};
+    graf("#c-mgd",{type:"bar",data:{datasets:[{data:G.pts,backgroundColor:G.pts.map(p=>p.r.diesel?"#b8bec9":(TECC[p.r.tecnologia]||"#94a3b8")),borderRadius:3,borderSkipped:false,barPercentage:.7,categoryPercentage:.9}]},options:o,plugins:[ahora]})}
+  if(MTM==="mes"&&$("#c-mmg")){const G=ganttMes();const o=base("");o.indexAxis="y";o.interaction={mode:"nearest",intersect:true};o.plugins.legend.display=false;o.layout={padding:{top:16}};
+    const dl=v=>{const d=new Date(G.a.getTime()+v*864e5);return `${d.getDate()} ${MESC[d.getMonth()]}`};
+    o.scales={x:{type:"linear",min:0,max:G.n,grid:{color:css("--grid")},border:{display:false},ticks:{color:css("--text-2"),stepSize:innerWidth<700?7:2,maxRotation:0,callback:v=>v<G.n?dl(v):""}},
+      y:{type:"category",labels:G.filas,grid:{display:false},border:{display:false},ticks:{color:css("--text"),autoSkip:false,font:{size:11.5}}}};
+    o.plugins.tooltip.callbacks={title:it=>it[0].raw.r.descripcion.slice(0,90),label:it=>{const r=it.raw.r;return `${r.tecnologia||""} · ${f1(r.mw)} MW · ${ddmm(r.inicio)} ${r.inicio.slice(11,16)} → ${ddmm(r.final||"")} ${(r.final||"").slice(11,16)}`}};
+    const corte={id:"corte",afterDatasetsDraw(c){const v=(new Date(D.hoy+"T00:00")-G.a)/864e5;if(v<0||v>G.n)return;const x=c.ctx,px=c.scales.x.getPixelForValue(v);x.save();x.strokeStyle=css("--naranja");x.lineWidth=2;x.beginPath();x.moveTo(px,c.chartArea.top);x.lineTo(px,c.chartArea.bottom);x.stroke();
+      x.fillStyle=css("--naranja");x.font="600 10.5px Inter,sans-serif";x.textAlign="center";x.fillText("hoy "+ddmm(D.hoy),px,c.chartArea.top-5);x.restore()}};
+    graf("#c-mmg",{type:"bar",data:{datasets:[{data:G.pts,backgroundColor:G.pts.map(p=>p.r.diesel?"#b8bec9":(TECC[p.r.tecnologia]||"#94a3b8")),borderRadius:3,borderSkipped:false,barPercentage:.7,categoryPercentage:.9}]},options:o,plugins:[corte]})}
+  if($("#c-gdes")){const g=Object.keys(D.grupos_gen).filter(k=>D.generacion.some(r=>r[k]>0.5)),o=base("MW");o.scales.y.stacked=true;o.scales.y.beginAtZero=true;o.scales.x.ticks.maxTicksLimit=innerWidth<700?5:9;
+    o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;o.plugins.tooltip.callbacks.footer=it=>`Total: ${f0(it.reduce((a,c)=>a+c.parsed.y,0))} MW`;
+    graf("#c-gdes",{type:"line",data:{labels:D.generacion.map(r=>{const t=new Date(r.t);const h=t.getHours(),m=t.getMinutes();return h===0&&m===0?"24:00":`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`}),
+      datasets:g.map(k=>({label:k,data:D.generacion.map(r=>r[k]),fill:true,backgroundColor:GENC[k]||"#9aa0a6",borderColor:css("--surface"),borderWidth:.8,pointRadius:0,tension:.25}))},options:o})}
+  GENR.forEach(([k])=>{const H=genH(k);if(!H||!$("#c-g"+k))return;const n=new Date(H.act,H.mes,0).getDate(),dias=Array.from({length:n},(_,i)=>i+1),o=base("MW");o.scales.y.beginAtZero=true;o.scales.x.ticks.maxTicksLimit=8;
+    o.plugins.tooltip.callbacks.title=it=>`${it[0].label} ${MESC[H.mes-1]}`;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+    o.plugins.tooltip.callbacks.afterBody=it=>{const d=dias[it[0].dataIndex],a=H.diario[H.act][d],b=H.diario[H.ant][d];return fin(a)&&fin(b)?`Diferencia: ${a-b>0?"+":""}${f0(a-b)} MW (${f1((a/b-1)*100)}%)`:""};
+    graf("#c-g"+k,{type:"line",data:{labels:dias,datasets:[{label:String(H.ant),data:dias.map(d=>H.diario[H.ant][d]??null),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.25},
+      {label:String(H.act),data:dias.map(d=>H.diario[H.act][d]??null),borderColor:css("--naranja"),backgroundColor:css("--naranja")+"22",fill:"origin",borderWidth:2.6,pointRadius:2.5,tension:.25}]},options:o})});
+  // sección activa en el menú
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
+  document.querySelectorAll("section.sec").forEach(s=>obs.observe(s))}
+
+function aviso(t){let e=$("#toast");if(!e){e=document.createElement("div");e.id="toast";e.className="toast";e.setAttribute("role","status");document.body.appendChild(e)}
+  e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),5000)}
+const hhmm=s=>new Date(s).toLocaleString("es-PE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+function cargar(manual){const v=Date.now();
+  Promise.all([fetch("datos.json?v="+v,{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch("comercial.json?v="+v,{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))])
+   .then(([d,c])=>{D=d;C=c||{};render()})
+   .catch(()=>{$("#main").innerHTML='<div class="estado par">No se pudieron cargar los datos publicados (datos.json). Intenta de nuevo en unos minutos.</div>'})
+}
+// ---- botón Actualizar: inicia el flujo de GitHub (modo "datos") y espera a que se publiquen los datos nuevos
+const REPO=(()=>{const o=location.hostname.split(".")[0],r=location.pathname.split("/").filter(Boolean)[0];return o&&r&&location.hostname.endsWith("github.io")?`${o}/${r}`:"giordano1805-lab/Cmg-Rosa"})();
+const tokGet=()=>{try{return localStorage.getItem("gh_tok")||""}catch(e){return ""}},tokSet=t=>{try{t?localStorage.setItem("gh_tok",t):localStorage.removeItem("gh_tok")}catch(e){}};
+let esperando=null;
+function barra(t){const b=$("#barra");if(t){$("#barra-t").textContent=t;b.classList.add("on")}else b.classList.remove("on")}
+function disparar(tok){const b=$("#act");b.disabled=true;b.textContent="⟳ Iniciando…";
+  fetch(`https://api.github.com/repos/${REPO}/actions/workflows/cmg.yml/dispatches`,{method:"POST",headers:{"Accept":"application/vnd.github+json","Authorization":"Bearer "+tok,"X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{modo:"datos"}})})
+   .then(r=>{if(r.status===204){esperar();return}
+     if(r.status===401||r.status===403||r.status===404){tokSet("");aviso("La clave no es válida o no tiene permiso de Actions en Cmg-Rosa. Vuelve a ingresarla.");b.disabled=false;b.textContent="⟳ Actualizar";abrirModal();return}
+     throw new Error(r.status)})
+   .catch(e=>{aviso("No se pudo iniciar la actualización ("+e.message+"). Revisa tu conexión e inténtalo de nuevo.");b.disabled=false;b.textContent="⟳ Actualizar"})}
+function esperar(){const b=$("#act"),ini=D&&D.generado,t0=Date.now();b.textContent="⟳ Actualizando…";
+  barra("Actualizando con datos del COES… suele tardar unos 10 minutos. Puedes seguir usando la página.");
+  clearInterval(esperando);esperando=setInterval(()=>{const min=Math.round((Date.now()-t0)/6e4);barra(`Actualizando con datos del COES… ${min} min. Suele tardar unos 10 minutos.`);
+    fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.generado!==ini){clearInterval(esperando);D=d;render();barra("");b.disabled=false;b.textContent="⟳ Actualizar";aviso(`Listo: datos actualizados al ${hhmm(D.generado)}`)}
+      else if(Date.now()-t0>30*6e4){clearInterval(esperando);barra("");b.disabled=false;b.textContent="⟳ Actualizar";aviso("La actualización está tardando más de lo normal; revisa la pestaña Actions en GitHub.")}}).catch(()=>{})},60*1000)}
+function abrirModal(){$("#modal").classList.add("on");setTimeout(()=>$("#m-tok").focus(),50)}
+$("#m-no").onclick=()=>$("#modal").classList.remove("on");
+$("#m-si").onclick=()=>{const t=$("#m-tok").value.trim();if(!/^(github_pat_|ghp_)/.test(t)){aviso("La clave debe empezar con github_pat_");return}tokSet(t);$("#modal").classList.remove("on");$("#m-tok").value="";disparar(t)};
+$("#act").onclick=()=>{const t=tokGet();t?disparar(t):abrirModal()};
+// se revisa sola cada 5 minutos y al volver a la pestaña: si el flujo programado publicó datos nuevos, se actualiza sin tocar nada
+function revisar(){if(document.hidden||!D)return;fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null)
+  .then(d=>{if(d&&d.generado!==D.generado){D=d;render();aviso(`Datos actualizados al ${hhmm(D.generado)}`)}}).catch(()=>{})}
+setInterval(revisar,5*60*1000);document.addEventListener("visibilitychange",revisar);
+try{const t=localStorage.getItem("tema");if(t)document.documentElement.dataset.theme=t}catch(e){}
+$("#tema").onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("tema",r.dataset.theme)}catch(e){};if(D)render()};
+cargar();
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{
+ "fecha": "2026-11-07",
+ "lista": [
+  {
+   "archivo": "0_InfografiaPT17-26_Definitiva.pdf",
+   "ruta": "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/0_InfografiaPT17-26_Definitiva.pdf",
+   "fecha": null
+  },
+  {
+   "archivo": "0_Presentación Plan de Transmisión.pdf",
+   "ruta": "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/0_Presentación Plan de Transmisión.pdf",
+   "fecha": null
+  },
+  {
+   "archivo": "1-EventoPT-Antecedentes-Final.pdf",
+   "ruta": "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/1-EventoPT-Antecedentes-Final.pdf",
+   "fecha": null
+  },
+  {
+   "archivo": "2-EventoPT-DesarrolloTr-Final.pdf",
+   "ruta": "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/2-EventoPT-DesarrolloTr-Final.pdf",
+   "fecha": null
+  },
+  {
+   "archivo": "3-EventoPT-Metodologias-Final.pdf",
+   "ruta": "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/3-EventoPT-Metodologias-Final.pdf",
+   "fecha": null
+  },
+  {
+   "archivo": "4-EventoPT-MasQueListaProyectos-Final.pdf",
+   "ruta": "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/4-EventoPT-MasQueListaProyectos-Final.pdf",
+   "fecha": null
+  },
+  {
+   "archivo": "OC DE CENTRALES Y UNIDADES DE GENERACIÓN 2001 - 2026.xlsx",
+   "ruta": "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/2. Lista de unidades o centrales de generación con conformidad de OC/OC DE CENTRALES Y UNIDADES DE GENERACIÓN 2001 - 2026.xlsx",
+   "fecha": null
+  },
+  {
+   "archivo": "Flujograma del proceso de inicio de Operación Comercial.pptx",
+   "ruta": "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/1. Flujograma del Proceso/Flujograma del proceso de inicio de Operación Comercial.pptx",
+   "fecha": null
+  }
+ ],
+ "diag": {
+  "pagina": {
+   "paginas": {
+    "Planificacion/NuevosProyectos/OperacionComercialUnidades": {
+     "bytes": 56349,
+     "scripts": [
+      "/Portal/Content/Scripts/popup.js",
+      "/Portal/Content/Scripts/master.js",
+      "/Portal/Content/Scripts/datatable.js",
+      "/Portal/Content/Scripts/datepicker.js",
+      "/Portal/Content/Scripts/slick.js",
+      "/Portal/Content/Scripts/main.coes.js",
+      "/Portal/Content/Scripts/web.js?v=8.5",
+      "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+      "/Portal/Content/Scripts/multidownload.js",
+      "/Portal/Content/Scripts/main.coes.js",
+      "/Portal/Content/Scripts/web.js?v=8.5",
+      "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+      "/Portal/Content/Scripts/multidownload.js",
+      "/Portal/Content/Scripts/main.coes.js"
+     ]
+    }
+   },
+   "candidatas": [
+    "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/",
+    "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/",
+    "col.sTitle.replace(/",
+    "browser/",
+    "OPR/"
+   ],
+   "validas": [
+    "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/",
+    "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/"
+   ]
+  },
+  "bases": [
+   "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/",
+   "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/"
+  ],
+  "listados": {
+   "Planificación/Plan de Transmision/Actualizacion Plan de Transmision 2017 - 2026/00_ABC del Plan de Transmisión/": [
+    "0_InfografiaPT17-26_Definitiva.pdf",
+    "0_Presentación Plan de Transmisión.pdf",
+    "1-EventoPT-Antecedentes-Final.pdf",
+    "2-EventoPT-DesarrolloTr-Final.pdf",
+    "3-EventoPT-Metodologias-Final.pdf",
+    "4-EventoPT-MasQueListaProyectos-Final.pdf"
+   ],
+   "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/": [
+    "3. Informe de Homologación (Unidades y Centrales de Generación)",
+    "2. Lista de unidades o centrales de generación con conformidad de OC",
+    "1. Flujograma del Proceso"
+   ],
+   "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/3. Informe de Homologación (Unidades y Centrales de Generación)/": [],
+   "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/2. Lista de unidades o centrales de generación con conformidad de OC/": [
+    "OC DE CENTRALES Y UNIDADES DE GENERACIÓN 2001 - 2026.xlsx"
+   ],
+   "Planificación/Nuevos Proyectos/Operación Comercial de unidades o centrales de generación/1. Flujograma del Proceso/": [
+    "Flujograma del proceso de inicio de Operación Comercial.pptx"
+   ]
+  },
+  "carpetas_revisadas": 5
+ }
+}
