@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07b"
+VERSION_FC = "2026-11-07c"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1437,8 +1437,16 @@ def buscar_lvtea(max_s=150, diag=None, volcar=None):
                     bases.append(x)
             except Exception:
                 pass
+    # dentro de Liquidaciones del MME, el LVTEA mensual está en «01 Mercado de Corto Plazo/Liquidaciones VTEA/AAAA/»
+    # y los informes en «03 Informes de Liquidaciones/AAAA/MM_Mes/»: se recorren solo esas ramas, años 2025+
+    prior = []
+    for b in bases:
+        if "LIQUIDACIONES DEL MME" in norm(b):
+            for sub in ("01 Mercado de Corto Plazo/Liquidaciones VTEA/", "03 Informes de Liquidaciones/"):
+                prior.append(b + sub)
     d["bases"] = bases
-    cola = [(r, 0) for r in bases]
+    d["ramas"] = prior
+    cola = [(r, 0) for r in (prior or bases)]
     while cola and _t.time() - t0 < max_s:
         ruta, prof = cola.pop(0)
         if ruta in vistos:
@@ -1448,15 +1456,15 @@ def buscar_lvtea(max_s=150, diag=None, volcar=None):
             items = list(dict.fromkeys(listar(ruta)))
         except Exception:
             continue
-        if prof <= 2:
-            d.setdefault("listados", {})[ruta] = [_nombre(i) for i in items][:60]
+        if prof <= 3:
+            d.setdefault("listados", {})[ruta] = [_nombre(i) for i in items][:80]
         for i in items:
             n = norm(_nombre(i))
             if i.endswith("/"):
                 anios = [int(y) for y in re.findall(r"\b(20\d\d)\b", n)]
-                if prof < 5 and not (anios and max(anios) < 2025):
+                if prof < 5 and not (anios and max(anios) < 2025) and not (prior and prof == 0 and not anios):
                     cola.append((i, prof + 1))
-            elif re.search(r"RESUMEN", n) and re.search(r"\.(XLSX|XLSM|XLS|ZIP)$", n):
+            elif re.search(r"RESUMEN|CUADRO", n) and re.search(r"\.(XLSX|XLSM|XLS|ZIP)$", n):
                 hallados.append(i)
     d["carpetas_revisadas"] = len(vistos)
     d["resumen_hallados"] = len(hallados)

@@ -195,7 +195,8 @@ def resumen_tipo_cliente(dia: dt.date, dem=None):
                 fila["fuente"] = "IEOD"
         if la and lb and ra and rb:
             fila.update({"libre": round((la / lb - 1) * 100, 1), "regulado": round((ra / rb - 1) * 100, 1),
-                         "libre_gwh": round(la / 1e3, 1), "regulado_gwh": round(ra / 1e3, 1), "pct_libre": round(la / (la + ra) * 100, 1)})
+                         "libre_gwh": round(la / 1e3, 1), "regulado_gwh": round(ra / 1e3, 1), "pct_libre": round(la / (la + ra) * 100, 1),
+                         "libre_gwh_ant": round(lb / 1e3, 1), "regulado_gwh_ant": round(rb / 1e3, 1)})
             acum["libre"][0] += la; acum["libre"][1] += lb; acum["regulado"][0] += ra; acum["regulado"][1] += rb
         meses.append(fila)
     ok = [x for x in meses if "libre" in x]
