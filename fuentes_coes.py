@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07c"
+VERSION_FC = "2026-11-07d"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1521,8 +1521,13 @@ def _mes_de_ruta(ruta):
     return None
 
 
+LVTEA_PARSER = 2
+
+
 def lvtea_cuadro4(b, nombre):
-    """(libre MWh, regulado MWh, detalle) desde la hoja 'Cuadro 4' del archivo Resumen del LVTEA."""
+    """(libre MWh, regulado MWh, detalle) desde la hoja 'Cuadro 4' del Resumen del LVTEA.
+    El Cuadro 4 lista cada contrato con TIPO DE USUARIO (LIBRE / REGULADO / GRAN USUARIO) y ENERGÍA (MW.h):
+    se suma la energía por tipo. Los grandes usuarios se cuentan como libres (y se informan aparte en el detalle)."""
     libros = []
     if nombre.lower().endswith(".zip"):
         with zipfile.ZipFile(io.BytesIO(b)) as z:
@@ -1532,22 +1537,35 @@ def lvtea_cuadro4(b, nombre):
     else:
         libros.append((nombre, libro(b)))
     for nl, hojas in libros:
-        hs = [h for h in hojas if re.search(r"CUADRO\s*N?[°º.]?\s*0?4\b", norm(h))] or list(hojas)
+        hs = [h for h in hojas if re.search(r"CUADRO\s*N?[°º.]?\s*0?4\b", norm(h))]
         for h in hs:
             filas = hojas[h]
-            lib = reg = None
-            for f in filas:
-                etq = " ".join(norm(v) for v in f[:4] if texto(v))
-                nums = [numero(v) for v in f if numero(v) is not None and abs(numero(v)) > 1]
-                if not nums:
+            i0 = jt = je = None
+            for i, f in enumerate(filas[:40]):
+                cab = [norm(x) if texto(x) else "" for x in f]
+                jt = next((j for j, c in enumerate(cab) if "TIPO DE USUARIO" in c or c == "TIPO USUARIO"), None)
+                je = next((j for j, c in enumerate(cab) if c.startswith("ENERGIA")), None)
+                if jt is not None and je is not None:
+                    i0 = i
+                    break
+            if i0 is None:
+                continue
+            tot = {}
+            for f in filas[i0 + 1:]:
+                if max(jt, je) >= len(f):
                     continue
-                if lib is None and re.search(r"\bLIBRES?\b", etq):
-                    lib = nums[0]
-                elif reg is None and re.search(r"\bREGULAD", etq):
-                    reg = nums[0]
+                t = norm(texto(f[jt]) or "")
+                v = numero(f[je])
+                if not t or v is None:
+                    continue
+                tot[t] = tot.get(t, 0.0) + v
+            gu = sum(v for k, v in tot.items() if "GRAN" in k)
+            lib = sum(v for k, v in tot.items() if "LIBRE" in k) + gu
+            reg = sum(v for k, v in tot.items() if "REGULAD" in k)
             if lib and reg:
-                return lib, reg, f"{nl} · hoja {h}"
-    return None, None, "no se hallaron filas Libre/Regulado en el Cuadro 4"
+                det = " · ".join(f"{k}: {v / 1e3:,.1f} GWh" for k, v in sorted(tot.items()))
+                return lib, reg, f"{nl} · hoja {h} · {det}"
+    return None, None, "no se halló el Cuadro 4 con TIPO DE USUARIO y ENERGÍA"
 
 
 

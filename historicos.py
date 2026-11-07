@@ -141,7 +141,8 @@ def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
     c["version_por_mes"] = elegidos
     for k, ruta in sorted(elegidos.items(), reverse=True):
         prev = c["meses"].get(k) or {}
-        if k < desde or (prev.get("libre") and prev.get("ruta") == ruta) or time.time() - t0 > presupuesto_s:
+        if k < desde or (prev.get("libre") and prev.get("ruta") == ruta and prev.get("parser") == fc.LVTEA_PARSER) \
+                or time.time() - t0 > presupuesto_s:
             continue
         b = fc.bajar(ruta, timeout=240)
         if not b:
@@ -156,9 +157,9 @@ def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
                 except Exception:
                     pass
             lib, reg, det = fc.lvtea_cuadro4(b, fc._nombre(ruta))
-            if lib or not prev.get("libre"):
+            if lib or not prev.get("libre") or prev.get("parser") != fc.LVTEA_PARSER:
                 c["meses"][k] = {"libre": lib, "regulado": reg, "archivo": fc._nombre(ruta), "ruta": ruta,
-                                 "revision": fc._rev_lvtea(ruta), "detalle": det}
+                                 "revision": fc._rev_lvtea(ruta), "parser": fc.LVTEA_PARSER, "detalle": det}
         except Exception as e:
             if not prev.get("libre"):
                 c["meses"][k] = {"libre": None, "regulado": None, "archivo": fc._nombre(ruta), "ruta": ruta,
