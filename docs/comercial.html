@@ -60,7 +60,7 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .sh .t{border-left:6px solid;border-image:linear-gradient(180deg,var(--naranja),var(--amarillo)) 1;padding-left:12px}
 .sh .t small{display:block;font-weight:800;color:var(--naranja);font-size:13px;letter-spacing:.04em}
 .sh h2{margin:2px 0 0;font-size:24px;color:var(--h1);letter-spacing:-.3px}
-.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g64{grid-template-columns:minmax(0,62fr) minmax(0,38fr)}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.g4{grid-template-columns:1fr}}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g64{grid-template-columns:minmax(0,62fr) minmax(0,38fr)}
 .card{background:linear-gradient(180deg,var(--surface),color-mix(in srgb,var(--surface) 92%,var(--bg)));border:1px solid var(--card-b);border-radius:14px;padding:14px 16px;min-width:0;box-shadow:var(--sombra)}
 .card h3{margin:0 0 8px;font-size:15px;color:var(--h1)}.card h3 small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
 .chart{position:relative;height:300px}.chart.tall{height:380px}.chart.sm{height:230px}
@@ -68,6 +68,11 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer;min-height:32px}
 .seg button[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;font-weight:600;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
 .seg button:disabled{opacity:.45;cursor:not-allowed}
+.dg{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,20fr);gap:16px}.sepv{border-left:1px dashed var(--card-b);padding-left:12px}
+.tgl{border:1px solid rgba(255,87,22,.45);background:var(--tinte);color:#c2410c;font:inherit;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tgl[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;border-color:transparent}
+.t2{font-weight:700;color:var(--h1);font-size:13px;margin:16px 0 4px}
+@media (max-width:700px){.dg{grid-template-columns:1fr}.sepv{border-left:0;padding-left:0;border-top:1px dashed var(--card-b);padding-top:8px}}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(180deg,#ff6a2e,var(--naranja));box-shadow:0 2px 8px -3px rgba(255,87,22,.6)}
 .pill.nv{background:linear-gradient(180deg,#26449c,#001a6f);box-shadow:0 2px 8px -3px rgba(0,26,111,.6)}
 .pill.gr{background:var(--surface-2);color:var(--text-2);box-shadow:none;border:1px solid var(--card-b);font-weight:600}
@@ -103,6 +108,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .tools button{border:1px solid var(--card-b);background:var(--surface);color:var(--text-2);border-radius:7px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
 .box{border-radius:12px;padding:12px 14px;background:linear-gradient(180deg,#1aa3a3,#138585);color:#fff;text-align:center;font-weight:700;box-shadow:var(--sombra)}
 .box b{display:block;font-size:22px}
+.barra{position:sticky;top:44px;z-index:4;display:none;align-items:center;gap:10px;padding:9px 16px;background:#fff1e8;color:#8a2d00;font-size:13px;border-bottom:1px solid rgba(255,87,22,.25)}
+.barra.on{display:flex}.barra .sp{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}.modal .caja{background:var(--surface);color:var(--text);border-radius:14px;max-width:460px;width:100%;padding:18px;box-shadow:0 20px 60px -20px rgba(0,0,0,.6)}
+.modal h3{margin:0 0 6px;color:var(--h1)}.modal ol{padding-left:18px;font-size:13px;color:var(--text-2)}.modal input{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit;margin:6px 0 10px}
+.modal .fila{display:flex;gap:8px;justify-content:flex-end}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:20;background:#0b1f4d;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);max-width:92vw;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 .pie{display:flex;flex-wrap:wrap;gap:4px 18px;justify-content:space-between;color:var(--muted);font-size:11.5px;border-top:1px dashed var(--card-b);padding-top:8px;margin-top:22px}
@@ -117,11 +129,19 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
   <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
   <h1>Reporte comercial</h1>
   <div class="meta" id="meta" aria-live="polite">Cargando…</div>
-  <button class="btn pri" id="upd" type="button" title="Vuelve a leer la última versión publicada">⟳ Recargar</button>
+  <button class="btn pri" id="act" type="button" title="Trae los datos más recientes del COES (tarda unos 10 minutos)">⟳ Actualizar</button>
   <button class="btn" type="button" onclick="print()">Imprimir / PDF</button>
   <button class="btn" id="tema" type="button" aria-label="Cambiar tema claro u oscuro">Tema</button>
 </div></header>
 <nav aria-label="Secciones del reporte"><div class="wrap" id="nav"></div></nav>
+<div class="barra" id="barra" role="status"><span class="sp"></span><span id="barra-t">Actualizando con datos del COES…</span></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-t"><div class="caja">
+ <h3 id="m-t">Activar el botón Actualizar (solo una vez)</h3>
+ <p class="mut" style="margin:0 0 6px">Para que el botón pueda iniciar la actualización en GitHub necesita una clave de tu cuenta. Se guarda solo en este teléfono o computadora; no queda en la página publicada.</p>
+ <ol><li>En GitHub: <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</b>.</li>
+  <li>Repository access: <b>Only select repositories → Cmg-Rosa</b>.</li><li>Permissions → Repository → <b>Actions: Read and write</b>. Expiración: 1 año.</li><li>Copia la clave (empieza con <code>github_pat_</code>) y pégala aquí.</li></ol>
+ <input id="m-tok" type="password" placeholder="github_pat_…" aria-label="Clave de GitHub" autocomplete="off">
+ <div class="fila"><button class="btn" type="button" id="m-no">Cancelar</button><button class="btn pri" type="button" id="m-si">Guardar y actualizar</button></div></div></div>
 <main class="wrap" id="main"><div class="estado" role="status">Cargando datos…</div></main>
 <script>
 const $=s=>document.querySelector(s);
@@ -160,7 +180,7 @@ const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" a
 const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
 const ANIOC=["--muted","--s4","--navy","--naranja"];
 const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
-let CMM="act",MTM="dia",GNM=null;
+let CMM="act",MTM="dia",GNM=null,DTP=false;
 
 function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
   const pintar=()=>{const fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
@@ -221,11 +241,24 @@ function mantMesHTML(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7);
   const G=ganttMes();
   return `<div class="card"><h3>Ventanas de mantenimiento · ${MESN[+mes.slice(5)-1]} ${mes.slice(0,4)}<small>Programa Mensual de Mantenimiento del COES · mes en curso · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · color por tecnología (diésel en gris) · línea naranja: hoy</small></h3>
     ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(220,G.filas.length*22+70)}px"><canvas id="c-mmg" role="img" aria-label="Ventanas de mantenimiento del mes"></canvas></div></div>`}
-const GENR=[["pasada","Hidro de pasada","💧"],["regulacion","Hidro de embalse","🌊"],["eolica","Eólica","🌬"]];
+const GENR=[["pasada","Hidro de pasada","💧"],["regulacion","Hidro de embalse","🌊"],["eolica","Eólica","🌬"],["solar","Solar","☀"]];
 const GENC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eólica":"#1baf7a","Carbón":"#5f6368","Biomasa":"#6250d6","Diésel/Residual":"#e34948","D2 Reserva Fría":"#8f1d2c","Diésel/Residual otras":"#e34948","Otros":"#9aa0a6"};
 // mes en curso sin datos todavía (el IEOD del día 1 se publica al día siguiente): se abre el mes anterior completo
-const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
-function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica}[k]||null}
+const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica,D.solar].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
+function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica,solar:D.solar}[k]||null}
+// nota por tecnología: centrales que generaron este período y no el mismo período del año anterior (o al revés)
+function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c=G&&G[k];
+  if(!c)return `<div class="note">Comparación por central: aún sin todos los días en ambos años.</div>`;
+  const oc=x=>x.oc?` · operación comercial${x.oc.fecha?` ${x.oc.fecha.split("-").reverse().join("/")}`:""} (COES)`:"";
+  const n=c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b>: ${f0(x.mwh)} MWh este período, sin generación en ${MESC[H.mes-1]} ${H.ant}${oc(x)}</li>`),
+        s_=c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${MESC[H.mes-1]} ${H.ant}, sin generación este período${oc(x)}</li>`);
+  return n.length||s_.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${n.join("")}${s_.join("")}</ul>`
+    :`<div class="note">Mismas centrales generando que en ${MESC[H.mes-1]} ${H.ant}.</div>`}
+function tipoHTML(){const T=D.tipo_cliente;
+  if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
+  const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
+  return `<div class="dg"><div>${cv("c-tip","Crecimiento mensual de usuarios libres y regulados","sm")}</div><div class="sepv">${cv("c-tipa","Crecimiento acumulado por tipo de cliente","sm")}</div></div>
+   <div class="note">Fuente: retiros de clientes libres y regulados del LVTEA mensual del COES (archivo Resumen, Cuadro 4)${T.meses.some(x=>x.fuente==="IEOD")?`; meses aún sin LVTEA (${T.meses.filter(x=>x.fuente==="IEOD").map(x=>MESL[x.mes-1]).join(", ")}): IEOD, usuarios libres (DEMANDA_UL) y regulado = demanda total − libres`:""}. ${falta.length?`Sin dato completo aún: ${falta.join(", ")} (se completa en las próximas corridas).`:""}</div>`}
 /* ---------- render ---------- */
 function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";
   const hoy=D.hoy,sem=semanaCOES(hoy),SR="Santa Rosa 220",mes=MESN[+D.dia.slice(5,7)-1],anio=D.dia.slice(0,4);
@@ -255,7 +288,10 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${D.barras.map(b=>`<span class="pill gr">${esc(b.replace(" 220",""))}: ${f2(CV.prom[b])}</span>`).join("")}${Object.entries(CV.bprom||{}).map(([k,v])=>`<span class="pill gr">${esc(k.replace(/ \(.*/,""))} SR: ${f2(v)}</span>`).join("")}</div>
     ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
    <div class="grid g2" style="margin-top:14px">
-     <div class="card"><h3>Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días`:""}</small></h3>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div>
+     <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
+      <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar crecimiento por tipo de cliente":"▸ Ver crecimiento por tipo de cliente"}</button></div>
+      <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
+      ${DTP?`<div id="dtp"><div class="t2">Crecimiento mensual por tipo de cliente · % vs mismo mes del año anterior</div>${tipoHTML()}</div>`:""}</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
@@ -265,10 +301,10 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
    <div class="sh" style="margin-top:18px"><div class="t" style="border:0;padding:0"><h2 style="font-size:18px">Hidro y eólica frente al año anterior · potencia media (MW)</h2></div>
     <div class="seg" role="group" aria-label="Mes">${[["act","Mes en curso"],["ant","Mes anterior completo"]].map(([k,n])=>`<button type="button" aria-pressed="${GNM===k}" onclick="GNM='${k}';render()" ${k==="ant"&&!D.gen_mes_ant?"disabled":""}${k==="act"&&!genHayAct()?" disabled title='Aún no hay datos del IEOD de este mes'":""}>${n}</button>`).join("")}</div></div>
    ${!genHayAct()?`<div class="note" style="margin:-4px 0 10px">El mes en curso aún no tiene datos del IEOD (se publica al día siguiente); se muestra el mes anterior completo.</div>`:""}
-   <div class="grid g3">${GENR.map(([k,n,ic])=>{const H=genH(k);if(!H||H.mtd[H.act]==null)return `<div class="estado">${n}: sin datos.</div>`;const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
+   <div class="grid g4">${GENR.map(([k,n,ic])=>{const H=genH(k);if(!H||H.mtd[H.act]==null)return `<div class="estado">${n}: sin datos.</div>`;const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
      return kc(ic,`${n} · ${MESN[H.mes-1]} ${H.act}`,f0(H.mtd[H.act]),"MW",`${v==null?"":`<span class="chip ${v<0?"or":"ok"}">${v>0?"▲ +":"▼ −"}${f1(Math.abs(v))}%</span> `}vs ${f0(H.mtd[H.ant])} MW en ${H.ant} · días 1–${H.dias}`)}).join("")}</div>
-   <div class="grid g3" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card"><h3>${n}<small>MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}</small></h3>${cv("c-g"+k,n+" por día frente al año anterior","sm")}</div>`:""}).join("")}</div>
-   <div class="note">Potencia media = energía del día ÷ 24 h, comparable entre días y años aunque el mes esté incompleto. Fuente: IEOD del COES (producción por tipo de recurso).</div></section>
+   <div class="grid g2" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card"><h3>${n}<small>MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}</small></h3>${cv("c-g"+k,n+" por día frente al año anterior","sm")}${notaCambios(k,H)}</div>`:""}).join("")}</div>
+   <div class="note">Potencia media = energía del día ÷ 24 h, comparable entre días y años aunque el mes esté incompleto. Fuente: IEOD del COES (producción por tipo de recurso; energía por central: cuadro de centrales hidroeléctricas y despacho ejecutado). Las fechas de operación comercial se toman de las publicaciones del COES «Operación Comercial de unidades o centrales de generación».</div></section>
 
   <section class="sec" id="mant"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mantenimientos de centrales</h2></div>
     <div class="seg" role="group" aria-label="Vista">${[["dia","Por día"],["mes","Por mes"]].map(([k,n])=>`<button type="button" aria-pressed="${MTM===k}" onclick="MTM='${k}';render()">${n}</button>`).join("")}</div></div>
@@ -310,9 +346,21 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
   if(D.demanda_hist){const H=D.demanda_hist,ms=Array.from({length:H.mes},(_,i)=>i+1);
     const va=ms.map(m=>m===H.mes?H.mtd_gwh[H.ant]/1e3:(H.mensual[H.ant][m]??null)),vb=ms.map(m=>H.mensual[H.act][m]??null);
     const lb={id:"lb",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";const m=c.getDatasetMeta(1);
-      m.data.forEach((b,i)=>{if(va[i]&&vb[i]){const p=(vb[i]/va[i]-1)*100;x.fillText(`${f1(p)}%`,b.x-b.width/2,Math.min(b.y,c.getDatasetMeta(0).data[i].y)-6)}});x.restore()}};
+      m.data.forEach((b,i)=>{if(va[i]&&vb[i]){const p=(vb[i]/va[i]-1)*100;x.fillText(`${p>0?"+":""}${f1(p)}%`,b.x-b.width/2,Math.min(b.y,c.getDatasetMeta(0).data[i].y)-6)}});x.restore()}};
     const o=base("TWh");o.layout={padding:{top:16}};o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)} TWh`;
     graf("#c-dem",{type:"bar",data:{labels:ms.map(m=>MESL[m-1]+(m===H.mes?"*":"")),datasets:[{label:String(H.ant),data:va,backgroundColor:css("--teal"),borderRadius:3},{label:String(H.act),data:vb,backgroundColor:css("--s1"),borderRadius:3}]},options:o,plugins:[lb]})}
+  if(D.demanda_hist&&$("#c-dema")){const H=D.demanda_hist,a=H.ytd_twh[H.ant],b=H.ytd_twh[H.act],o=base("");o.layout={padding:{top:16}};o.plugins.legend.display=false;o.scales.y.beginAtZero=true;
+    o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)} TWh`;
+    const lb={id:"lba",afterDatasetsDraw(c){const x=c.ctx,m0=c.getDatasetMeta(0).data[0],m1=c.getDatasetMeta(1).data[0];if(!m0||!m1||!a)return;x.save();x.font="700 11px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";
+      x.fillText(`${(b/a-1)*100>0?"+":""}${f1((b/a-1)*100)}%`,(m0.x+m1.x)/2,Math.min(m0.y,m1.y)-6);x.restore()}};
+    graf("#c-dema",{type:"bar",data:{labels:[`Acum. Ene–${MESL[H.mes-1]}*`],datasets:[{label:String(H.ant),data:[a],backgroundColor:css("--teal"),borderRadius:4},{label:String(H.act),data:[b],backgroundColor:css("--s1"),borderRadius:4}]},options:o,plugins:[lb]})}
+  {const T=D.tipo_cliente;if(T&&T.meses_ok&&T.meses_ok.length&&$("#c-tip")){const ms=T.meses,L=ms.map(x=>x.libre??null),R=ms.map(x=>x.regulado??null);
+    const lb={id:"lbt",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10px Inter,sans-serif";x.textAlign="center";[0,1].forEach(k=>{x.fillStyle=k?"#c2410c":css("--h1");c.getDatasetMeta(k).data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v))x.fillText(`${v>0?"+":""}${f1(v)}`,b.x,v>=0?b.y-4:b.y+12)})});x.restore()}};
+    let o=base("%");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=ms[c.dataIndex];return `${c.dataset.label}: ${c.parsed.y>0?"+":""}${f1(c.parsed.y)}% (${f0(c.datasetIndex?r.regulado_gwh:r.libre_gwh)} GWh)`};
+    o.plugins.tooltip.callbacks.footer=it=>{const r=ms[it[0].dataIndex];return r.pct_libre?`Libres: ${f1(r.pct_libre)}% del total · fuente ${r.fuente}`:""};
+    graf("#c-tip",{type:"bar",data:{labels:ms.map(x=>MESL[x.mes-1]+(x.parcial?"*":"")),datasets:[{label:"Libre",data:L,backgroundColor:"#001a6f",borderRadius:3},{label:"Regulado",data:R,backgroundColor:"#ff5716",borderRadius:3}]},options:o,plugins:[lb]});
+    if(T.acum){o=base("");o.layout={padding:{top:14}};o.plugins.legend.display=false;
+      graf("#c-tipa",{type:"bar",data:{labels:[`Acum. ${T.meses_ok.length} meses`],datasets:[{label:"Libre",data:[T.acum.libre],backgroundColor:"#001a6f",borderRadius:4},{label:"Regulado",data:[T.acum.regulado],backgroundColor:"#ff5716",borderRadius:4}]},options:o,plugins:[lb]})}}}
   {const lb={id:"lb2",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.textAlign="center";
       [0,1].forEach(k=>{const m=c.getDatasetMeta(k);m.data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v)){x.fillStyle=css(k?"--naranja":"--navy");x.fillText(f0(v),b.x,b.y-4)}})});x.restore()}};
     const o=base("USD/MWh");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=real[c.dataIndex];return c.datasetIndex&&r?`Real: ${f1(r.v)} (${r.auto?"COES"+(r.parcial?", mes en curso":""):"cargado"})`:`${c.dataset.label}: ${f1(c.parsed.y)}`};
@@ -367,13 +415,32 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
 function aviso(t){let e=$("#toast");if(!e){e=document.createElement("div");e.id="toast";e.className="toast";e.setAttribute("role","status");document.body.appendChild(e)}
   e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),5000)}
 const hhmm=s=>new Date(s).toLocaleString("es-PE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
-function cargar(manual){$("#upd").disabled=true;$("#upd").textContent="⟳ Recargando…";const antes=D&&D.generado,v=Date.now();
+function cargar(manual){const v=Date.now();
   Promise.all([fetch("datos.json?v="+v,{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch("comercial.json?v="+v,{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))])
-   .then(([d,c])=>{D=d;C=c||{};render();
-     if(manual)aviso(antes&&antes===D.generado?`Sin datos nuevos: la última actualización es del ${hhmm(D.generado)}; se actualiza sola cada hora.`:`Datos actualizados al ${hhmm(D.generado)}`)})
+   .then(([d,c])=>{D=d;C=c||{};render()})
    .catch(()=>{$("#main").innerHTML='<div class="estado par">No se pudieron cargar los datos publicados (datos.json). Intenta de nuevo en unos minutos.</div>'})
-   .finally(()=>{$("#upd").disabled=false;$("#upd").textContent="⟳ Recargar"})}
-$("#upd").onclick=()=>cargar(true);
+}
+// ---- botón Actualizar: inicia el flujo de GitHub (modo "datos") y espera a que se publiquen los datos nuevos
+const REPO=(()=>{const o=location.hostname.split(".")[0],r=location.pathname.split("/").filter(Boolean)[0];return o&&r&&location.hostname.endsWith("github.io")?`${o}/${r}`:"giordano1805-lab/Cmg-Rosa"})();
+const tokGet=()=>{try{return localStorage.getItem("gh_tok")||""}catch(e){return ""}},tokSet=t=>{try{t?localStorage.setItem("gh_tok",t):localStorage.removeItem("gh_tok")}catch(e){}};
+let esperando=null;
+function barra(t){const b=$("#barra");if(t){$("#barra-t").textContent=t;b.classList.add("on")}else b.classList.remove("on")}
+function disparar(tok){const b=$("#act");b.disabled=true;b.textContent="⟳ Iniciando…";
+  fetch(`https://api.github.com/repos/${REPO}/actions/workflows/cmg.yml/dispatches`,{method:"POST",headers:{"Accept":"application/vnd.github+json","Authorization":"Bearer "+tok,"X-GitHub-Api-Version":"2022-11-28"},body:JSON.stringify({ref:"main",inputs:{modo:"datos"}})})
+   .then(r=>{if(r.status===204){esperar();return}
+     if(r.status===401||r.status===403||r.status===404){tokSet("");aviso("La clave no es válida o no tiene permiso de Actions en Cmg-Rosa. Vuelve a ingresarla.");b.disabled=false;b.textContent="⟳ Actualizar";abrirModal();return}
+     throw new Error(r.status)})
+   .catch(e=>{aviso("No se pudo iniciar la actualización ("+e.message+"). Revisa tu conexión e inténtalo de nuevo.");b.disabled=false;b.textContent="⟳ Actualizar"})}
+function esperar(){const b=$("#act"),ini=D&&D.generado,t0=Date.now();b.textContent="⟳ Actualizando…";
+  barra("Actualizando con datos del COES… suele tardar unos 10 minutos. Puedes seguir usando la página.");
+  clearInterval(esperando);esperando=setInterval(()=>{const min=Math.round((Date.now()-t0)/6e4);barra(`Actualizando con datos del COES… ${min} min. Suele tardar unos 10 minutos.`);
+    fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.generado!==ini){clearInterval(esperando);D=d;render();barra("");b.disabled=false;b.textContent="⟳ Actualizar";aviso(`Listo: datos actualizados al ${hhmm(D.generado)}`)}
+      else if(Date.now()-t0>30*6e4){clearInterval(esperando);barra("");b.disabled=false;b.textContent="⟳ Actualizar";aviso("La actualización está tardando más de lo normal; revisa la pestaña Actions en GitHub.")}}).catch(()=>{})},60*1000)}
+function abrirModal(){$("#modal").classList.add("on");setTimeout(()=>$("#m-tok").focus(),50)}
+$("#m-no").onclick=()=>$("#modal").classList.remove("on");
+$("#m-si").onclick=()=>{const t=$("#m-tok").value.trim();if(!/^(github_pat_|ghp_)/.test(t)){aviso("La clave debe empezar con github_pat_");return}tokSet(t);$("#modal").classList.remove("on");$("#m-tok").value="";disparar(t)};
+$("#act").onclick=()=>{const t=tokGet();t?disparar(t):abrirModal()};
 // se revisa sola cada 5 minutos y al volver a la pestaña: si el flujo programado publicó datos nuevos, se actualiza sin tocar nada
 function revisar(){if(document.hidden||!D)return;fetch("datos.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null)
   .then(d=>{if(d&&d.generado!==D.generado){D=d;render();aviso(`Datos actualizados al ${hhmm(D.generado)}`)}}).catch(()=>{})}
