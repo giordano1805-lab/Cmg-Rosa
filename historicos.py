@@ -128,12 +128,14 @@ def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
     esperado = f"{ult.year}-{ult.month:02d}" if dia.day >= 12 else f"{(ult.replace(day=1) - dt.timedelta(days=1)):%Y-%m}"
     faltan = any(not (c["meses"].get(f"{y}-{m:02d}") or {}).get("libre")
                  for y in (dia.year - 1, dia.year) for m in range(1, 13) if desde <= f"{y}-{m:02d}" <= esperado)
-    if c.get("buscado") != dia.isoformat() and (faltan or 8 <= dia.day <= 20 or not c.get("archivos")):
+    hoy_s = dt.date.today().isoformat()
+    nuevo_metodo = "bases" not in (c.get("diag") or {})
+    if (c.get("buscado") != hoy_s or nuevo_metodo) and (faltan or 8 <= dia.day <= 20 or not c.get("archivos")):
         diag = {}
         hall = fc.buscar_lvtea(max_s=min(150, presupuesto_s // 2), diag=diag, volcar=DATA / "explora9" / "paginas")
         c["archivos"] = hall or c.get("archivos") or []
         c["diag"] = diag
-        c["buscado"] = dia.isoformat()
+        c["buscado"] = hoy_s
     elegidos = fc.lvtea_por_mes(c.get("archivos") or [])
     c["version_por_mes"] = elegidos
     for k, ruta in sorted(elegidos.items(), reverse=True):
@@ -656,7 +658,8 @@ def cargar_oc(hoy: dt.date, max_s=120):
         c = json.loads(F_OC.read_text(encoding="utf-8"))
     except Exception:
         c = {}
-    if not c.get("fecha") or (hoy - dt.date.fromisoformat(c["fecha"])).days >= 7 or not c.get("lista"):
+    viejo = "bases" not in (c.get("diag") or {}) or not any("OPERACI" in fc.norm(x.get("ruta", "")) for x in c.get("lista") or [])
+    if not c.get("fecha") or (hoy - dt.date.fromisoformat(c["fecha"])).days >= 7 or not c.get("lista") or viejo:
         diag = {}
         lista = fc.operacion_comercial_coes(max_s=max_s, diag=diag, volcar=DATA / "explora10")
         c = {"fecha": hoy.isoformat(), "lista": lista or c.get("lista") or [], "diag": diag}

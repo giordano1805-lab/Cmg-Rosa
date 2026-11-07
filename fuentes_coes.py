@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07"
+VERSION_FC = "2026-11-07b"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1378,6 +1378,15 @@ def rutas_de_pagina(paginas, volcar=None, diag=None):
                     (volcar / (re.sub(r"\W+", "_", u)[-80:] + ".js.txt")).write_text(js, encoding="utf-8")
             except Exception:
                 pass
+    hf = []                                   # carpeta exacta del navegador de la página (campo oculto)
+    for t in textos:
+        for x in re.findall(r'id=["\']hf(?:Base|Relative)Directory["\'][^>]*value=["\']([^"\']+)["\']', t):
+            hf.append(_h.unescape(x))
+    hf = list(dict.fromkeys(hf))
+    if hf:
+        if diag is not None:
+            diag["hfBaseDirectory"] = hf
+        return hf
     for t in textos:
         t = _h.unescape(unquote(t))
         for x in re.findall(r"[\"'=>]\s*([A-ZÁÉÍÓÚa-záéíóúñÑ][^\"'<>\n=]{2,180}/)\s*[\"'<]", t):
