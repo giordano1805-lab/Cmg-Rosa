@@ -129,13 +129,14 @@ def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
     faltan = any(not (c["meses"].get(f"{y}-{m:02d}") or {}).get("libre")
                  for y in (dia.year - 1, dia.year) for m in range(1, 13) if desde <= f"{y}-{m:02d}" <= esperado)
     hoy_s = dt.date.today().isoformat()
-    nuevo_metodo = "bases" not in (c.get("diag") or {})
+    nuevo_metodo = c.get("metodo") != fc.VERSION_FC
     if (c.get("buscado") != hoy_s or nuevo_metodo) and (faltan or 8 <= dia.day <= 20 or not c.get("archivos")):
         diag = {}
         hall = fc.buscar_lvtea(max_s=min(150, presupuesto_s // 2), diag=diag, volcar=DATA / "explora9" / "paginas")
         c["archivos"] = hall or c.get("archivos") or []
         c["diag"] = diag
         c["buscado"] = hoy_s
+        c["metodo"] = fc.VERSION_FC
     elegidos = fc.lvtea_por_mes(c.get("archivos") or [])
     c["version_por_mes"] = elegidos
     for k, ruta in sorted(elegidos.items(), reverse=True):
