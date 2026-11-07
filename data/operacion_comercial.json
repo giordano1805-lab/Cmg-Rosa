@@ -1,6 +1,6 @@
 {
  "fecha": "2026-11-07",
- "metodo": "2026-11-07e",
+ "metodo": "2026-11-07f",
  "lista": [
   {
    "archivo": "OC DE CENTRALES Y UNIDADES DE GENERACIÓN 2001 - 2026.xlsx",
@@ -13,7 +13,2668 @@
    "fecha": null
   }
  ],
- "registros": [],
+ "registros": [
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK1",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2001-02-28",
+   "mw": 9.116,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2001-02-28",
+   "mw": 8.972,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MACHUPICCHU",
+   "unidad": "G1",
+   "empresa": "EGEMSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2001-06-07",
+   "mw": 28.886,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MACHUPICCHU",
+   "unidad": "G2",
+   "empresa": "EGEMSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2001-07-01",
+   "mw": 28.914,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SAN NICOLAS",
+   "unidad": "CUMMINS",
+   "empresa": "SHOUGESA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2001-07-26",
+   "mw": 1.241,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MACHUPICCHU",
+   "unidad": "G3",
+   "empresa": "EGEMSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2001-10-20",
+   "mw": 27.991,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HUANCHOR",
+   "unidad": "G1",
+   "empresa": "CORONA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2002-11-06",
+   "mw": 9.7623,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HUANCHOR",
+   "unidad": "G2",
+   "empresa": "CORONA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2002-11-06",
+   "mw": 9.86965,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 1",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2003-02-27",
+   "mw": 6.255,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2003-02-27",
+   "mw": 6.227,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 3",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2003-02-27",
+   "mw": 6.264,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 4",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2003-02-27",
+   "mw": 6.238,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MISAPUQUIO",
+   "unidad": "",
+   "empresa": "SN POWER",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2003-04-02",
+   "mw": 3.866,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SAN ANTONIO",
+   "unidad": "G1",
+   "empresa": "SN POWER",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2003-04-02",
+   "mw": 0.58,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SAN IGNACIO",
+   "unidad": "G1",
+   "empresa": "SN POWER",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2003-04-02",
+   "mw": 0.422,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HUAYLLACHO",
+   "unidad": "G1",
+   "empresa": "SN POWER",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2003-04-02",
+   "mw": 0.186,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. VENTANILLA",
+   "unidad": "TG4",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2004-09-08",
+   "mw": 156.1005,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. VENTANILLA",
+   "unidad": "TG3",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2004-09-29",
+   "mw": 159.2148,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. OROYA",
+   "unidad": "G3",
+   "empresa": "SN POWER",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2004-11-20",
+   "mw": 2.94,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTA ROSA",
+   "unidad": "WTG7",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2005-06-01",
+   "mw": 123.299,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. YUNCAN",
+   "unidad": "G1-G2-G3",
+   "empresa": "ENERSUR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2005-08-24",
+   "mw": 136.76,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA ROSA I",
+   "unidad": "G1",
+   "empresa": "ELEC. SANTA ROSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2006-01-06",
+   "mw": 1.02,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTA ROSA",
+   "unidad": "UTI 5",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2006-06-17",
+   "mw": 52.019,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. VENTANILLA",
+   "unidad": "CCTG3",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2006-07-19",
+   "mw": 216.9,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. VENTANILLA",
+   "unidad": "CCTG3",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2006-08-17",
+   "mw": 216.9,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTA ROSA",
+   "unidad": "UTI 6",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2006-08-24",
+   "mw": 52.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. VENTANILLA",
+   "unidad": "TG3+TG4+TV",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2006-10-19",
+   "mw": 457.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CHILCA I",
+   "unidad": "TG1",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2006-12-11",
+   "mw": 174.28,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. VENTANILLA",
+   "unidad": "TG3+TG4+TV",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2007-03-21",
+   "mw": 485.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. KALLPA",
+   "unidad": "TG1",
+   "empresa": "KALLPA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2007-07-01",
+   "mw": 171.68,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CHILCA I",
+   "unidad": "TG12",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2007-07-09",
+   "mw": 175.96,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CARHUAQUERO IV",
+   "unidad": "G4",
+   "empresa": "EGENOR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2008-05-22",
+   "mw": 9.98,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK 1",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2008-06-04",
+   "mw": 9.1706,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK 2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2008-06-04",
+   "mw": 8.0982,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CAÑA BRAVA",
+   "unidad": "G1",
+   "empresa": "EGENOR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2009-02-19",
+   "mw": 5.711,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA CRUZ I",
+   "unidad": "G1",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2009-02-19",
+   "mw": 3.148,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. OQUENDO",
+   "unidad": "TG1",
+   "empresa": "SDF ENERGIA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2009-03-06",
+   "mw": 28.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA CRUZ I",
+   "unidad": "G2",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2009-05-30",
+   "mw": 3.007,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. KALLPA",
+   "unidad": "TG2",
+   "empresa": "KALLPA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2009-06-25",
+   "mw": 194.674,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA TRUJILLO",
+   "unidad": "",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2009-07-07",
+   "mw": 62.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CHILCA I",
+   "unidad": "TG13",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2009-08-02",
+   "mw": 194.604,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTA ROSA",
+   "unidad": "TG8",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2009-09-02",
+   "mw": 193.18,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. LA JOYA",
+   "unidad": "G1-G2",
+   "empresa": "GEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2009-10-01",
+   "mw": 9.6,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "ALCO 1-2, GM 1-2-3, SULZER 1-2",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-01-29",
+   "mw": 11.45,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T PARAMONGA I",
+   "unidad": "TV1",
+   "empresa": "AIPSAA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-03-17",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. KALLPA",
+   "unidad": "TG3",
+   "empresa": "KALLPA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-03-24",
+   "mw": 196.611,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PLATANAL",
+   "unidad": "G1",
+   "empresa": "CELEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-03-31",
+   "mw": 108.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PLATANAL",
+   "unidad": "G2",
+   "empresa": "CELEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-03-31",
+   "mw": 108.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RONCADOR",
+   "unidad": "G1",
+   "empresa": "MAJA ENERGIA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-04-28",
+   "mw": 1.3,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. POECHOS II",
+   "unidad": "G1-G2",
+   "empresa": "SINERSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-04-30",
+   "mw": 10.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "ALCO 1-2, GM 1-2-3, SULZER 1-2",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-05-08",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. SANTA CRUZ II",
+   "unidad": "G2",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-05-14",
+   "mw": 3.34,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. LAS FLORES",
+   "unidad": "TG1",
+   "empresa": "EGENOR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-05-27",
+   "mw": 197.1,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA CRUZ II",
+   "unidad": "G1",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-06-10",
+   "mw": 3.36,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PISCO",
+   "unidad": "TG2",
+   "empresa": "EGASA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-09-03",
+   "mw": 36.47,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PISCO",
+   "unidad": "TG1",
+   "empresa": "EGASA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-10-02",
+   "mw": 36.73,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. INDEPENDENCIA",
+   "unidad": "WARTSILA 1",
+   "empresa": "EGESUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-10-02",
+   "mw": 5.732,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. INDEPENDENCIA",
+   "unidad": "WARTSILA 2",
+   "empresa": "EGESUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-10-02",
+   "mw": 5.732,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. INDEPENDENCIA",
+   "unidad": "WARTSILA 4",
+   "empresa": "EGESUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-10-02",
+   "mw": 5.732,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. INDEPENDENCIA",
+   "unidad": "WARTSILA 3",
+   "empresa": "EGESUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2010-10-20",
+   "mw": 5.732,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RONCADOR",
+   "unidad": "G2",
+   "empresa": "MAJA ENERGIA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2010-12-11",
+   "mw": 3.48,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA TRUJILLO",
+   "unidad": "",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-01-19",
+   "mw": 62.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 1",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-03-04",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-03-04",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 3",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-03-04",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. YARINACOCHA",
+   "unidad": "WARTSILA 4",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-03-04",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H PURMACANA",
+   "unidad": "G1",
+   "empresa": "ELEC. SANTA ROSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2011-03-18",
+   "mw": 1.8,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA TRUJILLO",
+   "unidad": "",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-08-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. CHIMBOTE",
+   "unidad": "TG1",
+   "empresa": "EGENOR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-08-23",
+   "mw": 19.77,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA TRUJILLO",
+   "unidad": "BLQ1 y BLQ2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-09-01",
+   "mw": 62.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PIAS 1",
+   "unidad": "G2",
+   "empresa": "AYEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2011-11-01",
+   "mw": 6.3,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.B. HUAYCOLORO **",
+   "unidad": "G1-G2-G3",
+   "empresa": "PETRAMAS",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2011-11-12",
+   "mw": 3.2,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PIAS 1",
+   "unidad": "G1",
+   "empresa": "AYEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2012-01-04",
+   "mw": 6.3,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HUASAHUASI I",
+   "unidad": "G1",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2012-01-12",
+   "mw": 5.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA TRUJILLO",
+   "unidad": "BLQ1 y BLQ2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-01-16",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. MALACAS",
+   "unidad": "TG2",
+   "empresa": "EEPSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-01-17",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. HUASAHUASI II",
+   "unidad": "G1",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2012-04-18",
+   "mw": 5.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. NUEVA IMPERIAL",
+   "unidad": "G1",
+   "empresa": "HIDROCAÑETE",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2012-04-20",
+   "mw": 3.97,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-04-27",
+   "mw": 11.8,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.EMERGENCIA MOLLENDO",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-05-01",
+   "mw": 60.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HUASAHUASI II",
+   "unidad": "G2",
+   "empresa": "ELEC. SANTA CRUZ",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2012-05-05",
+   "mw": 5.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA PIURA",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-06-15",
+   "mw": 80.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DE CHICLAYO",
+   "unidad": "GMT-1+GMT-3",
+   "empresa": "EGENOR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-06-26",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. BELLAVISTA",
+   "unidad": "MAN 1",
+   "empresa": "SAN GABAN",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-06-26",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-07-28",
+   "mw": 11.8,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. KALLPA",
+   "unidad": "TG1+TG2+TG3+TV",
+   "empresa": "KALLPA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-08-08",
+   "mw": 857.41,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. MAPLE",
+   "unidad": "TV1",
+   "empresa": "MAPLE ETANOL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-08-17",
+   "mw": 37.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TABLAZO",
+   "unidad": "TG01",
+   "empresa": "SDE PIURA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-09-01",
+   "mw": 29.0,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "Central",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-10-16",
+   "mw": 11.8,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. MAJES SOLAR ***",
+   "unidad": "55 584 MODULOS",
+   "empresa": "GTS MAJES",
+   "tipo": "SOLAR",
+   "fecha": "2012-10-31",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. REPARTICIÓN SOLAR ***",
+   "unidad": "56 208 MODULOS",
+   "empresa": "GTS REPARTICIÓN",
+   "tipo": "SOLAR",
+   "fecha": "2012-10-31",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. TACNA SOLAR ***",
+   "unidad": "74 988 MODULOS",
+   "empresa": "TACNA SOLAR",
+   "tipo": "SOLAR",
+   "fecha": "2012-10-31",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CHILCA I",
+   "unidad": "TG1+TG2+TG3+TV",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2012-11-15",
+   "mw": 811.14,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. PANAMERICANA SOLAR ***",
+   "unidad": "71 334 MODULOS",
+   "empresa": "PANAMERICANA SOLAR",
+   "tipo": "SOLAR",
+   "fecha": "2012-12-31",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.EMERGENCIA MOLLENDO",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-01-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. YANAPAMPA",
+   "unidad": "G2",
+   "empresa": "YANAPAMPA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2013-02-18",
+   "mw": 1.385,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. YANAPAMPA",
+   "unidad": "G1",
+   "empresa": "YANAPAMPA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2013-02-22",
+   "mw": 1.385,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. YANAPAMPA",
+   "unidad": "G3",
+   "empresa": "YANAPAMPA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2013-02-23",
+   "mw": 1.385,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-04-12",
+   "mw": 11.45,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. TAMBURCO ****",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-04-13",
+   "mw": 4.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. DOLORESPATA ****",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-04-13",
+   "mw": 10.32,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. CACHIMAYO ****",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-04-13",
+   "mw": 3.225,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. URPIPATA ****",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-04-13",
+   "mw": 1.55,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA DE GENERACIÓN PLANTA TALARA",
+   "unidad": "TG5",
+   "empresa": "EEPSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-04-17",
+   "mw": 186.6,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. LAS PIZARRAS",
+   "unidad": "G1",
+   "empresa": "RIO DOBLE",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2013-04-30",
+   "mw": 9.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. LAS PIZARRAS",
+   "unidad": "G2",
+   "empresa": "RIO DOBLE",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2013-04-30",
+   "mw": 9.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA DE GENERACIÓN PLANTA ILO",
+   "unidad": "TG1",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-06-21",
+   "mw": 165.7409,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA DE GENERACIÓN PLANTA ILO",
+   "unidad": "TG2",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-06-21",
+   "mw": 128.6316,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA DE GENERACIÓN PLANTA ILO",
+   "unidad": "TG3",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-06-21",
+   "mw": 165.6276,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA DE GENERACIÓN PLANTA TALARA",
+   "unidad": "TG5",
+   "empresa": "EEPSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-07-13",
+   "mw": 186.6,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-09-03",
+   "mw": 11.45,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA PIURA",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-10-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. SANTO DOMINGO DE LOS OLLEROS",
+   "unidad": "TG1",
+   "empresa": "TERMOCHILCA S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-10-19",
+   "mw": 201.37,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTA ROSA",
+   "unidad": "TG7",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2013-10-26",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. HUANZA",
+   "unidad": "G2",
+   "empresa": "EMGHUANZA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2014-02-22",
+   "mw": 47.58,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. FÉNIX",
+   "unidad": "TG11",
+   "empresa": "FÉNIX POWER",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-03",
+   "mw": 180.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. FÉNIX",
+   "unidad": "TG12",
+   "empresa": "FÉNIX POWER",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-03",
+   "mw": 180.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-15",
+   "mw": 11.45,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. CACHIMAYO ****",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-16",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. URPIPATA ****",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTRO SUR ESTE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-16",
+   "mw": 4.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.E. TAMBURCO ****",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTRO SUR ESTE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-16",
+   "mw": 6.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. MARCONA*****",
+   "unidad": "CENTRAL",
+   "empresa": "PE MARCONA",
+   "tipo": "EÓLICO",
+   "fecha": "2014-04-25",
+   "mw": 32.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. FÉNIX",
+   "unidad": "TG12+TV10",
+   "empresa": "FÉNIX POWER",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-05-16",
+   "mw": 280.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. ILO 1",
+   "unidad": "TV2, CALDERO 1, CALDERO 2",
+   "empresa": "ENERSUR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-05-30",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T.E. CACHIMAYO ****",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-05-31",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. HUANZA",
+   "unidad": "G1",
+   "empresa": "EMGHUANZA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2014-06-06",
+   "mw": 49.18,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. MALACAS",
+   "unidad": "TG1",
+   "empresa": "EEPSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-08-23",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.E. TALARA*****",
+   "unidad": "CENTRAL",
+   "empresa": "ENERGÍA EÓLICA",
+   "tipo": "EÓLICO",
+   "fecha": "2014-08-30",
+   "mw": 30.86,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. CUPISNIQUE*****",
+   "unidad": "CENTRAL",
+   "empresa": "ENERGÍA EÓLICA",
+   "tipo": "EÓLICO",
+   "fecha": "2014-08-30",
+   "mw": 83.15,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. EMERGENCIA PIURA",
+   "unidad": "CENTRAL",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-09-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. DE CHICLAYO",
+   "unidad": "GMT-2, SULZER-1, SULZER-2",
+   "empresa": "EGENOR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-09-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. CHIMBOTE",
+   "unidad": "TG3",
+   "empresa": "EGENOR",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-09-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-04-15",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. RUNATULLO III",
+   "unidad": "G1",
+   "empresa": "EGEJUNÍN",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2014-11-22",
+   "mw": 10.11,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RUNATULLO III",
+   "unidad": "G2",
+   "empresa": "EGEJUNÍN",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2014-11-22",
+   "mw": 10.11,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-11-29",
+   "mw": 11.45,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTA ROSA",
+   "unidad": "TG7",
+   "empresa": "EDEGEL",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-12-05",
+   "mw": 121.01842,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RUNATULLO II",
+   "unidad": "G1",
+   "empresa": "EGEJUNÍN",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2014-12-24",
+   "mw": 10.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RUNATULLO II",
+   "unidad": "G2",
+   "empresa": "EGEJUNÍN",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2014-12-24",
+   "mw": 10.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. FÉNIX",
+   "unidad": "TG11+TG12+TV10",
+   "empresa": "FÉNIX POWER",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2014-12-24",
+   "mw": 570.1,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. MOQUEGUA FV***",
+   "unidad": "CENTRAL",
+   "empresa": "MOQUEGUA FV",
+   "tipo": "SOLAR",
+   "fecha": "2014-12-31",
+   "mw": 16.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CANCHAYLLO",
+   "unidad": "G1",
+   "empresa": "EGECSAC",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-01-01",
+   "mw": 2.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CANCHAYLLO",
+   "unidad": "G2",
+   "empresa": "EGECSAC",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-01-01",
+   "mw": 2.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. DOLORESPATA",
+   "unidad": "CENTRAL",
+   "empresa": "EGEMSA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-05-03",
+   "mw": 11.45,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA ETEN",
+   "unidad": "GT1",
+   "empresa": "PLANTA ETEN",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-07-02",
+   "mw": 175.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RESERVA FRÍA ETEN",
+   "unidad": "GT2",
+   "empresa": "PLANTA ETEN",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-07-02",
+   "mw": 8.471,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. BELLAVISTA",
+   "unidad": "ALCO",
+   "empresa": "SAN GABAN",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-08-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. CHILINA",
+   "unidad": "TV1,TV2,TV3",
+   "empresa": "EGASA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-08-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. MACHUPICCHU",
+   "unidad": "G4",
+   "empresa": "EGEMSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-08-15",
+   "mw": 99.86,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHEVES",
+   "unidad": "G1",
+   "empresa": "EGCHEVES",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-08-22",
+   "mw": 86.24,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHEVES",
+   "unidad": "G2",
+   "empresa": "EGCHEVES",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-08-22",
+   "mw": 85.44,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. LA GRINGA V",
+   "unidad": "CENTRAL",
+   "empresa": "ECELIM",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-09-01",
+   "mw": 3.2,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA TERESA",
+   "unidad": "G1",
+   "empresa": "LUZ DEL SUR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-09-01",
+   "mw": 49.855,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA TERESA",
+   "unidad": "G2",
+   "empresa": "LUZ DEL SUR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-09-01",
+   "mw": 49.855,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. RECKA",
+   "unidad": "TG1",
+   "empresa": "MINERA CERRO VERDE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2015-09-25",
+   "mw": 181.32,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. QUITARACSA",
+   "unidad": "G1",
+   "empresa": "ENERSUR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-10-09",
+   "mw": 57.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. QUITARACSA",
+   "unidad": "G2",
+   "empresa": "ENERSUR",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-10-29",
+   "mw": 60.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PCH CHAGLLA",
+   "unidad": "G1",
+   "empresa": "EMPRESA DE GENERACIÓN HUALLAGA S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-02-13",
+   "mw": 6.3,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "PARQUE EÓLICO TRES HERMANAS S.A.C.",
+   "unidad": "33 Aerogeneradores",
+   "empresa": "PARQUE EÓLICO TRES HERMANAS S.A.C.",
+   "tipo": "EÓLICO",
+   "fecha": "2016-03-11",
+   "mw": 97.15,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CHILCA 1",
+   "unidad": "TG 41",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-05-06",
+   "mw": 75.49,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PUERTO BRAVO",
+   "unidad": "TG1",
+   "empresa": "SAMAY I S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-05-26",
+   "mw": 153.977,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PUERTO BRAVO",
+   "unidad": "TG2",
+   "empresa": "SAMAY I S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-05-26",
+   "mw": 153.967,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PUERTO BRAVO",
+   "unidad": "TG3",
+   "empresa": "SAMAY I S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-05-26",
+   "mw": 153.958,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PUERTO BRAVO",
+   "unidad": "TG4",
+   "empresa": "SAMAY I S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-05-26",
+   "mw": 153.864,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "R.F. PLANTA PUCALLPA",
+   "unidad": "CENTRAL",
+   "empresa": "INFRAESTRUCTURAS Y ENERGÍAS DEL PERU S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-07-28",
+   "mw": 40.15,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "R.F. PLANTA PUERTO MALDONADO",
+   "unidad": "CENTRAL",
+   "empresa": "INFRAESTRUCTURAS Y ENERGÍAS DEL PERU S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-07-28",
+   "mw": 18.25,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CERRO DEL ÁGUILA",
+   "unidad": "G1",
+   "empresa": "CERRO DEL ÁGUILA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-08-03",
+   "mw": 171.28,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CERRO DEL ÁGUILA",
+   "unidad": "G2",
+   "empresa": "CERRO DEL ÁGUILA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-08-03",
+   "mw": 171.28,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHANCAY",
+   "unidad": "CENTRAL",
+   "empresa": "SINERSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-08-04",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RUCUY",
+   "unidad": "CENTRAL",
+   "empresa": "EMPRESA DE GENERACIÓN ELÉCTRICA RÍO BAÑOS",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2015-08-09",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CERRO DEL ÁGUILA",
+   "unidad": "G3",
+   "empresa": "CERRO DEL ÁGUILA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-08-25",
+   "mw": 171.28,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHAGLLA",
+   "unidad": "UG2",
+   "empresa": "EMPRESA DE GENERACIÓN HUALLAGA S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-09-23",
+   "mw": 229.2,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHAGLLA",
+   "unidad": "UG1",
+   "empresa": "EMPRESA DE GENERACIÓN HUALLAGA S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2016-09-24",
+   "mw": 231.5,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. NEPI",
+   "unidad": "TG41",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-10-22",
+   "mw": 203.43,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. NEPI",
+   "unidad": "TG42",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-10-22",
+   "mw": 203.43,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. NEPI",
+   "unidad": "TG43",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-10-22",
+   "mw": 203.43,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CHILCA 2",
+   "unidad": "TG41 &TV42",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2016-12-16",
+   "mw": 114.04,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TAPARACHI",
+   "unidad": "CENTRAL",
+   "empresa": "SAN GABAN",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2017-01-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. MALACAS 1",
+   "unidad": "TG-6",
+   "empresa": "ENEL GENERACIÓN PIURA S.A.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2017-02-25",
+   "mw": 35.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. ILO 1",
+   "unidad": "TV3, TG2, CATKATO",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2017-04-17",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. POTREROS",
+   "unidad": "G1-G2",
+   "empresa": "EMPRESA ELECTRICA AGUA AZUL S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-04-29",
+   "mw": 19.9,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PIAS 1",
+   "unidad": "G1",
+   "empresa": "AYEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-06-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. PIAS 1",
+   "unidad": "G2",
+   "empresa": "AYEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-06-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. CALLAHUANCA",
+   "unidad": "CENTRAL",
+   "empresa": "ENEL GENERACIÓN PERÚ S.A.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-06-15",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. MARAÑON",
+   "unidad": "G1-G2-G3",
+   "empresa": "HIDROELECTRICA MARAÑON S.R.L.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-06-23",
+   "mw": 19.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHANCAY",
+   "unidad": "CENTRAL",
+   "empresa": "SINERSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-07-22",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. RUCUY",
+   "unidad": "CENTRAL",
+   "empresa": "EMPRESA DE GENERACIÓN ELÉCTRICA RÍO BAÑOS",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-07-22",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. YARUCAYA",
+   "unidad": "CENTRAL",
+   "empresa": "HUAURA POWER GROUP S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-08-17",
+   "mw": 15.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. ILO 1",
+   "unidad": "TV4, TG1, CALDERA B4",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2017-10-26",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. MCH CERRO DEL ÁGUILA",
+   "unidad": "CENTRAL",
+   "empresa": "KALLPA GENERACIÓN S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2017-10-27",
+   "mw": 9.9,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. RUBÍ",
+   "unidad": "CENTRAL",
+   "empresa": "ENEL GREEN POWER PERÚ S.A.",
+   "tipo": "SOLAR",
+   "fecha": "2018-01-30",
+   "mw": 144.48,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RENOVANDES H1",
+   "unidad": "CENTRAL",
+   "empresa": "EMPRESA DE GENERACION ELECTRICA SANTA ANA S.R.L.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-03-20",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. SANTO DOMINGO DE LOS OLLEROS",
+   "unidad": "TG1+TV",
+   "empresa": "TERMOCHILCA S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2018-03-25",
+   "mw": 305.32,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. INTIPAMPA",
+   "unidad": "CENTRAL",
+   "empresa": "ENGIE",
+   "tipo": "SOLAR",
+   "fecha": "2018-03-31",
+   "mw": 44.54,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. WAYRA I",
+   "unidad": "42 Aerogeneradores",
+   "empresa": "ENEL GREEN POWER PERÚ S.A.",
+   "tipo": "EÓLICO",
+   "fecha": "2018-05-19",
+   "mw": 132.3,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.B. DOÑA CATALINA",
+   "unidad": "CENTRAL",
+   "empresa": "PETRAMAS",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2018-08-29",
+   "mw": 2.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HER1",
+   "unidad": "G3-G4",
+   "empresa": "ENEL GENERACIÓN PERÚ S.A.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-08-30",
+   "mw": 0.7,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. EL ANGEL I",
+   "unidad": "G1-G2",
+   "empresa": "GEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-08-30",
+   "mw": 20.16,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. EL ANGEL II",
+   "unidad": "G1-G2",
+   "empresa": "GEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-08-30",
+   "mw": 20.16,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. EL ANGEL III",
+   "unidad": "G1-G2",
+   "empresa": "GEPSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-08-30",
+   "mw": 20.16,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CARHUAC",
+   "unidad": "G1-G2",
+   "empresa": "ANDEAN POWER S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-11-08",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. ZAÑA",
+   "unidad": "G2",
+   "empresa": "ELECTRO ZAÑA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2018-12-29",
+   "mw": 6.6,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. ZAÑA",
+   "unidad": "G1",
+   "empresa": "ELECTRO ZAÑA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2019-02-15",
+   "mw": 6.6,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MCH PATAPO",
+   "unidad": "CENTRAL",
+   "empresa": "HYDRO PATAPO S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2019-03-15",
+   "mw": 1.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CALLAHUANCA",
+   "unidad": "CENTRAL",
+   "empresa": "ENEL GENERACIÓN PERÚ S.A.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2019-03-30",
+   "mw": 84.1,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. PISCO",
+   "unidad": "CENTRAL",
+   "empresa": "EGASA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2019-04-01",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. SAN JACINTO",
+   "unidad": "TV",
+   "empresa": "AGROINDUSTRIAS SAN JACINTO",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2019-04-13",
+   "mw": 7.48,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. RUCUY",
+   "unidad": "CENTRAL",
+   "empresa": "EMPRESA DE GENERACIÓN ELÉCTRICA RÍO BAÑOS",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2019-06-01",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. CHANCAY",
+   "unidad": "CENTRAL",
+   "empresa": "SINERSA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2019-06-04",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CAÑA BRAVA",
+   "unidad": "TV1+TV2",
+   "empresa": "BIOENERGIA DEL CHIRA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2019-10-02",
+   "mw": 12.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. EL CARMEN",
+   "unidad": "CENTRAL",
+   "empresa": "GENERACIÓN ANDINA",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2019-11-30",
+   "mw": 8.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. 8 DE AGOSTO",
+   "unidad": "CENTRAL",
+   "empresa": "GENERACIÓN ANDINA",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2019-12-25",
+   "mw": 19.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T.B. CALLAO",
+   "unidad": "CENTRAL",
+   "empresa": "PETRAMAS",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2020-07-13",
+   "mw": 2.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MANTA",
+   "unidad": "CENTRAL",
+   "empresa": "PERUANA DE INVERSIONES EN ENERGÍA RENOVABLES S.A.",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2020-07-16",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. DUNA",
+   "unidad": "CENTRAL",
+   "empresa": "GR TARUCA",
+   "tipo": "EÓLICO",
+   "fecha": "2021-05-06",
+   "mw": 18.37,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "CE. HUAMBOS",
+   "unidad": "CENTRAL",
+   "empresa": "GR PAINO",
+   "tipo": "EÓLICO",
+   "fecha": "2021-05-06",
+   "mw": 18.37,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. LA VIRGEN",
+   "unidad": "G2",
+   "empresa": "LA VIRGEN SAC",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2021-05-15",
+   "mw": 31.25,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. LA VIRGEN",
+   "unidad": "G1",
+   "empresa": "LA VIRGEN SAC",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2021-06-26",
+   "mw": 31.23,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK1+MAK2",
+   "empresa": "ELECTROPERU",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2021-07-16",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. LA VIRGEN",
+   "unidad": "G3",
+   "empresa": "LA VIRGEN SAC",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2021-07-31",
+   "mw": 31.28,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. ZAÑA",
+   "unidad": "G1+G2",
+   "empresa": "ELECTRO ZAÑA S.A.C.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2021-08-07",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. SANTA ROSA I",
+   "unidad": "G1",
+   "empresa": "CENTRALES SANTA ROSA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2021-08-11",
+   "mw": 1.22,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA ROSA II",
+   "unidad": "G1",
+   "empresa": "CENTRALES SANTA ROSA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2021-08-11",
+   "mw": 1.7,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. YARUCAYA",
+   "unidad": "CENTRAL",
+   "empresa": "COLCA SOLAR",
+   "tipo": "SOLAR",
+   "fecha": "2021-09-26",
+   "mw": 1.295,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. MCH PATAPO",
+   "unidad": "CENTRAL",
+   "empresa": "HYDRO PATAPO S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2022-06-06",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. LAS FLORES",
+   "unidad": "TG1+TV",
+   "empresa": "KALLPA GENERACIÓN S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2022-06-09",
+   "mw": 321.99,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. ILO 2",
+   "unidad": "TV",
+   "empresa": "ENGIE",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2022-12-31",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. OQUENDO",
+   "unidad": "TV1",
+   "empresa": "SDF ENERGIA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2023-02-16",
+   "mw": 5.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. OQUENDO",
+   "unidad": "TG1",
+   "empresa": "SDF ENERGIA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2023-03-24",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. ARICOTA II",
+   "unidad": "G1",
+   "empresa": "EGESUR",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2023-05-24",
+   "mw": 11.9,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. QUITARACSA",
+   "unidad": "CENTRAL",
+   "empresa": "ENGIE",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2023-06-15",
+   "mw": 118.0,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.E. PUNTA LOMITAS",
+   "unidad": "CENTRAL",
+   "empresa": "ENGIE",
+   "tipo": "EÓLICO",
+   "fecha": "2023-06-16",
+   "mw": 260.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. OQUENDO",
+   "unidad": "TG1",
+   "empresa": "SDF ENERGIA",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2023-06-28",
+   "mw": 27.955,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK1",
+   "empresa": "ELECTROPERU S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2023-10-04",
+   "mw": 8.75,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. TUMBES",
+   "unidad": "MAK2",
+   "empresa": "ELECTROPERU S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2023-10-04",
+   "mw": 8.75,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. PACHACHACA",
+   "unidad": "CENTRAL",
+   "empresa": "STATKRAFT",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2023-11-30",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. QUITARACSA",
+   "unidad": "G2",
+   "empresa": "ENGIE ENERGÍA PERÚ",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2023-12-17",
+   "mw": 58.83,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. EXPANSIÓN PUNTA LOMITAS",
+   "unidad": "CENTRAL",
+   "empresa": "ENGIE ENERGÍA PERÚ",
+   "tipo": "EÓLICO",
+   "fecha": "2023-12-24",
+   "mw": 36.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. CARHUAQUERO",
+   "unidad": "CENTRAL",
+   "empresa": "KONDU S.A.C.",
+   "tipo": "SOLAR",
+   "fecha": "2024-02-14",
+   "mw": 0.55,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S. CLEMESÍ",
+   "unidad": "CENTRAL",
+   "empresa": "ENEL GENERACIÓN S.A.A.",
+   "tipo": "SOLAR",
+   "fecha": "2024-02-28",
+   "mw": 114.93,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SAN IGNACIO",
+   "unidad": "G1",
+   "empresa": "STATKRAFT",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2024-03-12",
+   "mw": null,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. PACHACHACA",
+   "unidad": "CENTRAL",
+   "empresa": "STATKRAFT",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2024-03-14",
+   "mw": 9.743,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. QUITARACSA",
+   "unidad": "G1",
+   "empresa": "ENGIE ENERGÍA PERÚ S.A.",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2024-03-17",
+   "mw": 58.948,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. SAN JUAN DE MARCONA",
+   "unidad": "CENTRAL",
+   "empresa": "ENERGÍA RENOVABLE DEL SUR S.A.A.",
+   "tipo": "EÓLICO",
+   "fecha": "2024-04-18",
+   "mw": 129.8,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. REFINERÍA TALARA",
+   "unidad": "CENTRAL",
+   "empresa": "GM OPERACIONES S.A.C.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2024-04-19",
+   "mw": 102.34,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. HUALLIN",
+   "unidad": "CENTRAL",
+   "empresa": "ASOCIACIÓN SANTA LUCIA DE CHACAS",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2024-04-26",
+   "mw": 2.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SAN ANTONIO",
+   "unidad": "CENTRAL",
+   "empresa": "STATKRAFT",
+   "tipo": "HIDORELÉCTRICA",
+   "fecha": "2024-05-25",
+   "mw": 0.58,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "P.E. WAYRA EXTENSIÓN",
+   "unidad": "CENTRAL",
+   "empresa": "ENEL GENERACIÓN PERÚ S.A.A.",
+   "tipo": "EÓLICO",
+   "fecha": "2024-06-29",
+   "mw": 177.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S.F. MATARANI",
+   "unidad": "CENTRAL",
+   "empresa": "GR CORTARRAMA",
+   "tipo": "SOLAR",
+   "fecha": "2024-09-11",
+   "mw": 80.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.E. SAN JUAN DE MARCONA",
+   "unidad": "CENTRAL",
+   "empresa": "ENERGÍA RENOVABLE DEL SUR S.A.A.",
+   "tipo": "EÓLICO",
+   "fecha": "2024-12-14",
+   "mw": 135.7,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. ARICOTA II",
+   "unidad": "G1",
+   "empresa": "EGESUR",
+   "tipo": "HIDROELECTRICA",
+   "fecha": "2025-01-24",
+   "mw": 12.23,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. TUPURI",
+   "unidad": "G1",
+   "empresa": "EMPRESA DE GENERACIÓN ELÉCTRICA SAN GABÁN S.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2025-02-28",
+   "mw": 2.152,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SANTA ROSA I",
+   "unidad": "CENTRAL",
+   "empresa": "CENTRALES SANTA ROSA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2025-03-22",
+   "mw": 1.117,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. SANTA ROSA II",
+   "unidad": "CENTRAL",
+   "empresa": "CENTRALES SANTA ROSA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2025-03-22",
+   "mw": 1.62887,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.T. OQUENDO",
+   "unidad": "CENTRAL",
+   "empresa": "SDF ENERGÍA S.A.C.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2025-05-01",
+   "mw": 32.18,
+   "hoja": "BD",
+   "baja": true
+  },
+  {
+   "central": "C.H. SAN GABÁN III",
+   "unidad": "G1+G2",
+   "empresa": "HYDRO GLOBAL PERÚ S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2025-05-30",
+   "mw": 209.3,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S.F. SAN MARTÍN SOLAR",
+   "unidad": "CENTRAL",
+   "empresa": "JOYA SOLAR S.A.C.",
+   "tipo": "SOLAR",
+   "fecha": "2025-06-07",
+   "mw": 252.4,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. ANASHIRONI",
+   "unidad": "G1",
+   "empresa": "VARI ENERGÍA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2025-07-23",
+   "mw": 20.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. AGROLMOS",
+   "unidad": "TV1+TV2",
+   "empresa": "AGROLMOS S.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2025-08-16",
+   "mw": 14.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S.F. SUNNY",
+   "unidad": "CENTRAL",
+   "empresa": "KALLPA GENERACIÓN S.A.",
+   "tipo": "SOLAR",
+   "fecha": "2025-10-22",
+   "mw": 204.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.T. CASA GRANDE",
+   "unidad": "TV1 +TV3",
+   "empresa": "CASA GRANDE S.A.A.",
+   "tipo": "TERMOELÉCTRICA",
+   "fecha": "2025-12-05",
+   "mw": 25.0,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S.F. COENERGY",
+   "unidad": "CENTRAL",
+   "empresa": "COENERGY S.A.C.",
+   "tipo": "SOLAR",
+   "fecha": "2025-12-21",
+   "mw": 0.5049,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S.F. EXPANSIÓN INTIPAMPA",
+   "unidad": "CENTRAL",
+   "empresa": "ENGIE ENERGÍA PERÚ S.A.A.",
+   "tipo": "SOLAR",
+   "fecha": "2026-02-18",
+   "mw": 51.7,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SAN ANTONIO",
+   "unidad": "CENTRAL",
+   "empresa": "STATKRAFT",
+   "tipo": "HIDORELÉCTRICA",
+   "fecha": "2026-02-28",
+   "mw": 0.554,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. SAN IGNACIO",
+   "unidad": "CENTRAL",
+   "empresa": "STATKRAFT",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2026-02-28",
+   "mw": 0.426,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.S.F. SUNNY EXPANSIÓN",
+   "unidad": "CENTRAL",
+   "empresa": "KALLPA GENERACIÓN S.A.",
+   "tipo": "SOLAR",
+   "fecha": "2026-04-03",
+   "mw": 105.0,
+   "hoja": "BD",
+   "baja": false
+  }
+ ],
  "diag": {
   "pagina": {
    "paginas": {
@@ -64,7 +2725,7 @@
    "hojas": [
     "BD"
    ],
-   "registros": 0
+   "registros": 266
   }
  }
 }
