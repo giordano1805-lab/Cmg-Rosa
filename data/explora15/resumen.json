@@ -1,0 +1,4375 @@
+{
+ "paginas": {
+  "nodo": {
+   "status": 200,
+   "bytes": 218222
+  },
+  "documento": {
+   "status": 200,
+   "bytes": 1308936
+  }
+ },
+ "n_nodos": 268,
+ "n_docs": 2282,
+ "ejemplo_nodo": [
+  {
+   "id_identificador_nodo": 26,
+   "co_nodo": "0.2.1.1.1",
+   "co_nodo_superior": "0.2.1.1",
+   "de_descripcion": "2010",
+   "de_prefijo_documento": "Infosinergmin_",
+   "in_nodo_permite_documentos": "S",
+   "de_ruta_de_repositorio": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/InfoOsinerg/",
+   "nu_orden": 5,
+   "nu_jerarquia": 4,
+   "id_tipo_orden": "4",
+   "in_estado_publicacion": "P",
+   "nu_tamano_max_carga": 10000.0,
+   "de_usuario_edicion": null,
+   "in_estado_registro": "A",
+   "de_usuario_creacion": null,
+   "de_usuario_modificacion": "sistemasgart",
+   "fe_fecha_creacion": null,
+   "fe_fecha_modificacion": "2021-08-25T22:03:25.000+0000",
+   "de_terminal_creacion": null,
+   "de_terminal_modificacion": "192.168.101.245",
+   "fe_fecha_publicacion": null,
+   "de_usuario_publicacion": null,
+   "de_terminal_publicacion": null,
+   "de_ruta_fisica": "F:/migracion/PaginaWebGART/publicacionesgrt/pdf/InfoOsinerg/"
+  },
+  {
+   "id_identificador_nodo": 30,
+   "co_nodo": "0.2.3.1",
+   "co_nodo_superior": "0.2.3",
+   "de_descripcion": "2010",
+   "de_prefijo_documento": "OSE",
+   "in_nodo_permite_documentos": "S",
+   "de_ruta_de_repositorio": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/OperSecElectrico/",
+   "nu_orden": 7,
+   "nu_jerarquia": 3,
+   "id_tipo_orden": "4",
+   "in_estado_publicacion": "P",
+   "nu_tamano_max_carga": 10000.0,
+   "de_usuario_edicion": null,
+   "in_estado_registro": "A",
+   "de_usuario_creacion": null,
+   "de_usuario_modificacion": null,
+   "fe_fecha_creacion": null,
+   "fe_fecha_modificacion": null,
+   "de_terminal_creacion": null,
+   "de_terminal_modificacion": null,
+   "fe_fecha_publicacion": null,
+   "de_usuario_publicacion": null,
+   "de_terminal_publicacion": null,
+   "de_ruta_fisica": "F:/migracion/PaginaWebGART/publicacionesgrt/pdf/OperSecElectrico/"
+  },
+  {
+   "id_identificador_nodo": 32,
+   "co_nodo": "0.2.1.1.3",
+   "co_nodo_superior": "0.2.1.1",
+   "de_descripcion": "2008",
+   "de_prefijo_documento": "Infosinergmin",
+   "in_nodo_permite_documentos": "S",
+   "de_ruta_de_repositorio": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/InfoOsinerg/",
+   "nu_orden": 7,
+   "nu_jerarquia": 4,
+   "id_tipo_orden": "4",
+   "in_estado_publicacion": "P",
+   "nu_tamano_max_carga": 10000.0,
+   "de_usuario_edicion": null,
+   "in_estado_registro": "A",
+   "de_usuario_creacion": null,
+   "de_usuario_modificacion": "sistemasgart",
+   "fe_fecha_creacion": null,
+   "fe_fecha_modificacion": "2021-08-25T22:03:48.000+0000",
+   "de_terminal_creacion": null,
+   "de_terminal_modificacion": "192.168.101.245",
+   "fe_fecha_publicacion": null,
+   "de_usuario_publicacion": null,
+   "de_terminal_publicacion": null,
+   "de_ruta_fisica": "F:/migracion/PaginaWebGART/publicacionesgrt/pdf/InfoOsinerg/"
+  }
+ ],
+ "ejemplo_doc": [
+  {
+   "id_documento": 1,
+   "id_identificador_nodo": 1,
+   "de_descripcion_documento": "A Junio 2019",
+   "de_nombre_fisico": "OSEJUN2019.pdf",
+   "de_nombre_logico": "A Junio 2019",
+   "nu_tamano_en_bytes": 9817.37,
+   "in_estado": "A",
+   "nu_orden": 60,
+   "in_estado_publicacion": "P",
+   "fe_fecha_publicacion": null,
+   "de_usuario_publicacion": null,
+   "de_terminal_publicacion": null,
+   "fe_fecha_creacion": null,
+   "de_usuario_creacion": null,
+   "de_terminal_creacion": null,
+   "de_terminal_modificacion": "192.168.231.119",
+   "de_usuario_modificacion": "ralejos",
+   "fe_fecha_modificacion": "2020-01-13T15:16:26.000+0000"
+  },
+  {
+   "id_documento": 2,
+   "id_identificador_nodo": 1,
+   "de_descripcion_documento": "A Mayo 2019",
+   "de_nombre_fisico": "OSEMAY2019.pdf",
+   "de_nombre_logico": "A Mayo 2019",
+   "nu_tamano_en_bytes": 9566.9,
+   "in_estado": "A",
+   "nu_orden": 50,
+   "in_estado_publicacion": "P",
+   "fe_fecha_publicacion": null,
+   "de_usuario_publicacion": null,
+   "de_terminal_publicacion": null,
+   "fe_fecha_creacion": null,
+   "de_usuario_creacion": null,
+   "de_terminal_creacion": null,
+   "de_terminal_modificacion": "192.168.231.119",
+   "de_usuario_modificacion": "ralejos",
+   "fe_fecha_modificacion": "2020-01-13T15:15:47.000+0000"
+  }
+ ],
+ "bases": [
+  [
+   "0.2.2",
+   25
+  ]
+ ],
+ "rama": [
+  [
+   "0.2.2.16",
+   90,
+   "2017",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.15",
+   92,
+   "2016",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.11",
+   98,
+   "2012",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.1",
+   100,
+   "2010",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.4",
+   103,
+   "2007",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.5",
+   105,
+   "2006",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.8",
+   111,
+   "2003",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.10",
+   99,
+   "2011",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.19",
+   178,
+   "2020",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.20",
+   188,
+   "2021",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.18",
+   86,
+   "2019",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.14",
+   94,
+   "2015",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.13",
+   96,
+   "2014",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.12",
+   97,
+   "2013",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.2",
+   101,
+   "2009",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.3",
+   102,
+   "2008",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.6",
+   107,
+   "2005",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.9",
+   113,
+   "2001",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.7",
+   109,
+   "2004",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.22",
+   228,
+   "2023",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.17",
+   88,
+   "2018",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.23",
+   238,
+   "2024",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.21",
+   219,
+   "2022",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.25",
+   262,
+   "2026",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ],
+  [
+   "0.2.2.24",
+   250,
+   "2025",
+   "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/"
+  ]
+ ],
+ "docs": [
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 08-agosto 2019",
+   "desc": "INFORMACIÓN JUNIO 2019",
+   "fisico": "ReporteLib082019.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 08-agosto 2019",
+   "desc": "INFORMACIÓN JUNIO 2019",
+   "fisico": "Boletin_Agosto2019.xlsx",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2019.xlsx"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 07-julio 2019",
+   "desc": "INFORMACIÓN MAYO 2019",
+   "fisico": "ReporteLib072019.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 07-julio 2019",
+   "desc": "INFORMACIÓN MAYO 2019",
+   "fisico": "Boletin_Julio2019.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2019.xls"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 06-junio 2019",
+   "desc": "INFORMACIÓN ABRIL 2019",
+   "fisico": "ReporteLib062019.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 06-junio 2019",
+   "desc": "INFORMACIÓN ABRIL 2019",
+   "fisico": "Boletin_Junio2019.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2019.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 11-Noviembre 2016",
+   "desc": "Año 16-Nro 11-Noviembre 2016",
+   "fisico": "Boletin_Noviembre2016.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 10-Octubre 2016",
+   "desc": "Año 16-Nro 10-Octubre 2016",
+   "fisico": "ReporteLib102016.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 10-Octubre 2016",
+   "desc": "Año 16-Nro 10-Octubre 2016",
+   "fisico": "Boletin_Octubre2016.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 09-Setiembre 2016",
+   "desc": "Año 16-Nro 09-Setiembre 2016",
+   "fisico": "ReporteLib092016.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 09-Setiembre 2016",
+   "desc": "Año 16-Nro 09-Setiembre 2016",
+   "fisico": "Boletin_Setiembre2016.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 08-Agosto 2016",
+   "desc": "Año 16-Nro 08-Agosto 2016",
+   "fisico": "ReporteLib082016.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 08-Agosto 2016",
+   "desc": "Año 16-Nro 08-Agosto 2016",
+   "fisico": "Boletin_Agosto2016.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 07-Julio 2016",
+   "desc": "Año 16-Nro 07-Julio 2016",
+   "fisico": "ReporteLib072016.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 07-Julio 2016",
+   "desc": "Año 16-Nro 07-Julio 2016",
+   "fisico": "Boletin_Julio2016.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 06-Junio 2016",
+   "desc": "Año 16-Nro 06-Junio 2016",
+   "fisico": "ReporteLib062016.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 06-Junio 2016",
+   "desc": "Año 16-Nro 06-Junio 2016",
+   "fisico": "Boletin_Junio2016.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 05-Mayo 2016",
+   "desc": "Año 16-Nro 05-Mayo 2016",
+   "fisico": "ReporteLib052016.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 05-Mayo 2016",
+   "desc": "Año 16-Nro 05-Mayo 2016",
+   "fisico": "Boletin_Mayo2016.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 04-Abril 2016",
+   "desc": "Año 16-Nro 04-Abril 2016",
+   "fisico": "ReporteLib042016.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 04-Abril 2016",
+   "desc": "Año 16-Nro 04-Abril 2016",
+   "fisico": "Boletin_Abril2016.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 03-Marzo 2016",
+   "desc": "Año 16-Nro 03-Marzo 2016",
+   "fisico": "ReporteLib032016.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 03-Marzo 2016",
+   "desc": "Año 16-Nro 03-Marzo 2016",
+   "fisico": "Boletin_Marzo2016.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 02-Febrero 2016",
+   "desc": "Año 16-Nro 02-Febrero 2016",
+   "fisico": "ReporteLib022016.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 02-Febrero 2016",
+   "desc": "Año 16-Nro 02-Febrero 2016",
+   "fisico": "Boletin_Febero2016.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febero2016.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 01-Enero 2016",
+   "desc": "Año 16-Nro 01-Enero 2016",
+   "fisico": "ReporteLib012016.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib012016.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 01-Enero 2016",
+   "desc": "Año 16-Nro 01-Enero 2016",
+   "fisico": "Boletin_Enero2016.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2016.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 12-Diciembre 2015",
+   "desc": "Año 15-Nro 12-Diciembre 2015",
+   "fisico": "ReporteLib122015.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib122015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 12-Diciembre 2015",
+   "desc": "Año 15-Nro 12-Diciembre 2015",
+   "fisico": "Boletin_Diciembre2015.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 11-Noviembre 2015",
+   "desc": "Año 15-Nro 11-Noviembre 2015",
+   "fisico": "ReporteLib112015.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib112015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 11-Noviembre 2015",
+   "desc": "Año 15-Nro 11-Noviembre 2015",
+   "fisico": "Boletin_Noviembre2015.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 10-Octubre 2015",
+   "desc": "Año 15-Nro 10-Octubre 2015",
+   "fisico": "ReporteLib102015.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 10-Octubre 2015",
+   "desc": "Año 15-Nro 10-Octubre 2015",
+   "fisico": "Boletin_Octubre2015.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 09-Setiembre 2015",
+   "desc": "Año 15-Nro 09-Setiembre 2015",
+   "fisico": "ReporteLib092015.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 09-Setiembre 2015",
+   "desc": "Año 15-Nro 09-Setiembre 2015",
+   "fisico": "Boletin_Setiembre2015.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 08-Agosto 2015",
+   "desc": "Año 15-Nro 08-Agosto 2015",
+   "fisico": "ReporteLib082015.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 08-Agosto 2015",
+   "desc": "Año 15-Nro 08-Agosto 2015",
+   "fisico": "Boletin_Agosto2015.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 07-Julio 2015",
+   "desc": "Año 15-Nro 06-Julio 2015",
+   "fisico": "ReporteLib072015.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 07-Julio 2015",
+   "desc": "Año 15-Nro 06-Julio 2015",
+   "fisico": "Boletin_Julio2015.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 06-Junio 2015",
+   "desc": "Año 15-Nro 06-Junio 2015",
+   "fisico": "ReporteLib062015.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 06-Junio 2015",
+   "desc": "Año 15-Nro 06-Junio 2015",
+   "fisico": "Boletin_Junio2015.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 05-Mayo 2015",
+   "desc": "Año 15-Nro 05-Mayo 2015",
+   "fisico": "ReporteLib052015.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 05-Mayo 2015",
+   "desc": "Año 15-Nro 05-Mayo 2015",
+   "fisico": "Boletin_Mayo2015.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 04-Abril 2015",
+   "desc": "Año 15-Nro 04-Abril 2015",
+   "fisico": "ReporteLib042015.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 04-Abril 2015",
+   "desc": "Año 15-Nro 04-Abril 2015",
+   "fisico": "Boletin_Abril2015.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 03-Marzo 2015",
+   "desc": "Año 15-Nro 03-Marzo 2015",
+   "fisico": "ReporteLib032015.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032015.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 05-Mayo 2019",
+   "desc": "INFORMACIÓN MARZO 2019",
+   "fisico": "ReporteLib052019.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 05-Mayo 2019",
+   "desc": "INFORMACIÓN MARZO 2019",
+   "fisico": "Boletin_Mayo2019.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2019.xls"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 04-Abril 2019",
+   "desc": "INFORMACIÓN FEBRERO 2019",
+   "fisico": "ReporteLib042019.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 04-Abril 2019",
+   "desc": "INFORMACIÓN FEBRERO 2019",
+   "fisico": "Boletin_Abril2019.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2019.xls"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 03-Marzo 2019",
+   "desc": "INFORMACIÓN ENERO 2019",
+   "fisico": "ReporteLib032019.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 03-Marzo 2019",
+   "desc": "INFORMACIÓN ENERO 2019",
+   "fisico": "Boletin_Marzo2019.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2019.xls"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 02-Febrero 2019",
+   "desc": "INFORMACIÓN DICIEMBRE 2018",
+   "fisico": "ReporteLib022019.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 02-Febrero 2019",
+   "desc": "INFORMACIÓN DICIEMBRE 2018",
+   "fisico": "Boletin_Febrero2019.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2019.xls"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 01-Enero 2019",
+   "desc": "INFORMACIÓN NOVIEMBRE 2018",
+   "fisico": "ReporteLib012019.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib012019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 01-Enero 2019",
+   "desc": "INFORMACIÓN NOVIEMBRE 2018",
+   "fisico": "Boletin_Enero2019.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2019.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 08- Diciembre 2018",
+   "desc": "Año 18-Nro 08- Diciembre 2018",
+   "fisico": "ReporteLib122018.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib122018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 08- Diciembre 2018",
+   "desc": "Año 18-Nro 08- Diciembre 2018",
+   "fisico": "Boletin_Diciembre2018.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 11-Noviembre 2018",
+   "desc": "Año 18-Nro 11-Noviembre 2018",
+   "fisico": "ReporteLib112018.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib112018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 11-Noviembre 2018",
+   "desc": "Año 18-Nro 11-Noviembre 2018",
+   "fisico": "Boletin_Noviembre2018.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 10-Octubre 2018",
+   "desc": "Año 18-Nro 10-Octubre 2018",
+   "fisico": "ReporteLib102018.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 10-Octubre 2018",
+   "desc": "Año 18-Nro 10-Octubre 2018",
+   "fisico": "Boletin_Octubre2018.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 09-Septiembre 2018",
+   "desc": "Año 18-Nro 09-Septiembre 2018",
+   "fisico": "ReporteLib092018.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 09-Septiembre 2018",
+   "desc": "Año 18-Nro 09-Septiembre 2018",
+   "fisico": "Boletin_Septiembre2018.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Septiembre2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 08-Agosto 2018",
+   "desc": "Año 18-Nro 08-Agosto 2018",
+   "fisico": "ReporteLib082018.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 08-Agosto 2018",
+   "desc": "Año 18-Nro 08-Agosto 2018",
+   "fisico": "Boletin_Agosto2018.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 07-Julio 2018",
+   "desc": "Año 18-Nro 07-Julio 2018",
+   "fisico": "ReporteLib072018.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 07-Julio 2018",
+   "desc": "Año 18-Nro 07-Julio 2018",
+   "fisico": "Boletin_Julio2018.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 06-Junio 2018",
+   "desc": "Año 18-Nro 06-Junio 2018",
+   "fisico": "ReporteLib062018.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 06-Junio 2018",
+   "desc": "Año 18-Nro 06-Junio 2018",
+   "fisico": "Boletin_Junio2018.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 05-Mayo 2018",
+   "desc": "Año 18-Nro 05-Mayo 2018",
+   "fisico": "ReporteLib052018.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 05-Mayo 2018",
+   "desc": "Año 18-Nro 05-Mayo 2018",
+   "fisico": "Boletin_Mayo2018.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 04-Abril 2018",
+   "desc": "Año 18-Nro 04-Abril 2018",
+   "fisico": "ReporteLib042018.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 04-Abril 2018",
+   "desc": "Año 18-Nro 04-Abril 2018",
+   "fisico": "Boletin_Abril2018.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 03-Marzo 2018",
+   "desc": "Año 18-Nro 03-Marzo 2018",
+   "fisico": "ReporteLib032018.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 03-Marzo 2018",
+   "desc": "Año 18-Nro 03-Marzo 2018",
+   "fisico": "Boletin_Marzo2018.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 02-Febrero 2018",
+   "desc": "Año 18-Nro 02-Febrero 2018",
+   "fisico": "ReporteLib022018.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 02-Febrero 2018",
+   "desc": "Año 18-Nro 02-Febrero 2018",
+   "fisico": "Boletin_Febrero2018.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2018.xls"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 01-Enero 2018",
+   "desc": "Año 18-Nro 01-Enero 2018",
+   "fisico": "ReporteLib012018.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib012018.pdf"
+  },
+  {
+   "anio": "2018",
+   "nombre": "Año 18-Nro 01-Enero 2018",
+   "desc": "Año 18-Nro 01-Enero 2018",
+   "fisico": "Boletin_Enero2018.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2018.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 12-Diciembre 2017",
+   "desc": "Año 17-Nro 12-Diciembre 2017",
+   "fisico": "ReporteLib122017.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib122017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 12-Diciembre 2017",
+   "desc": "Año 17-Nro 12-Diciembre 2017",
+   "fisico": "Boletin_Diciembre2017.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 11-Noviembre 2017",
+   "desc": "Año 17-Nro 11-Noviembre 2017",
+   "fisico": "ReporteLib112017.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib112017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 11-Noviembre 2017",
+   "desc": "Año 17-Nro 11-Noviembre 2017",
+   "fisico": "Boletin_Noviembre2017.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 10-Octubre 2017",
+   "desc": "Año 17-Nro 10-Octubre 2017",
+   "fisico": "ReporteLib102017.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 10-Octubre 2017",
+   "desc": "Año 17-Nro 10-Octubre 2017",
+   "fisico": "Boletin_Octubre2017.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 09-Setiembre 2017",
+   "desc": "Año 17-Nro 09-Setiembre 2017",
+   "fisico": "ReporteLib092017.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 09-Setiembre 2017",
+   "desc": "Año 17-Nro 09-Setiembre 2017",
+   "fisico": "Boletin_Setiembre2017.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 08-Agosto 2017",
+   "desc": "Año 17-Nro 08-Agosto 2017",
+   "fisico": "ReporteLib082017.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 08-Agosto 2017",
+   "desc": "Año 17-Nro 08-Agosto 2017",
+   "fisico": "Boletin_Agosto2017.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 07-Julio 2017",
+   "desc": "Año 17-Nro 07-Julio 2017",
+   "fisico": "ReporteLib072017.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 07-Julio 2017",
+   "desc": "Año 17-Nro 07-Julio 2017",
+   "fisico": "Boletin_Julio2017.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 06-Junio 2017",
+   "desc": "Año 17-Nro 06-Junio 2017",
+   "fisico": "ReporteLib062017.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 06-Junio 2017",
+   "desc": "Año 17-Nro 06-Junio 2017",
+   "fisico": "Boletin_Junio2017.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 05-Mayo 2017",
+   "desc": "Año 17-Nro 05-Mayo 2017",
+   "fisico": "ReporteLib052017.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 05-Mayo 2017",
+   "desc": "Año 17-Nro 05-Mayo 2017",
+   "fisico": "Boletin_Mayo2017.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 04-Abril 2017",
+   "desc": "Año 17-Nro 04-Abril 2017",
+   "fisico": "ReporteLib042017.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 04-Abril 2017",
+   "desc": "Año 17-Nro 04-Abril 2017",
+   "fisico": "Boletin_Abril2017.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 03-Marzo 2017",
+   "desc": "Año 17-Nro 03-Marzo 2017",
+   "fisico": "ReporteLib032017.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032017.pdf"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 12-Diciembre 2016",
+   "desc": "Año 16-Nro 12-Diciembre 2016",
+   "fisico": "ReporteLib122016.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib122016.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 03-Marzro 2017",
+   "desc": "Año 17-Nro 03-Marzro 2017",
+   "fisico": "Boletin_Marzo2017.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2017.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 12-Diciembre 2016",
+   "desc": "Año 16-Nro 12-Diciembre 2016",
+   "fisico": "Boletin_Diciembre2016.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2016.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 02-Febrero 2017",
+   "desc": "Año 17-Nro 02-Febrero 2017",
+   "fisico": "ReporteLib022017.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 02-Febrerro 2017",
+   "desc": "Año 17-Nro 02-Febrerro 2017",
+   "fisico": "Boletin_Febrero2017.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2017.xls"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 01-Enero 2017",
+   "desc": "Año 17-Nro 01-Enero 2017",
+   "fisico": "ReporteLib012017.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib012017.pdf"
+  },
+  {
+   "anio": "2017",
+   "nombre": "Año 17-Nro 01-Enero 2017",
+   "desc": "Año 17-Nro 01-Enero 2017",
+   "fisico": "Boletin_Enero2017.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2017.xls"
+  },
+  {
+   "anio": "2016",
+   "nombre": "Año 16-Nro 11-Noviembre 2016",
+   "desc": "Año 16-Nro 11-Noviembre 2016",
+   "fisico": "ReporteLib112016.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib112016.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 03-Marzo 2015",
+   "desc": "Año 15-Nro 03-Marzo 2015",
+   "fisico": "Boletin_Marzo2015.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 02-Febrero 2015",
+   "desc": "Año 15-Nro 02-Febrero 2015",
+   "fisico": "Reportelib022015.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib022015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 02-Febrero 2015",
+   "desc": "Año 15-Nro 02-Febrero 2015",
+   "fisico": "Boletin_Febrero2015.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2015.xls"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 01-Enero 2015",
+   "desc": "Año 15-Nro 01-Enero 2015",
+   "fisico": "Reportelib012015.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib012015.pdf"
+  },
+  {
+   "anio": "2015",
+   "nombre": "Año 15-Nro 01-Enero 2015",
+   "desc": "Año 15-Nro 01-Enero 2015",
+   "fisico": "Boletin_Enero2015.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2015.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 08-Diciembre 2014",
+   "desc": "Año 14-Nro 08-Diciembre 2014",
+   "fisico": "Reportelib122014.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib122014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 08-Diciembre 2014",
+   "desc": "Año 14-Nro 08-Diciembre 2014",
+   "fisico": "Boletin_Diciembre2014.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 07-Noviembre 2014",
+   "desc": "Año 14-Nro 07-Noviembre 2014",
+   "fisico": "Reportelib112014.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib112014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 07-Noviembre 2014",
+   "desc": "Año 14-Nro 07-Noviembre 2014",
+   "fisico": "Boletin_Noviembre2014.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 08-Octubre 2014",
+   "desc": "Año 14-Nro 08-Octubre 2014",
+   "fisico": "Reportelib102014.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib102014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 08-Octubre 2014",
+   "desc": "Año 14-Nro 08-Octubre 2014",
+   "fisico": "Boletin_Octubre2014.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 07-Setiembre 2014",
+   "desc": "Año 14-Nro 07-Setiembre 2014",
+   "fisico": "Reportelib092014.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib092014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 07-Setiembre 2014",
+   "desc": "Año 14-Nro 07-Setiembre 2014",
+   "fisico": "Boletin_Setiembre2014.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 08-Agosto 2014",
+   "desc": "Año 14-Nro 08-Agosto 2014",
+   "fisico": "Reportelib082014.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib082014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 08-Agosto 2014",
+   "desc": "Año 14-Nro 08-Agosto 2014",
+   "fisico": "Boletin_Agosto2014.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 07-Julio 2014",
+   "desc": "Año 14-Nro 07-Julio 2014",
+   "fisico": "Reportelib072014.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib072014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 07-Julio 2014",
+   "desc": "Año 14-Nro 07-Julio 2014",
+   "fisico": "Boletin_Julio2014.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Junio 2014",
+   "desc": "Año 14-Nro 03-Junio 2014",
+   "fisico": "Reportelib062014.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib062014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Junio 2014",
+   "desc": "Año 14-Nro 03-Junio 2014",
+   "fisico": "Boletin_Junio2014.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Mayo 2014",
+   "desc": "Año 14-Nro 03-Mayo 2014",
+   "fisico": "Reportelib052014.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib052014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Mayo 2014",
+   "desc": "Año 14-Nro 03-Mayo 2014",
+   "fisico": "Boletin_Mayo2014.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Abril 2014",
+   "desc": "Año 14-Nro 03-Abril 2014",
+   "fisico": "Reportelib042014.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib042014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Abril 2014",
+   "desc": "Año 14-Nro 03-Abril 2014",
+   "fisico": "Boletin_Abril2014.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Marzo 2014",
+   "desc": "Año 14-Nro 03-Marzo 2014",
+   "fisico": "Reportelib032014.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib032014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 03-Marzo 2014",
+   "desc": "Año 14-Nro 03-Marzo 2014",
+   "fisico": "Boletin_Marzo2014.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 02-Febrero 2014",
+   "desc": "Año 14-Nro 02-Febrero 2014",
+   "fisico": "Reportelib022014.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib022014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 02-Febrero 2014",
+   "desc": "Año 14-Nro 02-Febrero 2014",
+   "fisico": "Boletin_Febrero2014.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2014.xls"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 01-Enero 2014",
+   "desc": "Año 14-Nro 01-Enero 2014",
+   "fisico": "Reportelib012014.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib012014.pdf"
+  },
+  {
+   "anio": "2014",
+   "nombre": "Año 14-Nro 01-Enero 2014",
+   "desc": "Año 14-Nro 01-Enero 2014",
+   "fisico": "Boletin_Enero2014.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2014.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Diciembre 2013",
+   "desc": "Año 13-Nro 01-Diciembre 2013",
+   "fisico": "Reportelib122013.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib122013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Diciembre 2013",
+   "desc": "Año 13-Nro 01-Diciembre 2013",
+   "fisico": "Boletin_Diciembre2013.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Noviembre 2013",
+   "desc": "Año 13-Nro 01-Noviembre 2013",
+   "fisico": "Reportelib112013.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib112013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Noviembre 2013",
+   "desc": "Año 13-Nro 01-Noviembre 2013",
+   "fisico": "Boletin_Noviembre2013.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Octubre 2013",
+   "desc": "Año 13-Nro 01-Octubre 2013",
+   "fisico": "Reportelib102013.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib102013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Octubre 2013",
+   "desc": "Año 13-Nro 01-Octubre 2013",
+   "fisico": "Boletin_Octubre2013.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Setiembre 2013",
+   "desc": "Año 13-Nro 01-Setiembre 2013",
+   "fisico": "Reportelib092013.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib092013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Setiembre 2013",
+   "desc": "Año 13-Nro 01-Setiembre 2013",
+   "fisico": "Boletin_Setiembre2013.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Agosto 2013",
+   "desc": "Año 13-Nro 01-Agosto 2013",
+   "fisico": "Reportelib082013.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib082013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Agosto 2013",
+   "desc": "Año 13-Nro 01-Agosto 2013",
+   "fisico": "Boletin_Agosto2013.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Julio 2013",
+   "desc": "Año 13-Nro 01-Julio 2013",
+   "fisico": "Reportelib072013.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib072013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Julio 2013",
+   "desc": "Año 13-Nro 01-Julio 2013",
+   "fisico": "Boletin_Julio2013.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Junio 2013",
+   "desc": "Año 13-Nro 01-Junio 2013",
+   "fisico": "Reportelib062013.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib062013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Junio 2013",
+   "desc": "Año 13-Nro 01-Junio 2013",
+   "fisico": "Boletin_Junio2013.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Mayo 2013",
+   "desc": "Año 13-Nro 01-Mayo 2013",
+   "fisico": "Reportelib052013.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib052013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Mayo 2013",
+   "desc": "Año 13-Nro 01-Mayo 2013",
+   "fisico": "Boletin_Mayo2013.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Abril 2013",
+   "desc": "Año 13-Nro 01-Abril 2013",
+   "fisico": "Reportelib042013.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib042013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Abril 2013",
+   "desc": "Año 13-Nro 01-Abril 2013",
+   "fisico": "Boletin_Abril2013.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Marzo 2013",
+   "desc": "Año 13-Nro 01-Marzo 2013",
+   "fisico": "Reportelib032013.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib032013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Marzo 2013",
+   "desc": "Año 13-Nro 01-Marzo 2013",
+   "fisico": "Boletin_Marzo2013.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Febrero 2013",
+   "desc": "Año 13-Nro 01-Febrero 2013",
+   "fisico": "Reportelib022013.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib022013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Febrero 2013",
+   "desc": "Año 13-Nro 01-Febrero 2013",
+   "fisico": "Boletin_Febrero2013.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2013.xls"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Enero 2013",
+   "desc": "Año 13-Nro 01-Enero 2013",
+   "fisico": "Reportelib012013.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib012013.pdf"
+  },
+  {
+   "anio": "2013",
+   "nombre": "Año 13-Nro 01-Enero 2013",
+   "desc": "Año 13-Nro 01-Enero 2013",
+   "fisico": "Boletin_Enero2013.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2013.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 10-Diciembre 2012",
+   "desc": "Año 12-Nro 10-Diciembre 2012",
+   "fisico": "Reportelib122012.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib122012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 10-Diciembre 2012",
+   "desc": "Año 12-Nro 10-Diciembre 2012",
+   "fisico": "Boletin_Diciembre2012.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 10-Noviembre 2012",
+   "desc": "Año 12-Nro 10-Noviembre 2012",
+   "fisico": "Reportelib112012.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib112012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 10-Noviembre 2012",
+   "desc": "Año 12-Nro 10-Noviembre 2012",
+   "fisico": "Boletin_Noviembre2012.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 10-Octubre 2012",
+   "desc": "Año 12-Nro 10-Octubre 2012",
+   "fisico": "Reportelib102012.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib102012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 10-Octubre 2012",
+   "desc": "Año 12-Nro 10-Octubre 2012",
+   "fisico": "Boletin_Octubre2012.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 09-Setiembre 2012",
+   "desc": "Año 12-Nro 09-Setiembre 2012",
+   "fisico": "Reportelib092012.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib092012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 09-Setiembre 2012",
+   "desc": "Año 12-Nro 09-Setiembre 2012",
+   "fisico": "Boletin_Setiembre2012.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 08-Agosto 2012",
+   "desc": "Año 12-Nro 08-Agosto 2012",
+   "fisico": "Reportelib082012.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib082012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 08-Agosto 2012",
+   "desc": "Año 12-Nro 08-Agosto 2012",
+   "fisico": "Boletin_Agosto2012.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 07-Julio 2012",
+   "desc": "Año 12-Nro 07-Julio 2012",
+   "fisico": "Reportelib072012.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib072012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 07-Julio 2012",
+   "desc": "Año 12-Nro 07-Julio 2012",
+   "fisico": "Boletin_Julio2012.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 06-Junio 2012",
+   "desc": "Año 12-Nro 06-Junio 2012",
+   "fisico": "Reportelib062012.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib062012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 06-Junio 2012",
+   "desc": "Año 12-Nro 06-Junio 2012",
+   "fisico": "Boletin_Junio2012.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 05-Mayo 2012",
+   "desc": "Año 12-Nro 05-Mayo 2012",
+   "fisico": "Reportelib052012.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib052012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 05-Mayo 2012",
+   "desc": "Año 12-Nro 05-Mayo 2012",
+   "fisico": "Boletin_Mayo2012.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 04-Abril 2012",
+   "desc": "Año 12-Nro 04-Abril 2012",
+   "fisico": "Reportelib042012.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib042012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 04-Abril 2012",
+   "desc": "Año 12-Nro 04-Abril 2012",
+   "fisico": "Boletin_Abril2012.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 03-Marzo 2012",
+   "desc": "Año 12-Nro 03-Marzo 2012",
+   "fisico": "Reportelib032012.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib032012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 03-Marzo 2012",
+   "desc": "Año 12-Nro 03-Marzo 2012",
+   "fisico": "Boletin_Marzo2012.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 02-Febrero 2012",
+   "desc": "Año 12-Nro 02-Febrero 2012",
+   "fisico": "Reportelib022012.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib022012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 02-Febrero 2012",
+   "desc": "Año 12-Nro 02-Febrero 2012",
+   "fisico": "Boletin_Febrero2012.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2012.xls"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 01-Enero 2012",
+   "desc": "Año 12-Nro 01-Enero 2012",
+   "fisico": "Reportelib012012.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib012012.pdf"
+  },
+  {
+   "anio": "2012",
+   "nombre": "Año 12-Nro 01-Enero 2012",
+   "desc": "Año 12-Nro 01-Enero 2012",
+   "fisico": "Boletin_Enero2012.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2012.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 11-Diciembre 2011",
+   "desc": "Año 11-Nro 11-Diciembre 2011",
+   "fisico": "Reportelib122011.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib122011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 11-Diciembre 2011",
+   "desc": "Año 11-Nro 11-Diciembre 2011",
+   "fisico": "Boletin_Diciembre2011.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 11-Noviembre 2011",
+   "desc": "Año 11-Nro 11-Noviembre 2011",
+   "fisico": "Reportelib112011.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib112011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 11-Noviembre 2011",
+   "desc": "Año 11-Nro 11-Noviembre 2011",
+   "fisico": "Boletin_Noviembre2011.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 10-Octubre 2011",
+   "desc": "Año 11-Nro 10-Octubre 2011",
+   "fisico": "Reportelib102011.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib102011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 10-Octubre 2011",
+   "desc": "Año 11-Nro 10-Octubre 2011",
+   "fisico": "Boletin_Octubre2011.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 09-Setiembre 2011",
+   "desc": "Año 11-Nro 09-Setiembre 2011",
+   "fisico": "Reportelib092011.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib092011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 09-Setiembre 2011",
+   "desc": "Año 11-Nro 09-Setiembre 2011",
+   "fisico": "Boletin_Setiembre2011.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 08-Agosto 2011. (Actualizado en setiembre)",
+   "desc": "Año 11-Nro 08-Agosto 2011. (Actualizado en setiembre)",
+   "fisico": "Reportelib082011.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib082011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 08-Agosto 2011. (Actualizado en setiembre)",
+   "desc": "Año 11-Nro 08-Agosto 2011. (Actualizado en setiembre)",
+   "fisico": "Boletin_Agosto2011.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 07-Julio 2011. (Actualizado en setiembre)",
+   "desc": "Año 11-Nro 07-Julio 2011. (Actualizado en setiembre)",
+   "fisico": "Reportelib072011.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib072011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 07-Julio 2011. (Actualizado en setiembre)",
+   "desc": "Año 11-Nro 07-Julio 2011. (Actualizado en setiembre)",
+   "fisico": "Boletin_Julio2011.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 06-Junio 2011",
+   "desc": "Año 11-Nro 06-Junio 2011",
+   "fisico": "Reportelib062011.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib062011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 06-Junio 2011",
+   "desc": "Año 11-Nro 06-Junio 2011",
+   "fisico": "Boletin_Junio2011.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 05-Mayo 2011",
+   "desc": "Año 11-Nro 05-Mayo 2011",
+   "fisico": "Reportelib052011.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib052011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 05 -Mayo 2011",
+   "desc": "Año 11-Nro 05 -Mayo 2011",
+   "fisico": "Boletin_Mayo2011.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 04 - Abril 2011",
+   "desc": "Año 11-Nro 04 - Abril 2011",
+   "fisico": "Reportelib042011.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib042011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 04 - Abril 2011",
+   "desc": "Año 11-Nro 04 - Abril 2011",
+   "fisico": "Boletin_Abril2011.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 03 - Marzo 2011",
+   "desc": "Año 11-Nro 03 - Marzo 2011",
+   "fisico": "Reportelib032011.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib032011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 03 - Marzo 2011",
+   "desc": "Año 11-Nro 03 - Marzo 2011",
+   "fisico": "Boletin_Marzo2011.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 02 - Febrero 2011",
+   "desc": "Año 11-Nro 02 - Febrero 2011",
+   "fisico": "Reportelib022011.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib022011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 02 - Febrero 2011",
+   "desc": "Año 11-Nro 02 - Febrero 2011",
+   "fisico": "Boletin_Febrero2011.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2011.xls"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 01 - Enero 2011",
+   "desc": "Año 11-Nro 01 - Enero 2011",
+   "fisico": "Reportelib012011.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib012011.pdf"
+  },
+  {
+   "anio": "2011",
+   "nombre": "Año 11-Nro 01 - Enero 2011",
+   "desc": "Año 11-Nro 01 - Enero 2011",
+   "fisico": "Boletin_Enero2011.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2011.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 12 - Diciembre 2010",
+   "desc": "Año 10-Nro 12 - Diciembre 2010",
+   "fisico": "Reportelib122010.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib122010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 12 - Diciembre 2010",
+   "desc": "Año 10-Nro 12 - Diciembre 2010",
+   "fisico": "Boletin_Diciembre2010.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 11 - Noviembre 2010",
+   "desc": "Año 10-Nro 11 - Noviembre 2010",
+   "fisico": "Reportelib112010.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib112010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 11 - Noviembre 2010",
+   "desc": "Año 10-Nro 11 - Noviembre 2010",
+   "fisico": "Boletin_Noviembre2010.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 10 - Octubre 2010",
+   "desc": "Año 10-Nro 10 - Octubre 2010",
+   "fisico": "Reportelib102010.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib102010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 10 - Octubre 2010",
+   "desc": "Año 10-Nro 10 - Octubre 2010",
+   "fisico": "Boletin_Octubre2010.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 09 - Setiembre 2010",
+   "desc": "Año 10-Nro 09 - Setiembre 2010",
+   "fisico": "Reportelib092010.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib092010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 09 - Setiembre 2010",
+   "desc": "Año 10-Nro 09 - Setiembre 2010",
+   "fisico": "Boletin_Setiembre2010.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 08 - Agosto 2010",
+   "desc": "Año 10-Nro 08 - Agosto 2010",
+   "fisico": "Reportelib082010.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib082010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 08 - Agosto 2010",
+   "desc": "Año 10-Nro 08 - Agosto 2010",
+   "fisico": "Boletin_Agosto2010.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 07 - Julio 2010",
+   "desc": "Año 10-Nro 07 - Julio 2010",
+   "fisico": "Reportelib072010.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib072010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 07 - Julio 2010",
+   "desc": "Año 10-Nro 07 - Julio 2010",
+   "fisico": "Boletin_Julio_2010.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio_2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 06 - Junio 2010",
+   "desc": "Año 10-Nro 06 - Junio 2010",
+   "fisico": "Reportelib062010.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib062010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 06 - Junio 2010",
+   "desc": "Año 10-Nro 06 - Junio 2010",
+   "fisico": "Boletin_Junio2010.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 05 - Mayo 2010",
+   "desc": "Año 10-Nro 05 - Mayo 2010",
+   "fisico": "Reportelib052010.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib052010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 05 - Mayo 2010",
+   "desc": "Año 10-Nro 05 - Mayo 2010",
+   "fisico": "Boletin_MAY_2010.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_MAY_2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 04 - Abril 2010",
+   "desc": "Año 10-Nro 04 - Abril 2010",
+   "fisico": "Reportelib042010.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib042010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 04 - Abril 2010",
+   "desc": "Año 10-Nro 04 - Abril 2010",
+   "fisico": "Boletin_ABR_2010.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_ABR_2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 03 - Marzo 2010",
+   "desc": "Año 10-Nro 03 - Marzo 2010",
+   "fisico": "Repolib032010.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib032010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 03 - Marzo 2010",
+   "desc": "Año 10-Nro 03 - Marzo 2010",
+   "fisico": "Boletin_Marzo_2010.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo_2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 02 - Febrero 2010",
+   "desc": "Año 10-Nro 02 - Febrero 2010",
+   "fisico": "Repolib022010.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib022010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 02 - Febrero 2010",
+   "desc": "Año 10-Nro 02 - Febrero 2010",
+   "fisico": "Boletin_Febrero_2010.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero_2010.xls"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 01 - Enero 2010",
+   "desc": "Año 10-Nro 01 - Enero 2010",
+   "fisico": "RepoLib012010.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib012010.pdf"
+  },
+  {
+   "anio": "2010",
+   "nombre": "Año 10-Nro 01 - Enero 2010",
+   "desc": "Año 10-Nro 01 - Enero 2010",
+   "fisico": "Boletin_Enero_2010.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero_2010.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 12 - Diciembre 2009",
+   "desc": "Año 9-Nro 12 - Diciembre 2009",
+   "fisico": "Reportelib0912.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib0912.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 12 - Diciembre 2009",
+   "desc": "Año 9-Nro 12 - Diciembre 2009",
+   "fisico": "Boletin_Diciembre_2009.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre_2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 11 - Noviembre 2009",
+   "desc": "Año 9-Nro 11 - Noviembre 2009",
+   "fisico": "Reportelib0909.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib0909.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 11 - Noviembre 2009",
+   "desc": "Año 9-Nro 11 - Noviembre 2009",
+   "fisico": "Boletin_Noviembre2009.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 10 - Octubre 2009",
+   "desc": "Año 9-Nro 10 - Octubre 2009",
+   "fisico": "Repolib0910.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0910.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 10 - Octubre 2009",
+   "desc": "Año 9-Nro 10 - Octubre 2009",
+   "fisico": "Boletin_Octubre 2009.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre 2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 09 - Septiembre 2009",
+   "desc": "Año 9-Nro 09 - Septiembre 2009",
+   "fisico": "Repolib0909.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0909.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 09 - Septiembre 2009",
+   "desc": "Año 9-Nro 09 - Septiembre 2009",
+   "fisico": "Boletin_SEPT_2009.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_SEPT_2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 08 - Agosto 2009",
+   "desc": "Año 9-Nro 08 - Agosto 2009",
+   "fisico": "Reportelib0908.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Reportelib0908.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 08 - Agosto 2009",
+   "desc": "Año 9-Nro 08 - Agosto 2009",
+   "fisico": "Boletin_Agosto_2009.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto_2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 07 - Julio 2009",
+   "desc": "Año 9-Nro 07 - Julio 2009",
+   "fisico": "Repolib0907.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0907.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 07 - Julio 2009",
+   "desc": "Año 9-Nro 07 - Julio 2009",
+   "fisico": "Boletín_Julio 2009.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Julio 2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 06 - Junio 2009",
+   "desc": "Año 9-Nro 06 - Junio 2009",
+   "fisico": "Repolib0906.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0906.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 06 - Junio 2009",
+   "desc": "Año 9-Nro 06 - Junio 2009",
+   "fisico": "Boletín_Junio 2009.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Junio 2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 05 - Mayo 2009",
+   "desc": "Año 9-Nro 05 - Mayo 2009",
+   "fisico": "Repolib0905.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0905.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 05 - Mayo 2009",
+   "desc": "Año 9-Nro 05 - Mayo 2009",
+   "fisico": "Boletín_Mayo 2009.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Mayo 2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 04 - Abril 2009",
+   "desc": "Año 9-Nro 04 - Abril 2009",
+   "fisico": "Repolib0904.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0904.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 04 - Abril 2009",
+   "desc": "Año 9-Nro 04 - Abril 2009",
+   "fisico": "Boletin_Abril_2009.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril_2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 03 - Marzo 2009",
+   "desc": "Año 9-Nro 03 - Marzo 2009",
+   "fisico": "Repolib0903.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0903.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 03 - Marzo 2009",
+   "desc": "Año 9-Nro 03 - Marzo 2009",
+   "fisico": "Boletin_Marzo_2009.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo_2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 02 -Febrero 2009",
+   "desc": "Año 9-Nro 02 -Febrero 2009",
+   "fisico": "Repolob0902.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolob0902.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 02 -Febrero 2009",
+   "desc": "Año 9-Nro 02 -Febrero 2009",
+   "fisico": "Boletin_Febrero 2009.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero 2009.xls"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 01 -Enero 2009",
+   "desc": "Año 9-Nro 01 -Enero 2009",
+   "fisico": "Repolib0901.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0901.pdf"
+  },
+  {
+   "anio": "2009",
+   "nombre": "Año 9-Nro 01 -Enero 2009",
+   "desc": "Año 9-Nro 01 -Enero 2009",
+   "fisico": "Boletín_Noviembre 2008.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Noviembre 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 12 -Diciembre 2008",
+   "desc": "Año 8-Nro 12 -Diciembre 2008",
+   "fisico": "Repolib0812.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0812.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 12 -Diciembre 2008",
+   "desc": "Año 8-Nro 12 -Diciembre 2008",
+   "fisico": "Boletín_Octubre 2008.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Octubre 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 11 - Noviembre 2008",
+   "desc": "Año 8-Nro 11 - Noviembre 2008",
+   "fisico": "Repolib0811.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0811.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 11 - Noviembre 2008",
+   "desc": "Año 8-Nro 11 - Noviembre 2008",
+   "fisico": "Boletín_Setiembre 2008.xls",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Setiembre 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 10 - Octubre 2008",
+   "desc": "Año 8-Nro 10 - Octubre 2008",
+   "fisico": "Repolib0810.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0810.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 10 - Octubre 2008",
+   "desc": "Año 8-Nro 10 - Octubre 2008",
+   "fisico": "Boletín_agosto 2008.xls",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_agosto 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 09 - Septiembre 2008",
+   "desc": "Año 8-Nro 09 - Septiembre 2008",
+   "fisico": "Repolib0809.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0809.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 09 - Septiembre 2008",
+   "desc": "Año 8-Nro 09 - Septiembre 2008",
+   "fisico": "Boletín_Julio 2008.xls",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Julio 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 08 - Agosto 2008",
+   "desc": "Año 8-Nro 08 - Agosto 2008",
+   "fisico": "Repolib0808.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Repolib0808.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 08 - Agosto 2008",
+   "desc": "Año 8-Nro 08 - Agosto 2008",
+   "fisico": "Boletín_Junio 2008.xls",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Junio 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 07 - Julio 2008",
+   "desc": "Año 8-Nro 07 - Julio 2008",
+   "fisico": "RepoLib0807.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0807.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 07 - Julio 2008",
+   "desc": "Año 8-Nro 07 - Julio 2008",
+   "fisico": "Boletín_Mayo 2008.xls",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Mayo 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 06 - Junio 2008",
+   "desc": "Año 8-Nro 06 - Junio 2008",
+   "fisico": "RepoLib0806.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0806.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 06 - Junio 2008",
+   "desc": "Año 8-Nro 06 - Junio 2008",
+   "fisico": "Boletín_Abril 2008.xls",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Abril 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 05 - Mayo 2008",
+   "desc": "Año 8-Nro 05 - Mayo 2008",
+   "fisico": "RepoLib0805.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0805.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 05 - Mayo 2008",
+   "desc": "Año 8-Nro 05 - Mayo 2008",
+   "fisico": "Boletín_Marzo 2008.xls",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Marzo 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 04 - Abril 2008",
+   "desc": "Año 8-Nro 04 - Abril 2008",
+   "fisico": "RepoLib0804.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0804.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 04 - Abril 2008",
+   "desc": "Año 8-Nro 04 - Abril 2008",
+   "fisico": "Boletín_Febrero 2008.xls",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Febrero 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año8-Nro 03 - Marzo 2008",
+   "desc": "Año8-Nro 03 - Marzo 2008",
+   "fisico": "RepoLib0803.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0803.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año8-Nro 03 - Marzo 2008",
+   "desc": "Año8-Nro 03 - Marzo 2008",
+   "fisico": "Boletín_Enero 2008.xls",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Enero 2008.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año8-Nro 02 - Febrero 2008",
+   "desc": "Año8-Nro 02 - Febrero 2008",
+   "fisico": "RepoLib0802.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0802.pdf"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año8-Nro 02 - Febrero 2008",
+   "desc": "Año8-Nro 02 - Febrero 2008",
+   "fisico": "Boletín_Diciembre 2007.xls",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Diciembre 2007.xls"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 01 - Enero 2008",
+   "desc": "Año 8-Nro 01 - Enero 2008",
+   "fisico": "RepoLib0801.PDF",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0801.PDF"
+  },
+  {
+   "anio": "2008",
+   "nombre": "Año 8-Nro 01 - Enero 2008",
+   "desc": "Año 8-Nro 01 - Enero 2008",
+   "fisico": "Boletín_Noviembre 2007.xls",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletín_Noviembre 2007.xls"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 12 - Diciembre 2007",
+   "desc": "Año 7-Nro 12 - Diciembre 2007",
+   "fisico": "RepoLib0712.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0712.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 11 - Noviembre 2007",
+   "desc": "Año 7-Nro 11 - Noviembre 2007",
+   "fisico": "RepoLib0711.pdf",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0711.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 10 - Octubre 2007",
+   "desc": "Año 7-Nro 10 - Octubre 2007",
+   "fisico": "RepoLib0710.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0710.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 09 - Septiembre 2007",
+   "desc": "Año 7-Nro 09 - Septiembre 2007",
+   "fisico": "RepoLib0709.pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0709.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 08 - Agosto 2007",
+   "desc": "Año 7-Nro 08 - Agosto 2007",
+   "fisico": "RepoLib0708.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0708.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 07 - Julio 2007",
+   "desc": "Año 7-Nro 07 - Julio 2007",
+   "fisico": "RepoLib0707.pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0707.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 06 - Junio 2007",
+   "desc": "Año 7-Nro 06 - Junio 2007",
+   "fisico": "RepoLib0706.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0706.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 05 - Mayo 2007",
+   "desc": "Año 7-Nro 05 - Mayo 2007",
+   "fisico": "RepoLib0705.pdf",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0705.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 04 - Abril 2007",
+   "desc": "Año 7-Nro 04 - Abril 2007",
+   "fisico": "RepoLib0704.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0704.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año7-Nro 03 - Marzo 2007",
+   "desc": "Año7-Nro 03 - Marzo 2007",
+   "fisico": "RepoLib0703.pdf",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0703.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año7-Nro 02 - Febrero 2007",
+   "desc": "Año7-Nro 02 - Febrero 2007",
+   "fisico": "RepoLib0702.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0702.pdf"
+  },
+  {
+   "anio": "2007",
+   "nombre": "Año 7-Nro 01 - Enero 2007",
+   "desc": "Año 7-Nro 01 - Enero 2007",
+   "fisico": "RepoLib0701.pdf",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0701.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 10 - Diciembre 2006",
+   "desc": "Año 6-Nro 10 - Diciembre 2006",
+   "fisico": "RepoLib0612.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0612.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 09 - Noviembre 2006",
+   "desc": "Año 6-Nro 09 - Noviembre 2006",
+   "fisico": "RepoLib0611.pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0611.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 08 - Octubre 2006",
+   "desc": "Año 6-Nro 08 - Octubre 2006",
+   "fisico": "RepoLib0610.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0610.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 07 - Septiembre 2006",
+   "desc": "Año 6-Nro 07 - Septiembre 2006",
+   "fisico": "RepoLib0609.pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0609.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 06 - Agosto 2006",
+   "desc": "Año 6-Nro 06 - Agosto 2006",
+   "fisico": "RepoLib0608.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0608.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 05 - Julio 2006",
+   "desc": "Año 6-Nro 05 - Julio 2006",
+   "fisico": "RepoLib0607.pdf",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0607.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 04 - Junio 2006",
+   "desc": "Año 6-Nro 04 - Junio 2006",
+   "fisico": "RepoLib0606.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0606.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 03 - Marzo-Mayo 2006",
+   "desc": "Año 6-Nro 03 - Marzo-Mayo 2006",
+   "fisico": "RepoLib0603-05.pdf",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0603-05.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 02 - Febrero 2006",
+   "desc": "Año 6-Nro 02 - Febrero 2006",
+   "fisico": "RepoLib0602.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0602.pdf"
+  },
+  {
+   "anio": "2006",
+   "nombre": "Año 6-Nro 01 - Enero 2006",
+   "desc": "Año 6-Nro 01 - Enero 2006",
+   "fisico": "RepoLib0601.pdf",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0601.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 12 - Diciembre 2005",
+   "desc": "Año 5-Nro 12 - Diciembre 2005",
+   "fisico": "RepoLib0512.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0512.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 11 - Noviembre 2005",
+   "desc": "Año 5-Nro 11 - Noviembre 2005",
+   "fisico": "RepoLib0511.pdf",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0511.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 10 - Octubre 2005",
+   "desc": "Año 5-Nro 10 - Octubre 2005",
+   "fisico": "RepoLib0510.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0510.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 09 - Septiembre 2005",
+   "desc": "Año 5-Nro 09 - Septiembre 2005",
+   "fisico": "RepoLib0509.pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0509.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 08 - Agosto 2005",
+   "desc": "Año 5-Nro 08 - Agosto 2005",
+   "fisico": "RepoLib0508.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0508.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 07 - Julio 2005",
+   "desc": "Año 5-Nro 07 - Julio 2005",
+   "fisico": "RepoLib0507.pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0507.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 06 - Junio 2005",
+   "desc": "Año 5-Nro 06 - Junio 2005",
+   "fisico": "RepoLib0506.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0506.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 05 - Mayo 2005",
+   "desc": "Año 5-Nro 05 - Mayo 2005",
+   "fisico": "RepoLib0505.pdf",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0505.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 04 - Abril 2005",
+   "desc": "Año 5-Nro 04 - Abril 2005",
+   "fisico": "RepoLib0504.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0504.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 03 - Marzo 2005",
+   "desc": "Año 5-Nro 03 - Marzo 2005",
+   "fisico": "RepoLib0503.pdf",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0503.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 02 - Febrero 2005",
+   "desc": "Año 5-Nro 02 - Febrero 2005",
+   "fisico": "RepoLib0502.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0502.pdf"
+  },
+  {
+   "anio": "2005",
+   "nombre": "Año 5-Nro 01 - Enero 2005",
+   "desc": "Año 5-Nro 01 - Enero 2005",
+   "fisico": "RepoLib0501.pdf",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0501.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 12 - Diciembre 2004",
+   "desc": "Año 4-Nro 12 - Diciembre 2004",
+   "fisico": "RepoLib0412.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0412.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 11 - Noviembre 2004",
+   "desc": "Año 4-Nro 11 - Noviembre 2004",
+   "fisico": "RepoLib0411.pdf",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0411.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 10 - Octubre 2004",
+   "desc": "Año 4-Nro 10 - Octubre 2004",
+   "fisico": "RepoLib0410.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0410.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 9 - Septiembre 2004",
+   "desc": "Año 4-Nro 9 - Septiembre 2004",
+   "fisico": "RepoLib0409.pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0409.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 8 - Agosto 2004",
+   "desc": "Año 4-Nro 8 - Agosto 2004",
+   "fisico": "RepoLib0408.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0408.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 7 - Julio 2004",
+   "desc": "Año 4-Nro 7 - Julio 2004",
+   "fisico": "RepoLib0407.pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0407.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 6 - Junio 2004",
+   "desc": "Año 4-Nro 6 - Junio 2004",
+   "fisico": "RepoLib0406.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0406.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 5 - Mayo 2004",
+   "desc": "Año 4-Nro 5 - Mayo 2004",
+   "fisico": "RepoLib0405.pdf",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0405.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 4 - Abril 2004",
+   "desc": "Año 4-Nro 4 - Abril 2004",
+   "fisico": "RepoLib0404.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0404.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 3 - Marzo 2004",
+   "desc": "Año 4-Nro 3 - Marzo 2004",
+   "fisico": "RepoLib0403.pdf",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0403.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 2 - Febrero 2004",
+   "desc": "Año 4-Nro 2 - Febrero 2004",
+   "fisico": "RepoLib0402.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0402.pdf"
+  },
+  {
+   "anio": "2004",
+   "nombre": "Año 4-Nro 1 - Enero 2004",
+   "desc": "Año 4-Nro 1 - Enero 2004",
+   "fisico": "RepoLib0401.pdf",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0401.pdf"
+  },
+  {
+   "anio": "2003",
+   "nombre": "Año 3-Nro 6 - Diciembre 2003",
+   "desc": "Año 3-Nro 6 - Diciembre 2003",
+   "fisico": "RepoLib0306.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0306.pdf"
+  },
+  {
+   "anio": "2003",
+   "nombre": "Año 3-Nro 5 - Noviembre 2003",
+   "desc": "Año 3-Nro 5 - Noviembre 2003",
+   "fisico": "RepoLib0305.pdf",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0305.pdf"
+  },
+  {
+   "anio": "2003",
+   "nombre": "Año 3-Nro 4 - Octubre 2003",
+   "desc": "Año 3-Nro 4 - Octubre 2003",
+   "fisico": "RepoLib0304.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0304.pdf"
+  },
+  {
+   "anio": "2003",
+   "nombre": "Año 3-Nro 3 - Septiembre 2003",
+   "desc": "Año 3-Nro 3 - Septiembre 2003",
+   "fisico": "RepoLib0303.pdf",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0303.pdf"
+  },
+  {
+   "anio": "2003",
+   "nombre": "Año 3-Nro 2 - Agosto 2003",
+   "desc": "Año 3-Nro 2 - Agosto 2003",
+   "fisico": "RepoLib0302.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0302.pdf"
+  },
+  {
+   "anio": "2003",
+   "nombre": "Año 3-Nro 1 - Marzo 2003 ",
+   "desc": "Año 3-Nro 1 - Marzo 2003 ",
+   "fisico": "RepoLib0301.pdf",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0301.pdf"
+  },
+  {
+   "anio": "2001",
+   "nombre": "Año 1-Nro 2 - Diciembre 2001",
+   "desc": "Año 1-Nro 2 - Diciembre 2001",
+   "fisico": "RepoLib0102.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0102.pdf"
+  },
+  {
+   "anio": "2001",
+   "nombre": "Año 1-Nro 1 - Julio 2001",
+   "desc": "Año 1-Nro 1 - Julio 2001",
+   "fisico": "RepoLib0101.pdf",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/RepoLib0101.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 09-setiembre 2019",
+   "desc": "INFORMACIÓN JULIO 2019",
+   "fisico": "Boletin_Setiembre2019.xlsx",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2019.xlsx"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 09-setiembre 2019",
+   "desc": "INFORMACIÓN JULIO 2019",
+   "fisico": "ReporteLib092019.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 10-octubre 2019",
+   "desc": "INFORMACIÓN AGOSTO 2019",
+   "fisico": "ReporteLib102019.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 10-octubre 2019",
+   "desc": "INFORMACIÓN AGOSTO 2019",
+   "fisico": "Boletin_Octubre2019.xlsx",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2019.xlsx"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 11-noviembre 2019",
+   "desc": "INFORMACIÓN SETIEMBRE 2019",
+   "fisico": "Boletin_Noviembre2019.xlsx",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2019.xlsx"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 11-noviembre 2019",
+   "desc": "INFORMACIÓN SETIEMBRE 2019",
+   "fisico": "ReporteLib112019.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib112019.pdf"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19-Nro 12-diciembre 2019",
+   "desc": "INFORMACIÓN OCTUBRE 2019",
+   "fisico": null,
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/None"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19 - Nro.12 - Diciembre 2019",
+   "desc": "INFORMACIÓN OCTUBRE 2019",
+   "fisico": "Boletin_Diciembre2019.xls",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2019.xls"
+  },
+  {
+   "anio": "2019",
+   "nombre": "Año 19 - Nro.12 - Diciembre 2019",
+   "desc": "INFORMACIÓN OCTUBRE 2019",
+   "fisico": "ReporteLib122019.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib122019.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 02-Febrero 2020",
+   "desc": "INFORMACIÓN DICIEMBRE 2019",
+   "fisico": "ReporteLib022020.pdf",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 11-Noviembre 2020",
+   "desc": "INFORMACIÓN SETIEMBRE 2020",
+   "fisico": "Boletin_Noviembre2020.xls",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 11-Noviembre 2020",
+   "desc": "INFORMACIÓN SETIEMBRE 2020",
+   "fisico": "Año 20-Nro 11-Noviembre 2020.pdf",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 20-Nro 11-Noviembre 2020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 12-Diciembre 2020",
+   "desc": "INFORMACIÓN OCTUBRE 2020",
+   "fisico": "Año 20-Nro 12-Diciembre 2020.xlsx",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 20-Nro 12-Diciembre 2020.xlsx"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 12-Diciembre 2020",
+   "desc": "INFORMACIÓN OCTUBRE 2020",
+   "fisico": "Año 20-Nro 12-Diciembre 2020.pdf",
+   "orden": 250,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 20-Nro 12-Diciembre 2020.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 07-Julio 2021",
+   "desc": " INFORMACIÓN MAYO 2021",
+   "fisico": "Boletin_Julio2021_actualiz-01122021.xlsx",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 – Nro 09 - Setiembre 2022",
+   "desc": "INFORMACIÓN JULIO 2022",
+   "fisico": "Año 22–Nro 09-Setiembre 2022 .xlsx",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 09-Setiembre 2022 .xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22-Nro 09-Setiembre 2022 ",
+   "desc": "INFORMACIÓN JULIO 2022",
+   "fisico": "Año 22–Nro 09-Setiembre 2022 .pdf",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 09-Setiembre 2022 .pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22– Nro 10 - Octubre 2022 ",
+   "desc": "INFORMACIÓN AGOSTO 2022",
+   "fisico": "Año 22–Nro 10-Octubre 2022 .xlsx",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 10-Octubre 2022 .xlsx"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 08-Agosto 2020",
+   "desc": "INFORMACIÓN JUNIO 2020",
+   "fisico": "Boletin_Agosto2020.xls",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 08-Agosto 2020",
+   "desc": "INFORMACIÓN JUNIO 2020",
+   "fisico": "ReporteLib082020.pdf",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082020.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 01-Enero 2021",
+   "desc": "INFORMACIÓN NOVIEMBRE 2020",
+   "fisico": "ReporteLib012021.pdf",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib012021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 02-Febrero 2021",
+   "desc": "INFORMACIÓN DICIEMBRE 2020",
+   "fisico": "Boletin_Febrero2021.xlsx",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 02-Febrero 2021",
+   "desc": "INFORMACIÓN DICIEMBRE 2020",
+   "fisico": "ReporteLib022021.pdf",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 12-Diciembre 2021",
+   "desc": "INFORMACIÓN OCTUBRE 2021",
+   "fisico": "Boletin_Diciembre2021__actualiz-12122021.xlsx",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Diciembre2021__actualiz-12122021.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22– Nro 10 - Octubre 2022 ",
+   "desc": "INFORMACIÓN AGOSTO 2022",
+   "fisico": "Año 22–Nro 10-Octubre 2022 .pdf",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 10-Octubre 2022 .pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 01-Enero 2020",
+   "desc": "INFORMACIÓN NOVIEMBRE 2019",
+   "fisico": "Boletin_Enero2020.xls",
+   "orden": 20,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 03-Marzo 2020",
+   "desc": "INFORMACIÓN ENERO 2020",
+   "fisico": "Boletin_Marzo2020.xls",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 03-Marzo 2020",
+   "desc": "INFORMACIÓN ENERO 2020",
+   "fisico": "ReporteLib032020.pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 04-Abril 2020",
+   "desc": "INFORMACIÓN FEBRERO 2020",
+   "fisico": "Boletin_Abril2020.xls",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2020.xls"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 08-Agosto 2021",
+   "desc": "INFORMACIÓN JUNIO 2021",
+   "fisico": "ReporteLib082021_actualiz-01122021.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 09-Setiembre 2021",
+   "desc": "INFORMACIÓN JULIO 2021",
+   "fisico": "Boletin_Setiembre2021_actualiz-01122021.xlsx",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 09-Setiembre 2021",
+   "desc": "INFORMACIÓN JULIO 2021",
+   "fisico": "ReporteLib092021_actualiz-01122021.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 10-Octubre 2021",
+   "desc": "INFORMACIÓN AGOSTO 2021",
+   "fisico": "Boletin_Octubre2021_actualiz-01122021.xlsx",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 10-Octubre 2021",
+   "desc": "INFORMACIÓN AGOSTO 2021",
+   "fisico": "ReporteLib102021_actualiz-01122021.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 04-Abril 2020",
+   "desc": "INFORMACIÓN FEBRERO 2020",
+   "fisico": "ReporteLib042020.pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 09-Setiembre 2020",
+   "desc": "INFORMACIÓN JULIO 2020",
+   "fisico": "Boletin_Setiembre2020.xls",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Setiembre2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 09-Setiembre 2020",
+   "desc": "INFORMACIÓN JULIO 2020",
+   "fisico": "ReporteLib092020.pdf",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib092020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 10-Octubre 2020",
+   "desc": "INFORMACIÓN AGOSTO 2020",
+   "fisico": "Boletin_Octubre2020.xls",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Octubre2020.xls"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 05-Mayo 2021",
+   "desc": "INFORMACIÓN MARZO 2021",
+   "fisico": "Boletin_Mayo2021__actualiz-01122021.xlsx",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2021__actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 05-Mayo 2021",
+   "desc": "INFORMACIÓN MARZO 2021",
+   "fisico": "ReporteLib052021_actualiz-01122021.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 06-Junio 2021",
+   "desc": "INFORMACIÓN ABRIL 2021",
+   "fisico": "Boletin_Junio2021_actualiz-01122021.xlsx",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 06-Junio 2021",
+   "desc": "INFORMACIÓN ABRIL 2021",
+   "fisico": "ReporteLib062021_actualiz-01122021.pdf",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 11-Noviembre 2021",
+   "desc": "INFORMACIÓN SETIEMBRE 2021",
+   "fisico": "Boletin_Noviembre2021__actualiz-11112021.xlsx",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Noviembre2021__actualiz-11112021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 11-Noviembre 2021",
+   "desc": "INFORMACIÓN SETIEMBRE 2021",
+   "fisico": "ReporteLib112021_actualiz-11112021.pdf",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib112021_actualiz-11112021.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 01-Enero 2020",
+   "desc": "INFORMACIÓN NOVIEMBRE 2019",
+   "fisico": "ReporteLib012020.pdf",
+   "orden": 30,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib012020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 05-Mayo 2020",
+   "desc": "INFORMACIÓN MARZO 2020",
+   "fisico": "ReporteLib052020.pdf",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 05-Mayo 2020",
+   "desc": "INFORMACIÓN MARZO 2020",
+   "fisico": "Boletin_Mayo2020.xls",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2020.xls"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 01-Enero 2021",
+   "desc": "INFORMACIÓN NOVIEMBRE 2020",
+   "fisico": "Boletin_Enero2021.xlsx",
+   "orden": 10,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 08-Agosto 2021",
+   "desc": "INFORMACIÓN JUNIO 2021",
+   "fisico": "Boletin_Agosto2021_actualiz-01122021.xlsx",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 01 - Enero 2022",
+   "desc": "INFORMACIÓN NOVIEMBRE 2021",
+   "fisico": "ReporteLib180122.pdf",
+   "orden": 290,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib180122.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 03 - Marzo 2022",
+   "desc": "INFORMACIÓN ENERO 2022",
+   "fisico": "Boletin_Marzo2022.xlsx",
+   "orden": 260,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 03 - Marzo 2022",
+   "desc": "INFORMACIÓN ENERO 2022",
+   "fisico": "ReporteLib032022.pdf",
+   "orden": 250,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032022.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 04 - Abril 2022",
+   "desc": "INFORMACIÓN FEBRERO 2022",
+   "fisico": "Boletin_Abril2022.xlsx",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 04 - Abril 2022",
+   "desc": "INFORMACIÓN FEBRERO 2022",
+   "fisico": "ReporteLib042022.pdf",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042022.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 05 - Mayo 2022",
+   "desc": "INFORMACIÓN MARZO 2022",
+   "fisico": "Boletin_Mayo2022.xlsx",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Mayo2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 05 - Mayo 2022",
+   "desc": "INFORMACIÓN MARZO 2022",
+   "fisico": "ReporteLib052022.pdf",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib052022.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 06 - Junio 2022",
+   "desc": "INFORMACIÓN ABRIL 2022",
+   "fisico": "Boletin_Junio2022.xlsx",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 06 - Junio 2022",
+   "desc": "INFORMACIÓN ABRIL 2022",
+   "fisico": "ReporteLib062022.pdf",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062022.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 10-Octubre 2020",
+   "desc": "INFORMACIÓN AGOSTO 2020",
+   "fisico": "ReporteLib102020.pdf",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib102020.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 07-Julio 2021",
+   "desc": "INFORMACIÓN MAYO 2021",
+   "fisico": "ReporteLib072021_actualiz-01122021.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 – Nro 11 - Noviembre 2022 ",
+   "desc": "INFORMACIÓN SETIEMBRE 2022",
+   "fisico": "Año 22–Nro 11-Noviembre 2022 .xlsx",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 11-Noviembre 2022 .xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 – Nro 11 - Noviembre 2022",
+   "desc": "INFORMACIÓN SETIEMBRE 2022",
+   "fisico": "Año 22–Nro 11-Noviembre 2022 .pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 11-Noviembre 2022 .pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22– Nro 12 - Diciembre 2022 ",
+   "desc": "INFORMACIÓN OCTUBRE 2022",
+   "fisico": "Año 22–Nro 12-Diciembre 2022 .xlsx",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 12-Diciembre 2022 .xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22– Nro 12 - Diciembre 2022",
+   "desc": "INFORMACIÓN OCTUBRE 2022",
+   "fisico": "Año 22–Nro 12-Diciembre 2022 .pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 22–Nro 12-Diciembre 2022 .pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 02-Febrero 2020",
+   "desc": "INFORMACIÓN DICIEMBRE 2019",
+   "fisico": "Boletin_Febrero2020.xls",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 06-Junio 2020",
+   "desc": "INFORMACIÓN ABRIL 2020",
+   "fisico": "Boletin_Junio2020.xls",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Junio2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 06-Junio 2020",
+   "desc": "INFORMACIÓN ABRIL 2020",
+   "fisico": "ReporteLib062020.pdf",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib062020.pdf"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 07-Julio 2020",
+   "desc": "INFORMACIÓN MAYO 2020",
+   "fisico": "Boletin_Julio2020.xls",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2020.xls"
+  },
+  {
+   "anio": "2020",
+   "nombre": "Año 20-Nro 07-Julio 2020",
+   "desc": "INFORMACIÓN MAYO 2020",
+   "fisico": "ReporteLib072020.pdf",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072020.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 03-Marzo 2021",
+   "desc": "INFORMACIÓN ENERO 2021",
+   "fisico": "Boletin_Marzo2021_actualiz-01122021.xlsx",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Marzo2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 03-Marzo 2021",
+   "desc": "INFORMACIÓN ENERO 2021",
+   "fisico": "ReporteLib032021_actualiz-01122021.pdf",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib032021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 04-Abril 2021",
+   "desc": "INFORMACIÓN FEBRERO 2021",
+   "fisico": "Boletin_Abril2021_actualiz-01122021.xlsx",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Abril2021_actualiz-01122021.xlsx"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 04-Abril 2021",
+   "desc": "INFORMACIÓN FEBRERO 2021",
+   "fisico": "ReporteLib042021_actualiz-01122021.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib042021_actualiz-01122021.pdf"
+  },
+  {
+   "anio": "2021",
+   "nombre": "Año 21-Nro 12-Diciembre 2021",
+   "desc": "INFORMACIÓN OCTUBRE 2021",
+   "fisico": "ReporteLib122021_actualiz-12122021.pdf",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib122021_actualiz-12122021.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 01 - Enero 2022",
+   "desc": "INFORMACIÓN NOVIEMBRE 2021",
+   "fisico": "Boletin_Enero2022.xlsx",
+   "orden": 300,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Enero2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 02 - Febrero 2022",
+   "desc": "INFORMACIÓN DICIEMBRE 2021",
+   "fisico": "ReporteLib022022.pdf",
+   "orden": 270,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib022022.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 02 - Febrero 2022",
+   "desc": "INFORMACIÓN DICIEMBRE 2021",
+   "fisico": "Boletin_Febrero2022.xlsx",
+   "orden": 280,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Febrero2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 07 - Julio 2022",
+   "desc": "INFORMACIÓN MAYO 2022",
+   "fisico": "Boletin_Julio2022.xlsx",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Julio2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 07 - Julio 2022",
+   "desc": "INFORMACIÓN MAYO 2022",
+   "fisico": "ReporteLib072022.pdf",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib072022.pdf"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 08 - Agosto 2022",
+   "desc": "INFORMACIÓN JUNIO 2022",
+   "fisico": "Boletin_Agosto2022.xlsx",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Boletin_Agosto2022.xlsx"
+  },
+  {
+   "anio": "2022",
+   "nombre": "Año 22 - Nro 08 - Agosto 2022",
+   "desc": "INFORMACIÓN JUNIO 2022",
+   "fisico": "ReporteLib082022.pdf",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/ReporteLib082022.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 05 - Mayo 2025",
+   "desc": "INFORMACIÓN MARZO 2025",
+   "fisico": "Año 25-Nro 05-Mayo 2025.pdf",
+   "orden": 69,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 05-Mayo 2025.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 08-Agosto 2023",
+   "desc": "INFORMACIÓN JUNIO 2023",
+   "fisico": "Año 23–Nro 08-Agosto 2023.xlsx",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 08-Agosto 2023.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 03 - Marzo 2026",
+   "desc": "INFORMACIÓN ENERO 2026.",
+   "fisico": "Año 26-Nro 03-Marzo 2026.xlsx",
+   "orden": 87,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 03-Marzo 2026.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 04 - Abril 2026 ",
+   "desc": "INFORMACIÓN FEBRERO 2026",
+   "fisico": "Año 26-Nro 04-Abril 2026.pdf",
+   "orden": 86,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 04-Abril 2026.pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 04 - Abril 2026 ",
+   "desc": "INFORMACIÓN FEBRERO 2026",
+   "fisico": "Año 26-Nro 04-Abril 2026.xlsx",
+   "orden": 85,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 04-Abril 2026.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 05 - Mayo 2026",
+   "desc": "INFORMACIÓN MARZO 2026",
+   "fisico": "Año 26-Nro 05-Mayo 2026.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 05-Mayo 2026.pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 05 - Mayo 2026 ",
+   "desc": "INFORMACIÓN MARZO 2026",
+   "fisico": "Año 26-Nro 05-Mayo 2026.xlsx",
+   "orden": 79,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 05-Mayo 2026.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 06 - Junio 2026",
+   "desc": " INFORMACIÓN ABRIL 2026",
+   "fisico": "Año 26-Nro 06-Junio 2026.pdf",
+   "orden": 77,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 06-Junio 2026.pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 06 - Junio 2026",
+   "desc": " INFORMACIÓN ABRIL 2026",
+   "fisico": "Año 26-Nro 06-Junio 2026.xlsx",
+   "orden": 74,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 06-Junio 2026.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 10-Octubre 2023",
+   "desc": "INFORMACIÓN AGOSTO 2023",
+   "fisico": "Año 23–Nro 10-Octubre 2023.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 10-Octubre 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 10-Octubre 2023",
+   "desc": "INFORMACIÓN AGOSTO 2023",
+   "fisico": "Año 23–Nro 10-Octubre 2023.xlsx",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 10-Octubre 2023.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 06 - Junio 2025",
+   "desc": "INFORMACIÓN ABRIL 2025",
+   "fisico": "Año 25-Nro 06-Junio 2025.pdf",
+   "orden": 55,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 06-Junio 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 06 - Junio 2025",
+   "desc": "INFORMACIÓN ABRIL 2025",
+   "fisico": "Año 25-Nro 06-Junio 2025.xlsx",
+   "orden": 60,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 06-Junio 2025.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 07-Julio 2023 ",
+   "desc": "INFORMACIÓN MAYO 2023",
+   "fisico": "Año 23–Nro 07-Julio 2023.pdf",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 07-Julio 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 08-Agosto 2023",
+   "desc": "INFORMACIÓN JUNIO 2023",
+   "fisico": "Año 23–Nro 08-Agosto 2023.pdf",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 08-Agosto 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 09-Setiembre 2023",
+   "desc": "INFORMACIÓN JULIO 2023",
+   "fisico": "Año 23–Nro 09-Setiembre 2023.xlsx",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 09-Setiembre 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 09-Setiembre 2023",
+   "desc": "INFORMACIÓN SETIEMBRE 2023",
+   "fisico": "Año 23–Nro 09-Setiembre 2023.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 09-Setiembre 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 09-Setiembre 2023",
+   "desc": "INFORMACIÓN JULIO 2023",
+   "fisico": "Año 23–Nro 09-Setiembre 2023.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 09-Setiembre 2023.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 11 - Noviembre 2024",
+   "desc": "INFORMACIÓN SETIEMBRE 2024",
+   "fisico": "Año 24-Nro 11-Noviembre 2024.xlsx",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 11-Noviembre 2024.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 04 - Abril 2025",
+   "desc": "INFORMACIÓN FEBRERO 2025",
+   "fisico": "Año 25-Nro 04-Abril 2025.pdf",
+   "orden": 80,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 04-Abril 2025.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 03-Marzo 2023",
+   "desc": "INFORMACIÓN ENERO 2023",
+   "fisico": "Año 23–Nro 03-Marzo 2023.xlsx",
+   "orden": 260,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 03-Marzo 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 03-Marzo 2023",
+   "desc": "INFORMACIÓN ENERO 2023",
+   "fisico": "Año 23–Nro 03-Marzo 2023.pdf",
+   "orden": 250,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 03-Marzo 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 04-Abril 2023",
+   "desc": "INFORMACIÓN FEBRERO 2023",
+   "fisico": "Año 23–Nro 04-Abril 2023.pdf",
+   "orden": 230,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 04-Abril 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 05-Mayo 2023",
+   "desc": "INFORMACIÓN MARZO 2023",
+   "fisico": "Año 23–Nro 05-Mayo 2023.xlsx",
+   "orden": 220,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 05-Mayo 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 05-Mayo 2023",
+   "desc": "INFORMACIÓN MARZO 2023",
+   "fisico": "Año 23–Nro 05-Mayo 2023.pdf",
+   "orden": 210,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 05-Mayo 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 06-Junio 2023",
+   "desc": "INFORMACIÓN ABRIL 2023",
+   "fisico": "Año 23–Nro 06-Junio 2023.xlsx",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 06-Junio 2023.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 04 - Abril 2024",
+   "desc": "INFORMACIÓN FEBRERO 2024",
+   "fisico": "Año 24-Nro 04-Abril 2024.pdf",
+   "orden": 135,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 04-Abril 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 05 - Mayo 2024",
+   "desc": "INFORMACIÓN MARZO 2024",
+   "fisico": "Año 24-Nro 05-Mayo 2024.xlsx",
+   "orden": 130,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 05-Mayo 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 05  -Mayo 2024",
+   "desc": "INFORMACIÓN MARZO 2024",
+   "fisico": "Año 24-Nro 05-Mayo 2024.pdf",
+   "orden": 125,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 05-Mayo 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 06 - Junio 2024",
+   "desc": "INFORMACIÓN ABRIL 2024",
+   "fisico": "Año 24-Nro 06-Junio 2024.xlsx",
+   "orden": 120,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 06-Junio 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 06 - Junio 2024",
+   "desc": "INFORMACIÓN ABRIL 2024",
+   "fisico": "Año 24-Nro 06-Junio 2024.pdf",
+   "orden": 115,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 06-Junio 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 07 - Julio 2024",
+   "desc": "INFORMACIÓN MAYO 2024",
+   "fisico": "Año 24-Nro 07-Julio 2024.xlsx",
+   "orden": 110,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 07-Julio 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 07 - Julio 2024",
+   "desc": "INFORMACIÓN MAYO 2024",
+   "fisico": "Año 24-Nro 07-Julio 2024.pdf",
+   "orden": 108,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 07-Julio 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 08 - Agosto 2024",
+   "desc": "INFORMACIÓN JUNIO 2024",
+   "fisico": "Año 24-Nro 08-Agosto 2024.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 08-Agosto 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 09 - Setiembre 2024 ",
+   "desc": "INFORMACIÓN JULIO 2024",
+   "fisico": "Año 24-Nro 09-Setiembre 2024.pdf",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 09-Setiembre 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 09 - Setiembre 2024",
+   "desc": "INFORMACIÓN JULIO 2024",
+   "fisico": "Año 24-Nro 09-Setiembre 2024.xlsx",
+   "orden": 98,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 09-Setiembre 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 10 - Octubre 2024",
+   "desc": " INFORMACIÓN AGOSTO 2024",
+   "fisico": "Año 24-Nro 10-Octubre 2024.xlsx",
+   "orden": 89,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 10-Octubre 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 10 - Octubre 2024",
+   "desc": "INFORMACIÓN AGOSTO 2024",
+   "fisico": "Año 24-Nro 10-Octubre 2024.pdf",
+   "orden": 85,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 10-Octubre 2024.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 04-Abril 2023",
+   "desc": "INFORMACIÓN FEBRERO 2023",
+   "fisico": "Año 23–Nro 04-Abril 2023.xlsx",
+   "orden": 240,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 04-Abril 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 06-Junio 2023",
+   "desc": "INFORMACIÓN ABRIL 2023",
+   "fisico": "Año 23–Nro 06-Junio 2023.pdf",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 06-Junio 2023.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 11 - Noviembre 2024",
+   "desc": " INFORMACIÓN SETIEMBRE 2024",
+   "fisico": "Año 24-Nro 11-Noviembre 2024.pdf",
+   "orden": 79,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 11-Noviembre 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 12 – Diciembre 2024 ",
+   "desc": "INFORMACIÓN OCTUBRE 2024",
+   "fisico": "Año 24-Nro 12-Diciembre 2024.xlsx",
+   "orden": 74,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 12-Diciembre 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 12 – Diciembre 2024",
+   "desc": "INFORMACIÓN OCTUBRE 2024  ",
+   "fisico": "Año 24-Nro 12-Diciembre 2024.pdf",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 12-Diciembre 2024.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 05 - Mayo 2025",
+   "desc": "INFORMACIÓN MARZO 2025",
+   "fisico": "Año 25-Nro 05-Mayo 2025.xlsx",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 05-Mayo 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 04 - Abril 2025",
+   "desc": "INFORMACIÓN FEBRERO 2025",
+   "fisico": "Año 25-Nro 04-Abril 2025.xlsx",
+   "orden": 85,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 04-Abril 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 07 - Julio 2025",
+   "desc": "INFORMACIÓN MAYO 2025",
+   "fisico": "Año 25-Nro 07-Julio 2025.pdf",
+   "orden": 49,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 07-Julio 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 07 - Julio 2025",
+   "desc": "INFORMACIÓN MAYO 2025",
+   "fisico": "Año 25-Nro 07-Julio 2025.xlsx",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 07-Julio 2025.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 02 - Febrero 2026",
+   "desc": "INFORMACIÓN DICIEMBRE 2025. Actualizado al 31/03/2026",
+   "fisico": "Año 26-Nro 02-Febrero 2026 (act. 31mar26).pdf",
+   "orden": 98,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 02-Febrero 2026 (act. 31mar26).pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 01 – Enero 2026",
+   "desc": " INFORMACIÓN NOVIEMBRE 2025",
+   "fisico": "Año 26-Nro 01-Enero 2026.xlsx",
+   "orden": 99,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 01-Enero 2026.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 01 – Enero 2026",
+   "desc": "INFORMACIÓN NOVIEMBRE 2025",
+   "fisico": "Año 26-Nro 01-Enero 2026.pdf",
+   "orden": 100,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 01-Enero 2026.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 04 - Abril 2024",
+   "desc": "INFORMACIÓN FEBRERO 2024",
+   "fisico": "Año 24-Nro 04-Abril 2024.xlsx",
+   "orden": 140,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 04-Abril 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 - Nro 08 - Agosto 2024",
+   "desc": "INFORMACIÓN JUNIO 2024",
+   "fisico": "Año 24-Nro 08-Agosto 2024.xlsx",
+   "orden": 105,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 08-Agosto 2024.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 01 - Enero 2025",
+   "desc": "INFORMACIÓN NOVIEMBRE 2024",
+   "fisico": "Año 25-Nro 01-Enero 2025.pdf",
+   "orden": 89,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 01-Enero 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 01 - Enero 2025",
+   "desc": "INFORMACIÓN NOVIEMBRE 2024",
+   "fisico": "Año 25-Nro 01-Enero 2025.xlsx",
+   "orden": 93,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 01-Enero 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 02 - Febrero 2025 ",
+   "desc": "INFORMACIÓN DICIEMBRE 2024",
+   "fisico": "Año 25-Nro 02-Febrero 2025.pdf",
+   "orden": 87,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 02-Febrero 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 02 - Febrero 2025 ",
+   "desc": "INFORMACIÓN DICIEMBRE 2024",
+   "fisico": "Año 25-Nro 02-Febrero 2025.xlsx",
+   "orden": 88,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 02-Febrero 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": " Año 25 – Nro 09 - Setiembre 2025",
+   "desc": "INFORMACIÓN JULIO 2025",
+   "fisico": "Año 25-Nro 09-Setiembre 2025.pdf",
+   "orden": 24,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 09-Setiembre 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 09 - Setiembre 2025",
+   "desc": "INFORMACIÓN JULIO 2025",
+   "fisico": "Año 25-Nro 09-Setiembre 2025.xlsx",
+   "orden": 27,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 09-Setiembre 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 10 - Octubre 2025",
+   "desc": "INFORMACIÓN AGOSTO 2025",
+   "fisico": "Año 25-Nro 10-Octubre 2025.pdf",
+   "orden": 19,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 10-Octubre 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 10 - Octubre 2025",
+   "desc": " INFORMACIÓN AGOSTO 2025",
+   "fisico": "Año 25-Nro 10-Octubre 2025.xlsx",
+   "orden": 21,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 10-Octubre 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 11 - Noviembre 2025",
+   "desc": "INFORMACIÓN SETIEMBRE 2025",
+   "fisico": "Año 25-Nro 11-Noviembre 2025.pdf",
+   "orden": 17,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 11-Noviembre 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 11 - Noviembre 2025",
+   "desc": "INFORMACIÓN SETIEMBRE 2025",
+   "fisico": "Año 25-Nro 11-Noviembre 2025.xlsx",
+   "orden": 18,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 11-Noviembre 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 12 - Diciembre 2025",
+   "desc": "INFORMACIÓN OCTUBRE 2025",
+   "fisico": "Año 25-Nro 12-Diciembre 2025.pdf",
+   "orden": 14,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 12-Diciembre 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 12 - Diciembre 2025",
+   "desc": "INFORMACIÓN OCTUBRE 2025",
+   "fisico": "Año 25-Nro 12-Diciembre 2025.xlsx",
+   "orden": 15,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 12-Diciembre 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 08 - Agosto 2025",
+   "desc": "INFORMACIÓN JUNIO 2025",
+   "fisico": "Año 25-Nro 08-Agosto 2025.pdf",
+   "orden": 36,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 08-Agosto 2025.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 08 - Agosto 2025",
+   "desc": "INFORMACIÓN JUNIO 2025",
+   "fisico": "Año 25-Nro 08-Agosto 2025.xlsx",
+   "orden": 37,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 08-Agosto 2025.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 07 - Julio 2026 ",
+   "desc": "INFORMACIÓN MAYO 2026",
+   "fisico": "Año 26-Nro 07-Julio 2026.pdf",
+   "orden": 73,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 07-Julio 2026.pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 07 - Julio 2026",
+   "desc": "INFORMACIÓN MAYO 2026",
+   "fisico": "Año 26-Nro 07-Julio 2026.xlsx",
+   "orden": 72,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 07-Julio 2026.xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 08 - Agosto 2026",
+   "desc": "INFORMACIÓN JUNIO 2026",
+   "fisico": "Año 26-Nro 08-Agosto 2026.pdf",
+   "orden": 71,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 08-Agosto 2026.pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 08 - Agosto 2026",
+   "desc": "INFORMACIÓN JUNIO 2026.",
+   "fisico": "Año 26-Nro 08-Agosto 2026.xlsx",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 08-Agosto 2026.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 07-Julio 2023 ",
+   "desc": "INFORMACIÓN MAYO 2023",
+   "fisico": "Año 23–Nro 07-Julio 2023.xlsx",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 07-Julio 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 11-Noviembre 2023 ",
+   "desc": "INFORMACIÓN SETIEMBRE 2023",
+   "fisico": "Año 23–Nro 11-Noviembre 2023.xlsx",
+   "orden": 50,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 11-Noviembre 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 11-Noviembre 2023 ",
+   "desc": "INFORMACIÓN SETIEMBRE 2023",
+   "fisico": "Año 23–Nro 11-Noviembre 2023.pdf",
+   "orden": 45,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 11-Noviembre 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 12-Diciembre 2023 ",
+   "desc": "INFORMACIÓN OCTUBRE 2023",
+   "fisico": "Año 23-Nro 12-Diciembre 2023.xlsx",
+   "orden": 40,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23-Nro 12-Diciembre 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 12-Diciembre 2023 ",
+   "desc": "INFORMACIÓN OCTUBRE 2023",
+   "fisico": "Año 23-Nro 12-Diciembre 2023.pdf",
+   "orden": 35,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23-Nro 12-Diciembre 2023.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 01 - Enero 2024 ",
+   "desc": "INFORMACIÓN NOVIEMBRE 2023",
+   "fisico": "Año 24-Nro 01-Enero 2024.xlsx",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 01-Enero 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 01 - Enero 2024 ",
+   "desc": "INFORMACIÓN NOVIEMBRE 2023",
+   "fisico": "Año 24-Nro 01-Enero 2024.pdf",
+   "orden": 190,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 01-Enero 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 02 - Febrero 2024 ",
+   "desc": "INFORMACIÓN DICIEMBRE 2023",
+   "fisico": "Año 24-Nro 02-Febrero 2024.xlsx",
+   "orden": 180,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 02-Febrero 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 02 - Febrero 2024 ",
+   "desc": "INFORMACIÓN DICIEMBRE 2023",
+   "fisico": "Año 24-Nro 02-Febrero 2024.pdf",
+   "orden": 170,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 02-Febrero 2024.pdf"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 03 - Marzo 2024 ",
+   "desc": "INFORMACIÓN ENERO 2024",
+   "fisico": "Año 24-Nro 03-Marzo 2024.xlsx",
+   "orden": 160,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 03-Marzo 2024.xlsx"
+  },
+  {
+   "anio": "2024",
+   "nombre": "Año 24 – Nro 03 - Marzo 2024 ",
+   "desc": "INFORMACIÓN ENERO 2024",
+   "fisico": "Año 24-Nro 03-Marzo 2024.pdf",
+   "orden": 150,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 24-Nro 03-Marzo 2024.pdf"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 03 - Marzo2025",
+   "desc": "INFORMACIÓN ENERO 2025",
+   "fisico": "Año 25-Nro 03-Marzo 2025.xlsx",
+   "orden": 87,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 03-Marzo 2025.xlsx"
+  },
+  {
+   "anio": "2025",
+   "nombre": "Año 25 – Nro 03 - Marzo2025",
+   "desc": "INFORMACIÓN ENERO 2025",
+   "fisico": "Año 25-Nro 03-Marzo 2025.pdf",
+   "orden": 86,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 25-Nro 03-Marzo 2025.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 01-Enero 2023",
+   "desc": "INFORMACIÓN NOVIEMBRE 2022",
+   "fisico": "Año 23–Nro 01-Enero 2023.xlsx",
+   "orden": 300,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 01-Enero 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 01-Enero 2023",
+   "desc": "INFORMACIÓN NOVIEMBRE 2022",
+   "fisico": "Año 23–Nro 01-Enero 2023.pdf",
+   "orden": 290,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 01-Enero 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 02-Febrero 2023",
+   "desc": "INFORMACIÓN DICIEMBRE 2022",
+   "fisico": "Año 23–Nro 02-Febrero 2023.xlsx",
+   "orden": 280,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 02-Febrero 2023.xlsx"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 02-Febrero 2023",
+   "desc": "INFORMACIÓN DICIEMBRE 2022",
+   "fisico": "Año 23–Nro 02-Febrero 2023.pdf",
+   "orden": 270,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 02-Febrero 2023.pdf"
+  },
+  {
+   "anio": "2023",
+   "nombre": "Año 23–Nro 09-Setiembre 2023",
+   "desc": "INFORMACIÓN SETIEMBRE 2023",
+   "fisico": "Año 23–Nro 09-Setiembre 2023.pdf",
+   "orden": 200,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 23–Nro 09-Setiembre 2023.pdf"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 02 - Febrero 2026",
+   "desc": "INFORMACIÓN DICIEMBRE 2025. Actualizado al 31/03/2026",
+   "fisico": "Año 26-Nro 02-Febrero 2026 (act. 31mar26).xlsx",
+   "orden": 90,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 02-Febrero 2026 (act. 31mar26).xlsx"
+  },
+  {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 03 - Marzo 2026",
+   "desc": "INFORMACIÓN ENERO 2026.",
+   "fisico": "Año 26-Nro 03-Marzo 2026.pdf",
+   "orden": 88,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 03-Marzo 2026.pdf"
+  }
+ ],
+ "descarga": {
+  "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 08-Agosto 2026.xlsx",
+  "doc": {
+   "anio": "2026",
+   "nombre": "Año 26 – Nro 08 - Agosto 2026",
+   "desc": "INFORMACIÓN JUNIO 2026.",
+   "fisico": "Año 26-Nro 08-Agosto 2026.xlsx",
+   "orden": 70,
+   "url": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/MerLibElectricidad/Año 26-Nro 08-Agosto 2026.xlsx"
+  },
+  "bytes": 2326709,
+  "hojas": {
+   "bltFacturaCliente": 3516,
+   "CalculoBarraLima": 22,
+   "Suministros_Empresa": 57,
+   "Hoja1": 48,
+   "Suministros_Actividad": 41,
+   "Suministros_NT": 14,
+   "V1": 89,
+   "Ventas_Energia": 99,
+   "PMedio_Empresa": 288,
+   "PMedio_Actividad": 260,
+   "pm nt": 16,
+   "PMedio_NT": 87,
+   "Diagrama_NT": 2882,
+   "Diagrama_Promedio": 2882,
+   "v2": 25,
+   "Análisis": 282,
+   "Contratos": 287,
+   "Contratos_PC": 36,
+   "Grandes_Usuarios": 202,
+   "Hechos_Relev.": 116,
+   "Lista_Suministros": 3735,
+   "Hoja2": 3515,
+   "Hoja3": 63,
+   "Hoja5": 270,
+   "Hoja6": 3498
+  }
+ }
+}
