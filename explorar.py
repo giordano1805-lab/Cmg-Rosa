@@ -1,73 +1,62 @@
 #!/usr/bin/env python3
-"""Explorador (modo=explora): publicaciones de Osinergmin GRT · Informes mensuales · Mercado Libre de Electricidad.
-Guarda HTML, scripts y respuestas en data/explora11/ para ubicar cómo se listan y descargan los archivos."""
+"""Explorador (modo=explora): Osinergmin VisorGRT · Mercado Libre de Electricidad (API PublicadorGRTBackEnd).
+Guarda en data/explora14/: nodos de esa rama, documentos y un extracto del Excel más reciente."""
 import json
 import re
 from pathlib import Path
-from urllib.parse import urljoin, quote
 
 import fuentes_coes as fc
 
-OUT = Path("data") / "explora13"
+OUT = Path("data") / "explora14"
+API = "https://www.osinergmin.gob.pe/PublicadorGRTBackEnd"
 S = fc.S
-CARPETA = "Publicacionesgrt/INFORMES MENSUALES/Mercado Libre de Electricidad/2026"
-PAGINAS = ["https://www.osinergmin.gob.pe/VisorGRT/assets/configs/config.json",
-           "https://www.osinergmin.gob.pe/VisorGRT/5.952881854784b5aeeca1.js"]
-
-
-def guardar(nombre, texto):
-    OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / (re.sub(r"[^\w.]+", "_", nombre)[-90:])).write_text(texto, encoding="utf-8", errors="ignore")
 
 
 def main():
-    res = {"paginas": {}, "scripts": {}, "enlaces": [], "pruebas": {}}
-    for u in PAGINAS:
-        try:
-            r = S.get(u, timeout=60)
-            res["paginas"][u] = {"status": r.status_code, "bytes": len(r.content), "url_final": r.url}
-            t = r.text
-            guardar("pag_" + u, t)
-            for m in re.findall(r"""(?:href|src)=["']([^"']+)["']""", t):
-                if re.search(r"merc|libre|publicacion|\.xls|\.pdf|grt", m, re.I):
-                    res["enlaces"].append(urljoin(r.url, m))
-            for sc in re.findall(r"""<script[^>]+src=["']([^"']+)["']""", t, re.I):
-                su = urljoin(r.url, sc)
-                if su in res["scripts"] or re.search(r"jquery|bootstrap|google|analytics", su, re.I):
-                    continue
-                try:
-                    js = S.get(su, timeout=60)
-                    res["scripts"][su] = {"status": js.status_code, "bytes": len(js.content)}
-                    guardar("js_" + su, js.text)
-                except Exception as e:
-                    res["scripts"][su] = {"error": str(e)[:150]}
-        except Exception as e:
-            res["paginas"][u] = {"status": None, "error": str(e)[:200]}
-    # endpoints que aparecen en el HTML/JS del visor
-    eps = set()
-    for f in OUT.glob("*"):
-        try:
-            t = f.read_text(encoding="utf-8", errors="ignore")
-        except Exception:
-            continue
-        for m in re.findall(r"""["'`](/?(?:api|VisorGRT|Services?|Handlers?|ws)[^"'`\s]{2,120})["'`]""", t, re.I):
-            eps.add(m)
-        for m in re.findall(r"""["'`](https?://[^"'`\s]{5,160})["'`]""", t):
-            if "osinergmin" in m:
-                eps.add(m)
-    res["endpoints"] = sorted(eps)[:200]
-    # pruebas de rutas directas de archivos (patrones habituales de publicacionesgrt)
-    for u in [f"https://www2.osinergmin.gob.pe/publicacionesgrt/{quote(CARPETA)}/",
-              "https://www2.osinergmin.gob.pe/publicacionesgrt/xls/BolMerLibElectricidad/",
-              "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/BolMerLibElectricidad/MERCLIB2000.pdf"]:
-        try:
-            r = S.get(u, timeout=60)
-            res["pruebas"][u] = {"status": r.status_code, "bytes": len(r.content), "tipo": r.headers.get("content-type")}
-            if r.ok and "html" in (r.headers.get("content-type") or ""):
-                guardar("prueba_" + u, r.text)
-        except Exception as e:
-            res["pruebas"][u] = {"error": str(e)[:200]}
-    res["enlaces"] = list(dict.fromkeys(res["enlaces"]))[:300]
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "resumen.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    res = {"paginas": {}}
+    nodos = docs = []
+    for k in ("nodo", "documento"):
+        try:
+            r = S.get(f"{API}/{k}/all", timeout=120)
+            res["paginas"][k] = {"status": r.status_code, "bytes": len(r.content)}
+            if r.ok:
+                if k == "nodo":
+                    nodos = r.json()
+                else:
+                    docs = r.json()
+        except Exception as e:
+            res["paginas"][k] = {"status": None, "error": str(e)[:200]}
+    if isinstance(nodos, dict):
+        nodos = next((v for v in nodos.values() if isinstance(v, list)), [])
+    if isinstance(docs, dict):
+        docs = next((v for v in docs.values() if isinstance(v, list)), [])
+    res["n_nodos"], res["n_docs"] = len(nodos), len(docs)
+    res["ejemplo_nodo"] = nodos[:3]
+    res["ejemplo_doc"] = docs[:2]
+    txt = lambda x: json.dumps(x, ensure_ascii=False)
+    ml = [n for n in nodos if re.search(r"MERCADO LIBRE", fc.norm(txt(n)))]
+    res["nodos_mercado_libre"] = ml[:40]
+    ids = {str(n.get("id_identificador_nodo") or n.get("code") or n.get("id")) for n in ml}
+    # hijos (años) de la rama
+    hijos = [n for n in nodos if str(n.get("id_identificador_nodo_padre") or n.get("parent") or "") in ids]
+    res["hijos"] = hijos[:40]
+    ids |= {str(n.get("id_identificador_nodo") or n.get("id")) for n in hijos}
+    dml = [d for d in docs if str(d.get("id_identificador_nodo")) in ids]
+    res["docs_mercado_libre"] = sorted(dml, key=lambda d: str(d.get("fe_publicacion") or d.get("id_documento")), reverse=True)[:60]
+    ruta = {str(n.get("id_identificador_nodo")): n.get("de_ruta_de_repositorio") for n in nodos}
+    xls = [d for d in res["docs_mercado_libre"] if re.search(r"\.xls", str(d.get("de_nombre_fisico")), re.I)]
+    if xls:
+        d = xls[0]
+        url = (ruta.get(str(d.get("id_identificador_nodo"))) or "") + d["de_nombre_fisico"]
+        res["descarga"] = {"url": url}
+        try:
+            b = S.get(url, timeout=180).content
+            res["descarga"]["bytes"] = len(b)
+            hojas = fc.libro(b)
+            res["descarga"]["hojas"] = {h: len(f) for h, f in hojas.items()}
+            fc.volcar_hojas(hojas, OUT / "xls", nombres=list(hojas)[:30], filas=70, cols=30)
+        except Exception as e:
+            res["descarga"]["error"] = str(e)[:300]
+    (OUT / "resumen.json").write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     return res
