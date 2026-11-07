@@ -1,0 +1,37 @@
+{
+ "paginas": {
+  "https://www.osinergmin.gob.pe/VisorGRT/assets/configs/config.json": {
+   "status": 200,
+   "bytes": 79,
+   "url_final": "https://www.osinergmin.gob.pe/VisorGRT/assets/configs/config.json"
+  },
+  "https://www.osinergmin.gob.pe/VisorGRT/5.952881854784b5aeeca1.js": {
+   "status": 200,
+   "bytes": 262293,
+   "url_final": "https://www.osinergmin.gob.pe/VisorGRT/5.952881854784b5aeeca1.js"
+  }
+ },
+ "scripts": {},
+ "enlaces": [],
+ "pruebas": {
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/Publicacionesgrt/INFORMES%20MENSUALES/Mercado%20Libre%20de%20Electricidad/2026/": {
+   "status": 404,
+   "bytes": 1245,
+   "tipo": "text/html"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/xls/BolMerLibElectricidad/": {
+   "status": 404,
+   "bytes": 1245,
+   "tipo": "text/html"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/BolMerLibElectricidad/MERCLIB2000.pdf": {
+   "status": 200,
+   "bytes": 1280546,
+   "tipo": "application/pdf"
+  }
+ },
+ "endpoints": [
+  "apiBaseUrl",
+  "https://www.osinergmin.gob.pe/PublicadorGRTBackEnd/"
+ ]
+}
