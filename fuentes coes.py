@@ -546,7 +546,7 @@ def hidro_pasada(hojas):
 
 
 def recursos_dia(hojas):
-    """{hora 'HH:MM': {pasada, regulacion, eolica}} (MW) de la hoja TIPO_RECURSO."""
+    """{hora 'HH:MM': {pasada, regulacion, eolica, solar}} (MW) de la hoja TIPO_RECURSO."""
     filas = hojas.get("TIPO_RECURSO") or []
     cols = {}
     for f in filas[:15]:
@@ -558,6 +558,8 @@ def recursos_dia(hojas):
                 cols.setdefault("regulacion", j)
             elif n == "EOLICA":
                 cols.setdefault("eolica", j)
+            elif n == "SOLAR":
+                cols.setdefault("solar", j)
         if cols:
             break
     out = {}
@@ -769,7 +771,9 @@ def despacho_unidades(hojas):
             v = numero(f[j]) if j < len(f) else None
             if v is not None:
                 serie[_min_dia(texto(f[1]))] = v
-        out[n] = {"empresa": texto(empresas[j]) if j < len(empresas) else "", "mw": serie}
+        tipos = filas[i0 - 3] if i0 >= 3 else []
+        out[n] = {"empresa": texto(empresas[j]) if j < len(empresas) else "", "mw": serie,
+                  "tipo": texto(tipos[j]) if j < len(tipos) else ""}
     return out
 
 
@@ -880,7 +884,7 @@ def hidro_por_central(hojas):
 def ieod_dia(d: dt.date):
     """Anexo A del IEOD de un día exacto (o {} si no está publicado): potencia por recurso y volúmenes."""
     fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES",
-                                                          "DESPACHO_EJECUTADO"})
+                                                          "DESPACHO_EJECUTADO", "DEMANDA_UL"})
     return hojas if fecha == d else {}
 
 
@@ -1282,3 +1286,220 @@ def cmg_programa_semanal(hoy: dt.date):
                 meta["archivos"].append(a)
                 break
     return serie, meta
+
+
+
+# --------------------------------------------------------------------------- demanda de usuarios libres (IEOD)
+def demanda_ul_mwh(hojas):
+    """Energía del día (MWh) de los usuarios libres según la hoja DEMANDA_UL del IEOD.
+    Acepta potencia por intervalo (filas con hora) o energía diaria (columna MWh). Devuelve (mwh, detalle) o (None, motivo)."""
+    filas = hojas.get("DEMANDA_UL") or []
+    if not filas:
+        return None, "sin hoja DEMANDA_UL"
+    # 1) potencia por intervalo: filas cuya primera(s) celda(s) es una hora
+    cab_total = None
+    for f in filas[:15]:
+        for j, v in enumerate(f):
+            if re.search(r"\bTOTAL\b", norm(v)):
+                cab_total = j
+    serie = []
+    for f in filas:
+        hora = None
+        for v in f[:3]:
+            if isinstance(v, dt.time) or re.fullmatch(r"\d{1,2}:\d{2}(:\d{2})?", texto(v)):
+                hora = v
+                break
+            x = fecha_hora(v)
+            if x and (x.hour or x.minute):
+                hora = x
+                break
+        if hora is None:
+            continue
+        nums = [numero(v) for v in f[1:]]
+        if cab_total is not None and cab_total < len(f) and numero(f[cab_total]) is not None:
+            serie.append(numero(f[cab_total]))
+        elif any(x is not None for x in nums):
+            serie.append(sum(x for x in nums if x is not None))
+    if len(serie) in (24, 48, 96):
+        return round(sum(serie) * 24 / len(serie), 1), f"{len(serie)} intervalos" + (" (columna TOTAL)" if cab_total is not None else " (suma de usuarios)")
+    # 2) energía diaria por usuario: columna con MWh
+    for i, f in enumerate(filas[:15]):
+        for j, v in enumerate(f):
+            if re.search(r"MWH|ENERGIA", norm(v)):
+                vals = [numero(g[j]) for g in filas[i + 1:] if j < len(g) and numero(g[j]) is not None and not re.search(r"TOTAL", " ".join(norm(x) for x in g[:j]))]
+                if vals:
+                    return round(sum(vals), 1), f"columna {texto(v)} ({len(vals)} filas)"
+    return None, f"formato no reconocido ({len(serie)} filas con hora)"
+
+
+# --------------------------------------------------------------------------- LVTEA mensual (retiros libres/regulados)
+_RX_LVTEA = r"LVTEA|VALORIZACI|TRANSFERENCIA|LIQUIDACI"
+
+
+def buscar_lvtea(max_s=150, diag=None):
+    """Carpetas/archivos del COES con la Liquidación/Valorización mensual de Transferencias de Energía Activa (LVTEA).
+    Recorre el árbol del navegador del COES desde la raíz siguiendo solo carpetas con nombres afines.
+    Devuelve [rutas de archivos 'Resumen' (xlsx/xlsm/zip)]."""
+    import time as _t
+    t0, vistos, hallados = _t.time(), set(), []
+    cola = [(r, 0) for r in ("", "Post Operación/", "Mercado Mayorista/", "Transferencias/")]
+    while cola and _t.time() - t0 < max_s:
+        ruta, prof = cola.pop(0)
+        if ruta in vistos:
+            continue
+        vistos.add(ruta)
+        try:
+            items = list(dict.fromkeys(listar(ruta)))
+        except Exception:
+            continue
+        if diag is not None and prof <= 1:
+            diag.setdefault("listados", {})[ruta or "/"] = [_nombre(i) for i in items][:60]
+        for i in items:
+            n = norm(_nombre(i))
+            if i.endswith("/"):
+                if prof < 5 and (re.search(_RX_LVTEA, n) or re.search(r"\b20(2[5-9])\b", n) or
+                                 re.search(_RX_LVTEA, norm(ruta)) and re.search(r"\d", n)):
+                    cola.append((i, prof + 1))
+            elif re.search(r"RESUMEN", n) and re.search(r"\.(XLSX|XLSM|XLS|ZIP)$", n):
+                hallados.append(i)
+    if diag is not None:
+        diag["carpetas_revisadas"] = len(vistos)
+    return hallados
+
+
+def _mes_de_ruta(ruta):
+    MES = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
+           "SETIEMBRE": 9, "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
+    n = norm(ruta)
+    y = re.findall(r"\b(20\d\d)\b", n)
+    m = next((v for k, v in MES.items() if k in n), None)
+    if m is None:
+        mm = re.search(r"\b(20\d\d)[_\-. ]?(0[1-9]|1[0-2])\b", n) or re.search(r"\b(0[1-9]|1[0-2])[_\-. ](20\d\d)\b", n)
+        if mm:
+            a, b = mm.groups()
+            return (int(a), int(b)) if len(a) == 4 else (int(b), int(a))
+    return (int(y[-1]), m) if y and m else None
+
+
+def lvtea_cuadro4(b, nombre):
+    """(libre MWh, regulado MWh, detalle) desde la hoja 'Cuadro 4' del archivo Resumen del LVTEA."""
+    libros = []
+    if nombre.lower().endswith(".zip"):
+        with zipfile.ZipFile(io.BytesIO(b)) as z:
+            for n in z.namelist():
+                if re.search(r"RESUMEN", norm(n)) and n.lower().endswith((".xlsx", ".xlsm", ".xls")):
+                    libros.append((n, libro(z.read(n))))
+    else:
+        libros.append((nombre, libro(b)))
+    for nl, hojas in libros:
+        hs = [h for h in hojas if re.search(r"CUADRO\s*N?[°º.]?\s*0?4\b", norm(h))] or list(hojas)
+        for h in hs:
+            filas = hojas[h]
+            lib = reg = None
+            for f in filas:
+                etq = " ".join(norm(v) for v in f[:4] if texto(v))
+                nums = [numero(v) for v in f if numero(v) is not None and abs(numero(v)) > 1]
+                if not nums:
+                    continue
+                if lib is None and re.search(r"\bLIBRES?\b", etq):
+                    lib = nums[0]
+                elif reg is None and re.search(r"\bREGULAD", etq):
+                    reg = nums[0]
+            if lib and reg:
+                return lib, reg, f"{nl} · hoja {h}"
+    return None, None, "no se hallaron filas Libre/Regulado en el Cuadro 4"
+
+
+
+# --------------------------------------------------------------------------- energía por central solar / eólica
+RX_SOLAR = r"^(C\.?\s?S\.?|CS|PFV|CSF)\b|SOLAR|FOTOVOLT"
+RX_EOLICA = r"^(C\.?\s?E\.?|CE|PE)\b|EOLIC|WAYRA|PARQUE EOL"
+
+
+def tipo_unidad_ger(nombre, empresa=""):
+    n = norm(nombre)
+    if re.search(RX_SOLAR, n) or re.search(r"SOLAR", norm(empresa)):
+        return "Solar"
+    if re.search(RX_EOLICA, n) or re.search(r"EOLIC|WIND", norm(empresa)):
+        return "Eólica"
+    return None
+
+
+def energia_ger(hojas):
+    """{(tipo, central): MWh del día} para centrales solares y eólicas, desde DESPACHO_EJECUTADO."""
+    out = {}
+    for n, x in despacho_unidades(hojas).items():
+        tt = norm(x.get("tipo", ""))           # fila de tecnología del propio IEOD (SOLAR / EÓLICA / ...)
+        t = "Solar" if tt == "SOLAR" else "Eólica" if tt == "EOLICA" else (None if tt else tipo_unidad_ger(n, x.get("empresa", "")))
+        if not t or not x["mw"]:
+            continue
+        mwh = sum(x["mw"].values()) * 24 / max(len(x["mw"]), 1)
+        c_ = re.sub(r"^(C\.?\s?S\.?|C\.?\s?E\.?|CS|CE|PE|PFV)\s+", "", norm(n))
+        c_ = re.sub(r"[-_ ]?BL\d+$", "", c_).replace("PQE-EOLICO-", "").replace("PUN LOMITAS_EXP", "PUNTA LOMITAS EXPANSION")
+        central = re.sub(r"[\s\-_]+", " ", c_).strip().title()
+        out[(t, central)] = out.get((t, central), 0.0) + mwh
+    return out
+
+
+# --------------------------------------------------------------------------- operación comercial (COES)
+def operacion_comercial_coes(max_s=120, diag=None):
+    """Archivos publicados por el COES en «Operación Comercial de unidades o centrales de generación».
+    Devuelve [{'archivo', 'ruta', 'fecha' (si se puede leer del nombre o carpeta)}]."""
+    import time as _t
+    t0, vistos, out = _t.time(), set(), []
+    cola = [("Planificación/", 0), ("Planificacion/", 0), ("", 0)]
+    while cola and _t.time() - t0 < max_s:
+        ruta, prof = cola.pop(0)
+        if ruta in vistos:
+            continue
+        vistos.add(ruta)
+        try:
+            items = list(dict.fromkeys(listar(ruta)))
+        except Exception:
+            continue
+        en_oc = "OPERACION COMERCIAL" in norm(ruta)
+        if diag is not None and (prof == 0 or en_oc):
+            diag.setdefault("listados", {})[ruta or "/"] = [_nombre(i) for i in items][:40]
+        for i in items:
+            n = norm(_nombre(i))
+            if i.endswith("/"):
+                if prof < 5 and (en_oc or re.search(r"NUEVOS PROYECTOS|OPERACION COMERCIAL|PLANIFICACION", n)):
+                    cola.append((i, prof + 1))
+            elif en_oc:
+                out.append({"archivo": _nombre(i), "ruta": i, "fecha": _fecha_en_texto(i)})
+    if diag is not None:
+        diag["carpetas_revisadas"] = len(vistos)
+    return out
+
+
+def _fecha_en_texto(t):
+    t = norm(t)
+    m = re.search(r"\b(20\d\d)[-_.](\d{1,2})[-_.](\d{1,2})\b", t)
+    if m:
+        y, mo, d = map(int, m.groups())
+    else:
+        m = re.search(r"\b(\d{1,2})[-_./](\d{1,2})[-_./](20\d\d)\b", t)
+        if not m:
+            return None
+        d, mo, y = map(int, m.groups())
+    try:
+        return dt.date(y, mo, d).isoformat()
+    except ValueError:
+        return None
+
+
+_GENERICAS = {"C", "S", "E", "H", "CS", "CE", "CH", "CT", "CENTRAL", "SOLAR", "EOLICA", "EOLICO", "PARQUE", "HIDROELECTRICA",
+              "TERMICA", "FOTOVOLTAICA", "DE", "DEL", "LA", "EL", "LAS", "LOS", "Y", "SAC", "SA", "SAA", "PFV", "MCH", "PCH",
+              "G1", "G2", "G3", "TG", "OPERACION", "COMERCIAL", "PDF", "DOCX", "COES"}
+
+
+def buscar_oc(central, lista):
+    """Primera publicación del COES de operación comercial cuyo nombre contiene las palabras propias de la central."""
+    tok = [t for t in re.findall(r"[A-Z0-9]+", norm(central)) if t not in _GENERICAS and len(t) > 2]
+    if not tok:
+        return None
+    for x in lista:
+        n = set(re.findall(r"[A-Z0-9]+", norm(x["archivo"]) + " " + norm(x["ruta"])))
+        if all(t in n for t in tok):
+            return x
+    return None

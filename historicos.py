@@ -21,9 +21,12 @@ import fuentes_coes as fc
 
 DATA = Path("data")
 F_DEM = DATA / "demanda_diaria.csv"
+F_UL = DATA / "demanda_ul.csv"            # fecha, mwh de usuarios libres (IEOD, hoja DEMANDA_UL)
 F_HID = DATA / "hidro_pasada.csv"     # formato anterior (solo pasada); se migra a recursos.csv
 F_REC = DATA / "recursos.csv"
-RECURSOS = ("pasada", "regulacion", "eolica")
+RECURSOS = ("pasada", "regulacion", "eolica", "solar")
+F_GER = DATA / "ger_centrales.csv"          # fecha, tipo (Solar/Eólica), central, mwh (IEOD)
+F_OC = DATA / "operacion_comercial.json"
 F_EMB = DATA / "embalses_semanal.json"
 F_VOL = DATA / "volumenes_diarios.csv"
 F_HC = DATA / "hidro_centrales.csv"
@@ -46,6 +49,149 @@ def _hm_a_horas(h):
 
 
 # --------------------------------------------------------------------------- demanda
+def leer_ul():
+    if not F_UL.exists():
+        return {}
+    with F_UL.open(encoding="utf-8") as f:
+        return {dt.date.fromisoformat(r["fecha"]): (float(r["mwh"]) if r["mwh"] else None) for r in csv.DictReader(f)}
+
+
+def guardar_ul(u):
+    DATA.mkdir(exist_ok=True)
+    with F_UL.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fecha", "mwh"])
+        for d in sorted(u):
+            w.writerow([d.isoformat(), "" if u[d] is None else f"{u[d]:.1f}"])
+
+
+def _ul_de(hojas, d, u, dump=[False]):
+    mwh, det = fc.demanda_ul_mwh(hojas)
+    if not dump[0] and hojas.get("DEMANDA_UL"):
+        dump[0] = True                    # extracto para verificar el formato real de la hoja
+        try:
+            fc.volcar_hojas({"DEMANDA_UL": hojas["DEMANDA_UL"]}, DATA / "explora8", nombres=["DEMANDA_UL"], filas=160, cols=120)
+            (DATA / "explora8" / "demanda_ul_diag.txt").write_text(f"{d}: {mwh} MWh · {det}\n", encoding="utf-8")
+        except Exception:
+            pass
+    if mwh is not None:
+        u[d] = mwh
+
+
+def actualizar_ul(dia: dt.date, presupuesto_s=240):
+    """Rellena la energía diaria de usuarios libres desde el 1 de enero del año anterior (los días más recientes
+    primero, en varias corridas). Un día no publicado queda vacío y no se reintenta."""
+    u = leer_ul()
+    ini = dt.date(dia.year - 1, 1, 1)
+    dias = [dia - dt.timedelta(days=k) for k in range((dia - ini).days + 1)]
+    # primero el año en curso y los mismos días del año anterior, alternados
+    orden = []
+    for d in dias:
+        if d.year == dia.year:
+            orden += [d, _un_anio_antes(d)]
+    orden += [d for d in dias if d.year < dia.year]
+    t0 = time.time()
+    for d in dict.fromkeys(orden):
+        if d in u:
+            continue
+        if time.time() - t0 > presupuesto_s:
+            break
+        try:
+            hojas = fc.ieod_dia(d)
+            if hojas:
+                _ul_de(hojas, d, u)
+            elif d < dia - dt.timedelta(days=5):
+                u[d] = None
+        except Exception as e:
+            print("IEOD usuarios libres", d, e, file=sys.stderr)
+    guardar_ul(u)
+    return u
+
+
+F_LVTEA = DATA / "lvtea_tipo_cliente.json"
+
+
+def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
+    """Retiros mensuales de clientes libres y regulados del LVTEA del COES (archivo Resumen, hoja Cuadro 4).
+    La búsqueda de archivos se hace como máximo una vez al día; cada mes se descarga una sola vez."""
+    try:
+        c = json.loads(F_LVTEA.read_text(encoding="utf-8"))
+    except Exception:
+        c = {}
+    c.setdefault("meses", {})
+    t0 = time.time()
+    if c.get("buscado") != dia.isoformat():
+        diag = {}
+        c["archivos"] = fc.buscar_lvtea(max_s=min(150, presupuesto_s // 2), diag=diag)
+        c["diag"] = diag
+        c["buscado"] = dia.isoformat()
+    desde = f"{dia.year - 1}-01"
+    for ruta in sorted(c.get("archivos") or [], reverse=True):
+        ym = fc._mes_de_ruta(ruta)
+        if not ym:
+            continue
+        k = f"{ym[0]}-{ym[1]:02d}"
+        if k < desde or (c["meses"].get(k) or {}).get("libre") or time.time() - t0 > presupuesto_s:
+            continue
+        b = fc.bajar(ruta, timeout=240)
+        if not b:
+            continue
+        try:
+            if not c.get("volcado") and not ruta.lower().endswith(".zip"):   # extracto para verificar el formato
+                try:
+                    hojas = fc.libro(b)
+                    h4 = [h for h in hojas if "CUADRO" in fc.norm(h)] or list(hojas)
+                    fc.volcar_hojas(hojas, DATA / "explora9", nombres=h4[:12], filas=80, cols=40)
+                    c["volcado"] = ruta
+                except Exception:
+                    pass
+            lib, reg, det = fc.lvtea_cuadro4(b, fc._nombre(ruta))
+            c["meses"][k] = {"libre": lib, "regulado": reg, "archivo": fc._nombre(ruta), "detalle": det}
+        except Exception as e:
+            c["meses"][k] = {"libre": None, "regulado": None, "archivo": fc._nombre(ruta), "detalle": str(e)[:200]}
+    DATA.mkdir(exist_ok=True)
+    F_LVTEA.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
+    return c
+
+
+def resumen_tipo_cliente(dia: dt.date, dem=None):
+    """Crecimiento mensual y acumulado (vs año anterior) de la energía de clientes libres y regulados.
+    Fuente principal: LVTEA mensual del COES (Resumen, Cuadro 4). Meses aún sin LVTEA (p. ej. el mes en curso):
+    IEOD, usuarios libres (DEMANDA_UL) y regulado = demanda total − libres. Solo meses completos en ambos años."""
+    u, dem = leer_ul(), dem or leer_demanda()
+    try:
+        lv = json.loads(F_LVTEA.read_text(encoding="utf-8")).get("meses", {})
+    except Exception:
+        lv = {}
+    meses, acum = [], {"libre": [0.0, 0.0], "regulado": [0.0, 0.0]}
+    for m_ in range(1, dia.month + 1):
+        n = dia.day if m_ == dia.month else calendar.monthrange(dia.year, m_)[1]
+        fila = {"mes": m_, "parcial": m_ == dia.month, "dias": n}
+        ka, kb = f"{dia.year}-{m_:02d}", f"{dia.year - 1}-{m_:02d}"
+        la = lb = ra = rb = None
+        if not fila["parcial"] and (lv.get(ka) or {}).get("libre") and (lv.get(kb) or {}).get("libre"):
+            la, ra, lb, rb = lv[ka]["libre"], lv[ka]["regulado"], lv[kb]["libre"], lv[kb]["regulado"]
+            fila["fuente"] = "LVTEA"
+        else:
+            da = [dt.date(dia.year, m_, k) for k in range(1, n + 1)]
+            db = [_un_anio_antes(d) for d in da]
+            okd = lambda ds: all(u.get(d) is not None and d in dem for d in ds)
+            if okd(da) and okd(db):
+                la, lb = sum(u[d] for d in da), sum(u[d] for d in db)
+                ra, rb = sum(dem[d]["mwh"] for d in da) - la, sum(dem[d]["mwh"] for d in db) - lb
+                fila["fuente"] = "IEOD"
+        if la and lb and ra and rb:
+            fila.update({"libre": round((la / lb - 1) * 100, 1), "regulado": round((ra / rb - 1) * 100, 1),
+                         "libre_gwh": round(la / 1e3, 1), "regulado_gwh": round(ra / 1e3, 1), "pct_libre": round(la / (la + ra) * 100, 1)})
+            acum["libre"][0] += la; acum["libre"][1] += lb; acum["regulado"][0] += ra; acum["regulado"][1] += rb
+        meses.append(fila)
+    ok = [x for x in meses if "libre" in x]
+    return {"act": dia.year, "ant": dia.year - 1, "meses": meses,
+            "acum": {k: round((v[0] / v[1] - 1) * 100, 1) for k, v in acum.items() if v[1]} if ok else None,
+            "meses_ok": [x["mes"] for x in ok], "dias_ul": sum(1 for v in u.values() if v is not None),
+            "meses_lvtea": sorted(k for k, v in lv.items() if v.get("libre"))}
+
+
 def leer_demanda():
     if not F_DEM.exists():
         return {}
@@ -271,6 +417,29 @@ def guardar_hc(c):
                 w.writerow([d.isoformat(), n, e, f"{pa:.2f}", f"{re_:.2f}"])
 
 
+def leer_ger():
+    out = {}
+    if F_GER.exists():
+        with F_GER.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                d = out.setdefault(dt.date.fromisoformat(r["fecha"]), {})
+                if r["tipo"]:
+                    d[(r["tipo"], r["central"])] = float(r["mwh"] or 0)
+    return out
+
+
+def guardar_ger(g):
+    DATA.mkdir(exist_ok=True)
+    with F_GER.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fecha", "tipo", "central", "mwh"])
+        for d in sorted(g):
+            for (t, c), v in sorted(g[d].items()):
+                w.writerow([d.isoformat(), t, c, f"{v:.1f}"])
+            if not g[d]:
+                w.writerow([d.isoformat(), "", "", ""])        # día consultado sin solares/eólicas
+
+
 def _hc_de(hojas):
     return {n: (x["empresa"], x["pasada"], x["regulacion"]) for n, x in fc.hidro_por_central(hojas).items()}
 
@@ -429,6 +598,68 @@ def _agregar_centrales(c, fechas):
     return filas, round(sum(t["act"] for t in filas), 2), round(sum(t["ant"] for t in filas), 2)
 
 
+def cargar_oc(hoy: dt.date, max_s=120):
+    """Listado de publicaciones de operación comercial del COES (se refresca como máximo una vez por semana)."""
+    try:
+        c = json.loads(F_OC.read_text(encoding="utf-8"))
+    except Exception:
+        c = {}
+    if not c.get("fecha") or (hoy - dt.date.fromisoformat(c["fecha"])).days >= 7 or not c.get("lista"):
+        diag = {}
+        lista = fc.operacion_comercial_coes(max_s=max_s, diag=diag)
+        c = {"fecha": hoy.isoformat(), "lista": lista or c.get("lista") or [], "diag": diag}
+        DATA.mkdir(exist_ok=True)
+        F_OC.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
+    return c.get("lista") or []
+
+
+def cambios_centrales(anio: int, mes: int, hasta_dia: int, oc=None, umbral=0.01):
+    """Centrales que generaron en el período y no en el mismo período del año anterior (y al revés),
+    por tecnología: pasada, regulacion, eolica, solar. Solo si están todos los días en ambos años.
+    Se contrasta con las publicaciones de operación comercial del COES (oc)."""
+    hc, gr = leer_hc(), leer_ger()
+    da = [dt.date(anio, mes, k) for k in range(1, hasta_dia + 1)]
+    db = [_un_anio_antes(d) for d in da]
+    out = {}
+
+    def armar(tot_a, tot_b, clave):
+        sa, sb = sum(tot_a.values()), sum(tot_b.values())
+        lim = max(sa, sb) * umbral
+        nuevas = [{"central": c, "mwh": round(v, 1)} for c, v in sorted(tot_a.items(), key=lambda x: -x[1])
+                  if v > lim and tot_b.get(c, 0) <= 0.5]
+        sin = [{"central": c, "mwh_ant": round(v, 1)} for c, v in sorted(tot_b.items(), key=lambda x: -x[1])
+               if v > lim and tot_a.get(c, 0) <= 0.5]
+        for x in nuevas + sin:
+            hit = fc.buscar_oc(x["central"], oc or [])
+            if hit:
+                x["oc"] = {"fecha": hit.get("fecha"), "archivo": hit["archivo"]}
+        out[clave] = {"nuevas": nuevas, "sin_gen": sin, "dias": len(da)}
+
+    if all(d in hc for d in da + db):
+        for k, idx in (("pasada", 1), ("regulacion", 2)):
+            ta, tb = {}, {}
+            for d in da:
+                for c, x in hc[d].items():
+                    ta[c] = ta.get(c, 0) + x[idx]
+            for d in db:
+                for c, x in hc[d].items():
+                    tb[c] = tb.get(c, 0) + x[idx]
+            armar(ta, tb, k)
+    if all(d in gr for d in da + db):
+        for k, t in (("eolica", "Eólica"), ("solar", "Solar")):
+            ta, tb = {}, {}
+            for d in da:
+                for (tt, c), v in gr[d].items():
+                    if tt == t:
+                        ta[c] = ta.get(c, 0) + v
+            for d in db:
+                for (tt, c), v in gr[d].items():
+                    if tt == t:
+                        tb[c] = tb.get(c, 0) + v
+            armar(ta, tb, k)
+    return out
+
+
 def resumen_centrales(dia: dt.date):
     """Energía hidráulica por central en lo que va del mes (y en el día evaluado) vs el año anterior."""
     c = leer_hc()
@@ -470,8 +701,10 @@ def _vol_de(hojas):
 def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     """Rellena hidro de pasada (mes actual y mismo mes del año anterior) y volúmenes diarios de embalses
     (últimos VENTANA_VOL días y mismas fechas del año anterior) con una sola descarga del IEOD por día."""
-    h, v, hc, hu = leer_hidro(), leer_vol(), leer_hc(), leer_hu()
+    h, v, hc, hu, ul, gr = leer_hidro(), leer_vol(), leer_hc(), leer_hu(), leer_ul(), leer_ger()
     if hojas_dia:
+        _ul_de(hojas_dia, dia, ul)
+        gr[dia] = fc.energia_ger(hojas_dia)
         x = fc.recursos_dia(hojas_dia)
         if x:
             h[dia] = x
@@ -491,10 +724,15 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     falta_h = {d for d in act + ant if d not in h or not _completo(h[d])}
     falta_v = {d for d in vact + vant if d not in v}
     falta_c = {d for d in act + [_un_anio_antes(x) for x in act] if d not in hc} | {d for d in act if d not in hu}
-    orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant))
+    # mes anterior completo (ambos años) para la comparación de centrales nuevas o sin generación
+    fin_ant = dia.replace(day=1) - dt.timedelta(days=1)
+    mant = [dt.date(fin_ant.year, fin_ant.month, k) for k in range(1, fin_ant.day + 1)]
+    falta_g = {d for d in act + ant + mant + [_un_anio_antes(x) for x in mant] if d not in gr}
+    falta_c |= {d for d in mant + [_un_anio_antes(x) for x in mant] if d not in hc}
+    orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant + sorted(falta_g, reverse=True)))
     t0 = time.time()
     for d in orden:
-        if d not in falta_h and d not in falta_v and d not in falta_c:
+        if d not in falta_h and d not in falta_v and d not in falta_c and d not in falta_g:
             continue
         if time.time() - t0 > presupuesto_s:
             break
@@ -511,12 +749,16 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
             hc[d] = _hc_de(hojas)
             if d.year == dia.year:
                 hu[d] = fc.despacho_unidad(hojas)
+            _ul_de(hojas, d, ul)
+            gr[d] = fc.energia_ger(hojas)
         except Exception as e:
             print("IEOD diario", d, e, file=sys.stderr)
     guardar_hidro(h)
     guardar_vol(v)
     guardar_hc(hc)
     guardar_hu(hu)
+    guardar_ul(ul)
+    guardar_ger(gr)
     pend = [d for d in act + ant if d not in h]
     return h, pend
 
