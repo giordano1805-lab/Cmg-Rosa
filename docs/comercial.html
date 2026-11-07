@@ -196,7 +196,7 @@ const graf=(id,cfg)=>{const el=$(id);if(!el)return;charts.push(new Chart(el,cfg)
 const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" aria-label="${esc(txt)}"></canvas></div>`;
 const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
 const ANIOC=["--muted","--s4","--navy","--naranja"];
-const SECS=[["cmg","Evolución CMg"],["clientes","Demanda por cliente"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
+const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
 let CMM="act",MTM="dia",GNM=null,DTP=false,CTM="mes",DCL={l:false,r:false};
 
 function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
@@ -323,15 +323,12 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
    <div class="grid g2" style="margin-top:14px">
      <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
-      <a class="tgl" href="#clientes">Ver detalle por tipo de cliente →</a></div>
+      <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar detalle por tipo de cliente":"▸ Ver detalle por tipo de cliente"}</button></div>
       <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
-</div>
+      ${DTP?`<div id="dtp"><div class="t2">Energía por tipo de cliente · ${D.tipo_cliente?`${D.tipo_cliente.ant} vs ${D.tipo_cliente.act}`:""} · LVTEA mensual del COES</div>${tipoHTML()}</div>`:""}</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
-
-  <section class="sec" id="clientes"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Demanda por cliente</h2></div></div>
-   <div class="card"><h3>Energía por tipo de cliente<small>Usuarios libres y regulados · ${D.tipo_cliente?`${D.tipo_cliente.ant} vs ${D.tipo_cliente.act}`:""} · LVTEA mensual del COES</small></h3>${tipoHTML()}</div></section>
 
   <section class="sec" id="gen"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Generación</h2></div></div>
    ${D.generacion&&D.generacion.length?`<div class="card"><h3>Despacho del día anterior por tecnología · ${fL(D.dia)}<small>MW cada 30 min · ${D.gen_fuente==="IEOD"?"IEOD (clasificación oficial del COES)":"Portal de Información del COES (SCADA)"} · máxima ${f0(Math.max(...D.generacion.map(r=>Object.keys(D.grupos_gen).reduce((a,k)=>a+(r[k]||0),0))))} MW</small></h3>${cv("c-gdes","Despacho por tecnología del día anterior","tall")}</div>`:'<div class="estado">El despacho del día anterior aún no está disponible.</div>'}
