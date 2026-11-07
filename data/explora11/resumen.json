@@ -1,0 +1,149 @@
+{
+ "paginas": {
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria": {
+   "status": 200,
+   "bytes": 111498,
+   "url_final": "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria"
+  },
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones": {
+   "status": 200,
+   "bytes": 161775,
+   "url_final": "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/": {
+   "status": 403,
+   "bytes": 1233,
+   "url_final": "https://www2.osinergmin.gob.pe/publicacionesgrt/"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/": {
+   "status": 403,
+   "bytes": 1233,
+   "url_final": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/BolMerLibElectricidad/": {
+   "status": 403,
+   "bytes": 1233,
+   "url_final": "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/BolMerLibElectricidad/"
+  },
+  "https://www.osinergmin.gob.pe/seccion/centro_documental/gart/Publicacionesgrt/": {
+   "status": 404,
+   "bytes": 754,
+   "url_final": "https://www.osinergmin.gob.pe/seccion/centro_documental/gart/Publicacionesgrt/"
+  }
+ },
+ "scripts": {
+  "https://www.osinergmin.gob.pe/_layouts/15/3082/initstrings.js?rev=aztW5FIBlQPQpDDa7MNFLg%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 27323
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/init.js?rev=XxkZ3sAcDPzNvew7IvbzZA%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 304421
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/theming.js?rev=SuLUbbwTXcxFWOWLFUsOkw%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 34970
+  },
+  "https://www.osinergmin.gob.pe/ScriptResource.axd?d=NJmAwtEo3Ipnlaxl6CMhvo1xIvCuqEdB28uUHrYrMTttUtQQsYn1tALCpMf0Ly5tiDvzkK14mAUmFZAZAYChdVOq-ySgpOg_j7iaueY0oIYTZkQAr2pVwAypKoS7PHjZiQAwFz96IGxHZTO_MeMXhW6t8pASU3MckQZpLDf2S7k1&amp;t=5c0e0825": {
+   "status": 200,
+   "bytes": 102804
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/blank.js?rev=1TzK%2BcvAq%2Bpak3ckRUYBmA%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 456
+  },
+  "https://www.osinergmin.gob.pe/ScriptResource.axd?d=dwY9oWetJoJoVpgL6Zq8OH5doGkAGHgu9vTL-KjDDqZcwe5Yooo-kRBY6SzZvJLkUCobqHCMiZsiyKFCDtt9yJs7lcmRwzJYYngg73j1ijb13QtIyyubbc446I-nrkwfscfdMWHwv5EBJwM2OYqVsn87jd5uIkDY9Nzyw2ZojP01&amp;t=5c0e0825": {
+   "status": 200,
+   "bytes": 40329
+  },
+  "https://cdn.osinergmin.gob.pe/Institucional/js/main.js": {
+   "status": 200,
+   "bytes": 20642
+  },
+  "https://cdn.osinergmin.gob.pe/Institucional/js/reutilizable.js": {
+   "status": 200,
+   "bytes": 573
+  },
+  "https://cdn.osinergmin.gob.pe/Personas/js/menugeneral.js": {
+   "status": 200,
+   "bytes": 12698
+  },
+  "https://www.osinergmin.gob.pe/seccion/institucional/_catalogs/masterpage/Starter/js/buttons.js": {
+   "status": 200,
+   "bytes": 55377
+  },
+  "https://e.issuu.com/embed.js": {
+   "status": 200,
+   "bytes": 77971
+  },
+  "https://www.osinergmin.gob.pe/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZOPRkYWjx8rGPv5rYawCnY-PBmd-kGC0Q_6Jp2JDD9OpwuVnbnFAL_CvzkSV_knymw2&amp;t=638901356248157332": {
+   "status": 200,
+   "bytes": 23063
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/3082/sp.res.js?rev=6Hdr%2B3O9Ije%2BmSa5s%2FbmUA%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 43241
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/sp.runtime.js?rev=VdcevEIl3BuKyjbMLqi4pw%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 115649
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/sp.init.js?rev=orKfqZtyaaXcl2TjVXuruQ%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 32954
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/sp.search.js?rev=%2BvHrA78L6X1lAlHvn7aiGg%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 100951
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/clientrenderer.js?rev=dHQXk17Rz879h6kUidQY3w%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 12960
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/3082/srch.resources.js?rev=Umg5%2BHUebJac7kmmgbMY9A%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 36169
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/search.clientcontrols.js?rev=0kzWZa2ML4l7a7MHCcE1DA%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 205859
+  },
+  "https://www.osinergmin.gob.pe/_layouts/15/search.cbs.js?rev=8Vhe2xt5o%2FhUU2MViHeUqA%3D%3DTAG0": {
+   "status": 200,
+   "bytes": 6549
+  }
+ },
+ "enlaces": [
+  "http://www.osinergmin.gob.pe:80/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria",
+  "http://www.osinergmin.gob.pe/seccion/institucional/_layouts/15/Authenticate.aspx?Source=%2Fseccion%2Finstitucional%2Fregulacion%2Dtarifaria%2Fpublicaciones%2Fregulacion%2Dtarifaria",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2018",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2021",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2022",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2025",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2018",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2021",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2022",
+  "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria",
+  "https://www.osinergmin.gob.pe/VisorGRT/",
+  "http://www.osinergmin.gob.pe:80/seccion/institucional/regulacion-tarifaria/publicaciones",
+  "http://www.osinergmin.gob.pe/seccion/institucional/_layouts/15/Authenticate.aspx?Source=%2Fseccion%2Finstitucional%2Fregulacion%2Dtarifaria%2Fpublicaciones"
+ ],
+ "pruebas": {
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/Publicacionesgrt/INFORMES%20MENSUALES/Mercado%20Libre%20de%20Electricidad/2026/": {
+   "status": 404,
+   "bytes": 1245,
+   "tipo": "text/html"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/xls/BolMerLibElectricidad/": {
+   "status": 404,
+   "bytes": 1245,
+   "tipo": "text/html"
+  },
+  "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/BolMerLibElectricidad/MERCLIB2000.pdf": {
+   "status": 200,
+   "bytes": 1280546,
+   "tipo": "application/pdf"
+  }
+ }
+}
