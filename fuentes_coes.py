@@ -880,7 +880,7 @@ def hidro_por_central(hojas):
 def ieod_dia(d: dt.date):
     """Anexo A del IEOD de un día exacto (o {} si no está publicado): potencia por recurso y volúmenes."""
     fecha, hojas = descargar_ieod(d, dias_atras=1, solo={"TIPO_RECURSO", "PRINCIP_VOLÚMENES", "PRINCIP_VOLUMENES",
-                                                          "DESPACHO_EJECUTADO"})
+                                                          "DESPACHO_EJECUTADO", "DEMANDA_UL"})
     return hojas if fecha == d else {}
 
 
@@ -1282,3 +1282,47 @@ def cmg_programa_semanal(hoy: dt.date):
                 meta["archivos"].append(a)
                 break
     return serie, meta
+
+
+
+# --------------------------------------------------------------------------- demanda de usuarios libres (IEOD)
+def demanda_ul_mwh(hojas):
+    """Energía del día (MWh) de los usuarios libres según la hoja DEMANDA_UL del IEOD.
+    Acepta potencia por intervalo (filas con hora) o energía diaria (columna MWh). Devuelve (mwh, detalle) o (None, motivo)."""
+    filas = hojas.get("DEMANDA_UL") or []
+    if not filas:
+        return None, "sin hoja DEMANDA_UL"
+    # 1) potencia por intervalo: filas cuya primera(s) celda(s) es una hora
+    cab_total = None
+    for f in filas[:15]:
+        for j, v in enumerate(f):
+            if re.search(r"\bTOTAL\b", norm(v)):
+                cab_total = j
+    serie = []
+    for f in filas:
+        hora = None
+        for v in f[:3]:
+            if isinstance(v, dt.time) or re.fullmatch(r"\d{1,2}:\d{2}(:\d{2})?", texto(v)):
+                hora = v
+                break
+            x = fecha_hora(v)
+            if x and (x.hour or x.minute):
+                hora = x
+                break
+        if hora is None:
+            continue
+        nums = [numero(v) for v in f[1:]]
+        if cab_total is not None and cab_total < len(f) and numero(f[cab_total]) is not None:
+            serie.append(numero(f[cab_total]))
+        elif any(x is not None for x in nums):
+            serie.append(sum(x for x in nums if x is not None))
+    if len(serie) in (24, 48, 96):
+        return round(sum(serie) * 24 / len(serie), 1), f"{len(serie)} intervalos" + (" (columna TOTAL)" if cab_total is not None else " (suma de usuarios)")
+    # 2) energía diaria por usuario: columna con MWh
+    for i, f in enumerate(filas[:15]):
+        for j, v in enumerate(f):
+            if re.search(r"MWH|ENERGIA", norm(v)):
+                vals = [numero(g[j]) for g in filas[i + 1:] if j < len(g) and numero(g[j]) is not None and not re.search(r"TOTAL", " ".join(norm(x) for x in g[:j]))]
+                if vals:
+                    return round(sum(vals), 1), f"columna {texto(v)} ({len(vals)} filas)"
+    return None, f"formato no reconocido ({len(serie)} filas con hora)"

@@ -906,6 +906,7 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_mes_ant": cmg_mes_anterior(m, ind["_hist"], dia),
         "bot": bot_usuario(),
         "gen_mes_ant": extra.get("gen_mes_ant"),
+        "tipo_cliente": extra.get("tipo_cliente"),
         "cmg_hoy": cmg_ultimo(m, ind["_hist"], hoy),
         "cmg_n": {b: {d.isoformat(): n for d, n in sorted(ind["n_b"].get(b, {}).items())} for b in m.BARRAS},
         "cmg_prev": {b: (round(v, 2) if v is not None else None) for b, v in ind["prev"].items()},
@@ -1172,6 +1173,11 @@ def generar(m, hist=None):
         print("Demanda histórica no disponible:", e, file=sys.stderr)
     try:
         h, pend = hi.actualizar_hidro(dia, hojas if dia_ieod == dia else None)
+        try:                                   # usuarios libres (IEOD) para el crecimiento libre/regulado
+            hi.actualizar_ul(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_UL", "240")))
+            extra["tipo_cliente"] = hi.resumen_tipo_cliente(dia)
+        except Exception as e:
+            print("Usuarios libres no disponible:", e, file=sys.stderr)
         extra["hidro"] = hi.resumen_hidro(h, dia)
         extra["hidro"]["pendientes"] = len(pend)
         extra["regulacion"] = hi.resumen_hidro(h, dia, "regulacion")

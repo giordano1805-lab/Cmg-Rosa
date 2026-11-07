@@ -21,6 +21,7 @@ import fuentes_coes as fc
 
 DATA = Path("data")
 F_DEM = DATA / "demanda_diaria.csv"
+F_UL = DATA / "demanda_ul.csv"            # fecha, mwh de usuarios libres (IEOD, hoja DEMANDA_UL)
 F_HID = DATA / "hidro_pasada.csv"     # formato anterior (solo pasada); se migra a recursos.csv
 F_REC = DATA / "recursos.csv"
 RECURSOS = ("pasada", "regulacion", "eolica")
@@ -46,7 +47,89 @@ def _hm_a_horas(h):
 
 
 # --------------------------------------------------------------------------- demanda
-def leer_demanda():
+def leer_ul():
+    if not F_UL.exists():
+        return {}
+    with F_UL.open(encoding="utf-8") as f:
+        return {dt.date.fromisoformat(r["fecha"]): (float(r["mwh"]) if r["mwh"] else None) for r in csv.DictReader(f)}
+
+
+def guardar_ul(u):
+    DATA.mkdir(exist_ok=True)
+    with F_UL.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fecha", "mwh"])
+        for d in sorted(u):
+            w.writerow([d.isoformat(), "" if u[d] is None else f"{u[d]:.1f}"])
+
+
+def _ul_de(hojas, d, u, dump=[False]):
+    mwh, det = fc.demanda_ul_mwh(hojas)
+    if not dump[0] and hojas.get("DEMANDA_UL"):
+        dump[0] = True                    # extracto para verificar el formato real de la hoja
+        try:
+            fc.volcar_hojas({"DEMANDA_UL": hojas["DEMANDA_UL"]}, DATA / "explora8", nombres=["DEMANDA_UL"], filas=160, cols=120)
+            (DATA / "explora8" / "demanda_ul_diag.txt").write_text(f"{d}: {mwh} MWh · {det}\n", encoding="utf-8")
+        except Exception:
+            pass
+    if mwh is not None:
+        u[d] = mwh
+
+
+def actualizar_ul(dia: dt.date, presupuesto_s=240):
+    """Rellena la energía diaria de usuarios libres desde el 1 de enero del año anterior (los días más recientes
+    primero, en varias corridas). Un día no publicado queda vacío y no se reintenta."""
+    u = leer_ul()
+    ini = dt.date(dia.year - 1, 1, 1)
+    dias = [dia - dt.timedelta(days=k) for k in range((dia - ini).days + 1)]
+    # primero el año en curso y los mismos días del año anterior, alternados
+    orden = []
+    for d in dias:
+        if d.year == dia.year:
+            orden += [d, _un_anio_antes(d)]
+    orden += [d for d in dias if d.year < dia.year]
+    t0 = time.time()
+    for d in dict.fromkeys(orden):
+        if d in u:
+            continue
+        if time.time() - t0 > presupuesto_s:
+            break
+        try:
+            hojas = fc.ieod_dia(d)
+            if hojas:
+                _ul_de(hojas, d, u)
+            elif d < dia - dt.timedelta(days=5):
+                u[d] = None
+        except Exception as e:
+            print("IEOD usuarios libres", d, e, file=sys.stderr)
+    guardar_ul(u)
+    return u
+
+
+def resumen_tipo_cliente(dia: dt.date, dem=None):
+    """Crecimiento mensual y acumulado (vs año anterior) de la demanda de usuarios libres y regulados.
+    Regulado = demanda total del SEIN (Portal) − usuarios libres (IEOD). Solo meses con todos los días en ambos años."""
+    u, dem = leer_ul(), dem or leer_demanda()
+    meses, acum = [], {"libre": [0.0, 0.0], "regulado": [0.0, 0.0]}
+    for m_ in range(1, dia.month + 1):
+        n = dia.day if m_ == dia.month else calendar.monthrange(dia.year, m_)[1]
+        da = [dt.date(dia.year, m_, k) for k in range(1, n + 1)]
+        db = [_un_anio_antes(d) for d in da]
+        okd = lambda ds: all(u.get(d) is not None and d in dem for d in ds)
+        fila = {"mes": m_, "parcial": m_ == dia.month, "dias": n,
+                "cobertura": round(sum(1 for d in da + db if u.get(d) is not None) / (2 * n) * 100)}
+        if okd(da) and okd(db):
+            la, lb = sum(u[d] for d in da), sum(u[d] for d in db)
+            ra, rb = sum(dem[d]["mwh"] for d in da) - la, sum(dem[d]["mwh"] for d in db) - lb
+            fila.update({"libre": round((la / lb - 1) * 100, 1), "regulado": round((ra / rb - 1) * 100, 1),
+                         "libre_gwh": round(la / 1e3, 1), "regulado_gwh": round(ra / 1e3, 1), "pct_libre": round(la / (la + ra) * 100, 1)})
+            acum["libre"][0] += la; acum["libre"][1] += lb; acum["regulado"][0] += ra; acum["regulado"][1] += rb
+        meses.append(fila)
+    ok = [x for x in meses if "libre" in x]
+    return {"act": dia.year, "ant": dia.year - 1, "meses": meses,
+            "acum": {k: round((v[0] / v[1] - 1) * 100, 1) for k, v in acum.items() if v[1]} if ok else None,
+            "meses_ok": [x["mes"] for x in ok], "dias_ul": sum(1 for v in u.values() if v is not None)}
+
     if not F_DEM.exists():
         return {}
     with F_DEM.open(encoding="utf-8") as f:
@@ -470,8 +553,9 @@ def _vol_de(hojas):
 def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     """Rellena hidro de pasada (mes actual y mismo mes del año anterior) y volúmenes diarios de embalses
     (últimos VENTANA_VOL días y mismas fechas del año anterior) con una sola descarga del IEOD por día."""
-    h, v, hc, hu = leer_hidro(), leer_vol(), leer_hc(), leer_hu()
+    h, v, hc, hu, ul = leer_hidro(), leer_vol(), leer_hc(), leer_hu(), leer_ul()
     if hojas_dia:
+        _ul_de(hojas_dia, dia, ul)
         x = fc.recursos_dia(hojas_dia)
         if x:
             h[dia] = x
@@ -511,12 +595,14 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
             hc[d] = _hc_de(hojas)
             if d.year == dia.year:
                 hu[d] = fc.despacho_unidad(hojas)
+            _ul_de(hojas, d, ul)
         except Exception as e:
             print("IEOD diario", d, e, file=sys.stderr)
     guardar_hidro(h)
     guardar_vol(v)
     guardar_hc(hc)
     guardar_hu(hu)
+    guardar_ul(ul)
     pend = [d for d in act + ant if d not in h]
     return h, pend
 

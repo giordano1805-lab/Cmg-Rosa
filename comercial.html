@@ -68,6 +68,9 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer;min-height:32px}
 .seg button[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;font-weight:600;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
 .seg button:disabled{opacity:.45;cursor:not-allowed}
+.dg{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,20fr);gap:16px}.sepv{border-left:1px dashed var(--card-b);padding-left:12px}
+.t2{font-weight:700;color:var(--h1);font-size:13px;margin:16px 0 4px}
+@media (max-width:700px){.dg{grid-template-columns:1fr}.sepv{border-left:0;padding-left:0;border-top:1px dashed var(--card-b);padding-top:8px}}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(180deg,#ff6a2e,var(--naranja));box-shadow:0 2px 8px -3px rgba(255,87,22,.6)}
 .pill.nv{background:linear-gradient(180deg,#26449c,#001a6f);box-shadow:0 2px 8px -3px rgba(0,26,111,.6)}
 .pill.gr{background:var(--surface-2);color:var(--text-2);box-shadow:none;border:1px solid var(--card-b);font-weight:600}
@@ -241,6 +244,11 @@ const GENC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eól
 // mes en curso sin datos todavía (el IEOD del día 1 se publica al día siguiente): se abre el mes anterior completo
 const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
 function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica}[k]||null}
+function tipoHTML(){const T=D.tipo_cliente;
+  if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando la demanda de usuarios libres del IEOD (hoja DEMANDA_UL) día por día${T?` · ${T.dias_ul} días guardados`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
+  const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
+  return `<div class="dg"><div>${cv("c-tip","Crecimiento mensual de usuarios libres y regulados","sm")}</div><div class="sepv">${cv("c-tipa","Crecimiento acumulado por tipo de cliente","sm")}</div></div>
+   <div class="note">Libre: usuarios libres reportados por el COES (IEOD, DEMANDA_UL). Regulado: demanda total del SEIN − usuarios libres. ${falta.length?`Sin dato completo aún: ${falta.join(", ")} (se completa en las próximas corridas).`:""}</div>`}
 /* ---------- render ---------- */
 function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";
   const hoy=D.hoy,sem=semanaCOES(hoy),SR="Santa Rosa 220",mes=MESN[+D.dia.slice(5,7)-1],anio=D.dia.slice(0,4);
@@ -270,7 +278,10 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${D.barras.map(b=>`<span class="pill gr">${esc(b.replace(" 220",""))}: ${f2(CV.prom[b])}</span>`).join("")}${Object.entries(CV.bprom||{}).map(([k,v])=>`<span class="pill gr">${esc(k.replace(/ \(.*/,""))} SR: ${f2(v)}</span>`).join("")}</div>
     ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
    <div class="grid g2" style="margin-top:14px">
-     <div class="card"><h3>Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días`:""}</small></h3>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div>
+     <div class="card" style="grid-column:1/-1"><h3>Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
+      <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
+      <div class="t2">Crecimiento mensual por tipo de cliente · % vs mismo mes del año anterior</div>
+      ${tipoHTML()}</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
@@ -325,9 +336,21 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
   if(D.demanda_hist){const H=D.demanda_hist,ms=Array.from({length:H.mes},(_,i)=>i+1);
     const va=ms.map(m=>m===H.mes?H.mtd_gwh[H.ant]/1e3:(H.mensual[H.ant][m]??null)),vb=ms.map(m=>H.mensual[H.act][m]??null);
     const lb={id:"lb",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";const m=c.getDatasetMeta(1);
-      m.data.forEach((b,i)=>{if(va[i]&&vb[i]){const p=(vb[i]/va[i]-1)*100;x.fillText(`${f1(p)}%`,b.x-b.width/2,Math.min(b.y,c.getDatasetMeta(0).data[i].y)-6)}});x.restore()}};
+      m.data.forEach((b,i)=>{if(va[i]&&vb[i]){const p=(vb[i]/va[i]-1)*100;x.fillText(`${p>0?"+":""}${f1(p)}%`,b.x-b.width/2,Math.min(b.y,c.getDatasetMeta(0).data[i].y)-6)}});x.restore()}};
     const o=base("TWh");o.layout={padding:{top:16}};o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)} TWh`;
     graf("#c-dem",{type:"bar",data:{labels:ms.map(m=>MESL[m-1]+(m===H.mes?"*":"")),datasets:[{label:String(H.ant),data:va,backgroundColor:css("--teal"),borderRadius:3},{label:String(H.act),data:vb,backgroundColor:css("--s1"),borderRadius:3}]},options:o,plugins:[lb]})}
+  if(D.demanda_hist&&$("#c-dema")){const H=D.demanda_hist,a=H.ytd_twh[H.ant],b=H.ytd_twh[H.act],o=base("");o.layout={padding:{top:16}};o.plugins.legend.display=false;o.scales.y.beginAtZero=true;
+    o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f2(c.parsed.y)} TWh`;
+    const lb={id:"lba",afterDatasetsDraw(c){const x=c.ctx,m0=c.getDatasetMeta(0).data[0],m1=c.getDatasetMeta(1).data[0];if(!m0||!m1||!a)return;x.save();x.font="700 11px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";
+      x.fillText(`${(b/a-1)*100>0?"+":""}${f1((b/a-1)*100)}%`,(m0.x+m1.x)/2,Math.min(m0.y,m1.y)-6);x.restore()}};
+    graf("#c-dema",{type:"bar",data:{labels:[`Acum. Ene–${MESL[H.mes-1]}*`],datasets:[{label:String(H.ant),data:[a],backgroundColor:css("--teal"),borderRadius:4},{label:String(H.act),data:[b],backgroundColor:css("--s1"),borderRadius:4}]},options:o,plugins:[lb]})}
+  {const T=D.tipo_cliente;if(T&&T.meses_ok&&T.meses_ok.length&&$("#c-tip")){const ms=T.meses,L=ms.map(x=>x.libre??null),R=ms.map(x=>x.regulado??null);
+    const lb={id:"lbt",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10px Inter,sans-serif";x.textAlign="center";[0,1].forEach(k=>{x.fillStyle=k?"#c2410c":css("--h1");c.getDatasetMeta(k).data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v))x.fillText(`${v>0?"+":""}${f1(v)}`,b.x,v>=0?b.y-4:b.y+12)})});x.restore()}};
+    let o=base("%");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=ms[c.dataIndex];return `${c.dataset.label}: ${c.parsed.y>0?"+":""}${f1(c.parsed.y)}% (${f0(c.datasetIndex?r.regulado_gwh:r.libre_gwh)} GWh)`};
+    o.plugins.tooltip.callbacks.footer=it=>{const r=ms[it[0].dataIndex];return r.pct_libre?`Libres: ${f1(r.pct_libre)}% de la demanda`:""};
+    graf("#c-tip",{type:"bar",data:{labels:ms.map(x=>MESL[x.mes-1]+(x.parcial?"*":"")),datasets:[{label:"Libre",data:L,backgroundColor:"#001a6f",borderRadius:3},{label:"Regulado",data:R,backgroundColor:"#ff5716",borderRadius:3}]},options:o,plugins:[lb]});
+    if(T.acum){o=base("");o.layout={padding:{top:14}};o.plugins.legend.display=false;
+      graf("#c-tipa",{type:"bar",data:{labels:[`Acum. ${T.meses_ok.length} meses`],datasets:[{label:"Libre",data:[T.acum.libre],backgroundColor:"#001a6f",borderRadius:4},{label:"Regulado",data:[T.acum.regulado],backgroundColor:"#ff5716",borderRadius:4}]},options:o,plugins:[lb]})}}}
   {const lb={id:"lb2",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.textAlign="center";
       [0,1].forEach(k=>{const m=c.getDatasetMeta(k);m.data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v)){x.fillStyle=css(k?"--naranja":"--navy");x.fillText(f0(v),b.x,b.y-4)}})});x.restore()}};
     const o=base("USD/MWh");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=real[c.dataIndex];return c.datasetIndex&&r?`Real: ${f1(r.v)} (${r.auto?"COES"+(r.parcial?", mes en curso":""):"cargado"})`:`${c.dataset.label}: ${f1(c.parsed.y)}`};
