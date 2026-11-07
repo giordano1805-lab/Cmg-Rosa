@@ -1854,7 +1854,7 @@ def osinergmin_ml_clientes(b):
     j = lambda rx: next((k for k, c in enumerate(cab) if re.search(rx, c)), None)
     jm, jr, jn, ja, je = j(r"^ANNIOMES$"), j(r"^RUC$"), j(r"^NOMBRECLIENTE$"), j(r"^CODACTIVIDAD$"), j(r"^CODEMPRESA$")
     jc, js = j(r"^CODPTOSUMINISTRO$"), j(r"^NOMBRESUMINISTRO$")
-    jh, jf = j(r"CONSUMO EHP_BE"), j(r"CONSUMO EFP_BE")
+    jh, jf = j(r"CONSUMO\s*EHP_BE"), j(r"CONSUMO\s*EFP_BE")
     if None in (jm, jh, jf) or (jn is None and js is None):
         return None
     sm, meses = {}, {}
