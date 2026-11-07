@@ -372,12 +372,13 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
   {const T=D.tipo_cliente;if(T&&T.meses_ok&&T.meses_ok.length&&$("#c-tipl")){const ms=T.meses.filter(x=>"libre" in x);
     const cA=css("--teal"),cB=css("--s1"),pct=(a,b)=>a&&b?(b/a-1)*100:null;
     const lbl=id=>({id,afterDatasetsDraw(c){const x=c.ctx,d0=c.data.datasets[0].data,d1=c.data.datasets[1].data;const m1=c.getDatasetMeta(1).data,w=m1.length>1?Math.abs(m1[1].x-m1[0].x):99,ang=w<46;x.save();x.font=`700 ${ang?9:10.5}px Inter,sans-serif`;
-      m1.forEach((b1,i)=>{const b0=c.getDatasetMeta(0).data[i],v=pct(d0[i],d1[i]);if(v==null||!b0)return;x.fillStyle=v>=0?css("--ok"):css("--bad");
+      m1.forEach((b1,i)=>{const b0=c.getDatasetMeta(0).data[i],v0=pct(d0[i],d1[i]);if(v0==null||!b0)return;const v=Math.round(v0*10)/10||0;
+        x.fillStyle=v>0?css("--ok"):v<0?css("--bad"):css("--muted");
         const t=`${v>0?"+":""}${f1(v)}${ang?"":"%"}`,cx=(b0.x+b1.x)/2,cy=Math.min(b0.y,b1.y)-5;
         if(ang){x.save();x.translate(cx,cy);x.rotate(-Math.PI/2);x.textAlign="left";x.textBaseline="middle";x.fillText(t,0,0);x.restore()}else{x.textAlign="center";x.fillText(t,cx,cy-1)}});x.restore()}});
     [["l","libre"],["r","regulado"]].forEach(([k,c])=>{
       const A=ms.map(x=>x[c+"_gwh_ant"]??null),B=ms.map(x=>x[c+"_gwh"]??null);
-      let o=base("GWh");o.layout={padding:{top:innerWidth<700?34:18}};o.scales.y.beginAtZero=false;
+      let o=base("GWh");o.layout={padding:{top:innerWidth<700?34:18}};o.scales.y.beginAtZero=false;if(innerWidth<700)o.plugins.legend.position="bottom";
       const mn=Math.min(...A.concat(B).filter(fin));o.scales.y.min=Math.max(0,Math.floor(mn*0.85/100)*100);
       o.plugins.tooltip.callbacks.label=t=>`${t.dataset.label}: ${f0(t.parsed.y)} GWh`;
       o.plugins.tooltip.callbacks.footer=it=>{const r=ms[it[0].dataIndex],v=pct(A[it[0].dataIndex],B[it[0].dataIndex]);return `Variación: ${v>0?"+":""}${f1(v)}% · fuente ${r.fuente}`};
