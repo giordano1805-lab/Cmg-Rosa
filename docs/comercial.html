@@ -129,6 +129,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .nuevas li{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:6px 0;border-top:1px dashed color-mix(in srgb,var(--naranja) 30%,transparent)}
 .nuevas li small{grid-column:1/-1;color:var(--muted);font-size:12px}.nuevas .mw{font-weight:800;color:var(--naranja);font-variant-numeric:tabular-nums}
 .nuevas .nf{display:block;color:var(--muted);font-size:11px}
+.tpb+.tpb{margin-top:14px;padding-top:12px;border-top:1px dashed var(--border)}.t3{font-weight:800;font-size:13px;color:var(--h1);margin:0 0 4px}
 </style>
 </head>
 <body>
@@ -269,8 +270,9 @@ function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c
 function tipoHTML(){const T=D.tipo_cliente;
   if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
   const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
-  return `<div class="dg"><div>${cv("c-tip","Crecimiento mensual de usuarios libres y regulados","sm")}</div><div class="sepv">${cv("c-tipa","Crecimiento acumulado por tipo de cliente","sm")}</div></div>
-   <div class="note">Fuente: retiros de clientes libres y regulados del LVTEA mensual del COES (archivo Resumen, Cuadro 4)${T.meses.some(x=>x.fuente==="IEOD")?`; meses aún sin LVTEA (${T.meses.filter(x=>x.fuente==="IEOD").map(x=>MESL[x.mes-1]).join(", ")}): IEOD, usuarios libres (DEMANDA_UL) y regulado = demanda total − libres`:""}. ${falta.length?`Sin dato completo aún: ${falta.join(", ")} (se completa en las próximas corridas).`:""}</div>`}
+  const blk=(k,n)=>`<div class="tpb"><div class="t3">${n}</div><div class="dg"><div>${cv("c-tip"+k,`Energía mensual de ${n.toLowerCase()} ${T.ant} vs ${T.act}`,"sm")}</div><div class="sepv">${cv("c-tipa"+k,`Acumulado de ${n.toLowerCase()}`,"sm")}</div></div></div>`;
+  return `${blk("l","Usuarios libres")}${blk("r","Usuarios regulados")}
+   <div class="note">GWh por mes, ${T.ant} vs ${T.act}; sobre cada par, la variación %. Fuente: retiros de clientes libres y regulados del LVTEA mensual del COES (Resumen, Cuadro 4)${T.meses.some(x=>x.fuente==="IEOD")?`. Meses aún sin LVTEA (${T.meses.filter(x=>x.fuente==="IEOD").map(x=>MESL[x.mes-1]).join(", ")}): estimación con IEOD (usuarios libres reportados en DEMANDA_UL; regulado = demanda total − libres), no comparable en nivel con el LVTEA`:""}. ${falta.length?`Sin dato aún: ${falta.join(", ")}.`:""}</div>`}
 /* ---------- render ---------- */
 function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";
   const hoy=D.hoy,sem=semanaCOES(hoy),SR="Santa Rosa 220",mes=MESN[+D.dia.slice(5,7)-1],anio=D.dia.slice(0,4);
@@ -303,7 +305,7 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
      <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
       <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar crecimiento por tipo de cliente":"▸ Ver crecimiento por tipo de cliente"}</button></div>
       <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
-      ${DTP?`<div id="dtp"><div class="t2">Crecimiento mensual por tipo de cliente · % vs mismo mes del año anterior</div>${tipoHTML()}</div>`:""}</div>
+      ${DTP?`<div id="dtp"><div class="t2">Energía por tipo de cliente · mismo mes del año anterior</div>${tipoHTML()}</div>`:""}</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
@@ -366,13 +368,22 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     const lb={id:"lba",afterDatasetsDraw(c){const x=c.ctx,m0=c.getDatasetMeta(0).data[0],m1=c.getDatasetMeta(1).data[0];if(!m0||!m1||!a)return;x.save();x.font="700 11px Inter,sans-serif";x.fillStyle=css("--text");x.textAlign="center";
       x.fillText(`${(b/a-1)*100>0?"+":""}${f1((b/a-1)*100)}%`,(m0.x+m1.x)/2,Math.min(m0.y,m1.y)-6);x.restore()}};
     graf("#c-dema",{type:"bar",data:{labels:[`Acum. Ene–${MESL[H.mes-1]}*`],datasets:[{label:String(H.ant),data:[a],backgroundColor:css("--teal"),borderRadius:4},{label:String(H.act),data:[b],backgroundColor:css("--s1"),borderRadius:4}]},options:o,plugins:[lb]})}
-  {const T=D.tipo_cliente;if(T&&T.meses_ok&&T.meses_ok.length&&$("#c-tip")){const ms=T.meses,L=ms.map(x=>x.libre??null),R=ms.map(x=>x.regulado??null);
-    const lb={id:"lbt",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10px Inter,sans-serif";x.textAlign="center";[0,1].forEach(k=>{x.fillStyle=k?"#c2410c":css("--h1");c.getDatasetMeta(k).data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v))x.fillText(`${v>0?"+":""}${f1(v)}`,b.x,v>=0?b.y-4:b.y+12)})});x.restore()}};
-    let o=base("%");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=ms[c.dataIndex];return `${c.dataset.label}: ${c.parsed.y>0?"+":""}${f1(c.parsed.y)}% (${f0(c.datasetIndex?r.regulado_gwh:r.libre_gwh)} GWh)`};
-    o.plugins.tooltip.callbacks.footer=it=>{const r=ms[it[0].dataIndex];return r.pct_libre?`Libres: ${f1(r.pct_libre)}% del total · fuente ${r.fuente}`:""};
-    graf("#c-tip",{type:"bar",data:{labels:ms.map(x=>MESL[x.mes-1]+(x.parcial?"*":"")),datasets:[{label:"Libre",data:L,backgroundColor:"#001a6f",borderRadius:3},{label:"Regulado",data:R,backgroundColor:"#ff5716",borderRadius:3}]},options:o,plugins:[lb]});
-    if(T.acum){o=base("");o.layout={padding:{top:14}};o.plugins.legend.display=false;
-      graf("#c-tipa",{type:"bar",data:{labels:[`Acum. ${T.meses_ok.length} meses`],datasets:[{label:"Libre",data:[T.acum.libre],backgroundColor:"#001a6f",borderRadius:4},{label:"Regulado",data:[T.acum.regulado],backgroundColor:"#ff5716",borderRadius:4}]},options:o,plugins:[lb]})}}}
+  {const T=D.tipo_cliente;if(T&&T.meses_ok&&T.meses_ok.length&&$("#c-tipl")){const ms=T.meses.filter(x=>"libre" in x);
+    const cA=css("--teal"),cB=css("--s1"),pct=(a,b)=>a&&b?(b/a-1)*100:null;
+    const lbl=id=>({id,afterDatasetsDraw(c){const x=c.ctx,d0=c.data.datasets[0].data,d1=c.data.datasets[1].data;x.save();x.font="700 10.5px Inter,sans-serif";x.textAlign="center";
+      c.getDatasetMeta(1).data.forEach((b1,i)=>{const b0=c.getDatasetMeta(0).data[i],v=pct(d0[i],d1[i]);if(v==null||!b0)return;x.fillStyle=v>=0?css("--ok"):css("--bad");
+        x.fillText(`${v>0?"+":""}${f1(v)}%`,(b0.x+b1.x)/2,Math.min(b0.y,b1.y)-6)});x.restore()}});
+    [["l","libre"],["r","regulado"]].forEach(([k,c])=>{
+      const A=ms.map(x=>x[c+"_gwh_ant"]??null),B=ms.map(x=>x[c+"_gwh"]??null);
+      let o=base("GWh");o.layout={padding:{top:18}};o.scales.y.beginAtZero=false;
+      const mn=Math.min(...A.concat(B).filter(fin));o.scales.y.min=Math.max(0,Math.floor(mn*0.85/100)*100);
+      o.plugins.tooltip.callbacks.label=t=>`${t.dataset.label}: ${f0(t.parsed.y)} GWh`;
+      o.plugins.tooltip.callbacks.footer=it=>{const r=ms[it[0].dataIndex],v=pct(A[it[0].dataIndex],B[it[0].dataIndex]);return `Variación: ${v>0?"+":""}${f1(v)}% · fuente ${r.fuente}`};
+      graf("#c-tip"+k,{type:"bar",data:{labels:ms.map(x=>MESL[x.mes-1]+(x.fuente==="IEOD"?"ᵉ":"")),datasets:[{label:String(T.ant),data:A,backgroundColor:cA,borderRadius:3},{label:String(T.act),data:B,backgroundColor:cB,borderRadius:3}]},options:o,plugins:[lbl("lt"+k)]});
+      const sa=A.reduce((x,y)=>x+(y||0),0),sb=B.reduce((x,y)=>x+(y||0),0);
+      let o2=base("");o2.layout={padding:{top:18}};o2.plugins.legend.display=false;o2.scales.y.ticks.display=false;o2.scales.y.grid.display=false;
+      o2.plugins.tooltip.callbacks.label=t=>`${t.dataset.label}: ${f0(t.parsed.y)} GWh`;
+      graf("#c-tipa"+k,{type:"bar",data:{labels:[`Acum. ${ms.length} meses`],datasets:[{label:String(T.ant),data:[sa],backgroundColor:cA,borderRadius:4},{label:String(T.act),data:[sb],backgroundColor:cB,borderRadius:4}]},options:o2,plugins:[lbl("lta"+k)]})})}}
   {const lb={id:"lb2",afterDatasetsDraw(c){const x=c.ctx;x.save();x.font="700 10.5px Inter,sans-serif";x.textAlign="center";
       [0,1].forEach(k=>{const m=c.getDatasetMeta(k);m.data.forEach((b,i)=>{const v=c.data.datasets[k].data[i];if(fin(v)){x.fillStyle=css(k?"--naranja":"--navy");x.fillText(f0(v),b.x,b.y-4)}})});x.restore()}};
     const o=base("USD/MWh");o.layout={padding:{top:14}};o.plugins.tooltip.callbacks.label=c=>{const r=real[c.dataIndex];return c.datasetIndex&&r?`Real: ${f1(r.v)} (${r.auto?"COES"+(r.parcial?", mes en curso":""):"cargado"})`:`${c.dataset.label}: ${f1(c.parsed.y)}`};

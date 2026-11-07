@@ -1,15 +1,243 @@
 {
- "meses": {},
+ "meses": {
+  "2026-09": {
+   "libre": 29.0294263554,
+   "regulado": 216.962669241,
+   "archivo": "Resumen_cuadros-0926.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/Resumen_cuadros-0926.xlsx",
+   "revision": 5,
+   "detalle": "Resumen_cuadros-0926.xlsx · hoja CUADRO 4"
+  },
+  "2026-08": {
+   "libre": 338.1340577841,
+   "regulado": 245.8447511574,
+   "archivo": "Resumen_cuadros-0826_R1.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Revisión 01/Resumen_cuadros-0826_R1.xlsx",
+   "revision": 11,
+   "detalle": "Resumen_cuadros-0826_R1.xlsx · hoja CUADRO 4"
+  },
+  "2026-07": {
+   "libre": 60.5818727417,
+   "regulado": 26.0876102563,
+   "archivo": "Resumen_cuadros-0726_R1.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Revisión 01/Resumen_cuadros-0726_R1.xlsx",
+   "revision": 11,
+   "detalle": "Resumen_cuadros-0726_R1.xlsx · hoja CUADRO 4"
+  },
+  "2026-06": {
+   "libre": 100.8240252162,
+   "regulado": 370.1528162464,
+   "archivo": "Resumen_cuadros-0626 R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 02/Resumen_cuadros-0626 R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-0626 R2.xlsx · hoja CUADRO 4"
+  },
+  "2026-05": {
+   "libre": 424.6648103522,
+   "regulado": 19968.0573943273,
+   "archivo": "Resumen_cuadros-0526_R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 02/Resumen_cuadros-0526_R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-0526_R2.xlsx · hoja CUADRO 4"
+  },
+  "2026-04": {
+   "libre": 276.141957388,
+   "regulado": 57.5056124506,
+   "archivo": "Resumen_cuadros-0426_R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 02/Resumen_cuadros-0426_R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-0426_R2.xlsx · hoja CUADRO 4"
+  },
+  "2026-03": {
+   "libre": 660.1891450601,
+   "regulado": 1485.9666893444,
+   "archivo": "Resumen_cuadros-0326_R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 02/Resumen_cuadros-0326_R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-0326_R2.xlsx · hoja CUADRO 4"
+  },
+  "2026-02": {
+   "libre": 111.839241215,
+   "regulado": 353.6451704514,
+   "archivo": "Resumen_cuadros-0226-R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 02/Resumen_cuadros-0226-R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-0226-R2.xlsx · hoja CUADRO 4"
+  },
+  "2026-01": {
+   "libre": 349.746342573,
+   "regulado": 20.4133503932,
+   "archivo": "Resumen_cuadros-0126_R3.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 03/Resumen_cuadros-0126_R3.xlsx",
+   "revision": 13,
+   "detalle": "Resumen_cuadros-0126_R3.xlsx · hoja CUADRO 4"
+  },
+  "2025-12": {
+   "libre": 340.8615003683,
+   "regulado": 244.8648594715,
+   "archivo": "Resumen_cuadros-1225_R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 02/Resumen_cuadros-1225_R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-1225_R2.xlsx · hoja CUADRO 4"
+  },
+  "2025-11": {
+   "libre": 59.2949854125,
+   "regulado": 487.351289289,
+   "archivo": "Resumen_cuadros-1125_R1.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Revisión 01/Resumen_cuadros-1125_R1.xlsx",
+   "revision": 11,
+   "detalle": "Resumen_cuadros-1125_R1.xlsx · hoja CUADRO 4"
+  },
+  "2025-10": {
+   "libre": null,
+   "regulado": null,
+   "archivo": "Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
+   "revision": 12,
+   "detalle": "no se hallaron filas Libre/Regulado en el Cuadro 4"
+  },
+  "2025-09": {
+   "libre": 361.4744839609,
+   "regulado": 1699.3718844737,
+   "archivo": "Resumen_cuadros-0925_R3.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 03/Resumen_cuadros-0925_R3.xlsx",
+   "revision": 13,
+   "detalle": "Resumen_cuadros-0925_R3.xlsx · hoja CUADRO 4"
+  },
+  "2025-08": {
+   "libre": 321.7875196543,
+   "regulado": 934.3595746578,
+   "archivo": "Resumen_cuadros-0825_R3.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/Resumen_cuadros-0825_R3.xlsx",
+   "revision": 13,
+   "detalle": "Resumen_cuadros-0825_R3.xlsx · hoja CUADRO 4"
+  },
+  "2025-07": {
+   "libre": 26.8899259647,
+   "regulado": 2668.8165808423,
+   "archivo": "Resumen_cuadros-0725_R4.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 04/Resumen_cuadros-0725_R4.xlsx",
+   "revision": 14,
+   "detalle": "Resumen_cuadros-0725_R4.xlsx · hoja CUADRO 4"
+  },
+  "2025-06": {
+   "libre": 2238.5291740703,
+   "regulado": 235.3704674301,
+   "archivo": "Resumen_cuadros-0625_R5.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 05/Resumen_cuadros-0625_R5.xlsx",
+   "revision": 15,
+   "detalle": "Resumen_cuadros-0625_R5.xlsx · hoja CUADRO 4"
+  },
+  "2025-05": {
+   "libre": 82.9712300997,
+   "regulado": 10743.1320743142,
+   "archivo": "Resumen_cuadros-0525_R3.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 03/Resumen_cuadros-0525_R3.xlsx",
+   "revision": 13,
+   "detalle": "Resumen_cuadros-0525_R3.xlsx · hoja CUADRO 4"
+  },
+  "2025-04": {
+   "libre": 6248.7617548417,
+   "regulado": 3.0125835113,
+   "archivo": "Resumen_cuadros-0425_R1.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Revisión 01/Resumen_cuadros-0425_R1.xlsx",
+   "revision": 11,
+   "detalle": "Resumen_cuadros-0425_R1.xlsx · hoja CUADRO 4"
+  },
+  "2025-03": {
+   "libre": 65.0857209452,
+   "regulado": 363.2485734031,
+   "archivo": "Resumen_cuadros-0325_R1.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Revisión 01/Resumen_cuadros-0325_R1.xlsx",
+   "revision": 11,
+   "detalle": "Resumen_cuadros-0325_R1.xlsx · hoja CUADRO 4"
+  },
+  "2025-02": {
+   "libre": 543.7673603454,
+   "regulado": 29931.6509658474,
+   "archivo": "Resumen_cuadros-0225_R2.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 02/Resumen_cuadros-0225_R2.xlsx",
+   "revision": 12,
+   "detalle": "Resumen_cuadros-0225_R2.xlsx · hoja CUADRO 4"
+  },
+  "2025-01": {
+   "libre": 80.2350883863,
+   "regulado": 308.4930644648,
+   "archivo": "Resumen_cuadros-0125_R3.xlsx",
+   "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 03/Resumen_cuadros-0125_R3.xlsx",
+   "revision": 13,
+   "detalle": "Resumen_cuadros-0125_R3.xlsx · hoja CUADRO 4"
+  }
+ },
  "archivos": [
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/0. Resumen_cuadros 1a,b.xlsx",
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/1. Resumen_cuadros 2,3,4 - 12.18.xlsx",
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/2. Resumen_cuadros 2,3,4 - 01.19.xlsx",
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/3. Resumen_cuadros 2,3,4 - 02.19.xlsx",
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/4. Resumen_cuadros 2,3,4 - 03.19.xlsx",
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/5. Resumen_cuadros 2,3,4 - 04.19.xlsx",
-  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/6. Resumen_cuadros 2,3,4 - 05.19.xlsx",
-  "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTP/ResumenPotenciaPeaje.xlsx",
-  "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTEA/ResumenEnergia.XLS"
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/Resumen_cuadros-0926.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Revisión 01/Resumen_cuadros-0826_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Mensual/Resumen_cuadros-0826.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Revisión 01/Resumen_cuadros-0726_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Mensual/Resumen_cuadros-0726.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 02/Resumen_cuadros-0626 R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 01/Resumen_cuadros-0626_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Mensual/Resumen_cuadros-0626.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 02/Resumen_cuadros-0526_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 01/Resumen_cuadros-0526_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Mensual/Resumen_cuadros-0526.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 02/Resumen_cuadros-0426_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 01/Resumen_cuadros-0426_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Mensual/Resumen_cuadros-0426.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 02/Resumen_cuadros-0326_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 01/Resumen_cuadros-0326_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Mensual/Resumen_cuadros-0326.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 02/Resumen_cuadros-0226-R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 01/Resumen_cuadros-0226_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Mensual/Resumen_cuadros-0226.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 03/Resumen_cuadros-0126_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 02/Resumen_cuadros-0126_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 01/Resumen_cuadros-0126_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Mensual/Resumen_cuadros-0126.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 02/Resumen_cuadros-1225_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 01/Resumen_cuadros-1225_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Mensual/Resumen_cuadros-1225.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Revisión 01/Resumen_cuadros-1125_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Mensual/Resumen_cuadros-1125.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/CORRECCIÓN – _CUADRO 5_  del Archivo _Resumen_cuadros-1025_R2.xlsx_ (LVTEA Octubre 2025 - R2).zip",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/Resumen_cuadros-1025_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 01/Resumen_cuadros-1025_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Mensual/Resumen_cuadros-1025.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 03/Resumen_cuadros-0925_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 02/Resumen_cuadros-0925_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 01/Resumen_cuadros-0925_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Mensual/Resumen_cuadros-0925.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/Fe de Erratas – CUADRO 4  del Archivo _Resumen_cuadros-0825_R3.xlsx_ (LVTEA Agosto 2025 - R3).zip",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/Resumen_cuadros-0825_R3 - FE DE ERRATAS.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/Resumen_cuadros-0825_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 02/Resumen_cuadros-0825_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 01/Resumen_cuadros-0825_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Mensual/Resumen_cuadros-0825.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 04/Resumen_cuadros-0725_R4.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 03/Resumen_cuadros-0725_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 02/Resumen_cuadros-0725_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 01/Resumen_cuadros-0725_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Mensual/Resumen_cuadros-0725.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 05/Resumen_cuadros-0625_R5.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 04/Resumen_cuadros-0625_R4.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 03/Resumen_cuadros-0625_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 01/Resumen_cuadros-0625_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Mensual/Resumen_cuadros-0625.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 03/Resumen_cuadros-0525_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 01/Resumen_cuadros-0525_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Mensual/Resumen_cuadros-0525.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Revisión 01/Resumen_cuadros-0425_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Mensual/Resumen_cuadros-0425.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Revisión 01/Resumen_cuadros-0325_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Mensual/Resumen_cuadros-0325.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 02/Resumen_cuadros-0225_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 01/Resumen_cuadros-0225_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Mensual/Resumen_cuadros-0225.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 03/Resumen_cuadros-0125_R3.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 02/Resumen_cuadros-0125_R2.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 01/Resumen_cuadros-0125_R1.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Mensual/Resumen_cuadros-0125.xlsx"
  ],
  "diag": {
   "pagina": {
@@ -54,56 +282,13 @@
    "Mercado Mayorista/Liquidaciones del MME/",
    "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/"
   ],
+  "ramas": [
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/",
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/"
+  ],
   "listados": {
-   "Mercado Mayorista/Liquidaciones del MME/": [
-    "08 Compra y Venta de Potencia Firme",
-    "07 Acciones tomadas ante situaciones no previstas",
-    "06 Liquidaciones Especiales",
-    "05 Incumplimiento de Pago en el MME",
-    "04 Participación en el MME",
-    "03 Informes de Liquidaciones",
-    "02 Servicios Complementarios e Inflexibilidades Operativas",
-    "01 Mercado de Corto Plazo"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/": [
-    "Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur",
-    "Recálculo de las Valorizaciones de Transferencias al haber quedado revocada la decisión por la cual se inaplicó a Enersur el PR22",
-    "Recálculo de Compensaciones por Regulación de Tensión de Energía Reactiva en ejecución al Laudo Arbitral",
-    "Precios básicos de energía reactiva",
-    "Factores de Pérdidas Medias - Entregas",
-    "Aplicativo Extranet VTP",
-    "Aplicativo Extranet VTEA",
-    "2017",
-    "2016",
-    "2015",
-    "2014",
-    "2013",
-    "2012",
-    "2011",
-    "2010",
-    "2009",
-    "2008",
-    "2007",
-    "2006",
-    "2005",
-    "2004",
-    "2003",
-    "2002"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/08 Compra y Venta de Potencia Firme/": [
-    "2026"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/07 Acciones tomadas ante situaciones no previstas/": [
-    "2026"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/": [
-    "05 Recalculo PR25 y Potencia Firme Laudo TERMOSELVA",
-    "04 Controversia Mercado Libre Pluz Energía",
-    "03 Recálculo Controversia Antamina",
-    "02 Recalculo LVTP Cargo CCCSE",
-    "01 Recalculo LVTEA Laudo ELP"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/05 Incumplimiento de Pago en el MME/": [
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/": [
+    "Calculo Factores Pérdidas Medias",
     "2026",
     "2025",
     "2024",
@@ -111,12 +296,8 @@
     "2022",
     "2021",
     "2020",
-    "2019"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/": [
-    "Valorizaciones Diarias",
-    "Potencia Máxima a Retirar MME",
-    "Información del Participante"
+    "2019",
+    "2018"
    ],
    "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/": [
     "2026",
@@ -129,146 +310,33 @@
     "2019",
     "2018"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/02 Servicios Complementarios e Inflexibilidades Operativas/": [
-    "Liquidaciones LSCIO"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/": [
+    "10_Octubre",
+    "09_Setiembre",
+    "08_Agosto",
+    "07_Julio",
+    "06_Junio",
+    "05_Mayo",
+    "04_Abril",
+    "03_Marzo",
+    "02_Febrero",
+    "01_Enero",
+    "00_ Factores de Pérdidas Medias - Entrega"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/": [
-    "Potencias Contratadas",
-    "Otros Recalculos",
-    "Liquidaciones VTP",
-    "Liquidaciones VTEA",
-    "Factores de Proporción",
-    "CMGs - Tarifas de Energia en Barra"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/": [
-    "VTP",
-    "VTEA",
-    "INFORME Recalculo VTEA-VTP.pdf"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado revocada la decisión por la cual se inaplicó a Enersur el PR22/": [
-    "STR-INF-016-2018.pdf"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de Compensaciones por Regulación de Tensión de Energía Reactiva en ejecución al Laudo Arbitral/": [
-    "COES-D-DO-387-2018.pdf",
-    "Cálculo"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Precios básicos de energía reactiva/": [
-    "2017",
-    "2015"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Factores de Pérdidas Medias - Entregas/": [
-    "2017"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Aplicativo Extranet VTP/": [
-    "Aplicativo VTP Manual de Usuario de la Extranet.pdf"
-   ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Aplicativo Extranet VTEA/": [
-    "Aplicativo VTE Manual de Usuario de la Extranet.pdf"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/08 Compra y Venta de Potencia Firme/2026/": [
-    "09_Setiembre"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/07 Acciones tomadas ante situaciones no previstas/2026/": [
-    "INFORME Nº 169 - 2026 Acciones tomadas ante Situacion No Prevista - Reconexión 11.09.2026.pdf"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/05 Recalculo PR25 y Potencia Firme Laudo TERMOSELVA/": [
-    "0. PR 25 - Setiembre 2024",
-    "1. PF 2024",
-    "2. PF 2025",
-    "3. PF 2026",
-    "DO-657-2026 22.09.2026.pdf"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/04 Controversia Mercado Libre Pluz Energía/": [
-    "SST-SCT",
-    "LVTP",
-    "LVTEA",
-    "LSCIO"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/03 Recálculo Controversia Antamina/": [
-    "DO-456-2024 03.10.2024.pdf",
-    "LSCIO",
-    "LVTEA",
-    "LVTP"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/02 Recalculo LVTP Cargo CCCSE/": [
-    "Cuadro de CargosdelPeaje y Anexos.xlsx",
-    "DO-064-2024 07.02.2024.pdf"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/": [
-    "0. Resumen_cuadros 1a,b.xlsx",
-    "1. Resumen_cuadros 2,3,4 - 12.18.xlsx",
-    "2. Resumen_cuadros 2,3,4 - 01.19.xlsx",
-    "3. Resumen_cuadros 2,3,4 - 02.19.xlsx",
-    "4. Resumen_cuadros 2,3,4 - 03.19.xlsx",
-    "5. Resumen_cuadros 2,3,4 - 04.19.xlsx",
-    "6. Resumen_cuadros 2,3,4 - 05.19.xlsx",
-    "D-999-2023 31.10.2023.pdf"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/05 Incumplimiento de Pago en el MME/2026/": [
-    "Consolidado Incumplimientos de Pago - 0126 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0126 R2.xlsx",
-    "Consolidado Incumplimientos de Pago - 0126.xlsx",
-    "Consolidado Incumplimientos de Pago - 0226 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0226.xlsx",
-    "Consolidado Incumplimientos de Pago - 0326 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0326.xlsx",
-    "Consolidado Incumplimientos de Pago - 0426 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0426.xlsx",
-    "Consolidado Incumplimientos de Pago - 0526  R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0526.xlsx",
-    "Consolidado Incumplimientos de Pago - 0626 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0626.xlsx",
-    "Consolidado Incumplimientos de Pago - 0726 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0726.xlsx",
-    "Consolidado Incumplimientos de Pago - 0826 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0826.xlsx",
-    "Consolidado Incumplimientos de Pago - 0926.xlsx"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/05 Incumplimiento de Pago en el MME/2025/": [
-    "Consolidado Incumplimientos de Pago - 0125 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0125.xlsx",
-    "Consolidado Incumplimientos de Pago - 0225 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0225.xlsx",
-    "Consolidado Incumplimientos de Pago - 0325 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0325.xlsx",
-    "Consolidado Incumplimientos de Pago - 0425 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0425.xlsx",
-    "Consolidado Incumplimientos de Pago - 0525 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0525.xlsx",
-    "Consolidado Incumplimientos de Pago - 0625 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0625.xlsx",
-    "Consolidado Incumplimientos de Pago - 0725 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0725.xlsx",
-    "Consolidado Incumplimientos de Pago - 0825 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0825.xlsx",
-    "Consolidado Incumplimientos de Pago - 0925 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 0925.xlsx",
-    "Consolidado Incumplimientos de Pago - 1025 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 1025 R2.xlsx",
-    "Consolidado Incumplimientos de Pago - 1025 R3.xlsx",
-    "Consolidado Incumplimientos de Pago - 1025.xlsx",
-    "Consolidado Incumplimientos de Pago - 1125 - R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 1125.xlsx",
-    "Consolidado Incumplimientos de Pago - 1225 R1.xlsx",
-    "Consolidado Incumplimientos de Pago - 1225 R2.xlsx",
-    "Consolidado Incumplimientos de Pago - 1225.xlsx"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/Valorizaciones Diarias/": [
-    "Información del Participante",
-    "Consolidado Valorizaciones Diarias"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/Potencia Máxima a Retirar MME/": [
-    "2025",
-    "2024",
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019"
-   ],
-   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/Información del Participante/": [
-    "02_Sociedad Minera Cerro Verde",
-    "01_Pluz Energia"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/": [
+    "12_Diciembre",
+    "11_Noviembre",
+    "10_octubre",
+    "09_setiembre",
+    "08_Agosto",
+    "07_Julio",
+    "06_Junio",
+    "05_Mayo",
+    "04_Abril",
+    "03_Marzo",
+    "02_Febrero",
+    "01_Enero",
+    "00_ Factores de Pérdidas Medias - Entrega"
    ],
    "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/": [
     "09_Setiembre",
@@ -295,102 +363,700 @@
     "02 Febrero",
     "01 Enero"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/02 Servicios Complementarios e Inflexibilidades Operativas/Liquidaciones LSCIO/": [
-    "Precio Básico de Energía Reactiva",
-    "2026",
-    "2025",
-    "2024",
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/10_Octubre/": [
+    "Mensual"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Potencias Contratadas/": [
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-    "2023",
-    "2024",
-    "2025",
-    "2026",
-    "NombreEmpresa_YYYY_MM.PotenciaContratada.xlsx"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/": [
+    "Mensual"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Otros Recalculos/": [
-    "Controversia Termochilca - Luz del Sur"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/": [
+    "Revisión 01",
+    "Mensual"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTP/": [
-    "Modelo OPF PR30",
-    "2026",
-    "2025",
-    "2024",
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/": [
-    "Calculo Factores Pérdidas Medias",
-    "2026",
-    "2025",
-    "2024",
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Factores de Proporción/": [
-    "2026",
-    "2025",
-    "2024",
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
    ],
-   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/CMGs - Tarifas de Energia en Barra/": [
-    "CMG2020.xlsx",
-    "CMG2021.xlsx",
-    "CMG2022.xlsx",
-    "CMG2023.xlsx",
-    "CMG2024.xlsx",
-    "CMG2025.xlsx",
-    "CMG2026.xlsx"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
    ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTP/": [
-    "ResumenPotenciaPeaje.xlsx",
-    "may07abr08.rar",
-    "may06abr07.rar",
-    "may05abr06.rar",
-    "may04abr05.rar"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
    ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTEA/": [
-    "ResumenEnergia.XLS",
-    "Recálculo_VTEA_2008.xlsx",
-    "Recálculo_VTEA_2007.xlsx",
-    "Recálculo_VTEA_2005.xlsx",
-    "Recálculo_VTEA_ 2009.xlsx",
-    "Recálculo_VTEA_ 2006.xlsx",
-    "Recálculo_VTEA_ 2004.xlsx"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
    ],
-   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de Compensaciones por Regulación de Tensión de Energía Reactiva en ejecución al Laudo Arbitral/Cálculo/": [
-    "2015.rar",
-    "2014.rar",
-    "2013.rar"
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/": [
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/00_ Factores de Pérdidas Medias - Entrega/": [
+    "Información de empresas",
+    "Informe Factores de Pérdidas Medias SME-INF-023-2026.pdf",
+    "Informe Factores de Pérdidas Medias SME-INF-023-2026_Rev1.pdf",
+    "Informe Factores de Pérdidas Medias SME-INF-023-2026_Rev2.pdf",
+    "Lista de Factores de Pérdidas Medias_2026.xlsx",
+    "Lista de Factores de Pérdidas Medias_2026_V1.xlsx",
+    "Lista de Factores de Pérdidas Medias_2026_V2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/": [
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/": [
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/": [
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/": [
+    "Revisión 04",
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/": [
+    "Revisión 05",
+    "Revisión 04",
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/": [
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/": [
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/": [
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/": [
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/": [
+    "Revisión 03",
+    "Revisión 02",
+    "Revisión 01",
+    "Mensual"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/00_ Factores de Pérdidas Medias - Entrega/": [
+    "Información de empresas",
+    "Informe Factores de Pérdidas Medias SME-INF-038-2025.pdf",
+    "Informe Factores de Pérdidas Medias SME-INF-038-2025_Rev1.pdf",
+    "Informe Factores de Pérdidas Medias SME-INF-038-2025_Rev2.pdf",
+    "Lista de Factores de Pérdidas Medias_2025.xlsx",
+    "Lista de Factores de Pérdidas Medias_2025_V1.xlsx",
+    "Lista de Factores de Pérdidas Medias_2025_V2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/09_Setiembre/": [
+    "Informe LSCIO_0926.pdf",
+    "Informe LVTP_0926.pdf",
+    "Informe_LVTEA_0926.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/08_Agosto/": [
+    "Fe de Erratas LVTP DO-642-2026 14.09.2026.pdf",
+    "Informe LVTP-0826.pdf",
+    "Informe_LSCIO_0826.pdf",
+    "Informe_LVTEA_0826.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/07_Julio/": [
+    "Informe LSCIO_0726.pdf",
+    "Informe LVTP-0726.pdf",
+    "Informe_LVTEA_0726.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/06_Junio/": [
+    "Informe LSCIO_0626.pdf",
+    "Informe LVTP-0626.pdf",
+    "Informe_LVTEA_0626.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/05_Mayo/": [
+    "Informe LSCIO_0526.pdf",
+    "Informe LVTEA-0526.pdf",
+    "Informe LVTP-0526.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/04_Abril/": [
+    "Fe de Erratas LSCIO",
+    "Informe LSCIO_0426.pdf",
+    "Informe LVTP-0426.pdf",
+    "Informe_LVTEA_0426.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/03_Marzo/": [
+    "Informe LSCIO_0326.pdf",
+    "Informe LVTP_0326.pdf",
+    "Informe_LVTEA_0326.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/02_Febrero/": [
+    "Informe LVTP_0226.pdf",
+    "Informe_LSCIO_0226.pdf",
+    "Informe_LVTEA_0226.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/01_Enero/": [
+    "Informe LSCIO_0126.pdf",
+    "Informe LVTP_0126.pdf",
+    "Informe_LVTEA_0126.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/12 Diciembre/": [
+    "Informe LSCIO_1225.pdf",
+    "Informe LVTP_1225.pdf",
+    "Informe_LVTEA_1225.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/11 Noviembre/": [
+    "Informe LSCIO_1125.pdf",
+    "Informe LVTEA_1125.pdf",
+    "Informe LVTP_1125.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/10 Octubre/": [
+    "Informe LSCIO_1025.pdf",
+    "Informe LVTEA_1025.pdf",
+    "Informe LVTP_1025.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/09 Setiembre/": [
+    "Informe LSCIO_0925.pdf",
+    "Informe LVTEA_0925.pdf",
+    "Informe LVTP_0925.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/08 Agosto/": [
+    "Informe LSCIO_0825.pdf",
+    "Informe LVTEA-0825.pdf",
+    "Informe LVTP_0825.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/07 Julio/": [
+    "Informe LSCIO_0725.pdf",
+    "Informe LVTEA_0725.pdf",
+    "Informe LVTP_0725.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/06 Junio/": [
+    "Informe LSCIO_0625.pdf",
+    "Informe LVTEA_0625.pdf",
+    "Informe LVTP_0625.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/05 Mayo/": [
+    "fe de erratas LVTEA",
+    "Informe LSCIO_0525.pdf",
+    "Informe LVTEA_0525.pdf",
+    "Informe LVTP_0525.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/04 Abril/": [
+    "Informe LSCIO_0425.pdf",
+    "Informe LVTEA_0425.pdf",
+    "Informe LVTP-0425.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/03 Marzo/": [
+    "Informe LSCIO_0325.pdf",
+    "Informe LVTEA_0325.pdf",
+    "Informe LVTP_0325.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/02 Febrero/": [
+    "Informe LSCIO_0225.pdf",
+    "Informe LVTEA_0225.pdf",
+    "Informe LVTP-0225.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/01 Enero/": [
+    "Informe LSCIO_0125.pdf",
+    "Informe LVTEA_0125.pdf",
+    "Informe LVTP-0125.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/10_Octubre/Mensual/": [
+    "ReporteFormatoEntregaRetiro cada15min 1026_AL 06.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/": [
+    "Desviación de Entregas 0926.xlsx",
+    "DesviacionRetirosEnergia_0926.xlsx",
+    "ReporteCostoMarginal_0926.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0926.xlsx",
+    "Resumen_cuadros-0926.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0826_R1.xlsx",
+    "Resumen_cuadros-0826_R1.xlsx",
+    "RetiroNoDeclarado_0826.xlsx",
+    "Saldo 0826_R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Mensual/": [
+    "Desviación de Entregas 0826.xlsx",
+    "DesviacionRetirosEnergia_0826.xlsx",
+    "ReporteCostoMarginal_0826.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0826.xlsx",
+    "Resumen_cuadros-0826.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Revisión 02/": [],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0726_R1.xlsx",
+    "Resumen_cuadros-0726_R1.xlsx",
+    "RetiroNoDeclarado_0726.xlsx",
+    "RetiroNoDeclarado_0726_R1.1-Registro acumulado de RND.xlsx",
+    "Saldo 0726_R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Mensual/": [
+    "Desviación de Entregas 0726.xlsx",
+    "DesviacionRetirosEnergia_0726.xlsx",
+    "ReporteCostoMarginal_0726.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0726.xlsx",
+    "Resumen_cuadros-0726.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 02/": [
+    "ReporteFormatoEntregaRetiro cada15min 0626_R2.xlsx",
+    "Resumen_cuadros-0626 R2.xlsx",
+    "Saldo 0626_R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0626_R1.xlsx",
+    "Resumen_cuadros-0626_R1.xlsx",
+    "RetiroNoDeclarado_0626.xlsx",
+    "RetiroNoDeclarado_0626_R1.1-Registro acumulado de RND.xlsx",
+    "Saldo 0626_R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Mensual/": [
+    "Desviación de Entregas 0626.xlsx",
+    "DesviacionRetirosEnergia 0626.xlsx",
+    "ReporteCostoMarginal_0626.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0626.xlsx",
+    "Resumen_cuadros-0626.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 02/": [
+    "ReporteCostoMarginal_0526.xlsx",
+    "Resumen_cuadros-0526_R2.xlsx",
+    "RetiroNoDeclarado_0526_R1.xlsx",
+    "Saldo 0526_R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0526_R1.xlsx",
+    "Resumen_cuadros-0526_R1.xlsx",
+    "RetiroNoDeclarado_0526.xlsx",
+    "Saldo 0526_R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Mensual/": [
+    "Desviación de Entregas 0526.xlsx",
+    "DesviacionRetirosEnergia_0526.xlsx",
+    "ReporteCostoMarginal_0526.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0526.xlsx",
+    "Resumen_cuadros-0526.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 02/": [
+    "ReporteFormatoEntregaRetiro cada15min 0426_R2.xlsx",
+    "Resumen_cuadros-0426_R2.xlsx",
+    "RetiroNoDeclarado_0426_R1.xlsx",
+    "Saldo 0426_R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0426_R1.xlsx",
+    "Resumen_cuadros-0426_R1.xlsx",
+    "RetiroNoDeclarado_0426.xlsx",
+    "Saldo 0426_R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Mensual/": [
+    "Desviación de Entregas 0426.xlsx",
+    "DesviacionRetirosEnergia_0426.xlsx",
+    "ReporteCostoMarginal_0426.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0426.xlsx",
+    "Resumen_cuadros-0426.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 02/": [
+    "Resumen_cuadros-0326_R2.xlsx",
+    "RetiroNoDeclarado_0326_R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 01/": [
+    "Reasignacion Gas 0326.zip",
+    "ReporteCostoMarginal_0326.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0326_R1.xlsx",
+    "Resumen_cuadros-0326_R1.xlsx",
+    "RetiroNoDeclarado_0326.xlsx",
+    "Saldo 0326-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Mensual/": [
+    "Desviación de Entregas 0326.xlsx",
+    "DesviacionRetirosEnergia_0326.xlsx",
+    "ReporteCostoMarginal_0326.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0326.xlsx",
+    "Restricción_GN_0326.zip",
+    "Resumen_cuadros-0326.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 02/": [
+    "ReporteFormatoEntregaRetiro cada15min 0226-R2.xlsx",
+    "Resumen_cuadros-0226-R2.xlsx",
+    "RetiroNoDeclarado_0226-R1.xlsx",
+    "Saldo 0226-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 01/": [
+    "ReporteCostoMarginal_0226.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0226_R1.xlsx",
+    "Resumen_cuadros-0226_R1.xlsx",
+    "RetiroNoDeclarado_0226.xlsx",
+    "Saldo 0226-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Mensual/": [
+    "Desviaciones de Entregas 0226.xlsx",
+    "DesviacionRetirosEnergia_0226.xlsx",
+    "ReporteCostoMarginal_0226.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0226.xlsx",
+    "Resumen_cuadros-0226.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 03/": [
+    "ReporteFormatoEntregaRetiro cada15min 0126_R3.xlsx",
+    "Resumen_cuadros-0126_R3.xlsx",
+    "RetiroNoDeclarado_0126_R2.xlsx",
+    "Saldo 0126_R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 02/": [
+    "Resumen_cuadros-0126_R2.xlsx",
+    "RetiroNoDeclarado_0126_R1.xlsx",
+    "Saldo 0126_R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0126_R1.xlsx",
+    "Resumen_cuadros-0126_R1.xlsx",
+    "RetiroNoDeclarado_0126.xlsx",
+    "Saldo 0126-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Mensual/": [
+    "DesviacionRetirosEnergia_0126.xlsx",
+    "ReporteCostoMarginal_0126.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0126.xlsx",
+    "Resumen_cuadros-0126.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/00_ Factores de Pérdidas Medias - Entrega/Información de empresas/": [
+    "Propuesto por empresas",
+    "Evaluado por COES"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 02/": [
+    "Resumen_cuadros-1225_R2.xlsx",
+    "RetiroNoDeclarado_1225_R1.xlsx",
+    "Saldo 1225-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 1225_R1.xlsx",
+    "Resumen_cuadros-1225_R1.xlsx",
+    "RetiroNoDeclarado_1225.xlsx",
+    "Saldo 1225-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Mensual/": [
+    "Desviación de Entregas 1225.xlsx",
+    "DesviacionRetirosEnergia_1225.xlsx",
+    "ReporteCostoMarginal_1225.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 1225.xlsx",
+    "Resumen_cuadros-1225.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 1125_R1.xlsx",
+    "Resumen_cuadros-1125_R1.xlsx",
+    "RetiroNoDeclarado_1125.xlsx",
+    "Saldo 1125-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Mensual/": [
+    "Desviación de Entregas 1125.xlsx",
+    "DesviacionRetirosEnergia_1125.xlsx",
+    "ReporteCostoMarginal_1125.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 1125.xlsx",
+    "Resumen_cuadros-1125.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/": [
+    "CORRECCIÓN – _CUADRO 5_  del Archivo _Resumen_cuadros-1025_R2.xlsx_ (LVTEA Octubre 2025 - R2).zip",
+    "Resumen_cuadros-1025_R2.xlsx",
+    "Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
+    "RetiroNoDeclarado_1025_R1.xlsx",
+    "Saldo 1025-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 1025_R1.xlsx",
+    "Resumen_cuadros-1025_R1.xlsx",
+    "RetiroNoDeclarado_1025.xlsx",
+    "Saldo 1025-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Mensual/": [
+    "Desviación de Entregas 1025.xlsx",
+    "DesviacionRetirosEnergia_1025.xlsx",
+    "ReporteCostoMarginal_1025.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 1025.xlsx",
+    "Resumen_cuadros-1025.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 03/": [
+    "Resumen_cuadros-0925_R3.xlsx",
+    "RetiroNoDeclarado_0925_R2.xlsx",
+    "Saldo 0925-R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 02/": [
+    "Resumen_cuadros-0925_R2.xlsx",
+    "RetiroNoDeclarado_0925_R1.xlsx",
+    "Saldo 0925-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0925_R1.xlsx",
+    "Resumen_cuadros-0925_R1.xlsx",
+    "RetiroNoDeclarado_0925.xlsx",
+    "Saldo 0925-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Mensual/": [
+    "Desviación de Entregas 0925.xlsx",
+    "DesviacionRetirosEnergia_0925.xlsx",
+    "ReporteCostoMarginal_0925.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0925.xlsx",
+    "Resumen_cuadros-0925.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/": [
+    "Fe de Erratas – CUADRO 4  del Archivo _Resumen_cuadros-0825_R3.xlsx_ (LVTEA Agosto 2025 - R3).zip",
+    "Resumen_cuadros-0825_R3 - FE DE ERRATAS.xlsx",
+    "Resumen_cuadros-0825_R3.xlsx",
+    "RetiroNoDeclarado_0825_R2.xlsx",
+    "Saldo 0825-R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 02/": [
+    "Resumen_cuadros-0825_R2.xlsx",
+    "RetiroNoDeclarado_0825_R1.xlsx",
+    "Saldo 0825-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 01/": [
+    "ReporteCostoMarginal_0825.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0825_R1.xlsx",
+    "Resumen_cuadros-0825_R1.xlsx",
+    "RetiroNoDeclarado_0825.xlsx",
+    "Saldo 0825-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Mensual/": [
+    "Desviación de Entregas 0825.xlsx",
+    "DesviacionRetirosEnergia_0825.xlsx",
+    "ReporteCostoMarginal_0825.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0825.xlsx",
+    "Resumen_cuadros-0825.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 04/": [
+    "Resumen_cuadros-0725_R4.xlsx",
+    "RetiroNoDeclarado_0725_R2.xlsx",
+    "Saldo 0725-R4.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 03/": [
+    "Resumen_cuadros-0725_R3.xlsx",
+    "Saldo 0725-R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 02/": [
+    "Resumen_cuadros-0725_R2.xlsx",
+    "RetiroNoDeclarado_0725_R1.xlsx",
+    "Saldo 0725-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 01/": [
+    "ReporteCostoMarginal_0725.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0725_R1.xlsx",
+    "Resumen_cuadros-0725_R1.xlsx",
+    "RetiroNoDeclarado_0725.xlsx",
+    "Saldo 0725-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Mensual/": [
+    "Desviación de Entregas 0725.xlsx",
+    "DesviacionRetirosEnergia_0725.xlsx",
+    "ReporteCostoMarginal_0725.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0725.xlsx",
+    "Resumen_cuadros-0725.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 05/": [
+    "Resumen_cuadros-0625_R5.xlsx",
+    "RetiroNoDeclarado_0625_R2.xlsx",
+    "Saldo 0625-R5.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 04/": [
+    "Resumen_cuadros-0625_R4.xlsx",
+    "Saldo 0625-R4.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 03/": [
+    "Resumen_cuadros-0625_R3.xlsx",
+    "RetiroNoDeclarado_0625_R1.xlsx",
+    "Saldo 0625-R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 02/": [
+    "Saldo 0625-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 01/": [
+    "ReporteCostoMarginal_0625.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0625_R1.xlsx",
+    "Resumen_cuadros-0625_R1.xlsx",
+    "RetiroNoDeclarado_0625.xlsx",
+    "Saldo 0625-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Mensual/": [
+    "Desviación de Entregas 0625.xlsx",
+    "DesviacionRetirosEnergia_0625.xlsx",
+    "ReporteCostoMarginal_0625.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0625.xlsx",
+    "Resumen_cuadros-0625.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 03/": [
+    "Resumen_cuadros-0525_R3.xlsx",
+    "RetiroNoDeclarado_0525_R1.xlsx",
+    "Saldo 0525-R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 02/": [
+    "Saldo 0525-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 01/": [
+    "ReporteCostoMarginal_0525.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0525_R1.xlsx",
+    "Resumen_cuadros-0525_R1.xlsx",
+    "RetiroNoDeclarado_0525.xlsx",
+    "Saldo 0525-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Mensual/": [
+    "Desviación de Entregas 0525.xlsx",
+    "DesviacionRetirosEnergia_0525.xlsx",
+    "Reasignacion Gas 0425.zip",
+    "ReporteCostoMarginal_0525.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0525.xlsx",
+    "Resumen_cuadros-0525.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Revisión 01/": [
+    "ReporteCostoMarginal_0425.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0425_R1.xlsx",
+    "Resumen_cuadros-0425_R1.xlsx",
+    "RetiroNoDeclarado_0425.xlsx",
+    "Saldo 0425-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Mensual/": [
+    "Desviación de Entregas 0425.xlsx",
+    "DesviacionRetirosEnergia_0425.xlsx",
+    "ReporteCostoMarginal_0425.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0425.xlsx",
+    "Restricción_GN_0425.zip",
+    "Resumen_cuadros-0425.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Revisión 01/": [
+    "ReporteFormatoEntregaRetiro cada15min 0325_R1.xlsx",
+    "Resumen_cuadros-0325_R1.xlsx",
+    "RetiroNoDeclarado_0325.xlsx",
+    "Saldo 0325-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Mensual/": [
+    "Desviación de Entregas 0325.xlsx",
+    "Desviaciones Retiros_0325.xlsx",
+    "ReporteCostoMarginal_0325.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0325.xlsx",
+    "Resumen_cuadros-0325.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 02/": [
+    "Resumen_cuadros-0225_R2.xlsx",
+    "RetiroNoDeclarado_0225_R1.xlsx",
+    "Saldo 0225-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 01/": [
+    "ReporteCostoMarginal_0225_R1.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0225_R1_.xlsx",
+    "Resumen_cuadros-0225_R1.xlsx",
+    "RetiroNoDeclarado_0225.xlsx",
+    "Saldo 0225-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Mensual/": [
+    "Desviación de Entregas 0225.xlsx",
+    "Desviaciones Retiros_0225.xlsx",
+    "Reasignacion Gas 0125.zip",
+    "ReporteCostoMarginal_0225.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0225.xlsx",
+    "Resumen_cuadros-0225.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 03/": [
+    "Resumen_cuadros-0125_R3.xlsx",
+    "RetiroNoDeclarado_0125_R2.xlsx",
+    "Saldo 0125-R3.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 02/": [
+    "Resumen_cuadros-0125_R2.xlsx",
+    "RetiroNoDeclarado_0125_R1.xlsx",
+    "Saldo 0125-R2.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 01/": [
+    "ReporteCostoMarginal_0125_R1.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0125 R1.xlsx",
+    "Resumen_cuadros-0125_R1.xlsx",
+    "RetiroNoDeclarado_0125.xlsx",
+    "Saldo 0125-R1.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Mensual/": [
+    "Desviación de Entregas 0125.xlsx",
+    "Desviaciones Retiros_0125.xlsx",
+    "ReporteCostoMarginal_0125.xlsx",
+    "ReporteFormatoEntregaRetiro cada15min 0125.xlsx",
+    "Restricción_GN_0125.zip",
+    "Resumen_cuadros-0125.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/00_ Factores de Pérdidas Medias - Entrega/Información de empresas/": [
+    "Propuestos por Agentes",
+    "Evaluado por COES"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/04_Abril/Fe de Erratas LSCIO/": [
+    "Carta DO-304-2026 12.05.2026.pdf",
+    "Informe LSCIO_0426_ Fe de Erratas CUADRO1.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/05 Mayo/fe de erratas LVTEA/": [
+    "Carta DO-318-2025 11.06.2025.pdf"
    ]
   },
-  "carpetas_revisadas": 237,
-  "resumen_hallados": 9
+  "carpetas_revisadas": 127,
+  "resumen_hallados": 68
  },
  "buscado": "2026-11-07",
- "version_por_mes": {}
+ "version_por_mes": {
+  "2026-09": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/Resumen_cuadros-0926.xlsx",
+  "2026-08": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Revisión 01/Resumen_cuadros-0826_R1.xlsx",
+  "2026-07": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Revisión 01/Resumen_cuadros-0726_R1.xlsx",
+  "2026-06": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 02/Resumen_cuadros-0626 R2.xlsx",
+  "2026-05": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 02/Resumen_cuadros-0526_R2.xlsx",
+  "2026-04": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 02/Resumen_cuadros-0426_R2.xlsx",
+  "2026-03": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 02/Resumen_cuadros-0326_R2.xlsx",
+  "2026-02": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 02/Resumen_cuadros-0226-R2.xlsx",
+  "2026-01": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 03/Resumen_cuadros-0126_R3.xlsx",
+  "2025-12": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 02/Resumen_cuadros-1225_R2.xlsx",
+  "2025-11": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Revisión 01/Resumen_cuadros-1125_R1.xlsx",
+  "2025-10": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
+  "2025-09": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 03/Resumen_cuadros-0925_R3.xlsx",
+  "2025-08": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/Resumen_cuadros-0825_R3.xlsx",
+  "2025-07": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 04/Resumen_cuadros-0725_R4.xlsx",
+  "2025-06": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 05/Resumen_cuadros-0625_R5.xlsx",
+  "2025-05": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 03/Resumen_cuadros-0525_R3.xlsx",
+  "2025-04": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Revisión 01/Resumen_cuadros-0425_R1.xlsx",
+  "2025-03": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Revisión 01/Resumen_cuadros-0325_R1.xlsx",
+  "2025-02": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 02/Resumen_cuadros-0225_R2.xlsx",
+  "2025-01": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 03/Resumen_cuadros-0125_R3.xlsx"
+ },
+ "metodo": "2026-11-07c",
+ "volcado": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/Resumen_cuadros-0926.xlsx"
 }
