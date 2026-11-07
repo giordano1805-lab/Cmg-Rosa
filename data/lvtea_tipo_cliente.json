@@ -1,15 +1,396 @@
 {
  "meses": {},
- "archivos": [],
+ "archivos": [
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/0. Resumen_cuadros 1a,b.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/1. Resumen_cuadros 2,3,4 - 12.18.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/2. Resumen_cuadros 2,3,4 - 01.19.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/3. Resumen_cuadros 2,3,4 - 02.19.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/4. Resumen_cuadros 2,3,4 - 03.19.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/5. Resumen_cuadros 2,3,4 - 04.19.xlsx",
+  "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/6. Resumen_cuadros 2,3,4 - 05.19.xlsx",
+  "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTP/ResumenPotenciaPeaje.xlsx",
+  "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTEA/ResumenEnergia.XLS"
+ ],
  "diag": {
-  "listados": {
-   "/": [],
-   "Post Operación/": [],
-   "Mercado Mayorista/": [],
-   "Transferencias/": []
+  "pagina": {
+   "paginas": {
+    "mercadomayorista/liquidaciones": {
+     "bytes": 47990,
+     "scripts": [
+      "/Portal/Content/Scripts/popup.js",
+      "/Portal/Content/Scripts/master.js",
+      "/Portal/Content/Scripts/datatable.js",
+      "/Portal/Content/Scripts/datepicker.js",
+      "/Portal/Content/Scripts/slick.js",
+      "/Portal/Content/Scripts/main.coes.js",
+      "/Portal/Content/Scripts/web.js?v=8.5",
+      "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+      "/Portal/Content/Scripts/multidownload.js",
+      "/Portal/Content/Scripts/main.coes.js"
+     ]
+    },
+    "PostOperacion/ValorizacionTransferencias/ValorizacionTransferenciaEP": {
+     "bytes": 50221,
+     "scripts": [
+      "/Portal/Content/Scripts/popup.js",
+      "/Portal/Content/Scripts/master.js",
+      "/Portal/Content/Scripts/datatable.js",
+      "/Portal/Content/Scripts/datepicker.js",
+      "/Portal/Content/Scripts/slick.js",
+      "/Portal/Content/Scripts/main.coes.js",
+      "/Portal/Content/Scripts/web.js?v=8.5",
+      "/Portal/Content/Scripts/contextmenu.js?v=1.5",
+      "/Portal/Content/Scripts/multidownload.js",
+      "/Portal/Content/Scripts/main.coes.js"
+     ]
+    }
+   },
+   "hfBaseDirectory": [
+    "Mercado Mayorista/Liquidaciones del MME/",
+    "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/"
+   ]
   },
-  "carpetas_revisadas": 4
+  "bases": [
+   "Mercado Mayorista/Liquidaciones del MME/",
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/"
+  ],
+  "listados": {
+   "Mercado Mayorista/Liquidaciones del MME/": [
+    "08 Compra y Venta de Potencia Firme",
+    "07 Acciones tomadas ante situaciones no previstas",
+    "06 Liquidaciones Especiales",
+    "05 Incumplimiento de Pago en el MME",
+    "04 Participación en el MME",
+    "03 Informes de Liquidaciones",
+    "02 Servicios Complementarios e Inflexibilidades Operativas",
+    "01 Mercado de Corto Plazo"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/": [
+    "Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur",
+    "Recálculo de las Valorizaciones de Transferencias al haber quedado revocada la decisión por la cual se inaplicó a Enersur el PR22",
+    "Recálculo de Compensaciones por Regulación de Tensión de Energía Reactiva en ejecución al Laudo Arbitral",
+    "Precios básicos de energía reactiva",
+    "Factores de Pérdidas Medias - Entregas",
+    "Aplicativo Extranet VTP",
+    "Aplicativo Extranet VTEA",
+    "2017",
+    "2016",
+    "2015",
+    "2014",
+    "2013",
+    "2012",
+    "2011",
+    "2010",
+    "2009",
+    "2008",
+    "2007",
+    "2006",
+    "2005",
+    "2004",
+    "2003",
+    "2002"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/08 Compra y Venta de Potencia Firme/": [
+    "2026"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/07 Acciones tomadas ante situaciones no previstas/": [
+    "2026"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/": [
+    "05 Recalculo PR25 y Potencia Firme Laudo TERMOSELVA",
+    "04 Controversia Mercado Libre Pluz Energía",
+    "03 Recálculo Controversia Antamina",
+    "02 Recalculo LVTP Cargo CCCSE",
+    "01 Recalculo LVTEA Laudo ELP"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/05 Incumplimiento de Pago en el MME/": [
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/": [
+    "Valorizaciones Diarias",
+    "Potencia Máxima a Retirar MME",
+    "Información del Participante"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/": [
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/02 Servicios Complementarios e Inflexibilidades Operativas/": [
+    "Liquidaciones LSCIO"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/": [
+    "Potencias Contratadas",
+    "Otros Recalculos",
+    "Liquidaciones VTP",
+    "Liquidaciones VTEA",
+    "Factores de Proporción",
+    "CMGs - Tarifas de Energia en Barra"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/": [
+    "VTP",
+    "VTEA",
+    "INFORME Recalculo VTEA-VTP.pdf"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado revocada la decisión por la cual se inaplicó a Enersur el PR22/": [
+    "STR-INF-016-2018.pdf"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de Compensaciones por Regulación de Tensión de Energía Reactiva en ejecución al Laudo Arbitral/": [
+    "COES-D-DO-387-2018.pdf",
+    "Cálculo"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Precios básicos de energía reactiva/": [
+    "2017",
+    "2015"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Factores de Pérdidas Medias - Entregas/": [
+    "2017"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Aplicativo Extranet VTP/": [
+    "Aplicativo VTP Manual de Usuario de la Extranet.pdf"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Aplicativo Extranet VTEA/": [
+    "Aplicativo VTE Manual de Usuario de la Extranet.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/08 Compra y Venta de Potencia Firme/2026/": [
+    "09_Setiembre"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/07 Acciones tomadas ante situaciones no previstas/2026/": [
+    "INFORME Nº 169 - 2026 Acciones tomadas ante Situacion No Prevista - Reconexión 11.09.2026.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/05 Recalculo PR25 y Potencia Firme Laudo TERMOSELVA/": [
+    "0. PR 25 - Setiembre 2024",
+    "1. PF 2024",
+    "2. PF 2025",
+    "3. PF 2026",
+    "DO-657-2026 22.09.2026.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/04 Controversia Mercado Libre Pluz Energía/": [
+    "SST-SCT",
+    "LVTP",
+    "LVTEA",
+    "LSCIO"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/03 Recálculo Controversia Antamina/": [
+    "DO-456-2024 03.10.2024.pdf",
+    "LSCIO",
+    "LVTEA",
+    "LVTP"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/02 Recalculo LVTP Cargo CCCSE/": [
+    "Cuadro de CargosdelPeaje y Anexos.xlsx",
+    "DO-064-2024 07.02.2024.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/06 Liquidaciones Especiales/01 Recalculo LVTEA Laudo ELP/": [
+    "0. Resumen_cuadros 1a,b.xlsx",
+    "1. Resumen_cuadros 2,3,4 - 12.18.xlsx",
+    "2. Resumen_cuadros 2,3,4 - 01.19.xlsx",
+    "3. Resumen_cuadros 2,3,4 - 02.19.xlsx",
+    "4. Resumen_cuadros 2,3,4 - 03.19.xlsx",
+    "5. Resumen_cuadros 2,3,4 - 04.19.xlsx",
+    "6. Resumen_cuadros 2,3,4 - 05.19.xlsx",
+    "D-999-2023 31.10.2023.pdf"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/05 Incumplimiento de Pago en el MME/2026/": [
+    "Consolidado Incumplimientos de Pago - 0126 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0126 R2.xlsx",
+    "Consolidado Incumplimientos de Pago - 0126.xlsx",
+    "Consolidado Incumplimientos de Pago - 0226 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0226.xlsx",
+    "Consolidado Incumplimientos de Pago - 0326 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0326.xlsx",
+    "Consolidado Incumplimientos de Pago - 0426 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0426.xlsx",
+    "Consolidado Incumplimientos de Pago - 0526  R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0526.xlsx",
+    "Consolidado Incumplimientos de Pago - 0626 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0626.xlsx",
+    "Consolidado Incumplimientos de Pago - 0726 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0726.xlsx",
+    "Consolidado Incumplimientos de Pago - 0826 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0826.xlsx",
+    "Consolidado Incumplimientos de Pago - 0926.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/05 Incumplimiento de Pago en el MME/2025/": [
+    "Consolidado Incumplimientos de Pago - 0125 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0125.xlsx",
+    "Consolidado Incumplimientos de Pago - 0225 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0225.xlsx",
+    "Consolidado Incumplimientos de Pago - 0325 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0325.xlsx",
+    "Consolidado Incumplimientos de Pago - 0425 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0425.xlsx",
+    "Consolidado Incumplimientos de Pago - 0525 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0525.xlsx",
+    "Consolidado Incumplimientos de Pago - 0625 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0625.xlsx",
+    "Consolidado Incumplimientos de Pago - 0725 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0725.xlsx",
+    "Consolidado Incumplimientos de Pago - 0825 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0825.xlsx",
+    "Consolidado Incumplimientos de Pago - 0925 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 0925.xlsx",
+    "Consolidado Incumplimientos de Pago - 1025 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 1025 R2.xlsx",
+    "Consolidado Incumplimientos de Pago - 1025 R3.xlsx",
+    "Consolidado Incumplimientos de Pago - 1025.xlsx",
+    "Consolidado Incumplimientos de Pago - 1125 - R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 1125.xlsx",
+    "Consolidado Incumplimientos de Pago - 1225 R1.xlsx",
+    "Consolidado Incumplimientos de Pago - 1225 R2.xlsx",
+    "Consolidado Incumplimientos de Pago - 1225.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/Valorizaciones Diarias/": [
+    "Información del Participante",
+    "Consolidado Valorizaciones Diarias"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/Potencia Máxima a Retirar MME/": [
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/04 Participación en el MME/Información del Participante/": [
+    "02_Sociedad Minera Cerro Verde",
+    "01_Pluz Energia"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2026/": [
+    "09_Setiembre",
+    "08_Agosto",
+    "07_Julio",
+    "06_Junio",
+    "05_Mayo",
+    "04_Abril",
+    "03_Marzo",
+    "02_Febrero",
+    "01_Enero"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/03 Informes de Liquidaciones/2025/": [
+    "12 Diciembre",
+    "11 Noviembre",
+    "10 Octubre",
+    "09 Setiembre",
+    "08 Agosto",
+    "07 Julio",
+    "06 Junio",
+    "05 Mayo",
+    "04 Abril",
+    "03 Marzo",
+    "02 Febrero",
+    "01 Enero"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/02 Servicios Complementarios e Inflexibilidades Operativas/Liquidaciones LSCIO/": [
+    "Precio Básico de Energía Reactiva",
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Potencias Contratadas/": [
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "NombreEmpresa_YYYY_MM.PotenciaContratada.xlsx"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Otros Recalculos/": [
+    "Controversia Termochilca - Luz del Sur"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTP/": [
+    "Modelo OPF PR30",
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/": [
+    "Calculo Factores Pérdidas Medias",
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Factores de Proporción/": [
+    "2026",
+    "2025",
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+   ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/CMGs - Tarifas de Energia en Barra/": [
+    "CMG2020.xlsx",
+    "CMG2021.xlsx",
+    "CMG2022.xlsx",
+    "CMG2023.xlsx",
+    "CMG2024.xlsx",
+    "CMG2025.xlsx",
+    "CMG2026.xlsx"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTP/": [
+    "ResumenPotenciaPeaje.xlsx",
+    "may07abr08.rar",
+    "may06abr07.rar",
+    "may05abr06.rar",
+    "may04abr05.rar"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de las Valorizaciones de Transferencias al haber quedado sin efecto la medida cautelar de Enersur/VTEA/": [
+    "ResumenEnergia.XLS",
+    "Recálculo_VTEA_2008.xlsx",
+    "Recálculo_VTEA_2007.xlsx",
+    "Recálculo_VTEA_2005.xlsx",
+    "Recálculo_VTEA_ 2009.xlsx",
+    "Recálculo_VTEA_ 2006.xlsx",
+    "Recálculo_VTEA_ 2004.xlsx"
+   ],
+   "Post Operación/Valorización de Transferencias/Val. Trans. de Energ. y Pot/Recálculo de Compensaciones por Regulación de Tensión de Energía Reactiva en ejecución al Laudo Arbitral/Cálculo/": [
+    "2015.rar",
+    "2014.rar",
+    "2013.rar"
+   ]
+  },
+  "carpetas_revisadas": 237,
+  "resumen_hallados": 9
  },
- "buscado": "2026-11-06",
+ "buscado": "2026-11-07",
  "version_por_mes": {}
 }
