@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07e"
+VERSION_FC = "2026-11-07f"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1703,7 +1703,8 @@ def oc_excel(hojas):
         i0 = None
         for i, f in enumerate(filas[:40]):
             cab = [norm(x) if texto(x) else "" for x in f]
-            if any("FECHA" in c for c in cab) and any(re.search(r"CENTRAL|UNIDAD", c) for c in cab):
+            if sum(1 for c in cab if c) >= 4 and any("FECHA" in c for c in cab) and \
+                    any(re.fullmatch(r"CENTRAL|UNIDAD|CENTRAL / UNIDAD|NOMBRE.*CENTRAL", c) for c in cab):
                 i0 = i
                 break
         if i0 is None:
@@ -1715,7 +1716,8 @@ def oc_excel(hojas):
 
         def col(rx, excl=None):
             return next((j for j, c in enumerate(cab) if re.search(rx, c) and not (excl and re.search(excl, c))), None)
-        jc = col(r"CENTRAL")
+        jc = col(r"^CENTRAL")
+        jo = col(r"OBSERVAC")
         ju = col(r"UNIDAD", r"CENTRAL")
         je = col(r"EMPRESA|TITULAR|AGENTE")
         jt = col(r"TIPO|TECNOLOG|RECURSO|FUENTE")
@@ -1730,7 +1732,8 @@ def oc_excel(hojas):
             if not fe or not (nom_c or nom_u):
                 continue
             out.append({"central": nom_c, "unidad": nom_u, "empresa": texto(g(je)) or "", "tipo": texto(g(jt)) or "",
-                        "fecha": fe.isoformat(), "mw": numero(g(jm)) if jm is not None else None, "hoja": h})
+                        "fecha": fe.isoformat(), "mw": numero(g(jm)) if jm is not None else None, "hoja": h,
+                        "baja": bool(re.search(r"CONCLU|RETIR|BAJA", norm(texto(g(jo)) or "")))})
     return out
 
 
@@ -1743,6 +1746,7 @@ def oc_de_central(central, registros, desde=None):
                        (r["unidad"] and misma_central(central, r["unidad"]))]
     if not exactas and len({_clave_unidad(clave_central(r["central"] or r["unidad"])) for r in hits}) > 1:
         return None                                   # coincidencia ambigua (p. ej. «Sunny» vs «Sunny Expansión»)
+    hits = [r for r in hits if not r.get("baja")] or hits
     if desde:
         hits = [r for r in hits if r["fecha"] >= desde] or hits
     if not hits:
