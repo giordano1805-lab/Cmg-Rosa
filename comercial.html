@@ -69,6 +69,8 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .seg button[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;font-weight:600;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
 .seg button:disabled{opacity:.45;cursor:not-allowed}
 .dg{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,20fr);gap:16px}.sepv{border-left:1px dashed var(--card-b);padding-left:12px}
+.tgl{border:1px solid rgba(255,87,22,.45);background:var(--tinte);color:#c2410c;font:inherit;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tgl[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;border-color:transparent}
 .t2{font-weight:700;color:var(--h1);font-size:13px;margin:16px 0 4px}
 @media (max-width:700px){.dg{grid-template-columns:1fr}.sepv{border-left:0;padding-left:0;border-top:1px dashed var(--card-b);padding-top:8px}}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px;color:#fff;background:linear-gradient(180deg,#ff6a2e,var(--naranja));box-shadow:0 2px 8px -3px rgba(255,87,22,.6)}
@@ -178,7 +180,7 @@ const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" a
 const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
 const ANIOC=["--muted","--s4","--navy","--naranja"];
 const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
-let CMM="act",MTM="dia",GNM=null;
+let CMM="act",MTM="dia",GNM=null,DTP=false;
 
 function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
   const pintar=()=>{const fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
@@ -286,10 +288,10 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${D.barras.map(b=>`<span class="pill gr">${esc(b.replace(" 220",""))}: ${f2(CV.prom[b])}</span>`).join("")}${Object.entries(CV.bprom||{}).map(([k,v])=>`<span class="pill gr">${esc(k.replace(/ \(.*/,""))} SR: ${f2(v)}</span>`).join("")}</div>
     ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
    <div class="grid g2" style="margin-top:14px">
-     <div class="card" style="grid-column:1/-1"><h3>Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
+     <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
+      <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar crecimiento por tipo de cliente":"▸ Ver crecimiento por tipo de cliente"}</button></div>
       <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
-      <div class="t2">Crecimiento mensual por tipo de cliente · % vs mismo mes del año anterior</div>
-      ${tipoHTML()}</div>
+      ${DTP?`<div id="dtp"><div class="t2">Crecimiento mensual por tipo de cliente · % vs mismo mes del año anterior</div>${tipoHTML()}</div>`:""}</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
