@@ -195,16 +195,17 @@ def actualizar_osinergmin(dia: dt.date, presupuesto_s=240):
     desde = f"{dia.year - 1}-01"
     for m, x in sorted(por_mes.items(), reverse=True):
         prev = c["meses"].get(m) or {}
-        if m < desde or (prev.get("id") == x.get("id") and prev.get("clientes")) or time.time() - t0 > presupuesto_s:
+        if m < desde or (prev.get("id") == x.get("id") and prev.get("sum") and prev.get("v") == fc.OSI_V) \
+                or time.time() - t0 > presupuesto_s:
             continue
         try:
             r = fc.S.get(x["url"], timeout=240)
             if not r.ok:
                 continue
             d = fc.osinergmin_ml_clientes(r.content)
-            if d and d["clientes"]:
-                c["meses"][d["mes"]] = {"id": x.get("id"), "archivo": x["nombre"], "clientes": d["clientes"],
-                                        "total_mwh": round(sum(v[1] for v in d["clientes"].values()), 1)}
+            if d and d["sum"]:
+                c["meses"][d["mes"]] = {"id": x.get("id"), "archivo": x["nombre"], "sum": d["sum"], "cab": d["cab"],
+                                        "v": fc.OSI_V, "total_mwh": round(sum(v[2] for v in d["sum"].values()), 1)}
         except Exception as e:
             print("Osinergmin", m, e, file=sys.stderr)
     DATA.mkdir(exist_ok=True)
@@ -219,6 +220,7 @@ def cambios_osinergmin(dia: dt.date, n=10):
     except Exception:
         return None
     a_, b_ = dia.year, dia.year - 1
+    c = {k: v for k, v in c.items() if v.get("sum")}
     ok = [m for m in range(1, 13) if f"{a_}-{m:02d}" in c and f"{b_}-{m:02d}" in c]
     if not ok:
         a_, b_ = a_ - 1, b_ - 1
@@ -226,19 +228,34 @@ def cambios_osinergmin(dia: dt.date, n=10):
     if not ok:
         return None
 
+    c = {k: v for k, v in c.items() if v.get("sum")}
+    # código de suministro → RUC y RUC → nombre, desde los meses que traen RUC (los archivos antiguos no lo tienen)
+    cod_ruc, ruc_nom, nom_ruc = {}, {}, {}
+    for k in sorted(c):
+        for cod, v in c[k]["sum"].items():
+            if v[0]:
+                cod_ruc[cod] = v[0]
+                ruc_nom[v[0]] = v[1]
+                nom_ruc[fc.nombre_cliente(v[1])] = v[0]
+
+    def clave(cod, v):
+        r = v[0] or cod_ruc.get(cod) or nom_ruc.get(fc.nombre_cliente(v[1]))
+        return r or "N:" + fc.nombre_cliente(v[1])
+
     def suma(ks):
         out, nom = {}, {}
         for k in ks:
-            for ruc, v in c[k]["clientes"].items():
-                out[ruc] = out.get(ruc, 0.0) + v[1]
-                nom[ruc] = v[0]
+            for cod, v in c[k]["sum"].items():
+                r = clave(cod, v)
+                out[r] = out.get(r, 0.0) + v[2]
+                nom[r] = ruc_nom.get(r) or v[1]
         return out, nom
 
     def top(ka, kb):
         a, na = suma(ka)
         b, nb = suma(kb)
         nom = {**nb, **na}
-        dif = [{"cliente": fc.nombre_cliente(nom.get(r, r)), "ruc": r, "act": round(a.get(r, 0) / 1e3, 2),
+        dif = [{"cliente": fc.nombre_cliente(nom.get(r, r)), "ruc": r if not r.startswith("N:") else None, "act": round(a.get(r, 0) / 1e3, 2),
                 "ant": round(b.get(r, 0) / 1e3, 2), "dif": round((a.get(r, 0) - b.get(r, 0)) / 1e3, 2),
                 "pct": round((a[r] / b[r] - 1) * 100, 1) if b.get(r, 0) > 0 and r in a else None} for r in set(a) | set(b)]
         sube = sorted([x for x in dif if x["dif"] > 0], key=lambda x: -x["dif"])

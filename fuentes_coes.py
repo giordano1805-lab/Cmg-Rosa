@@ -1838,9 +1838,13 @@ def osinergmin_ml_listado(diag=None):
     return out
 
 
+OSI_V = 2
+
+
 def osinergmin_ml_clientes(b):
-    """{'mes': 'AAAA-MM', 'clientes': {RUC: [nombre, MWh, actividad, suministradores]}} desde la hoja bltFacturaCliente
-    (energía en barra de entrega = EHP_BE + EFP_BE)."""
+    """{'mes': 'AAAA-MM', 'cab': títulos, 'sum': {CodPtoSuministro: [RUC, nombre cliente, MWh, actividad, empresa]}}
+    desde la hoja bltFacturaCliente (energía en barra de entrega = EHP_BE + EFP_BE). Los archivos antiguos no traen RUC:
+    se completa después con el código de suministro."""
     hojas = libro(b, solo={"bltFacturaCliente"})
     filas = hojas.get("bltFacturaCliente") or []
     i0 = next((i for i, f in enumerate(filas[:10]) if any(norm(x) == "ANNIOMES" for x in f if texto(x))), None)
@@ -1849,26 +1853,25 @@ def osinergmin_ml_clientes(b):
     cab = [norm(x) if texto(x) else "" for x in filas[i0]]
     j = lambda rx: next((k for k, c in enumerate(cab) if re.search(rx, c)), None)
     jm, jr, jn, ja, je = j(r"^ANNIOMES$"), j(r"^RUC$"), j(r"^NOMBRECLIENTE$"), j(r"^CODACTIVIDAD$"), j(r"^CODEMPRESA$")
+    jc, js = j(r"^CODPTOSUMINISTRO$"), j(r"^NOMBRESUMINISTRO$")
     jh, jf = j(r"CONSUMO EHP_BE"), j(r"CONSUMO EFP_BE")
-    if None in (jm, jn, jh, jf):
+    if None in (jm, jh, jf) or (jn is None and js is None):
         return None
-    cli, meses = {}, {}
+    sm, meses = {}, {}
     for f in filas[i0 + 1:]:
         g = lambda k: f[k] if k is not None and k < len(f) else None
-        mes = texto(g(jm)) or ""
-        mes = re.sub(r"\.0$", "", mes)
+        mes = re.sub(r"\.0$", "", texto(g(jm)) or "")
         if not re.fullmatch(r"20\d{4}", mes):
             continue
         meses[mes] = meses.get(mes, 0) + 1
-        nombre = texto(g(jn)) or ""
-        ruc = re.sub(r"\.0$", "", texto(g(jr)) or "") or nombre_cliente(nombre)
+        nombre = (texto(g(jn)) or texto(g(js)) or "").strip()
+        ruc = re.sub(r"\.0$", "", texto(g(jr)) or "")
+        cod = texto(g(jc)) or f"{texto(g(je)) or ''}|{nombre}"
         v = (numero(g(jh)) or 0) + (numero(g(jf)) or 0)
-        x = cli.setdefault(ruc, [nombre.strip(), 0.0, texto(g(ja)) or "", []])
-        x[1] += v
-        s_ = texto(g(je)) or ""
-        if s_ and s_ not in x[3]:
-            x[3].append(s_)
+        x = sm.setdefault(cod, [ruc, nombre, 0.0, texto(g(ja)) or "", texto(g(je)) or ""])
+        x[2] += v
     if not meses:
         return None
     m = max(meses, key=meses.get)
-    return {"mes": f"{m[:4]}-{m[4:]}", "clientes": {k: [v[0], round(v[1], 2), v[2], v[3]] for k, v in cli.items()}}
+    return {"mes": f"{m[:4]}-{m[4:]}", "cab": [c for c in cab if c][:30],
+            "sum": {k: [v[0], v[1], round(v[2], 2), v[3], v[4]] for k, v in sm.items()}}

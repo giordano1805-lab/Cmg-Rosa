@@ -1183,7 +1183,7 @@ def generar(m, hist=None):
             hi.actualizar_ul(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_UL", "180")))
             extra["tipo_cliente"] = hi.resumen_tipo_cliente(dia)
             try:                               # libres por cliente final (RUC): Osinergmin, con desfase
-                hi.actualizar_osinergmin(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_OSI", "240")))
+                hi.actualizar_osinergmin(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_OSI", "360")))
                 extra["tipo_cliente"]["cambios_osi"] = hi.cambios_osinergmin(dia)
             except Exception as e:
                 print("Osinergmin mercado libre no disponible:", e, file=sys.stderr)
