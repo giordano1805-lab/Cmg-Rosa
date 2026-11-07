@@ -204,7 +204,14 @@ def resumen_tipo_cliente(dia: dt.date, dem=None):
                     out[n] = out.get(n, 0.0) + v
             return out
 
-        def top(a, b, n=10):
+        # distribuidoras: empresas con retiros como cliente regulado en algún mes; se excluyen del ranking de libres
+        distrib = {n for v in lv.values() for n in ((v or {}).get("clientes") or {}).get("regulado", {})}
+
+        def top(a, b, n=10, excluir=()):
+            ex = {"act": round(sum(v for c, v in a.items() if c in excluir) / 1e3, 1),
+                  "ant": round(sum(v for c, v in b.items() if c in excluir) / 1e3, 1)}
+            a = {c: v for c, v in a.items() if c not in excluir}
+            b = {c: v for c, v in b.items() if c not in excluir}
             dif = [{"cliente": c, "act": round(a.get(c, 0) / 1e3, 2), "ant": round(b.get(c, 0) / 1e3, 2),
                     "dif": round((a.get(c, 0) - b.get(c, 0)) / 1e3, 2),
                     "pct": round((a[c] / b[c] - 1) * 100, 1) if b.get(c, 0) > 0 and c in a else None}
@@ -213,15 +220,18 @@ def resumen_tipo_cliente(dia: dt.date, dem=None):
             baja = sorted([x for x in dif if x["dif"] < 0], key=lambda x: x["dif"])
             return {"sube": sube[:n], "baja": baja[:n], "neto": round((sum(a.values()) - sum(b.values())) / 1e3, 1),
                     "n_nuevos": sum(1 for x in dif if x["ant"] == 0 and x["act"] > 0),
-                    "n_salen": sum(1 for x in dif if x["act"] == 0 and x["ant"] > 0), "n": len(dif)}
+                    "n_salen": sum(1 for x in dif if x["act"] == 0 and x["ant"] > 0), "n": len(dif),
+                    "excluidas": dict(ex, dif=round(ex["act"] - ex["ant"], 1), n=len(set(excluir) & (set(a) | set(b) | set(excluir))))
+                    if excluir else None}
         um = max(x["mes"] for x in ok)
         ka = [f"{dia.year}-{x['mes']:02d}" for x in ok]
         kb = [f"{dia.year - 1}-{x['mes']:02d}" for x in ok]
         if all((lv.get(k) or {}).get("clientes") for k in ka + kb):
             cambios = {"mes": um, "meses": [x["mes"] for x in ok]}
             for g in ("libre", "regulado"):
-                cambios[g] = {"mes": top(suma([f"{dia.year}-{um:02d}"], g), suma([f"{dia.year - 1}-{um:02d}"], g)),
-                              "acum": top(suma(ka, g), suma(kb, g))}
+                ex = distrib if g == "libre" else ()
+                cambios[g] = {"mes": top(suma([f"{dia.year}-{um:02d}"], g), suma([f"{dia.year - 1}-{um:02d}"], g), excluir=ex),
+                              "acum": top(suma(ka, g), suma(kb, g), excluir=ex)}
     return {"act": dia.year, "ant": dia.year - 1, "meses": meses, "cambios": cambios,
             "acum": {k: round((v[0] / v[1] - 1) * 100, 1) for k, v in acum.items() if v[1]} if ok else None,
             "meses_ok": [x["mes"] for x in ok], "dias_ul": sum(1 for v in u.values() if v is not None),
