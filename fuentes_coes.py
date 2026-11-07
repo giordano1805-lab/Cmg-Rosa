@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07f"
+VERSION_FC = "2026-11-07g"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1609,7 +1609,7 @@ def energia_ger(hojas):
 def clave_central(nombre):
     """Nombre de central a partir del de la unidad (quita prefijos C.S./C.H./… y sufijos de unidad G1, TG2, BL1, …)."""
     n = norm(nombre).replace("PQE-EOLICO-", "").replace("PUN LOMITAS_EXP", "PUNTA LOMITAS EXPANSION")
-    n = re.sub(r"^(C\.?\s?[SEHT]\.?|CS|CE|CH|CT|PE|PFV|M\.?C\.?H\.?|P\.?C\.?H\.?)\s+", "", n)
+    n = re.sub(r"^(C\.?\s?[SEHT]\.?\s?F?\.?|P\.?\s?E\.?|CSF|CS|CE|CH|CT|PE|PFV|M\.?C\.?H\.?|P\.?C\.?H\.?)\s+", "", n)
     for _ in range(2):
         n = re.sub(r"[\s\-_]*(BL|GP|TG|TV|G|U|GR)\s?\d+$", "", n).strip()
     return re.sub(r"[\s\-_]+", " ", n).strip().title()

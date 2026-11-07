@@ -707,6 +707,24 @@ def cambios_centrales(anio: int, mes: int, hasta_dia: int, oc=None, umbral=0.01)
                 x["oc"] = hit
                 if x in nuevas and hit.get("mw"):
                     x["mw_oc"] = hit["mw"]
+        # también nuevas: centrales que entraron en operación comercial (lista OC del COES) después del inicio
+        # del mismo mes del año anterior, aunque entonces ya generaran en pruebas
+        ini_ant, fin_per = dt.date(anio - 1, mes, 1).isoformat(), pares[-1][0].isoformat()
+        ya_n = {x["central"] for x in nuevas}
+        for c_, v in sorted(tot_a.items(), key=lambda x: -x[1]):
+            if v <= lim or c_ in ya_n:
+                continue
+            hit = fc.oc_de_central(c_, oc or [], desde=f"{anio - 2}-01-01")
+            if hit and ini_ant <= hit["fecha"] <= fin_per:
+                x = {"central": c_, "mwh": round(v, 1), "mwh_ant": round(tot_b.get(c_, 0), 1), "oc": hit,
+                     "por_oc": True, "mw_medio": round(v / (24 * n), 1)}
+                if hit.get("mw"):
+                    x["mw_oc"] = hit["mw"]
+                p_ = pmax_de_central(c_, clave, pm)
+                if p_:
+                    x["mw_max"] = p_["mw"]
+                nuevas.append(x)
+                paradas[:] = [y for y in paradas if y["central"] != c_]
         out[clave] = {"nuevas": nuevas, "sin_gen": sin, "sin_gen_ant": paradas, "dias": n,
                       "mw_nuevas": round(sum(x.get("mw_oc") or x.get("mw_max") or 0 for x in nuevas), 1),
                       "desde": pares[0][0].isoformat(), "hasta": max(d for d, _ in pares).isoformat()}
