@@ -24,7 +24,9 @@ F_DEM = DATA / "demanda_diaria.csv"
 F_UL = DATA / "demanda_ul.csv"            # fecha, mwh de usuarios libres (IEOD, hoja DEMANDA_UL)
 F_HID = DATA / "hidro_pasada.csv"     # formato anterior (solo pasada); se migra a recursos.csv
 F_REC = DATA / "recursos.csv"
-RECURSOS = ("pasada", "regulacion", "eolica")
+RECURSOS = ("pasada", "regulacion", "eolica", "solar")
+F_GER = DATA / "ger_centrales.csv"          # fecha, tipo (Solar/Eólica), central, mwh (IEOD)
+F_OC = DATA / "operacion_comercial.json"
 F_EMB = DATA / "embalses_semanal.json"
 F_VOL = DATA / "volumenes_diarios.csv"
 F_HC = DATA / "hidro_centrales.csv"
@@ -415,6 +417,29 @@ def guardar_hc(c):
                 w.writerow([d.isoformat(), n, e, f"{pa:.2f}", f"{re_:.2f}"])
 
 
+def leer_ger():
+    out = {}
+    if F_GER.exists():
+        with F_GER.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                d = out.setdefault(dt.date.fromisoformat(r["fecha"]), {})
+                if r["tipo"]:
+                    d[(r["tipo"], r["central"])] = float(r["mwh"] or 0)
+    return out
+
+
+def guardar_ger(g):
+    DATA.mkdir(exist_ok=True)
+    with F_GER.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["fecha", "tipo", "central", "mwh"])
+        for d in sorted(g):
+            for (t, c), v in sorted(g[d].items()):
+                w.writerow([d.isoformat(), t, c, f"{v:.1f}"])
+            if not g[d]:
+                w.writerow([d.isoformat(), "", "", ""])        # día consultado sin solares/eólicas
+
+
 def _hc_de(hojas):
     return {n: (x["empresa"], x["pasada"], x["regulacion"]) for n, x in fc.hidro_por_central(hojas).items()}
 
@@ -573,6 +598,68 @@ def _agregar_centrales(c, fechas):
     return filas, round(sum(t["act"] for t in filas), 2), round(sum(t["ant"] for t in filas), 2)
 
 
+def cargar_oc(hoy: dt.date, max_s=120):
+    """Listado de publicaciones de operación comercial del COES (se refresca como máximo una vez por semana)."""
+    try:
+        c = json.loads(F_OC.read_text(encoding="utf-8"))
+    except Exception:
+        c = {}
+    if not c.get("fecha") or (hoy - dt.date.fromisoformat(c["fecha"])).days >= 7 or not c.get("lista"):
+        diag = {}
+        lista = fc.operacion_comercial_coes(max_s=max_s, diag=diag)
+        c = {"fecha": hoy.isoformat(), "lista": lista or c.get("lista") or [], "diag": diag}
+        DATA.mkdir(exist_ok=True)
+        F_OC.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
+    return c.get("lista") or []
+
+
+def cambios_centrales(anio: int, mes: int, hasta_dia: int, oc=None, umbral=0.01):
+    """Centrales que generaron en el período y no en el mismo período del año anterior (y al revés),
+    por tecnología: pasada, regulacion, eolica, solar. Solo si están todos los días en ambos años.
+    Se contrasta con las publicaciones de operación comercial del COES (oc)."""
+    hc, gr = leer_hc(), leer_ger()
+    da = [dt.date(anio, mes, k) for k in range(1, hasta_dia + 1)]
+    db = [_un_anio_antes(d) for d in da]
+    out = {}
+
+    def armar(tot_a, tot_b, clave):
+        sa, sb = sum(tot_a.values()), sum(tot_b.values())
+        lim = max(sa, sb) * umbral
+        nuevas = [{"central": c, "mwh": round(v, 1)} for c, v in sorted(tot_a.items(), key=lambda x: -x[1])
+                  if v > lim and tot_b.get(c, 0) <= 0.5]
+        sin = [{"central": c, "mwh_ant": round(v, 1)} for c, v in sorted(tot_b.items(), key=lambda x: -x[1])
+               if v > lim and tot_a.get(c, 0) <= 0.5]
+        for x in nuevas + sin:
+            hit = fc.buscar_oc(x["central"], oc or [])
+            if hit:
+                x["oc"] = {"fecha": hit.get("fecha"), "archivo": hit["archivo"]}
+        out[clave] = {"nuevas": nuevas, "sin_gen": sin, "dias": len(da)}
+
+    if all(d in hc for d in da + db):
+        for k, idx in (("pasada", 1), ("regulacion", 2)):
+            ta, tb = {}, {}
+            for d in da:
+                for c, x in hc[d].items():
+                    ta[c] = ta.get(c, 0) + x[idx]
+            for d in db:
+                for c, x in hc[d].items():
+                    tb[c] = tb.get(c, 0) + x[idx]
+            armar(ta, tb, k)
+    if all(d in gr for d in da + db):
+        for k, t in (("eolica", "Eólica"), ("solar", "Solar")):
+            ta, tb = {}, {}
+            for d in da:
+                for (tt, c), v in gr[d].items():
+                    if tt == t:
+                        ta[c] = ta.get(c, 0) + v
+            for d in db:
+                for (tt, c), v in gr[d].items():
+                    if tt == t:
+                        tb[c] = tb.get(c, 0) + v
+            armar(ta, tb, k)
+    return out
+
+
 def resumen_centrales(dia: dt.date):
     """Energía hidráulica por central en lo que va del mes (y en el día evaluado) vs el año anterior."""
     c = leer_hc()
@@ -614,9 +701,10 @@ def _vol_de(hojas):
 def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     """Rellena hidro de pasada (mes actual y mismo mes del año anterior) y volúmenes diarios de embalses
     (últimos VENTANA_VOL días y mismas fechas del año anterior) con una sola descarga del IEOD por día."""
-    h, v, hc, hu, ul = leer_hidro(), leer_vol(), leer_hc(), leer_hu(), leer_ul()
+    h, v, hc, hu, ul, gr = leer_hidro(), leer_vol(), leer_hc(), leer_hu(), leer_ul(), leer_ger()
     if hojas_dia:
         _ul_de(hojas_dia, dia, ul)
+        gr[dia] = fc.energia_ger(hojas_dia)
         x = fc.recursos_dia(hojas_dia)
         if x:
             h[dia] = x
@@ -636,10 +724,15 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     falta_h = {d for d in act + ant if d not in h or not _completo(h[d])}
     falta_v = {d for d in vact + vant if d not in v}
     falta_c = {d for d in act + [_un_anio_antes(x) for x in act] if d not in hc} | {d for d in act if d not in hu}
-    orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant))
+    # mes anterior completo (ambos años) para la comparación de centrales nuevas o sin generación
+    fin_ant = dia.replace(day=1) - dt.timedelta(days=1)
+    mant = [dt.date(fin_ant.year, fin_ant.month, k) for k in range(1, fin_ant.day + 1)]
+    falta_g = {d for d in act + ant + mant + [_un_anio_antes(x) for x in mant] if d not in gr}
+    falta_c |= {d for d in mant + [_un_anio_antes(x) for x in mant] if d not in hc}
+    orden = list(dict.fromkeys(vact[:3] + act[::-1] + vact + vant + ant + sorted(falta_g, reverse=True)))
     t0 = time.time()
     for d in orden:
-        if d not in falta_h and d not in falta_v and d not in falta_c:
+        if d not in falta_h and d not in falta_v and d not in falta_c and d not in falta_g:
             continue
         if time.time() - t0 > presupuesto_s:
             break
@@ -657,6 +750,7 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
             if d.year == dia.year:
                 hu[d] = fc.despacho_unidad(hojas)
             _ul_de(hojas, d, ul)
+            gr[d] = fc.energia_ger(hojas)
         except Exception as e:
             print("IEOD diario", d, e, file=sys.stderr)
     guardar_hidro(h)
@@ -664,6 +758,7 @@ def actualizar_hidro(dia: dt.date, hojas_dia=None, presupuesto_s=600):
     guardar_hc(hc)
     guardar_hu(hu)
     guardar_ul(ul)
+    guardar_ger(gr)
     pend = [d for d in act + ant if d not in h]
     return h, pend
 

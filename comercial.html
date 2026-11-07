@@ -60,7 +60,7 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .sh .t{border-left:6px solid;border-image:linear-gradient(180deg,var(--naranja),var(--amarillo)) 1;padding-left:12px}
 .sh .t small{display:block;font-weight:800;color:var(--naranja);font-size:13px;letter-spacing:.04em}
 .sh h2{margin:2px 0 0;font-size:24px;color:var(--h1);letter-spacing:-.3px}
-.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g64{grid-template-columns:minmax(0,62fr) minmax(0,38fr)}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.g4{grid-template-columns:1fr}}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g64{grid-template-columns:minmax(0,62fr) minmax(0,38fr)}
 .card{background:linear-gradient(180deg,var(--surface),color-mix(in srgb,var(--surface) 92%,var(--bg)));border:1px solid var(--card-b);border-radius:14px;padding:14px 16px;min-width:0;box-shadow:var(--sombra)}
 .card h3{margin:0 0 8px;font-size:15px;color:var(--h1)}.card h3 small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
 .chart{position:relative;height:300px}.chart.tall{height:380px}.chart.sm{height:230px}
@@ -239,11 +239,19 @@ function mantMesHTML(){const PM=D.prog_mensual||{},mes=PM.mes||D.dia.slice(0,7);
   const G=ganttMes();
   return `<div class="card"><h3>Ventanas de mantenimiento · ${MESN[+mes.slice(5)-1]} ${mes.slice(0,4)}<small>Programa Mensual de Mantenimiento del COES · mes en curso · intervenciones ≥ ${C.mantenimientos_mw_minimo??20} MW · color por tecnología (diésel en gris) · línea naranja: hoy</small></h3>
     ${lgdTec(G.pts)}<div class="chart" style="height:${Math.max(220,G.filas.length*22+70)}px"><canvas id="c-mmg" role="img" aria-label="Ventanas de mantenimiento del mes"></canvas></div></div>`}
-const GENR=[["pasada","Hidro de pasada","💧"],["regulacion","Hidro de embalse","🌊"],["eolica","Eólica","🌬"]];
+const GENR=[["pasada","Hidro de pasada","💧"],["regulacion","Hidro de embalse","🌊"],["eolica","Eólica","🌬"],["solar","Solar","☀"]];
 const GENC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eólica":"#1baf7a","Carbón":"#5f6368","Biomasa":"#6250d6","Diésel/Residual":"#e34948","D2 Reserva Fría":"#8f1d2c","Diésel/Residual otras":"#e34948","Otros":"#9aa0a6"};
 // mes en curso sin datos todavía (el IEOD del día 1 se publica al día siguiente): se abre el mes anterior completo
-const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
-function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica}[k]||null}
+const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica,D.solar].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
+function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica,solar:D.solar}[k]||null}
+// nota por tecnología: centrales que generaron este período y no el mismo período del año anterior (o al revés)
+function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c=G&&G[k];
+  if(!c)return `<div class="note">Comparación por central: aún sin todos los días en ambos años.</div>`;
+  const oc=x=>x.oc?` · operación comercial${x.oc.fecha?` ${x.oc.fecha.split("-").reverse().join("/")}`:""} (COES)`:"";
+  const n=c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b>: ${f0(x.mwh)} MWh este período, sin generación en ${MESC[H.mes-1]} ${H.ant}${oc(x)}</li>`),
+        s_=c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${MESC[H.mes-1]} ${H.ant}, sin generación este período${oc(x)}</li>`);
+  return n.length||s_.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${n.join("")}${s_.join("")}</ul>`
+    :`<div class="note">Mismas centrales generando que en ${MESC[H.mes-1]} ${H.ant}.</div>`}
 function tipoHTML(){const T=D.tipo_cliente;
   if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
   const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
@@ -291,10 +299,10 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
    <div class="sh" style="margin-top:18px"><div class="t" style="border:0;padding:0"><h2 style="font-size:18px">Hidro y eólica frente al año anterior · potencia media (MW)</h2></div>
     <div class="seg" role="group" aria-label="Mes">${[["act","Mes en curso"],["ant","Mes anterior completo"]].map(([k,n])=>`<button type="button" aria-pressed="${GNM===k}" onclick="GNM='${k}';render()" ${k==="ant"&&!D.gen_mes_ant?"disabled":""}${k==="act"&&!genHayAct()?" disabled title='Aún no hay datos del IEOD de este mes'":""}>${n}</button>`).join("")}</div></div>
    ${!genHayAct()?`<div class="note" style="margin:-4px 0 10px">El mes en curso aún no tiene datos del IEOD (se publica al día siguiente); se muestra el mes anterior completo.</div>`:""}
-   <div class="grid g3">${GENR.map(([k,n,ic])=>{const H=genH(k);if(!H||H.mtd[H.act]==null)return `<div class="estado">${n}: sin datos.</div>`;const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
+   <div class="grid g4">${GENR.map(([k,n,ic])=>{const H=genH(k);if(!H||H.mtd[H.act]==null)return `<div class="estado">${n}: sin datos.</div>`;const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
      return kc(ic,`${n} · ${MESN[H.mes-1]} ${H.act}`,f0(H.mtd[H.act]),"MW",`${v==null?"":`<span class="chip ${v<0?"or":"ok"}">${v>0?"▲ +":"▼ −"}${f1(Math.abs(v))}%</span> `}vs ${f0(H.mtd[H.ant])} MW en ${H.ant} · días 1–${H.dias}`)}).join("")}</div>
-   <div class="grid g3" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card"><h3>${n}<small>MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}</small></h3>${cv("c-g"+k,n+" por día frente al año anterior","sm")}</div>`:""}).join("")}</div>
-   <div class="note">Potencia media = energía del día ÷ 24 h, comparable entre días y años aunque el mes esté incompleto. Fuente: IEOD del COES (producción por tipo de recurso).</div></section>
+   <div class="grid g2" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card"><h3>${n}<small>MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}</small></h3>${cv("c-g"+k,n+" por día frente al año anterior","sm")}${notaCambios(k,H)}</div>`:""}).join("")}</div>
+   <div class="note">Potencia media = energía del día ÷ 24 h, comparable entre días y años aunque el mes esté incompleto. Fuente: IEOD del COES (producción por tipo de recurso; energía por central: cuadro de centrales hidroeléctricas y despacho ejecutado). Las fechas de operación comercial se toman de las publicaciones del COES «Operación Comercial de unidades o centrales de generación».</div></section>
 
   <section class="sec" id="mant"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mantenimientos de centrales</h2></div>
     <div class="seg" role="group" aria-label="Vista">${[["dia","Por día"],["mes","Por mes"]].map(([k,n])=>`<button type="button" aria-pressed="${MTM===k}" onclick="MTM='${k}';render()">${n}</button>`).join("")}</div></div>

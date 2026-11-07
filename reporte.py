@@ -906,6 +906,8 @@ def datos_dashboard(dia, hoy, ind, ieod, dia_ieod, prog, gen, bullets, m, extra=
         "cmg_mes_ant": cmg_mes_anterior(m, ind["_hist"], dia),
         "bot": bot_usuario(),
         "gen_mes_ant": extra.get("gen_mes_ant"),
+        "solar": extra.get("solar"),
+        "gen_cambios": extra.get("gen_cambios"),
         "tipo_cliente": extra.get("tipo_cliente"),
         "cmg_hoy": cmg_ultimo(m, ind["_hist"], hoy),
         "cmg_n": {b: {d.isoformat(): n for d, n in sorted(ind["n_b"].get(b, {}).items())} for b in m.BARRAS},
@@ -1189,8 +1191,16 @@ def generar(m, hist=None):
         extra["huanchor"] = hi.resumen_huanchor(dia, ind["_hist"], m.TC, m.leer_diag_hu())
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
         fin_ant = dia.replace(day=1) - dt.timedelta(days=1)       # mes anterior completo (solo promedios diarios)
+        extra["solar"] = hi.resumen_hidro(h, dia, "solar")
         extra["gen_mes_ant"] = {k: {x: v for x, v in hi.resumen_hidro(h, fin_ant, k).items() if x != "serie"}
-                                for k in ("pasada", "regulacion", "eolica")}
+                                for k in ("pasada", "regulacion", "eolica", "solar")}
+        try:                                   # centrales nuevas / sin generación vs el año anterior (con fecha COES)
+            oc = hi.cargar_oc(hoy)
+            extra["gen_cambios"] = {"act": hi.cambios_centrales(dia.year, dia.month, dia.day, oc),
+                                    "ant": hi.cambios_centrales(fin_ant.year, fin_ant.month, fin_ant.day, oc),
+                                    "oc_publicaciones": len(oc)}
+        except Exception as e:
+            print("Cambios de centrales no disponible:", e, file=sys.stderr)
     except Exception as e:
         print("Hidro de pasada no disponible:", e, file=sys.stderr)
     try:
