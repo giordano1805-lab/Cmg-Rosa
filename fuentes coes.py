@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-02"   # sube esta fecha en cada cambio: si hay dos copias, se usa la más nueva
+VERSION_FC = "2026-11-07"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1336,13 +1336,100 @@ def demanda_ul_mwh(hojas):
 _RX_LVTEA = r"LVTEA|VALORIZACI|TRANSFERENCIA|LIQUIDACI"
 
 
-def buscar_lvtea(max_s=150, diag=None):
-    """Carpetas/archivos del COES con la Liquidación/Valorización mensual de Transferencias de Energía Activa (LVTEA).
-    Recorre el árbol del navegador del COES desde la raíz siguiendo solo carpetas con nombres afines.
-    Devuelve [rutas de archivos 'Resumen' (xlsx/xlsm/zip)]."""
+# Páginas del portal cuyo navegador de archivos contiene el LVTEA / liquidaciones mensuales
+PAGINAS_LVTEA = ["mercadomayorista/liquidaciones",
+                 "PostOperacion/ValorizacionTransferencias/ValorizacionTransferenciaEP"]
+BASES_LVTEA = ["Mercado Mayorista/Liquidaciones/", "Mercado Mayorista/Liquidaciones del MME/",
+               "Mercado Mayorista/Liquidacion/", "Mercado Mayorista/LVTEA/",
+               "Post Operación/Valorización de Transferencias/", "Post Operación/Valorizacion de Transferencias/",
+               "Post Operación/Valorizacion Transferencias/", "Post Operación/Transferencias/",
+               "Post Operación/Valorizacion de Transferencias/Valorizacion de Transferencia de Energia y Potencia/",
+               "Liquidaciones/", "Transferencias/"]
+
+
+def rutas_de_pagina(paginas, volcar=None, diag=None):
+    """Carpetas del navegador de archivos que usa una página del portal COES.
+    Lee el HTML (y sus scripts propios), extrae textos con forma de carpeta y se queda con los que listan algo."""
+    import html as _h
+    from urllib.parse import unquote
+    textos, cand = [], []
+    for pg in paginas:
+        try:
+            r = S.get(RAIZ + pg, timeout=60)
+            t = r.text
+        except Exception as e:
+            if diag is not None:
+                diag.setdefault("paginas", {})[pg] = f"error {e}"[:120]
+            continue
+        textos.append(t)
+        scripts = [u for u in re.findall(r"<script[^>]+src=[\"']([^\"']+)[\"']", t, re.I)
+                   if not re.search(r"jquery|bootstrap|highcharts|datatables|moment|select2|kendo|cdn|min\.js", u, re.I)]
+        if diag is not None:
+            diag.setdefault("paginas", {})[pg] = {"bytes": len(t), "scripts": scripts[:20]}
+        if volcar is not None:
+            volcar.mkdir(parents=True, exist_ok=True)
+            (volcar / (re.sub(r"\W+", "_", pg) + ".html")).write_text(t, encoding="utf-8")
+        for u in scripts[:8]:
+            url = u if u.startswith("http") else "https://www.coes.org.pe" + (u if u.startswith("/") else "/Portal/" + u)
+            try:
+                js = S.get(url, timeout=60).text
+                textos.append(js)
+                if volcar is not None:
+                    (volcar / (re.sub(r"\W+", "_", u)[-80:] + ".js.txt")).write_text(js, encoding="utf-8")
+            except Exception:
+                pass
+    for t in textos:
+        t = _h.unescape(unquote(t))
+        for x in re.findall(r"[\"'=>]\s*([A-ZÁÉÍÓÚa-záéíóúñÑ][^\"'<>\n=]{2,180}/)\s*[\"'<]", t):
+            x = x.strip()
+            if x.startswith(("http", "/", "www")) or re.search(r"\.(js|css|aspx?|cshtml)\b|Portal/|Content/|Areas/", x):
+                continue
+            if re.search(r"[A-Za-z]{3}", x):
+                cand.append(x)
+    cand = list(dict.fromkeys(cand))
+    buenas = []
+    for x in cand[:40]:
+        try:
+            if listar(x):
+                buenas.append(x)
+        except Exception:
+            pass
+    if diag is not None:
+        diag["candidatas"] = cand[:40]
+        diag["validas"] = buenas
+    return buenas
+
+
+def _rev_lvtea(ruta):
+    """Orden de versión de un archivo LVTEA: preliminar < original < revisiones (Rev 1, 2, …)."""
+    n = norm(ruta)
+    m = re.findall(r"(?<![A-Z])REV(?:ISION|ISADO|\.)?\s*[N°º#._-]*\s*0?(\d{1,2})(?!\d)", n)
+    if m:
+        return 10 + max(int(x) for x in m)
+    if re.search(r"REVISAD|RECALCUL|RECONSID|REEMPLAZ|MODIFIC", n):
+        return 9
+    if re.search(r"PRELIM", n):
+        return 0
+    return 5
+
+
+def buscar_lvtea(max_s=150, diag=None, volcar=None):
+    """Archivos 'Resumen' del LVTEA (valorización/liquidación mensual de transferencias de energía activa).
+    Ubica la carpeta real desde la página del portal y recorre años 2025+ y meses.
+    Devuelve [rutas de archivos Resumen (xlsx/xlsm/xls/zip)], incluidas las revisiones."""
     import time as _t
     t0, vistos, hallados = _t.time(), set(), []
-    cola = [(r, 0) for r in ("", "Post Operación/", "Mercado Mayorista/", "Transferencias/")]
+    d = {} if diag is None else diag
+    bases = rutas_de_pagina(PAGINAS_LVTEA, volcar=volcar, diag=d.setdefault("pagina", {}))
+    for x in BASES_LVTEA:
+        if x not in bases:
+            try:
+                if listar(x):
+                    bases.append(x)
+            except Exception:
+                pass
+    d["bases"] = bases
+    cola = [(r, 0) for r in bases]
     while cola and _t.time() - t0 < max_s:
         ruta, prof = cola.pop(0)
         if ruta in vistos:
@@ -1352,33 +1439,69 @@ def buscar_lvtea(max_s=150, diag=None):
             items = list(dict.fromkeys(listar(ruta)))
         except Exception:
             continue
-        if diag is not None and prof <= 1:
-            diag.setdefault("listados", {})[ruta or "/"] = [_nombre(i) for i in items][:60]
+        if prof <= 2:
+            d.setdefault("listados", {})[ruta] = [_nombre(i) for i in items][:60]
         for i in items:
             n = norm(_nombre(i))
             if i.endswith("/"):
-                if prof < 5 and (re.search(_RX_LVTEA, n) or re.search(r"\b20(2[5-9])\b", n) or
-                                 re.search(_RX_LVTEA, norm(ruta)) and re.search(r"\d", n)):
+                anios = [int(y) for y in re.findall(r"\b(20\d\d)\b", n)]
+                if prof < 5 and not (anios and max(anios) < 2025):
                     cola.append((i, prof + 1))
             elif re.search(r"RESUMEN", n) and re.search(r"\.(XLSX|XLSM|XLS|ZIP)$", n):
                 hallados.append(i)
-    if diag is not None:
-        diag["carpetas_revisadas"] = len(vistos)
+    d["carpetas_revisadas"] = len(vistos)
+    d["resumen_hallados"] = len(hallados)
     return hallados
 
 
+def lvtea_por_mes(rutas):
+    """{'AAAA-MM': ruta de la versión más reciente (última revisión)} desde la lista de archivos Resumen."""
+    out = {}
+    for r in rutas:
+        ym = _mes_de_ruta(r)
+        if not ym:
+            continue
+        k = f"{ym[0]}-{ym[1]:02d}"
+        if k not in out or (_rev_lvtea(r), r) > (_rev_lvtea(out[k]), out[k]):
+            out[k] = r
+    return out
+
+
 def _mes_de_ruta(ruta):
+    """(año, mes) de un archivo mensual, leyendo del nombre y luego de las carpetas (del más profundo al más alto)."""
     MES = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
            "SETIEMBRE": 9, "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
-    n = norm(ruta)
-    y = re.findall(r"\b(20\d\d)\b", n)
-    m = next((v for k, v in MES.items() if k in n), None)
-    if m is None:
-        mm = re.search(r"\b(20\d\d)[_\-. ]?(0[1-9]|1[0-2])\b", n) or re.search(r"\b(0[1-9]|1[0-2])[_\-. ](20\d\d)\b", n)
-        if mm:
-            a, b = mm.groups()
-            return (int(a), int(b)) if len(a) == 4 else (int(b), int(a))
-    return (int(y[-1]), m) if y and m else None
+    ABR = {"ENE": 1, "FEB": 2, "MAR": 3, "ABR": 4, "MAY": 5, "JUN": 6, "JUL": 7, "AGO": 8, "SET": 9, "SEP": 9,
+           "OCT": 10, "NOV": 11, "DIC": 12}
+    partes = [norm(x) for x in ruta.strip("/").split("/")][::-1]
+    anio = mes = None
+    for t in partes:
+        if anio is None:
+            y = re.findall(r"(?<!\d)(20[12]\d)(?!\d)", t)
+            if y:
+                anio = int(y[-1])
+        if mes is None:
+            m = next((v for k, v in MES.items() if k in t), None)
+            if m is None:
+                m = next((v for k, v in ABR.items() if re.search(rf"(?<![A-Z]){k}(?![A-Z])", t)), None)
+            if m is None:
+                mm = (re.search(r"(?<!\d)(20[12]\d)[_\-. ]?(0[1-9]|1[0-2])(?!\d)", t)
+                      or re.search(r"(?<!\d)(0[1-9]|1[0-2])[_\-. ](20[12]\d)(?!\d)", t)
+                      or re.match(r"(0[1-9]|1[0-2])(?!\d)", t))
+                if mm:
+                    g = mm.groups()
+                    if len(g) == 2:
+                        a_, b_ = g
+                        if len(a_) == 4:
+                            anio, m = anio or int(a_), int(b_)
+                        else:
+                            anio, m = anio or int(b_), int(a_)
+                    else:
+                        m = int(g[0])
+            mes = m
+        if anio and mes:
+            return anio, mes
+    return None
 
 
 def lvtea_cuadro4(b, nombre):
@@ -1441,13 +1564,61 @@ def energia_ger(hojas):
     return out
 
 
+def clave_central(nombre):
+    """Nombre de central a partir del de la unidad (quita prefijos C.S./C.H./… y sufijos de unidad G1, TG2, BL1, …)."""
+    n = norm(nombre).replace("PQE-EOLICO-", "").replace("PUN LOMITAS_EXP", "PUNTA LOMITAS EXPANSION")
+    n = re.sub(r"^(C\.?\s?[SEHT]\.?|CS|CE|CH|CT|PE|PFV|M\.?C\.?H\.?|P\.?C\.?H\.?)\s+", "", n)
+    for _ in range(2):
+        n = re.sub(r"[\s\-_]*(BL|GP|TG|TV|G|U|GR)\s?\d+$", "", n).strip()
+    return re.sub(r"[\s\-_]+", " ", n).strip().title()
+
+
+def pmax_centrales(hojas):
+    """{(tipo, central): MW máximo del día} (suma de unidades por intervalo) para hidro, solar y eólica,
+    desde DESPACHO_EJECUTADO. Sirve como referencia de capacidad de centrales nuevas."""
+    acc = {}
+    for n, x in despacho_unidades(hojas).items():
+        tt = norm(x.get("tipo", ""))
+        t = ("Solar" if tt == "SOLAR" else "Eólica" if tt == "EOLICA" else "Hidro" if tt.startswith("HIDRO")
+             else None if tt else tipo_unidad_ger(n, x.get("empresa", "")))
+        if not t or not x["mw"]:
+            continue
+        s = acc.setdefault((t, clave_central(n)), {})
+        for k, v in x["mw"].items():
+            s[k] = s.get(k, 0.0) + (v or 0.0)
+    return {k: round(max(s.values()), 1) for k, s in acc.items() if s}
+
+
+def misma_central(a, b):
+    """¿Dos nombres corresponden a la misma central? (clave compacta o palabras propias contenidas)."""
+    ka, kb = _clave_unidad(clave_central(a)), _clave_unidad(clave_central(b))
+    if ka and ka == kb:
+        return True
+    ta = {t for t in re.findall(r"[A-Z0-9]+", norm(a)) if t not in _GENERICAS and len(t) > 2}
+    tb = {t for t in re.findall(r"[A-Z0-9]+", norm(b)) if t not in _GENERICAS and len(t) > 2}
+    return bool(ta and tb) and (ta <= tb or tb <= ta)
+
+
 # --------------------------------------------------------------------------- operación comercial (COES)
-def operacion_comercial_coes(max_s=120, diag=None):
+def operacion_comercial_coes(max_s=120, diag=None, volcar=None):
     """Archivos publicados por el COES en «Operación Comercial de unidades o centrales de generación».
     Devuelve [{'archivo', 'ruta', 'fecha' (si se puede leer del nombre o carpeta)}]."""
     import time as _t
     t0, vistos, out = _t.time(), set(), []
-    cola = [("Planificación/", 0), ("Planificacion/", 0), ("", 0)]
+    d = {} if diag is None else diag
+    bases = rutas_de_pagina(["Planificacion/NuevosProyectos/OperacionComercialUnidades"], volcar=volcar,
+                            diag=d.setdefault("pagina", {}))
+    for x in ("Planificación/Nuevos Proyectos/Operación Comercial/", "Planificación/Nuevos Proyectos/Operacion Comercial/",
+              "Planificación/Nuevos Proyectos/Operación Comercial de Unidades/",
+              "Planificacion/Nuevos Proyectos/Operacion Comercial/", "Planificación/Operación Comercial/"):
+        if x not in bases:
+            try:
+                if listar(x):
+                    bases.append(x)
+            except Exception:
+                pass
+    d["bases"] = bases
+    cola = [(b, 0) for b in bases]
     while cola and _t.time() - t0 < max_s:
         ruta, prof = cola.pop(0)
         if ruta in vistos:
@@ -1457,18 +1628,17 @@ def operacion_comercial_coes(max_s=120, diag=None):
             items = list(dict.fromkeys(listar(ruta)))
         except Exception:
             continue
-        en_oc = "OPERACION COMERCIAL" in norm(ruta)
-        if diag is not None and (prof == 0 or en_oc):
-            diag.setdefault("listados", {})[ruta or "/"] = [_nombre(i) for i in items][:40]
+        if prof <= 2:
+            d.setdefault("listados", {})[ruta] = [_nombre(i) for i in items][:60]
         for i in items:
             n = norm(_nombre(i))
             if i.endswith("/"):
-                if prof < 5 and (en_oc or re.search(r"NUEVOS PROYECTOS|OPERACION COMERCIAL|PLANIFICACION", n)):
+                anios = [int(y) for y in re.findall(r"\b(20\d\d)\b", n)]
+                if prof < 4 and not (anios and max(anios) < 2024):
                     cola.append((i, prof + 1))
-            elif en_oc:
+            else:
                 out.append({"archivo": _nombre(i), "ruta": i, "fecha": _fecha_en_texto(i)})
-    if diag is not None:
-        diag["carpetas_revisadas"] = len(vistos)
+    d["carpetas_revisadas"] = len(vistos)
     return out
 
 
