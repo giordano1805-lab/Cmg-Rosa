@@ -1479,9 +1479,16 @@ def lvtea_por_mes(rutas):
         if not ym:
             continue
         k = f"{ym[0]}-{ym[1]:02d}"
-        if k not in out or (_rev_lvtea(r), r) > (_rev_lvtea(out[k]), out[k]):
+        if k not in out or _orden_lvtea(r) > _orden_lvtea(out[k]):
             out[k] = r
     return out
+
+
+def _orden_lvtea(r):
+    """Archivo Resumen completo antes que correcciones parciales («…_CUADRO 5_Corrección»); luego la última revisión."""
+    n = norm(_nombre(r))
+    parcial = bool(re.search(r"CUADROS?[\s_-]*\d", n.replace("RESUMEN_CUADROS", "")) or re.search(r"CORRECCI", n))
+    return (0 if parcial else 1, _rev_lvtea(r), r)
 
 
 def _mes_de_ruta(ruta):

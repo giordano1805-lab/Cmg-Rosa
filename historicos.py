@@ -187,14 +187,6 @@ def resumen_tipo_cliente(dia: dt.date, dem=None):
         if not fila["parcial"] and (lv.get(ka) or {}).get("libre") and (lv.get(kb) or {}).get("libre"):
             la, ra, lb, rb = lv[ka]["libre"], lv[ka]["regulado"], lv[kb]["libre"], lv[kb]["regulado"]
             fila["fuente"] = "LVTEA"
-        else:
-            da = [dt.date(dia.year, m_, k) for k in range(1, n + 1)]
-            db = [_un_anio_antes(d) for d in da]
-            okd = lambda ds: all(u.get(d) is not None and d in dem for d in ds)
-            if okd(da) and okd(db):
-                la, lb = sum(u[d] for d in da), sum(u[d] for d in db)
-                ra, rb = sum(dem[d]["mwh"] for d in da) - la, sum(dem[d]["mwh"] for d in db) - lb
-                fila["fuente"] = "IEOD"
         if la and lb and ra and rb:
             fila.update({"libre": round((la / lb - 1) * 100, 1), "regulado": round((ra / rb - 1) * 100, 1),
                          "libre_gwh": round(la / 1e3, 1), "regulado_gwh": round(ra / 1e3, 1), "pct_libre": round(la / (la + ra) * 100, 1),
