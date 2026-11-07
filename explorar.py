@@ -8,17 +8,10 @@ from urllib.parse import urljoin, quote
 
 import fuentes_coes as fc
 
-OUT = Path("data") / "explora11"
+OUT = Path("data") / "explora12"
 S = fc.S
 CARPETA = "Publicacionesgrt/INFORMES MENSUALES/Mercado Libre de Electricidad/2026"
-PAGINAS = [
-    "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria",
-    "https://www.osinergmin.gob.pe/seccion/institucional/regulacion-tarifaria/publicaciones",
-    "https://www2.osinergmin.gob.pe/publicacionesgrt/",
-    "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/",
-    "https://www2.osinergmin.gob.pe/publicacionesgrt/pdf/BolMerLibElectricidad/",
-    "https://www.osinergmin.gob.pe/seccion/centro_documental/gart/Publicacionesgrt/",
-]
+PAGINAS = ["https://www.osinergmin.gob.pe/VisorGRT/"]
 
 
 def guardar(nombre, texto):
@@ -39,7 +32,7 @@ def main():
                     res["enlaces"].append(urljoin(r.url, m))
             for sc in re.findall(r"""<script[^>]+src=["']([^"']+)["']""", t, re.I):
                 su = urljoin(r.url, sc)
-                if su in res["scripts"] or re.search(r"jquery|bootstrap|google|analytics|min\.js", su, re.I):
+                if su in res["scripts"] or re.search(r"jquery|bootstrap|google|analytics", su, re.I):
                     continue
                 try:
                     js = S.get(su, timeout=60)
@@ -49,6 +42,19 @@ def main():
                     res["scripts"][su] = {"error": str(e)[:150]}
         except Exception as e:
             res["paginas"][u] = {"status": None, "error": str(e)[:200]}
+    # endpoints que aparecen en el HTML/JS del visor
+    eps = set()
+    for f in OUT.glob("*"):
+        try:
+            t = f.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
+        for m in re.findall(r"""["'`](/?(?:api|VisorGRT|Services?|Handlers?|ws)[^"'`\s]{2,120})["'`]""", t, re.I):
+            eps.add(m)
+        for m in re.findall(r"""["'`](https?://[^"'`\s]{5,160})["'`]""", t):
+            if "osinergmin" in m:
+                eps.add(m)
+    res["endpoints"] = sorted(eps)[:200]
     # pruebas de rutas directas de archivos (patrones habituales de publicacionesgrt)
     for u in [f"https://www2.osinergmin.gob.pe/publicacionesgrt/{quote(CARPETA)}/",
               "https://www2.osinergmin.gob.pe/publicacionesgrt/xls/BolMerLibElectricidad/",
