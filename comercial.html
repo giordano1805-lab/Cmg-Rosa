@@ -139,6 +139,11 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .cv{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}.cv small{font-weight:600;opacity:.8;font-size:10.5px}.cv.up{color:var(--ok)}.cv.dn{color:var(--bad)}
 @media (max-width:700px){.cr{grid-template-columns:minmax(0,1fr) 92px;row-gap:2px}.cn{grid-column:1/-1}.cb{grid-column:1}}
 .tph{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}.tph .t3{margin:0}
+.cr.cnota{position:relative;cursor:help;border-radius:6px}.cr.cnota:hover,.cr.cnota:focus-within{background:var(--tinte2);outline:none}
+.ci{color:var(--naranja);font-size:11px;font-weight:700}
+.cpop{display:none;position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);background:var(--surface);color:var(--text-2);border:1px solid var(--card-b);border-left:3px solid var(--naranja);border-radius:10px;box-shadow:var(--sombra);padding:9px 11px;font-size:12px;line-height:1.45;white-space:normal}
+.cpop b{display:block;color:var(--text);margin-bottom:3px}.cpop small{display:block;margin-top:4px;opacity:.85}.cpop a{color:var(--naranja)}
+.cr.cnota:hover .cpop,.cr.cnota:focus .cpop,.cr.cnota:focus-within .cpop{display:block}
 </style>
 </head>
 <body>
@@ -279,9 +284,12 @@ function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c
 function camRows(X){const R=[...X.sube.slice(0,8),...X.baja.slice(0,8)],mx=Math.max(...R.map(r=>Math.abs(r.dif)),.01);
   const nom=t=>t.toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase());
   return `<div class="camr">${R.map(r=>{const w=Math.abs(r.dif)/mx*100,up=r.dif>0;
-    return `<div class="cr" title="${esc(r.cliente)}: ${f1(r.act)} GWh vs ${f1(r.ant)} GWh"><span class="cn">${esc(nom(r.cliente))}</span>
+    const N=notaCli(r.cliente);
+    return `<div class="cr${N?" cnota":""}" ${N?'tabindex="0"':""} title="${N?"":`${esc(r.cliente)}: ${f1(r.act)} GWh vs ${f1(r.ant)} GWh`}"><span class="cn">${esc(nom(r.cliente))}${N?' <span class="ci" aria-hidden="true">ⓘ</span>':""}</span>
       <span class="cb"><i class="n">${up?"":`<b style="width:${w}%"></b>`}</i><i class="p">${up?`<b style="width:${w}%"></b>`:""}</i></span>
-      <span class="cv ${up?"up":"dn"}">${up?"+":""}${f1(r.dif)}<small>${r.pct!=null?(r.pct>999?" >+999%":` ${r.pct>0?"+":""}${f0(r.pct)}%`):r.ant===0?" nuevo":r.act===0?" sin consumo":""}</small></span></div>`}).join("")}</div>`}
+      <span class="cv ${up?"up":"dn"}">${up?"+":""}${f1(r.dif)}<small>${r.pct!=null?(r.pct>999?" >+999%":` ${r.pct>0?"+":""}${f0(r.pct)}%`):r.ant===0?" nuevo":r.act===0?" sin consumo":""}</small></span>${N?`<span class="cpop" role="tooltip"><b>${f1(r.act)} GWh vs ${f1(r.ant)} GWh</b>${esc(N.texto)}${N.fuente?` <small>Fuente: ${N.url?`<a href="${esc(N.url)}" target="_blank" rel="noopener">${esc(N.fuente)}</a>`:esc(N.fuente)}</small>`:""}</span>`:""}</div>`}).join("")}</div>`}
+function notaCli(n){const M=C.notas_clientes||{},k=(n||"").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  const h=Object.keys(M).filter(x=>x[0]!=="_"&&k.includes(x)).sort((a,b)=>b.length-a.length)[0];return h?M[h]:null}
 function tipoHTML(){const T=D.tipo_cliente;
   if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
   const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);

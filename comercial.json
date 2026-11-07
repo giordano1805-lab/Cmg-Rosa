@@ -30,5 +30,43 @@
    "2026-08": 107,
    "2026-09": 134
   }
+ },
+ "notas_clientes": {
+  "_ayuda": "Nota que aparece al pasar el cursor (o tocar) un cliente en «Mayores cambios por cliente». Clave: nombre del cliente sin S.A./S.A.C., en mayúsculas y sin tildes (basta una parte del nombre).",
+  "SHOUGANG HIERRO PERU": {
+   "texto": "Base baja en 2025: desde el 12/05/2025 paralizó operaciones ~5 meses por la avería de su único cargador de barcos en el puerto de San Nicolás (Marcona). En 2026 opera con normalidad.",
+   "fuente": "Infobae, 13/05/2025",
+   "url": "https://www.infobae.com/america/agencias/2025/05/13/minera-china-shougang-anuncia-a-trabajadores-en-peru-una-paralizacion-por-5-meses/"
+  },
+  "SHOUXIN": {
+   "texto": "Procesa relaves en Marcona y vende el concentrado de hierro a Shougang, por lo que acompaña su ritmo; tiene aprobada una ampliación de 8 a 16 Mt/año.",
+   "fuente": "ProActivo",
+   "url": "https://proactivo.com.pe/shouxin-peru-aprueban-eia-para-ampliar-procesado-de-relaves/"
+  },
+  "CHINALCO": {
+   "texto": "Toromocho: expansión aprobada (abril 2026, más de US$ 700 millones) para optimizar molienda y flotación, con meta de 170,000 t/día.",
+   "fuente": "ProActivo, 14/04/2026",
+   "url": "https://proactivo.com.pe/toromocho-se-expande-minem-impulsa-inversion-de-mas-de-us-700-millones-para-aumentar-produccion-de-cobre/"
+  },
+  "REFINERIA LA PAMPILLA": {
+   "texto": "Repsol amplió su unidad de gasolinas (oct. 2024, +20% de gasolina baja en azufre); mayor carga de la refinería.",
+   "fuente": "Minería & Energía, 16/10/2024",
+   "url": "https://mineriaenergia.com/repsol-inaugura-la-ampliacion-de-su-unidad-de-gasolinas-en-refineria-la-pampilla/"
+  },
+  "CONSORCIO MINERO HORIZONTE": {
+   "texto": "Opera en Pataz (La Libertad), zona con paralizaciones desde 2025 por inseguridad y minería ilegal. Contexto; sin dato específico del mes.",
+   "fuente": "Energiminas, 08/05/2025",
+   "url": "https://energiminas.com/2025/05/08/snmpe-expresa-su-preocupacion-por-paralizacion-de-todas-las-actividades-mineras-en-pataz-parcoy-y-tayabamba"
+  },
+  "ANTAMINA": {
+   "texto": "Sin explicación pública clara: su cobre producido subió 48.7% ene–ago 2026 y no hubo paralizaciones a mitad de año (la del 27/10/2026 no afecta estos meses). Posibles causas: mejores leyes con menos tonelaje molido, o parte del consumo en otro suministro.",
+   "fuente": "SMM",
+   "url": "https://news.metal.com/newscontent/104184145-smm-analysis-antamina-halts-operations-after-another-fatality-what-can-its-2025-recovery-tell-us"
+  },
+  "UNACEM": {
+   "texto": "Incluye a Unión Andina de Cementos (mismo grupo, nuevo RUC tras la reorganización de 2025): se suman para comparar.",
+   "fuente": "",
+   "url": ""
+  }
  }
 }
