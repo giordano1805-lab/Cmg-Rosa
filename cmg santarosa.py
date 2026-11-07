@@ -666,9 +666,7 @@ def main():
         import explorar
         res = explorar.main()
         ok = sum(1 for p in res["paginas"].values() if p.get("status") == 200)
-        tg("sendMessage", data={"chat_id": chat,
-                                "text": f"🔎 Exploración COES lista: {ok}/{len(res['paginas'])} páginas leídas. "
-                                        "Avísale a Claude."})
+        print(f"Exploración lista: {ok}/{len(res['paginas'])} páginas leídas")      # sin mensaje de Telegram
         return
     if MODO in ("pdf", "dashboard", "comercial", "datos"):
         # Actualiza el dashboard (y deja el PDF descargable desde ahí); a Telegram solo va el enlace
