@@ -69,7 +69,7 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .seg button[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;font-weight:600;box-shadow:0 2px 6px -2px rgba(255,87,22,.55)}
 .seg button:disabled{opacity:.45;cursor:not-allowed}
 .dg{display:grid;grid-template-columns:minmax(0,80fr) minmax(0,20fr);gap:16px}.sepv{border-left:1px dashed var(--card-b);padding-left:12px}
-.tgl{border:1px solid rgba(255,87,22,.45);background:var(--tinte);color:#c2410c;font:inherit;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tgl{border:1px solid rgba(255,87,22,.45);background:var(--tinte);color:#c2410c;font:inherit;font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
 .tgl[aria-pressed=true]{background:linear-gradient(180deg,#ff6a2e,var(--naranja));color:#fff;border-color:transparent}
 .t2{font-weight:700;color:var(--h1);font-size:13px;margin:16px 0 4px}
 @media (max-width:700px){.dg{grid-template-columns:1fr}.sepv{border-left:0;padding-left:0;border-top:1px dashed var(--card-b);padding-top:8px}}
@@ -131,6 +131,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .nuevas .nf{display:block;color:var(--muted);font-size:11px}
 .tpb+.tpb{margin-top:14px;padding-top:12px;border-top:1px dashed var(--border)}.t3{font-weight:800;font-size:13px;color:var(--h1);margin:0 0 4px}
 @media (max-width:700px){.tpb .sepv .chart.sm{height:130px}}
+.cam{margin-top:12px;padding-top:10px;border-top:1px dashed var(--border)}.camh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}.camh b{font-size:12.5px;color:var(--text-2)}
+.camr{display:grid;gap:5px}.cr{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.6fr) 104px;align-items:center;gap:8px;font-size:12px}
+.cn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-2)}.cb{display:grid;grid-template-columns:1fr 1fr;height:14px}
+.cb i{display:flex;position:relative}.cb i.n{justify-content:flex-end;border-right:1px solid var(--muted)}.cb b{display:block;height:100%;border-radius:3px}
+.cb i.n b{background:rgba(197,34,31,.78);border-radius:3px 0 0 3px}.cb i.p b{background:rgba(19,115,51,.78);border-radius:0 3px 3px 0}
+.cv{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}.cv small{font-weight:600;opacity:.8;font-size:10.5px}.cv.up{color:var(--ok)}.cv.dn{color:var(--bad)}
+@media (max-width:700px){.cr{grid-template-columns:minmax(0,1fr) 92px;row-gap:2px}.cn{grid-column:1/-1}.cb{grid-column:1}}
 </style>
 </head>
 <body>
@@ -188,8 +195,8 @@ const graf=(id,cfg)=>{const el=$(id);if(!el)return;charts.push(new Chart(el,cfg)
 const cv=(id,txt,h="")=>`<div class="chart ${h}"><canvas id="${id}" role="img" aria-label="${esc(txt)}"></canvas></div>`;
 const kc=(ic,l,v,un,s)=>`<div class="card kc"><span class="ki" aria-hidden="true">${ic}</span><div><div class="l">${l}</div><div class="v">${v}${un?`<small>${un}</small>`:""}</div>${s?`<div class="s">${s}</div>`:""}</div></div>`;
 const ANIOC=["--muted","--s4","--navy","--naranja"];
-const SECS=[["cmg","Evolución CMg"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
-let CMM="act",MTM="dia",GNM=null,DTP=false;
+const SECS=[["cmg","Evolución CMg"],["clientes","Demanda por cliente"],["gen","Generación"],["mant","Mantenimientos"],["mercado","Reserva eficiente"],["caudales","Caudales"],["volumenes","Embalses"]];
+let CMM="act",MTM="dia",GNM=null,DTP=false,CTM="mes";
 
 function tabla(el,cols,filas,o={}){let q="";const id=el.replace("#","");const box=$(el);if(!box)return;
   const pintar=()=>{const fs=filas.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q));
@@ -268,11 +275,22 @@ function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c
            ...c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${M}; sin generación este período${oc(x)?` · ${oc(x)}`:""}</li>`)];
   return nv||o.length?`${nv}${o.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${o.join("")}</ul>`:""}`
     :`<div class="note">Sin centrales nuevas: las mismas centrales generando que en ${M}.</div>`}
+function camRows(X){const R=[...X.sube.slice(0,8),...X.baja.slice(0,8)],mx=Math.max(...R.map(r=>Math.abs(r.dif)),.01);
+  const nom=t=>t.toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase());
+  return `<div class="camr">${R.map(r=>{const w=Math.abs(r.dif)/mx*100,up=r.dif>0;
+    return `<div class="cr" title="${esc(r.cliente)}: ${f1(r.act)} GWh vs ${f1(r.ant)} GWh"><span class="cn">${esc(nom(r.cliente))}</span>
+      <span class="cb"><i class="n">${up?"":`<b style="width:${w}%"></b>`}</i><i class="p">${up?`<b style="width:${w}%"></b>`:""}</i></span>
+      <span class="cv ${up?"up":"dn"}">${up?"+":""}${f1(r.dif)}<small>${r.pct!=null?` ${r.pct>0?"+":""}${f0(r.pct)}%`:r.ant===0?" nuevo":r.act===0?" sin retiros":""}</small></span></div>`}).join("")}</div>`}
 function tipoHTML(){const T=D.tipo_cliente;
   if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
   const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
-  const blk=(k,n)=>`<div class="tpb"><div class="t3">${n}</div><div class="dg"><div>${cv("c-tip"+k,`Energía mensual de ${n.toLowerCase()} ${T.ant} vs ${T.act}`,"sm")}</div><div class="sepv">${cv("c-tipa"+k,`Acumulado de ${n.toLowerCase()}`,"sm")}</div></div></div>`;
-  return `${blk("l","Usuarios libres")}${blk("r","Usuarios regulados")}
+  const CB=T.cambios,mU=CB?MESL[CB.mes-1]:"";
+  const cam=(k,g,n)=>{if(!CB||!CB[g])return "";const X=CB[g][CTM];const nb=Math.min(8,Math.max(X.sube.length,X.baja.length));
+    return `<div class="cam"><div class="camh"><b>Mayores cambios por cliente</b><div class="seg" role="group" aria-label="Período">${[["mes",`${mU} ${T.act} vs ${T.ant}`],["acum",`Acum. ${MESL[CB.meses[0]-1]}–${mU}`]].map(([q,t])=>`<button type="button" aria-pressed="${CTM===q}" onclick="CTM='${q}';render()">${t}</button>`).join("")}</div></div>
+      ${camRows(X)}
+      <div class="note">Variación neta ${X.neto>0?"+":""}${f1(X.neto)} GWh · ${X.n} clientes${X.n_nuevos?` · ${X.n_nuevos} sin retiros el año anterior`:""}${X.n_salen?` · ${X.n_salen} sin retiros este año`:""}. GWh de diferencia vs el mismo período del año anterior y variación %. Toca un cliente para ver ambos valores.</div></div>`};
+  const blk=(k,n,g)=>`<div class="tpb"><div class="t3">${n}</div><div class="dg"><div>${cv("c-tip"+k,`Energía mensual de ${n.toLowerCase()} ${T.ant} vs ${T.act}`,"sm")}</div><div class="sepv">${cv("c-tipa"+k,`Acumulado de ${n.toLowerCase()}`,"sm")}</div></div>${cam(k,g,n)}</div>`;
+  return `${blk("l","Usuarios libres","libre")}${blk("r","Usuarios regulados","regulado")}
    <div class="note">GWh por mes, ${T.ant} vs ${T.act}; sobre cada par, la variación %. Fuente: LVTEA mensual del COES, última revisión publicada de cada mes (Resumen, Cuadro 4: energía de retiros por tipo de usuario; libres incluye grandes usuarios)${T.meses.some(x=>x.fuente==="IEOD")?`. Meses aún sin LVTEA (${T.meses.filter(x=>x.fuente==="IEOD").map(x=>MESL[x.mes-1]).join(", ")}): estimación con IEOD (usuarios libres reportados en DEMANDA_UL; regulado = demanda total − libres), no comparable en nivel con el LVTEA`:""}. ${falta.length?`Sin LVTEA aún: ${falta.join(", ")} (el COES publica el Resumen del mes anterior hacia el día 10).`:""}</div>`}
 /* ---------- render ---------- */
 function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";
@@ -304,12 +322,15 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
    <div class="grid g2" style="margin-top:14px">
      <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
-      <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar crecimiento por tipo de cliente":"▸ Ver crecimiento por tipo de cliente"}</button></div>
+      <a class="tgl" href="#clientes">Ver detalle por tipo de cliente →</a></div>
       <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
-      ${DTP?`<div id="dtp"><div class="t2">Energía por tipo de cliente · mismo mes del año anterior</div>${tipoHTML()}</div>`:""}</div>
+</div>
      <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
+
+  <section class="sec" id="clientes"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Demanda por cliente</h2></div></div>
+   <div class="card"><h3>Energía por tipo de cliente<small>Usuarios libres y regulados · ${D.tipo_cliente?`${D.tipo_cliente.ant} vs ${D.tipo_cliente.act}`:""} · LVTEA mensual del COES</small></h3>${tipoHTML()}</div></section>
 
   <section class="sec" id="gen"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Generación</h2></div></div>
    ${D.generacion&&D.generacion.length?`<div class="card"><h3>Despacho del día anterior por tecnología · ${fL(D.dia)}<small>MW cada 30 min · ${D.gen_fuente==="IEOD"?"IEOD (clasificación oficial del COES)":"Portal de Información del COES (SCADA)"} · máxima ${f0(Math.max(...D.generacion.map(r=>Object.keys(D.grupos_gen).reduce((a,k)=>a+(r[k]||0),0))))} MW</small></h3>${cv("c-gdes","Despacho por tecnología del día anterior","tall")}</div>`:'<div class="estado">El despacho del día anterior aún no está disponible.</div>'}
