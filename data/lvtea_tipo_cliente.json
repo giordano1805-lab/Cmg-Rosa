@@ -1,92 +1,103 @@
 {
  "meses": {
   "2026-09": {
-   "libre": 29.0294263554,
-   "regulado": 216.962669241,
+   "libre": 3019991.996866674,
+   "regulado": 1935816.064712185,
    "archivo": "Resumen_cuadros-0926.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/Resumen_cuadros-0926.xlsx",
    "revision": 5,
-   "detalle": "Resumen_cuadros-0926.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0926.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,156.5 GWh · LIBRE: 863.5 GWh · REGULADO: 1,935.8 GWh"
   },
   "2026-08": {
-   "libre": 338.1340577841,
-   "regulado": 245.8447511574,
+   "libre": 3017337.169316426,
+   "regulado": 1987922.6982255434,
    "archivo": "Resumen_cuadros-0826_R1.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/08_Agosto/Revisión 01/Resumen_cuadros-0826_R1.xlsx",
    "revision": 11,
-   "detalle": "Resumen_cuadros-0826_R1.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0826_R1.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,190.7 GWh · LIBRE: 826.6 GWh · REGULADO: 1,987.9 GWh"
   },
   "2026-07": {
-   "libre": 60.5818727417,
-   "regulado": 26.0876102563,
+   "libre": 3051390.1528997193,
+   "regulado": 1999515.457756251,
    "archivo": "Resumen_cuadros-0726_R1.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/07_Julio/Revisión 01/Resumen_cuadros-0726_R1.xlsx",
    "revision": 11,
-   "detalle": "Resumen_cuadros-0726_R1.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0726_R1.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,192.7 GWh · LIBRE: 858.7 GWh · REGULADO: 1,999.5 GWh"
   },
   "2026-06": {
-   "libre": 100.8240252162,
-   "regulado": 370.1528162464,
+   "libre": 2949026.877036893,
+   "regulado": 1941631.7627152428,
    "archivo": "Resumen_cuadros-0626 R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/06_Junio/Revisión 02/Resumen_cuadros-0626 R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-0626 R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0626 R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,110.4 GWh · LIBRE: 838.7 GWh · REGULADO: 1,941.6 GWh"
   },
   "2026-05": {
-   "libre": 424.6648103522,
-   "regulado": 19968.0573943273,
+   "libre": 2997312.1856317697,
+   "regulado": 1971470.977136956,
    "archivo": "Resumen_cuadros-0526_R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/05_Mayo/Revisión 02/Resumen_cuadros-0526_R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-0526_R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0526_R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,151.7 GWh · LIBRE: 845.6 GWh · REGULADO: 1,971.5 GWh"
   },
   "2026-04": {
-   "libre": 276.141957388,
-   "regulado": 57.5056124506,
+   "libre": 2971723.0264989086,
+   "regulado": 1966139.4215318847,
    "archivo": "Resumen_cuadros-0426_R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/04_Abril/Revisión 02/Resumen_cuadros-0426_R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-0426_R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0426_R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,134.2 GWh · LIBRE: 837.5 GWh · REGULADO: 1,966.1 GWh"
   },
   "2026-03": {
-   "libre": 660.1891450601,
-   "regulado": 1485.9666893444,
+   "libre": 2981815.93968711,
+   "regulado": 2085865.2627651626,
    "archivo": "Resumen_cuadros-0326_R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/03_Marzo/Revisión 02/Resumen_cuadros-0326_R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-0326_R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0326_R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,144.3 GWh · LIBRE: 837.5 GWh · REGULADO: 2,085.9 GWh"
   },
   "2026-02": {
-   "libre": 111.839241215,
-   "regulado": 353.6451704514,
+   "libre": 2788705.2949173404,
+   "regulado": 1860017.1441751586,
    "archivo": "Resumen_cuadros-0226-R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/02_Febrero/Revisión 02/Resumen_cuadros-0226-R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-0226-R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0226-R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 1,991.0 GWh · LIBRE: 797.7 GWh · REGULADO: 1,860.0 GWh"
   },
   "2026-01": {
-   "libre": 349.746342573,
-   "regulado": 20.4133503932,
+   "libre": 3019625.690780145,
+   "regulado": 1966427.3157882805,
    "archivo": "Resumen_cuadros-0126_R3.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/01_Enero/Revisión 03/Resumen_cuadros-0126_R3.xlsx",
    "revision": 13,
-   "detalle": "Resumen_cuadros-0126_R3.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0126_R3.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,180.5 GWh · LIBRE: 839.1 GWh · REGULADO: 1,966.4 GWh"
   },
   "2025-12": {
-   "libre": 340.8615003683,
-   "regulado": 244.8648594715,
+   "libre": 3001144.2658282137,
+   "regulado": 1917753.81518958,
    "archivo": "Resumen_cuadros-1225_R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/12_Diciembre/Revisión 02/Resumen_cuadros-1225_R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-1225_R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-1225_R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,181.0 GWh · LIBRE: 820.2 GWh · REGULADO: 1,917.8 GWh"
   },
   "2025-11": {
-   "libre": 59.2949854125,
-   "regulado": 487.351289289,
+   "libre": 2859939.355767518,
+   "regulado": 1817019.6741423835,
    "archivo": "Resumen_cuadros-1125_R1.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/11_Noviembre/Revisión 01/Resumen_cuadros-1125_R1.xlsx",
    "revision": 11,
-   "detalle": "Resumen_cuadros-1125_R1.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-1125_R1.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,041.1 GWh · LIBRE: 818.8 GWh · REGULADO: 1,817.0 GWh"
   },
   "2025-10": {
    "libre": null,
@@ -94,79 +105,89 @@
    "archivo": "Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/10_octubre/Revisión 02/Resumen_cuadros-1025_R2_CUADRO 5_Corrección.xlsx",
    "revision": 12,
-   "detalle": "no se hallaron filas Libre/Regulado en el Cuadro 4"
+   "parser": 2,
+   "detalle": "no se halló el Cuadro 4 con TIPO DE USUARIO y ENERGÍA"
   },
   "2025-09": {
-   "libre": 361.4744839609,
-   "regulado": 1699.3718844737,
+   "libre": 2834327.3487690166,
+   "regulado": 1791087.9192917345,
    "archivo": "Resumen_cuadros-0925_R3.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/09_setiembre/Revisión 03/Resumen_cuadros-0925_R3.xlsx",
    "revision": 13,
-   "detalle": "Resumen_cuadros-0925_R3.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0925_R3.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,053.4 GWh · LIBRE: 780.9 GWh · REGULADO: 1,791.1 GWh"
   },
   "2025-08": {
-   "libre": 321.7875196543,
-   "regulado": 934.3595746578,
+   "libre": 2868898.6961557567,
+   "regulado": 1810182.733782498,
    "archivo": "Resumen_cuadros-0825_R3.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/08_Agosto/Revisión 03/Resumen_cuadros-0825_R3.xlsx",
    "revision": 13,
-   "detalle": "Resumen_cuadros-0825_R3.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0825_R3.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,105.2 GWh · LIBRE: 763.7 GWh · REGULADO: 1,810.2 GWh"
   },
   "2025-07": {
-   "libre": 26.8899259647,
-   "regulado": 2668.8165808423,
+   "libre": 2890611.7915393324,
+   "regulado": 1796011.858462159,
    "archivo": "Resumen_cuadros-0725_R4.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/07_Julio/Revisión 04/Resumen_cuadros-0725_R4.xlsx",
    "revision": 14,
-   "detalle": "Resumen_cuadros-0725_R4.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0725_R4.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,142.7 GWh · LIBRE: 747.9 GWh · REGULADO: 1,796.0 GWh"
   },
   "2025-06": {
-   "libre": 2238.5291740703,
-   "regulado": 235.3704674301,
+   "libre": 2786286.745150292,
+   "regulado": 1750751.576949406,
    "archivo": "Resumen_cuadros-0625_R5.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/06_Junio/Revisión 05/Resumen_cuadros-0625_R5.xlsx",
    "revision": 15,
-   "detalle": "Resumen_cuadros-0625_R5.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0625_R5.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,040.3 GWh · LIBRE: 746.0 GWh · REGULADO: 1,750.8 GWh"
   },
   "2025-05": {
-   "libre": 82.9712300997,
-   "regulado": 10743.1320743142,
+   "libre": 2861137.5662428723,
+   "regulado": 1835738.4419480055,
    "archivo": "Resumen_cuadros-0525_R3.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/05_Mayo/Revisión 03/Resumen_cuadros-0525_R3.xlsx",
    "revision": 13,
-   "detalle": "Resumen_cuadros-0525_R3.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0525_R3.xlsx · hoja CUADRO 4 · GRAN USUARIO: 2,057.6 GWh · LIBRE: 803.5 GWh · REGULADO: 1,835.7 GWh"
   },
   "2025-04": {
-   "libre": 6248.7617548417,
-   "regulado": 3.0125835113,
+   "libre": 2862013.9796899194,
+   "regulado": 1855146.719290812,
    "archivo": "Resumen_cuadros-0425_R1.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/04_Abril/Revisión 01/Resumen_cuadros-0425_R1.xlsx",
    "revision": 11,
-   "detalle": "Resumen_cuadros-0425_R1.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0425_R1.xlsx · hoja CUADRO 4 · GRAN USUARIO: 57.7 GWh · LIBRE: 2,804.3 GWh · REGULADO: 1,855.1 GWh"
   },
   "2025-03": {
-   "libre": 65.0857209452,
-   "regulado": 363.2485734031,
+   "libre": 2982064.902965548,
+   "regulado": 1991639.6645329297,
    "archivo": "Resumen_cuadros-0325_R1.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/03_Marzo/Revisión 01/Resumen_cuadros-0325_R1.xlsx",
    "revision": 11,
-   "detalle": "Resumen_cuadros-0325_R1.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0325_R1.xlsx · hoja CUADRO 4 · GRAN USUARIO: 58.8 GWh · LIBRE: 2,923.3 GWh · REGULADO: 1,991.6 GWh"
   },
   "2025-02": {
-   "libre": 543.7673603454,
-   "regulado": 29931.6509658474,
+   "libre": 2702575.22039898,
+   "regulado": 1810343.1720269963,
    "archivo": "Resumen_cuadros-0225_R2.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 02/Resumen_cuadros-0225_R2.xlsx",
    "revision": 12,
-   "detalle": "Resumen_cuadros-0225_R2.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0225_R2.xlsx · hoja CUADRO 4 · GRAN USUARIO: 48.5 GWh · LIBRE: 2,654.1 GWh · REGULADO: 1,810.3 GWh"
   },
   "2025-01": {
-   "libre": 80.2350883863,
-   "regulado": 308.4930644648,
+   "libre": 2868921.240550667,
+   "regulado": 1911754.3037833262,
    "archivo": "Resumen_cuadros-0125_R3.xlsx",
    "ruta": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 03/Resumen_cuadros-0125_R3.xlsx",
    "revision": 13,
-   "detalle": "Resumen_cuadros-0125_R3.xlsx · hoja CUADRO 4"
+   "parser": 2,
+   "detalle": "Resumen_cuadros-0125_R3.xlsx · hoja CUADRO 4 · GRAN USUARIO: 55.2 GWh · LIBRE: 2,813.8 GWh · REGULADO: 1,911.8 GWh"
   }
  },
  "archivos": [
@@ -1057,6 +1078,6 @@
   "2025-02": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/02_Febrero/Revisión 02/Resumen_cuadros-0225_R2.xlsx",
   "2025-01": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2025/01_Enero/Revisión 03/Resumen_cuadros-0125_R3.xlsx"
  },
- "metodo": "2026-11-07c",
+ "metodo": "2026-11-07d",
  "volcado": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Mensual/Resumen_cuadros-0926.xlsx"
 }
