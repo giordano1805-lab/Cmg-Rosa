@@ -1,0 +1,1204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="ltr" lang="es-ES">
+    
+    <head><meta http-equiv="X-UA-Compatible" content="IE=10" /><meta name="GENERATOR" content="Microsoft SharePoint" /><meta http-equiv="Content-type" content="text/html; charset=utf-8" /><meta http-equiv="Expires" content="0" /><meta name="keywords" content="Tarifas, precio gas, precios gas, precio gas natural, gas natural precio, precios electricidad, osinergmin electricidad, gas natural energia, energia electrica en el peru" /><meta name="msapplication-TileImage" content="/_layouts/15/images/SharePointMetroAppTile.png" /><meta name="msapplication-TileColor" content="#0072C6" /><title>
+	
+            
+            
+            Publicaciones
+        
+</title><link id="CssLink-2092fc262a1a499b86396a7c860a0ea1" rel="stylesheet" type="text/css" href="/seccion/institucional/_catalogs/masterpage/Starter/css1/base.css?v=4"/>
+<link id="CssLink-39ed1daafc254134a1ed77a4d67776b8" rel="stylesheet" type="text/css" href="/_layouts/15/3082/styles/Themable/searchv15.css?rev=rDkvgH4qqZzlD1wY%2F020wQ%3D%3DTAG0"/>
+<link id="CssLink-1d410944a146459a982b6e9b216189ed" rel="stylesheet" type="text/css" href="/seccion/institucional/Style%20Library/es-ES/Themable/Core%20Styles/controls15.css"/>
+<link id="CssRegistration2" rel="stylesheet" type="text/css" href="/seccion/institucional/_catalogs/masterpage/Starter/css1/osinerg_new.css?v=4"/>
+<link id="CssRegistration3" rel="stylesheet" type="text/css" href="//cdn.osinergmin.gob.pe/Institucional/css/reutilizable.css"/>
+<link id="CssLink-437cbac6d02741919b4b25f8ca711a9e" rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css"/>
+<link id="CssLink-3bc09dda6f6d41c8ad1b93dc218f72c5" rel="stylesheet" type="text/css" href="/seccion/institucional/_catalogs/masterpage/starter/css1/1.css?v=1"/>
+<link id="CssLink-dfe19690cedc475b898083f32690f15a" rel="stylesheet" type="text/css" href="/seccion/institucional/_catalogs/masterpage/starter/css1/menu-princ-sup.css?v=3.2"/>
+<link id="CssLink-dc0ca44536a64ad7942059b670f4a79a" rel="stylesheet" type="text/css" href="/seccion/institucional/_catalogs/masterpage/starter/css1/ria-t2.css?v=3.1"/>
+<style id="SPThemeHideForms" type="text/css">body {opacity:0 !important}</style><script type="text/javascript">// <![CDATA[ 
+
+var g_SPOffSwitches={};
+// ]]>
+</script>
+<script type="text/javascript" src="/_layouts/15/3082/initstrings.js?rev=aztW5FIBlQPQpDDa7MNFLg%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/init.js?rev=XxkZ3sAcDPzNvew7IvbzZA%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/theming.js?rev=SuLUbbwTXcxFWOWLFUsOkw%3D%3DTAG0"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=NJmAwtEo3Ipnlaxl6CMhvo1xIvCuqEdB28uUHrYrMTttUtQQsYn1tALCpMf0Ly5tiDvzkK14mAUmFZAZAYChdVOq-ySgpOg_j7iaueY0oIYTZkQAr2pVwAypKoS7PHjZiQAwFz96IGxHZTO_MeMXhW6t8pASU3MckQZpLDf2S7k1&amp;t=5c0e0825"></script>
+<script type="text/javascript" src="/_layouts/15/blank.js?rev=1TzK%2BcvAq%2Bpak3ckRUYBmA%3D%3DTAG0"></script>
+<script type="text/javascript" src="/ScriptResource.axd?d=dwY9oWetJoJoVpgL6Zq8OH5doGkAGHgu9vTL-KjDDqZcwe5Yooo-kRBY6SzZvJLkUCobqHCMiZsiyKFCDtt9yJs7lcmRwzJYYngg73j1ijb13QtIyyubbc446I-nrkwfscfdMWHwv5EBJwM2OYqVsn87jd5uIkDY9Nzyw2ZojP01&amp;t=5c0e0825"></script>
+<script type="text/javascript" src="/_layouts/15/3082/sp.res.js?rev=6Hdr%2B3O9Ije%2BmSa5s%2FbmUA%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/sp.runtime.js?rev=VdcevEIl3BuKyjbMLqi4pw%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/sp.init.js?rev=orKfqZtyaaXcl2TjVXuruQ%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/sp.search.js?rev=%2BvHrA78L6X1lAlHvn7aiGg%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/clientrenderer.js?rev=dHQXk17Rz879h6kUidQY3w%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/3082/srch.resources.js?rev=Umg5%2BHUebJac7kmmgbMY9A%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/search.clientcontrols.js?rev=0kzWZa2ML4l7a7MHCcE1DA%3D%3DTAG0"></script>
+<script type="text/javascript" src="/_layouts/15/search.cbs.js?rev=8Vhe2xt5o%2FhUU2MViHeUqA%3D%3DTAG0"></script>
+<script type="text/javascript">RegisterSod("require.js", "\u002f_layouts\u002f15\u002frequire.js?rev=bv3fWJhk0uFGpVwBxnZKNQ\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("strings.js", "\u002f_layouts\u002f15\u002f3082\u002fstrings.js?rev=exkeRrPg8c4rlqNAilT6fQ\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("sp.js", "\u002f_layouts\u002f15\u002fsp.js?rev=fneaJUhQSUrm5T93aggx1Q\u00253D\u00253DTAG0");RegisterSodDep("sp.js", "sp.ui.dialog.js");</script>
+<script type="text/javascript">RegisterSod("sp.ui.dialog.js", "\u002f_layouts\u002f15\u002fsp.ui.dialog.js?rev=Mr4n2nObG\u00252FAkt1MW\u00252BZRzEw\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("core.js", "\u002f_layouts\u002f15\u002fcore.js?rev=KWtjGbhWVxc11gAT6ColBQ\u00253D\u00253DTAG0");RegisterSodDep("core.js", "strings.js");</script>
+<script type="text/javascript">RegisterSod("menu.js", "\u002f_layouts\u002f15\u002fmenu.js?rev=x8H3gxPnnNO8LSdMoGAdbw\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("mQuery.js", "\u002f_layouts\u002f15\u002fmquery.js?rev=YtfyujoMfx6O3ztrwEczdg\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("callout.js", "\u002f_layouts\u002f15\u002fcallout.js?rev=liJhJ69R9i4LPi3xBzWVqg\u00253D\u00253DTAG0");RegisterSodDep("callout.js", "strings.js");RegisterSodDep("callout.js", "mQuery.js");RegisterSodDep("callout.js", "core.js");</script>
+<script type="text/javascript">RegisterSod("sp.core.js", "\u002f_layouts\u002f15\u002fsp.core.js?rev=NbLqBVP9giw5L7A1lbdleA\u00253D\u00253DTAG0");RegisterSodDep("sp.core.js", "strings.js");RegisterSodDep("sp.core.js", "core.js");</script>
+<script type="text/javascript">RegisterSod("clienttemplates.js", "\u002f_layouts\u002f15\u002fclienttemplates.js?rev=hykipyrBaiZRHvmDOQbz4g\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("sharing.js", "\u002f_layouts\u002f15\u002fsharing.js?rev=gZpajvvZfvSJv4mPPGgK8Q\u00253D\u00253DTAG0");RegisterSodDep("sharing.js", "strings.js");RegisterSodDep("sharing.js", "mQuery.js");RegisterSodDep("sharing.js", "clienttemplates.js");RegisterSodDep("sharing.js", "core.js");</script>
+<script type="text/javascript">RegisterSod("suitelinks.js", "\u002f_layouts\u002f15\u002fsuitelinks.js?rev=EPKn1gywQg\u00252BLjDFcpIyC2g\u00253D\u00253DTAG0");RegisterSodDep("suitelinks.js", "strings.js");RegisterSodDep("suitelinks.js", "core.js");</script>
+<script type="text/javascript">RegisterSod("searchui.js", "\u002f_layouts\u002f15\u002fsearchui.js?rev=1cECqfF\u00252FAJwVu\u00252BheUcVXzQ\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("sp.datetimeutil.js", "\u002f_layouts\u002f15\u002fsp.datetimeutil.js?rev=QCMqOd3wPOrB5UmZ5IjTnw\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("userprofile", "\u002f_layouts\u002f15\u002fsp.userprofiles.js?rev=J0M1pzLkfDXcJflabMvTYA\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("profilebrowserscriptres.resx", "\u002f_layouts\u002f15\u002f3082\u002fprofilebrowserscriptres.js?rev=Q0jeR3lY56raUGvs8iu7RA\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("sp.ui.mysitecommon.js", "\u002f_layouts\u002f15\u002fsp.ui.mysitecommon.js?rev=vi2FkkN62itBr75inUpDkQ\u00253D\u00253DTAG0");RegisterSodDep("sp.ui.mysitecommon.js", "userprofile");RegisterSodDep("sp.ui.mysitecommon.js", "profilebrowserscriptres.resx");</script>
+<script type="text/javascript">RegisterSod("cui.js", "\u002f_layouts\u002f15\u002fcui.js?rev=fjkxiuAfDQXCux6hcRMP\u00252BQ\u00253D\u00253DTAG0");</script>
+<script type="text/javascript">RegisterSod("inplview", "\u002f_layouts\u002f15\u002finplview.js?rev=BdILV9QqY8lwHpw1wp\u00252BiWw\u00253D\u00253DTAG0");RegisterSodDep("inplview", "strings.js");RegisterSodDep("inplview", "core.js");RegisterSodDep("inplview", "clienttemplates.js");RegisterSodDep("inplview", "sp.js");</script>
+<script type="text/javascript">RegisterSod("ribbon", "\u002f_layouts\u002f15\u002fsp.ribbon.js?rev=ID6474woEpsyMngou9Ic8Q\u00253D\u00253DTAG0");RegisterSodDep("ribbon", "strings.js");RegisterSodDep("ribbon", "core.js");RegisterSodDep("ribbon", "sp.core.js");RegisterSodDep("ribbon", "sp.js");RegisterSodDep("ribbon", "cui.js");RegisterSodDep("ribbon", "inplview");</script>
+<script type="text/javascript">RegisterSod("sp.ui.policy.resources.resx", "\u002f_layouts\u002f15\u002fScriptResx.ashx?culture=es\u00252Des\u0026name=SP\u00252EUI\u00252EPolicy\u00252EResources\u0026rev=oTOoHDzu\u00252BdCHi5pvztlVpg\u00253D\u00253D");</script>
+<script type="text/javascript">RegisterSod("mdn.js", "\u002f_layouts\u002f15\u002fmdn.js?rev=n0g\u00252FdHfO24JOLH\u00252FiRZEgQA\u00253D\u00253DTAG0");RegisterSodDep("mdn.js", "core.js");RegisterSodDep("mdn.js", "sp.js");RegisterSodDep("mdn.js", "cui.js");RegisterSodDep("mdn.js", "ribbon");RegisterSodDep("mdn.js", "sp.ui.policy.resources.resx");</script>
+<script type="text/javascript">RegisterSod("followingcommon.js", "\u002f_layouts\u002f15\u002ffollowingcommon.js?rev=M2fy99LQMbxS82WnuZO5jQ\u00253D\u00253DTAG0");RegisterSodDep("followingcommon.js", "strings.js");RegisterSodDep("followingcommon.js", "sp.js");RegisterSodDep("followingcommon.js", "userprofile");RegisterSodDep("followingcommon.js", "core.js");RegisterSodDep("followingcommon.js", "mQuery.js");</script>
+<script type="text/javascript">RegisterSod("browserScript", "\u002f_layouts\u002f15\u002fnon_ie.js?rev=NTzMej3rM0mqvQiZYtcxeg\u00253D\u00253DTAG0");RegisterSodDep("browserScript", "strings.js");</script>
+<script type="text/javascript">RegisterSod("dragdrop.js", "\u002f_layouts\u002f15\u002fdragdrop.js?rev=y1D2IOpQ0ZnHNU38eDt38w\u00253D\u00253DTAG0");RegisterSodDep("dragdrop.js", "strings.js");</script>
+<script type="text/javascript">RegisterSod("quicklaunch.js", "\u002f_layouts\u002f15\u002fquicklaunch.js?rev=GGeEBHfDFCLKW78SEpomNw\u00253D\u00253DTAG0");RegisterSodDep("quicklaunch.js", "strings.js");RegisterSodDep("quicklaunch.js", "dragdrop.js");</script>
+<script type="text/javascript">RegisterSod("datepicker.js", "\u002f_layouts\u002f15\u002fdatepicker.js?rev=eNVsWt1xS4Q0AWSjGw6k\u00252BA\u00253D\u00253DTAG0");RegisterSodDep("datepicker.js", "strings.js");</script>
+<link type="text/xml" rel="alternate" href="/seccion/institucional/_vti_bin/spsdisco.aspx" />
+        
+            <style type="text/css">
+ 
+		          #sideNavBox { display: none !important; }
+		          .CustomBreadcrumbs { display: block !important; }
+		          .cbs-Detail {
+					    margin-left: 0 !important;
+				  }
+				  .cbs-picture3LinesContainer, .cbs-Detail {
+					    padding-top: 0 !important;
+					    max-width: inherit !important;
+				  }
+				  ul.cbs-List {
+					    display: block !important;
+					}
+				  .panel-items { padding:10px !Important }
+		                </style>
+            
+            
+            
+            
+            
+        
+        <link rel="canonical" href="http://www.osinergmin.gob.pe:80/seccion/institucional/regulacion-tarifaria/publicaciones" />
+        <link rel="shortcut icon" href="/_catalogs/masterpage/starter/images/osinerg.ico" type="image/vnd.microsoft.icon" id="favicon" />
+<![CDATA[ [if IE 9] ]]>
+<style type="text/css">//<![CDATA[
+    .ms-core-animation-transparent
+    {
+        opacity:0;
+    }
+    .ms-isBot .ms-core-animation-transparent
+    {
+        opacity:1;
+    }
+    
+//]]></style>
+<![CDATA[ [endif] ]]>        <!--[if lte IE 8]>
+    <style type="text/css">//<![CDATA[
+    .ms-core-animation-transparent,
+    .ms-core-animation-transparent img
+    {
+       -ms-filter:"alpha(opacity=0)";
+    }
+    .ms-isBot .ms-core-animation-transparent,
+    .ms-isBot .ms-core-animation-transparent img
+    {
+       -ms-filter:"";
+    }
+
+    //]]></style>
+    <![endif]-->
+        <script type="text/javascript">//<![CDATA[
+        var g_pageLoadAnimationParams = { elementSlideIn : "sideNavBox", elementSlideInPhase2 : "contentBox" };
+        
+        //]]></script>
+        
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/jquery-1.8.2.min.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/jquery-ui-1.10.4.custom.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/jquery.library.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/jquery.accordion.source.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/main.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/reutilizable.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Personas/js/menugeneral.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript">//<![CDATA[var switchTo5x=true;
+        
+        //]]></script>
+        <script type="text/javascript" src="/seccion/institucional/_catalogs/masterpage/Starter/js/buttons.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/jquery.expander.js">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript">//<![CDATA[stLight.options({publisher: "c67cd017-0de3-44d5-8e71-26c6c698675f", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+        
+        //]]></script>
+        <script type="text/javascript">//<![CDATA[    
+		$(document).ready(function(){ 
+			$("#inside-empresa").mouseenter(function(){ 
+    			$(this).addClass("selected");
+    			$(".submenu-empresa").css("display","block");        			     			
+    		})   
+			
+    		/*
+    		$(".submenu-empresa").mouseleave(function(){  
+    			$("#inside-empresa").removeClass("selected");
+    			$(".submenu-empresa").css("display","none");	    
+			})
+			
+			$("html").click(function(){  
+    			$("#inside-empresa").removeClass("selected");
+    			$(".submenu-empresa").css("display","none");	    
+			})
+			*/
+			
+			$(".submenu-empresa, #inside-empresa").mouseleave(function(){  
+    			$("#inside-empresa").removeClass("selected");
+    			$(".submenu-empresa").css("display","none");	    
+			})
+			
+			$(".submenu-empresa").mouseenter(function(){  
+    			$("#inside-empresa").addClass("selected");
+    			$(".submenu-empresa").css("display","block");	    
+			})
+
+			//hidro
+			  /*
+			  $('#hidro > li > a').click(function()
+			  {
+			    if ($(this).attr('class') != 'active'){
+			      $('#hidro li ul').slideUp();
+				}
+			      $(this).next().slideToggle();
+			      $('#hidro li a').removeClass('active');
+			      $(this).addClass('active');
+			  });
+			  */
+			$('#hidro > li > a').next().slideDown();  
+    		//fin hidro
+    		
+    		//- acortador de texto - 21set16
+    		var opts = {
+			    collapseTimer: 1000,
+			    expandEffect: 'fadeIn',
+			    collapseEffect: 'fadeOut',
+			  };
+			
+			  $.each(['beforeExpand', 'afterExpand', 'onCollapse'], function(i, callback) {
+			    opts[callback] = function(byUser) {
+			      var msg = '<div class="success">' + callback;
+			
+			      if (callback === 'onCollapse') {
+			        msg += ' (' + (byUser ? 'user' : 'timer') + ')';
+			      }
+			      msg += '</div>';
+			
+			      $(this).parent().parent().append(msg);
+			    };
+			  });
+			
+			  $('dl.expander dd').eq(0).expander();
+			  $('dl.expander dd').slice(1).expander(opts);
+			  $('div.expander').expander();
+    		//- fin acortador de texto - 21set16
+		});       
+        
+        //]]></script>
+        
+        <!--DATA TABLES-->
+        
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js">//<![CDATA[//]]></script>
+		<script type="text/javascript">//<![CDATA[
+			$(document).ready(function() {
+				$('#GPAEDT').DataTable( {
+					ordering: false,
+					searchHighlight: true,
+					pagingType: "numbers",
+					"lengthMenu": [[5, 10, -1], [5, 10, "Todo"]],
+					"language": {
+						"search":         "Buscar:",
+						"infoEmpty": "No existen registros para mostrar.",
+						
+						"lengthMenu": "Mostrar _MENU_ registros por página",
+						"zeroRecords": "No existen registros.",
+						"info": "Mostrar pagina _PAGE_ de _PAGES_",
+						"infoFiltered": "(Filtrado de _MAX_ registros)",
+						"decimal":        "",
+						"emptyTable":     "No existen registros.",
+						"info":           "Mostrando de _START_ a _END_ de _TOTAL_ registros",
+						"infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+						"infoFiltered":   "(Filtrado de _MAX_ registros)",
+						"infoPostFix":    "",
+						"thousands":      ",",
+						"lengthMenu":     "Ver _MENU_ registros",
+						"loadingRecords": "Cargando...",
+						"processing":     "Procesando...",
+						"zeroRecords":    "No se encontraron coincidencias.",
+						"paginate": {
+							"first":      "Primero",
+							"last":       "Último",
+							"next":       "Siguiente",
+							"previous":   "Anterior"
+						},
+						"aria": {
+							"sortAscending":  ": Ordenar de forma ascendente",
+							"sortDescending": ": Ordenar de forma descendente"
+						}
+					}
+				});
+				
+				$('#OL').DataTable( {
+					ordering: false,
+					searchHighlight: true,
+					pagingType: "numbers",
+					"lengthMenu": [[5, 10, -1], [5, 10, "Todo"]],
+					"language": {
+						"search":         "Buscar:",
+						"infoEmpty": "No existen registros para mostrar.",
+						
+						"lengthMenu": "Mostrar _MENU_ registros por página",
+						"zeroRecords": "No existen registros.",
+						"info": "Mostrar pagina _PAGE_ de _PAGES_",
+						"infoFiltered": "(Filtrado de _MAX_ registros)",
+						"decimal":        "",
+						"emptyTable":     "No existen registros.",
+						"info":           "Mostrando de _START_ a _END_ de _TOTAL_ registros",
+						"infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+						"infoFiltered":   "(Filtrado de _MAX_ registros)",
+						"infoPostFix":    "",
+						"thousands":      ",",
+						"lengthMenu":     "Ver _MENU_ registros",
+						"loadingRecords": "Cargando...",
+						"processing":     "Procesando...",
+						"zeroRecords":    "No se encontraron coincidencias.",
+						"paginate": {
+							"first":      "Primero",
+							"last":       "Último",
+							"next":       "Siguiente",
+							"previous":   "Anterior"
+						},
+						"aria": {
+							"sortAscending":  ": Ordenar de forma ascendente",
+							"sortDescending": ": Ordenar de forma descendente"
+						}
+					}
+				});
+				
+				$('#OSICONV').DataTable( {
+					ordering: false,
+					searchHighlight: true,
+					pagingType: "numbers",
+					"lengthMenu": [[5, 10, -1], [5, 10, "Todo"]],
+					"language": {
+						"search":         "Buscar:",
+						"infoEmpty": "No existen registros para mostrar.",
+						
+						"lengthMenu": "Mostrar _MENU_ registros por página",
+						"zeroRecords": "No existen registros.",
+						"info": "Mostrar pagina _PAGE_ de _PAGES_",
+						"infoFiltered": "(Filtrado de _MAX_ registros)",
+						"decimal":        "",
+						"emptyTable":     "No existen registros.",
+						"info":           "Mostrando de _START_ a _END_ de _TOTAL_ registros",
+						"infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+						"infoFiltered":   "(Filtrado de _MAX_ registros)",
+						"infoPostFix":    "",
+						"thousands":      ",",
+						"lengthMenu":     "Ver _MENU_ registros",
+						"loadingRecords": "Cargando...",
+						"processing":     "Procesando...",
+						"zeroRecords":    "No se encontraron coincidencias.",
+						"paginate": {
+							"first":      "Primero",
+							"last":       "Último",
+							"next":       "Siguiente",
+							"previous":   "Anterior"
+						},
+						"aria": {
+							"sortAscending":  ": Ordenar de forma ascendente",
+							"sortDescending": ": Ordenar de forma descendente"
+						}
+					}
+				});
+				
+				$('#DT1').DataTable( {
+					ordering: false,
+					searchHighlight: true,
+					pagingType: "numbers",
+					"lengthMenu": [[5, 10, -1], [5, 10, "Todo"]],
+					"language": {
+						"search":         "Buscar:",
+						"infoEmpty": "No existen registros para mostrar.",
+						
+						"lengthMenu": "Mostrar _MENU_ registros por página",
+						"zeroRecords": "No existen registros.",
+						"info": "Mostrar pagina _PAGE_ de _PAGES_",
+						"infoFiltered": "(Filtrado de _MAX_ registros)",
+						"decimal":        "",
+						"emptyTable":     "No existen registros.",
+						"info":           "Mostrando de _START_ a _END_ de _TOTAL_ registros",
+						"infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+						"infoFiltered":   "(Filtrado de _MAX_ registros)",
+						"infoPostFix":    "",
+						"thousands":      ",",
+						"lengthMenu":     "Ver _MENU_ registros",
+						"loadingRecords": "Cargando...",
+						"processing":     "Procesando...",
+						"zeroRecords":    "No se encontraron coincidencias.",
+						"paginate": {
+							"first":      "Primero",
+							"last":       "Último",
+							"next":       "Siguiente",
+							"previous":   "Anterior"
+						},
+						"aria": {
+							"sortAscending":  ": Ordenar de forma ascendente",
+							"sortDescending": ": Ordenar de forma descendente"
+						}
+					}
+				});
+
+
+				
+			});
+        
+        //]]></script>
+
+		
+        <!--FB0305-->
+        <script type="text/javascript" src="//e.issuu.com/embed.js" async="true">//<![CDATA[
+        
+        //]]></script>
+        <link rel="stylesheet" href="//cdn.osinergmin.gob.pe/Institucional/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+        <script type="text/javascript" src="//cdn.osinergmin.gob.pe/Institucional/js/fancybox/jquery.fancybox.js?v=2.1.5">//<![CDATA[
+        
+        //]]></script>
+        <script type="text/javascript">//<![CDATA[
+			
+			$(function(){
+			    $('#slider div:gt(0)').hide();
+			    setInterval(function(){
+			      $('#slider div:first-child').fadeOut(0)
+			         .next('div').fadeIn(1000)
+			         .end().appendTo('#slider');}, 5000);
+			});
+			
+		//]]></script>
+        <script type="text/javascript">//<![CDATA[
+				$(document).ready(function() {
+					$('.fancybox-media')
+						.attr('rel', 'media-gallery')
+						.fancybox({
+							maxWidth	: 1900,
+							width		: '90%',
+							maxHeight	: 650,
+							height		: '90%',
+
+							openEffect : 'none',
+							closeEffect : 'none',
+							prevEffect : 'none',
+							nextEffect : 'none',
+		
+							arrows : false,
+							helpers : {
+								media : {}
+								//buttons : {}
+							}
+						});
+					$('.fancybox-media-RIA')
+						.attr('rel', 'media-gallery')
+						.fancybox({
+							maxWidth	: 1500,
+							width		: 1292,
+							openEffect : 'none',
+							closeEffect : 'none',
+							prevEffect : 'none',
+							nextEffect : 'none',
+
+							arrows : false,
+							helpers : {
+								media : {}
+								//buttons : {}
+							}
+						});
+					$('.publicaciones').fancybox({
+							maxWidth	: 1900,
+							width		: '90%',
+							maxHeight	: 650,
+							height		: '90%',
+							openEffect : 'none',
+							closeEffect : 'none',
+							prevEffect : 'none',
+							nextEffect : 'none',
+							autoSize	: false,
+
+							arrows : false,
+							helpers : {
+								media : {}
+								//buttons : {}
+							}
+						});
+					$(".various").fancybox({
+						maxWidth	: 1000,
+						maxHeight	: 562,
+						fitToView	: false,
+						width		: '70%',
+						height		: '70%',
+						autoSize	: false,
+						closeClick	: false,
+						openEffect	: 'none',
+						closeEffect	: 'none'
+					});
+					
+					$(".fancybox-thumb").fancybox({
+						prevEffect	: 'none',
+						nextEffect	: 'none',
+						helpers	: {
+							title	: {
+								type: 'inside'
+							},
+							thumbs	: {
+								width	: 85,
+								height	: 57
+							}
+						}
+					});
+					
+				});
+			
+        
+        
+        
+        //]]></script>
+        <!-- EndFB -->
+        
+    	<!-- Google Tag Manager -->
+		<script type="text/javascript">//<![CDATA[
+			(function(w,d,s,l,i)
+			{
+				w[l] = w[l]||[];
+				w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+				var f = d.getElementsByTagName(s)[0];
+				j = d.createElement(s);
+				dl = l != 'dataLayer' ? '&l='+l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore(j,f);				
+			})(window, document, 'script', 'dataLayer', 'GTM-T8NHTTF');
+		//]]></script>
+		<!-- End Google Tag Manager -->
+		
+		<!-- Facebook Pixel Code -->
+		<script type="text/javascript">//<![CDATA[
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+		n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+		document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1586891334901116'); // Insert your pixel ID here.
+		fbq('track', 'PageView');
+		//]]></script>
+		<noscript>
+		<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1586891334901116&amp;ev=PageView&amp;noscript=1" /></noscript>
+		<!-- DO NOT MODIFY -->
+		<!-- End Facebook Pixel Code -->
+    </head>
+    <body onhashchange="if (typeof(_spBodyOnHashChange) != 'undefined') _spBodyOnHashChange();"><form method="post" action="./publicaciones?TermStoreId=d0dce0e7-5acc-4e3e-8753-0b95845110c2&amp;TermSetId=2e83a963-2c5f-49df-93bb-151db2719474&amp;TermId=2bdda294-ac11-4a07-b277-949977fce9d3" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div class="aspNetHidden">
+<input type="hidden" name="_wpcmWpid" id="_wpcmWpid" value="" />
+<input type="hidden" name="wpcmVal" id="wpcmVal" value="" />
+<input type="hidden" name="MSOWebPartPage_PostbackSource" id="MSOWebPartPage_PostbackSource" value="" />
+<input type="hidden" name="MSOTlPn_SelectedWpId" id="MSOTlPn_SelectedWpId" value="" />
+<input type="hidden" name="MSOTlPn_View" id="MSOTlPn_View" value="0" />
+<input type="hidden" name="MSOTlPn_ShowSettings" id="MSOTlPn_ShowSettings" value="False" />
+<input type="hidden" name="MSOGallery_SelectedLibrary" id="MSOGallery_SelectedLibrary" value="" />
+<input type="hidden" name="MSOGallery_FilterString" id="MSOGallery_FilterString" value="" />
+<input type="hidden" name="MSOTlPn_Button" id="MSOTlPn_Button" value="none" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__REQUESTDIGEST" id="__REQUESTDIGEST" value="noDigest" />
+<input type="hidden" name="MSOSPWebPartManager_DisplayModeName" id="MSOSPWebPartManager_DisplayModeName" value="Browse" />
+<input type="hidden" name="MSOSPWebPartManager_ExitingDesignMode" id="MSOSPWebPartManager_ExitingDesignMode" value="false" />
+<input type="hidden" name="MSOWebPartPage_Shared" id="MSOWebPartPage_Shared" value="" />
+<input type="hidden" name="MSOLayout_LayoutChanges" id="MSOLayout_LayoutChanges" value="" />
+<input type="hidden" name="MSOLayout_InDesignMode" id="MSOLayout_InDesignMode" value="" />
+<input type="hidden" name="_wpSelected" id="_wpSelected" value="" />
+<input type="hidden" name="_wzSelected" id="_wzSelected" value="" />
+<input type="hidden" name="MSOSPWebPartManager_OldDisplayModeName" id="MSOSPWebPartManager_OldDisplayModeName" value="Browse" />
+<input type="hidden" name="MSOSPWebPartManager_StartWebPartEditingName" id="MSOSPWebPartManager_StartWebPartEditingName" value="false" />
+<input type="hidden" name="MSOSPWebPartManager_EndWebPartEditing" id="MSOSPWebPartManager_EndWebPartEditing" value="false" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="5dAdAM1+LwYofuf8Y0+D41Xhb+Wc8MsnYkdNryG+gQ+DWOkBcx9lOeUQrbwerOxdiCRQ7KULtYpwS7jYFO7mSoaMXTwXH2CA49SyTFbXX/xKwr5RUDXrH5+PAdPygF5OyRBsZbuxyAh93p+ViDpt93r5NiUeURot3c1/nIDujC2LvNf2A1TMxoxcR5lRToNNH+B7ubM72D5WUSfhJGSvne7/bgLlIIYkBUhBnKWX22uSy7Gwc3V7OebJuv0arZmqjWPYv5X4Q9DpBI1HJhq6DHKPx8snnlQlPDHsQfcJcwCC2Fkkfyxmf+n6uEz7Xa46F8q6zeYH5USk/oeAGnDiLRN64xTclr2AHDxZYERm9XI04wWD3TYoNtNGua1rnAM1nfWpBTw4YKVVRyAghvPyisrjd998P7tihOUBpuoebTfaYkWd8fhTKCESReW4kGvoTL/CVtEjv8LpYB1uasLKMGm2zno7aFd7EOUDYxYDj+YH+QFndKkd2jcg8+4+7tRSka+AOrMVQuVl/To5UPOi3NCOpsqcd1rlH2UDjDjmgQbktvYQ2KflhkVHKf7S53oELhx6YtRVHO0qiveM+atGfjPlP8A3sm3epZUGFasVsZekRDyACQ0WdGiUMQDw7tJ2EpimPdW9lHp9Rmj15KE2CQR354PwfKyv/LHYyATffSpexWDR7cQ7HZlN0HoWVGQhe9TqOXSoFvAFH4c+36JrxnhzFfx2OrwKzZajH5oA+0qVhLfS1Aes/iK5zmDyxbIo2E+B4OlngSDqC4jNnU+xHCdexhPHJNcBoOdm1kHx2uQkqHH9Pnb38xrZ1kCgOgLTPmSSUWEHdAfWJ16fpw365SBs6NcEuwNoulJPgdqXvhJ6+/EcdKSbcU3GaasShR+s4benVw8cuXnR9kuHef2cwFyF6lB6yjSPOBknl2D3/t/wieKr7u5KfHJiEbF+Uno5OK/zmboQCFBc5RaMQ3Ue+/wJN03bgb+djtdKR+rVp9/Lsn/3YpGc+mILpRflKaz23HYKfeax2Tyod9TDd4L2ia09ODoDBJ6CQC0IReTIC7MiGie9Nv4RIBB+4kxqPcmdghPcgJyLgQVGBsW3U2tKzWpfXdF25pPbeKa6bKz0IkSV3eD4CYv3APyUG9ZkyMHtnB+PlKYFfN/14ydz2I7BF20yzAe0nGAzJUKvmtHyiKzW7GUFfx3S56Jh8KznLLYruNbdKpzV85rSDoiar6qhVs9LOCe8moPaXgy430TBx8j8miw4EYg0lS+kJ9EykdPspKdRNAbSupQ7ILZJCrFRFg+aujGvBt35B9FFamnkQOB41Cj5egYomG5P69NnwnpYZkTeUAq0F0AWgWRBl6aEqqMihu7t7eo58PG1wuv2CEgh2jUdho23v4pVrqhm4FlSmZLPhBc5OrHeCBz1Zo1mcXgyj229XsBVFCIYsjEPwZGb/+W5fMn/H2XT4/bbra/KHes0FH+TT/oBcxwKW8nZMxjw7TmqZ/+SnVBpHg2H5n1bh3bLIsqn1BBLyo5XaZRWryb8ADcF/h6hXJrd9CKVHAF+xUF+DZUh/NzaXz5/4Ezhc+x5vN+WAlISdDfqTDfWlRNA6TBo0pNNXX4ruuY8UN84o9jYeQLLzZbsycc3E9ldxJewHJcnpbQPma512Z97qj5gDQt3OpA19tcOBSNculZpNxmcaR9jqEeaE5YpcXHeR+bKYIFIq3xAQSlHit4UdK1Qe5kzPHknYsjSSIgXoJ/wd5ovXTAAqGLi6MFo4MJbvw5wBZb4cX+C0hlr6H4hayNF1z4sxW9dpBIAdhhfegEsCgiekK6WgtI2PmamQZAI/PcAn15Xs4dZUkA9fsz7YfFD0kIoQDKtfwZPq7t0WMvN6S9xKUrf5XsvHoS7ao4GPEKbBrmYjDwUsS2N3hEmxeGtTAaSE8DddI4nacTC5lcQc0P5sh4TgfRlqtAlLBkLfDNxXSORkT3k0q98RDoQLjmG3/wEoWOZesC24chDUOqPresp0utnbJX5PFtx5QgJtm/7BI56zjNKZxsl6KHnkPQnAJGFf3yiosUnLZ35clNhQybVPIFheKqwTLNEnafq9EYfmM331eIrOY5FKwFjhyECQd73B0LjqLvEa4SrvJ2r+eZr1uCkMxk5PVfWj22AmScTlfqdytaseM3FDwsfFb8l/TC/FDRiDl4GHKZ7qodDQOqpdKHo0NUvIgskn//Hdzquy1Hm9EyU9QTRFpRXaPIgeQvUr2JFHN36/D/c4XLYIQMT8WzlUueFJzVAfI93nIzWNphEDszXV6r3k7FnqDUBxJTsxgqw1q7y4rkVAo5+AqH34mJQdCuonje+ajgRecQcJs+E2tlz+9/Nb8URn/Qv0vBOrBYRFEkrUeCC68CCo2K6NYNDMfHokj2AZ2w2kNiCTVDphO+4Si6Z6G6WSeOBe4st5olAqIEsRA8RwS74kA+ZiVG3Agpnviz+5Lfa48H/PWCcZOcRvOxBjg4AP4xIgqnRH65JyqgpUai1ORfnwexgDoc/qigAXTn0gnmiEshcyN6UzcC9SV5KGxK25uamjgqaxVFhn2XBEvoCEf2ghBar9CQXl+dobETN1fkozA4IJmVTwBw+JxblQDos2ogpu+bEpl0f7ufzOaY7lP1WV4mWYw0R5OV0oEiKFQ76nM/hoBYYMZ07yba+1qKpIRzeHnVFhSrnauo7FuEqzEjiH/z+zi5mDkaYf47ExO0QPjJ9ExVfTFcd1TCjKubbTsdRs7Um/bav0ZV4F+ULfX+U/Sxy6AMtYm/Pq7NSVSmRDaXDUgLETkxHUvApZctEu9r/yg2n5fzSnr//1ERG0yXnqMpwMlwKtX/jSii0VcWJ8NL4QiVnR30AcgyELSM1XglB/6uRqVo1PxYA30dDuTXKD1A4cYUAR5qQ/ZDMgcrPYc3qHPvQoEY6L+tDPsrwailLmVWyBqiF/9aMVYZ4iaZKVvbvEh6n8jdh+pnfUWAltV2AfJDrGn7wVwutSM72mi/9UIs982GnH928R4KQ+fyhIfw/4V149oYekLnUwMNxs+qTm6zM2uJzvdznIr9WdMqxMSkjl/72StfIKxrH289pmtAFnD5dTOwrmONHmYnY82jXobsP/AQKEWZCyffcVFFAVqTpZqsrT6wnZ5+D6sMr+hd2U8qCqY9Ke/yjNCX0lVDY5AM1iF0DOW0eHUZN00u5LMFoZbZBmxbsNYH4Fpv5SSmOA4X/zOxbXz87gWX8oz4CHzlet/mQv0EsQh6PsAXla5swcHNZnLyT9ZUv3UOr+2AdKI6ScMP82LDTH45yKPdxVsxGxUUNEhwJW7AUjdtARKNo9sSkNqbYaEiFBP7hU670wF9VEbkMf2XBn7bmcuR4pkV/A7SBOYE1/kbyZjk4k283JWKsGI2+JWgOqY62ApD9xNJHMNrkN+c/Uih6eLvobBMwuuOYHeNFfOipvRmpn10u345QJdbVsTRRq+S4j+P/7a+DMhuoEUjECrDkoEypSDgHl+Tq0pOgsbfJModG8LS1tBLgJ1HrQSxjxd240uDvJ48faVXSgo2kWnIQ7TNw3uQUuAAMnOSvLIyFzDhbq/C+N7ix4rTZyKxgLynVeR0IwC/K7kEmyeKcqNhiK9zUyx+74Pamj6jW0rWBPwWci8Bvxwk8yfu8huoc2uq3P8Qwa2fL6+GTO0g9Zx2o+3RJjjaZaNTZYiyg6KskIsyARoXpfd4F4cDaTxyHmJYSHZ7UYfZCdwtNd4zQkCVgl9r/J4o2J+v0Q2/iKymkofzSX3KkXm9bJgeA+D6l+1s51h6PVGJJTst8GLmagWFBmbKqY4qEZQtPHU+midR0rLdF4FdblLV0TkjVXlCKM/ZU5SbzjaJ6jCkjw54WdZ7r5jYEHOaVr4S92l5FKPdEA50VQm95dOlxAL3kzLg7YmCxFPJ+qJjqCgWdRDJ+kKlE8fs4MuwhA0JRpthJ9L7oB1HiGMxdvvvqbc+RsQo0eHanodEAvd1szirSR5VzEA4i1i1mSKQ0pfwVV+5IbNd386dTvlV2IubB3DZ872clknH/fvKR/g/fGalYNSHu6yluP6LwYNzOKEXLPsV9X3FdJg8l8hZUMOrxSf7v0zDZtDU/mb7y2DG4fndNkPvGIdxp4571f9Gd96I91Je7msxpcELBLxHOLIgm9vYCfnCwUK9GR2pYikYCG6qK78cD7abWqgjyg0iUYjYva6dXVJWiNO+LwOPxflC3VpdN+JYqigtxHYgac7L5Za2Zfw9+Daju5bW6Pc4ThP3Ub6G99qbVU4kqS09M0FZ1w+AB6UKCHc4qC0sY1BBJHSWG4kjfxYXFWE/Y2fcWYsNin/aFXCIpBN5iUgzZUzI3sshAzimFfXXRQfkVjpvJW+Nu2p0FBN9mihOFggNM4oXEpkMt3+CBGgdcGbjs/63zCjfrdJ8kTHI7yvzF45p/+bnfut4KeT6ZV9OP/exrP1gNDRbFmaG5yRrEYzA29OdkWMxzu3aiIJr2ZeWhEmErsZ2AyuzQfbsd1Bs11zjw7/fZY9E/K7JEid5/8RaobXMp1FYwobnYbMXrozNjDjSLhRezAtMnBcQ278lI5wXuFXiFY94Yh0/q3VLs4bvf4z1n+W2PjQuFY82Y5MUEKAQCSTB+kUbz6bgR8MZyCzqMJk2vbx0nWWOmQnBGDWwU8IeOUk0tLkD/XUnJWBnIQ+t6PT9mIF0+FlZTr8R5ORBJ2N3WScLF9fU2p+KMCnJoxOYlmNHAMwkNP/bIzYnOZ6Heka/Hd9ydexCOWdkD1Ycr2YMcKzZSPOPovpEfb5+MdBfH2RNzoN2nrgAxiYjVMPf7XXzF0uVshUVA62EV/P+Wnlw2OZFIaetg1oOf4k25jFDhEUDKcupe81yoZWqClMMEAjntQYf8WH2Wb0cYzDQON/HJXoccD01bJxYdwZFy75vqAsIgUl7f5pxoCVm5RvqTP/0u9sYTO0Cjfkecsy/6HQ5aE/zXv94pVez4IpvcCZu+scpim305tsjg4y/rpOSNC1JQjTO3+oQmKKgNY8Dxog913OeZVK21Guz+0S/2sqRxwTQ6FxxiC78HGIfqlt/LKIjfHEQtW3Tk5MYpn/p8lhEgdhiUnGgDt4XDVM2aRFsI5c+jU6N+17kjdL3w33vIjDaHPsvCnS/bF3wL4C8behZL4YWLRQ8doRquVj5sHptKUJghJNyq0Kjm6n9SX/k0ycK/h7H3VuRg9XIfi6HTD9OL/ecEe6wErzfaU1tIb9PzvFg3RDmNRyfAFwiGJ196+aP1TzKyBuTjO06wSIcIfrFP2SrnkpZULYGfPbu+uRU7gPOu6LnSnG6DijKavJoOv8WWKHkGA25orY+UoY582AVFy4i/qYyxZdCXUpIJlEREf5uwpdDCRayBo1PU0hzIt1L3QzUkkBOwwQTFLx8k5r8Ulnioz1yWgfykKaMFoRMjjBP30bCtgiTM759d1aCFcJAH+VmolD6U3HSJa3/5raHMrfIt5vrMiSpO3XefJHeMzWY4WNSkFIbgoh5oxKz4vSi3l8YU4/vc5xR0+YA9T3Bcww2xrDeiXteQQlA51ARWf1IuvF7NrMsS0QFsrw5OjWrW5vecjzW0etNl2oSI4wNNZS7ifj0WTkcKV2/Wz2podYCe394n7jsjzPtFn9LJLQ8cbKsKuDPRvAmClZmVjRKwdrvOZaacG+lZyN2VXUlgh2D7Een+zsPzhsyp5F4orAJUXVsxzuyKD0HhiOhuMXphCs6tmMESMhKOkDhHJaaGv2mngaNLVg7Rtk+Mbp2xx0q/gDc26N7+nDRBlFGPzCkuQrli5W8hweviIYYLImZbsH8vYMRvqi3eMo45qZfCYceW3ox+5JlFWGpC7a7IwdRR6eeaE9yIWYskCjwMF0uwJncK/bwi0rg9eNRP7zitGH+yM/g1lkV4wzzTwZa7eCm9PW6n8y57jIY84dipuJFnfdkyqtFv1hYi/JzEwOKWhb72pOy3z+/PSN88tUptuZZS5Dp/KvmmPtzvM1sHgSO/zYJco7p3fCsfyLEslaSd4UQo3kKMy9RpKXMZY8+M7scywjF3YMQE09OXTkvT0ecgKJTqFRyQSrFGfLsSoYeMHKa5Auc90yAVwlARY0POnJwMRZOFNy6LOsziPMMf5E6kgVQDHi1VSYhJgeq2vfpMLKUjpwI9gQoZV2cCotIPKgC42cTbhky6d7vUCqoStKqUCJeO0bTl3TuIP4OBd5a96nkKEI0441cfu0MAf2LUcAdtm5zWAcOviVGGortl6lktSV3S2j2K9o3s1ljpm+yca1bWFMFhKMawClHneFG+WdZvjyEXrQtJ52a+ox3Fg2Bd8mJJf8ytMhgJv/WAnSSxCu2aEGcDs7qvunpRXpnT2F2A22xTLAq/cS3P4tfYVk+i7Cy9rchsWWj4/WRZYz5MI69Qe2jYI8Hj/T7ciqrg8IyZVlL+RbVa83DD583FcpZfQ7mxscminedR6bheCP9meM4d7r4aG7X6MjNAUaVT4QDZIEQnmgv93IkOsn7Ntp1lCS/l9/K33eUZWc40ksCJxfha9pdigS5P6ioWkY5XysX6hKdN4U0305Ajh/cBJGpXw+Fut7+1O0vG00X3XjHnn9eFEEcO13YWBFkFsRHzd+AeXpb91GkmlXZRRy06eXNFtzqipHq/IywnLcF4n+fdYZ3qRloy347LX08TtjqfHue/lr9utzOc18yZ+5pcRieH3fp+gowVtnan/wDYlykVmhLmvtrowx1Ko3v2nII1SgSuOzREMGOY8RRY+lEhOKDeoKkAB8js873XNXgzpIFphcbt1Qv6fwMYVylmdnkYUMS9iD/cZk8YIOUYmei3kuNHsEJVCXIQLVvduBQfobgGdwgwWX/sNMj7JxyoPKstgV+zsZ6PD9AsMSXF1qAEWXpQeci9AVWw1+qv0WV22VWmguZHIHhAcPHQnB1ZciWoSVBxgxH2n6RLGuU2jT/bu8op6iehJ7xKDGINLd9cMIRmtbtPyfH4Udu5FmgS19eiHn4jflsYt175oHucwz2KoJMb01pIeXzqVGGV1miD8mKlbaNNc4+1oj1NmdP0UII2RqNhcEM+sJpDHAdpxv9XIiOAgn2084dey9GgErgL6IZnpCCJEVMsMa9pJMinifJqggBl1x8egUMYL5jKvdFo0JO7tacXcd0BR0GrswEca9H0QwKvmu70qmuX5ot002aOx1VGjLQgHm0EOo1Bev+ctNY+5UltspzNTbebDRYyaYkqJLMJvuPy0WmbYu/OFQtWfTIbedsl6a7+dgTdcVS7+89U8bib8yJHj+Szny72h0KlLGQUgLIe8lObts98lFhBgGcbhBFHxSgvQZp3aQXlrojjxV6+9GJJQTBITz87fvxf+5KHmSXApRkHkmbecPEJfyCgikfm+nZ7GRO4WzsTVVH+YEN1bVxehxQbrbkoHOHlpmouyIYUuOFVkN9+SpdTb1F13giscrabgDIlB1iXlmjcX522KOZLJ5+8lR0s6nnzhD6GkyrfD0T0VRayL4oMQ5DY8l+ekakvFmYEtgxzNWDywt6XISrT3IoIKWxGgsZ1WCDi0N1OodV7aL3RMASt0XBP1IOUDjiQHh4+WC/LJGUy44Wr94odN4Eh1mEubTZv8pMu5R1Yx8D5dI4lanLfZzl9yeaBHV9/xM04MBs244yEI27Aog/8+u/8dzuJRWeeV8rUJX4/SmtMtcIxttu8u01BJX5qPUQR3CoLUNoTiMeTczJbBZmz71Cujd1S9J/NhXBmIheWFMH1JTEbtcZed5pxHgcf9dzj8C0hACDcJOApMepey5e/xPNazoL8emJ9MbJ2XxnzblJtaLzvSnJzkBGAA+U6bIMJFYLrTuPV4gOlsLhgnc08kwCSFhFmns8dyDBCOZ/m/j4464qPLSckewqqA0cTLqRLmi4ci3wH0tJcsQM3RG3SQaCYM0YEWGXA1lHISFDCXTkhUqHA5gTZ8HQoPanBTPw68nqzmLWHA+trIi2Jfq3zWqseaDRHvhoVw3cImC+R5YyJ+THl50abb0bH+NdhJCnj9uWcajY7MnDWHGTlp8rB30KWeEXeopiqVL5iiRgW1M1QavkDQBV8Tr23luIa0v96DGo5KZLNS8f4X1FKyvVXxR0ix0VCsskBimr6h5zH0Leq7GIQF0vmH8hk1uJDTkpfl6od9ZPxBd/Jh7mjzjbucr25GOUqSFLicyTxiMMQBxTI7oByXaXy8ni4xNo/jM8xL5QbqyUNVb0Y8E+5LPBPmMBkkPnFBFxpfX3Ph1Y2pIOl3DiLDsrOEH3aIguxK03Ws+VCvM2VrHj4CD9Vhq4JXikBtBMfYVtRNXSgQ2Ao8Ru/L8yoOZpqWhMLhR2Oldt9M1XUAsd/UDPwHnaX0rt9+JwNXik0JGIYW8UBH78GtrwxUFkDGEjwimAYCrzHxINrmmT71aI7fBjcWs/gAsdNLufJzPN9eJBYlnbvUjj2CwxzyQHt/5iuTQvgRfh3tcILBRAAXCrCUGV16UpEbMiiMeLeHu6FnIqvmrY/sfvHR7PPDyU7UEc9HgGRC/URhhpi72w/O3dxCUjZxYDPaFvVEcTifv4aPQeSR9LYDNZ3lTGe8gT7FhwttbqHzwSLIdS32Gn8BCne7XzHbQwIhojCIdy6D3LkQ6oWKE9Gw4NGzWSfiDzsdRlq45WMyvo+cftNqQnz6f7pV3DQzTi+V2rNk7qp7GzQdBgImbRmXY8sCOcw3HhiAhwWFaFJ5w7vcKjtFo4AsIoyJ6y9lhNQ9ItHKoEmXJhRdMWX5fIegsSaCd06xxLaJ4GrRwDIeQ+tNoP0YoCfEppQepBEnUqSUhSlhFANrzx+28TIM2HSBd4Hz+0ftSYaBzxUHHT5ly8MmUoPjgJY9v4vj8eLaJxnL3rzTicnaD/HcgWW/wlg80LejnMGBCZf0D69JY5E+kqd1VMFu6SolZC8YKJeNKT+yOm9KDor6ww2QXyEOldM8W1ylqYDW8NEOsPc8ZpqQpc4HXl2Oyzt7qjcrcDBljjOc6cyKI7TjqJPtFF5MDgY6FVCwmyslUaW0Yrh8mjtACf6e1Zl+eVWFl1GnKn0T3LS24iuEPs6CkzIfKeJXCLf3oPiuUbfBLw5p0/DCyO8UwrCI8Ts1ESHfHrQzsighi5tdNw6M2if78255H6NPbq8jG/4WT+TKsa0CSMbehctwgC032l3oAoAV/XNNn2B15KgMblBsalVTltXLs3l1v0Zy63ukKQuAMu30XcauESP484Sg1o9QB840fQ0al8dUhOEWh3jFj+ur2icn+iHCJYEPFYQHCQH3V4I+z+PJUxR1xkngl0fChaIBhMv7dkYF9SKjzRiYk7ZMKm/b33Z/AUja1karGuA/9tWozFqvwWjb6EiAfcc1L/xpZ9WOzZLsvz/YwsSQ0CsKMxIHLLppwvYQWV+CbHFyODP1+ctwm1KBjZMXIExn/HFqFueniWbJGWr3c4QZNuM4GCvyUBOGx4ngvlsiyicyO6xHzi63qNM2fEpP6/ygfz+QIdGz36lWtKB9PZxKi2/r9Okr57os4VWfBY9kEkezMSQ4ziRGL4KPwhKB6sv7YA9maHf7+atmgJ2cef5e6L5WIh0pNZvM8UijHH1c/CuOyqpiz4Q6xfcfKMuCi3VEUGfkZpxqwmku69RcaW1dGL6C9nY+NnZb9SMrSj5d3bgQ7gnIYMFW94htIUmp8+O+2S/uoWa+gmDovf0L0CHyIioFu5J/9c692HK+Efqxu1qPebEBRuL0JHDZ1+qtBoXhpkfB1JoNlp7nGPwzPo82shBYmOHFPvZgZWUKUaSW9ZuEtla6KWN6Av+dDn37//qJTnerVzPRWnN8c+7LE+KBFITrpYeo8zBcvxlzbzU5CLKTrL8RCR5O3zH8sTrUvEdA5PBG1G6KMyolSghREOMDH2fJgc6grHQaMONMI6bUJZ+hqlh/hV8/2G5a9RomPBFLxV1UdhldFaGHQDB3vDf86pPd4ql4oYz5GvarivPJnbLyc0T2qz6FO3cv29Ltc3nrDYZNbZyIDPyvzYQoCpaBdZlBd/nn1fvyO2cx6ShPQH/3pYIbgikw2NOT8wKkGeFDWK2V3GbyiKbwwvsuXYdZ6fV3Wp7eU+NlMCV9pz0PpE/8LcgBA89SW21QNSemoPuygh0nEKeGA/EKkmjXIHFnCnyLpG1fmkZ6LbWiZ9nAAolsrDvi9UQcTm3b4KYQAYG88lAkBAJ7fG1pehrrDKSsn1teQgs+6F/O7E/Zc9lkfh4nPdPk+/6jXI9FAI64I+r/8Sb6KnsJ1k7H0M6nqDLaswdIhmAdkOQsQw7kB0ZCt5Z5C/VEf6J7K5in5Z8hP3o0zOVMym4LC9ybTN60qY1UjNctkom9+BC8x0sRXGx6108w6usuQnuDCwp0GRc8PSWOtzgA5actqdw8uqmdjuG5j/6GW56lbq1FNJ7XVQEjS8qxziL0kmL3nNavlQNvU3Ok+nlFYgxfQHXtgUwy70HhcoUiTEElSSE5wD9nn58lbjf1Yqkr40EuwlIa5Nck9RVY6h7W6lAv0V9FGGWUMeRHQQRjpVbC8p+C8j0Rb6ONuPb2V3b6dNoCLh4v8Zm0NMicXl8wxOGvzoj5ciqhERwKStGDt5DjpA3m+zbYf+p3qxlzntKeniWLtLRmJj9zc2XhnYMX5m1r3bikvHyOaNX+QdAuPFkHF6/IiwVXSm7Vrw7z5Es64CuTIqI/pDhR2QGYiMrKWLavvl0pwcocJAKLmcGkzZbK1GXw5KAk4WliDNyR1tfMMUIe1XvP9aFzaSoqvzPSgBow9Ldw3cYA9eKLHtmrhUqfzdhgLsloaGycZJpF49SqCp16oupEbqzf6AB6i+1/UCYu4RhZsm6DL8Duu9sthATNAVN8dJUgDHt+Y7JfI8FLeJj9fQ3upD+aCE2ahO13xuPndJmnxAyeuWImkgX/+TaJUwkVW7bvIvbLLFklG3VLSnIrswC4TIYH12AV4YrN4gHuaez6NIUggohqj6FajMAziyCgaoVstUvJhUaoYOQY/BJ7oD7Qhz9EqOCcz9Gn6VxLHXRf+lU/Ghr3Q3ZwZGd1F6jYwrVGBbcxNPENgXeymGUIPnGeXkiFxSpFKayiOqrNEJ/eH7A8j6DOVXCppADCV0n0cFKVlZwbwbbTCoib12mVKignIplIxXQ7VDT4WPiPTJBmajf+NhsWYAH6yKXhY/bXDg6eKtjj7rkJE3pWru4ow9YY0tagy2fQzXyW50fBG3d5UHhzq74xqXHbDb3+bqksDUooSwzE/sTtzIYaIOazPwJqTRcoeKO39PLIbVRoSWF9MI2Ho4dlpfLa4rs6NNs8Agsrh1PtFnsZPCM9t5s6YsAYj3WUW438mtpEz5063is7XpDRwuGtWXIp5d9TaXTMi8RUJ1yuRfuXwcvnI9SX/1RHwvNmOgSTFljuKeE4ixegeAb1OGqvtXhRDINN3wu2xObzrWp0PN7zI5ldmxzMy4dfwxKXowQlck83ejx83ZQ/qe75bpNmHLdN5JqzuD90XJ2kyn8jXkZ3FtCXQzzu5fP+uoyjFeeocOi++jFt5xvlVpnLsVASmg+YUjQWfsEmtpEkP77tmnhwPLs1UmO7NOMKZQjtirA4WmX9RqYLi/wxj+999YnQ4/3sZDpJQb7rwxlnsifJnaV+bG3MeOKpOcZul4vt87Gpl/ctmmHxcjV0iiU1kBPxHlnUCUboObKXHTc0szv67peKapwfItW0jaDrYNYH/tTRddnxt8IR+RBk9o4qqKgpASeawCt9iYRj0FVDbEphRXJ+6t9NeC4IpnqR89TmO7WbzW3gezn4OEOzD650hR20jcWull32q8yTZcT/IxKsRBYkF1vGtMIG3llu8pGV/WRVCjiGNcmxy8nK7FZSrVxbQ2oM+04hiwGnUOYC1PD6rXyZ39mKZ2RPgs8aLhvAPsaf42Hs8DOxEUIZ7TqTVC0Xy/rpY0bAHTIE8bcqy8Tdr802JupE/s7RuY4ijN32iRlu0jtwgd6fYe33asemA0JtOnlmcd9we41jQsZDCuirJiKAB0hMOQUrOP8Or8g2xeeZHp48Levn60VaHRYszRkTLWWeDhzKIPQ05vGKOOf+0q+pwp5bcgN/dQQ54vwlGwhTYD+89STlZJoKHz7q+huR34S0fpsJgxDd7ypfXWEKubBN9bFPKqfCdSwmnfxlmi0h3l7bLMjcdj4e3MjrtT8pn5rFhkDE4Lo3ckEYe94L7YutUM8qQlwkUhP5VVpq/XXdoH7kxxlihNN7XZA/9TkPB0+jvyqj4uo8B1ulBFQrsDLGObhUmcNeqX9AcDjnzt7o1+LwNWAOejHxeyrRPg22mSSv0SXPsj7PJibPJUWxHguANPWg8ZeBqtiLDRsDpVikwni4DP2K165KWqmz/4fg9Hfg8WTASYxFp+rS7dUzTtAppmR6Kg1mGbYkgIRCj7gE+D6VAUahGdK6QUZ7tP2uFFZlnCizEOxWs2HrJixVx2/qViLcnjdnb9eJHnNF4lX+25dAngL6ABEkLn5Bc2llrHNfKWSn00kZ/Pjhzx/kmZxqJXhdoKe+3d9YlUAmtXwxIEBxJ/VLMX0ck2fEQv9V6xIOly4C76X4nwHI+C0XN9+8KelLs6SHW+ho8dFK7+7YtfZLy1NL2Po0Z3zdivTpOBSCkUzOzjPkRuEJJ4ScOTqRtaWG8s6DhGIGjmhPW/vPnIdtRca/7WhQDZ/20s2Yh4mQJFmZciP/aPGVvVfciYPq+rFCYDnvD6cuFzvPw4izIi9HkR47oSylIRZGFCPT3kr9E6ZDm3eV523VU9Ah31B4WakS3XR+8fIPB0KMEzOHkm1Dhd6tTHbCzF5D+ju7uGbfzYpv7hO1cZ+e0MGjocUzLTVtS2Ga8UHAlvtf9x3ucD1oq2xWO+wYp03kfltw/yOfVCtzcueHzVdyRpQsMAGj6/QNctoYPJawDre28vHeZ1X8qES01CW2IpCVnaCHmwOD7RnfsX7/dkNO+Wpm3+pv2B85RgRyxQxn8PUDkk/oUDuwW3sHA+9zT9nacyjNFx3DGHUJmrVVBN80HX3RPbCA09Awt+yEubHkSpiECiFdQI8JJLuLNNU/j9B7zHeuIx75Nr9HKXe48wzDQeb3noTjUC+eWJ/AoIrIBKu/8oKWCbOtCMcsuSYd/auEUuaehte+dP/ixlXdZAt6jNeErefnfJi1MC5pMK8/l2O+1KD41ifeNaeeykSRS6dkDqRKyBl1fGuDveL9hTArp+q0Suzmu8VOVmG59SH2RjrYHOmYEBV5p20rUengT8wO31no2GA407cZWcKAPBoc6QJF8Ki1xXTZguM18wDntqQLsE+hJAnqlwCVpPe1nEuAGQMKH6Dfrbbn4z82s3bFTFpEOJql+ORoQuN9yt2S/A93c5yuAUQd0Jh5Lf0IvvBHxyz7OtG/8RXqkpLW7hAgrnwVPZ97sBGOEv65TjDO2zE6lhi5m1mBj+vXqrf+r8ocpi34yMhLV1h9HB1S3imoNexXiXX9OvTCZz0gC1hcqeijgS0+Y3exQVovrnmOf6yOKH28loqiu25UCGaffR1zbC7xuJqeE6HWFpLzvJ9pUKWkE4PTBahRVozZrX31OdFZNXLbQZPAVAJNhKV5F7LP9/DjiSpVy97muPEt6roVWutR7tS7a5AUq6euozNi4IPbjTmeaA2GdM9i5VaNzc4RMKR5p84iknJNmRoe+Q1yLVH7fPloiZImi5WY43l9SnoZIzW533P0oKB6+45sVhC7zVPPrdSCp4DCEJzIcbvBdGFxE+TcV++Bb/cVFzZaKxqLFRSmWVHAwdRVENr3CJPgRbRKv9ZvZjtZsWY+zrpVQXmzWX2+aJW4WIsl7f2QPQUCae4uLB1anYjaL72T6U7nONMDmd23PPOPqN6p6lhCZBIr91j3IaaFlvyi4rUZeAxxP16IJDGkyi+cHURsxdSZce01XoWo/1eh3n33nTTWxrVSyP6l6vVw/71RIMQpPCU0/xHDP7G+Ffx+PQOyDULY7eL9y7yQYbczw/l2Ay1VPaCW4YSfE7Ks5p4hemlRSyOB2kXlItOtxvw/zyFpUUiG83lR+ZvPictZ5zv0qYcGvS0E0o1o1ry1CBp/Q8aX/WIgjaTpZo0w2gODIDs/Io2mr3D95cA0kD/fK9G+t2oO/GwkS9d6HroP0OFlFlZcqEpP2TSm7OzT1gPYuWBLq9AO/5QCUGyS13ILkrJ0uiNtYEjY0A0B7WjC1QLGmOg3EL59oXhlbRXjAEp237pbmOtnqixVGLJcWu8D7nS+G7/ViIpO8eV4Yh+2UW7ZV2Kxz9+zkwNSH0rR1dm6IMk6DLVEEtWWkXGD3zO26zSZ0zWRMCc4n+MMBKLlLLYkroyGkt77aq9/QmBvL+ZAQ/GOlBofKWDLy9ehur3NnUKJY+KqTz5xyA9kjCEjKZ76Ls9WZEi6o2t6p+dZbFaXngxca62l6G5QZp6MZNQT6TrnXiIwVFlQDjFtXJk8B+ywCtxcpIVbLuocIm0h+LmMXwZ9gihYFGEolQF5aNV/Xx07MQYyH6TaQtwbOD0zcEcBnCgEfNfT3bSo4wyMApjnkUv+QguBrL9J9Lcc0KG265XXnBmEiW+GVNWqrdyBXIzfefvHv/PBZGkTYvg5IllMrSVlTXrL4Q9qPf2LJUlcnPk7CdgYdM3/qQAoDTOVklNCLg+jfGYqNtRm4lqjFcRLua+Ru3Rl7sSWOByB6/g59VKsZP5ypBMe0gxmIcmswkcXby79YdG5Yxek8GQ2IHI4WJYIS58E34sBAsr5YlRvX2hYKyrZZsDeCkpdKe0s4Bod71SL7zftGtx1uF3no0Nrrwed2F6KBkds/Njd6UBfTpSf8zz8rsRnEx+iqRKDZJdlk/DAavC3dW47teCyrK2LEAqQkNMf26XcYhE6FJHf0n96yd9zYi7fKJE+jJFxeEfCUK1iuS/vyVDo+s211K7olGWhqF1tmqe/xuJxEM2r8V/cCOok/S0lGQoJXEZO0WrA2GmMlchvnxzDuPmFqm8CTL/cGvMqVUasLIyUry0Q3DlcSDeNhwU3A+HWyDEFyX5xFzVEvcYDohV7G0dNqyP8drrs3sl5sJRXzI/l8/QtWTrVDnGJTuomYzwgjYKvyMAcj4I+KJFl8PlmU9QPD2mcJ6GhWtsVmKFllhzCygpjRSsmPv40AeL+YZ8pyv42btQxSpFmtr/h8qNLOAlgMkPuACTwWflTKDNuiwzybeCULzB17/e7NOMXteA/XUEspOZbwGt+tP2V10X+sXPlDkdurW25/5lTIY7U/5YfBw1BPmkgH9+MJq2TlZ+TTW6W625q3qjZzekwTNV0dB6ltanb/HEnPS95Vfqansf5ugdV9FiATLpSvZpyHBAQQbb/2fUA9b0xrA5knO5nUAuk4aQPrCqgdXrJaruHjlG4tq2fWiM2ljGujsF9fYGUX0a4cQJlU5iGxEclLT7LGTJ0QnA5/o+v0NM8zFoS37/h0n3UCL7A5jfmOEBtW9PSXBtAiHlOjoy2IV0WGNNrTfPy9XhPSk9L0wOlM4XKWr9DKH3iNlzCqNCW0G+QVgwEvCaL3ZrSuWxcoKe3kOal3E985K2SHe1oT9tlGwQ9X955OQmr77XWfDRAz8AcJBpwYh9DGBvrG4tRdzCp2cvwe4LoTHWjn4+kCcKl9qu17kCK/jxeJXW/kPju9563dY6HxSBzvC+pAJ7/9KMujMctpxCwEzB6KUAEOOusKPq/rsLaHqSqkAi4pluFJIcBfu2WWqkYzTh+6N+9hbeeBPy1Vl869P6G4HD0liYVTNKwhg4QrJvBwbeGCSfBl/VK8IvVaLOHwcZ4PvZXeGGmmi0CGcllyYoCmAtKOUlVZF/2p37l+DIKrzNMK1pTUnBURVdRaeC7nQh/nfuVcMw3+2VaB9abCCpKGBXo32RmMmEDW4VzDT7rHyOkxnAyrTatFjfrD6Ltqu6wFBeCZMBpAaZWoXCY+FYcNTArZiFw73a8Mig1o6OpGr5S+kUXiH9BExckWDQApj0UZFUk/KT56cNr3dVpE8pAIAaYRbEiBcG0EP6iZW1hQVi4r6hWtR3uA0v19DsidiIulyXctiRFkkU78Z32Nrfc6SgxUjhOypdo9kUI9jzl5sFoLbAqQIOeVBtvFJQuBBqb9DUF7PTN5GN08f6LlmXGx+/4cuxgRmDxa5XbP6p/fbWGfpp8RAKMnoyy+0fmnfFW9BGGGEzdbK1GldSf3vRTU/4W9FSJKbtxfbCBPDd1AJezUxenB5BWJEy6wWUtv7v0otBW17V974LvyYS8Y/pr+eskz4tOfnYoqv5Uhso0pUPbqa4bCiBsu46clIwf87+9wWa9ROf1HuY96wtqo/ukppbwGNM68lCiRqQoRb9sW6si3kMK/5Wa1QENCHnwxa3A7s3n/HtVpVHYrV0BHB09EkiTzZyQ/KenWpWYkw+x3/KNEDsHnMnxjtsz+Sy8vlnd1WLkASXebN8Ak2M00jhVh5qB0sDa8NYRe+08DUj5OSJsGIPJqAJDLxemtkC3McpxjYDhsNRvsUgfnWLZ7+/rzOY/MvIOStGNhCH3vs1AffCJ7gM4hPkNbilvzVIZM6NfGXACgxclDHNKLex1kPNH+IDlAvhmoBmyaNkZSgIeVhmEvKAQKTck+jxZBK8toCUufFkcD/QgAk5U/xRs7lqURX5SumBSOA0kT3DAWbIr34aUvoeXINHwOki+hkoUwFhm8C43YilNHNuuyEN4DCAiQAyfnfFiGvWE+0M5Lvte9G7SSNN4Sa9iFruGykvq+xiTN2dUAYZ79thiauLoRQRhu64OgUPog0eiPMz5jEMpb2XquXWO82qHkNhsu4Tbu6BqtuAsTFwYVqIBt0TEZpUvrP5f9EKala2E5eMqbQQMCJvgV3p1dcvwBVWXVfVMOaA0BgDa8fkalniILWu6tFN9q5jUpNtWA4xwb4QiiIZnb/4Ls/vDojvLOuGXhhRoKu8rk4NgCJ2c5IjijyeawluAr3i5ObIHLX4UBKrQEPYKmomM/BW9CqnYsTvlXIqT3h7E+izdeuc1YoH2WAr5HJreHXB7hBd1Yo+zYic+CKpot3bDxVsyRGqSdpA7/2/2V151UWp3ZT5jcbr4oOs+NlFAgKnKoBbOOgjDrSz/IlDFLEvpJRaKNB01TA65AbEmiUSAwVpc8orrTDKbTOvfYzIUWS+MLPROo+Wt1/Llzi/SvmE55Ar/fkRxu4EPiGVCuv/0UY/rPVwdBVmOMhTFqp+WkJpVCO+3Uk/qt55q9EAsHp5eBMqy4VSsuYnRDD8FBw8zjPKZ3QibnSnOlkQ0XCPG9LGo54bigq7cdRLHZqY1Ih2DkHaRT5/AZG/" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZOPRkYWjx8rGPv5rYawCnY-PBmd-kGC0Q_6Jp2JDD9OpwuVnbnFAL_CvzkSV_knymw2&amp;t=638901356248157332" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var MSOWebPartPageFormName = 'aspnetForm';
+var g_presenceEnabled = true;
+var g_wsaEnabled = false;
+
+var g_correlationId = 'f3864ca2-8b59-901c-8f7f-99e39cf06766';
+var g_wsaQoSEnabled = false;
+var g_wsaQoSDataPoints = [];
+var g_wsaRUMEnabled = false;
+var g_wsaLCID = 3082;
+var g_wsaListTemplateId = 850;
+var g_wsaSiteTemplateId = 'BLANKINTERNET#0';
+var _spPageContextInfo={"webServerRelativeUrl":"/seccion/institucional","webAbsoluteUrl":"http://www.osinergmin.gob.pe/seccion/institucional","viewId":"","listId":"{eb6fa705-c8c6-419c-a9fb-5839bc9fa6fc}","listPermsMask":{"High":16,"Low":196673},"listUrl":"/seccion/institucional/Paginas","listTitle":"Páginas","listBaseTemplate":850,"viewOnlyExperienceEnabled":false,"blockDownloadsExperienceEnabled":false,"idleSessionSignOutEnabled":false,"cdnPrefix":"","siteAbsoluteUrl":"http://www.osinergmin.gob.pe/seccion/institucional","siteId":"{ed103c95-5048-4b66-97d3-90e8bf4e4480}","showNGSCDialogForSyncOnTS":false,"supportPoundStorePath":true,"supportPercentStorePath":true,"siteSubscriptionId":null,"CustomMarkupInCalculatedFieldDisabled":true,"AllowCustomMarkupInCalculatedField":false,"isSPO":false,"farmLabel":null,"serverRequestPath":"/seccion/institucional/Paginas/regulacion_tarifaria_html.aspx","layoutsUrl":"_layouts/15","webId":"{ca95260d-5fa9-4b2b-b763-44119e05b16b}","webTitle":"Institucional","webTemplate":"53","webTemplateConfiguration":"BLANKINTERNET#0","webDescription":"Inicio","tenantAppVersion":"0","isAppWeb":false,"webLogoUrl":"_layouts/15/images/siteicon.png","webLanguage":3082,"currentLanguage":3082,"currentUICultureName":"es-ES","currentCultureName":"es-ES","currentCultureLCID":3082,"spDocIntelligence":{"isEnabled":false,"isDocSummarizeEnabled":false,"isDocTranslateEnabled":false},"env":null,"nid":0,"fid":0,"serverTime":"2026-11-07T13:46:05.1120828Z","siteClientTag":"1786$$16.0.19725.20434","crossDomainPhotosEnabled":false,"openInClient":false,"Has2019Era":true,"webUIVersion":15,"webPermMasks":{"High":16,"Low":196673},"pageListId":"{eb6fa705-c8c6-419c-a9fb-5839bc9fa6fc}","pageItemId":39,"pagePermsMask":{"High":16,"Low":196673},"pagePersonalizationScope":1,"userEmail":"","userId":0,"userLoginName":null,"userDisplayName":null,"isAnonymousUser":true,"isAnonymousGuestUser":false,"isEmailAuthenticationGuestUser":false,"isExternalGuestUser":false,"sideBysideToken":"","systemUserKey":null,"alertsEnabled":true,"siteServerRelativeUrl":"/seccion/institucional","allowSilverlightPrompt":"True","themeCacheToken":"/seccion/institucional::0:","themedCssFolderUrl":null,"themedImageFileNames":null,"modernThemingEnabled":true,"isSiteAdmin":false,"ExpFeatures":[480216468,1884350801,1158731092,62197791,538521105,335811073,4194306,34614301,268500996,-1946025984,28445328,-2147475455,134291456,65544,288,950272,1282,808326148,134217873,0,0,-1073217536,545285252,18350656,-467402752,6291457,-2147483644,1074794496,-1728053184,1845537108,622628,4102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"IsHybridEnabled":false,"SPOnPremFlights":[1635110,1608625,1615140,1574820,1554278,1536594,1451530,1437361,1293572,1281075,1266854,1262861,1263396,1261158,1245315,1242554,1241972,1232868,1227765,1225014,1220075,1218539,1175952,1174945,1165662,1159162,1149960,1149522,1113916,1111397,1101858,1099085,1086764,1080816,1079075,1075954,1073830,1073759,95255,1062921,1055593,1052809,1043614,1041859,1040063,1039112,1036486,1035189,1033993,1030381,1030382,1030364,1030362,1029854,1029586,1029565,1029556,1029555,1028671,1025113,1021288,1021275,1021274,1021272,1020637,1020043,1018275,1018016,1012433,1011886,1010592,1009740,1009585,1008744,1007603,1004459,1003886,1002806,1001164,116041,114176,114166,112973,108499,108186,107054,100994,100425,99885,99722,96075,94920],"InternalValidAuthorities":["portal","www.osinergmin.gob.pe","portalobservatorio","observatorio.osinergmin.gob.pe","integridad","integridad.osinergmin.gob.pe","rendiciondecuentas","rendiciondecuentas.osinergmin.gob.pe","empresas","empresas.osinergmin.gob.pe"],"CorrelationId":"f3864ca2-8b59-901c-8f7f-99e39cf06766","hasManageWebPermissions":false,"isNoScriptEnabled":false,"groupId":null,"groupHasHomepage":true,"groupHasQuickLaunchConversationsLink":false,"departmentId":null,"hubSiteId":null,"hasPendingWebTemplateExtension":false,"isHubSite":false,"isWebWelcomePage":false,"siteClassification":"","hideSyncButtonOnODB":false,"showNGSCDialogForSyncOnODB":false,"sitePagesEnabled":false,"sitePagesFeatureVersion":0,"suiteNavInfo":{"suiteBarBackground":null,"suiteBarText":null,"suiteNavAccentColor":null,"suiteNavAllowCustom":false,"suiteNavAllowOverwrite":false,"suiteNavBrandingLogoNavigationUrl":null,"suiteNavBrandingLogoTitle":null,"suiteNavBrandingLogoUrl":null,"suiteNavBrandingText":null},"DesignPackageId":"00000000-0000-0000-0000-000000000000","groupType":null,"groupColor":"#757575","siteColor":"#757575","headerEmphasis":0,"navigationInfo":null,"guestsEnabled":false,"MenuData":{"SignInUrl":"/seccion/institucional/_layouts/15/Authenticate.aspx?Source=%2Fseccion%2Finstitucional%2Fregulacion%2Dtarifaria%2Fpublicaciones"},"RecycleBinItemCount":-1,"PublishingFeatureOn":true,"PreviewFeaturesEnabled":false,"disableAppViews":false,"disableFlows":false,"serverRedirectedUrl":null,"formDigestValue":"0xB61CA2D091505F27C7667AA28E58EB6AAF6DB7445867C6DDDCFA4B4BF41E9D266E1D1AF091E5F64EFDF5C7C8A9378D8488019B09E31E6927B9F275B7BC4EF185,07 Nov 2026 13:46:05 -0000","maximumFileSize":15360,"formDigestTimeoutSeconds":1800,"canUserCreateMicrosoftForm":false,"canUserCreateVisioDrawing":true,"readOnlyState":null,"isTenantDevSite":false,"preferUserTimeZone":false,"userTimeZoneData":null,"userTime24":false,"userFirstDayOfWeek":null,"webTimeZoneData":null,"webTime24":false,"webFirstDayOfWeek":null,"isSelfServiceSiteCreationEnabled":null,"alternateWebAppHost":"","aadTenantId":"","aadUserId":"","aadInstanceUrl":"","msGraphEndpointUrl":"https://","allowInfectedDownload":true};_spPageContextInfo.updateFormDigestPageLoaded=new Date();_spPageContextInfo.clientServerTimeDelta=new Date(_spPageContextInfo.serverTime)-new Date();if(typeof(define)=='function'){define('SPPageContextInfo',[],function(){return _spPageContextInfo;});}var L_Menu_BaseUrl="/seccion/institucional";
+var L_Menu_LCID="3082";
+var L_Menu_SiteTheme="null";
+document.onreadystatechange=fnRemoveAllStatus; function fnRemoveAllStatus(){removeAllStatus(true)};var dlc_fvsi = {"DefaultViews":[],"ViewUrls":[],"WebUrl":"\/seccion\/institucional"};
+function _spNavigateHierarchy(nodeDiv, dataSourceId, dataPath, url, listInContext, type) {
+
+    CoreInvoke('ProcessDefaultNavigateHierarchy', nodeDiv, dataSourceId, dataPath, url, listInContext, type, document.forms.aspnetForm, "", "\u002fseccion\u002finstitucional\u002fregulacion-tarifaria\u002fpublicaciones");
+
+}
+
+                            function DoCallBack(filterText)
+                            {WebForm_DoCallback('ctl00$PlaceHolderMain$ctl03$ctl00',filterText,UpdateFilterCallback,0,CallBackError,true)
+                            }
+                            function CallBackError(result, clientsideString)
+                            {                
+                            }
+                        Flighting.ExpFeatures = [480216468,1884350801,1158731092,62197791,538521105,335811073,4194306,34614301,268500996,-1946025984,28445328,-2147475455,134291456,65544,288,950272,1282,808326148,134217873,0,0,-1073217536,545285252,18350656,-467402752,6291457,-2147483644,1074794496,-1728053184,1845537108,622628,4102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]; (function()
+{
+    if(typeof(window.SP) == "undefined") window.SP = {};
+    if(typeof(window.SP.YammerSwitch) == "undefined") window.SP.YammerSwitch = {};
+
+    var ysObj = window.SP.YammerSwitch;
+    ysObj.IsEnabled = false;
+    ysObj.TargetYammerHostName = "www.yammer.com";
+} )(); var _spWebPartComponents = new Object();//]]>
+</script>
+
+<script src="/_layouts/15/blank.js?rev=1TzK%2BcvAq%2Bpak3ckRUYBmA%3D%3DTAG0" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+window.SPThemeUtils && SPThemeUtils.RegisterCssReferences([{"Url":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fStarter\u002fcss1\u002fbase.css?v=4","OriginalUrl":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fStarter\u002fcss1\u002fbase.css?v=4","Id":"CssLink-2092fc262a1a499b86396a7c860a0ea1","ConditionalExpression":"","After":"","RevealToNonIE":"false"},{"Url":"\u002f_layouts\u002f15\u002f3082\u002fstyles\u002fThemable\u002fsearchv15.css?rev=rDkvgH4qqZzlD1wY\u00252F020wQ\u00253D\u00253DTAG0","OriginalUrl":"\u002f_layouts\u002f15\u002f3082\u002fstyles\u002fThemable\u002fsearchv15.css?rev=rDkvgH4qqZzlD1wY\u00252F020wQ\u00253D\u00253DTAG0","Id":"CssLink-39ed1daafc254134a1ed77a4d67776b8","ConditionalExpression":"","After":"","RevealToNonIE":"false"},{"Url":"\u002fseccion\u002finstitucional\u002fStyle Library\u002fes-ES\u002fThemable\u002fCore Styles\u002fcontrols15.css","OriginalUrl":"\u002fseccion\u002finstitucional\u002fStyle Library\u002fes-ES\u002fThemable\u002fCore Styles\u002fcontrols15.css","Id":"CssLink-1d410944a146459a982b6e9b216189ed","ConditionalExpression":"","After":"","RevealToNonIE":"false"},{"Url":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fStarter\u002fcss1\u002fosinerg_new.css?v=4","OriginalUrl":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fStarter\u002fcss1\u002fosinerg_new.css?v=4","Id":"CssRegistration2","ConditionalExpression":"","After":"System.String[]","RevealToNonIE":"false"},{"Url":"\u002f\u002fcdn.osinergmin.gob.pe\u002fInstitucional\u002fcss\u002freutilizable.css","OriginalUrl":"\u002f\u002fcdn.osinergmin.gob.pe\u002fInstitucional\u002fcss\u002freutilizable.css","Id":"CssRegistration3","ConditionalExpression":"","After":"System.String[]","RevealToNonIE":"false"},{"Url":"https:\u002f\u002fcdn.datatables.net\u002f1.11.4\u002fcss\u002fjquery.dataTables.css","OriginalUrl":"https:\u002f\u002fcdn.datatables.net\u002f1.11.4\u002fcss\u002fjquery.dataTables.css","Id":"CssLink-437cbac6d02741919b4b25f8ca711a9e","ConditionalExpression":"","After":"System.String[]","RevealToNonIE":"false"},{"Url":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fstarter\u002fcss1\u002f1.css?v=1","OriginalUrl":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fstarter\u002fcss1\u002f1.css?v=1","Id":"CssLink-3bc09dda6f6d41c8ad1b93dc218f72c5","ConditionalExpression":"","After":"System.String[]","RevealToNonIE":"false"},{"Url":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fstarter\u002fcss1\u002fmenu-princ-sup.css?v=3.2","OriginalUrl":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fstarter\u002fcss1\u002fmenu-princ-sup.css?v=3.2","Id":"CssLink-dfe19690cedc475b898083f32690f15a","ConditionalExpression":"","After":"System.String[]","RevealToNonIE":"false"},{"Url":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fstarter\u002fcss1\u002fria-t2.css?v=3.1","OriginalUrl":"\u002fseccion\u002finstitucional\u002f_catalogs\u002fmasterpage\u002fstarter\u002fcss1\u002fria-t2.css?v=3.1","Id":"CssLink-dc0ca44536a64ad7942059b670f4a79a","ConditionalExpression":"","After":"System.String[]","RevealToNonIE":"false"}]);
+(function(){
+
+        if (typeof(_spBodyOnLoadFunctions) === 'undefined' || _spBodyOnLoadFunctions === null) {
+            return;
+        }
+        _spBodyOnLoadFunctions.push(function() {
+            SP.SOD.executeFunc('core.js', 'FollowingCallout', function() { FollowingCallout(); });
+        });
+    })();(function(){
+
+        if (typeof(_spBodyOnLoadFunctions) === 'undefined' || _spBodyOnLoadFunctions === null) {
+            return;
+        }
+        _spBodyOnLoadFunctions.push(function() {
+            SP.SOD.executeFunc('core.js', 'FollowingDocument', function() { FollowingDocument(); });
+        });
+    })();var _spRegionalSettings={adjustHijriDays:0,calendarType:1,firstDayOfWeek:1,firstWeekOfYear:0,localeId:3082,currentDateInLocalCalendar: new Date(2026, 10, 7),showWeeks:0,timeZone:'-05:00:00.0009676',timeZoneInHours:-5,workDayEnd:1020,workDayStart:480,workDays:'0111110',time24:1};Sys.CultureInfo.CurrentCulture = (function(a){return new Sys.CultureInfo(a.name,a.numberFormat,a.dateTimeFormat)})({"dateTimeFormat":{"AMDesignator":"","AbbreviatedDayNames":["do.","lu.","ma.","mi.","ju.","vi.","sá."],"AbbreviatedLeapMonthNames":null,"AbbreviatedMonthGenitiveNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"AbbreviatedMonthNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"Calendar":{"AlgorithmType":1,"CalendarType":1,"Eras":[1],"IsReadOnly":false,"MaxSupportedDateTime":"\/Date(253402300799999)\/","MinSupportedDateTime":"\/Date(-62135596800000)\/","TwoDigitYearMax":2049},"CalendarWeekRule":2,"DateSeparator":"\/","DayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"FirstDayOfWeek":1,"FullDateTimePattern":"dddd, d' de 'MMMM' de 'yyyy H:mm:ss","IsReadOnly":true,"LeapMonthNames":null,"LongDatePattern":"dddd, d' de 'MMMM' de 'yyyy","LongTimePattern":"H:mm:ss","MonthDayPattern":"d 'de' MMMM","MonthGenitiveNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"MonthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"NativeCalendarName":"calendario gregoriano","PMDesignator":"","RFC1123Pattern":"ddd, dd MMM yyyy HH':'mm':'ss 'GMT'","ShortDatePattern":"dd\/MM\/yyyy","ShortTimePattern":"H:mm","ShortestDayNames":["D","L","M","X","J","V","S"],"SortableDateTimePattern":"yyyy'-'MM'-'dd'T'HH':'mm':'ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy'-'MM'-'dd HH':'mm':'ss'Z'","YearMonthPattern":"MMMM' de 'yyyy","eras":[1,"d. C.","d. C.",0]},"name":"es-ES","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":",","CurrencyGroupSeparator":".","CurrencyGroupSizes":[3],"CurrencyNegativePattern":8,"CurrencyPositivePattern":3,"CurrencySymbol":"€","DigitSubstitution":1,"IsReadOnly":true,"NaNSymbol":"NaN","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":",","NumberGroupSeparator":".","NumberGroupSizes":[3],"NumberNegativePattern":1,"PerMilleSymbol":"‰","PercentDecimalDigits":2,"PercentDecimalSeparator":",","PercentGroupSeparator":".","PercentGroupSizes":[3],"PercentNegativePattern":0,"PercentPositivePattern":0,"PercentSymbol":"%","PositiveInfinitySymbol":"∞","PositiveSign":"+"}});if (typeof(DeferWebFormInitCallback) == 'function') DeferWebFormInitCallback();function WebForm_OnSubmit() {
+UpdateFormDigest('\u002fseccion\u002finstitucional', 1440000);if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;};
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F13A22F5" />
+</div>
+        <div id="imgPrefetch" style="display:none">
+<img src="/_layouts/15/images/spcommon.png?rev=44" />
+<img src="/_catalogs/masterpage/starter/images/osinerg.ico?rev=44" />
+<img src="/_layouts/15/images/siteIcon.png?rev=44#ThemeKey=siteicon" />
+</div>
+
+        <noscript><div class='noindex'>Puede estar intentando tener acceso a este sitio desde un explorador protegido en el servidor. Habilite los scripts y vuelva a cargar la página.</div></noscript>
+        
+        <!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8NHTTF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+        <script type="text/javascript">//<![CDATA[ var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; 
+        
+        //]]></script>
+        
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <span id="DeltaDelegateControls">
+        
+        
+        </span>
+        <div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
+            <a id="linkTurnOnAcc" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+                Activar el modo de accesibilidad
+            </a>
+        </div>
+        <div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex">
+            <a id="linkTurnOffAcc" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+                Desactivar el modo de accesibilidad
+            </a>
+        </div>
+        <div class="s4-notdlg s4-skipribbonshortcut noindex">
+            <a href="javascript:;" onclick="document.getElementById(&#39;startNavigation&#39;).focus();" class="ms-SkiptoNavigation" accesskey="Y">
+                Omitir los comandos de cinta
+            </a>
+        </div>
+        <div class="s4-notdlg noindex">
+            <a href="javascript:;" onclick="document.getElementById(&#39;mainContent&#39;).focus();" class="ms-SkiptoMainContent" accesskey="X">
+                Saltar al contenido principal
+            </a>
+        </div>
+        <div id="TurnOffAnimation" style="display:none;" class="s4-notdlg noindex">
+            <a id="linkTurnOffAnimation" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
+                Desactivar animaciones
+            </a>
+        </div>
+        <div id="TurnOnAnimation" style="display:none;" class="s4-notdlg noindex">
+            <a id="linkTurnOnAnimation" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
+                Activar animaciones
+            </a>
+        </div>
+        <a id="HiddenAnchor" href="javascript:;" style="display:none;">
+        </a>
+        <div id="ms-hcTest">
+        </div>
+        <div id="ms-designer-ribbon">
+            <div>
+	
+	<div id="s4-ribbonrow" style="visibility:hidden;display:none"></div>
+
+</div>
+
+
+            
+        </div>
+        <span>
+            
+<a id="ctl00_ctl57_ExplicitLogin" class="ms-signInLink" href="http://www.osinergmin.gob.pe/seccion/institucional/_layouts/15/Authenticate.aspx?Source=%2Fseccion%2Finstitucional%2Fregulacion%2Dtarifaria%2Fpublicaciones" style="display:inline-block;">Inicio de sesión</a>
+
+        </span>
+        <div id="s4-workspace" class="ms-core-overlay">
+            <div id="s4-bodyContainer">
+                <div class="header">
+                    <div class="content-header">
+                        <div class="head-left">
+                            <div class="logo" style="display:none">
+                                <div data-name="SiteLogo">
+                                    
+                                    
+                                    <div>
+	
+                                        
+                                        <a id="ctl00_x752ff567ba26494687643d2f5a02c178" title="Institucional" class="ms-siteicon-a" href="/seccion/institucional"><img id="ctl00_x07ba798342644660b17fb7adaef92555" class="ms-siteicon-img" name="onetidHeadbnnr0" src="/_layouts/15/images/siteIcon.png?rev=44#ThemeKey=siteicon" alt="Institucional" /></a>
+                                        
+                                    
+</div>
+                                    
+                                </div>
+                            </div>
+                            <div class="logo">
+                                <a href="/">
+                                    <img alt="Portal Institucional" src="/seccion/institucional/SiteAssets/logo.png" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="head-right">
+                            </div>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="content-main">
+                        <div class="content-head">
+                            
+                            <!--
+                            <script type="text/javascript">//<![CDATA[
+							 
+							 MenuGeneralOsinergmin("IN");
+  							 
+							//]]></script>
+							
+							<div class="navegation">
+                                
+                            </div>
+                            -->
+                            
+                            <!-- Estilos que no cambian -->
+                            
+                            
+                            
+                            <div class="CustomBreadcrumbs">
+                                <span><a href="#ctl00_ctl62_SkipLink" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Skip Navigation Links</a><span><a href="/seccion/institucional">Institucional</a></span><span> &gt; </span><span><a href="/seccion/institucional/regulacion-tarifaria">Regulaci&#243;n Tarifaria</a></span><span> &gt; </span><span>Publicaciones</span><a id="ctl00_ctl62_SkipLink"></a></span>
+                            </div>
+                            <div class="navegation-top">
+                                <div data-name="TopNavigationNoFlyoutWithStartNode">
+                                    
+                                    
+                                    <div id="DeltaTopNavigation" class="ms-displayInline ms-core-navigation ms-dialogHidden">
+	
+                                        
+                                        
+                                        <a name="startNavigation">
+                                        </a>
+                                        
+                                            <div id="zz1_TopNavigationMenu" class=" noindex ms-core-listMenu-horizontalBox">
+		<ul id="zz2_RootAspMenu" class="root ms-core-listMenu-root static">
+			<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin" accesskey="1"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Acerca de Osinergmin</span></span></a><ul class="static">
+				<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/quienes_somos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Nosotros</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/consejo-directivo"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Consejo Directivo</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/informe-transferencias-gestion"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Informe de Transferencias de Gestión</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/gerencia-general"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Gerencia General</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/plan_estrategico_institucional"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Plan Estratégico Institucional</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/evaluacion-pei"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Evaluación del Plan Estratégico Institucional</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/pgd"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Plan de Gobierno Digital</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/plan-operativo-institucional"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Plan Operativo Institucional</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/evaluacion-poi"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Evaluación del Plan Operativo Institucional</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/informes-gestion-institucional"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Informes de Gestión Institucional</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/organizacion"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Organización</span></span></a></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/analisis-de-impacto-regulatorio"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Análisis de Impacto Regulatorio - RIA</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/analisis-de-impacto-regulatorio/que-es-el-ria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">¿Qué es el RIA?</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/analisis-de-impacto-regulatorio/ria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">RIA</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/analisis-de-impacto-regulatorio/guias"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Guías</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/estudios_economicos/documentos-evaluacion-de-politicas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Documentos de evaluación de políticas</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/analisis-de-impacto-regulatorio/enlaces-de-interes"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Enlaces de interés</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/analisis-de-impacto-regulatorio/linea-de-tiempo"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Línea de tiempo</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/memoria-institucional"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Memoria Institucional</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/opiniones-tecnicas-osinergmin-procesos-promocion-inversion-privada"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Opiniones técnicas de Osinergmin en procesos de promoción de la inversión privada</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/programa_ecoeficiencia"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Programa de ecoeficiencia</span></span></a></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/gart"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Gerencia Adjunta de Regulación Tarifaria</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/gart/que-es-la-gerencia-adjunta-de-regulacion-tarifaria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">¿Qué es la Gerencia Adjunta de Regulación Tarifaria?</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Regulación Tarifaria</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/oficina-virtual"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Oficina Virtual</span></span></a></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/sistema_integrado_gestion"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Sistema Integrado de Gestión</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/sistema_integrado_gestion/que-es-el-sig"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">¿Qué es el SIG?</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/sistema_integrado_gestion/camino-calidad"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Camino a la Calidad</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/sistema_integrado_gestion/nuestras-certificaciones"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Nuestras Certificaciones</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/sistema_integrado_gestion/premios-obtenidos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Premios Obtenidos</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/sistema_integrado_gestion/premio-iberoamericano-calidad"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Premio iberoamericano a la calidad</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/audiencias-publicas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/acerca_osinergmin/registro-audiencias-publicas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Registro Audiencias Públicas</span></span></a></li>
+			</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Regulación Tarifaria</span></span></a><ul class="static">
+				<li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Procesos Regulatorios</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/marco-regulatorio"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Marco Regulatorio</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/resoluciones"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Resoluciones</span></span></a></li><li class="dynamic dynamic-children"><a class="dynamic dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/electricidad"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Electricidad</span></span></a><ul aria-hidden="true" class="dynamic">
+						<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/electricidad/factor-referencia-contratacion"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Factor de Referencia a la Contratación (FRC)</span></span></a></li>
+					</ul></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/gas-natural"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Gas Natural</span></span></a></li><li class="dynamic dynamic-children"><a class="dynamic dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Actividades Relacionadas</span></span></a><ul aria-hidden="true" class="dynamic">
+						<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2015"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobaciòn de las Altas y Bajas 2015</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2016"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2016</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2017"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2017</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2019"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2019</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2020"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2020</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2021"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2021</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2022"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2022</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2023"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2023</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2024"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Aprobación de las Altas y Bajas 2024</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/procedimiento-valorizacion-egpsac"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Procedimiento de valorización de la red de abastecimiento de EGPSAC</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2018"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación de la Resolución de Fijación del VNR Adaptado 2018</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2021"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación de la Resolución de Fijación del VNR Adaptado 2021</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2022"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación de la Resolución de Fijación del VNR Adaptado 2022</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2025"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación de la Resolución de Fijación del VNR Adaptado 2025</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2018"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación del Proyecto de Resolución de Fijación del VNR Adaptado 2018</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2021"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación del Proyecto de Resolución de Fijación del VNR Adaptado 2021</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2022"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicación del Proyecto de Resolución de Fijación del VNR Adaptado 2022</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/resolucion-fijacion-vnr-adaptado-2025"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Resolución de Fijación del VNR Adaptado 2025</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/resolucion-reconsideracion-vnr-adaptado-2021"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Resolución de los Recursos de Reconsideración VNR Adaptado 2021</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/resolucion-reconsideracion-vnr-adaptado-2022"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Resolución de los Recursos de Reconsideración VNR Adaptado 2022</span></span></a></li>
+					</ul></li>
+				</ul></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Pliegos Tarifarios</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Electricidad</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/gas-natural"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Gas Natural</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/hidrocarburos-liquidos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Hidrocarburos Líquidos</span></span></a></li>
+				</ul></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Licitaciones y Subastas</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic dynamic-children"><a class="dynamic dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Licitaciones de Energía</span></span></a><ul aria-hidden="true" class="dynamic">
+						<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia/licitacion-ed-01-2023-lp-2026-2028"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Licitación ED-01-2023-LP: 2027-2030 (4 años)</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia/licitacion-hdna-01-2026-lcp-2027-2029"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Licitación HDNA-01-2026-LCP: 2027-2029 (3 años)</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia/licitacion-lds-01-2024-lp-2028-2042"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Licitación LDS-01-2024-LP: 2028-2042 (15 años)</span></span></a></li>
+					</ul></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/renovables"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Energías Renovables - Subastas</span></span></a></li>
+				</ul></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Precios de Referencia / Banda de Precios</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios/banda-de-precios-de-combustibles-liquidos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Banda de Precios de Combustibles líquidos</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios/precios-de-referencia-de-combustibles"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Precios de Referencia de Combustibles</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/planes-de-inversion"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Planes de Inversión</span></span></a></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Audiencias Públicas</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/convocadas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Convocadas 2026</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2026"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2026</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2025"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2025</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2024"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2024</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2023"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2023</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2022"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2022</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2021"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2021</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2020"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2020</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2019"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2019</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2018"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2018</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2017"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2017</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2016"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2016</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2015"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2015</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2014"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2014</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2013"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2013</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2012"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2012</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2011"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2011</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2010"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2010</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2009"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2009</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2008"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2008</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2007"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2007</span></span></a></li>
+				</ul></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/informacion-tecnica"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Información Técnica</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/informacion-tecnica/modelo-perseo2"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Modelo Perseo 2.0</span></span></a></li>
+				</ul></li><li class="static dynamic-children selected"><a class="static dynamic-children selected menu-item ms-core-listMenu-item ms-displayInline ms-core-listMenu-selected ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/publicaciones"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Publicaciones</span><span class="ms-hidden">Actualmente seleccionado</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Regulación Tarifaria</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/eventos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Eventos</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/enlaces-de-interes"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Enlaces de interés</span></span></a></li>
+			</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Oportunidades Laborales</span></span></a><ul class="static">
+				<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales/bienvenidos-a-osinergmin"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Bienvenidos a Osinergmin</span></span></a></li><li class="static dynamic-children"><a class="static dynamic-children menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales/convocatorias"><span aria-haspopup="true" class="additional-background ms-navedit-flyoutArrow dynamic-children"><span class="menu-item-text">Convocatorias</span></span></a><ul aria-hidden="true" class="dynamic">
+					<li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales/convocatorias/convocatorias-cap"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Convocatorias CAP</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales/convocatorias/convocatorias-cas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Convocatorias CAS</span></span></a></li><li class="dynamic"><a class="dynamic menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales/convocatorias/convocatorias-practicantes"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Convocatorias Practicantes</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/oportunidades-laborales/documentos-de-postulacion"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Documentos de postulación</span></span></a></li>
+			</ul></li>
+		</ul>
+	</div>
+                                        
+                                        
+                                    
+</div>
+                                    
+                                </div>
+                            </div>
+                            <h1 id="pageTitle" class="ms-core-pageTitle" style="display:none">
+                                <span id="DeltaPlaceHolderPageTitleInTitleArea">
+                                
+            <span><a href="#ctl00_PlaceHolderPageTitleInTitleArea_ctl00_SkipLink" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Skip Navigation Links</a><span><a title="regulacion_tarifaria_html" href="/seccion/institucional/regulacion-tarifaria/publicaciones">regulacion_tarifaria_html</a></span><a id="ctl00_PlaceHolderPageTitleInTitleArea_ctl00_SkipLink"></a></span>
+            
+            
+            Regulación Tarifaria - HTML
+            
+        
+                                </span>
+                                <div id="DeltaPlaceHolderPageDescription" class="ms-displayInlineBlock ms-normalWrap">
+	
+                                <a href="javascript:;" id="ms-pageDescriptionDiv" style="display:none">
+                                    <span id="ms-pageDescriptionImage">
+                                    </span>
+                                </a>
+                                <span class="ms-accessible" id="ms-pageDescription">
+                                    
+                                </span>
+                                <script type="text/javascript">// <![CDATA[ 
+
+
+                                _spBodyOnLoadFunctionNames.push("setupPageDescriptionCallout");
+                                // ]]>
+</script>
+                                
+</div>
+                            </h1>
+                        </div>
+                        <div id="contentRow">
+                            <div id="sideNavBox" class="ms-dialogHidden ms-forceWrap ms-noList">
+                                <div id="DeltaPlaceHolderLeftNavBar" class="ms-core-navigation" role="navigation">
+	
+                                
+                                <a id="startNavigation" name="startNavigation" tabIndex="-1">
+                                </a>
+                                
+                                
+                                
+                                
+                                
+                                <div class="ms-core-sideNavBox-removeLeftMargin">
+                                    <div id="ctl00_PlaceHolderLeftNavBar_QuickLaunchNavigationManager">
+		
+                                    
+                                    <div id="zz3_V4QuickLaunchMenu" class=" noindex ms-core-listMenu-verticalBox">
+			<ul id="zz4_RootAspMenu" class="root ms-core-listMenu-root static">
+				<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Procesos Regulatorios</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/marco-regulatorio"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Marco Regulatorio</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/resoluciones"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Resoluciones</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/electricidad"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Electricidad</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/gas-natural"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Gas Natural</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Actividades Relacionadas</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Pliegos Tarifarios</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Electricidad</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/gas-natural"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Gas Natural</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/hidrocarburos-liquidos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Hidrocarburos Líquidos</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Licitaciones y Subastas</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Licitaciones de Energía</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/renovables"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Energías Renovables - Subastas</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Precios de Referencia / Banda de Precios</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios/banda-de-precios-de-combustibles-liquidos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Banda de Precios de Combustibles líquidos</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios/precios-de-referencia-de-combustibles"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Precios de Referencia de Combustibles</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/planes-de-inversion"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Planes de Inversión</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/convocadas"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Convocadas 2026</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2026"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2026</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2025"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2025</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2024"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2024</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2023"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2023</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2022"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2022</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2021"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2021</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2020"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2020</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2019"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2019</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2018"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2018</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2017"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2017</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2016"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2016</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2015"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2015</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2014"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2014</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2013"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2013</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2012"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2012</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2011"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2011</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2010"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2010</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2009"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2009</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2008"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2008</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2007"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Audiencias Públicas Realizadas 2007</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/informacion-tecnica"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Información Técnica</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/informacion-tecnica/modelo-perseo2"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Modelo Perseo 2.0</span></span></a></li>
+				</ul></li><li class="static selected"><a class="static selected menu-item ms-core-listMenu-item ms-displayInline ms-core-listMenu-selected ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/publicaciones"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Publicaciones</span><span class="ms-hidden">Actualmente seleccionado</span></span></a><ul class="static">
+					<li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Regulación Tarifaria</span></span></a></li>
+				</ul></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/eventos"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Eventos</span></span></a></li><li class="static"><a class="static menu-item ms-core-listMenu-item ms-displayInline ms-navedit-linkNode" href="/seccion/institucional/regulacion-tarifaria/enlaces-de-interes"><span class="additional-background ms-navedit-flyoutArrow"><span class="menu-item-text">Enlaces de interés</span></span></a></li>
+			</ul>
+		</div>
+                                    
+	</div>
+                                    
+                                    
+                                    <div class="ms-core-listMenu-verticalBox">
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+</div>
+                            </div>
+                            <div id="contentBox" aria-live="polite" aria-relevant="all">
+                                <div id="notificationArea" class="ms-notif-box">
+                                </div>
+                                <div id="DeltaPlaceHolderMain">
+	
+                                <a id="mainContent" name="mainContent" tabindex="-1">
+                                </a>
+                                
+            <div>
+                
+                
+                
+                
+                
+            </div>
+            <div style="display:none">
+                
+                
+                <div id="ctl00_PlaceHolderMain_ctl01_label" style='display:none'>Imagen de la página</div><div id="ctl00_PlaceHolderMain_ctl01__ControlWrapper_RichImageField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl01_label"><div class="ms-rtestate-field"></div></div>
+                
+            </div>
+            <div style="display:none">
+                
+                
+                <div id="ctl00_PlaceHolderMain_ctl02_label" style='display:none'>Contenido de la página</div><div id="ctl00_PlaceHolderMain_ctl02__ControlWrapper_RichHtmlField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl02_label"><p>​​​​​​​​</p></div>
+                
+            </div>
+            <div style="display:none">
+                
+                
+                <div id="ctl00_PlaceHolderMain_ctl03__ControlWrapper_SummaryLinkFieldControl" style="display:inline"><div id="slwp_ctl00_PlaceHolderMain_ctl03_ctl00" class="slm-layout-main slwpmarker" xmlns:pcm="urn:PageContentManager"><!--empty--></div></div>
+                
+            </div>
+            <div style="display:none">
+                
+                
+                
+                
+            </div>
+            <div style="display:none">
+                
+                
+                
+                
+            </div>
+            <div style="display:none">
+                
+                
+                <div id="ctl00_PlaceHolderMain_ctl06_label" style='display:none'>Leyenda de imagen</div><div id="ctl00_PlaceHolderMain_ctl06__ControlWrapper_RichHtmlField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl06_label"></div>
+                
+            </div>
+            <div class="contenido-plantillas">
+                <div class="col-details-right">
+                    <div data-name="WebPartZone">
+                        
+                        
+                        <div>
+                            <div class="ms-webpart-zone ms-fullWidth">
+		<div id="MSOZoneCell_WebPartWPQ1" class="s4-wpcell-plain ms-webpartzone-cell ms-webpart-cell-vertical-inline-table ms-webpart-cell-vertical ms-fullWidth ">
+			<div class="ms-webpart-chrome ms-webpart-chrome-vertical ms-webpart-chrome-fullWidth ">
+				<div WebPartID="3c9d0b6e-a77c-49a9-8f47-70bd54340c84" HasPers="false" id="WebPartWPQ1" width="100%" class="ms-WPBody noindex " allowDelete="false" style="" ><div componentid="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_csr" id="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_csr"></div><noscript><div id="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_noscript">Parece que el explorador no tiene JavaScript habilitado. Active JavaScript e inténtelo de nuevo.</div></noscript><div id="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84">
+					<div class="ms-webpart-chrome ms-webpart-chrome-fullWidth ">
+						<div class="ms-webpart-chrome-title" id="WebPartWPQ2_ChromeTitle">
+							<span title="" id="WebPartTitleWPQ2" class="js-webpart-titleCell"><h2 style="text-align:justify;" class="ms-webpart-titleText"><nobr><span></span><span id="WebPartCaptionWPQ2"></span></nobr></h2></span>
+						</div><div WebPartID="00000000-0000-0000-0000-000000000000" HasPers="true" id="WebPartWPQ2" width="100%" class="ms-WPBody ms-WPBorder noindex ms-wpContentDivSpace " OnlyForMePart="true" allowDelete="false" style="" ><div componentid="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_ctl00_csr" id="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_ctl00_csr"></div><noscript><div id="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_ctl00_noscript">Parece que el explorador no tiene JavaScript habilitado. Active JavaScript e inténtelo de nuevo.</div></noscript><div id="ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_ctl00">
+
+						</div><div class="ms-clear"></div></div>
+					</div>
+				</div><div class="ms-clear"></div></div>
+			</div>
+		</div>
+	</div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sidebar-left">
+                    <div data-name="WebPartZone">
+                        
+                        
+                        <div>
+                            <div class="ms-webpart-zone ms-fullWidth">
+		<div id="MSOZoneCell_WebPartctl00_ctl43_g_eeccbe81_c356_468b_b605_50d61ee5fd4c" class="s4-wpcell-plain ms-webpartzone-cell ms-webpart-cell-vertical-inline-table ms-webpart-cell-vertical ms-fullWidth ">
+			<div class="ms-webpart-chrome ms-webpart-chrome-vertical ms-webpart-chrome-fullWidth ">
+				<div WebPartID="eeccbe81-c356-468b-b605-50d61ee5fd4c" HasPers="false" id="WebPartctl00_ctl43_g_eeccbe81_c356_468b_b605_50d61ee5fd4c" width="100%" class="ms-WPBody noindex " allowDelete="false" allowExport="false" style="" ><div id="ctl00_ctl43_g_eeccbe81_c356_468b_b605_50d61ee5fd4c">
+					
+<div class="menuv_osinergmin">
+<h3><a href='/seccion/institucional/regulacion-tarifaria'>Regulación Tarifaria</a></h3> <ul class='list1'><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios'><span>Procesos Regulatorios</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/marco-regulatorio'><span>Marco Regulatorio</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/resoluciones'><span>Resoluciones</span></a> <ul class='list3'> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/electricidad'><span>Electricidad</span></a> <ul class='list3'><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/electricidad/factor-referencia-contratacion'><span>Factor de Referencia a la Contratación (FRC)</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/gas-natural'><span>Gas Natural</span></a> <ul class='list3'> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas'><span>Actividades Relacionadas</span></a> <ul class='list3'><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2015'><span>Aprobaciòn de las Altas y Bajas 2015</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2016'><span>Aprobación de las Altas y Bajas 2016</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2017'><span>Aprobación de las Altas y Bajas 2017</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2019'><span>Aprobación de las Altas y Bajas 2019</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2020'><span>Aprobación de las Altas y Bajas 2020</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2021'><span>Aprobación de las Altas y Bajas 2021</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2022'><span>Aprobación de las Altas y Bajas 2022</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2023'><span>Aprobación de las Altas y Bajas 2023</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/aprobacion-altas-bajas-2024'><span>Aprobación de las Altas y Bajas 2024</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/procedimiento-valorizacion-egpsac'><span>Procedimiento de valorización de la red de abastecimiento de EGPSAC</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2018'><span>Publicación de la Resolución de Fijación del VNR Adaptado 2018</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2021'><span>Publicación de la Resolución de Fijación del VNR Adaptado 2021</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2022'><span>Publicación de la Resolución de Fijación del VNR Adaptado 2022</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-resolucion-fijacion-vnr-adaptado-2025'><span>Publicación de la Resolución de Fijación del VNR Adaptado 2025</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2018'><span>Publicación del Proyecto de Resolución de Fijación del VNR Adaptado 2018</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2021'><span>Publicación del Proyecto de Resolución de Fijación del VNR Adaptado 2021</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/publicacion-proyecto-resolucion-vnr-adaptado-2022'><span>Publicación del Proyecto de Resolución de Fijación del VNR Adaptado 2022</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/resolucion-fijacion-vnr-adaptado-2025'><span>Resolución de Fijación del VNR Adaptado 2025</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/resolucion-reconsideracion-vnr-adaptado-2021'><span>Resolución de los Recursos de Reconsideración VNR Adaptado 2021</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/procesos-regulatorios/actividades-relacionadas/resolucion-reconsideracion-vnr-adaptado-2022'><span>Resolución de los Recursos de Reconsideración VNR Adaptado 2022</span></a></li> </ul></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios'><span>Pliegos Tarifarios</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/electricidad'><span>Electricidad</span></a> <ul class='list3'> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/gas-natural'><span>Gas Natural</span></a> <ul class='list3'> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/pliegos-tarifarios/hidrocarburos-liquidos'><span>Hidrocarburos Líquidos</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas'><span>Licitaciones y Subastas</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia'><span>Licitaciones de Energía</span></a> <ul class='list3'><li><a href='/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia/licitacion-ed-01-2023-lp-2026-2028'><span>Licitación ED-01-2023-LP: 2027-2030 (4 años)</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia/licitacion-hdna-01-2026-lcp-2027-2029'><span>Licitación HDNA-01-2026-LCP: 2027-2029 (3 años)</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/licitaciones-de-energia/licitacion-lds-01-2024-lp-2028-2042'><span>Licitación LDS-01-2024-LP: 2028-2042 (15 años)</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/licitaciones-y-subastas/renovables'><span>Energías Renovables - Subastas</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios'><span>Precios de Referencia / Banda de Precios</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios/banda-de-precios-de-combustibles-liquidos'><span>Banda de Precios de Combustibles líquidos</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/precios-de-referencia-banda-de-precios/precios-de-referencia-de-combustibles'><span>Precios de Referencia de Combustibles</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/planes-de-inversion'><span>Planes de Inversión</span></a> <ul class='list2'> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas'><span>Audiencias Públicas</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/convocadas'><span>Audiencias Públicas Convocadas 2026</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2026'><span>Audiencias Públicas Realizadas 2026</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2025'><span>Audiencias Públicas Realizadas 2025</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2024'><span>Audiencias Públicas Realizadas 2024</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2023'><span>Audiencias Públicas Realizadas 2023</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2022'><span>Audiencias Públicas Realizadas 2022</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2021'><span>Audiencias Públicas Realizadas 2021</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2020'><span>Audiencias Públicas Realizadas 2020</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2019'><span>Audiencias Públicas Realizadas 2019</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2018'><span>Audiencias Públicas Realizadas 2018</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2017'><span>Audiencias Públicas Realizadas 2017</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2016'><span>Audiencias Públicas Realizadas 2016</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/Realizadas-2015'><span>Audiencias Públicas Realizadas 2015</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2014'><span>Audiencias Públicas Realizadas 2014</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2013'><span>Audiencias Públicas Realizadas 2013</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2012'><span>Audiencias Públicas Realizadas 2012</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2011'><span>Audiencias Públicas Realizadas 2011</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2010'><span>Audiencias Públicas Realizadas 2010</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2009'><span>Audiencias Públicas Realizadas 2009</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2008'><span>Audiencias Públicas Realizadas 2008</span></a> <ul class='list3'> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/audiencias-publicas/realizadas-2007'><span>Audiencias Públicas Realizadas 2007</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/informacion-tecnica'><span>Información Técnica</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/informacion-tecnica/modelo-perseo2'><span>Modelo Perseo 2.0</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/publicaciones'><span>Publicaciones</span></a> <ul class='list2'><li><a href='/seccion/institucional/regulacion-tarifaria/publicaciones/regulacion-tarifaria'><span>Regulación Tarifaria</span></a></li> </ul></li><li><a href='/seccion/institucional/regulacion-tarifaria/eventos'><span>Eventos</span></a></li><li><a href='/seccion/institucional/regulacion-tarifaria/enlaces-de-interes'><span>Enlaces de interés</span></a></li> </ul>
+
+</div>
+<span id="ctl00_ctl43_g_eeccbe81_c356_468b_b605_50d61ee5fd4c_lblError"></span>
+				</div><div class="ms-clear"></div></div>
+			</div>
+		</div>
+	</div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        <div style='display:none' id='hidZone'><menu class="ms-hide">
+		<ie:menuitem id="MSOMenu_Help" iconsrc="/_layouts/15/images/HelpIcon.gif" onmenuclick="MSOWebPartPage_SetNewWindowLocation(MenuWebPart.getAttribute(&#39;helpLink&#39;), MenuWebPart.getAttribute(&#39;helpMode&#39;))" text="Ayuda" type="option" style="display:none">
+
+		</ie:menuitem>
+	</menu></div>
+                                
+</div>
+                            </div>
+                            <div id="DeltaFormDigest">
+	
+                            
+                            <script type="text/javascript">//<![CDATA[
+        var formDigestElement = document.getElementsByName('__REQUESTDIGEST')[0];
+        if (!((formDigestElement == null) || (formDigestElement.tagName.toLowerCase() != 'input') || (formDigestElement.type.toLowerCase() != 'hidden') ||
+            (formDigestElement.value == null) || (formDigestElement.value.length <= 0)))
+        {
+            formDigestElement.value = '0xB61CA2D091505F27C7667AA28E58EB6AAF6DB7445867C6DDDCFA4B4BF41E9D266E1D1AF091E5F64EFDF5C7C8A9378D8488019B09E31E6927B9F275B7BC4EF185,07 Nov 2026 13:46:05 -0000';_spPageContextInfo.updateFormDigestPageLoaded = new Date();
+        }
+        //]]>
+        </script>
+                            
+                            
+</div>
+                            <div class="ms-hide">
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div id="dialog" style="display:none">
+            <iframe class="class_iframe" width="100%" height="100%">
+            </iframe>
+        </div>
+        <script type="text/javascript">// <![CDATA[ 
+
+
+        var g_Workspace = "s4-workspace";
+        // ]]>
+</script>
+        <script type="text/javascript">//<![CDATA[
+				$(document).ready(function() {
+			        //document.title = 'OSINERGMIN – Organismo Supervisor de la Inversión en Energía y Minería.';
+			    });
+				$(document).ready(function()
+				{
+				 if ( $.browser.msie ){
+				    if($.browser.version == '6.0')
+				    {   
+				    	//$('html').addClass('ie6');
+				    }
+				    else if($.browser.version == '7.0')
+				    {   
+				    	$('body').addClass('ie8');
+				    }
+				    else if($.browser.version == '8.0')
+				    {   
+				    	$('body').addClass('ie8');
+				    }
+				    else if($.browser.version == '9.0')
+				    {   
+				    	//$('html').addClass('ie9');
+				    }
+				 }
+				 else if ( $.browser.webkit )
+				 { 
+				 	//$('html').addClass('webkit');
+				 }
+				 else if ( $.browser.mozilla )
+				 { 
+				 	//$('html').addClass('mozilla');
+				 }
+				 else if ( $.browser.opera )
+				 { 
+				 	//$('html').addClass('opera');
+				 }
+				});
+				
+				/*$(document).ready(function()
+				{
+				if ( $.browser.msie ) {
+				alert( $.browser.version );
+				}
+				});*/
+        
+        //]]></script>
+        <script type="text/javascript">//<![CDATA[
+				$(document).ready(function() {
+					$("input.ms-textLarge").keypress(function(event) {
+					   if (event.which == 13) {
+			        	//document.title = 'OSINERGMIN – Organismo Supervisor de la Inversión en Energía y Minería.';
+					   };
+				       $('.search .ms-srch-sb-searchLink').html('<img alt="Realiza búsquedas" id="searchImg" class="ms-srch-sb-searchImg" src="/_layouts/15/images/searchresultui.png?rev=23">');
+					});
+
+			    });
+        
+        //]]></script>
+        <script type="text/javascript">//<![CDATA[
+				$(document).ready(function() {
+			        //document.title = 'OSINERGMIN – Organismo Supervisor de la Inversión en Energía y Minería.';
+			        
+					$("a.ms-srch-sb-searchLink").click(function(e){
+			        	//document.title = 'OSINERGMIN – Organismo Supervisor de la Inversión en Energía y Minería.';
+			        	$('.search .ms-srch-sb-searchLink').html('<img alt="Realiza búsquedas" id="searchImg" class="ms-srch-sb-searchImg" src="/_layouts/15/images/searchresultui.png?rev=23">');
+					});
+			    });
+        
+        //]]></script>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+var _spFormDigestRefreshInterval = 1440000;var sdpWPQ2=$get('WebPartWPQ2');
+                            if (sdpWPQ2 != null) { // webpart body div
+                                sdpWPQ2 = sdpWPQ2.parentNode;
+                                if (sdpWPQ2 != null) { // webpart div
+                                    sdpWPQ2.className='display-none';
+                                }
+                            }function loadMDN2() { EnsureScript('MDN.js', typeof(loadFilterFn), null); }
+function loadMDN1() { ExecuteOrDelayUntilScriptLoaded(loadMDN2, 'sp.ribbon.js'); }
+_spBodyOnLoadFunctionNames.push('loadMDN1');
+function _spNavigateHierarchyEx(nodeDiv, dataSourceId, dataPath, url, listInContext, type, additionalQString) {
+    CoreInvoke('SetAdditionalNavigateHierarchyQString', additionalQString);
+    g_originalSPNavigateFunc(nodeDiv, dataSourceId, dataPath, url, listInContext, type);
+}
+
+g_originalSPNavigateFunc = _spNavigateHierarchy;
+_spNavigateHierarchy = _spNavigateHierarchyEx;
+
+WebForm_InitCallback();window.SPThemeUtils && SPThemeUtils.ApplyCurrentTheme(true); IsSPSocialSwitchEnabled = function() { return true; };var _fV4UI = true;
+function _RegisterWebPartPageCUI()
+{
+    var initInfo = {editable: false,isEditMode: false,allowWebPartAdder: false,listId: "{eb6fa705-c8c6-419c-a9fb-5839bc9fa6fc}",itemId: 39,recycleBinEnabled: true,enableMinorVersioning: true,enableModeration: false,forceCheckout: true,rootFolderUrl: "\u002fseccion\u002finstitucional\u002fPaginas",itemPermissions:{High:16,Low:196673}};
+    SP.Ribbon.WebPartComponent.registerWithPageManager(initInfo);
+    var wpcomp = SP.Ribbon.WebPartComponent.get_instance();
+    var hid;
+    hid = document.getElementById("_wpSelected");
+    if (hid != null)
+    {
+        var wpid = hid.value;
+        if (wpid.length > 0)
+        {
+            var zc = document.getElementById(wpid);
+            if (zc != null)
+                wpcomp.selectWebPart(zc, false);
+        }
+    }
+    hid = document.getElementById("_wzSelected");
+    if (hid != null)
+    {
+        var wzid = hid.value;
+        if (wzid.length > 0)
+        {
+            wpcomp.selectWebPartZone(null, wzid);
+        }
+    }
+};
+function __RegisterWebPartPageCUI() {
+ExecuteOrDelayUntilScriptLoaded(_RegisterWebPartPageCUI, "sp.ribbon.js");}
+_spBodyOnLoadFunctionNames.push("__RegisterWebPartPageCUI");var __wpmExportWarning='This Web Part Page has been personalized. As a result, one or more Web Part properties may contain confidential information. Make sure the properties contain information that is safe for others to read. After exporting this Web Part, view properties in the Web Part description file (.WebPart) by using a text editor such as Microsoft Notepad.';var __wpmCloseProviderWarning='You are about to close this Web Part.  It is currently providing data to other Web Parts, and these connections will be deleted if this Web Part is closed.  To close this Web Part, click OK.  To keep this Web Part, click Cancel.';var __wpmDeleteWarning='You are about to permanently delete this Web Part.  Are you sure you want to do this?  To delete this Web Part, click OK.  To keep this Web Part, click Cancel.';var slNavUrl = '\u002fseccion\u002finstitucional';_spBodyOnLoadFunctionNames.push('_cUpdx752ff567ba26494687643d2f5a02c178');function _cUpdx752ff567ba26494687643d2f5a02c178(){var myd = null; if (typeof(datax752ff567ba26494687643d2f5a02c178) != 'undefined') {myd = datax752ff567ba26494687643d2f5a02c178;} var myc = document.getElementById('ctl00_x752ff567ba26494687643d2f5a02c178');_cUpdcx752ff567ba26494687643d2f5a02c178(myd, myc);}function _cUpdcx752ff567ba26494687643d2f5a02c178(data, ctrl){ctrl.href = slNavUrl;}function _cUpdx07ba798342644660b17fb7adaef92555(){var myd = null; if (typeof(datax07ba798342644660b17fb7adaef92555) != 'undefined') {myd = datax07ba798342644660b17fb7adaef92555;} var myc = document.getElementById('ctl00_x07ba798342644660b17fb7adaef92555');_cUpdcx07ba798342644660b17fb7adaef92555(myd, myc);}function _cUpdcx07ba798342644660b17fb7adaef92555(data, ctrl){SiteLogoImagePageUpdate(ctrl, data);}
+            ExecuteOrDelayUntilScriptLoaded(
+                function() 
+                {                    
+                    Srch.ScriptApplicationManager.get_current().states = {"webUILanguageName":"es-ES","webDefaultLanguageName":"es-ES","QueryDateTimeCulture":3082,"timeZoneOffsetInHours":-5,"contextUrl":"http://www.osinergmin.gob.pe/seccion/institucional","contextTitle":"Institucional","supportedLanguages":[{"id":1025,"label":"Árabe"},{"id":1093,"label":"Bangla"},{"id":1026,"label":"Búlgaro"},{"id":1027,"label":"Catalán"},{"id":2052,"label":"Chino (simplificado)"},{"id":1028,"label":"Chino (tradicional)"},{"id":1050,"label":"Croata"},{"id":1029,"label":"Checo"},{"id":1030,"label":"Danés"},{"id":1043,"label":"Neerlandés"},{"id":1033,"label":"Inglés"},{"id":1035,"label":"Finlandés"},{"id":1036,"label":"Francés"},{"id":1031,"label":"Alemán"},{"id":1032,"label":"Griego"},{"id":1095,"label":"Gujarati"},{"id":1037,"label":"Hebreo"},{"id":1081,"label":"Hindi"},{"id":1038,"label":"Húngaro"},{"id":1039,"label":"Islandés"},{"id":1057,"label":"Indonesio"},{"id":1040,"label":"Italiano"},{"id":1041,"label":"Japonés"},{"id":1099,"label":"Kannada"},{"id":1042,"label":"Coreano"},{"id":1062,"label":"Letón"},{"id":1063,"label":"Lituano"},{"id":1086,"label":"Malayo"},{"id":1100,"label":"Malayalam"},{"id":1102,"label":"Marathi"},{"id":1044,"label":"Noruego"},{"id":1045,"label":"Polaco"},{"id":1046,"label":"Portugués (Brasil)"},{"id":2070,"label":"Portugués (Portugal)"},{"id":1094,"label":"Punjabi"},{"id":1048,"label":"Rumano"},{"id":1049,"label":"Ruso"},{"id":3098,"label":"Serbio (cirílico)"},{"id":2074,"label":"Serbio (latino)"},{"id":1051,"label":"Eslovaco"},{"id":1060,"label":"Esloveno"},{"id":3082,"label":"Español (España)"},{"id":2058,"label":"Español (México)"},{"id":1053,"label":"Sueco"},{"id":1097,"label":"Tamil"},{"id":1098,"label":"Telugu"},{"id":1054,"label":"Tailandés"},{"id":1055,"label":"Turco"},{"id":1058,"label":"Ucraniano"},{"id":1056,"label":"Urdu"},{"id":1066,"label":"Vietnamita"}],"navigationNodes":[{"id":0,"name":"Este sitio","url":"~site/_layouts/15/osssearchresults.aspx?u={contexturl}","promptString":"Buscar este sitio"}],"webUILanguageDirectory":"es-ES","showAdminDetails":false,"defaultPagesListName":"Paginas","isSPFSKU":false,"defaultQueryProperties":{"culture":3082,"uiLanguage":3082,"summaryLength":180,"desiredSnippetLength":90,"enableStemming":true,"enablePhonetic":false,"enableNicknames":false,"trimDuplicates":true,"bypassResultTypes":false,"enableInterleaving":true,"enableQueryRules":true,"processBestBets":true,"enableOrderingHitHighlightedProperty":false,"hitHighlightedMultivaluePropertyLimit":-1,"processPersonalFavorites":true}};
+                    Srch.U.trace(null, 'SerializeToClient', 'ScriptApplicationManager state initialized.');
+                }, 'Search.ClientControls.js');var g_clientIdDeltaPlaceHolderMain = "DeltaPlaceHolderMain";
+var g_clientIdDeltaPlaceHolderPageTitleInTitleArea = "DeltaPlaceHolderPageTitleInTitleArea";
+var g_clientIdDeltaPlaceHolderUtilityContent = "DeltaPlaceHolderUtilityContent";
+g_QuickLaunchControlIds.push("zz1_TopNavigationMenu");_spBodyOnLoadFunctionNames.push('QuickLaunchInitDroppable'); var g_zz1_TopNavigationMenu = null; function init_zz1_TopNavigationMenu() { if (g_zz1_TopNavigationMenu == null) g_zz1_TopNavigationMenu = $create(SP.UI.AspMenu, null, null, null, $get('zz1_TopNavigationMenu')); } if(g_spPreFetchKeys) {{ g_spPreFetchKeys.push('SP.Core.js');}}EnsureScriptFunc('SP.Core.js', 'SP.UI.AspMenu', init_zz1_TopNavigationMenu);
+g_QuickLaunchControlIds.push("zz3_V4QuickLaunchMenu");_spBodyOnLoadFunctionNames.push('QuickLaunchInitDroppable'); var g_zz3_V4QuickLaunchMenu = null; function init_zz3_V4QuickLaunchMenu() { if (g_zz3_V4QuickLaunchMenu == null) g_zz3_V4QuickLaunchMenu = $create(SP.UI.AspMenu, null, null, null, $get('zz3_V4QuickLaunchMenu')); } ExecuteOrDelayUntilScriptLoaded(init_zz3_V4QuickLaunchMenu, 'SP.Core.js');
+Sys.Application.add_init(function() {
+    $create(Srch.ContentBySearch, {"delayLoadTemplateScripts":true,"groupTemplateId":"~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js","itemTemplateId":"~sitecollection/_catalogs/masterpage/Display Templates/Plantillas CBS GART/Item_Regulacion_Tarifaria_Detalle.js","messages":[],"numberOfItems":1,"queryGroupName":"Default","renderTemplateId":"~sitecollection/_catalogs/masterpage/Display Templates/Plantillas CBS GART/Control_Regulacion_Tarifaria_html.js","searchCenterXGeoLocations":"","showAlertMe":false,"showBestBets":false,"showDataErrors":true,"showDefinitions":false,"showDidYouMean":false,"showPersonalFavorites":false,"states":{},"xGeoTenantsInfo":""}, null, null, $get("ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_csr"));
+});
+Sys.Application.add_init(function() {
+    $create(Srch.DataProvider, {"availableSorts":[],"bypassResultTypes":true,"clientType":"ContentSearchRegular","collapseSpecification":"","delayLoadTemplateScripts":true,"enableInterleaving":false,"fallbackSort":[],"hitHighlightedProperties":["Title","Path","Author","SectionNames","SiteDescription"],"initialQueryState":{"k":"","o":null,"s":0,"r":null,"l":0,"m":"","d":0,"x":null,"e":-1},"maxPagesAfterCurrent":1,"messages":[],"processBestBets":false,"processPersonalFavorites":false,"properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"eb6fa705-c8c6-419c-a9fb-5839bc9fa6fc","ListItemId":39,"EnableMultiGeoSearch":"false","TermId":"2bdda294-ac11-4a07-b277-949977fce9d3","TermSetId":"2e83a963-2c5f-49df-93bb-151db2719474","TermStoreId":"d0dce0e7-5acc-4e3e-8753-0b95845110c2"},"queryGroupName":"Default","queryPropertiesTemplateUrl":"querygroup://webroot/Paginas/regulacion_tarifaria_html.aspx?groupname=Default","queryTemplate":"path:\"http://wcmportal\"  (IsDocument:\"True\" OR contentclass:\"STS_ListItem\")  ListID:C56013D6-3833-4E7F-A6ED-68A879728ED3  owstaxIdNavegacionRegulacionTarifaria:{Term.Id}","rankRules":[],"renderTemplateId":"DefaultDataProvider","resultsPerPage":1,"selectedProperties":["PublishingImage","PictureURL","PictureThumbnailURL","Path","OriginalPath","SiteID","Title","ContenidoHTMLOWSHTML","PiePaginaOWSHTML","SecondaryFileExtension","ContentTypeId"],"selectedRefiners":[],"sourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","sourceLevel":"Ssa","sourceName":"Local SharePoint Results","states":{},"timeZoneId":35,"trimDuplicates":false}, null, null, $get("ctl00_ctl43_g_3c9d0b6e_a77c_49a9_8f47_70bd54340c84_ctl00_csr"));
+});
+//]]>
+</script>
+</form><span id="DeltaPlaceHolderUtilityContent"></span></body>
+</html>
