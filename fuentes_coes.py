@@ -1805,3 +1805,70 @@ def buscar_oc(central, lista):
         if all(t in n for t in tok):
             return x
     return None
+
+
+# --------------------------------------------------------------------------- Osinergmin · Mercado Libre de Electricidad
+OSI_API = "https://www.osinergmin.gob.pe/PublicadorGRTBackEnd"
+_MESES_N = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
+            "SETIEMBRE": 9, "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
+
+
+def osinergmin_ml_listado(diag=None):
+    """Excel mensuales del informe «Mercado Libre de Electricidad» (Osinergmin GRT, VisorGRT).
+    Devuelve [{'mes': 'AAAA-MM' (mes de la información), 'url', 'nombre', 'id'}]."""
+    nodos = S.get(f"{OSI_API}/nodo/all", timeout=120).json()
+    docs = S.get(f"{OSI_API}/documento/all", timeout=180).json()
+    base = [n for n in nodos if norm(n.get("de_descripcion") or "") == "MERCADO LIBRE DE ELECTRICIDAD"]
+    cods = [n["co_nodo"] for n in base]
+    rama = {n["id_identificador_nodo"]: n for n in nodos if any(str(n.get("co_nodo") or "").startswith(c + ".") for c in cods)}
+    out = []
+    for d in docs:
+        n = rama.get(d.get("id_identificador_nodo"))
+        if not n or d.get("in_estado") != "A" or not re.search(r"\.xlsx?$", str(d.get("de_nombre_fisico")), re.I):
+            continue
+        t = norm(d.get("de_descripcion_documento") or "")
+        m = re.search(r"INFORMACION\s+([A-Z]+)\s+(20\d\d)", t)
+        if not m or m.group(1) not in _MESES_N:
+            continue
+        out.append({"mes": f"{m.group(2)}-{_MESES_N[m.group(1)]:02d}", "nombre": d.get("de_nombre_logico"),
+                    "url": (n.get("de_ruta_de_repositorio") or "") + d["de_nombre_fisico"], "id": d.get("id_documento"),
+                    "desc": d.get("de_descripcion_documento")})
+    if diag is not None:
+        diag.update({"nodos": len(nodos), "docs": len(docs), "excel": len(out)})
+    return out
+
+
+def osinergmin_ml_clientes(b):
+    """{'mes': 'AAAA-MM', 'clientes': {RUC: [nombre, MWh, actividad, suministradores]}} desde la hoja bltFacturaCliente
+    (energía en barra de entrega = EHP_BE + EFP_BE)."""
+    hojas = libro(b, solo={"bltFacturaCliente"})
+    filas = hojas.get("bltFacturaCliente") or []
+    i0 = next((i for i, f in enumerate(filas[:10]) if any(norm(x) == "ANNIOMES" for x in f if texto(x))), None)
+    if i0 is None:
+        return None
+    cab = [norm(x) if texto(x) else "" for x in filas[i0]]
+    j = lambda rx: next((k for k, c in enumerate(cab) if re.search(rx, c)), None)
+    jm, jr, jn, ja, je = j(r"^ANNIOMES$"), j(r"^RUC$"), j(r"^NOMBRECLIENTE$"), j(r"^CODACTIVIDAD$"), j(r"^CODEMPRESA$")
+    jh, jf = j(r"CONSUMO EHP_BE"), j(r"CONSUMO EFP_BE")
+    if None in (jm, jn, jh, jf):
+        return None
+    cli, meses = {}, {}
+    for f in filas[i0 + 1:]:
+        g = lambda k: f[k] if k is not None and k < len(f) else None
+        mes = texto(g(jm)) or ""
+        mes = re.sub(r"\.0$", "", mes)
+        if not re.fullmatch(r"20\d{4}", mes):
+            continue
+        meses[mes] = meses.get(mes, 0) + 1
+        nombre = texto(g(jn)) or ""
+        ruc = re.sub(r"\.0$", "", texto(g(jr)) or "") or nombre_cliente(nombre)
+        v = (numero(g(jh)) or 0) + (numero(g(jf)) or 0)
+        x = cli.setdefault(ruc, [nombre.strip(), 0.0, texto(g(ja)) or "", []])
+        x[1] += v
+        s_ = texto(g(je)) or ""
+        if s_ and s_ not in x[3]:
+            x[3].append(s_)
+    if not meses:
+        return None
+    m = max(meses, key=meses.get)
+    return {"mes": f"{m[:4]}-{m[4:]}", "clientes": {k: [v[0], round(v[1], 2), v[2], v[3]] for k, v in cli.items()}}

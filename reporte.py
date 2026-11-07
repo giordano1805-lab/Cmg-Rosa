@@ -1182,6 +1182,11 @@ def generar(m, hist=None):
                 print("LVTEA no disponible:", e, file=sys.stderr)
             hi.actualizar_ul(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_UL", "180")))
             extra["tipo_cliente"] = hi.resumen_tipo_cliente(dia)
+            try:                               # libres por cliente final (RUC): Osinergmin, con desfase
+                hi.actualizar_osinergmin(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_OSI", "240")))
+                extra["tipo_cliente"]["cambios_osi"] = hi.cambios_osinergmin(dia)
+            except Exception as e:
+                print("Osinergmin mercado libre no disponible:", e, file=sys.stderr)
         except Exception as e:
             print("Usuarios libres no disponible:", e, file=sys.stderr)
         extra["hidro"] = hi.resumen_hidro(h, dia)

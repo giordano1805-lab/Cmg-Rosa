@@ -27,6 +27,7 @@ F_REC = DATA / "recursos.csv"
 RECURSOS = ("pasada", "regulacion", "eolica", "solar")
 F_GER = DATA / "ger_centrales.csv"          # fecha, tipo (Solar/Eólica), central, mwh (IEOD)
 F_OC = DATA / "operacion_comercial.json"
+F_OSI = DATA / "osinergmin_mercado_libre.json"  # consumo mensual por cliente libre (Osinergmin, por RUC)
 F_PMAX = DATA / "pmax_centrales.json"      # MW máximo registrado por central (IEOD, despacho ejecutado)
 F_EMB = DATA / "embalses_semanal.json"
 F_VOL = DATA / "volumenes_diarios.csv"
@@ -168,6 +169,89 @@ def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
     DATA.mkdir(exist_ok=True)
     F_LVTEA.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
     return c
+
+
+def actualizar_osinergmin(dia: dt.date, presupuesto_s=240):
+    """Consumo mensual por cliente libre (RUC) del informe «Mercado Libre de Electricidad» de Osinergmin.
+    Se consulta el listado una vez al día; cada mes se descarga una vez (o de nuevo si se publica una versión actualizada)."""
+    try:
+        c = json.loads(F_OSI.read_text(encoding="utf-8"))
+    except Exception:
+        c = {}
+    c.setdefault("meses", {})
+    t0 = time.time()
+    if c.get("buscado") != dt.date.today().isoformat() or not c.get("listado"):
+        diag = {}
+        try:
+            lst = fc.osinergmin_ml_listado(diag)
+            c["listado"], c["diag"] = lst or c.get("listado") or [], diag
+        except Exception as e:
+            c["diag"] = {"error": str(e)[:200]}
+        c["buscado"] = dt.date.today().isoformat()
+    por_mes = {}
+    for x in c.get("listado") or []:
+        if x["mes"] not in por_mes or (x.get("id") or 0) > (por_mes[x["mes"]].get("id") or 0):
+            por_mes[x["mes"]] = x
+    desde = f"{dia.year - 1}-01"
+    for m, x in sorted(por_mes.items(), reverse=True):
+        prev = c["meses"].get(m) or {}
+        if m < desde or (prev.get("id") == x.get("id") and prev.get("clientes")) or time.time() - t0 > presupuesto_s:
+            continue
+        try:
+            r = fc.S.get(x["url"], timeout=240)
+            if not r.ok:
+                continue
+            d = fc.osinergmin_ml_clientes(r.content)
+            if d and d["clientes"]:
+                c["meses"][d["mes"]] = {"id": x.get("id"), "archivo": x["nombre"], "clientes": d["clientes"],
+                                        "total_mwh": round(sum(v[1] for v in d["clientes"].values()), 1)}
+        except Exception as e:
+            print("Osinergmin", m, e, file=sys.stderr)
+    DATA.mkdir(exist_ok=True)
+    F_OSI.write_text(json.dumps(c, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return c
+
+
+def cambios_osinergmin(dia: dt.date, n=10):
+    """Mayores cambios por cliente libre (RUC) según Osinergmin: último mes con datos en ambos años y acumulado del año."""
+    try:
+        c = json.loads(F_OSI.read_text(encoding="utf-8")).get("meses", {})
+    except Exception:
+        return None
+    a_, b_ = dia.year, dia.year - 1
+    ok = [m for m in range(1, 13) if f"{a_}-{m:02d}" in c and f"{b_}-{m:02d}" in c]
+    if not ok:
+        a_, b_ = a_ - 1, b_ - 1
+        ok = [m for m in range(1, 13) if f"{a_}-{m:02d}" in c and f"{b_}-{m:02d}" in c]
+    if not ok:
+        return None
+
+    def suma(ks):
+        out, nom = {}, {}
+        for k in ks:
+            for ruc, v in c[k]["clientes"].items():
+                out[ruc] = out.get(ruc, 0.0) + v[1]
+                nom[ruc] = v[0]
+        return out, nom
+
+    def top(ka, kb):
+        a, na = suma(ka)
+        b, nb = suma(kb)
+        nom = {**nb, **na}
+        dif = [{"cliente": fc.nombre_cliente(nom.get(r, r)), "ruc": r, "act": round(a.get(r, 0) / 1e3, 2),
+                "ant": round(b.get(r, 0) / 1e3, 2), "dif": round((a.get(r, 0) - b.get(r, 0)) / 1e3, 2),
+                "pct": round((a[r] / b[r] - 1) * 100, 1) if b.get(r, 0) > 0 and r in a else None} for r in set(a) | set(b)]
+        sube = sorted([x for x in dif if x["dif"] > 0], key=lambda x: -x["dif"])
+        baja = sorted([x for x in dif if x["dif"] < 0], key=lambda x: x["dif"])
+        ta, tb = sum(a.values()), sum(b.values())
+        return {"sube": sube[:n], "baja": baja[:n], "neto": round((ta - tb) / 1e3, 1), "n": len(dif),
+                "act_gwh": round(ta / 1e3, 1), "ant_gwh": round(tb / 1e3, 1), "pct": round((ta / tb - 1) * 100, 1) if tb else None,
+                "n_nuevos": sum(1 for x in dif if x["ant"] == 0 and x["act"] > 0),
+                "n_salen": sum(1 for x in dif if x["act"] == 0 and x["ant"] > 0), "excluidas": None}
+    um = max(ok)
+    return {"act": a_, "ant": b_, "mes": um, "meses": ok,
+            "libre": {"mes": top([f"{a_}-{um:02d}"], [f"{b_}-{um:02d}"]),
+                      "acum": top([f"{a_}-{m:02d}" for m in ok], [f"{b_}-{m:02d}" for m in ok])}}
 
 
 def resumen_tipo_cliente(dia: dt.date, dem=None):
