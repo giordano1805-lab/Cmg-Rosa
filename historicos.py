@@ -156,10 +156,11 @@ def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
                     c["volcado"] = ruta
                 except Exception:
                     pass
-            lib, reg, det = fc.lvtea_cuadro4(b, fc._nombre(ruta))
+            lib, reg, det, cli = fc.lvtea_cuadro4(b, fc._nombre(ruta))
             if lib or not prev.get("libre") or prev.get("parser") != fc.LVTEA_PARSER:
                 c["meses"][k] = {"libre": lib, "regulado": reg, "archivo": fc._nombre(ruta), "ruta": ruta,
-                                 "revision": fc._rev_lvtea(ruta), "parser": fc.LVTEA_PARSER, "detalle": det}
+                                 "revision": fc._rev_lvtea(ruta), "parser": fc.LVTEA_PARSER, "detalle": det,
+                                 "clientes": cli}
         except Exception as e:
             if not prev.get("libre"):
                 c["meses"][k] = {"libre": None, "regulado": None, "archivo": fc._nombre(ruta), "ruta": ruta,
@@ -194,7 +195,34 @@ def resumen_tipo_cliente(dia: dt.date, dem=None):
             acum["libre"][0] += la; acum["libre"][1] += lb; acum["regulado"][0] += ra; acum["regulado"][1] += rb
         meses.append(fila)
     ok = [x for x in meses if "libre" in x]
-    return {"act": dia.year, "ant": dia.year - 1, "meses": meses,
+    cambios = None
+    if ok:
+        def suma(ks, g):
+            out = {}
+            for k in ks:
+                for n, v in ((lv.get(k) or {}).get("clientes") or {}).get(g, {}).items():
+                    out[n] = out.get(n, 0.0) + v
+            return out
+
+        def top(a, b, n=10):
+            dif = [{"cliente": c, "act": round(a.get(c, 0) / 1e3, 2), "ant": round(b.get(c, 0) / 1e3, 2),
+                    "dif": round((a.get(c, 0) - b.get(c, 0)) / 1e3, 2),
+                    "pct": round((a[c] / b[c] - 1) * 100, 1) if b.get(c, 0) > 0 and c in a else None}
+                   for c in set(a) | set(b)]
+            sube = sorted([x for x in dif if x["dif"] > 0], key=lambda x: -x["dif"])
+            baja = sorted([x for x in dif if x["dif"] < 0], key=lambda x: x["dif"])
+            return {"sube": sube[:n], "baja": baja[:n], "neto": round((sum(a.values()) - sum(b.values())) / 1e3, 1),
+                    "n_nuevos": sum(1 for x in dif if x["ant"] == 0 and x["act"] > 0),
+                    "n_salen": sum(1 for x in dif if x["act"] == 0 and x["ant"] > 0), "n": len(dif)}
+        um = max(x["mes"] for x in ok)
+        ka = [f"{dia.year}-{x['mes']:02d}" for x in ok]
+        kb = [f"{dia.year - 1}-{x['mes']:02d}" for x in ok]
+        if all((lv.get(k) or {}).get("clientes") for k in ka + kb):
+            cambios = {"mes": um, "meses": [x["mes"] for x in ok]}
+            for g in ("libre", "regulado"):
+                cambios[g] = {"mes": top(suma([f"{dia.year}-{um:02d}"], g), suma([f"{dia.year - 1}-{um:02d}"], g)),
+                              "acum": top(suma(ka, g), suma(kb, g))}
+    return {"act": dia.year, "ant": dia.year - 1, "meses": meses, "cambios": cambios,
             "acum": {k: round((v[0] / v[1] - 1) * 100, 1) for k, v in acum.items() if v[1]} if ok else None,
             "meses_ok": [x["mes"] for x in ok], "dias_ul": sum(1 for v in u.values() if v is not None),
             "meses_lvtea": sorted(k for k, v in lv.items() if v.get("libre"))}

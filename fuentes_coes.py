@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07g"
+VERSION_FC = "2026-11-07h"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1528,7 +1528,7 @@ def _mes_de_ruta(ruta):
     return None
 
 
-LVTEA_PARSER = 2
+LVTEA_PARSER = 3
 
 
 def lvtea_cuadro4(b, nombre):
@@ -1557,7 +1557,9 @@ def lvtea_cuadro4(b, nombre):
                     break
             if i0 is None:
                 continue
-            tot = {}
+            cab = [norm(x) if texto(x) else "" for x in filas[i0]]
+            jcl = next((j for j, c in enumerate(cab) if c.startswith("CLIENTE")), None)
+            tot, cli = {}, {"libre": {}, "regulado": {}}
             for f in filas[i0 + 1:]:
                 if max(jt, je) >= len(f):
                     continue
@@ -1566,13 +1568,27 @@ def lvtea_cuadro4(b, nombre):
                 if not t or v is None:
                     continue
                 tot[t] = tot.get(t, 0.0) + v
+                g = "libre" if ("LIBRE" in t or "GRAN" in t) else "regulado" if "REGULAD" in t else None
+                if g and jcl is not None and jcl < len(f) and v:
+                    n = nombre_cliente(texto(f[jcl]) or "")
+                    if n:
+                        cli[g][n] = cli[g].get(n, 0.0) + v
             gu = sum(v for k, v in tot.items() if "GRAN" in k)
             lib = sum(v for k, v in tot.items() if "LIBRE" in k) + gu
             reg = sum(v for k, v in tot.items() if "REGULAD" in k)
             if lib and reg:
                 det = " · ".join(f"{k}: {v / 1e3:,.1f} GWh" for k, v in sorted(tot.items()))
-                return lib, reg, f"{nl} · hoja {h} · {det}"
-    return None, None, "no se halló el Cuadro 4 con TIPO DE USUARIO y ENERGÍA"
+                cli = {g: {n: round(v, 1) for n, v in d.items() if abs(v) >= 1} for g, d in cli.items()}
+                return lib, reg, f"{nl} · hoja {h} · {det}", cli
+    return None, None, "no se halló el Cuadro 4 con TIPO DE USUARIO y ENERGÍA", {}
+
+
+def nombre_cliente(n):
+    """Nombre de cliente uniforme entre meses: mayúsculas sin tildes, sin sufijos societarios ni puntuación."""
+    n = norm(n)
+    n = re.sub(r"[.,]", " ", n)
+    n = re.sub(r"\b(S\s?A\s?A|S\s?A\s?C|S\s?R\s?L|S\s?A|E\s?I\s?R\s?L|SUCURSAL DEL PERU|EN LIQUIDACION)\b", " ", n)
+    return re.sub(r"\s+", " ", n).strip()
 
 
 
