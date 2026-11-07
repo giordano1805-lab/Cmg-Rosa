@@ -213,6 +213,10 @@ def actualizar_osinergmin(dia: dt.date, presupuesto_s=240):
     return c
 
 
+# Reorganizaciones societarias (otro RUC, mismo cliente): nombre normalizado → nombre a usar
+ALIAS_CLIENTES = {"UNION ANDINA DE CEMENTOS": "UNACEM PERU"}
+
+
 def cambios_osinergmin(dia: dt.date, n=10):
     """Mayores cambios por cliente libre (RUC) según Osinergmin: último mes con datos en ambos años y acumulado del año."""
     try:
@@ -238,9 +242,16 @@ def cambios_osinergmin(dia: dt.date, n=10):
                 ruc_nom[v[0]] = v[1]
                 nom_ruc[fc.nombre_cliente(v[1])] = v[0]
 
+    alias_ruc = {}
+    for r_, n_ in ruc_nom.items():
+        nn = fc.nombre_cliente(n_)
+        if nn in ALIAS_CLIENTES or nn in ALIAS_CLIENTES.values():
+            alias_ruc[r_] = "A:" + ALIAS_CLIENTES.get(nn, nn)
+
     def clave(cod, v):
         r = v[0] or cod_ruc.get(cod) or nom_ruc.get(fc.nombre_cliente(v[1]))
-        return r or "N:" + fc.nombre_cliente(v[1])
+        r = r or "N:" + fc.nombre_cliente(v[1])
+        return alias_ruc.get(r, r)
 
     def suma(ks):
         out, nom = {}, {}
@@ -248,14 +259,14 @@ def cambios_osinergmin(dia: dt.date, n=10):
             for cod, v in c[k]["sum"].items():
                 r = clave(cod, v)
                 out[r] = out.get(r, 0.0) + v[2]
-                nom[r] = ruc_nom.get(r) or v[1]
+                nom[r] = r[2:] if r.startswith("A:") else (ruc_nom.get(r) or v[1])
         return out, nom
 
     def top(ka, kb):
         a, na = suma(ka)
         b, nb = suma(kb)
         nom = {**nb, **na}
-        dif = [{"cliente": fc.nombre_cliente(nom.get(r, r)), "ruc": r if not r.startswith("N:") else None, "act": round(a.get(r, 0) / 1e3, 2),
+        dif = [{"cliente": fc.nombre_cliente(nom.get(r, r)), "ruc": r if not r[:2] in ("N:", "A:") else None, "act": round(a.get(r, 0) / 1e3, 2),
                 "ant": round(b.get(r, 0) / 1e3, 2), "dif": round((a.get(r, 0) - b.get(r, 0)) / 1e3, 2),
                 "pct": round((a[r] / b[r] - 1) * 100, 1) if b.get(r, 0) > 0 and r in a else None} for r in set(a) | set(b)]
         sube = sorted([x for x in dif if x["dif"] > 0], key=lambda x: -x["dif"])

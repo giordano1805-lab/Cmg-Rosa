@@ -281,7 +281,7 @@ function camRows(X){const R=[...X.sube.slice(0,8),...X.baja.slice(0,8)],mx=Math.
   return `<div class="camr">${R.map(r=>{const w=Math.abs(r.dif)/mx*100,up=r.dif>0;
     return `<div class="cr" title="${esc(r.cliente)}: ${f1(r.act)} GWh vs ${f1(r.ant)} GWh"><span class="cn">${esc(nom(r.cliente))}</span>
       <span class="cb"><i class="n">${up?"":`<b style="width:${w}%"></b>`}</i><i class="p">${up?`<b style="width:${w}%"></b>`:""}</i></span>
-      <span class="cv ${up?"up":"dn"}">${up?"+":""}${f1(r.dif)}<small>${r.pct!=null&&r.pct<=300?` ${r.pct>0?"+":""}${f0(r.pct)}%`:r.ant===0||r.pct>300?" nuevo":r.act===0?" sin consumo":""}</small></span></div>`}).join("")}</div>`}
+      <span class="cv ${up?"up":"dn"}">${up?"+":""}${f1(r.dif)}<small>${r.pct!=null?(r.pct>999?" >+999%":` ${r.pct>0?"+":""}${f0(r.pct)}%`):r.ant===0?" nuevo":r.act===0?" sin consumo":""}</small></span></div>`}).join("")}</div>`}
 function tipoHTML(){const T=D.tipo_cliente;
   if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
   const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
