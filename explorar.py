@@ -7,7 +7,7 @@ from pathlib import Path
 
 import fuentes_coes as fc
 
-OUT = Path("data") / "explora14"
+OUT = Path("data") / "explora15"
 API = "https://www.osinergmin.gob.pe/PublicadorGRTBackEnd"
 S = fc.S
 
@@ -35,27 +35,29 @@ def main():
     res["ejemplo_nodo"] = nodos[:3]
     res["ejemplo_doc"] = docs[:2]
     txt = lambda x: json.dumps(x, ensure_ascii=False)
-    ml = [n for n in nodos if re.search(r"MERCADO LIBRE", fc.norm(txt(n)))]
-    res["nodos_mercado_libre"] = ml[:40]
-    ids = {str(n.get("id_identificador_nodo") or n.get("code") or n.get("id")) for n in ml}
-    # hijos (años) de la rama
-    hijos = [n for n in nodos if str(n.get("id_identificador_nodo_padre") or n.get("parent") or "") in ids]
-    res["hijos"] = hijos[:40]
-    ids |= {str(n.get("id_identificador_nodo") or n.get("id")) for n in hijos}
-    dml = [d for d in docs if str(d.get("id_identificador_nodo")) in ids]
-    res["docs_mercado_libre"] = sorted(dml, key=lambda d: str(d.get("fe_publicacion") or d.get("id_documento")), reverse=True)[:60]
-    ruta = {str(n.get("id_identificador_nodo")): n.get("de_ruta_de_repositorio") for n in nodos}
-    xls = [d for d in res["docs_mercado_libre"] if re.search(r"\.xls", str(d.get("de_nombre_fisico")), re.I)]
-    if xls:
-        d = xls[0]
-        url = (ruta.get(str(d.get("id_identificador_nodo"))) or "") + d["de_nombre_fisico"]
-        res["descarga"] = {"url": url}
+    base = [n for n in nodos if fc.norm(n.get("de_descripcion") or "") == "MERCADO LIBRE DE ELECTRICIDAD"]
+    res["bases"] = [(n["co_nodo"], n["id_identificador_nodo"]) for n in base]
+    cods = [n["co_nodo"] for n in base]
+    rama = [n for n in nodos if any(str(n.get("co_nodo") or "").startswith(c + ".") for c in cods)]
+    res["rama"] = [(n["co_nodo"], n["id_identificador_nodo"], n["de_descripcion"], n.get("de_ruta_de_repositorio")) for n in rama]
+    ids = {n["id_identificador_nodo"] for n in rama}
+    ruta = {n["id_identificador_nodo"]: n.get("de_ruta_de_repositorio") or "" for n in nodos}
+    desc = {n["id_identificador_nodo"]: n.get("de_descripcion") for n in nodos}
+    dml = [d for d in docs if d.get("id_identificador_nodo") in ids and d.get("in_estado") == "A"]
+    res["docs"] = [{"anio": desc.get(d["id_identificador_nodo"]), "nombre": d.get("de_nombre_logico"),
+                    "desc": d.get("de_descripcion_documento"), "fisico": d.get("de_nombre_fisico"), "orden": d.get("nu_orden"),
+                    "url": ruta.get(d["id_identificador_nodo"], "") + str(d.get("de_nombre_fisico"))} for d in dml]
+    x26 = [d for d in res["docs"] if str(d["anio"]) == "2026" and re.search(r"\.xls", str(d["fisico"]), re.I)]
+    x26.sort(key=lambda d: str(d["nombre"]))
+    if x26:
+        d = x26[-1]
+        res["descarga"] = {"url": d["url"], "doc": d}
         try:
-            b = S.get(url, timeout=180).content
+            b = S.get(d["url"], timeout=180).content
             res["descarga"]["bytes"] = len(b)
             hojas = fc.libro(b)
             res["descarga"]["hojas"] = {h: len(f) for h, f in hojas.items()}
-            fc.volcar_hojas(hojas, OUT / "xls", nombres=list(hojas)[:30], filas=70, cols=30)
+            fc.volcar_hojas(hojas, OUT / "xls", nombres=list(hojas)[:80], filas=60, cols=30)
         except Exception as e:
             res["descarga"]["error"] = str(e)[:300]
     (OUT / "resumen.json").write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
