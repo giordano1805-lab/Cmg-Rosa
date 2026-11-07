@@ -21,14 +21,14 @@
   "Hidro|Carhuaquero": {
    "tipo": "Hidro",
    "central": "Carhuaquero",
-   "mw": 92.2,
-   "fecha": "2026-10-30"
+   "mw": 92.4,
+   "fecha": "2026-11-06"
   },
   "Hidro|Canon Del Pato": {
    "tipo": "Hidro",
    "central": "Canon Del Pato",
-   "mw": 205.7,
-   "fecha": "2026-11-04"
+   "mw": 206.5,
+   "fecha": "2026-11-06"
   },
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
@@ -69,8 +69,8 @@
   "Hidro|Platanal": {
    "tipo": "Hidro",
    "central": "Platanal",
-   "mw": 187.1,
-   "fecha": "2026-10-31"
+   "mw": 195.6,
+   "fecha": "2026-11-06"
   },
   "Hidro|Chaglla": {
    "tipo": "Hidro",
@@ -183,8 +183,8 @@
   "Hidro|Pariac": {
    "tipo": "Hidro",
    "central": "Pariac",
-   "mw": 3.8,
-   "fecha": "2026-10-30"
+   "mw": 3.9,
+   "fecha": "2026-11-06"
   },
   "Hidro|Huinco": {
    "tipo": "Hidro",
@@ -387,14 +387,14 @@
   "Hidro|Manta I": {
    "tipo": "Hidro",
    "central": "Manta I",
-   "mw": 6.4,
-   "fecha": "2026-11-04"
+   "mw": 9.0,
+   "fecha": "2026-11-06"
   },
   "Solar|Coenergy": {
    "tipo": "Solar",
    "central": "Coenergy",
-   "mw": 0.4,
-   "fecha": "2026-11-04"
+   "mw": 0.7,
+   "fecha": "2026-11-06"
   },
   "Solar|Yarucaya": {
    "tipo": "Solar",
@@ -417,14 +417,14 @@
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
    "central": "Runatullo Ii",
-   "mw": 6.7,
-   "fecha": "2026-10-30"
+   "mw": 8.0,
+   "fecha": "2026-11-06"
   },
   "Hidro|Runatullo Iii": {
    "tipo": "Hidro",
    "central": "Runatullo Iii",
-   "mw": 9.4,
-   "fecha": "2026-11-04"
+   "mw": 14.2,
+   "fecha": "2026-11-06"
   },
   "Eólica|Talara": {
    "tipo": "Eólica",
@@ -441,8 +441,8 @@
   "Solar|Intipampa": {
    "tipo": "Solar",
    "central": "Intipampa",
-   "mw": 39.6,
-   "fecha": "2026-10-31"
+   "mw": 40.4,
+   "fecha": "2026-11-06"
   },
   "Eólica|Punta Lomitas": {
    "tipo": "Eólica",
@@ -459,8 +459,8 @@
   "Solar|Expansion Intipampa": {
    "tipo": "Solar",
    "central": "Expansion Intipampa",
-   "mw": 54.3,
-   "fecha": "2026-11-05"
+   "mw": 55.0,
+   "fecha": "2026-11-06"
   },
   "Hidro|8Agosto": {
    "tipo": "Hidro",
@@ -543,8 +543,8 @@
   "Solar|Clemesi": {
    "tipo": "Solar",
    "central": "Clemesi",
-   "mw": 113.2,
-   "fecha": "2026-11-01"
+   "mw": 113.8,
+   "fecha": "2026-11-06"
   },
   "Solar|Wayra Solar": {
    "tipo": "Solar",
@@ -567,8 +567,8 @@
   "Hidro|Chancay": {
    "tipo": "Hidro",
    "central": "Chancay",
-   "mw": 18.0,
-   "fecha": "2026-11-01"
+   "mw": 20.2,
+   "fecha": "2026-11-06"
   },
   "Hidro|Rucuy": {
    "tipo": "Hidro",
@@ -620,6 +620,7 @@
   "2026-11-02",
   "2026-11-03",
   "2026-11-04",
-  "2026-11-05"
+  "2026-11-05",
+  "2026-11-06"
  ]
 }
