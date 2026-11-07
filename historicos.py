@@ -106,21 +106,79 @@ def actualizar_ul(dia: dt.date, presupuesto_s=240):
     return u
 
 
+F_LVTEA = DATA / "lvtea_tipo_cliente.json"
+
+
+def actualizar_lvtea(dia: dt.date, presupuesto_s=240):
+    """Retiros mensuales de clientes libres y regulados del LVTEA del COES (archivo Resumen, hoja Cuadro 4).
+    La búsqueda de archivos se hace como máximo una vez al día; cada mes se descarga una sola vez."""
+    try:
+        c = json.loads(F_LVTEA.read_text(encoding="utf-8"))
+    except Exception:
+        c = {}
+    c.setdefault("meses", {})
+    t0 = time.time()
+    if c.get("buscado") != dia.isoformat():
+        diag = {}
+        c["archivos"] = fc.buscar_lvtea(max_s=min(150, presupuesto_s // 2), diag=diag)
+        c["diag"] = diag
+        c["buscado"] = dia.isoformat()
+    desde = f"{dia.year - 1}-01"
+    for ruta in sorted(c.get("archivos") or [], reverse=True):
+        ym = fc._mes_de_ruta(ruta)
+        if not ym:
+            continue
+        k = f"{ym[0]}-{ym[1]:02d}"
+        if k < desde or (c["meses"].get(k) or {}).get("libre") or time.time() - t0 > presupuesto_s:
+            continue
+        b = fc.bajar(ruta, timeout=240)
+        if not b:
+            continue
+        try:
+            if not c.get("volcado") and not ruta.lower().endswith(".zip"):   # extracto para verificar el formato
+                try:
+                    hojas = fc.libro(b)
+                    h4 = [h for h in hojas if "CUADRO" in fc.norm(h)] or list(hojas)
+                    fc.volcar_hojas(hojas, DATA / "explora9", nombres=h4[:12], filas=80, cols=40)
+                    c["volcado"] = ruta
+                except Exception:
+                    pass
+            lib, reg, det = fc.lvtea_cuadro4(b, fc._nombre(ruta))
+            c["meses"][k] = {"libre": lib, "regulado": reg, "archivo": fc._nombre(ruta), "detalle": det}
+        except Exception as e:
+            c["meses"][k] = {"libre": None, "regulado": None, "archivo": fc._nombre(ruta), "detalle": str(e)[:200]}
+    DATA.mkdir(exist_ok=True)
+    F_LVTEA.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
+    return c
+
+
 def resumen_tipo_cliente(dia: dt.date, dem=None):
-    """Crecimiento mensual y acumulado (vs año anterior) de la demanda de usuarios libres y regulados.
-    Regulado = demanda total del SEIN (Portal) − usuarios libres (IEOD). Solo meses con todos los días en ambos años."""
+    """Crecimiento mensual y acumulado (vs año anterior) de la energía de clientes libres y regulados.
+    Fuente principal: LVTEA mensual del COES (Resumen, Cuadro 4). Meses aún sin LVTEA (p. ej. el mes en curso):
+    IEOD, usuarios libres (DEMANDA_UL) y regulado = demanda total − libres. Solo meses completos en ambos años."""
     u, dem = leer_ul(), dem or leer_demanda()
+    try:
+        lv = json.loads(F_LVTEA.read_text(encoding="utf-8")).get("meses", {})
+    except Exception:
+        lv = {}
     meses, acum = [], {"libre": [0.0, 0.0], "regulado": [0.0, 0.0]}
     for m_ in range(1, dia.month + 1):
         n = dia.day if m_ == dia.month else calendar.monthrange(dia.year, m_)[1]
-        da = [dt.date(dia.year, m_, k) for k in range(1, n + 1)]
-        db = [_un_anio_antes(d) for d in da]
-        okd = lambda ds: all(u.get(d) is not None and d in dem for d in ds)
-        fila = {"mes": m_, "parcial": m_ == dia.month, "dias": n,
-                "cobertura": round(sum(1 for d in da + db if u.get(d) is not None) / (2 * n) * 100)}
-        if okd(da) and okd(db):
-            la, lb = sum(u[d] for d in da), sum(u[d] for d in db)
-            ra, rb = sum(dem[d]["mwh"] for d in da) - la, sum(dem[d]["mwh"] for d in db) - lb
+        fila = {"mes": m_, "parcial": m_ == dia.month, "dias": n}
+        ka, kb = f"{dia.year}-{m_:02d}", f"{dia.year - 1}-{m_:02d}"
+        la = lb = ra = rb = None
+        if not fila["parcial"] and (lv.get(ka) or {}).get("libre") and (lv.get(kb) or {}).get("libre"):
+            la, ra, lb, rb = lv[ka]["libre"], lv[ka]["regulado"], lv[kb]["libre"], lv[kb]["regulado"]
+            fila["fuente"] = "LVTEA"
+        else:
+            da = [dt.date(dia.year, m_, k) for k in range(1, n + 1)]
+            db = [_un_anio_antes(d) for d in da]
+            okd = lambda ds: all(u.get(d) is not None and d in dem for d in ds)
+            if okd(da) and okd(db):
+                la, lb = sum(u[d] for d in da), sum(u[d] for d in db)
+                ra, rb = sum(dem[d]["mwh"] for d in da) - la, sum(dem[d]["mwh"] for d in db) - lb
+                fila["fuente"] = "IEOD"
+        if la and lb and ra and rb:
             fila.update({"libre": round((la / lb - 1) * 100, 1), "regulado": round((ra / rb - 1) * 100, 1),
                          "libre_gwh": round(la / 1e3, 1), "regulado_gwh": round(ra / 1e3, 1), "pct_libre": round(la / (la + ra) * 100, 1)})
             acum["libre"][0] += la; acum["libre"][1] += lb; acum["regulado"][0] += ra; acum["regulado"][1] += rb
@@ -128,8 +186,11 @@ def resumen_tipo_cliente(dia: dt.date, dem=None):
     ok = [x for x in meses if "libre" in x]
     return {"act": dia.year, "ant": dia.year - 1, "meses": meses,
             "acum": {k: round((v[0] / v[1] - 1) * 100, 1) for k, v in acum.items() if v[1]} if ok else None,
-            "meses_ok": [x["mes"] for x in ok], "dias_ul": sum(1 for v in u.values() if v is not None)}
+            "meses_ok": [x["mes"] for x in ok], "dias_ul": sum(1 for v in u.values() if v is not None),
+            "meses_lvtea": sorted(k for k, v in lv.items() if v.get("libre"))}
 
+
+def leer_demanda():
     if not F_DEM.exists():
         return {}
     with F_DEM.open(encoding="utf-8") as f:

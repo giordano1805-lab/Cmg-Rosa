@@ -1326,3 +1326,81 @@ def demanda_ul_mwh(hojas):
                 if vals:
                     return round(sum(vals), 1), f"columna {texto(v)} ({len(vals)} filas)"
     return None, f"formato no reconocido ({len(serie)} filas con hora)"
+
+
+# --------------------------------------------------------------------------- LVTEA mensual (retiros libres/regulados)
+_RX_LVTEA = r"LVTEA|VALORIZACI|TRANSFERENCIA|LIQUIDACI"
+
+
+def buscar_lvtea(max_s=150, diag=None):
+    """Carpetas/archivos del COES con la Liquidación/Valorización mensual de Transferencias de Energía Activa (LVTEA).
+    Recorre el árbol del navegador del COES desde la raíz siguiendo solo carpetas con nombres afines.
+    Devuelve [rutas de archivos 'Resumen' (xlsx/xlsm/zip)]."""
+    import time as _t
+    t0, vistos, hallados = _t.time(), set(), []
+    cola = [(r, 0) for r in ("", "Post Operación/", "Mercado Mayorista/", "Transferencias/")]
+    while cola and _t.time() - t0 < max_s:
+        ruta, prof = cola.pop(0)
+        if ruta in vistos:
+            continue
+        vistos.add(ruta)
+        try:
+            items = list(dict.fromkeys(listar(ruta)))
+        except Exception:
+            continue
+        if diag is not None and prof <= 1:
+            diag.setdefault("listados", {})[ruta or "/"] = [_nombre(i) for i in items][:60]
+        for i in items:
+            n = norm(_nombre(i))
+            if i.endswith("/"):
+                if prof < 5 and (re.search(_RX_LVTEA, n) or re.search(r"\b20(2[5-9])\b", n) or
+                                 re.search(_RX_LVTEA, norm(ruta)) and re.search(r"\d", n)):
+                    cola.append((i, prof + 1))
+            elif re.search(r"RESUMEN", n) and re.search(r"\.(XLSX|XLSM|XLS|ZIP)$", n):
+                hallados.append(i)
+    if diag is not None:
+        diag["carpetas_revisadas"] = len(vistos)
+    return hallados
+
+
+def _mes_de_ruta(ruta):
+    MES = {"ENERO": 1, "FEBRERO": 2, "MARZO": 3, "ABRIL": 4, "MAYO": 5, "JUNIO": 6, "JULIO": 7, "AGOSTO": 8,
+           "SETIEMBRE": 9, "SEPTIEMBRE": 9, "OCTUBRE": 10, "NOVIEMBRE": 11, "DICIEMBRE": 12}
+    n = norm(ruta)
+    y = re.findall(r"\b(20\d\d)\b", n)
+    m = next((v for k, v in MES.items() if k in n), None)
+    if m is None:
+        mm = re.search(r"\b(20\d\d)[_\-. ]?(0[1-9]|1[0-2])\b", n) or re.search(r"\b(0[1-9]|1[0-2])[_\-. ](20\d\d)\b", n)
+        if mm:
+            a, b = mm.groups()
+            return (int(a), int(b)) if len(a) == 4 else (int(b), int(a))
+    return (int(y[-1]), m) if y and m else None
+
+
+def lvtea_cuadro4(b, nombre):
+    """(libre MWh, regulado MWh, detalle) desde la hoja 'Cuadro 4' del archivo Resumen del LVTEA."""
+    libros = []
+    if nombre.lower().endswith(".zip"):
+        with zipfile.ZipFile(io.BytesIO(b)) as z:
+            for n in z.namelist():
+                if re.search(r"RESUMEN", norm(n)) and n.lower().endswith((".xlsx", ".xlsm", ".xls")):
+                    libros.append((n, libro(z.read(n))))
+    else:
+        libros.append((nombre, libro(b)))
+    for nl, hojas in libros:
+        hs = [h for h in hojas if re.search(r"CUADRO\s*N?[°º.]?\s*0?4\b", norm(h))] or list(hojas)
+        for h in hs:
+            filas = hojas[h]
+            lib = reg = None
+            for f in filas:
+                etq = " ".join(norm(v) for v in f[:4] if texto(v))
+                nums = [numero(v) for v in f if numero(v) is not None and abs(numero(v)) > 1]
+                if not nums:
+                    continue
+                if lib is None and re.search(r"\bLIBRES?\b", etq):
+                    lib = nums[0]
+                elif reg is None and re.search(r"\bREGULAD", etq):
+                    reg = nums[0]
+            if lib and reg:
+                return lib, reg, f"{nl} · hoja {h}"
+    return None, None, "no se hallaron filas Libre/Regulado en el Cuadro 4"

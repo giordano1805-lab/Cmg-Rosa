@@ -1174,7 +1174,11 @@ def generar(m, hist=None):
     try:
         h, pend = hi.actualizar_hidro(dia, hojas if dia_ieod == dia else None)
         try:                                   # usuarios libres (IEOD) para el crecimiento libre/regulado
-            hi.actualizar_ul(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_UL", "240")))
+            try:
+                hi.actualizar_lvtea(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_LVTEA", "240")))
+            except Exception as e:
+                print("LVTEA no disponible:", e, file=sys.stderr)
+            hi.actualizar_ul(dia, presupuesto_s=int(os.getenv("PRESUPUESTO_UL", "180")))
             extra["tipo_cliente"] = hi.resumen_tipo_cliente(dia)
         except Exception as e:
             print("Usuarios libres no disponible:", e, file=sys.stderr)
