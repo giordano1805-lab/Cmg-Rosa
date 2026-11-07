@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-VERSION_FC = "2026-11-07d"
+VERSION_FC = "2026-11-07e"
 LIMA = ZoneInfo("America/Lima")
 RAIZ = "https://www.coes.org.pe/Portal/"
 MESES = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SETIEMBRE",
@@ -1682,6 +1682,76 @@ def operacion_comercial_coes(max_s=120, diag=None, volcar=None):
                 out.append({"archivo": _nombre(i), "ruta": i, "fecha": _fecha_en_texto(i)})
     d["carpetas_revisadas"] = len(vistos)
     return out
+
+
+def _fecha_celda(v):
+    if isinstance(v, dt.datetime):
+        return v.date()
+    if isinstance(v, dt.date):
+        return v
+    if isinstance(v, (int, float)) and 30000 < v < 60000:          # fecha serial de Excel
+        return dt.date(1899, 12, 30) + dt.timedelta(days=int(v))
+    f = _fecha_en_texto(texto(v) or "")
+    return dt.date.fromisoformat(f) if f else None
+
+
+def oc_excel(hojas):
+    """Registros de la lista del COES «OC de centrales y unidades de generación»:
+    [{'central', 'unidad', 'empresa', 'tipo', 'fecha' (ISO), 'mw'}]. Detecta la fila de títulos por palabras clave."""
+    out = []
+    for h, filas in hojas.items():
+        i0 = None
+        for i, f in enumerate(filas[:40]):
+            cab = [norm(x) if texto(x) else "" for x in f]
+            if any("FECHA" in c for c in cab) and any(re.search(r"CENTRAL|UNIDAD", c) for c in cab):
+                i0 = i
+                break
+        if i0 is None:
+            continue
+        cab = [norm(x) if texto(x) else "" for x in filas[i0]]
+        if i0 + 1 < len(filas):                          # títulos en dos filas (p. ej. «POTENCIA» / «(MW)»)
+            sub = [norm(x) if texto(x) else "" for x in filas[i0 + 1]]
+            cab = [(a + " " + b).strip() for a, b in zip(cab + [""] * len(sub), sub + [""] * len(cab))]
+
+        def col(rx, excl=None):
+            return next((j for j, c in enumerate(cab) if re.search(rx, c) and not (excl and re.search(excl, c))), None)
+        jc = col(r"CENTRAL")
+        ju = col(r"UNIDAD", r"CENTRAL")
+        je = col(r"EMPRESA|TITULAR|AGENTE")
+        jt = col(r"TIPO|TECNOLOG|RECURSO|FUENTE")
+        jf = col(r"FECHA.*(OPERACION|OC|INICIO|COMERCIAL)") or col(r"FECHA")
+        jm = col(r"POTENCIA.*EFECTIVA") or col(r"POTENCIA.*INSTALADA") or col(r"POTENCIA|\bMW\b|CAPACIDAD")
+        if jf is None or (jc is None and ju is None):
+            continue
+        for f in filas[i0 + 1:]:
+            g = lambda j: f[j] if j is not None and j < len(f) else None
+            fe = _fecha_celda(g(jf))
+            nom_c, nom_u = texto(g(jc)) or "", texto(g(ju)) or ""
+            if not fe or not (nom_c or nom_u):
+                continue
+            out.append({"central": nom_c, "unidad": nom_u, "empresa": texto(g(je)) or "", "tipo": texto(g(jt)) or "",
+                        "fecha": fe.isoformat(), "mw": numero(g(jm)) if jm is not None else None, "hoja": h})
+    return out
+
+
+def oc_de_central(central, registros, desde=None):
+    """Registros OC de una central (por nombre de central o de unidad): fecha más reciente y MW sumados de esas unidades."""
+    k = _clave_unidad(clave_central(central))
+    exactas = [r for r in registros if k and k in (_clave_unidad(clave_central(r["central"] or "")),
+                                                   _clave_unidad(clave_central(r["unidad"] or "")))]
+    hits = exactas or [r for r in registros if (r["central"] and misma_central(central, r["central"])) or
+                       (r["unidad"] and misma_central(central, r["unidad"]))]
+    if not exactas and len({_clave_unidad(clave_central(r["central"] or r["unidad"])) for r in hits}) > 1:
+        return None                                   # coincidencia ambigua (p. ej. «Sunny» vs «Sunny Expansión»)
+    if desde:
+        hits = [r for r in hits if r["fecha"] >= desde] or hits
+    if not hits:
+        return None
+    ult = max(r["fecha"] for r in hits)
+    recientes = [r for r in hits if r["fecha"] >= (dt.date.fromisoformat(ult) - dt.timedelta(days=400)).isoformat()]
+    mw = sum(r["mw"] or 0 for r in recientes) or None
+    return {"fecha": ult, "primera": min(r["fecha"] for r in recientes), "mw": round(mw, 1) if mw else None,
+            "unidades": len(recientes), "archivo": "Lista OC COES"}
 
 
 def _fecha_en_texto(t):

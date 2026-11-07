@@ -648,19 +648,34 @@ def _agregar_centrales(c, fechas):
 
 
 def cargar_oc(hoy: dt.date, max_s=120):
-    """Listado de publicaciones de operación comercial del COES (se refresca como máximo una vez por semana)."""
+    """Lista del COES de unidades/centrales con conformidad de operación comercial (Excel «OC de centrales y unidades
+    de generación»), leída como registros con fecha y MW. Se refresca como máximo una vez por semana."""
     try:
         c = json.loads(F_OC.read_text(encoding="utf-8"))
     except Exception:
         c = {}
-    viejo = "bases" not in (c.get("diag") or {}) or not any("OPERACI" in fc.norm(x.get("ruta", "")) for x in c.get("lista") or [])
-    if not c.get("fecha") or (hoy - dt.date.fromisoformat(c["fecha"])).days >= 7 or not c.get("lista") or viejo:
+    viejo = c.get("metodo") != fc.VERSION_FC or not c.get("registros")
+    if not c.get("fecha") or (hoy - dt.date.fromisoformat(c["fecha"])).days >= 7 or viejo:
         diag = {}
         lista = fc.operacion_comercial_coes(max_s=max_s, diag=diag, volcar=DATA / "explora10")
-        c = {"fecha": hoy.isoformat(), "lista": lista or c.get("lista") or [], "diag": diag}
+        regs = []
+        for x in lista:
+            if "OPERACI" in fc.norm(x["ruta"]) and x["archivo"].lower().endswith((".xlsx", ".xls", ".xlsm")):
+                b = fc.bajar(x["ruta"], timeout=240)
+                if not b:
+                    continue
+                try:
+                    hojas = fc.libro(b)
+                    fc.volcar_hojas(hojas, DATA / "explora10" / "oc_xlsx", nombres=list(hojas)[:4], filas=60, cols=30)
+                    regs += fc.oc_excel(hojas)
+                    diag["excel"] = {"archivo": x["archivo"], "hojas": list(hojas)[:10], "registros": len(regs)}
+                except Exception as e:
+                    diag["excel_error"] = str(e)[:200]
+        c = {"fecha": hoy.isoformat(), "metodo": fc.VERSION_FC, "lista": lista or c.get("lista") or [],
+             "registros": regs or c.get("registros") or [], "diag": diag}
         DATA.mkdir(exist_ok=True)
         F_OC.write_text(json.dumps(c, ensure_ascii=False, indent=1), encoding="utf-8")
-    return c.get("lista") or []
+    return c.get("registros") or []
 
 
 def cambios_centrales(anio: int, mes: int, hasta_dia: int, oc=None, umbral=0.01):
@@ -687,11 +702,13 @@ def cambios_centrales(anio: int, mes: int, hasta_dia: int, oc=None, umbral=0.01)
                 x["mw_max"] = p["mw"]
             x["mw_medio"] = round(x["mwh"] / (24 * n), 1)
         for x in nuevas + sin:
-            hit = fc.buscar_oc(x["central"], oc or [])
+            hit = fc.oc_de_central(x["central"], oc or [], desde=f"{anio - 2}-01-01")
             if hit:
-                x["oc"] = {"fecha": hit.get("fecha"), "archivo": hit["archivo"]}
+                x["oc"] = hit
+                if x in nuevas and hit.get("mw"):
+                    x["mw_oc"] = hit["mw"]
         out[clave] = {"nuevas": nuevas, "sin_gen": sin, "sin_gen_ant": paradas, "dias": n,
-                      "mw_nuevas": round(sum(x.get("mw_max") or 0 for x in nuevas), 1),
+                      "mw_nuevas": round(sum(x.get("mw_oc") or x.get("mw_max") or 0 for x in nuevas), 1),
                       "desde": pares[0][0].isoformat(), "hasta": max(d for d, _ in pares).isoformat()}
 
     vistas_ant = {"pasada": set(), "regulacion": set(), "eolica": set(), "solar": set()}

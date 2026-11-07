@@ -260,10 +260,10 @@ function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c
   if(!c)return `<div class="note">Comparación por central: se arma con los días que tengan datos en ambos años.</div>`;
   const M=`${MESC[H.mes-1]} ${H.ant}`,fd=f=>f.split("-").reverse().join("/");
   const oc=x=>x.oc?`Operación comercial COES${x.oc.fecha?` ${fd(x.oc.fecha)}`:""}`:"";
-  const mw=x=>x.mw_max!=null?x.mw_max:null,tot=c.nuevas.reduce((a,x)=>a+(mw(x)||0),0);
+  const mw=x=>x.mw_oc??x.mw_max??null,tot=c.nuevas.reduce((a,x)=>a+(mw(x)||0),0);
   const nv=c.nuevas.length?`<div class="nuevas"><div class="nh"><span class="tag">NUEVAS</span><b>${c.nuevas.length} central${c.nuevas.length>1?"es":""}${tot?` · ${f0(tot)} MW`:""}</b><small>sin operación en ${M}</small></div>
-    <ul>${c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b><span class="mw">${mw(x)!=null?`${f0(mw(x))} MW máx.`:`${f1(x.mw_medio)} MW medio`}</span><small>${f0(x.mwh)} MWh en ${c.dias} días${mw(x)!=null?` · ${f1(x.mw_medio)} MW medio`:""}${oc(x)?` · ${oc(x)}`:""}</small></li>`).join("")}</ul>
-    <small class="nf">MW máx.: mayor potencia registrada en el despacho ejecutado del IEOD (referencia de capacidad).</small></div>`:"";
+    <ul>${c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b><span class="mw">${x.mw_oc!=null?`${f0(x.mw_oc)} MW`:mw(x)!=null?`${f0(mw(x))} MW máx.`:`${f1(x.mw_medio)} MW medio`}</span><small>${f0(x.mwh)} MWh en ${c.dias} días · ${f1(x.mw_medio)} MW medio${x.mw_oc!=null&&x.mw_max!=null?` · ${f0(x.mw_max)} MW máx. registrado`:""}${oc(x)?` · ${oc(x)}`:" · sin registro en la lista OC del COES"}</small></li>`).join("")}</ul>
+    <small class="nf">MW: potencia de la lista de operación comercial del COES; si no figura, mayor potencia registrada en el despacho ejecutado del IEOD (MW máx.).</small></div>`:"";
   const o=[...(c.sin_gen_ant||[]).map(x=>`<li><b>${esc(romanos(x.central))}</b>: genera ${f0(x.mwh)} MWh; no generó en esos días de ${M} (ya operaba: parada o mantenimiento)</li>`),
            ...c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${M}; sin generación este período${oc(x)?` · ${oc(x)}`:""}</li>`)];
   return nv||o.length?`${nv}${o.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${o.join("")}</ul>`:""}`
