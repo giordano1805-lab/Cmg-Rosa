@@ -8,10 +8,11 @@ from urllib.parse import urljoin, quote
 
 import fuentes_coes as fc
 
-OUT = Path("data") / "explora12"
+OUT = Path("data") / "explora13"
 S = fc.S
 CARPETA = "Publicacionesgrt/INFORMES MENSUALES/Mercado Libre de Electricidad/2026"
-PAGINAS = ["https://www.osinergmin.gob.pe/VisorGRT/"]
+PAGINAS = ["https://www.osinergmin.gob.pe/VisorGRT/assets/configs/config.json",
+           "https://www.osinergmin.gob.pe/VisorGRT/5.952881854784b5aeeca1.js"]
 
 
 def guardar(nombre, texto):
