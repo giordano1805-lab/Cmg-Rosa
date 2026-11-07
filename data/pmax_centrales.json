@@ -1,0 +1,625 @@
+{
+ "centrales": {
+  "Hidro|San Gaban Iii": {
+   "tipo": "Hidro",
+   "central": "San Gaban Iii",
+   "mw": 206.2,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Mantaro": {
+   "tipo": "Hidro",
+   "central": "Mantaro",
+   "mw": 616.0,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Restitucion": {
+   "tipo": "Hidro",
+   "central": "Restitucion",
+   "mw": 211.0,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Carhuaquero": {
+   "tipo": "Hidro",
+   "central": "Carhuaquero",
+   "mw": 92.2,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Canon Del Pato": {
+   "tipo": "Hidro",
+   "central": "Canon Del Pato",
+   "mw": 205.7,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Cerro Del Aguila": {
+   "tipo": "Hidro",
+   "central": "Cerro Del Aguila",
+   "mw": 367.7,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Cerrodelaguila": {
+   "tipo": "Hidro",
+   "central": "Cerrodelaguila",
+   "mw": 5.7,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Machupicchu": {
+   "tipo": "Hidro",
+   "central": "Machupicchu",
+   "mw": 158.0,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Aricota 1": {
+   "tipo": "Hidro",
+   "central": "Aricota 1",
+   "mw": 12.2,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Aricota 2": {
+   "tipo": "Hidro",
+   "central": "Aricota 2",
+   "mw": 5.4,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|San Gaban Ii": {
+   "tipo": "Hidro",
+   "central": "San Gaban Ii",
+   "mw": 110.4,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Platanal": {
+   "tipo": "Hidro",
+   "central": "Platanal",
+   "mw": 187.1,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Chaglla": {
+   "tipo": "Hidro",
+   "central": "Chaglla",
+   "mw": 458.5,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|La Virgen": {
+   "tipo": "Hidro",
+   "central": "La Virgen",
+   "mw": 53.9,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Chimay": {
+   "tipo": "Hidro",
+   "central": "Chimay",
+   "mw": 150.9,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Yanango": {
+   "tipo": "Hidro",
+   "central": "Yanango",
+   "mw": 27.6,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Huanchor": {
+   "tipo": "Hidro",
+   "central": "Huanchor",
+   "mw": 17.4,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Maranon": {
+   "tipo": "Hidro",
+   "central": "Maranon",
+   "mw": 17.4,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Sta Teresa": {
+   "tipo": "Hidro",
+   "central": "Sta Teresa",
+   "mw": 86.8,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Yaupi": {
+   "tipo": "Hidro",
+   "central": "Yaupi",
+   "mw": 109.1,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Malpaso": {
+   "tipo": "Hidro",
+   "central": "Malpaso",
+   "mw": 46.8,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Cahua": {
+   "tipo": "Hidro",
+   "central": "Cahua",
+   "mw": 42.2,
+   "fecha": "2026-11-02"
+  },
+  "Hidro|Gallito Ciego": {
+   "tipo": "Hidro",
+   "central": "Gallito Ciego",
+   "mw": 33.4,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Cheves": {
+   "tipo": "Hidro",
+   "central": "Cheves",
+   "mw": 171.7,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Charcani I,Ii,Iii": {
+   "tipo": "Hidro",
+   "central": "Charcani I,Ii,Iii",
+   "mw": 7.0,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Charcani V": {
+   "tipo": "Hidro",
+   "central": "Charcani V",
+   "mw": 142.0,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Huanza": {
+   "tipo": "Hidro",
+   "central": "Huanza",
+   "mw": 94.8,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Yuncan": {
+   "tipo": "Hidro",
+   "central": "Yuncan",
+   "mw": 91.1,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Quitaracsa": {
+   "tipo": "Hidro",
+   "central": "Quitaracsa",
+   "mw": 52.6,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Arcata": {
+   "tipo": "Hidro",
+   "central": "Arcata",
+   "mw": 1.8,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Pariac": {
+   "tipo": "Hidro",
+   "central": "Pariac",
+   "mw": 3.8,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Huinco": {
+   "tipo": "Hidro",
+   "central": "Huinco",
+   "mw": 267.2,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Matucana": {
+   "tipo": "Hidro",
+   "central": "Matucana",
+   "mw": 99.5,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Moyopampa": {
+   "tipo": "Hidro",
+   "central": "Moyopampa",
+   "mw": 68.6,
+   "fecha": "2026-11-03"
+  },
+  "Hidro|Callahuanca": {
+   "tipo": "Hidro",
+   "central": "Callahuanca",
+   "mw": 75.0,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Huampani": {
+   "tipo": "Hidro",
+   "central": "Huampani",
+   "mw": 31.0,
+   "fecha": "2026-11-03"
+  },
+  "Hidro|Oroya": {
+   "tipo": "Hidro",
+   "central": "Oroya",
+   "mw": 7.2,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Pachachaca": {
+   "tipo": "Hidro",
+   "central": "Pachachaca",
+   "mw": 4.1,
+   "fecha": "2026-11-02"
+  },
+  "Eólica|San Juan": {
+   "tipo": "Eólica",
+   "central": "San Juan",
+   "mw": 127.1,
+   "fecha": "2026-11-03"
+  },
+  "Solar|Matarani": {
+   "tipo": "Solar",
+   "central": "Matarani",
+   "mw": 81.1,
+   "fecha": "2026-11-05"
+  },
+  "Eólica|Duna": {
+   "tipo": "Eólica",
+   "central": "Duna",
+   "mw": 15.3,
+   "fecha": "2026-11-04"
+  },
+  "Solar|Carhuaquero (Cs)": {
+   "tipo": "Solar",
+   "central": "Carhuaquero (Cs)",
+   "mw": 0.5,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Anashironi": {
+   "tipo": "Hidro",
+   "central": "Anashironi",
+   "mw": 21.3,
+   "fecha": "2026-11-03"
+  },
+  "Hidro|Carhuaquero4": {
+   "tipo": "Hidro",
+   "central": "Carhuaquero4",
+   "mw": 10.1,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Cana Brava": {
+   "tipo": "Hidro",
+   "central": "Cana Brava",
+   "mw": 5.7,
+   "fecha": "2026-11-05"
+  },
+  "Solar|Sunny": {
+   "tipo": "Solar",
+   "central": "Sunny",
+   "mw": 222.1,
+   "fecha": "2026-11-01"
+  },
+  "Solar|Sunny Expansion": {
+   "tipo": "Solar",
+   "central": "Sunny Expansion",
+   "mw": 112.0,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Tupuri": {
+   "tipo": "Hidro",
+   "central": "Tupuri",
+   "mw": 1.6,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Roncador": {
+   "tipo": "Hidro",
+   "central": "Roncador",
+   "mw": 3.1,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Canchayllo": {
+   "tipo": "Hidro",
+   "central": "Canchayllo",
+   "mw": 4.0,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Renovandesh1": {
+   "tipo": "Hidro",
+   "central": "Renovandesh1",
+   "mw": 21.1,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Potrero": {
+   "tipo": "Hidro",
+   "central": "Potrero",
+   "mw": 13.2,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Pizarras": {
+   "tipo": "Hidro",
+   "central": "Pizarras",
+   "mw": 19.2,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Nimperial": {
+   "tipo": "Hidro",
+   "central": "Nimperial",
+   "mw": 3.4,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Yarucaya": {
+   "tipo": "Hidro",
+   "central": "Yarucaya",
+   "mw": 17.4,
+   "fecha": "2026-11-02"
+  },
+  "Solar|Moquegua Solar": {
+   "tipo": "Solar",
+   "central": "Moquegua Solar",
+   "mw": 15.6,
+   "fecha": "2026-11-04"
+  },
+  "Solar|Panamericana Solar": {
+   "tipo": "Solar",
+   "central": "Panamericana Solar",
+   "mw": 20.7,
+   "fecha": "2026-11-05"
+  },
+  "Eólica|Marcona": {
+   "tipo": "Eólica",
+   "central": "Marcona",
+   "mw": 31.9,
+   "fecha": "2026-11-04"
+  },
+  "Eólica|3 Hermanas": {
+   "tipo": "Eólica",
+   "central": "3 Hermanas",
+   "mw": 82.7,
+   "fecha": "2026-11-04"
+  },
+  "Solar|Tacna Solar": {
+   "tipo": "Solar",
+   "central": "Tacna Solar",
+   "mw": 19.8,
+   "fecha": "2026-11-02"
+  },
+  "Hidro|Yanapampa": {
+   "tipo": "Hidro",
+   "central": "Yanapampa",
+   "mw": 3.5,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Carhuac": {
+   "tipo": "Hidro",
+   "central": "Carhuac",
+   "mw": 20.1,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Huallin": {
+   "tipo": "Hidro",
+   "central": "Huallin",
+   "mw": 3.2,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Purmacana": {
+   "tipo": "Hidro",
+   "central": "Purmacana",
+   "mw": 0.3,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Manta I": {
+   "tipo": "Hidro",
+   "central": "Manta I",
+   "mw": 6.4,
+   "fecha": "2026-11-04"
+  },
+  "Solar|Coenergy": {
+   "tipo": "Solar",
+   "central": "Coenergy",
+   "mw": 0.4,
+   "fecha": "2026-11-04"
+  },
+  "Solar|Yarucaya": {
+   "tipo": "Solar",
+   "central": "Yarucaya",
+   "mw": 1.3,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Huasahuasi": {
+   "tipo": "Hidro",
+   "central": "Huasahuasi",
+   "mw": 8.4,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Stacruz 1 2": {
+   "tipo": "Hidro",
+   "central": "Stacruz 1 2",
+   "mw": 10.3,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Runatullo Ii": {
+   "tipo": "Hidro",
+   "central": "Runatullo Ii",
+   "mw": 6.7,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Runatullo Iii": {
+   "tipo": "Hidro",
+   "central": "Runatullo Iii",
+   "mw": 9.4,
+   "fecha": "2026-11-04"
+  },
+  "Eólica|Talara": {
+   "tipo": "Eólica",
+   "central": "Talara",
+   "mw": 30.3,
+   "fecha": "2026-11-03"
+  },
+  "Eólica|Cupisnique": {
+   "tipo": "Eólica",
+   "central": "Cupisnique",
+   "mw": 81.8,
+   "fecha": "2026-11-03"
+  },
+  "Solar|Intipampa": {
+   "tipo": "Solar",
+   "central": "Intipampa",
+   "mw": 39.6,
+   "fecha": "2026-10-31"
+  },
+  "Eólica|Punta Lomitas": {
+   "tipo": "Eólica",
+   "central": "Punta Lomitas",
+   "mw": 218.7,
+   "fecha": "2026-11-03"
+  },
+  "Eólica|Punta Lomitas Expansion": {
+   "tipo": "Eólica",
+   "central": "Punta Lomitas Expansion",
+   "mw": 34.8,
+   "fecha": "2026-11-04"
+  },
+  "Solar|Expansion Intipampa": {
+   "tipo": "Solar",
+   "central": "Expansion Intipampa",
+   "mw": 54.3,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|8Agosto": {
+   "tipo": "Hidro",
+   "central": "8Agosto",
+   "mw": 21.0,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|El Carmen": {
+   "tipo": "Hidro",
+   "central": "El Carmen",
+   "mw": 7.9,
+   "fecha": "2026-11-03"
+  },
+  "Hidro|La Joya": {
+   "tipo": "Hidro",
+   "central": "La Joya",
+   "mw": 8.7,
+   "fecha": "2026-11-03"
+  },
+  "Hidro|Angel I": {
+   "tipo": "Hidro",
+   "central": "Angel I",
+   "mw": 19.0,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Angel Ii": {
+   "tipo": "Hidro",
+   "central": "Angel Ii",
+   "mw": 20.0,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Angel Iii": {
+   "tipo": "Hidro",
+   "central": "Angel Iii",
+   "mw": 19.5,
+   "fecha": "2026-10-30"
+  },
+  "Eólica|Huambos": {
+   "tipo": "Eólica",
+   "central": "Huambos",
+   "mw": 14.5,
+   "fecha": "2026-10-30"
+  },
+  "Solar|San Martin Solar": {
+   "tipo": "Solar",
+   "central": "San Martin Solar",
+   "mw": 253.4,
+   "fecha": "2026-11-05"
+  },
+  "Solar|Majes": {
+   "tipo": "Solar",
+   "central": "Majes",
+   "mw": 18.4,
+   "fecha": "2026-11-05"
+  },
+  "Solar|Rubi": {
+   "tipo": "Solar",
+   "central": "Rubi",
+   "mw": 155.2,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Ch Her1": {
+   "tipo": "Hidro",
+   "central": "Ch Her1",
+   "mw": 0.6,
+   "fecha": "2026-11-05"
+  },
+  "Eólica|Wayra I": {
+   "tipo": "Eólica",
+   "central": "Wayra I",
+   "mw": 127.4,
+   "fecha": "2026-11-03"
+  },
+  "Eólica|Wayra Extension": {
+   "tipo": "Eólica",
+   "central": "Wayra Extension",
+   "mw": 163.7,
+   "fecha": "2026-11-03"
+  },
+  "Solar|Clemesi": {
+   "tipo": "Solar",
+   "central": "Clemesi",
+   "mw": 113.2,
+   "fecha": "2026-11-01"
+  },
+  "Solar|Wayra Solar": {
+   "tipo": "Solar",
+   "central": "Wayra Solar",
+   "mw": 87.7,
+   "fecha": "2026-10-30"
+  },
+  "Solar|Reparticion": {
+   "tipo": "Solar",
+   "central": "Reparticion",
+   "mw": 19.4,
+   "fecha": "2026-10-31"
+  },
+  "Hidro|Poechos2": {
+   "tipo": "Hidro",
+   "central": "Poechos2",
+   "mw": 6.9,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Chancay": {
+   "tipo": "Hidro",
+   "central": "Chancay",
+   "mw": 18.0,
+   "fecha": "2026-11-01"
+  },
+  "Hidro|Rucuy": {
+   "tipo": "Hidro",
+   "central": "Rucuy",
+   "mw": 20.2,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Carpapata I": {
+   "tipo": "Hidro",
+   "central": "Carpapata I",
+   "mw": 20.1,
+   "fecha": "2026-10-30"
+  },
+  "Hidro|Centrales Elor": {
+   "tipo": "Hidro",
+   "central": "Centrales Elor",
+   "mw": 12.3,
+   "fecha": "2026-11-04"
+  },
+  "Hidro|Pias1": {
+   "tipo": "Hidro",
+   "central": "Pias1",
+   "mw": 10.8,
+   "fecha": "2026-11-02"
+  },
+  "Hidro|Zana": {
+   "tipo": "Hidro",
+   "central": "Zana",
+   "mw": 13.2,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Curumuy": {
+   "tipo": "Hidro",
+   "central": "Curumuy",
+   "mw": 9.8,
+   "fecha": "2026-11-05"
+  },
+  "Hidro|Poechos1": {
+   "tipo": "Hidro",
+   "central": "Poechos1",
+   "mw": 14.0,
+   "fecha": "2026-11-04"
+  }
+ },
+ "dias": [
+  "2026-10-30",
+  "2026-10-31",
+  "2026-11-01",
+  "2026-11-02",
+  "2026-11-03",
+  "2026-11-04",
+  "2026-11-05"
+ ]
+}

@@ -122,6 +122,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 @media (max-width:860px){.g2,.g3,.g64{grid-template-columns:1fr}.mant{columns:1}.portada h2{font-size:34px}}
 @media (max-width:600px){header img{height:30px}header h1{font-size:15px;border:0;padding-left:0;width:100%}header .meta{margin-left:0;text-align:left}.portada{padding:24px 18px}.portada h2{font-size:30px}.chart{height:250px}.chart.tall{height:300px}}
 @media print{nav,header .btn,#tema{display:none!important}body{background:#fff}section.sec{break-before:page}.card{box-shadow:none}}
+.nuevas{margin-top:10px;border:1px solid color-mix(in srgb,var(--naranja) 35%,transparent);background:color-mix(in srgb,var(--naranja) 7%,transparent);border-radius:12px;padding:10px 12px}
+.nuevas .nh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.nuevas .nh small{color:var(--muted)}
+.nuevas .tag{font-size:10px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--naranja);border-radius:6px;padding:2px 6px}
+.nuevas ul{list-style:none;margin:8px 0 4px;padding:0;display:grid;gap:6px}
+.nuevas li{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:6px 0;border-top:1px dashed color-mix(in srgb,var(--naranja) 30%,transparent)}
+.nuevas li small{grid-column:1/-1;color:var(--muted);font-size:12px}.nuevas .mw{font-weight:800;color:var(--naranja);font-variant-numeric:tabular-nums}
+.nuevas .nf{display:block;color:var(--muted);font-size:11px}
 </style>
 </head>
 <body>
@@ -248,12 +255,17 @@ const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica,D.solar].some(H=
 function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica,solar:D.solar}[k]||null}
 // nota por tecnología: centrales que generaron este período y no el mismo período del año anterior (o al revés)
 function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c=G&&G[k];
-  if(!c)return `<div class="note">Comparación por central: aún sin todos los días en ambos años.</div>`;
-  const oc=x=>x.oc?` · operación comercial${x.oc.fecha?` ${x.oc.fecha.split("-").reverse().join("/")}`:""} (COES)`:"";
-  const n=c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b>: ${f0(x.mwh)} MWh este período, sin generación en ${MESC[H.mes-1]} ${H.ant}${oc(x)}</li>`),
-        s_=c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${MESC[H.mes-1]} ${H.ant}, sin generación este período${oc(x)}</li>`);
-  return n.length||s_.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${n.join("")}${s_.join("")}</ul>`
-    :`<div class="note">Mismas centrales generando que en ${MESC[H.mes-1]} ${H.ant}.</div>`}
+  if(!c)return `<div class="note">Comparación por central: se arma con los días que tengan datos en ambos años.</div>`;
+  const M=`${MESC[H.mes-1]} ${H.ant}`,fd=f=>f.split("-").reverse().join("/");
+  const oc=x=>x.oc?`Operación comercial COES${x.oc.fecha?` ${fd(x.oc.fecha)}`:""}`:"";
+  const mw=x=>x.mw_max!=null?x.mw_max:null,tot=c.nuevas.reduce((a,x)=>a+(mw(x)||0),0);
+  const nv=c.nuevas.length?`<div class="nuevas"><div class="nh"><span class="tag">NUEVAS</span><b>${c.nuevas.length} central${c.nuevas.length>1?"es":""}${tot?` · ${f0(tot)} MW`:""}</b><small>sin operación en ${M}</small></div>
+    <ul>${c.nuevas.map(x=>`<li><b>${esc(romanos(x.central))}</b><span class="mw">${mw(x)!=null?`${f0(mw(x))} MW máx.`:`${f1(x.mw_medio)} MW medio`}</span><small>${f0(x.mwh)} MWh en ${c.dias} días${mw(x)!=null?` · ${f1(x.mw_medio)} MW medio`:""}${oc(x)?` · ${oc(x)}`:""}</small></li>`).join("")}</ul>
+    <small class="nf">MW máx.: mayor potencia registrada en el despacho ejecutado del IEOD (referencia de capacidad).</small></div>`:"";
+  const o=[...(c.sin_gen_ant||[]).map(x=>`<li><b>${esc(romanos(x.central))}</b>: genera ${f0(x.mwh)} MWh; no generó en esos días de ${M} (ya operaba: parada o mantenimiento)</li>`),
+           ...c.sin_gen.map(x=>`<li><b>${esc(romanos(x.central))}</b>: generó ${f0(x.mwh_ant)} MWh en ${M}; sin generación este período${oc(x)?` · ${oc(x)}`:""}</li>`)];
+  return nv||o.length?`${nv}${o.length?`<ul class="note" style="margin:6px 0 0;padding-left:16px">${o.join("")}</ul>`:""}`
+    :`<div class="note">Sin centrales nuevas: las mismas centrales generando que en ${M}.</div>`}
 function tipoHTML(){const T=D.tipo_cliente;
   if(!T||!T.meses_ok||!T.meses_ok.length)return `<div class="estado">Recopilando los retiros de clientes libres y regulados del LVTEA mensual del COES${T&&T.meses_lvtea?` · ${T.meses_lvtea.length} meses leídos`:""}. El gráfico aparece cuando haya meses completos en ${T?T.act+" y "+T.ant:"ambos años"}.</div>`;
   const falta=T.meses.filter(x=>!("libre" in x)).map(x=>MESL[x.mes-1]);
