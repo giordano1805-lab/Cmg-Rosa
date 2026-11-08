@@ -27,8 +27,8 @@
   "Hidro|Canon Del Pato": {
    "tipo": "Hidro",
    "central": "Canon Del Pato",
-   "mw": 206.5,
-   "fecha": "2026-11-06"
+   "mw": 208.9,
+   "fecha": "2026-11-07"
   },
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
@@ -159,8 +159,8 @@
   "Hidro|Huanza": {
    "tipo": "Hidro",
    "central": "Huanza",
-   "mw": 94.8,
-   "fecha": "2026-11-01"
+   "mw": 95.3,
+   "fecha": "2026-11-07"
   },
   "Hidro|Yuncan": {
    "tipo": "Hidro",
@@ -171,8 +171,8 @@
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
    "central": "Quitaracsa",
-   "mw": 52.6,
-   "fecha": "2026-11-04"
+   "mw": 57.5,
+   "fecha": "2026-11-07"
   },
   "Hidro|Arcata": {
    "tipo": "Hidro",
@@ -183,14 +183,14 @@
   "Hidro|Pariac": {
    "tipo": "Hidro",
    "central": "Pariac",
-   "mw": 3.9,
-   "fecha": "2026-11-06"
+   "mw": 4.3,
+   "fecha": "2026-11-07"
   },
   "Hidro|Huinco": {
    "tipo": "Hidro",
    "central": "Huinco",
-   "mw": 267.2,
-   "fecha": "2026-11-01"
+   "mw": 271.3,
+   "fecha": "2026-11-07"
   },
   "Hidro|Matucana": {
    "tipo": "Hidro",
@@ -213,8 +213,8 @@
   "Hidro|Huampani": {
    "tipo": "Hidro",
    "central": "Huampani",
-   "mw": 31.0,
-   "fecha": "2026-11-03"
+   "mw": 31.1,
+   "fecha": "2026-11-07"
   },
   "Hidro|Oroya": {
    "tipo": "Hidro",
@@ -303,14 +303,14 @@
   "Hidro|Renovandesh1": {
    "tipo": "Hidro",
    "central": "Renovandesh1",
-   "mw": 21.1,
-   "fecha": "2026-11-01"
+   "mw": 21.2,
+   "fecha": "2026-11-07"
   },
   "Hidro|Potrero": {
    "tipo": "Hidro",
    "central": "Potrero",
-   "mw": 13.2,
-   "fecha": "2026-11-04"
+   "mw": 20.0,
+   "fecha": "2026-11-07"
   },
   "Hidro|Pizarras": {
    "tipo": "Hidro",
@@ -387,8 +387,8 @@
   "Hidro|Manta I": {
    "tipo": "Hidro",
    "central": "Manta I",
-   "mw": 9.0,
-   "fecha": "2026-11-06"
+   "mw": 10.8,
+   "fecha": "2026-11-07"
   },
   "Solar|Coenergy": {
    "tipo": "Solar",
@@ -411,8 +411,8 @@
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
    "central": "Stacruz 1 2",
-   "mw": 10.3,
-   "fecha": "2026-11-01"
+   "mw": 12.1,
+   "fecha": "2026-11-07"
   },
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
@@ -441,8 +441,8 @@
   "Solar|Intipampa": {
    "tipo": "Solar",
    "central": "Intipampa",
-   "mw": 40.4,
-   "fecha": "2026-11-06"
+   "mw": 40.6,
+   "fecha": "2026-11-07"
   },
   "Eólica|Punta Lomitas": {
    "tipo": "Eólica",
@@ -501,8 +501,8 @@
   "Eólica|Huambos": {
    "tipo": "Eólica",
    "central": "Huambos",
-   "mw": 14.5,
-   "fecha": "2026-10-30"
+   "mw": 15.1,
+   "fecha": "2026-11-07"
   },
   "Solar|San Martin Solar": {
    "tipo": "Solar",
@@ -549,8 +549,8 @@
   "Solar|Wayra Solar": {
    "tipo": "Solar",
    "central": "Wayra Solar",
-   "mw": 87.7,
-   "fecha": "2026-10-30"
+   "mw": 88.2,
+   "fecha": "2026-11-07"
   },
   "Solar|Reparticion": {
    "tipo": "Solar",
@@ -621,6 +621,7 @@
   "2026-11-03",
   "2026-11-04",
   "2026-11-05",
-  "2026-11-06"
+  "2026-11-06",
+  "2026-11-07"
  ]
 }
