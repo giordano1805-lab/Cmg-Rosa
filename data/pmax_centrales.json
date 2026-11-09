@@ -33,8 +33,8 @@
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
    "central": "Cerro Del Aguila",
-   "mw": 367.7,
-   "fecha": "2026-11-05"
+   "mw": 370.3,
+   "fecha": "2026-11-08"
   },
   "Hidro|Cerrodelaguila": {
    "tipo": "Hidro",
@@ -69,8 +69,8 @@
   "Hidro|Platanal": {
    "tipo": "Hidro",
    "central": "Platanal",
-   "mw": 195.6,
-   "fecha": "2026-11-06"
+   "mw": 203.7,
+   "fecha": "2026-11-08"
   },
   "Hidro|Chaglla": {
    "tipo": "Hidro",
@@ -165,20 +165,20 @@
   "Hidro|Yuncan": {
    "tipo": "Hidro",
    "central": "Yuncan",
-   "mw": 91.1,
-   "fecha": "2026-10-30"
+   "mw": 91.8,
+   "fecha": "2026-11-08"
   },
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
    "central": "Quitaracsa",
-   "mw": 57.5,
-   "fecha": "2026-11-07"
+   "mw": 59.1,
+   "fecha": "2026-11-08"
   },
   "Hidro|Arcata": {
    "tipo": "Hidro",
    "central": "Arcata",
-   "mw": 1.8,
-   "fecha": "2026-11-05"
+   "mw": 2.1,
+   "fecha": "2026-11-08"
   },
   "Hidro|Pariac": {
    "tipo": "Hidro",
@@ -189,8 +189,8 @@
   "Hidro|Huinco": {
    "tipo": "Hidro",
    "central": "Huinco",
-   "mw": 271.3,
-   "fecha": "2026-11-07"
+   "mw": 274.0,
+   "fecha": "2026-11-08"
   },
   "Hidro|Matucana": {
    "tipo": "Hidro",
@@ -243,8 +243,8 @@
   "Eólica|Duna": {
    "tipo": "Eólica",
    "central": "Duna",
-   "mw": 15.3,
-   "fecha": "2026-11-04"
+   "mw": 15.6,
+   "fecha": "2026-11-08"
   },
   "Solar|Carhuaquero (Cs)": {
    "tipo": "Solar",
@@ -273,14 +273,14 @@
   "Solar|Sunny": {
    "tipo": "Solar",
    "central": "Sunny",
-   "mw": 222.1,
-   "fecha": "2026-11-01"
+   "mw": 224.8,
+   "fecha": "2026-11-08"
   },
   "Solar|Sunny Expansion": {
    "tipo": "Solar",
    "central": "Sunny Expansion",
-   "mw": 112.0,
-   "fecha": "2026-11-01"
+   "mw": 114.6,
+   "fecha": "2026-11-08"
   },
   "Hidro|Tupuri": {
    "tipo": "Hidro",
@@ -471,8 +471,8 @@
   "Hidro|El Carmen": {
    "tipo": "Hidro",
    "central": "El Carmen",
-   "mw": 7.9,
-   "fecha": "2026-11-03"
+   "mw": 8.1,
+   "fecha": "2026-11-08"
   },
   "Hidro|La Joya": {
    "tipo": "Hidro",
@@ -501,8 +501,8 @@
   "Eólica|Huambos": {
    "tipo": "Eólica",
    "central": "Huambos",
-   "mw": 15.1,
-   "fecha": "2026-11-07"
+   "mw": 17.7,
+   "fecha": "2026-11-08"
   },
   "Solar|San Martin Solar": {
    "tipo": "Solar",
@@ -622,6 +622,7 @@
   "2026-11-04",
   "2026-11-05",
   "2026-11-06",
-  "2026-11-07"
+  "2026-11-07",
+  "2026-11-08"
  ]
 }
