@@ -1,4 +1,26 @@
 fecha,tipo,central,mwh
+2024-11-10,Eólica,3 Hermanas,1326.8
+2024-11-10,Eólica,Cupisnique,534.0
+2024-11-10,Eólica,Duna,101.5
+2024-11-10,Eólica,Huambos,103.4
+2024-11-10,Eólica,Marcona,468.9
+2024-11-10,Eólica,Punta Lomitas,1608.8
+2024-11-10,Eólica,Punta Lomitas Expansion,131.4
+2024-11-10,Eólica,San Juan,1673.1
+2024-11-10,Eólica,Talara,344.3
+2024-11-10,Eólica,Wayra Extension,1302.6
+2024-11-10,Eólica,Wayra I,1282.8
+2024-11-10,Solar,Carhuaquero (Cs),2.8
+2024-11-10,Solar,Clemesi,1130.5
+2024-11-10,Solar,Intipampa,368.5
+2024-11-10,Solar,Majes,136.3
+2024-11-10,Solar,Matarani,602.3
+2024-11-10,Solar,Moquegua Solar,146.4
+2024-11-10,Solar,Panamericana Solar,190.1
+2024-11-10,Solar,Reparticion,132.3
+2024-11-10,Solar,Rubi,1538.8
+2024-11-10,Solar,Tacna Solar,205.3
+2024-11-10,Solar,Yarucaya,5.7
 2025-10-01,Eólica,3 Hermanas,1872.7
 2025-10-01,Eólica,Cupisnique,995.5
 2025-10-01,Eólica,Duna,203.5
@@ -2571,3 +2593,31 @@ fecha,tipo,central,mwh
 2026-11-09,Solar,Tacna Solar,188.6
 2026-11-09,Solar,Wayra Solar,733.3
 2026-11-09,Solar,Yarucaya,6.7
+2026-11-10,Eólica,3 Hermanas,937.1
+2026-11-10,Eólica,Cupisnique,1006.6
+2026-11-10,Eólica,Duna,306.1
+2026-11-10,Eólica,Huambos,245.1
+2026-11-10,Eólica,Marcona,362.9
+2026-11-10,Eólica,Punta Lomitas,3050.9
+2026-11-10,Eólica,Punta Lomitas Expansion,331.0
+2026-11-10,Eólica,San Juan,1404.8
+2026-11-10,Eólica,Talara,389.4
+2026-11-10,Eólica,Wayra Extension,1415.5
+2026-11-10,Eólica,Wayra I,1456.4
+2026-11-10,Solar,Carhuaquero (Cs),2.8
+2026-11-10,Solar,Clemesi,1124.0
+2026-11-10,Solar,Coenergy,1.8
+2026-11-10,Solar,Expansion Intipampa,537.5
+2026-11-10,Solar,Intipampa,391.1
+2026-11-10,Solar,Majes,133.2
+2026-11-10,Solar,Matarani,834.0
+2026-11-10,Solar,Moquegua Solar,148.1
+2026-11-10,Solar,Panamericana Solar,185.8
+2026-11-10,Solar,Reparticion,135.0
+2026-11-10,Solar,Rubi,1548.5
+2026-11-10,Solar,San Martin Solar,2664.9
+2026-11-10,Solar,Sunny,2207.9
+2026-11-10,Solar,Sunny Expansion,1111.2
+2026-11-10,Solar,Tacna Solar,156.8
+2026-11-10,Solar,Wayra Solar,776.8
+2026-11-10,Solar,Yarucaya,9.1

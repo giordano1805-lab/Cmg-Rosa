@@ -57,8 +57,8 @@
   "Hidro|Aricota 2": {
    "tipo": "Hidro",
    "central": "Aricota 2",
-   "mw": 5.4,
-   "fecha": "2026-10-31"
+   "mw": 5.5,
+   "fecha": "2026-11-10"
   },
   "Hidro|San Gaban Ii": {
    "tipo": "Hidro",
@@ -99,8 +99,8 @@
   "Hidro|Huanchor": {
    "tipo": "Hidro",
    "central": "Huanchor",
-   "mw": 17.4,
-   "fecha": "2026-11-04"
+   "mw": 18.5,
+   "fecha": "2026-11-10"
   },
   "Hidro|Maranon": {
    "tipo": "Hidro",
@@ -165,8 +165,8 @@
   "Hidro|Yuncan": {
    "tipo": "Hidro",
    "central": "Yuncan",
-   "mw": 125.9,
-   "fecha": "2026-11-09"
+   "mw": 126.2,
+   "fecha": "2026-11-10"
   },
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
@@ -261,8 +261,8 @@
   "Hidro|Carhuaquero4": {
    "tipo": "Hidro",
    "central": "Carhuaquero4",
-   "mw": 10.1,
-   "fecha": "2026-11-05"
+   "mw": 10.6,
+   "fecha": "2026-11-10"
   },
   "Hidro|Cana Brava": {
    "tipo": "Hidro",
@@ -405,8 +405,8 @@
   "Hidro|Huasahuasi": {
    "tipo": "Hidro",
    "central": "Huasahuasi",
-   "mw": 9.9,
-   "fecha": "2026-11-09"
+   "mw": 10.0,
+   "fecha": "2026-11-10"
   },
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
@@ -417,8 +417,8 @@
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
    "central": "Runatullo Ii",
-   "mw": 8.5,
-   "fecha": "2026-11-09"
+   "mw": 9.6,
+   "fecha": "2026-11-10"
   },
   "Hidro|Runatullo Iii": {
    "tipo": "Hidro",
@@ -549,8 +549,8 @@
   "Solar|Wayra Solar": {
    "tipo": "Solar",
    "central": "Wayra Solar",
-   "mw": 88.2,
-   "fecha": "2026-11-07"
+   "mw": 90.7,
+   "fecha": "2026-11-10"
   },
   "Solar|Reparticion": {
    "tipo": "Solar",
@@ -579,8 +579,8 @@
   "Hidro|Carpapata I": {
    "tipo": "Hidro",
    "central": "Carpapata I",
-   "mw": 20.1,
-   "fecha": "2026-10-30"
+   "mw": 24.4,
+   "fecha": "2026-11-10"
   },
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
@@ -624,6 +624,7 @@
   "2026-11-06",
   "2026-11-07",
   "2026-11-08",
-  "2026-11-09"
+  "2026-11-09",
+  "2026-11-10"
  ]
 }
