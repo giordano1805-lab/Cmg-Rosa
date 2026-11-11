@@ -1197,7 +1197,7 @@ def generar(m, hist=None):
         extra["eolica"] = hi.resumen_hidro(h, dia, "eolica")
         fin_ant = dia.replace(day=1) - dt.timedelta(days=1)       # mes anterior completo (solo promedios diarios)
         extra["solar"] = hi.resumen_hidro(h, dia, "solar")
-        extra["gen_mes_ant"] = {k: {x: v for x, v in hi.resumen_hidro(h, fin_ant, k).items() if x != "serie"}
+        extra["gen_mes_ant"] = {k: hi.resumen_hidro(h, fin_ant, k)
                                 for k in ("pasada", "regulacion", "eolica", "solar")}
         try:                                   # centrales nuevas / sin generación vs el año anterior (con fecha COES)
             oc = hi.cargar_oc(hoy)

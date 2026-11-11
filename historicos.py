@@ -1089,8 +1089,18 @@ def resumen_hidro(h, dia: dt.date, clave="pasada"):
     for a in (act, ant):
         vals = [v for k, v in diario[a].items() if k <= dia.day]
         mtd[a] = round(sum(vals) / len(vals), 1) if vals else None
+    # perfil horario: promedio de cada media hora en los mismos días (1..dia.day) de ambos años
+    perfil = {}
+    for a in (act, ant):
+        acc = {}
+        for x, v in serie[a]:
+            n = round(x * 48)                          # media hora absoluta: 1 = 00:30 del día 1
+            if (n - 1) // 48 + 1 <= dia.day and isinstance(v, (int, float)):
+                acc.setdefault((n - 1) % 48 + 1, []).append(v)
+        perfil[str(a)] = [round(sum(acc[i]) / len(acc[i]), 1) if acc.get(i) else None for i in range(1, 49)]
+    perfil["horas"] = [f"{(i * 30) // 60:02d}:{(i * 30) % 60:02d}" if i < 48 else "24:00" for i in range(1, 49)]
     return {"diario": diario, "serie": serie, "mtd": mtd, "act": act, "ant": ant, "mes": dia.month, "dias": dia.day,
-            "clave": clave}
+            "clave": clave, "perfil": perfil}
 
 
 NOMBRES_REC = {"pasada": "Generación hidroeléctrica de pasada", "regulacion": "Generación hidroeléctrica de embalse (regulación)",

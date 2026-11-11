@@ -63,6 +63,13 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 .grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.g4{grid-template-columns:1fr}}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g64{grid-template-columns:minmax(0,62fr) minmax(0,38fr)}
 .card{background:linear-gradient(180deg,var(--surface),color-mix(in srgb,var(--surface) 92%,var(--bg)));border:1px solid var(--card-b);border-radius:14px;padding:14px 16px;min-width:0;box-shadow:var(--sombra)}
 .card h3{margin:0 0 8px;font-size:15px;color:var(--h1)}.card h3 small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
+.gh{display:flex;align-items:flex-start;gap:8px;justify-content:space-between;flex-wrap:wrap}.gh h3{margin-bottom:6px}
+.gtools{display:flex;gap:6px;align-items:center}.gtools .seg button{font-size:12px;padding:4px 10px;min-height:28px}
+.gexp{border:1px solid var(--card-b);background:var(--surface);color:var(--text-2);width:32px;height:32px;border-radius:8px;cursor:pointer;display:inline-grid;place-items:center;font-size:16px}
+.gexp:hover{color:var(--naranja);border-color:var(--naranja)}
+#gmodal{position:fixed;inset:0;z-index:50;background:rgba(0,12,48,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:24px}
+#gmodal.on{display:flex}#gmodal .card{width:min(1200px,100%);max-height:100%;overflow:auto}#gmodal .chart{height:min(62vh,560px)}
+.gkpi{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 8px}
 .chart{position:relative;height:300px}.chart.tall{height:380px}.chart.sm{height:230px}
 .seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--tinte2);box-shadow:inset 0 1px 2px rgba(0,26,111,.08);flex-wrap:wrap}
 .seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer;min-height:32px}
@@ -146,7 +153,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .cr.cnota:hover .cpop,.cr.cnota:focus .cpop,.cr.cnota:focus-within .cpop{display:block}
 </style>
 </head>
-<body>
+<body><div id="gmodal"></div>
 <header><div class="wrap">
   <img id="logo" src="logo.png" alt="Hidroeléctrica Huanchor" onload="this.style.display='block'">
   <h1>Reporte comercial</h1>
@@ -267,6 +274,33 @@ const GENR=[["pasada","Hidro de pasada","💧"],["regulacion","Hidro de embalse"
 const GENC={"Hídrica":"#2b4fd1","Gas natural":"#f0590f","Solar":"#e9a300","Eólica":"#1baf7a","Carbón":"#5f6368","Biomasa":"#6250d6","Diésel/Residual":"#e34948","D2 Reserva Fría":"#8f1d2c","Diésel/Residual otras":"#e34948","Otros":"#9aa0a6"};
 // mes en curso sin datos todavía (el IEOD del día 1 se publica al día siguiente): se abre el mes anterior completo
 const genHayAct=()=>[D.hidro_pasada,D.hidro_regulacion,D.eolica,D.solar].some(H=>H&&H.mtd&&H.mtd[H.act]!=null);
+let GPV={},GEXP=null;
+const genSub=(k,H)=>(GPV[k]||"dia")==="dia"?`MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}`:(GPV[k]==="30m"?`MW cada 30 min · todo ${MESN[H.mes-1]} · ${H.act} vs ${H.ant}`:`Perfil horario promedio · MW cada 30 min · días 1–${H.dias} de ${MESN[H.mes-1]} ${H.act} vs ${H.ant}`);
+function genHead(k,n,H,big){const v=GPV[k]||"dia";return `<div class="gh"><h3>${n}<small>${genSub(k,H)}</small></h3><div class="gtools"><div class="seg" role="group" aria-label="Vista de ${n}">${[["dia","Por día"],["30m","Cada 30 min"],["hora","Perfil horario"]].map(([x,t])=>`<button type="button" aria-pressed="${v===x}" onclick="GPV['${k}']='${x}';render()">${t}</button>`).join("")}</div><button type="button" class="gexp" aria-label="${big?"Cerrar":"Ampliar gráfico de "+n}" title="${big?"Cerrar":"Ampliar"}" onclick="GEXP=${big?"null":`'${k}'`};render()">${big?"✕":"⤢"}</button></div></div>`}
+function genChart(k,id){const H=genH(k);if(!H||!$(id))return;const o=base("MW");o.scales.x.ticks.maxTicksLimit=GEXP?12:innerWidth<700?5:8;
+  if(GPV[k]==="30m"&&H.serie){const n=new Date(H.act,H.mes,0).getDate(),pt=a=>(a||[]).map(([x,y])=>({x,y}));
+    o.scales.x={...o.scales.x,type:"linear",min:0,max:n,ticks:{...o.scales.x.ticks,stepSize:1,autoSkip:true,maxTicksLimit:GEXP?n+1:innerWidth<700?6:11,callback:v=>Number.isInteger(v)&&v<n?v+1:""}};o.scales.y.beginAtZero=true;
+    const hh=x=>{const d=Math.floor(x+1e-6),m=Math.round((x-d)*1440);return `${d+1} ${MESC[H.mes-1]} ${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`};
+    o.plugins.tooltip.callbacks.title=it=>hh(it[0].parsed.x);o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;o.interaction={mode:"nearest",axis:"x",intersect:false};
+    graf(id,{type:"line",data:{datasets:[{label:String(H.ant),data:pt(H.serie[H.ant]),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:1.2,pointRadius:0,tension:0},
+      {label:String(H.act),data:pt(H.serie[H.act]),borderColor:css("--naranja"),backgroundColor:css("--naranja")+"22",fill:"origin",borderWidth:1.6,pointRadius:0,tension:0}]},options:o});return}
+  if((GPV[k]||"dia")==="hora"&&H.perfil){const P=H.perfil,A=P[H.act],B=P[H.ant];o.scales.y.beginAtZero=k!=="regulacion";
+    o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+    o.plugins.tooltip.callbacks.afterBody=it=>{const i=it[0].dataIndex,a=A[i],b=B[i];return fin(a)&&fin(b)?`Diferencia: ${a-b>0?"+":""}${f0(a-b)} MW${b>1?` (${f1((a/b-1)*100)}%)`:""}`:""};
+    const punta={id:"punta",beforeDraw(ch){const x=ch.scales.x,y=ch.scales.y,i0=P.horas.indexOf("18:30"),i1=P.horas.indexOf("23:00");if(i0<0||i1<0)return;const c=ch.ctx;c.save();c.fillStyle="rgba(255,87,22,.08)";c.fillRect(x.getPixelForValue(i0)-4,y.top,x.getPixelForValue(i1)-x.getPixelForValue(i0)+8,y.bottom-y.top);c.fillStyle=css("--muted");c.font="11px sans-serif";c.fillText(innerWidth<700?"Punta":"Punta 18–23 h",x.getPixelForValue(i0),y.top+12);c.restore()}};
+    graf(id,{type:"line",plugins:[punta],data:{labels:P.horas,datasets:[{label:String(H.ant),data:B,borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.3},
+      {label:String(H.act),data:A,borderColor:css("--naranja"),backgroundColor:css("--naranja")+"22",fill:"origin",borderWidth:2.6,pointRadius:0,tension:.3}]},options:o});return}
+  const n=new Date(H.act,H.mes,0).getDate(),dias=Array.from({length:n},(_,i)=>i+1);o.scales.y.beginAtZero=true;
+  o.plugins.tooltip.callbacks.title=it=>`${it[0].label} ${MESC[H.mes-1]}`;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
+  o.plugins.tooltip.callbacks.afterBody=it=>{const d=dias[it[0].dataIndex],a=H.diario[H.act][d],b=H.diario[H.ant][d];return fin(a)&&fin(b)?`Diferencia: ${a-b>0?"+":""}${f0(a-b)} MW (${f1((a/b-1)*100)}%)`:""};
+  graf(id,{type:"line",data:{labels:dias,datasets:[{label:String(H.ant),data:dias.map(d=>H.diario[H.ant][d]??null),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.25},
+    {label:String(H.act),data:dias.map(d=>H.diario[H.act][d]??null),borderColor:css("--naranja"),backgroundColor:css("--naranja")+"22",fill:"origin",borderWidth:2.6,pointRadius:GEXP?3.5:2.5,tension:.25}]},options:o})}
+function genModal(){const m=$("#gmodal");if(!m)return;if(!GEXP){m.classList.remove("on");m.innerHTML="";return}
+  const g=GENR.find(x=>x[0]===GEXP),H=genH(GEXP);if(!g||!H){GEXP=null;return genModal()}
+  const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
+  m.innerHTML=`<div class="card" role="dialog" aria-modal="true" aria-label="${g[1]} ampliado">${genHead(GEXP,g[1],H,true)}<div class="gkpi"><span class="pill">${H.act}: ${f0(H.mtd[H.act])} MW medios</span><span class="pill nv">${H.ant}: ${f0(H.mtd[H.ant])} MW medios</span>${v==null?"":`<span class="chip">${v>0?"▲ +":"▼ −"}${f1(Math.abs(v))}%</span>`}</div>${cv("c-gx","Gráfico ampliado","")}${notaCambios(GEXP,H)}</div>`;
+  m.classList.add("on");m.onclick=e=>{if(e.target===m){GEXP=null;render()}};genChart(GEXP,"#c-gx")}
+addEventListener("keydown",e=>{if(e.key==="Escape"&&GEXP){GEXP=null;render()}});
 function genH(k){if(GNM===null)GNM=genHayAct()||!D.gen_mes_ant?"act":"ant";if(GNM==="ant")return (D.gen_mes_ant||{})[k]||null;return {pasada:D.hidro_pasada,regulacion:D.hidro_regulacion,eolica:D.eolica,solar:D.solar}[k]||null}
 // nota por tecnología: centrales que generaron este período y no el mismo período del año anterior (o al revés)
 function notaCambios(k,H){const G=(D.gen_cambios||{})[GNM==="ant"?"ant":"act"],c=G&&G[k];
@@ -350,7 +384,7 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
    ${!genHayAct()?`<div class="note" style="margin:-4px 0 10px">El mes en curso aún no tiene datos del IEOD (se publica al día siguiente); se muestra el mes anterior completo.</div>`:""}
    <div class="grid g4">${GENR.map(([k,n,ic])=>{const H=genH(k);if(!H||H.mtd[H.act]==null)return `<div class="estado">${n}: sin datos.</div>`;const v=H.mtd[H.ant]?(H.mtd[H.act]/H.mtd[H.ant]-1)*100:null;
      return kc(ic,`${n} · ${MESN[H.mes-1]} ${H.act}`,f0(H.mtd[H.act]),"MW",`${v==null?"":`<span class="chip ${v<0?"or":"ok"}">${v>0?"▲ +":"▼ −"}${f1(Math.abs(v))}%</span> `}vs ${f0(H.mtd[H.ant])} MW en ${H.ant} · días 1–${H.dias}`)}).join("")}</div>
-   <div class="grid g2" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card"><h3>${n}<small>MW medios por día · ${MESN[H.mes-1]} ${H.act} vs ${H.ant}</small></h3>${cv("c-g"+k,n+" por día frente al año anterior","sm")}${notaCambios(k,H)}</div>`:""}).join("")}</div>
+   <div class="grid g2" style="margin-top:14px">${GENR.map(([k,n])=>{const H=genH(k);return H?`<div class="card">${genHead(k,n,H,false)}${cv("c-g"+k,n+" frente al año anterior","sm")}${notaCambios(k,H)}</div>`:""}).join("")}</div>
    <div class="note">Potencia media = energía del día ÷ 24 h, comparable entre días y años aunque el mes esté incompleto. Fuente: IEOD del COES (producción por tipo de recurso; energía por central: cuadro de centrales hidroeléctricas y despacho ejecutado). Las fechas de operación comercial se toman de las publicaciones del COES «Operación Comercial de unidades o centrales de generación».</div></section>
 
   <section class="sec" id="mant"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Mantenimientos de centrales</h2></div>
@@ -461,11 +495,7 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
     o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;o.plugins.tooltip.callbacks.footer=it=>`Total: ${f0(it.reduce((a,c)=>a+c.parsed.y,0))} MW`;
     graf("#c-gdes",{type:"line",data:{labels:D.generacion.map(r=>{const t=new Date(r.t);const h=t.getHours(),m=t.getMinutes();return h===0&&m===0?"24:00":`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`}),
       datasets:g.map(k=>({label:k,data:D.generacion.map(r=>r[k]),fill:true,backgroundColor:GENC[k]||"#9aa0a6",borderColor:css("--surface"),borderWidth:.8,pointRadius:0,tension:.25}))},options:o})}
-  GENR.forEach(([k])=>{const H=genH(k);if(!H||!$("#c-g"+k))return;const n=new Date(H.act,H.mes,0).getDate(),dias=Array.from({length:n},(_,i)=>i+1),o=base("MW");o.scales.y.beginAtZero=true;o.scales.x.ticks.maxTicksLimit=8;
-    o.plugins.tooltip.callbacks.title=it=>`${it[0].label} ${MESC[H.mes-1]}`;o.plugins.tooltip.callbacks.label=c=>`${c.dataset.label}: ${f0(c.parsed.y)} MW`;
-    o.plugins.tooltip.callbacks.afterBody=it=>{const d=dias[it[0].dataIndex],a=H.diario[H.act][d],b=H.diario[H.ant][d];return fin(a)&&fin(b)?`Diferencia: ${a-b>0?"+":""}${f0(a-b)} MW (${f1((a/b-1)*100)}%)`:""};
-    graf("#c-g"+k,{type:"line",data:{labels:dias,datasets:[{label:String(H.ant),data:dias.map(d=>H.diario[H.ant][d]??null),borderColor:css("--navy"),backgroundColor:css("--navy"),borderWidth:2,pointRadius:0,tension:.25},
-      {label:String(H.act),data:dias.map(d=>H.diario[H.act][d]??null),borderColor:css("--naranja"),backgroundColor:css("--naranja")+"22",fill:"origin",borderWidth:2.6,pointRadius:2.5,tension:.25}]},options:o})});
+  GENR.forEach(([k])=>genChart(k,"#c-g"+k));genModal();
   // sección activa en el menú
   const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
   document.querySelectorAll("section.sec").forEach(s=>obs.observe(s))}
