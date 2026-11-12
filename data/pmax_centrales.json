@@ -117,8 +117,8 @@
   "Hidro|Yaupi": {
    "tipo": "Hidro",
    "central": "Yaupi",
-   "mw": 110.1,
-   "fecha": "2026-11-09"
+   "mw": 110.4,
+   "fecha": "2026-11-11"
   },
   "Hidro|Malpaso": {
    "tipo": "Hidro",
@@ -153,8 +153,8 @@
   "Hidro|Charcani V": {
    "tipo": "Hidro",
    "central": "Charcani V",
-   "mw": 142.0,
-   "fecha": "2026-10-31"
+   "mw": 142.7,
+   "fecha": "2026-11-11"
   },
   "Hidro|Huanza": {
    "tipo": "Hidro",
@@ -195,8 +195,8 @@
   "Hidro|Matucana": {
    "tipo": "Hidro",
    "central": "Matucana",
-   "mw": 99.5,
-   "fecha": "2026-11-01"
+   "mw": 114.4,
+   "fecha": "2026-11-11"
   },
   "Hidro|Moyopampa": {
    "tipo": "Hidro",
@@ -207,8 +207,8 @@
   "Hidro|Callahuanca": {
    "tipo": "Hidro",
    "central": "Callahuanca",
-   "mw": 75.0,
-   "fecha": "2026-11-01"
+   "mw": 75.9,
+   "fecha": "2026-11-11"
   },
   "Hidro|Huampani": {
    "tipo": "Hidro",
@@ -225,8 +225,8 @@
   "Hidro|Pachachaca": {
    "tipo": "Hidro",
    "central": "Pachachaca",
-   "mw": 4.1,
-   "fecha": "2026-11-02"
+   "mw": 4.2,
+   "fecha": "2026-11-11"
   },
   "Eólica|San Juan": {
    "tipo": "Eólica",
@@ -273,8 +273,8 @@
   "Solar|Sunny": {
    "tipo": "Solar",
    "central": "Sunny",
-   "mw": 224.8,
-   "fecha": "2026-11-08"
+   "mw": 225.6,
+   "fecha": "2026-11-11"
   },
   "Solar|Sunny Expansion": {
    "tipo": "Solar",
@@ -297,8 +297,8 @@
   "Hidro|Canchayllo": {
    "tipo": "Hidro",
    "central": "Canchayllo",
-   "mw": 4.0,
-   "fecha": "2026-11-05"
+   "mw": 4.2,
+   "fecha": "2026-11-11"
   },
   "Hidro|Renovandesh1": {
    "tipo": "Hidro",
@@ -585,8 +585,8 @@
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
    "central": "Centrales Elor",
-   "mw": 12.3,
-   "fecha": "2026-11-04"
+   "mw": 13.1,
+   "fecha": "2026-11-11"
   },
   "Hidro|Pias1": {
    "tipo": "Hidro",
@@ -625,6 +625,7 @@
   "2026-11-07",
   "2026-11-08",
   "2026-11-09",
-  "2026-11-10"
+  "2026-11-10",
+  "2026-11-11"
  ]
 }

@@ -21,6 +21,28 @@ fecha,tipo,central,mwh
 2024-11-10,Solar,Rubi,1538.8
 2024-11-10,Solar,Tacna Solar,205.3
 2024-11-10,Solar,Yarucaya,5.7
+2024-11-11,Eólica,3 Hermanas,1286.2
+2024-11-11,Eólica,Cupisnique,1011.0
+2024-11-11,Eólica,Duna,175.2
+2024-11-11,Eólica,Huambos,174.6
+2024-11-11,Eólica,Marcona,456.3
+2024-11-11,Eólica,Punta Lomitas,1621.6
+2024-11-11,Eólica,Punta Lomitas Expansion,151.1
+2024-11-11,Eólica,San Juan,1641.9
+2024-11-11,Eólica,Talara,383.8
+2024-11-11,Eólica,Wayra Extension,1628.5
+2024-11-11,Eólica,Wayra I,1572.7
+2024-11-11,Solar,Carhuaquero (Cs),3.1
+2024-11-11,Solar,Clemesi,1167.8
+2024-11-11,Solar,Intipampa,391.2
+2024-11-11,Solar,Majes,132.9
+2024-11-11,Solar,Matarani,651.2
+2024-11-11,Solar,Moquegua Solar,160.2
+2024-11-11,Solar,Panamericana Solar,185.3
+2024-11-11,Solar,Reparticion,132.9
+2024-11-11,Solar,Rubi,1533.2
+2024-11-11,Solar,Tacna Solar,199.9
+2024-11-11,Solar,Yarucaya,8.6
 2025-10-01,Eólica,3 Hermanas,1872.7
 2025-10-01,Eólica,Cupisnique,995.5
 2025-10-01,Eólica,Duna,203.5
@@ -2621,3 +2643,31 @@ fecha,tipo,central,mwh
 2026-11-10,Solar,Tacna Solar,156.8
 2026-11-10,Solar,Wayra Solar,776.8
 2026-11-10,Solar,Yarucaya,9.1
+2026-11-11,Eólica,3 Hermanas,790.6
+2026-11-11,Eólica,Cupisnique,358.7
+2026-11-11,Eólica,Duna,307.2
+2026-11-11,Eólica,Huambos,258.0
+2026-11-11,Eólica,Marcona,309.1
+2026-11-11,Eólica,Punta Lomitas,2299.0
+2026-11-11,Eólica,Punta Lomitas Expansion,236.9
+2026-11-11,Eólica,San Juan,1372.2
+2026-11-11,Eólica,Talara,240.2
+2026-11-11,Eólica,Wayra Extension,1098.0
+2026-11-11,Eólica,Wayra I,1038.9
+2026-11-11,Solar,Carhuaquero (Cs),2.0
+2026-11-11,Solar,Clemesi,1119.0
+2026-11-11,Solar,Coenergy,2.1
+2026-11-11,Solar,Expansion Intipampa,523.2
+2026-11-11,Solar,Intipampa,384.4
+2026-11-11,Solar,Majes,125.1
+2026-11-11,Solar,Matarani,734.1
+2026-11-11,Solar,Moquegua Solar,134.1
+2026-11-11,Solar,Panamericana Solar,169.2
+2026-11-11,Solar,Reparticion,134.3
+2026-11-11,Solar,Rubi,1520.2
+2026-11-11,Solar,San Martin Solar,2472.1
+2026-11-11,Solar,Sunny,2011.7
+2026-11-11,Solar,Sunny Expansion,1017.6
+2026-11-11,Solar,Tacna Solar,160.0
+2026-11-11,Solar,Wayra Solar,512.3
+2026-11-11,Solar,Yarucaya,8.8
