@@ -33,8 +33,8 @@
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
    "central": "Cerro Del Aguila",
-   "mw": 375.4,
-   "fecha": "2026-11-09"
+   "mw": 460.6,
+   "fecha": "2026-11-12"
   },
   "Hidro|Cerrodelaguila": {
    "tipo": "Hidro",
@@ -117,8 +117,8 @@
   "Hidro|Yaupi": {
    "tipo": "Hidro",
    "central": "Yaupi",
-   "mw": 110.4,
-   "fecha": "2026-11-11"
+   "mw": 110.6,
+   "fecha": "2026-11-12"
   },
   "Hidro|Malpaso": {
    "tipo": "Hidro",
@@ -183,8 +183,8 @@
   "Hidro|Pariac": {
    "tipo": "Hidro",
    "central": "Pariac",
-   "mw": 4.3,
-   "fecha": "2026-11-07"
+   "mw": 4.4,
+   "fecha": "2026-11-12"
   },
   "Hidro|Huinco": {
    "tipo": "Hidro",
@@ -297,8 +297,8 @@
   "Hidro|Canchayllo": {
    "tipo": "Hidro",
    "central": "Canchayllo",
-   "mw": 4.2,
-   "fecha": "2026-11-11"
+   "mw": 4.3,
+   "fecha": "2026-11-12"
   },
   "Hidro|Renovandesh1": {
    "tipo": "Hidro",
@@ -585,8 +585,8 @@
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
    "central": "Centrales Elor",
-   "mw": 13.1,
-   "fecha": "2026-11-11"
+   "mw": 13.3,
+   "fecha": "2026-11-12"
   },
   "Hidro|Pias1": {
    "tipo": "Hidro",
@@ -626,6 +626,7 @@
   "2026-11-08",
   "2026-11-09",
   "2026-11-10",
-  "2026-11-11"
+  "2026-11-11",
+  "2026-11-12"
  ]
 }
