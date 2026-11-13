@@ -1058,13 +1058,25 @@ def _semanas_pso(hoy: dt.date):
     """Carpetas del Programa Semanal de Operación que cubren `hoy` y la semana siguiente (si ya existe)."""
     out = []
     for anio in sorted({hoy.year, (hoy + dt.timedelta(days=7)).year}):
-        for c in _listar_c(f"Operación/Programa de Operación/Programa Semanal Operación/{anio}/"):
-            PSO_LISTADO.append(_nombre(c) + ("/" if c.endswith("/") else ""))
+        carpetas = [c for c in _listar_c(f"Operación/Programa de Operación/Programa Semanal Operación/{anio}/")
+                    if c.endswith("/")]
+        PSO_LISTADO.extend(_nombre(c) for c in carpetas)
+        fechas, sin_fecha, ref = {}, [], None
+        for c in carpetas:
             m = _RX_SEM.search(_nombre(c))
-            if not c.endswith("/") or not m:
-                continue
-            d0 = dt.date(int(m[3]), int(m[2]), int(m[1]))
-            d1 = dt.date(int(m[6]), int(m[5]), int(m[4]))
+            n = re.match(r"\s*(\d{1,2})\D", _nombre(c))
+            if m:
+                fechas[c] = (dt.date(int(m[3]), int(m[2]), int(m[1])), dt.date(int(m[6]), int(m[5]), int(m[4])))
+                if n:
+                    ref = (int(n[1]), fechas[c][0])
+            elif n:
+                sin_fecha.append((c, int(n[1])))
+        # carpeta recién publicada sin fechas en el nombre: se deducen del número de semana (semanas de sábado a viernes)
+        for c, num in sin_fecha:
+            if ref:
+                d0 = ref[1] + dt.timedelta(days=7 * (num - ref[0]))
+                fechas[c] = (d0, d0 + dt.timedelta(days=6))
+        for c, (d0, d1) in fechas.items():
             if d1 >= hoy - dt.timedelta(days=7) and d0 <= hoy + dt.timedelta(days=7):
                 out.append((d0, d1, c))
     return sorted(out)
@@ -1246,7 +1258,7 @@ def cmg_programa_semanal(hoy: dt.date):
     serie = {}
     PSO_LISTADO.clear()
     semanas = _semanas_pso(hoy)
-    meta["listado"] = PSO_LISTADO[-15:]
+    meta["listado"] = sorted(PSO_LISTADO, reverse=True)[:12]
     for d0, d1, carpeta in semanas:
         arch = list(dict.fromkeys(_archivos_rec(carpeta)))
         final = [a for a in arch if "/FINAL/" in norm(a) + "/"] or arch
