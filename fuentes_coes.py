@@ -1049,7 +1049,9 @@ BARRAS_PSO = {
     "Huanchor 50": r"HUANCHOR",
     "Matucana": r"MATUCANA",
 }
-_RX_SEM = re.compile(r"\((\d{2})\.(\d{2})\.(\d{4})\s*-\s*(\d{2})\.(\d{2})\.(\d{4})\)")
+# fechas "dd.mm.aaaa - dd.mm.aaaa" del nombre de la carpeta; acepta . / o - como separador y "-", "al" o "a" entre fechas
+_RX_SEM = re.compile(r"(\d{1,2})[./-](\d{1,2})[./-](\d{4})\s*(?:-|–|al|a)\s*(\d{1,2})[./-](\d{1,2})[./-](\d{4})", re.I)
+PSO_LISTADO = []          # nombres de carpetas vistos en la última búsqueda (diagnóstico)
 
 
 def _semanas_pso(hoy: dt.date):
@@ -1057,6 +1059,7 @@ def _semanas_pso(hoy: dt.date):
     out = []
     for anio in sorted({hoy.year, (hoy + dt.timedelta(days=7)).year}):
         for c in _listar_c(f"Operación/Programa de Operación/Programa Semanal Operación/{anio}/"):
+            PSO_LISTADO.append(_nombre(c) + ("/" if c.endswith("/") else ""))
             m = _RX_SEM.search(_nombre(c))
             if not c.endswith("/") or not m:
                 continue
@@ -1241,7 +1244,10 @@ def cmg_programa_semanal(hoy: dt.date):
     Devuelve (serie {datetime: {barra: valor en la unidad publicada}}, meta)."""
     meta = {"semanas": [], "archivos": [], "hojas": [], "unidad": None, "nombres": {}}
     serie = {}
-    for d0, d1, carpeta in _semanas_pso(hoy):
+    PSO_LISTADO.clear()
+    semanas = _semanas_pso(hoy)
+    meta["listado"] = PSO_LISTADO[-15:]
+    for d0, d1, carpeta in semanas:
         arch = list(dict.fromkeys(_archivos_rec(carpeta)))
         final = [a for a in arch if "/FINAL/" in norm(a) + "/"] or arch
         orden = lambda a: (0 if "DESPACHO" in norm(_nombre(a)) else 1 if "YUPANA" in norm(_nombre(a)) else
