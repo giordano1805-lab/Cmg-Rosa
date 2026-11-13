@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-12T19:18-05:00",
+ "actualizado": "2026-11-12T19:44-05:00",
  "usadas": {
   "Huanchor 50": null,
   "Matucana": "MATUCANA 220"
@@ -14,7 +14,7 @@
    "MATUCANA 220"
   ]
  },
- "total_barras_mapa": 114,
+ "total_barras_mapa": 115,
  "barras_mapa": [
   "AGUAYTIA 138",
   "AGUAYTIA 220",
@@ -45,6 +45,7 @@
   "CHAVARRIA 220",
   "CHEVES 220",
   "CHEVES14G1",
+  "CHEVES14G2",
   "CHICLAYO 220",
   "CHILCA 500",
   "CHILCA CTM 220",
