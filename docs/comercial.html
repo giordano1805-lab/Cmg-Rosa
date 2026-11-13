@@ -193,11 +193,13 @@ function resSemana(){const P=D.cmg_proy;if(!P||!P.reserva||!P.reserva.length)ret
   const h=new Date(D.hoy+"T12:00"),sat=new Date(h);sat.setDate(h.getDate()-((h.getDay()+1)%7));const iso=x=>x.toISOString().slice(0,10);
   const d0=iso(sat),fri=new Date(sat);fri.setDate(sat.getDate()+6);const d1=iso(fri);
   const fdia=t=>{const d=new Date(t);d.setMinutes(d.getMinutes()-1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
-  let rs=P.reserva.filter(r=>{const f=fdia(r[0]);return f>=d0&&f<=d1});if(!rs.length)rs=P.reserva;
+  // desde el sábado de la semana en curso hasta el último día publicado (incluye la semana siguiente si el COES ya la publicó)
+  const ult=P.reserva.reduce((a,r)=>{const f=fdia(r[0]);return f>a?f:a},d1);
+  let rs=P.reserva.filter(r=>{const f=fdia(r[0]);return f>=d0&&f<=ult});if(!rs.length)rs=P.reserva;
   const g=rs.filter(r=>fin(r[3]));if(!g.length)return null;
   const min=g.reduce((a,r)=>r[3]<a[1]?[r[0],r[3]]:a,[g[0][0],g[0][3]]),now=new Date(D.generado);
   const ahora=g.filter(r=>new Date(r[0])<=new Date(now.getTime()+18e5)).pop();
-  return{rs,d0,d1,sem:semanaCOES(d0),min,prom:g.reduce((a,r)=>a+r[3],0)/g.length,ahora:ahora?[ahora[0],ahora[3]]:null,cero:g.filter(r=>r[3]<=0.5).length}}
+  const s0=semanaCOES(d0),s1=semanaCOES(ult);return{rs,d0,d1:ult,sem:s1>s0?`${s0}–${s1}`:s0,min,prom:g.reduce((a,r)=>a+r[3],0)/g.length,ahora:ahora?[ahora[0],ahora[3]]:null,cero:g.filter(r=>r[3]<=0.5).length}}
 // Semana operativa del COES: de sábado a viernes; la semana 1 empieza el primer sábado del año
 function semanaCOES(s){const d=new Date(s+"T12:00");let y=d.getFullYear(),p=new Date(y,0,1,12);while(p.getDay()!==6)p.setDate(p.getDate()+1);
   if(d<p){y--;p=new Date(y,0,1,12);while(p.getDay()!==6)p.setDate(p.getDate()+1)}return Math.floor((d-p)/864e5/7)+1}
@@ -394,7 +396,7 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
 
   <section class="sec" id="mercado"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Reserva eficiente de gas</h2></div></div>
    ${(()=>{const R=resSemana();if(!R)return `<div class="estado">${esc(D.cmg_proy&&D.cmg_proy.error||"La reserva eficiente se lee del Anexo 1 (Despacho) del Programa Semanal; aún no está disponible en los datos publicados.")}</div>`;
-     return `<div class="card"><h3>Reserva eficiente de gas en el SEIN · Semana N° ${R.sem} · ${ddmm(R.d0)} al ${ddmm(R.d1)}<small>MW cada 30 min · Programa Semanal de Operación del COES (Anexo 1 · Despacho YUPANA, versión ${esc(D.cmg_proy.version)}) · proyección, no ejecutado</small></h3>
+     return `<div class="card"><h3>Reserva eficiente de gas en el SEIN · Semana${String(R.sem).includes("–")?"s":""} N° ${R.sem} · ${ddmm(R.d0)} al ${ddmm(R.d1)}<small>MW cada 30 min · Programa Semanal de Operación del COES (Anexo 1 · Despacho YUPANA, versión ${esc(D.cmg_proy.version)}) · proyección, no ejecutado</small></h3>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px">
        <span class="pill gr">Mínimo ${f0(R.min[1])} MW · ${R.min[0].slice(8,10)}/${R.min[0].slice(5,7)} ${R.min[0].slice(11,16)} h</span>
        <span class="pill gr">Promedio ${f0(R.prom)} MW</span>${R.ahora?`<span class="pill">Ahora (${R.ahora[0].slice(11,16)} h): ${f0(R.ahora[1])} MW</span>`:""}
