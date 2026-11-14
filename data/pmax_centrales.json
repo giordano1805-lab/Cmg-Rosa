@@ -33,8 +33,8 @@
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
    "central": "Cerro Del Aguila",
-   "mw": 460.6,
-   "fecha": "2026-11-12"
+   "mw": 524.8,
+   "fecha": "2026-11-13"
   },
   "Hidro|Cerrodelaguila": {
    "tipo": "Hidro",
@@ -117,8 +117,8 @@
   "Hidro|Yaupi": {
    "tipo": "Hidro",
    "central": "Yaupi",
-   "mw": 110.6,
-   "fecha": "2026-11-12"
+   "mw": 110.7,
+   "fecha": "2026-11-13"
   },
   "Hidro|Malpaso": {
    "tipo": "Hidro",
@@ -183,8 +183,8 @@
   "Hidro|Pariac": {
    "tipo": "Hidro",
    "central": "Pariac",
-   "mw": 4.4,
-   "fecha": "2026-11-12"
+   "mw": 4.6,
+   "fecha": "2026-11-13"
   },
   "Hidro|Huinco": {
    "tipo": "Hidro",
@@ -267,8 +267,8 @@
   "Hidro|Cana Brava": {
    "tipo": "Hidro",
    "central": "Cana Brava",
-   "mw": 5.7,
-   "fecha": "2026-11-05"
+   "mw": 5.9,
+   "fecha": "2026-11-13"
   },
   "Solar|Sunny": {
    "tipo": "Solar",
@@ -279,14 +279,14 @@
   "Solar|Sunny Expansion": {
    "tipo": "Solar",
    "central": "Sunny Expansion",
-   "mw": 114.6,
-   "fecha": "2026-11-08"
+   "mw": 116.0,
+   "fecha": "2026-11-13"
   },
   "Hidro|Tupuri": {
    "tipo": "Hidro",
    "central": "Tupuri",
-   "mw": 1.6,
-   "fecha": "2026-10-30"
+   "mw": 2.1,
+   "fecha": "2026-11-13"
   },
   "Hidro|Roncador": {
    "tipo": "Hidro",
@@ -339,8 +339,8 @@
   "Solar|Panamericana Solar": {
    "tipo": "Solar",
    "central": "Panamericana Solar",
-   "mw": 20.7,
-   "fecha": "2026-11-05"
+   "mw": 20.8,
+   "fecha": "2026-11-13"
   },
   "Eólica|Marcona": {
    "tipo": "Eólica",
@@ -627,6 +627,7 @@
   "2026-11-09",
   "2026-11-10",
   "2026-11-11",
-  "2026-11-12"
+  "2026-11-12",
+  "2026-11-13"
  ]
 }

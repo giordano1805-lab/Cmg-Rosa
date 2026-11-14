@@ -1,5 +1,5 @@
 {
- "fecha": "2026-11-07",
+ "fecha": "2026-11-14",
  "metodo": "2026-11-07h",
  "lista": [
   {
@@ -2673,6 +2673,26 @@
    "mw": 105.0,
    "hoja": "BD",
    "baja": false
+  },
+  {
+   "central": "C.H. HUAYLLACHO",
+   "unidad": "CENTRAL",
+   "empresa": "INVERSIONES SHAQSA S.A.C.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2026-09-03",
+   "mw": 0.2125,
+   "hoja": "BD",
+   "baja": false
+  },
+  {
+   "central": "C.H. QUITARACSA",
+   "unidad": "CENTRAL",
+   "empresa": "ENGIE ENERGÍA PERÚ S.A.A.",
+   "tipo": "HIDROELÉCTRICA",
+   "fecha": "2026-09-22",
+   "mw": 116.96,
+   "hoja": "BD",
+   "baja": false
   }
  ],
  "diag": {
@@ -2725,7 +2745,7 @@
    "hojas": [
     "BD"
    ],
-   "registros": 266
+   "registros": 268
   }
  }
 }

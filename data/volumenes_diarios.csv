@@ -59,6 +59,7 @@ fecha,cuenca,embalse,prom,final
 2023-11-10,-v2,-,,
 2023-11-11,-v2,-,,
 2023-11-12,-v2,-,,
+2023-11-13,-v2,-,,
 2024-09-25,-v2,-,,
 2024-09-26,-v2,-,,
 2024-09-27,-v2,-,,
@@ -141,6 +142,18 @@ fecha,cuenca,embalse,prom,final
 2024-11-12,San Gabán,Presa San Gaban,0.07892,0.05900
 2024-11-12,Santa,Presa Shapiringo,0.19241,0.13700
 2024-11-12,Santa,Reservorio San Diego,0.40967,0.10100
+2024-11-13,Chaglla,Embalse Chaglla,7.96760,8.24393
+2024-11-13,Mantaro,Embalse Cerro Del Águila,8.27250,7.73000
+2024-11-13,Mantaro,Embalse Junin (Statkraft),63.96421,63.56992
+2024-11-13,Mantaro,Embalse Malpaso,23.15314,23.19849
+2024-11-13,Rímac,Embalse Pallca,0.34400,0.26500
+2024-11-13,Rímac,Presa Huinco,0.12802,0.14802
+2024-11-13,Rímac,Presa Sheque,0.22029,0.24600
+2024-11-13,Rímac,Pulmón Matucana,0.02166,0.01659
+2024-11-13,San Gabán,Embalse Macusani,8.39000,8.39000
+2024-11-13,San Gabán,Presa San Gaban,0.10713,0.08100
+2024-11-13,Santa,Presa Shapiringo,0.20033,0.10400
+2024-11-13,Santa,Reservorio San Diego,0.32183,0.15200
 2025-09-25,Chaglla,Embalse Chaglla,4.69714,4.92320
 2025-09-25,Mantaro,Embalse Cerro Del Águila,4.66833,4.15000
 2025-09-25,Mantaro,Embalse Junin (Statkraft),122.10107,121.65279
@@ -1455,3 +1468,15 @@ fecha,cuenca,embalse,prom,final
 2026-11-12,San Gabán,Presa San Gaban,0.09858,0.03700
 2026-11-12,Santa,Presa Shapiringo,0.21529,0.20700
 2026-11-12,Santa,Reservorio San Diego,0.00200,0.00200
+2026-11-13,Chaglla,Embalse Chaglla,0.52280,0.77844
+2026-11-13,Mantaro,Embalse Cerro Del Águila,2.38212,0.28100
+2026-11-13,Mantaro,Embalse Junin (Statkraft),50.02335,49.64315
+2026-11-13,Mantaro,Embalse Malpaso,19.09129,19.01617
+2026-11-13,Rímac,Embalse Pallca,0.33333,0.30718
+2026-11-13,Rímac,Presa Huinco,0.16154,0.21600
+2026-11-13,Rímac,Presa Sheque,0.16992,0.17000
+2026-11-13,Rímac,Pulmón Matucana,0.01264,0.01093
+2026-11-13,San Gabán,Embalse Macusani,18.31000,18.31000
+2026-11-13,San Gabán,Presa San Gaban,0.08629,0.03800
+2026-11-13,Santa,Presa Shapiringo,0.18350,0.15500
+2026-11-13,Santa,Reservorio San Diego,0.00200,0.00200
