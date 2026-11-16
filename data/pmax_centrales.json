@@ -69,8 +69,8 @@
   "Hidro|Platanal": {
    "tipo": "Hidro",
    "central": "Platanal",
-   "mw": 203.7,
-   "fecha": "2026-11-08"
+   "mw": 221.0,
+   "fecha": "2026-11-15"
   },
   "Hidro|Chaglla": {
    "tipo": "Hidro",
@@ -105,8 +105,8 @@
   "Hidro|Maranon": {
    "tipo": "Hidro",
    "central": "Maranon",
-   "mw": 17.4,
-   "fecha": "2026-11-04"
+   "mw": 17.6,
+   "fecha": "2026-11-15"
   },
   "Hidro|Sta Teresa": {
    "tipo": "Hidro",
@@ -129,8 +129,8 @@
   "Hidro|Cahua": {
    "tipo": "Hidro",
    "central": "Cahua",
-   "mw": 43.3,
-   "fecha": "2026-11-14"
+   "mw": 43.4,
+   "fecha": "2026-11-15"
   },
   "Hidro|Gallito Ciego": {
    "tipo": "Hidro",
@@ -177,8 +177,8 @@
   "Hidro|Arcata": {
    "tipo": "Hidro",
    "central": "Arcata",
-   "mw": 2.3,
-   "fecha": "2026-11-14"
+   "mw": 2.5,
+   "fecha": "2026-11-15"
   },
   "Hidro|Pariac": {
    "tipo": "Hidro",
@@ -237,8 +237,8 @@
   "Solar|Matarani": {
    "tipo": "Solar",
    "central": "Matarani",
-   "mw": 81.1,
-   "fecha": "2026-11-05"
+   "mw": 81.2,
+   "fecha": "2026-11-15"
   },
   "Eólica|Duna": {
    "tipo": "Eólica",
@@ -291,14 +291,14 @@
   "Hidro|Roncador": {
    "tipo": "Hidro",
    "central": "Roncador",
-   "mw": 3.1,
-   "fecha": "2026-11-04"
+   "mw": 3.5,
+   "fecha": "2026-11-15"
   },
   "Hidro|Canchayllo": {
    "tipo": "Hidro",
    "central": "Canchayllo",
-   "mw": 4.3,
-   "fecha": "2026-11-12"
+   "mw": 4.5,
+   "fecha": "2026-11-15"
   },
   "Hidro|Renovandesh1": {
    "tipo": "Hidro",
@@ -387,8 +387,8 @@
   "Hidro|Manta I": {
    "tipo": "Hidro",
    "central": "Manta I",
-   "mw": 10.8,
-   "fecha": "2026-11-07"
+   "mw": 15.0,
+   "fecha": "2026-11-15"
   },
   "Solar|Coenergy": {
    "tipo": "Solar",
@@ -417,14 +417,14 @@
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
    "central": "Runatullo Ii",
-   "mw": 13.4,
-   "fecha": "2026-11-14"
+   "mw": 17.9,
+   "fecha": "2026-11-15"
   },
   "Hidro|Runatullo Iii": {
    "tipo": "Hidro",
    "central": "Runatullo Iii",
-   "mw": 18.2,
-   "fecha": "2026-11-14"
+   "mw": 20.4,
+   "fecha": "2026-11-15"
   },
   "Eólica|Talara": {
    "tipo": "Eólica",
@@ -609,8 +609,8 @@
   "Hidro|Poechos1": {
    "tipo": "Hidro",
    "central": "Poechos1",
-   "mw": 14.0,
-   "fecha": "2026-11-04"
+   "mw": 14.2,
+   "fecha": "2026-11-15"
   }
  },
  "dias": [
@@ -629,6 +629,7 @@
   "2026-11-11",
   "2026-11-12",
   "2026-11-13",
-  "2026-11-14"
+  "2026-11-14",
+  "2026-11-15"
  ]
 }
