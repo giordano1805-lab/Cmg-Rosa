@@ -105,8 +105,8 @@
   "Hidro|Maranon": {
    "tipo": "Hidro",
    "central": "Maranon",
-   "mw": 17.6,
-   "fecha": "2026-11-15"
+   "mw": 18.8,
+   "fecha": "2026-11-16"
   },
   "Hidro|Sta Teresa": {
    "tipo": "Hidro",
@@ -171,8 +171,8 @@
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
    "central": "Quitaracsa",
-   "mw": 59.1,
-   "fecha": "2026-11-08"
+   "mw": 72.6,
+   "fecha": "2026-11-16"
   },
   "Hidro|Arcata": {
    "tipo": "Hidro",
@@ -261,8 +261,8 @@
   "Hidro|Carhuaquero4": {
    "tipo": "Hidro",
    "central": "Carhuaquero4",
-   "mw": 10.6,
-   "fecha": "2026-11-10"
+   "mw": 10.7,
+   "fecha": "2026-11-16"
   },
   "Hidro|Cana Brava": {
    "tipo": "Hidro",
@@ -309,8 +309,8 @@
   "Hidro|Potrero": {
    "tipo": "Hidro",
    "central": "Potrero",
-   "mw": 20.0,
-   "fecha": "2026-11-07"
+   "mw": 20.4,
+   "fecha": "2026-11-16"
   },
   "Hidro|Pizarras": {
    "tipo": "Hidro",
@@ -321,8 +321,8 @@
   "Hidro|Nimperial": {
    "tipo": "Hidro",
    "central": "Nimperial",
-   "mw": 3.4,
-   "fecha": "2026-10-31"
+   "mw": 3.8,
+   "fecha": "2026-11-16"
   },
   "Hidro|Yarucaya": {
    "tipo": "Hidro",
@@ -585,8 +585,8 @@
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
    "central": "Centrales Elor",
-   "mw": 13.3,
-   "fecha": "2026-11-12"
+   "mw": 14.5,
+   "fecha": "2026-11-16"
   },
   "Hidro|Pias1": {
    "tipo": "Hidro",
@@ -630,6 +630,7 @@
   "2026-11-12",
   "2026-11-13",
   "2026-11-14",
-  "2026-11-15"
+  "2026-11-15",
+  "2026-11-16"
  ]
 }
