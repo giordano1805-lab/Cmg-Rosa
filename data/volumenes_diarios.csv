@@ -62,6 +62,7 @@ fecha,cuenca,embalse,prom,final
 2023-11-13,-v2,-,,
 2023-11-14,-v2,-,,
 2023-11-15,-v2,-,,
+2023-11-16,-v2,-,,
 2024-09-25,-v2,-,,
 2024-09-26,-v2,-,,
 2024-09-27,-v2,-,,
@@ -180,6 +181,18 @@ fecha,cuenca,embalse,prom,final
 2024-11-15,San Gabán,Presa San Gaban,0.11683,0.15400
 2024-11-15,Santa,Presa Shapiringo,0.18475,0.10000
 2024-11-15,Santa,Reservorio San Diego,0.30171,0.08400
+2024-11-16,Chaglla,Embalse Chaglla,11.80154,13.46303
+2024-11-16,Mantaro,Embalse Cerro Del Águila,6.13250,5.21000
+2024-11-16,Mantaro,Embalse Junin (Statkraft),61.60533,61.60533
+2024-11-16,Mantaro,Embalse Malpaso,23.43812,23.34124
+2024-11-16,Rímac,Embalse Pallca,0.30783,0.27900
+2024-11-16,Rímac,Presa Huinco,0.14160,0.19887
+2024-11-16,Rímac,Presa Sheque,0.19950,0.18200
+2024-11-16,Rímac,Pulmón Matucana,0.02384,0.01460
+2024-11-16,San Gabán,Embalse Macusani,8.39000,8.39000
+2024-11-16,San Gabán,Presa San Gaban,0.14908,0.14800
+2024-11-16,Santa,Presa Shapiringo,0.14371,0.10600
+2024-11-16,Santa,Reservorio San Diego,0.14138,0.01100
 2025-09-25,Chaglla,Embalse Chaglla,4.69714,4.92320
 2025-09-25,Mantaro,Embalse Cerro Del Águila,4.66833,4.15000
 2025-09-25,Mantaro,Embalse Junin (Statkraft),122.10107,121.65279
