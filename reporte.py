@@ -1068,6 +1068,31 @@ def programa_mensual(hoy, hojas_ieod=None):
 
 
 
+PROY_HIST = Path("data") / "cmg_proyectado_hist.json"
+
+
+def _proy_historico(out_d, hoy):
+    """Conserva el CMg proyectado de los días ya pasados (el del Programa Semanal de su semana) para compararlo
+    con el real: los días anteriores a `hoy` no se sobrescriben; los de hoy en adelante se actualizan."""
+    try:
+        h = json.loads(PROY_HIST.read_text(encoding="utf-8"))
+    except Exception:
+        h = {}
+    corte, lim = hoy.isoformat(), (hoy - dt.timedelta(days=100)).isoformat()
+    for b, dd in out_d.items():
+        hb = h.setdefault(b, {})
+        for d, v in dd.items():
+            if d >= corte or d not in hb:
+                hb[d] = v
+    h = {b: {d: v for d, v in sorted(dd.items()) if d >= lim} for b, dd in h.items()}
+    try:
+        PROY_HIST.parent.mkdir(parents=True, exist_ok=True)
+        PROY_HIST.write_text(json.dumps(h, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception as e:
+        print("No se pudo guardar el histórico del CMg proyectado:", e, file=sys.stderr)
+    return h
+
+
 def cmg_proyectado(m, hist, dia, hoy):
     """CMg proyectado del Programa Semanal (YUPANA) en USD/MWh por día y barra, con la unidad verificada."""
     serie, meta = fc.cmg_programa_semanal(hoy)
@@ -1110,6 +1135,7 @@ def cmg_proyectado(m, hist, dia, hoy):
                for t in sorted(serie) if any(c in serie[t] for c in claves)]
     out_d = {b: {d: round(sum(x) / len(x), 2) for d, x in sorted(dd.items())} for b, dd in diario.items()}
     out_n = {b: {d: len(x) for d, x in sorted(dd.items())} for b, dd in diario.items()}
+    out_d = _proy_historico(out_d, hoy)
     sem = meta["semanas"]
     return {"diario": out_d, "n": out_n, "unidad_origen": unidad, "reserva": reserva,
             "reserva_cols": ["Reserva fría térmica", "Reserva eficiente", "Reserva eficiente gas", "Reserva eficiente carbón"], "metodo_unidad": metodo,
