@@ -1093,6 +1093,50 @@ def _proy_historico(out_d, hoy):
     return h
 
 
+def _proy_rellenar(m, diario, k, hoy):
+    """Si faltan días pasados del mes en el histórico (p. ej. semanas anteriores a que se empezara a guardar),
+    lee el Programa Semanal de esas semanas y los completa. Se intenta como máximo una vez por día."""
+    marca = Path("data") / "cmg_proyectado_relleno.json"
+    try:
+        h = json.loads(PROY_HIST.read_text(encoding="utf-8")).get(m.SR, {})
+    except Exception:
+        h = {}
+    tengo = set(h) | set(diario.get(m.SR, {}))
+    faltan = [hoy.replace(day=1) + dt.timedelta(days=i) for i in range(hoy.day - 1)]
+    faltan = [d for d in faltan if d.isoformat() not in tengo]
+    try:
+        if not faltan or json.loads(marca.read_text(encoding="utf-8")).get("intento") == hoy.isoformat():
+            return
+    except Exception:
+        pass
+    try:
+        marca.write_text(json.dumps({"intento": hoy.isoformat(), "faltaban": [d.isoformat() for d in faltan]}), encoding="utf-8")
+    except Exception:
+        pass
+    pedidos, vistos = set(d.isoformat() for d in faltan), set()
+    for d0 in faltan:
+        if d0.isoformat() in vistos:
+            continue
+        try:
+            serie, _ = fc.cmg_programa_semanal(d0)
+        except Exception as e:
+            print("Programa Semanal anterior no disponible:", e, file=sys.stderr)
+            continue
+        nuevos = {}
+        for t, v in serie.items():
+            d = (t - dt.timedelta(minutes=1)).date().isoformat()
+            if d not in pedidos:
+                continue
+            vistos.add(d)
+            for b, x in v.items():
+                if not b.startswith("_") and isinstance(x, (int, float)):
+                    nuevos.setdefault(b, {}).setdefault(d, []).append(x * k)
+        for b, dd in nuevos.items():
+            for d, xs in dd.items():
+                diario.setdefault(b, {}).setdefault(d, xs)
+        vistos.update(d.isoformat() for d in faltan if d0 <= d <= d0 + dt.timedelta(days=6))
+
+
 def cmg_proyectado(m, hist, dia, hoy):
     """CMg proyectado del Programa Semanal (YUPANA) en USD/MWh por día y barra, con la unidad verificada."""
     serie, meta = fc.cmg_programa_semanal(hoy)
@@ -1128,6 +1172,7 @@ def cmg_proyectado(m, hist, dia, hoy):
             if b.startswith("_"):
                 continue
             diario.setdefault(b, {}).setdefault(d, []).append(x * k)
+    _proy_rellenar(m, diario, k, hoy)
     # reserva fría y reserva eficiente (MW) del mismo despacho, cada 30 min
     claves = ["_rf_termica", "_ref", "_ref_gas", "_ref_carbon"]
     reserva = [[t.strftime("%Y-%m-%dT%H:%M"), *[round(serie[t][c], 1) if isinstance(serie[t].get(c), float) else None
