@@ -70,6 +70,7 @@ section.sec{margin-top:26px;scroll-margin-top:60px}
 #gmodal{position:fixed;inset:0;z-index:50;background:rgba(0,12,48,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:24px}
 #gmodal.on{display:flex}#gmodal .card{width:min(1200px,100%);max-height:100%;overflow:auto}#gmodal .chart{height:min(62vh,560px)}
 .gkpi{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 8px}
+.cmgdual{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);gap:14px;align-items:stretch}.cmgdual>.card{display:flex;flex-direction:column}.cmgdual #cpr-card .chart{flex:1;min-height:300px}@media (max-width:1100px){.cmgdual{grid-template-columns:1fr}}
 .chart{position:relative;height:300px}.chart.tall{height:380px}.chart.sm{height:230px}
 .seg{display:inline-flex;gap:4px;padding:3px;border-radius:9px;background:var(--tinte2);box-shadow:inset 0 1px 2px rgba(0,26,111,.08);flex-wrap:wrap}
 .seg button{border:0;background:transparent;color:var(--text-2);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer;min-height:32px}
@@ -368,16 +369,17 @@ function render(){charts.forEach(c=>c.destroy());charts=[];if(GNM===null)GNM=gen
   <section class="sec" id="cmg"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Evolución CMg</h2></div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div class="seg" role="group" aria-label="Mes">${[["act","Mes en curso"],["ant","Mes anterior completo"]].map(([k,n])=>`<button type="button" aria-pressed="${CMM===k}" onclick="CMM='${k}';render()" ${k==="ant"&&!D.cmg_mes_ant?"disabled title='Aún no hay un mes anterior completo guardado'":""}>${n}</button>`).join("")}</div>
     <span class="pill">AVG = ${f0(CV.prom[SR])} USD/MWh</span></div></div>
-   <div class="card"><h3>CMg – ${CV.mesTxt} (USD/MWh)<small>Barras: Santa Rosa 220 kV por bloque (base 23–6 h, media 6–18 h, punta 18–23 h) · líneas: promedio diario por barra · ${CV.completo?`mes completo (${CV.n} días)`:`datos hasta el ${ddmm(D.dia)}`}${CMM==="act"&&D.cmg_proy&&D.cmg_proy.diario?" · punteado: proyectado del Programa Semanal; se conserva en los días pasados para comparar con el real":""}</small></h3>
+   <div class="cmgdual"><div class="card"><h3>CMg – ${CV.mesTxt} (USD/MWh)<small>Barras: Santa Rosa 220 kV por bloque (base 23–6 h, media 6–18 h, punta 18–23 h) · líneas: promedio diario por barra · ${CV.completo?`mes completo (${CV.n} días)`:`datos hasta el ${ddmm(D.dia)}`}${CMM==="act"&&D.cmg_proy&&D.cmg_proy.diario?" · punteado: proyectado del Programa Semanal; se conserva en los días pasados para comparar con el real":""}</small></h3>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${D.barras.map(b=>`<span class="pill gr">${esc(b.replace(" 220",""))}: ${f2(CV.prom[b])}</span>`).join("")}</div>
     ${cv("c-cmg","CMg diario del mes por bloque y barra","tall")}</div>
+     <div class="card" id="cpr-card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
+   </div>
    <div class="grid g2" style="margin-top:14px">
      <div class="card" style="grid-column:1/-1"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start"><h3 style="margin:0">Demanda (TWh)<small>${D.demanda_hist?`${D.demanda_hist.ant} vs ${D.demanda_hist.act} · mes en curso: mismos ${D.demanda_hist.dias} días · a la derecha, acumulado del año al mismo corte`:""}</small></h3>
       <button type="button" class="tgl" aria-pressed="${DTP}" aria-controls="dtp" onclick="DTP=!DTP;render()">${DTP?"▾ Ocultar detalle por tipo de cliente":"▸ Ver detalle por tipo de cliente"}</button></div>
       <div class="dg"><div>${cv("c-dem","Demanda mensual en TWh con variación","sm")}</div><div class="sepv">${cv("c-dema","Demanda acumulada del año frente al anterior","sm")}</div></div>
       ${DTP?`<div id="dtp"><div class="t2">Energía por tipo de cliente · ${D.tipo_cliente?`${D.tipo_cliente.ant} vs ${D.tipo_cliente.act}`:""} · LVTEA mensual del COES</div>${tipoHTML()}</div>`:""}</div>
-     <div class="card"><h3>CMg mensual · proyectado vs real<small>${esc(barraM)} · USD/MWh · real automático desde los datos del COES cuando hay mes completo guardado</small></h3>${cv("c-cpr","CMg mensual proyectado y real","sm")}
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><span class="pill nv">AVG proy. = ${f1(avP)}</span><span class="pill">AVG real = ${f1(avR)}</span><span class="mut" style="align-self:center">real: meses cerrados; el mes en curso (barra clara) no entra al promedio</span></div></div>
    </div></section>
 
   <section class="sec" id="gen"><div class="sh"><div class="t"><small>REPORTE COMERCIAL</small><h2>Generación</h2></div></div>
