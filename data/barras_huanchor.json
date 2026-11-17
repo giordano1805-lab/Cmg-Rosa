@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-16T23:52-05:00",
+ "actualizado": "2026-11-17T06:12-05:00",
  "usadas": {
   "Huanchor 50": null,
   "Matucana": "MATUCANA 220"
@@ -14,7 +14,7 @@
    "MATUCANA 220"
   ]
  },
- "total_barras_mapa": 114,
+ "total_barras_mapa": 115,
  "barras_mapa": [
   "AGUAYTIA 138",
   "AGUAYTIA 220",
@@ -26,6 +26,7 @@
   "AZANGARO 138",
   "BOTIFLACA 138",
   "CACHIMAYO 138",
+  "CAHUA 138",
   "CAJAMARCA 220",
   "CAJAMARQUILLA 220",
   "CALLAHUANCA EDG 220",
