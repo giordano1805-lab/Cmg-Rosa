@@ -171,14 +171,14 @@
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
    "central": "Quitaracsa",
-   "mw": 72.6,
-   "fecha": "2026-11-16"
+   "mw": 73.4,
+   "fecha": "2026-11-17"
   },
   "Hidro|Arcata": {
    "tipo": "Hidro",
    "central": "Arcata",
-   "mw": 2.5,
-   "fecha": "2026-11-15"
+   "mw": 2.6,
+   "fecha": "2026-11-17"
   },
   "Hidro|Pariac": {
    "tipo": "Hidro",
@@ -585,8 +585,8 @@
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
    "central": "Centrales Elor",
-   "mw": 14.5,
-   "fecha": "2026-11-16"
+   "mw": 15.2,
+   "fecha": "2026-11-17"
   },
   "Hidro|Pias1": {
    "tipo": "Hidro",
@@ -609,8 +609,8 @@
   "Hidro|Poechos1": {
    "tipo": "Hidro",
    "central": "Poechos1",
-   "mw": 14.2,
-   "fecha": "2026-11-15"
+   "mw": 14.3,
+   "fecha": "2026-11-17"
   }
  },
  "dias": [
@@ -631,6 +631,7 @@
   "2026-11-13",
   "2026-11-14",
   "2026-11-15",
-  "2026-11-16"
+  "2026-11-16",
+  "2026-11-17"
  ]
 }
