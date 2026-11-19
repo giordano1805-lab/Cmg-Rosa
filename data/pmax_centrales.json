@@ -105,8 +105,8 @@
   "Hidro|Maranon": {
    "tipo": "Hidro",
    "central": "Maranon",
-   "mw": 18.8,
-   "fecha": "2026-11-16"
+   "mw": 19.8,
+   "fecha": "2026-11-18"
   },
   "Hidro|Sta Teresa": {
    "tipo": "Hidro",
@@ -129,8 +129,8 @@
   "Hidro|Cahua": {
    "tipo": "Hidro",
    "central": "Cahua",
-   "mw": 43.4,
-   "fecha": "2026-11-15"
+   "mw": 44.5,
+   "fecha": "2026-11-18"
   },
   "Hidro|Gallito Ciego": {
    "tipo": "Hidro",
@@ -171,8 +171,8 @@
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
    "central": "Quitaracsa",
-   "mw": 73.4,
-   "fecha": "2026-11-17"
+   "mw": 112.6,
+   "fecha": "2026-11-18"
   },
   "Hidro|Arcata": {
    "tipo": "Hidro",
@@ -387,8 +387,8 @@
   "Hidro|Manta I": {
    "tipo": "Hidro",
    "central": "Manta I",
-   "mw": 15.0,
-   "fecha": "2026-11-15"
+   "mw": 19.7,
+   "fecha": "2026-11-18"
   },
   "Solar|Coenergy": {
    "tipo": "Solar",
@@ -411,8 +411,8 @@
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
    "central": "Stacruz 1 2",
-   "mw": 12.1,
-   "fecha": "2026-11-07"
+   "mw": 12.7,
+   "fecha": "2026-11-18"
   },
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
@@ -585,8 +585,8 @@
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
    "central": "Centrales Elor",
-   "mw": 15.2,
-   "fecha": "2026-11-17"
+   "mw": 17.2,
+   "fecha": "2026-11-18"
   },
   "Hidro|Pias1": {
    "tipo": "Hidro",
@@ -632,6 +632,7 @@
   "2026-11-14",
   "2026-11-15",
   "2026-11-16",
-  "2026-11-17"
+  "2026-11-17",
+  "2026-11-18"
  ]
 }

@@ -24494,6 +24494,7 @@
   "listados": {
    "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/": [
     "Calculo Factores Pérdidas Medias",
+    "2027",
     "2026",
     "2025",
     "2024",
@@ -24515,6 +24516,7 @@
     "2019",
     "2018"
    ],
+   "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2027/": [],
    "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/": [
     "10_Octubre",
     "09_Setiembre",
@@ -25257,10 +25259,10 @@
     "Carta DO-318-2025 11.06.2025.pdf"
    ]
   },
-  "carpetas_revisadas": 129,
+  "carpetas_revisadas": 130,
   "resumen_hallados": 71
  },
- "buscado": "2026-11-18",
+ "buscado": "2026-11-19",
  "version_por_mes": {
   "2026-10": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/10_Octubre/Mensual/Resumen_cuadros-1026.xlsx",
   "2026-09": "Mercado Mayorista/Liquidaciones del MME/01 Mercado de Corto Plazo/Liquidaciones VTEA/2026/09_Setiembre/Revisión 01/Resumen_cuadros-0926_R1.xlsx",
