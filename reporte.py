@@ -1179,16 +1179,59 @@ def cmg_proyectado(m, hist, dia, hoy):
     reserva = [[t.strftime("%Y-%m-%dT%H:%M"), *[round(serie[t][c], 1) if isinstance(serie[t].get(c), float) else None
                                               for c in claves]]
                for t in sorted(serie) if any(c in serie[t] for c in claves)]
+    desg = _reserva_unidades(serie, [r[0] for r in reserva])
     out_d = {b: {d: round(sum(x) / len(x), 2) for d, x in sorted(dd.items())} for b, dd in diario.items()}
     out_n = {b: {d: len(x) for d, x in sorted(dd.items())} for b, dd in diario.items()}
     out_d = _proy_historico(out_d, hoy)
     sem = meta["semanas"]
     return {"diario": out_d, "n": out_n, "unidad_origen": unidad, "reserva": reserva,
-            "reserva_cols": ["Reserva fría térmica", "Reserva eficiente", "Reserva eficiente gas", "Reserva eficiente carbón"], "metodo_unidad": metodo,
+            "reserva_desg": desg, "reserva_cols": ["Reserva fría térmica", "Reserva eficiente", "Reserva eficiente gas", "Reserva eficiente carbón"], "metodo_unidad": metodo,
             "archivos": [a.split("/")[-1] for a in meta["archivos"]],
             "version": "Final" if any("/FINAL/" in fc.norm(a) + "/" for a in meta["archivos"]) else "Preliminar",
             "semanas": [f"{s_['desde']} a {s_['hasta']}" for s_ in sem], "nombres": meta.get("nombres"),
             "consultado": hoy.isoformat()}
+
+# potencia disponible (MW) deducida comparando el Anexo 1 con la reserva eficiente de gas publicada (semanas 42–47 de 2026);
+# para las demás unidades se usa la máxima potencia que el propio programa les despacha
+CAP_RESERVA = {"STAROSA TG8": 183, "STA ROSA WEST TG7": 118, "UTI_5": 52, "UTI_6": 52}
+
+
+def _reserva_unidades(serie, tiempos):
+    """Estima qué turbinas a gas no despachadas forman la reserva eficiente de gas de cada media hora:
+    entre las unidades apagadas elige la combinación cuya potencia más se acerca al total del COES
+    (prefiere Santa Rosa, que es la que casi siempre la explica); lo que no cuadra queda como "sin identificar"."""
+    import itertools
+    ts = {t.strftime("%Y-%m-%dT%H:%M"): t for t in serie}
+    unid = [u for u in fc.GAS_PSO if any("_g:" + u in v for v in serie.values())]
+    if not unid:
+        return None
+    cap = {u: max([v.get("_g:" + u) or 0 for v in serie.values()] + [CAP_RESERVA.get(u, 0)]) for u in unid}
+    filas, usadas = [], set()
+    for k in tiempos:
+        v = serie[ts[k]]
+        tot = v.get("_ref_gas")
+        if not isinstance(tot, float):
+            filas.append(None)
+            continue
+        off = [u for u in unid if (v.get("_g:" + u) or 0) <= 0.5 and cap[u] > 1]
+        best, comb = (tot, 0), ()
+        for n in range(1, min(len(off), 6) + 1):
+            for c in itertools.combinations(off, n):
+                s_ = sum(cap[u] for u in c)
+                if s_ > tot + 8:
+                    continue
+                pen = (tot - s_ + 5 * sum(u not in CAP_RESERVA for u in c), n)
+                if pen < best:
+                    best, comb = pen, c
+        esc = min(1.0, tot / sum(cap[u] for u in comb)) if comb else 1.0   # si se pasa por pocos MW, se ajusta al total
+        fila = {u: round(cap[u] * esc, 1) for u in comb}
+        usadas |= set(comb)
+        filas.append([fila.get(u, 0) for u in unid] + [round(max(tot - sum(fila.values()), 0), 1)])
+    idx = [i for i, u in enumerate(unid) if u in usadas]
+    return {"unidades": [fc.GAS_PSO[unid[i]] for i in idx], "cap": [round(cap[unid[i]]) for i in idx],
+            "filas": [None if f is None else [f[i] for i in idx] + [f[-1]] for f in filas],
+            "metodo": "estimado: unidades a gas disponibles no despachadas cuya potencia suma el total publicado por el COES"}
+
 
 # --------------------------------------------------------------------------- orquestación
 def generar(m, hist=None):
