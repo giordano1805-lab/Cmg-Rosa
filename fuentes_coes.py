@@ -1170,6 +1170,9 @@ def _cmg_en_hoja(nombre, filas):
             k = EXTRAS_PSO.get(re.sub(r"\s+", " ", norm(v)))
             if k and k not in cols:
                 cols[k] = j
+            n_ = re.sub(r"\s+", " ", norm(v))
+            if n_ in GAS_PSO and "_g:" + n_ not in cols:      # despacho de cada unidad a gas (desglose de la reserva)
+                cols["_g:" + n_] = j
         base = _fecha_de_hoja(nombre, filas[:i + 1])
         out, prev = {}, None
         for g in filas[i + 1:i + 2000]:
@@ -1211,6 +1214,17 @@ def _cmg_en_hoja(nombre, filas):
         if out:
             return out, {b: norm(f[j]) for b, j in cols.items()}
     return {}, {}
+
+
+# turbinas a gas del Anexo 1 (encabezado normalizado -> nombre corto) para estimar qué unidades forman la reserva eficiente de gas
+GAS_PSO = {
+    "STAROSA TG8": "Santa Rosa TG8", "STA ROSA WEST TG7": "Santa Rosa TG7", "UTI_5": "Santa Rosa UTI 5", "UTI_6": "Santa Rosa UTI 6",
+    "AGUAYTIA TG1": "Aguaytía TG1", "AGUAYTIA TG2": "Aguaytía TG2", "MALACAS2 TG4": "Malacas TG4", "MALACAS3 TG 5": "Malacas TG5",
+    "MALACAS1 TG6": "Malacas TG6", "INDEPENDENCIA": "Independencia", "KALLPA TG1": "Kallpa TG1", "KALLPA TG2": "Kallpa TG2",
+    "KALLPA TG3": "Kallpa TG3", "LFLORES TG1": "Las Flores TG1", "FENIX GT11": "Fénix GT11", "FENIX GT12": "Fénix GT12",
+    "CHILCA1 TG1": "Chilca 1 TG1", "CHILCA1 TG2": "Chilca 1 TG2", "CHILCA1 TG3": "Chilca 1 TG3", "CHILCA2 TG41": "Chilca 2 TG41",
+    "VENTANILLA 3": "Ventanilla TG3", "VENTANILLA 4": "Ventanilla TG4", "OLLEROS TG1": "Olleros TG1",
+}
 
 
 # encabezado normalizado del Anexo 1 (Despacho) del Programa Semanal -> clave interna (empieza con "_": no es barra)
