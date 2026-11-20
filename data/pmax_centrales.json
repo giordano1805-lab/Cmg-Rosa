@@ -171,14 +171,14 @@
   "Hidro|Quitaracsa": {
    "tipo": "Hidro",
    "central": "Quitaracsa",
-   "mw": 112.6,
-   "fecha": "2026-11-18"
+   "mw": 113.5,
+   "fecha": "2026-11-19"
   },
   "Hidro|Arcata": {
    "tipo": "Hidro",
    "central": "Arcata",
-   "mw": 2.6,
-   "fecha": "2026-11-17"
+   "mw": 2.8,
+   "fecha": "2026-11-19"
   },
   "Hidro|Pariac": {
    "tipo": "Hidro",
@@ -333,8 +333,8 @@
   "Solar|Moquegua Solar": {
    "tipo": "Solar",
    "central": "Moquegua Solar",
-   "mw": 15.6,
-   "fecha": "2026-11-04"
+   "mw": 16.1,
+   "fecha": "2026-11-19"
   },
   "Solar|Panamericana Solar": {
    "tipo": "Solar",
@@ -411,8 +411,8 @@
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
    "central": "Stacruz 1 2",
-   "mw": 12.7,
-   "fecha": "2026-11-18"
+   "mw": 13.1,
+   "fecha": "2026-11-19"
   },
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
@@ -531,8 +531,8 @@
   "Eólica|Wayra I": {
    "tipo": "Eólica",
    "central": "Wayra I",
-   "mw": 127.4,
-   "fecha": "2026-11-03"
+   "mw": 129.2,
+   "fecha": "2026-11-19"
   },
   "Eólica|Wayra Extension": {
    "tipo": "Eólica",
@@ -585,14 +585,14 @@
   "Hidro|Centrales Elor": {
    "tipo": "Hidro",
    "central": "Centrales Elor",
-   "mw": 17.2,
-   "fecha": "2026-11-18"
+   "mw": 18.3,
+   "fecha": "2026-11-19"
   },
   "Hidro|Pias1": {
    "tipo": "Hidro",
    "central": "Pias1",
-   "mw": 11.1,
-   "fecha": "2026-11-09"
+   "mw": 11.2,
+   "fecha": "2026-11-19"
   },
   "Hidro|Zana": {
    "tipo": "Hidro",
@@ -633,6 +633,7 @@
   "2026-11-15",
   "2026-11-16",
   "2026-11-17",
-  "2026-11-18"
+  "2026-11-18",
+  "2026-11-19"
  ]
 }
