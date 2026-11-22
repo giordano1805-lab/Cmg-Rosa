@@ -27,8 +27,8 @@
   "Hidro|Canon Del Pato": {
    "tipo": "Hidro",
    "central": "Canon Del Pato",
-   "mw": 208.9,
-   "fecha": "2026-11-07"
+   "mw": 211.3,
+   "fecha": "2026-11-21"
   },
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
@@ -129,8 +129,8 @@
   "Hidro|Cahua": {
    "tipo": "Hidro",
    "central": "Cahua",
-   "mw": 44.5,
-   "fecha": "2026-11-18"
+   "mw": 45.4,
+   "fecha": "2026-11-21"
   },
   "Hidro|Gallito Ciego": {
    "tipo": "Hidro",
@@ -339,8 +339,8 @@
   "Solar|Panamericana Solar": {
    "tipo": "Solar",
    "central": "Panamericana Solar",
-   "mw": 20.8,
-   "fecha": "2026-11-13"
+   "mw": 21.5,
+   "fecha": "2026-11-21"
   },
   "Eólica|Marcona": {
    "tipo": "Eólica",
@@ -411,8 +411,8 @@
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
    "central": "Stacruz 1 2",
-   "mw": 13.1,
-   "fecha": "2026-11-19"
+   "mw": 13.2,
+   "fecha": "2026-11-21"
   },
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
@@ -537,8 +537,8 @@
   "Eólica|Wayra Extension": {
    "tipo": "Eólica",
    "central": "Wayra Extension",
-   "mw": 166.0,
-   "fecha": "2026-11-20"
+   "mw": 171.2,
+   "fecha": "2026-11-21"
   },
   "Solar|Clemesi": {
    "tipo": "Solar",
@@ -635,6 +635,7 @@
   "2026-11-17",
   "2026-11-18",
   "2026-11-19",
-  "2026-11-20"
+  "2026-11-20",
+  "2026-11-21"
  ]
 }
