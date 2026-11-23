@@ -537,8 +537,8 @@
   "Eólica|Wayra Extension": {
    "tipo": "Eólica",
    "central": "Wayra Extension",
-   "mw": 171.2,
-   "fecha": "2026-11-21"
+   "mw": 177.3,
+   "fecha": "2026-11-22"
   },
   "Solar|Clemesi": {
    "tipo": "Solar",
@@ -603,8 +603,8 @@
   "Hidro|Curumuy": {
    "tipo": "Hidro",
    "central": "Curumuy",
-   "mw": 9.8,
-   "fecha": "2026-11-05"
+   "mw": 11.6,
+   "fecha": "2026-11-22"
   },
   "Hidro|Poechos1": {
    "tipo": "Hidro",
@@ -636,6 +636,7 @@
   "2026-11-18",
   "2026-11-19",
   "2026-11-20",
-  "2026-11-21"
+  "2026-11-21",
+  "2026-11-22"
  ]
 }

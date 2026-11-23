@@ -68,6 +68,7 @@ fecha,cuenca,embalse,prom,final
 2023-11-19,-v2,-,,
 2023-11-20,-v2,-,,
 2023-11-21,-v2,-,,
+2023-11-22,-v2,-,,
 2024-09-25,-v2,-,,
 2024-09-26,-v2,-,,
 2024-09-27,-v2,-,,
@@ -257,6 +258,18 @@ fecha,cuenca,embalse,prom,final
 2024-11-21,San Gabán,Presa San Gaban,0.13200,0.14200
 2024-11-21,Santa,Presa Shapiringo,0.12083,0.09400
 2024-11-21,Santa,Reservorio San Diego,0.56242,0.50800
+2024-11-22,Chaglla,Embalse Chaglla,15.41418,16.68229
+2024-11-22,Mantaro,Embalse Cerro Del Águila,7.21792,7.51000
+2024-11-22,Mantaro,Embalse Junin (Statkraft),57.70548,57.70548
+2024-11-22,Mantaro,Embalse Malpaso,21.16328,21.50863
+2024-11-22,Rímac,Embalse Pallca,0.35192,0.26900
+2024-11-22,Rímac,Presa Huinco,0.19875,0.25700
+2024-11-22,Rímac,Presa Sheque,0.23392,0.23400
+2024-11-22,Rímac,Pulmón Matucana,0.02927,0.02723
+2024-11-22,San Gabán,Embalse Macusani,8.80000,8.80000
+2024-11-22,San Gabán,Presa San Gaban,0.12996,0.14500
+2024-11-22,Santa,Presa Shapiringo,0.20129,0.13700
+2024-11-22,Santa,Reservorio San Diego,0.66254,0.63600
 2025-09-25,Chaglla,Embalse Chaglla,4.69714,4.92320
 2025-09-25,Mantaro,Embalse Cerro Del Águila,4.66833,4.15000
 2025-09-25,Mantaro,Embalse Junin (Statkraft),122.10107,121.65279
@@ -1679,3 +1692,15 @@ fecha,cuenca,embalse,prom,final
 2026-11-21,San Gabán,Presa San Gaban,0.10000,0.05100
 2026-11-21,Santa,Presa Shapiringo,0.22121,0.23700
 2026-11-21,Santa,Reservorio San Diego,0.00200,0.00200
+2026-11-22,Chaglla,Embalse Chaglla,0.78350,0.47323
+2026-11-22,Mantaro,Embalse Cerro Del Águila,0.43287,0.16900
+2026-11-22,Mantaro,Embalse Junin (Statkraft),39.53098,39.16173
+2026-11-22,Mantaro,Embalse Malpaso,19.94632,19.61565
+2026-11-22,Rímac,Embalse Pallca,0.28292,0.29100
+2026-11-22,Rímac,Presa Huinco,0.19133,0.15400
+2026-11-22,Rímac,Presa Sheque,0.19867,0.33000
+2026-11-22,Rímac,Pulmón Matucana,0.01350,0.01134
+2026-11-22,San Gabán,Embalse Macusani,17.52000,17.52000
+2026-11-22,San Gabán,Presa San Gaban,0.08763,0.03400
+2026-11-22,Santa,Presa Shapiringo,0.23775,0.23500
+2026-11-22,Santa,Reservorio San Diego,0.00200,0.00200
