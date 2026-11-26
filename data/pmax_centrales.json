@@ -21,8 +21,8 @@
   "Hidro|Carhuaquero": {
    "tipo": "Hidro",
    "central": "Carhuaquero",
-   "mw": 93.7,
-   "fecha": "2026-11-14"
+   "mw": 94.2,
+   "fecha": "2026-11-24"
   },
   "Hidro|Canon Del Pato": {
    "tipo": "Hidro",
@@ -69,8 +69,8 @@
   "Hidro|Platanal": {
    "tipo": "Hidro",
    "central": "Platanal",
-   "mw": 221.0,
-   "fecha": "2026-11-15"
+   "mw": 221.4,
+   "fecha": "2026-11-24"
   },
   "Hidro|Chaglla": {
    "tipo": "Hidro",
@@ -135,8 +135,8 @@
   "Hidro|Gallito Ciego": {
    "tipo": "Hidro",
    "central": "Gallito Ciego",
-   "mw": 33.7,
-   "fecha": "2026-11-14"
+   "mw": 34.1,
+   "fecha": "2026-11-24"
   },
   "Hidro|Cheves": {
    "tipo": "Hidro",
@@ -201,8 +201,8 @@
   "Hidro|Moyopampa": {
    "tipo": "Hidro",
    "central": "Moyopampa",
-   "mw": 68.6,
-   "fecha": "2026-11-03"
+   "mw": 69.9,
+   "fecha": "2026-11-24"
   },
   "Hidro|Callahuanca": {
    "tipo": "Hidro",
@@ -273,8 +273,8 @@
   "Solar|Sunny": {
    "tipo": "Solar",
    "central": "Sunny",
-   "mw": 225.6,
-   "fecha": "2026-11-11"
+   "mw": 229.9,
+   "fecha": "2026-11-24"
   },
   "Solar|Sunny Expansion": {
    "tipo": "Solar",
@@ -339,8 +339,8 @@
   "Solar|Panamericana Solar": {
    "tipo": "Solar",
    "central": "Panamericana Solar",
-   "mw": 21.5,
-   "fecha": "2026-11-21"
+   "mw": 22.0,
+   "fecha": "2026-11-24"
   },
   "Eólica|Marcona": {
    "tipo": "Eólica",
@@ -459,8 +459,8 @@
   "Solar|Expansion Intipampa": {
    "tipo": "Solar",
    "central": "Expansion Intipampa",
-   "mw": 55.0,
-   "fecha": "2026-11-06"
+   "mw": 57.1,
+   "fecha": "2026-11-24"
   },
   "Hidro|8Agosto": {
    "tipo": "Hidro",
@@ -638,6 +638,7 @@
   "2026-11-20",
   "2026-11-21",
   "2026-11-22",
-  "2026-11-23"
+  "2026-11-23",
+  "2026-11-24"
  ]
 }

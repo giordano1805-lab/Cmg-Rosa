@@ -307,6 +307,49 @@ fecha,tipo,central,mwh
 2024-11-23,Solar,Rubi,1285.9
 2024-11-23,Solar,Tacna Solar,166.4
 2024-11-23,Solar,Yarucaya,8.0
+2024-11-24,Eólica,3 Hermanas,1305.5
+2024-11-24,Eólica,Cupisnique,1220.3
+2024-11-24,Eólica,Duna,252.1
+2024-11-24,Eólica,Huambos,160.8
+2024-11-24,Eólica,Marcona,421.9
+2024-11-24,Eólica,Punta Lomitas,3243.2
+2024-11-24,Eólica,Punta Lomitas Expansion,330.3
+2024-11-24,Eólica,San Juan,1442.2
+2024-11-24,Eólica,Talara,399.2
+2024-11-24,Eólica,Wayra Extension,1849.6
+2024-11-24,Eólica,Wayra I,1765.5
+2024-11-24,Solar,Carhuaquero (Cs),2.3
+2024-11-24,Solar,Clemesi,873.5
+2024-11-24,Solar,Intipampa,222.7
+2024-11-24,Solar,Majes,11.8
+2024-11-24,Solar,Matarani,8.8
+2024-11-24,Solar,Moquegua Solar,109.2
+2024-11-24,Solar,Panamericana Solar,149.2
+2024-11-24,Solar,Rubi,1139.2
+2024-11-24,Solar,Tacna Solar,73.3
+2024-11-24,Solar,Yarucaya,4.8
+2024-11-25,Eólica,3 Hermanas,1494.7
+2024-11-25,Eólica,Cupisnique,1081.2
+2024-11-25,Eólica,Duna,155.7
+2024-11-25,Eólica,Huambos,96.2
+2024-11-25,Eólica,Marcona,469.4
+2024-11-25,Eólica,Punta Lomitas,4019.0
+2024-11-25,Eólica,Punta Lomitas Expansion,515.5
+2024-11-25,Eólica,San Juan,1452.8
+2024-11-25,Eólica,Talara,357.1
+2024-11-25,Eólica,Wayra Extension,2168.8
+2024-11-25,Eólica,Wayra I,1926.5
+2024-11-25,Solar,Carhuaquero (Cs),1.8
+2024-11-25,Solar,Clemesi,1137.7
+2024-11-25,Solar,Intipampa,377.4
+2024-11-25,Solar,Majes,138.7
+2024-11-25,Solar,Matarani,704.1
+2024-11-25,Solar,Moquegua Solar,93.3
+2024-11-25,Solar,Panamericana Solar,119.8
+2024-11-25,Solar,Reparticion,131.0
+2024-11-25,Solar,Rubi,1511.4
+2024-11-25,Solar,Tacna Solar,84.3
+2024-11-25,Solar,Yarucaya,4.8
 2025-10-01,Eólica,3 Hermanas,1872.7
 2025-10-01,Eólica,Cupisnique,995.5
 2025-10-01,Eólica,Duna,203.5
@@ -3268,3 +3311,31 @@ fecha,tipo,central,mwh
 2026-11-23,Solar,Sunny Expansion,1603.7
 2026-11-23,Solar,Tacna Solar,93.5
 2026-11-23,Solar,Yarucaya,7.4
+2026-11-24,Eólica,3 Hermanas,1302.8
+2026-11-24,Eólica,Cupisnique,883.3
+2026-11-24,Eólica,Duna,155.3
+2026-11-24,Eólica,Huambos,137.3
+2026-11-24,Eólica,Marcona,526.9
+2026-11-24,Eólica,Punta Lomitas,3556.1
+2026-11-24,Eólica,Punta Lomitas Expansion,369.7
+2026-11-24,Eólica,San Juan,1787.6
+2026-11-24,Eólica,Talara,384.7
+2026-11-24,Eólica,Wayra Extension,2038.1
+2026-11-24,Eólica,Wayra I,1370.9
+2026-11-24,Solar,Carhuaquero (Cs),2.1
+2026-11-24,Solar,Clemesi,885.3
+2026-11-24,Solar,Coenergy,3.2
+2026-11-24,Solar,Expansion Intipampa,771.1
+2026-11-24,Solar,Intipampa,552.9
+2026-11-24,Solar,Majes,193.2
+2026-11-24,Solar,Matarani,907.6
+2026-11-24,Solar,Moquegua Solar,115.3
+2026-11-24,Solar,Panamericana Solar,199.8
+2026-11-24,Solar,Reparticion,199.1
+2026-11-24,Solar,Rubi,1213.8
+2026-11-24,Solar,San Martin Solar,2259.4
+2026-11-24,Solar,Sunny,2786.5
+2026-11-24,Solar,Sunny Expansion,1401.0
+2026-11-24,Solar,Tacna Solar,81.0
+2026-11-24,Solar,Wayra Solar,656.1
+2026-11-24,Solar,Yarucaya,9.0
