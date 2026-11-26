@@ -27,8 +27,8 @@
   "Hidro|Canon Del Pato": {
    "tipo": "Hidro",
    "central": "Canon Del Pato",
-   "mw": 211.3,
-   "fecha": "2026-11-21"
+   "mw": 234.0,
+   "fecha": "2026-11-25"
   },
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
@@ -45,8 +45,8 @@
   "Hidro|Machupicchu": {
    "tipo": "Hidro",
    "central": "Machupicchu",
-   "mw": 158.0,
-   "fecha": "2026-10-31"
+   "mw": 161.2,
+   "fecha": "2026-11-25"
   },
   "Hidro|Aricota 1": {
    "tipo": "Hidro",
@@ -111,8 +111,8 @@
   "Hidro|Sta Teresa": {
    "tipo": "Hidro",
    "central": "Sta Teresa",
-   "mw": 86.8,
-   "fecha": "2026-10-30"
+   "mw": 88.8,
+   "fecha": "2026-11-25"
   },
   "Hidro|Yaupi": {
    "tipo": "Hidro",
@@ -639,6 +639,7 @@
   "2026-11-21",
   "2026-11-22",
   "2026-11-23",
-  "2026-11-24"
+  "2026-11-24",
+  "2026-11-25"
  ]
 }
