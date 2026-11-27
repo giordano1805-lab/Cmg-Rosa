@@ -303,8 +303,8 @@
   "Hidro|Renovandesh1": {
    "tipo": "Hidro",
    "central": "Renovandesh1",
-   "mw": 21.2,
-   "fecha": "2026-11-07"
+   "mw": 21.4,
+   "fecha": "2026-11-26"
   },
   "Hidro|Potrero": {
    "tipo": "Hidro",
@@ -369,8 +369,8 @@
   "Hidro|Carhuac": {
    "tipo": "Hidro",
    "central": "Carhuac",
-   "mw": 20.1,
-   "fecha": "2026-11-05"
+   "mw": 20.2,
+   "fecha": "2026-11-26"
   },
   "Hidro|Huallin": {
    "tipo": "Hidro",
@@ -411,8 +411,8 @@
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
    "central": "Stacruz 1 2",
-   "mw": 13.2,
-   "fecha": "2026-11-21"
+   "mw": 13.4,
+   "fecha": "2026-11-26"
   },
   "Hidro|Runatullo Ii": {
    "tipo": "Hidro",
@@ -441,8 +441,8 @@
   "Solar|Intipampa": {
    "tipo": "Solar",
    "central": "Intipampa",
-   "mw": 40.6,
-   "fecha": "2026-11-07"
+   "mw": 41.0,
+   "fecha": "2026-11-26"
   },
   "Eólica|Punta Lomitas": {
    "tipo": "Eólica",
@@ -495,8 +495,8 @@
   "Hidro|Angel Iii": {
    "tipo": "Hidro",
    "central": "Angel Iii",
-   "mw": 19.5,
-   "fecha": "2026-10-30"
+   "mw": 19.6,
+   "fecha": "2026-11-26"
   },
   "Eólica|Huambos": {
    "tipo": "Eólica",
@@ -640,6 +640,7 @@
   "2026-11-22",
   "2026-11-23",
   "2026-11-24",
-  "2026-11-25"
+  "2026-11-25",
+  "2026-11-26"
  ]
 }
