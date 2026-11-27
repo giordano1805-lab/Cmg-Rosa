@@ -30,14 +30,18 @@
    "desde": "2026-11-28",
    "hasta": "2026-12-04",
    "archivos": [
-    "PSO_Sem48_2026_Preliminar.xlsx"
+    "PSO_Sem48_2026_Preliminar.xlsx",
+    "YUPANA_SEM48.zip",
+    "SPR-IPSO-048-2026 PROGRAMA SEMANAL DE OPERACION.pdf",
+    "Anexo2_Costo Variable_Sem48.xlsx",
+    "Anexo1_Despacho_Sem48.xlsx"
    ]
   }
  ],
  "archivos": [
   "Operación/Programa de Operación/Programa Semanal Operación/2026/46_SEMANAL N° 46 (14.11.2026 - 20..11.2026)/Final/Anexo1_Despacho_Sem46.xlsx",
   "Operación/Programa de Operación/Programa Semanal Operación/2026/47_SEMANAL N° 47 (21.11.2026 - 27.11.2026)/Final/Anexo1_Despacho_Sem47.xlsx",
-  "Operación/Programa de Operación/Programa Semanal Operación/2026/48_SEMANAL N° 48 (28.11.2026 - 04.12.2026)/PSO_Sem48_2026_Preliminar.xlsx"
+  "Operación/Programa de Operación/Programa Semanal Operación/2026/48_SEMANAL N° 48 (28.11.2026 - 04.12.2026)/Final/Anexo1_Despacho_Sem48.xlsx"
  ],
  "hojas": [
   {
@@ -2225,8 +2229,8 @@
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-11-28",
    "filas": 63,
    "intervalos": 48,
@@ -2353,9 +2357,9 @@
     [
      "",
      "00:30",
-     "63.86076",
-     "482.04797",
-     "156.06119",
+     "67.02893",
+     "428.52558",
+     "138.73352",
      "8.82587",
      "8.51669",
      "91.33527",
@@ -2367,9 +2371,9 @@
     [
      "",
      "01:00",
-     "63.86076",
-     "482.04797",
-     "156.06119",
+     "67.02893",
+     "428.52558",
+     "138.73352",
      "8.82587",
      "8.51669",
      "91.33527",
@@ -2381,8 +2385,8 @@
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-11-29",
    "filas": 63,
    "intervalos": 48,
@@ -2509,7 +2513,7 @@
     [
      "",
      "00:30",
-     "103.20255",
+     "69.58804",
      "596.74371",
      "193.1935",
      "8.82587",
@@ -2523,7 +2527,7 @@
     [
      "",
      "01:00",
-     "103.20255",
+     "69.58804",
      "596.74371",
      "193.1935",
      "8.82587",
@@ -2537,8 +2541,8 @@
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-11-30",
    "filas": 63,
    "intervalos": 48,
@@ -2665,9 +2669,9 @@
     [
      "",
      "00:30",
-     "69.46918",
-     "589.52355",
-     "190.856",
+     "92.16998",
+     "281.36325",
+     "91.09028",
      "",
      "",
      "91.33527",
@@ -2679,9 +2683,9 @@
     [
      "",
      "01:00",
-     "69.46918",
-     "589.52355",
-     "190.856",
+     "92.16998",
+     "281.36325",
+     "91.09028",
      "",
      "",
      "91.33527",
@@ -2693,8 +2697,8 @@
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-12-01",
    "filas": 63,
    "intervalos": 48,
@@ -2821,36 +2825,36 @@
     [
      "",
      "00:30",
-     "75.50215",
-     "461.01951",
-     "150.12359",
-     "8.82587",
+     "70.04864",
+     "441.39683",
+     "143.73378",
+     "7.81193",
      "8.51669",
      "91.86783",
      "201.0008",
      "",
-     "",
+     "87.32656",
      "190.92009"
     ],
     [
      "",
      "01:00",
-     "75.50215",
-     "461.01951",
-     "150.12359",
-     "8.82587",
+     "70.04864",
+     "441.39683",
+     "143.73378",
+     "7.81193",
      "8.51669",
      "91.86783",
      "201.0008",
      "",
-     "",
+     "87.32656",
      "190.92009"
     ]
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-12-02",
    "filas": 63,
    "intervalos": 48,
@@ -2977,10 +2981,10 @@
     [
      "",
      "00:30",
-     "107.53755",
-     "541.08354",
-     "176.19515",
-     "8.82587",
+     "124.90886",
+     "498.48336",
+     "162.32309",
+     "3.6",
      "8.51669",
      "91.86783",
      "201.0008",
@@ -2991,10 +2995,10 @@
     [
      "",
      "01:00",
-     "107.53755",
-     "541.08354",
-     "176.19515",
-     "8.82587",
+     "124.90886",
+     "498.48336",
+     "162.32309",
+     "3.6",
      "8.51669",
      "91.86783",
      "201.0008",
@@ -3005,8 +3009,8 @@
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-12-03",
    "filas": 63,
    "intervalos": 48,
@@ -3133,36 +3137,36 @@
     [
      "",
      "00:30",
-     "142.13302",
-     "600.22327",
-     "195.45306",
-     "3.6",
-     "3.6",
+     "99.20274",
+     "485.29213",
+     "158.02758",
+     "8.82587",
+     "8.51669",
      "91.86783",
      "201.0008",
      "",
      "",
-     "190.16579"
+     "190.92009"
     ],
     [
      "",
      "01:00",
-     "142.13302",
-     "600.22327",
-     "195.45306",
-     "3.6",
-     "3.6",
+     "99.20274",
+     "485.29213",
+     "158.02758",
+     "8.82587",
+     "8.51669",
      "91.86783",
      "201.0008",
      "",
      "",
-     "190.16579"
+     "190.92009"
     ]
    ]
   },
   {
-   "archivo": "PSO_Sem48_2026_Preliminar.xlsx",
-   "libro": "PSO_Sem48_2026_Preliminar.xlsx",
+   "archivo": "Anexo1_Despacho_Sem48.xlsx",
+   "libro": "Anexo1_Despacho_Sem48.xlsx",
    "hoja": "2026-12-04",
    "filas": 63,
    "intervalos": 48,
@@ -3289,9 +3293,9 @@
     [
      "",
      "00:30",
-     "98.12098",
-     "594.35044",
-     "193.54067",
+     "114.95849",
+     "564.20195",
+     "183.72329",
      "8.82587",
      "8.51669",
      "91.86783",
@@ -3303,9 +3307,9 @@
     [
      "",
      "01:00",
-     "98.12098",
-     "594.35044",
-     "193.54067",
+     "114.95849",
+     "564.20195",
+     "183.72329",
      "8.82587",
      "8.51669",
      "91.86783",
