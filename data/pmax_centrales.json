@@ -27,8 +27,8 @@
   "Hidro|Canon Del Pato": {
    "tipo": "Hidro",
    "central": "Canon Del Pato",
-   "mw": 234.0,
-   "fecha": "2026-11-25"
+   "mw": 236.2,
+   "fecha": "2026-11-27"
   },
   "Hidro|Cerro Del Aguila": {
    "tipo": "Hidro",
@@ -45,8 +45,8 @@
   "Hidro|Machupicchu": {
    "tipo": "Hidro",
    "central": "Machupicchu",
-   "mw": 161.2,
-   "fecha": "2026-11-25"
+   "mw": 162.4,
+   "fecha": "2026-11-27"
   },
   "Hidro|Aricota 1": {
    "tipo": "Hidro",
@@ -285,14 +285,14 @@
   "Hidro|Tupuri": {
    "tipo": "Hidro",
    "central": "Tupuri",
-   "mw": 2.1,
-   "fecha": "2026-11-13"
+   "mw": 2.2,
+   "fecha": "2026-11-27"
   },
   "Hidro|Roncador": {
    "tipo": "Hidro",
    "central": "Roncador",
-   "mw": 3.5,
-   "fecha": "2026-11-15"
+   "mw": 3.6,
+   "fecha": "2026-11-27"
   },
   "Hidro|Canchayllo": {
    "tipo": "Hidro",
@@ -387,8 +387,8 @@
   "Hidro|Manta I": {
    "tipo": "Hidro",
    "central": "Manta I",
-   "mw": 19.7,
-   "fecha": "2026-11-18"
+   "mw": 19.8,
+   "fecha": "2026-11-27"
   },
   "Solar|Coenergy": {
    "tipo": "Solar",
@@ -405,8 +405,8 @@
   "Hidro|Huasahuasi": {
    "tipo": "Hidro",
    "central": "Huasahuasi",
-   "mw": 10.0,
-   "fecha": "2026-11-10"
+   "mw": 11.1,
+   "fecha": "2026-11-27"
   },
   "Hidro|Stacruz 1 2": {
    "tipo": "Hidro",
@@ -513,8 +513,8 @@
   "Solar|Majes": {
    "tipo": "Solar",
    "central": "Majes",
-   "mw": 18.7,
-   "fecha": "2026-11-14"
+   "mw": 18.8,
+   "fecha": "2026-11-27"
   },
   "Solar|Rubi": {
    "tipo": "Solar",
@@ -641,6 +641,7 @@
   "2026-11-23",
   "2026-11-24",
   "2026-11-25",
-  "2026-11-26"
+  "2026-11-26",
+  "2026-11-27"
  ]
 }

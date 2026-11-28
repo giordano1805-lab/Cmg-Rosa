@@ -73,6 +73,7 @@ fecha,cuenca,embalse,prom,final
 2023-11-24,-v2,-,,
 2023-11-25,-v2,-,,
 2023-11-26,-v2,-,,
+2023-11-27,-v2,-,,
 2024-09-25,-v2,-,,
 2024-09-26,-v2,-,,
 2024-09-27,-v2,-,,
@@ -322,6 +323,18 @@ fecha,cuenca,embalse,prom,final
 2024-11-26,San Gabán,Presa San Gaban,0.13108,0.14200
 2024-11-26,Santa,Presa Shapiringo,0.22121,0.13800
 2024-11-26,Santa,Reservorio San Diego,0.56800,0.51800
+2024-11-27,Chaglla,Embalse Chaglla,13.47577,13.51941
+2024-11-27,Mantaro,Embalse Cerro Del Águila,8.23792,7.81000
+2024-11-27,Mantaro,Embalse Junin (Statkraft),62.97957,62.78291
+2024-11-27,Mantaro,Embalse Malpaso,23.15531,23.13382
+2024-11-27,Rímac,Embalse Pallca,0.37800,0.39300
+2024-11-27,Rímac,Presa Huinco,0.19875,0.25700
+2024-11-27,Rímac,Presa Sheque,0.12296,0.09500
+2024-11-27,Rímac,Pulmón Matucana,0.02193,0.03837
+2024-11-27,San Gabán,Embalse Macusani,10.15000,10.15000
+2024-11-27,San Gabán,Presa San Gaban,0.12925,0.14300
+2024-11-27,Santa,Presa Shapiringo,0.19179,0.17900
+2024-11-27,Santa,Reservorio San Diego,0.46975,0.42300
 2025-09-25,Chaglla,Embalse Chaglla,4.69714,4.92320
 2025-09-25,Mantaro,Embalse Cerro Del Águila,4.66833,4.15000
 2025-09-25,Mantaro,Embalse Junin (Statkraft),122.10107,121.65279
@@ -1804,3 +1817,15 @@ fecha,cuenca,embalse,prom,final
 2026-11-26,San Gabán,Presa San Gaban,0.09125,0.06200
 2026-11-26,Santa,Presa Shapiringo,0.11054,0.12200
 2026-11-26,Santa,Reservorio San Diego,0.00200,0.00200
+2026-11-27,Chaglla,Embalse Chaglla,2.09325,1.77565
+2026-11-27,Mantaro,Embalse Cerro Del Águila,2.59092,1.75800
+2026-11-27,Mantaro,Embalse Junin (Statkraft),35.31050,35.12800
+2026-11-27,Mantaro,Embalse Malpaso,20.25504,20.70813
+2026-11-27,Rímac,Embalse Pallca,0.34937,0.27100
+2026-11-27,Rímac,Presa Huinco,0.17463,0.27300
+2026-11-27,Rímac,Presa Sheque,0.21062,0.18600
+2026-11-27,Rímac,Pulmón Matucana,0.01746,0.02445
+2026-11-27,San Gabán,Embalse Macusani,17.52000,17.52000
+2026-11-27,San Gabán,Presa San Gaban,0.11875,0.12900
+2026-11-27,Santa,Presa Shapiringo,0.13925,0.19000
+2026-11-27,Santa,Reservorio San Diego,0.00200,0.00200
